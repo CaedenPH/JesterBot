@@ -25,7 +25,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install wavelink
         pip install discord.py
-        pip install json
         pip install yfinance
         pip install pyMorseTranslator
         pip install flake8 pytest
