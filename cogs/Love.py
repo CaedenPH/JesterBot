@@ -1,27 +1,11 @@
 import discord, os, requests, json, asyncio
-from discord.ext.commands import has_permissions
-from discord.ext import commands 
-from discord.utils import get
-from discord.ext import tasks
-from discord import Intents
-from asyncio import sleep
-import yfinance as yf
-from traceback import print_exc
-import itertools
-import sys
-import traceback
-from async_timeout import timeout
-from functools import partial
-from youtube_dl import YoutubeDL
-from random import choice, randint
-import io
-import textwrap
-import contextlib
-from discord.ext.buttons import Paginator
-from traceback import format_exception
+from discord.ext import commands
 from dutils import thecolor, Json, thebed
+
 class GetUser:
+
     def __init__(self, file, user="", family=""):
+
         thefile = open(f'./dicts/{file}', 'r+')
         thedata = json.load(thefile)
         if user in thedata:
@@ -37,6 +21,7 @@ class GetUser:
         self.theuser = theuser
         self.family = thefamily
         self.append = Json(thefile, thedata)
+
     def user(self, user=""):
         
         if user in self.data:
@@ -51,12 +36,14 @@ class Love(commands.Cog):
     def __init__(self, client):
 
         self.client = client
+
     @commands.command(help="Pokes the `<member>` specified")
     async def poke(self, ctx, member: discord.Member=""):
+
         if member == "":
             embed = discord.Embed(description=f"**{ctx.author.name}** has poked you 😗", colour=thecolor())
             await ctx.author.send(embed=embed)
-            embed = discord.Embed(description=f"The **poke** will be sent to the specified member in aprox {round(self.client.latency * 1000)}ms", colour=thecolor())
+            embed = discord.Embed(description=f"The **poke** will be sent to the specified member in aprox **{round(self.client.latency * 1000)}**ms", colour=thecolor())
             await ctx.send(embed=embed)     
         else:
             embed = discord.Embed(description=f"**{ctx.author.name}** has poked you 😗", colour=thecolor())
@@ -78,6 +65,7 @@ class Love(commands.Cog):
             await member.send(embed=embed)
             embed = discord.Embed(description=f"The **hug** will be sent to the specified member in aprox **{round(self.client.latency * 1000)}**ms", colour=thecolor())
             await ctx.send(embed=embed) 
+
     @commands.command()
     async def love(self, ctx):
         await thebed(ctx, 'Name 1')
@@ -115,8 +103,6 @@ class Love(commands.Cog):
             
             await thebed(ctx, f"Compatabiliy between {received_msg} and {received_msg1}" , f"**Percentage:** {over2}%")
             
-
-            
     @commands.command(aliases=['marrage'])
     async def family(self, ctx):
         File = GetUser('Love.json', f'{str(ctx.author.id)}', 'marriage')
@@ -127,8 +113,6 @@ class Love(commands.Cog):
             await ctx.send(embed=embed)
         else:
             await thebed(ctx, 'Marriage', 'You are single bro...')
-        
-        
         
     @commands.command()
     async def marry(self, ctx, member:discord.Member):
