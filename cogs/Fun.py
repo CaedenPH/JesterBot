@@ -28,7 +28,7 @@ encoder = translator.Encoder()
 decoder = translator.Decoder()
 
 import praw
-reddit = praw.Reddit(client_id = "GfF3CEfYXsz3yw", client_secret = "_gRjhHHlRcb9uWoaJQbJddtqc-E", username = "Codex_2006", password = "senuka123", user_agent = "Codex")
+reddit = praw.Reddit("shhh")
 
 
 
