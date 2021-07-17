@@ -1,21 +1,18 @@
 import discord, os, requests, json, asyncio
 from discord.ext import commands 
-import randfacts
 from random import choice, randint
-import vacefron
-import asyncpraw
 from discord.ext.commands import has_permissions
 from dutils import thecolor, Json, thebed
-reddit = asyncpraw.Reddit("shh")
-vace_api = vacefron.Client()
 
 
 class Levels(commands.Cog):
     def __init__(self, client):
 
         self.client = client
+
     @commands.command(aliases=['levels', 'lvl', 'levl', 'lvel'])
     async def level(self, ctx, memb:discord.Member=""):
+
         if not memb:
             memb = ctx.author
         with open('./dicts/Levels.json') as k:
@@ -38,6 +35,7 @@ class Levels(commands.Cog):
                 await ctx.send(embed=embed)
             else:
                 await thebed(ctx, '', 'No levels config!')
+
     @commands.Cog.listener('on_message')
     async def leveltest(self, message):
         try:
@@ -52,8 +50,6 @@ class Levels(commands.Cog):
                         data[str(message.guild.id)][str(message.author.id)] = {
                             "name": message.author.name,
                             "points": 1
-
-
                         }
                     Json(k, data)
         except:
@@ -61,6 +57,7 @@ class Levels(commands.Cog):
     @commands.command(aliases=['configlevel'])
     @has_permissions(manage_messages=True)
     async def configlevels(self, ctx, rankup:int=20):
+
         with open('./dicts/Levels.json', 'r+') as k:
             data = json.load(k)
             g = str(ctx.guild.id)
@@ -77,6 +74,7 @@ class Levels(commands.Cog):
     @commands.command()
     @has_permissions(manage_messages=True)
     async def removelevels(self, ctx):
+
         with open('./dicts/Levels.json', 'r+') as k:
             data = json.load(k)
             g = str(ctx.guild.id)
@@ -89,7 +87,6 @@ class Levels(commands.Cog):
     @commands.command(aliases=['leveltop', 'lb'])
     async def leaderboard(self, ctx):
         with open('./dicts/Levels.json') as k:
-            
 
             data = json.load(k)
             if not str(ctx.guild.id) in data:
@@ -112,5 +109,6 @@ class Levels(commands.Cog):
                 lvl = item[1]['points'] / rank
                 x.append(f"**{item[1]['name']}:** Level {str(lvl)[:1]}")
             await thebed(ctx, 'Leaderboard', "\n".join(x))
+            
 def setup(client):
   client.add_cog(Levels(client))
