@@ -1,28 +1,16 @@
 import discord, os, requests, json, asyncio
 from discord.ext.commands import has_permissions
 from discord.ext import commands 
-from discord.utils import get
-from discord.ext import tasks
-from discord import Intents
-from asyncio import sleep
-import yfinance as yf
-from traceback import print_exc
-import itertools
-import sys
-import traceback
 from async_timeout import timeout
-from functools import partial
-from youtube_dl import YoutubeDL
 from random import choice, randint
 from discord.ext.buttons import Paginator
 from datetime import datetime
 from dutils import thecolor, Json, thebed
+
 class Pag(Paginator):
     async def teardown(self):
         try:
-            
             await self.page.clear_reactions()
-            
         except discord.HTTPException:
             pass
 
@@ -52,11 +40,11 @@ class Mod(commands.Cog):
         else:
             embed = discord.Embed(title=f"Goodbye", colour=thecolor())
             await ctx.send(embed=embed)
-   
         
     @has_permissions(administrator=True)
     @commands.command(aliases=['nicks'], hidden=True)
     async def nick(self, ctx, member: discord.Member, *, nick):
+
         await member.edit(nick=nick)
         embed = discord.Embed(description=f'Nickname was changed for {member.mention} ', colour=thecolor())
         await ctx.send(embed=embed)
@@ -64,6 +52,7 @@ class Mod(commands.Cog):
     @has_permissions(administrator=True)
     @commands.command(hidden=True, description="Deletes the specified invite", aliases=['deleteinv', 'invdelete', 'revokeinv', 'delinv', 'Invdel', 'Revinv', 'Invrev', 'Revokeinvite', 'Revoke_invite', 'xinv', 'X_inv', 'invitex', 'xinvite', 'Inv_x'])
     async def delete_invite(self, ctx, invite:str):
+
         embed = discord.Embed(title=f"Deleted invite", colour=thecolor())
         await ctx.send(embed=embed)
         await self.client.delete_invite(invite)
@@ -71,22 +60,16 @@ class Mod(commands.Cog):
     @has_permissions(manage_messages=True)
     @commands.command(name='purge', aliases=['Message_delete', 'Msg_Del'], description="Purges the ammount of messages sent")
     async def _purge (self, ctx, amount=80):
+
         await ctx.channel.purge(limit=amount)
         embed = discord.Embed(title='Purge Sucsessful', value=f'Purge has been sucsessful.', colour =thecolor())
         embed.add_field(name='Congrats!', value='Your purge has been sucsessful')
         await ctx.send(embed=embed)
 
-    @commands.command(hidden=True)
-    async def close(self, ctx):
-        if ctx.author.id == 298043305927639041:
-            embed = discord.Embed(title=f"Goodbye", colour=thecolor())
-            await ctx.send(embed=embed)
-            
-            await self.client.close()
-
     @has_permissions(ban_members=True)
     @commands.command(aliases=['b', 'banhammer', 'bann'], description="Bans the specified member - Reason goes in the audit log")
     async def ban(self, ctx,member : discord.Member,*, reason = "No reason provided"):
+
         await member.send("You have been banned: " + reason)
         await member.ban(reason=reason)
         embed = discord.Embed(title="Banned", description=f"{member.mention}  got banned.", colour=thecolor())
@@ -97,13 +80,13 @@ class Mod(commands.Cog):
     @has_permissions(ban_members=True)
     @commands.command(aliases=['ub', 'Revoke_Ban'], description="Unbans the specified member - Reason goes in the audit log")
     async def unban(self, ctx, user_id: int, *, reason = "No reason provided"):
+
         user = await ctx.bot.fetch_user(user_id)
         await ctx.guild.unban(user, reason=reason)
         embed = discord.Embed(title="Unbanned", description=f"{user}  got unbanned.", colour=thecolor())
         embed.add_field(name="Reason:", value=reason)
         await ctx.send(embed=embed)
         await user.send("You have been unbanned")
-    
     
     @has_permissions(manage_roles=True)
     @commands.command(aliases=['add', '+role', 'add_role'])
@@ -118,16 +101,17 @@ class Mod(commands.Cog):
     @has_permissions(move_members=True)
     @commands.command(aliases=['m', 'move'], description="Moves a member from their current vc to the channel specified. If no channel has been specified it will kick the member from the vc.")
     async def move_to(self, ctx, member: discord.Member, channel: str): 
+
         await member.move_to(discord.utils.get(self, ctx.guild.voice_channels, name=channel))
         embed = discord.Embed(title="Moved", description=f"{member.mention} got moved. to {channel}", colour=thecolor())
         await ctx.send(embed=embed)
 
     @commands.command()
     async def deletemessages(self, ctx, user:discord.Member, limit=10):
+
         embed = discord.Embed(title="Working....", color=thecolor())
         x = await ctx.send(embed=embed)
         for channel in ctx.guild.text_channels:
-            
 
             async for c in channel.history(limit=limit):
                 if c.author == user:
@@ -159,8 +143,6 @@ class Mod(commands.Cog):
                 │ My prefix for you is: {', '.join(x)} │ 
                 │ Type `^prefix <prefix> [prefix], [prefix], etc` to change the prefix for you! │
                 
-                
-                
                 """, colour=thecolor())
                 embed.set_author(name="JesterBot", icon_url=us.avatar_url)
         
@@ -168,7 +150,6 @@ class Mod(commands.Cog):
                 embed.set_footer(text="You can get more of these jokes with ^joke!")
             return await ctx.send(embed=embed)
         prefix = prefix.split(" ")
-       
        
         if prefix:
         
@@ -180,8 +161,6 @@ class Mod(commands.Cog):
                 else:
                     data[str(ctx.guild.id)]= {
                         "prefix": prefix
-
-
                     }
                 Json(e, data)
             prefix1 = []
@@ -191,11 +170,10 @@ class Mod(commands.Cog):
             embed.set_author(icon_url=ctx.author.avatar_url, name="Prefix")
             await ctx.send(embed=embed)
     
-
-
     @commands.command(aliases=['k'], description="Kicks the specified member - Reason goes in the audit log")
     @has_permissions(kick_members=True)
     async def kick(self, ctx,member : discord.Member,*, reason = "No reason provided"):
+
         if member.bot:
             pass
         else:
@@ -205,15 +183,10 @@ class Mod(commands.Cog):
         embed.add_field(name="Reason:", value=reason)
         await ctx.send(embed=embed)
 
-
-
-   
-                
-        
-
     @commands.command(aliases=['permrmute'], description="Indefinitely permreactmutes the member from adding reactions to messages")
     @has_permissions(manage_messages=True)
     async def permreactmute(self, ctx, member: discord.Member, *, reason=None):
+
         guild = ctx.guild
         mutedRole = discord.utils.get(guild.roles, name="ReactMuted")
 
@@ -228,10 +201,10 @@ class Mod(commands.Cog):
         await member.add_roles(mutedRole, reason=reason)
         await member.send(f"You have been reaction muted from: {guild.name} Reason: {reason}")
 
-
     @commands.command(description="Indefinitely mutes the member from sending messages")
     @has_permissions(manage_messages=True)
     async def permmute(self, ctx, member: discord.Member, *, reason=None):
+
         guild = ctx.guild
         mutedRole = discord.utils.get(guild.roles, name="Muted")
 
@@ -246,11 +219,10 @@ class Mod(commands.Cog):
         await member.add_roles(mutedRole, reason=reason)
         await member.send(f" you have been muted from: {guild.name} Reason: {reason}")
 
-
-
     @commands.command(aliases=['unrmute', 'runmute'], description="Unreactmutes `<member>`")
     @has_permissions(manage_messages=True)
     async def unreactmute(self, ctx, member: discord.Member, *, reason=None):
+
         guild = ctx.guild
 
         Reactmuted = discord.utils.get(guild.roles, name="ReactMuted")
@@ -267,13 +239,12 @@ class Mod(commands.Cog):
             await member.remove_roles(Reactmuted, reason=reason)
             await member.send(f"You have been reaction muted from: {guild.name} Reason: {reason}")
 
-
     @commands.command(aliases=['unmut'], description="Unmutes `<member>`")
     @has_permissions(manage_messages=True)
     async def unmute(self, ctx, member: discord.Member, *, reason=None):
+
         guild = ctx.guild
         Reactmuted = discord.utils.get(guild.roles, name="Muted")
-    
         
         if Reactmuted not in member.roles:
             embed = discord.Embed(title="Member is not muted", description=f"{member.mention} is not muted", colour=thecolor())
@@ -290,12 +261,12 @@ class Mod(commands.Cog):
     @commands.command(aliases=['tempmute'], description="Mutes the member from sending messages for `<time>` Format `time` like `1s` (second), `1m` (minute), `1h`(hour), 1d` (day)")
     @has_permissions(manage_messages=True)
     async def mute(self, ctx, member: discord.Member, time, *, reason=None):
-        async with ctx.typing():
 
+        async with ctx.typing():
         
             if not reason:
                 reason="No reason given"
-            #Now timed mute manipulation
+            
             try:
                 seconds = time[:-1] #Gets the numbers from the time argument, start to -1
                 duration = time[-1] #Gets the timed maniulation, s, m, h, d
@@ -314,9 +285,6 @@ class Mod(commands.Cog):
                     embed = discord.Embed(title="Invalid duration input", colour=thecolor())
                     await ctx.send(embed=embed)
                     return
-
-                
-                
                 
             except Exception as e:
                 
@@ -335,8 +303,6 @@ class Mod(commands.Cog):
                 for channel in guild.channels:
                     await channel.set_permissions(Muted, speak=False, send_messages=False, read_message_history=False, read_messages=False)
                 
-            
-                    
             await member.add_roles(Muted, reason=reason)
             muted_embed = discord.Embed(title="Muted a user", description=f"{member.mention} Was muted by {ctx.author.mention} for {reason} to {time}", colour=thecolor())
         await ctx.send(embed=muted_embed)
@@ -351,9 +317,6 @@ class Mod(commands.Cog):
     @commands.command(aliases=['rmute'], description="Reactmutes the member from adding reactions to messages for `<time>` Format `time` like `1s` (second), `1m` (minute), `1h`(hour), 1d` (day)")
     @has_permissions(manage_messages=True)
     async def reactmute(self, ctx, member: discord.Member, time, *, reason="no reason"):
-    
-        
-    
 
         #Now timed mute manipulation
         try:
@@ -395,6 +358,7 @@ class Mod(commands.Cog):
     @has_permissions(administrator=True)
     @commands.command(aliases=['give_role', 'gv', 'give_rol'], description="Gives every member in the guild the specified role")
     async def give_roles(self, ctx, role:discord.Role):
+
         embed = discord.Embed(title="Working...", colour=thecolor())
         await ctx.send(embed=embed)
         role = discord.utils.get(ctx.guild.roles, id = role.id)
@@ -403,26 +367,22 @@ class Mod(commands.Cog):
         embed = discord.Embed(title="Done", colour=thecolor())
         await ctx.send(embed=embed)
 
-    
-
 
     @commands.command(description="Sends a list of all the server roles and positions (hierachy)")
     async def showroles(self, ctx):
+
         x = ""
         for role in ctx.guild.roles:
         
             if role.name != "@everyone":
                 x += (f"`{role.name} - {role.position}` \n")
-        # embed = discord.Embed(title=, colour=thecolor())
-        # embed.add_field(value=f"{', '.join(x)}")
-        # await ctx.send(embed=embed)
+       
         if len(x) < 200:
                 await ctx.send(x)
         
         else:
             pager = Pag(
                 timeout=100,
-                #entries=[f"`{result[1:][:-1]}`"[i: i + 2000] for i in range(0, len(result), 2000)],
                 entries=[x[i: i + 1000] for i in range(0, len(x), 1000)],
                 length = 1,
                 prefix = "```py\n", 
@@ -433,6 +393,7 @@ class Mod(commands.Cog):
 
     @commands.command(hidden=True)
     async def showroleperm(self, ctx, roled="member"):
+
         role = discord.utils.get(self, ctx.guild.roles, name=roled)
         
         for channel in ctx.guild.text_channels:
@@ -458,6 +419,7 @@ class Mod(commands.Cog):
 
     @commands.command()
     async def position(self, ctx, member:discord.Member):
+
         x = []
         for role in member.roles:
             if role.position != 0:
@@ -469,6 +431,7 @@ class Mod(commands.Cog):
     
     @commands.command(hidden=True)
     async def get_person(self, ctx, id1):
+        
         x = self.client.get_user(id1)
         await ctx.send(x.name)
 
