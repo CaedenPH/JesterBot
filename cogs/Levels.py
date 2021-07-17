@@ -1,189 +1,114 @@
 import discord, os, requests, json, asyncio
-from discord.ext import commands
+from discord.ext import commands 
+from random import choice, randint
+from discord.ext.commands import has_permissions
 from dutils import thecolor, Json, thebed
 
-class GetUser:
 
-    def __init__(self, file, user="", family=""):
-
-        thefile = open(f'./dicts/{file}', 'r+')
-        thedata = json.load(thefile)
-        if user in thedata:
-            theuser = user
-            thefamily = thedata[str(user)][family]
-        else:
-            theuser = False
-            thefamily = False
-        
-
-        self.file = thefile
-        self.data = thedata
-        self.theuser = theuser
-        self.family = thefamily
-        self.append = Json(thefile, thedata)
-
-    def user(self, user=""):
-        
-        if user in self.data:
-            theuser = self.data[str(user)]
-           
-        else:
-            theuser = user
-            
-        self.user = theuser
-
-class Love(commands.Cog):
+class Levels(commands.Cog):
     def __init__(self, client):
 
         self.client = client
 
-    @commands.command(help="Pokes the `<member>` specified")
-    async def poke(self, ctx, member: discord.Member=""):
+    @commands.command(aliases=['levels', 'lvl', 'levl', 'lvel'])
+    async def level(self, ctx, memb:discord.Member=""):
 
-        if member == "":
-            embed = discord.Embed(description=f"**{ctx.author.name}** has poked you 😗", colour=thecolor())
-            await ctx.author.send(embed=embed)
-            embed = discord.Embed(description=f"The **poke** will be sent to the specified member in aprox **{round(self.client.latency * 1000)}**ms", colour=thecolor())
-            await ctx.send(embed=embed)     
-        else:
-            embed = discord.Embed(description=f"**{ctx.author.name}** has poked you 😗", colour=thecolor())
-            await member.send(embed=embed)
-            embed = discord.Embed(description=f"The **poke** will be sent to the specified member in aprox **{round(self.client.latency * 1000)}** ms", colour=thecolor())
-            await ctx.send(embed=embed) 
+        if not memb:
+            memb = ctx.author
+        with open('./dicts/Levels.json') as k:
+            data = json.load(k)
+            if str(ctx.guild.id) in data:
+                
+                p = data[str(ctx.guild.id)][str(memb.id)]['points']
+                x = data[str(ctx.guild.id)]['rankup']
+                level = p
+                level1 = level / x
+                embed = discord.Embed(title=f"", description=f"**Messages sent:** {level} \n**Level:** {level1}", color=thecolor())
+                name = memb.name
+                n = ""
+                for zx in name:
+                    e = zx.lower()
+                    if ord(e) >= 97 and ord(e) <= 123:
+                        n += e
+                        
+                embed.set_author(icon_url=memb.avatar_url, name=f"Levels for {n}")
+                await ctx.send(embed=embed)
+            else:
+                await thebed(ctx, '', 'No levels config!')
 
-    @commands.command(help="Sends a hug to the `<member>` specified")
-    async def hug(self, ctx, member:discord.Member=""):
-        if member == "":
-
-            embed = discord.Embed(description=f"**{ctx.author.name}** has given you the gift of a hug 🌷", colour=thecolor())
-            await ctx.author.send(embed=embed)
-            embed = discord.Embed(description=f"The **hug** will be sent to the specified member in aprox **{round(self.client.latency * 1000)}**ms", colour=thecolor())
-            await ctx.send(embed=embed) 
-        else:
-
-            embed = discord.Embed(description=f"**{ctx.author.name}** has given you the gift of a hug 🌷", colour=thecolor())
-            await member.send(embed=embed)
-            embed = discord.Embed(description=f"The **hug** will be sent to the specified member in aprox **{round(self.client.latency * 1000)}**ms", colour=thecolor())
-            await ctx.send(embed=embed) 
-
-    @commands.command()
-    async def love(self, ctx):
-        await thebed(ctx, 'Name 1')
-        received_msg = str((await self.client.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)).content).lower()
-        await thebed(ctx, 'Name 2?')
-        received_msg1 = str((await self.client.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)).content).lower()
+    @commands.Cog.listener('on_message')
+    async def leveltest(self, message):
         try:
-            x = int(received_msg)
-            z = int(received_msg1)
-            await thebed(ctx, 'That isnt a name...')
+            with open('./dicts/Levels.json', 'r+') as k:
+                data = json.load(k)
+                
+                if str(message.guild.id) in data:
+                    if str(message.author.id) in data[str(message.guild.id)]:
+                        data[str(message.guild.id)][str(message.author.id)]['points'] += 1
+
+                    else:
+                        data[str(message.guild.id)][str(message.author.id)] = {
+                            "name": message.author.name,
+                            "points": 1
+                        }
+                    Json(k, data)
         except:
-            first_letter1 = received_msg[:1]
-            last_letter1 = received_msg[-1:]
-            first_letter2 = received_msg1[:1]
-            last_letter2 = received_msg1[-1:]
-            result1 = (ord(first_letter1)) - 85
-            result2 = (ord(last_letter1)) - 85
-            result3 = (ord(first_letter2)) - 85
-            result4 = (ord(last_letter2)) - 85
+            pass
+    @commands.command(aliases=['configlevel'])
+    @has_permissions(manage_messages=True)
+    async def configlevels(self, ctx, rankup:int=20):
 
-            over = result1 + result2
-            over1 = result3 + result4
+        with open('./dicts/Levels.json', 'r+') as k:
+            data = json.load(k)
+            g = str(ctx.guild.id)
+            if g in data:
+                return await thebed(ctx, '', 'This server is already registered!')
+            data[g] = {
+                "true": True,
+                "rankup": rankup
 
-            over2 = over + over1
-
-            for k in ('e', 'l', 'i', 's', 'a'):
-                if k in received_msg:
-                    over2 += 3
-                if k in received_msg1:
-                    over2 += 3
-           
-            if over2 > 100:
-                over2 -= 71
-
+            }
+            Json(k, data)
+            await thebed(ctx, '', 'Applied!')
             
-            await thebed(ctx, f"Compatabiliy between {received_msg} and {received_msg1}" , f"**Percentage:** {over2}%")
-            
-    @commands.command(aliases=['marrage'])
-    async def family(self, ctx):
-        File = GetUser('Love.json', f'{str(ctx.author.id)}', 'marriage')
-        if File.family:
-
-            embed = discord.Embed(title="👨 Family 👩", description=f"**{ctx.author.name}** x **{File.family}** \n They have been married since {File.data[str(ctx.author.id)]['since']}", color=thecolor())
-            embed.set_footer(text="\nMay ever hapiness bless them")
-            await ctx.send(embed=embed)
-        else:
-            await thebed(ctx, 'Marriage', 'You are single bro...')
-        
     @commands.command()
-    async def marry(self, ctx, member:discord.Member):
-        if member == ctx.author:
-            return await thebed(ctx, 'You cannot marry yourself...')
-        embed = discord.Embed(title="🎉 Marriage 🎉", description=f"**{member.name}** do you accept **{ctx.author.name}** to be your partner? React with this message if you want to get married", colour=thecolor())
-        msg = await ctx.send(embed=embed)
-        await msg.add_reaction('💖')
-        partner = member
-        try:
-            emoji, user = await self.client.wait_for('reaction_add', timeout=300.0, check=lambda e, u:u == member and e.message.id==msg.id)
-            File = GetUser('Love.json')
-            
-            if str(ctx.author.id) in File.data:
-                arr = File.data[str(ctx.author.id)]['id']
-                del File.data[str(arr)]
-                us = self.client.get_user(int(arr))
-                await us.send(f'You got divorced from {ctx.author.name} and they married {member.name}!')
-                File.data[str(ctx.author.id)]['marriage'] = partner.name    
-                File.data[str(member.id)]['id'] = str(partner.id)
-                File.data[str(ctx.author.id)]['since'] = str(ctx.message.created_at)
-                
-            
-            else:
-                File.data[str(ctx.author.id)] = {
-                    'marriage': partner.name,
-                    'since': str(ctx.message.created_at),
-                    'id': str(partner.id)
+    @has_permissions(manage_messages=True)
+    async def removelevels(self, ctx):
 
+        with open('./dicts/Levels.json', 'r+') as k:
+            data = json.load(k)
+            g = str(ctx.guild.id)
+            if g not in data:
+                return await thebed(ctx, '', 'This server was never registered!')
+            del data[g]
+            Json(k, data)
+            await thebed(ctx, '', 'Removed!')
 
-                }
-                
-           
+    @commands.command(aliases=['leveltop', 'lb'])
+    async def leaderboard(self, ctx):
+        with open('./dicts/Levels.json') as k:
+
+            data = json.load(k)
+            if not str(ctx.guild.id) in data:
+                return await thebed(ctx, '', 'You do not have a levels config! Type `configlevels` to add one!')
+            score_list = []
+            sorted_score_dict = {}
             
-            if str(member.id) in File.data:
-                File.data[str(member.id)]['marriage'] = ctx.author.name
-                File.data[str(member.id)]['id'] = str(ctx.author.id)
-                File.data[str(member.id)]['since'] = str(ctx.message.created_at)
-            
-            else:
-                
-                File.data[str(member.id)] = {
-                    'marriage': ctx.author.name,
-                    'since': str(ctx.message.created_at),
-                    'id': str(ctx.author.id)
-
-
-                }
-            
-            Json(File.file, File.data)
-            em = discord.Embed(title="Success!", description="Ah, the wonders of life, congratulations on getting married!", color=thecolor())
-            em.set_image(url="https://giphy.com/clips/livingsingle-7GN899Bf6g98SdFpra")
-            await ctx.send(embed=em)
-        except asyncio.TimeoutError:
-            await thebed(ctx, 'Marriage', f'Oh no! {member} did not respond in time! Try again at a time that {member.name} is available...')
-
+            x = []
+            y = '\n'
         
-        
-    @commands.command()
-    async def divorce(self, ctx):
-        File = GetUser('Love.json')
-        if str(ctx.author.id) in File.data:
-            marr = File.data[str(ctx.author.id)]['id']
+            def get_key(item):
+                return item[1]['points']
+            rank = data[str(ctx.guild.id)]['rankup']
+            del data[str(ctx.guild.id)]['true']
+            del data[str(ctx.guild.id)]['rankup']
             
-            del File.data[str(marr)]
-            del File.data[str(ctx.author.id)]
-           
-            Json(File.file, File.data)
-            await thebed(ctx, 'Divorce...', 'They were such a good couple :(')
-        else:
-            await thebed(ctx, 'Marriage', 'You are single bro...')
-
+            sorted_scores = sorted(data[str(ctx.guild.id)].items(), key=get_key, reverse=True)[:11]
+        
+            for item in sorted_scores:
+                lvl = item[1]['points'] / rank
+                x.append(f"**{item[1]['name']}:** Level {str(lvl)[:1]}")
+            await thebed(ctx, 'Leaderboard', "\n".join(x))
+            
 def setup(client):
-  client.add_cog(Love(client))
+  client.add_cog(Levels(client))
