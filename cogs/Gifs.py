@@ -5,7 +5,7 @@ from random import choice, randint
 import vacefron
 import asyncpraw
 from dutils import thecolor, Json, thebed
-reddit = asyncpraw.Reddit(client_id = "GfF3CEfYXsz3yw", client_secret = "_gRjhHHlRcb9uWoaJQbJddtqc-E", username = "Codex_2006", password = "senuka123", user_agent = "Codex")
+reddit = asyncpraw.Reddit("shhh")
 vace_api = vacefron.Client()
 
 
