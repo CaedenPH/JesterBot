@@ -1,8 +1,8 @@
 import discord, json, asyncio, random, requests
 from discord.ext import commands
 from discord_components import DiscordComponents, Button, ButtonStyle, InteractionType
-from dutils import thecolor, Json, thebed
-from dislash import SlashClient, ActionRow, Button
+from dutils import thecolor, Json, thebed, Cmds
+from dislash import SlashClient, ActionRow, Button, SelectMenu, SelectOption, MenuOption
 
 
 class THEACTUALHelp(commands.Cog):
@@ -177,54 +177,65 @@ class THEACTUALHelp(commands.Cog):
                     
 
 
-
+                        
                         }
-                        
-                        close = "<:Cross:863313854069997578>"
-                        home = "<:Arrow:863313854040506379>"
-                        
-                        row_1 = ActionRow()
-                        row_2 = ActionRow()
-                        row_3 = ActionRow()
-                        row_4 = ActionRow()
-                        row_4.add_button(emoji=close, custom_id='close', style=ButtonStyle.green)
-                        row_4.add_button(emoji=home, custom_id='home', style=ButtonStyle.green)
-                        z = 0
-                        y = 0
                         desc1 = ""
                         desc2 = ""
                         desc3 = ""
+                        close = "<:Cross:863313854069997578>"
+                        home = "<:Arrow:863313854040506379>"
+                        
+                        
+                        z = 0
+                        y = 0
+                        
+                       
+                        opt = SelectMenu(
+                                custom_id="test",
+                                placeholder=f"Choose 1 option",
+                                max_values=1,
+                                options=[
+                                    MenuOption("home", "r", "Go back to the main help panel", emoji=home),
+                                   
+                                ]
+                            )
+                        
                         for t in self.client.cogs:
-                            if t not in ["Event", "THEACTUALHelp"]:
+                            
+                            if t not in ["Event", "THEACTUALHelp", "Staff"]:
+                                
                                 name = self.client.get_emoji(ddata[t]).name
                                 emoj = f"<:{name}:{ddata[t]}>"
                                 
                                 
                                 emoj1 = data['emojis'][t]['description']
                                 #em.add_field(name=f"{t} │ {emoj}", value=f"React with the {emoj} to view {t} commands")
-                                
-                                    
+                                e = self.client.get_cog(t)
+                                te = 0
+                                for yz in e.walk_commands():
+                                    if not yz.hidden:
+
+                                        te += 1
                                 y += 1
                                 if z < 5:
                                     desc1 += f"\n{emoj} │ {t}"
-                                    row_1.add_button(emoji=emoj, custom_id=t, style=ButtonStyle.grey)
+                                    opt.add_option(f"{t}", f"{emoj} {t}", f"{t} has {te} commands", emoji=emoj)
                                 elif z < 10 and z >= 5:
                                     desc2 += f"\n{emoj} │ {t}"
-                                    row_2.add_button(emoji=emoj, custom_id=t, style=ButtonStyle.grey)
+                                    opt.add_option(f"{t}", f"{emoj} {t}", f"{t} has {te} commands", emoji=emoj)
                                 else:
                                     desc3 += f"\n{emoj} │ {t}"
-                                    row_3.add_button(emoji=emoj, custom_id=t, style=ButtonStyle.grey)
-
+                                    opt.add_option(f"{t}", f"{emoj} {t}", f"{t} has {te} commands", emoji=emoj)
 
                                 z += 1
-                        
-
                         e = self.client.get_emoji(863313854150606848)
                         j = self.client.get_emoji(863313855286607932)
                         s = self.client.get_emoji(863313855061164062)
                         r = self.client.get_emoji(863313855119360022)
                         t = self.client.get_emoji(863313855399329812)
-                        links = "[Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.client_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot)"
+                       
+                       
+                        links = "[Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.client_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot) │ [Vote for me!](https://top.gg/bot/828363172717133874/vote)"
                         em = discord.Embed(title=f"{j}{e}{s}{t}{e}{r}", description=f"{links}", colour=thecolor())
                         em.set_thumbnail(url=self.client.user.avatar_url)
                         #\u200b\n
@@ -240,35 +251,31 @@ class THEACTUALHelp(commands.Cog):
                         em.add_field(value="```yaml\nTo get a more detailed description of a command use ^help <command/Category>. Press the button to see the category.``` ```ini\n[To give feedback, use the feedback command]```", name="\u200b")
                         
                         em.set_footer(text="<> - Required Parameters │ [] - Optional Parameters")
-                        msg = await ctx.send(embed=em, components=[row_1, row_2, row_3, row_4])
-                        
+                        msg = await ctx.send(embed=em, components=[opt
+                            
+                        ]
+                        )
+                        the_list1 = ""
                         def check(inter):
-                            return inter.message.id == msg.id and inter.author == ctx.author
-                        inter = await ctx.wait_for_button_click(check)
-                
-                        while inter.clicked_button != "eejekedjedemkemek":
-                            the_list1 = ""
-                            if inter.clicked_button.custom_id == "close":
-                                response = requests.get('https://official-joke-api.appspot.com/random_joke')
-                                fox = response.json()
-                                foxupdate = (fox["setup"]) 
-                                foxupdatey = (fox["punchline"])
-                                
-                                theembed = discord.Embed(title=f"{j}{e}{s}{t}{e}{r}", description="```yaml\nGoodbye```", color=thecolor())
-                                
-                                await inter.reply(type=4, embed=theembed)
-                            elif inter.clicked_button.custom_id == "home":
-                                
-                               
-                                await inter.reply(type=7, embed=em)
+                            return inter.message.id == msg.id
                         
-                            else:
+                        
+                        try:
+                            inter = await msg.wait_for_dropdown(check, timeout=360)
 
+                            while inter.select_menu != "eejekedjedemkemek":
+                                if inter.select_menu.selected_options[0].label == "home":
+                                    if inter.author == ctx.author:
+
+                                        await inter.reply(type=7, embed=em)
+                                    else:
+                                        await inter.reply(type=4, embed=em, ephemeral=True)
                                 for cog in self.client.cogs:
-                                    if cog not in ["Event", "THEACTUALHelp"]:
+                                    if cog not in ["Event", "THEACTUALHelp", "Staff"]:
+                                       
 
                                             
-                                        if cog == inter.clicked_button.custom_id:
+                                        if cog == inter.select_menu.selected_options[0].label:
                                             name = self.client.get_emoji(ddata[cog]).name
                                             emoj = f"<:{name}:{ddata[cog]}>"
                                             the_list3 = ""
@@ -294,8 +301,11 @@ class THEACTUALHelp(commands.Cog):
                                                 embed = discord.Embed(title=f"{cog} │ {emoj}", color=thecolor())
                                                 embed.add_field(value=the_list3, name="\u200b")
                                                 embed.add_field(value=the_list4, name="\u200b")
-                                                
-                                                await inter.reply(type=7, embed=embed)
+                                                if inter.author == ctx.author:
+
+                                                    await inter.reply(type=7, embed=embed)
+                                                else:
+                                                    await inter.reply(type=4, embed=embed, ephemeral=True)
                                             
                                             elif cog == "Economy":
                                                 the_list1 = ""
@@ -320,7 +330,11 @@ class THEACTUALHelp(commands.Cog):
                                                 embed = discord.Embed(title=f"{cog} │ {emoj}",color=thecolor())
                                                 embed.add_field(value=the_list3, name="\u200b")
                                                 embed.add_field(value=the_list4, name="\u200b")
-                                                await inter.reply(type=7, embed=embed)
+                                                if inter.author == ctx.author:
+
+                                                    await inter.reply(type=7, embed=embed)
+                                                else:
+                                                    await inter.reply(type=4, embed=embed, ephemeral=True)
 
                                             else:
                                                 the_list = ""
@@ -338,16 +352,27 @@ class THEACTUALHelp(commands.Cog):
                                                 embed = discord.Embed(title=f"{cog} │ {emoj}", color=thecolor())
                                                 embed.add_field(value=the_list3, name="\u200b")
                                                 embed.add_field(value=the_list4, name="\u200b")
-                                                await inter.reply(type=7, embed=embed)
+                                                if inter.author == ctx.author:
+
+                                                    await inter.reply(type=7, embed=embed)
+                                                else:
+                                                    await inter.reply(type=4, embed=embed, ephemeral=True)
+                                    
+                                    
+                        
+                                
                             
-                            inter = await ctx.wait_for_button_click(check)
+                                    
+                                inter = await msg.wait_for_dropdown(check)
+                        except asyncio.TimeoutError:
+                            await msg.edit(components=[])
                     else:
                         the_list = []
                         em = discord.Embed(description="**I'm a multi-use bot with new features being created every week! \nTo get a more detailed description of a command use `^help <command>`.**\nLinks:  [Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.client_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot)", colour=thecolor())
                         em.set_author(name="Help", icon_url = client_av.avatar_url)
                         for cog in self.client.cogs:
                             
-                            if cog not in ['Event',  'THEACTUALHelp']:
+                            if cog not in ["Event", "THEACTUALHelp", "Staff"]:
                                 
                                 thecog = self.client.get_cog(cog)
                                 for cmd in thecog.walk_commands():
@@ -364,7 +389,7 @@ class THEACTUALHelp(commands.Cog):
                     alx = []
                     
                     sig = command1.signature   
-                    thehelp = command1.help
+                    thehelp = Cmds(command1.name).chelp
                     alias = command1.aliases
                     if alias:
                         

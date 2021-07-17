@@ -21,7 +21,9 @@ from discord.ext.buttons import Paginator
 from traceback import format_exception
 import animals
 import vacefron
-
+from dutils import thecolor, Json, thebed
+from discord import Webhook, AsyncWebhookAdapter
+import aiohttp
 vace_api = vacefron.Client()
 
 class Pag(Paginator):
@@ -32,63 +34,69 @@ class Pag(Paginator):
             
         except discord.HTTPException:
             pass
-def Json(pref, data1):
-    pref.seek(0)  # set point at the beginning of the file
-    pref.truncate(0)  # clear previous content
-    pref.write(json.dumps(data1, indent=4)) # write to file
-class TheColor:
-    def __init__(self):
-        
-        with open('./dicts/Color.json', 'r') as k:
-            data = json.load(k)
-            self.color = data['Color']['color'] 
-    
-async def embed(ctx, title, description=""):
-    embed = discord.Embed(title=title, color=xz)
-    if description:
 
-        embed = discord.Embed(title=title, description=description, color=xz)
-    await ctx.send(embed=embed)   
-xz = int(TheColor().color, 16)
 class Misc(commands.Cog):
     def __init__(self, client):
-        self.client = client   
+        self.client = client 
     @commands.command()
-    async def name(self, ctx, *, name):
-        list = []
-        for k in name:
-            if k == " ":
-                list.append(' ')
-            else:
+    async def invited(self, ctx, user:discord.Member=None):
+        if not user:
+            user = ctx.author
+        totalInvites = 0
+        for i in await ctx.guild.invites():
+            if i.inviter == user:
+                totalInvites += i.uses
+        await thebed(ctx, "", f"{user.name} has invited **{totalInvites}** member{'' if totalInvites == 1 else 's'} to the server!")
+    @commands.command(aliases=['Channel_info', 'InfoChannel'])
+    async def channel(self, ctx):
+        channelname = ctx.channel.name
+        channelid = ctx.channel.id
 
-
-                list.append(f':regional_indicator_{k}:')
-        await embed(ctx, 'Name in emojis...', "".join(list))
-    @commands.command()
-    async def level(self, ctx, memb:discord.Member=""):
-        if not memb:
-            memb = ctx.author
-        with open('./dicts/Levels.json') as k:
-            data = json.load(k)
-            if str(ctx.guild.id) in data:
-                p = data[str(ctx.guild.id)][str(memb.id)]['points']
-                x = data[str(ctx.guild.id)]['rankup']
-                level = round(p / x)
-                level1 = p / x
-                embed = discord.Embed(title=f"Levels for {memb.name}", description=f"**Level:** {level} \n**Points:** {level1} / 20", color=xz)
-                await ctx.send(embed=embed)
-    
+        servername = ctx.guild.name
+        embed = discord.Embed(title="Your info", colour=thecolor())
+        embed.add_field(name="Name", value=f"{channelname}", inline=False)
+        embed.add_field(name="Id", value=f"{channelid}", inline=False)
+        await ctx.send(embed=embed)
+    @commands.command(description="Make a secure password with a length that you can choose")
+    async def password(self, ctx, lengthofpassword:int=12):
+        
+        my_list = ['!', '?', '#']
+        for c in range(97, 123):
+            my_list.append(chr(c))
+        for e in range(1, 9):
+            my_list.append(e)
+        for t in range(65, 91):
+            my_list.append(chr(t))
+       
+        password = ""
+        while len(password) != lengthofpassword:
+            password += str(choice(my_list))
+        x = await ctx.author.send(password)
+        await thebed(ctx, 'Password', f'||{x.jump_url}||')
+    @commands.command(aliases=['stat'], description="Sends statistics about the server")
+    async def stats(self, ctx):
+        members, bots = [m for m in ctx.guild.members if not m.bot], [m for m in ctx.guild.members if not m.bot]
+        embed = discord.Embed(title="Stats", color = thecolor())
+        embed.add_field(name="Server statistics", value=f"""
+    Text Channels: {len(ctx.guild.text_channels)}
+    Voice Channels: {len(ctx.guild.voice_channels)}
+    Total Channels: {len(ctx.guild.text_channels) + len(ctx.guild.voice_channels)}
+    Members (bots excluded): {len(members)}
+    Bots: {len([m for m in ctx.guild.members if m.bot])}
+    Roles in the server: {len(ctx.guild.roles)}
+        """)
+        await ctx.send(embed=embed)
     
     @commands.command(hidden=True)
     async def raiseerror(self, ctx, error):
         raise error
-    @commands.command(aliases=['Server_icon', 'Icon_server', 'Guild_icon', 'Server_Avatar', 'avg', 'guildav', 'gc'], help="Sends the avatar of the server (profile pic)", hidden=True)
+    @commands.command(aliases=['Server_icon', 'Icon_server', 'Guild_icon', 'Server_Avatar', 'avg', 'guildav', 'gc'], description="Sends the avatar of the server (profile pic)", hidden=True)
     async def avatarguild(self, ctx):
-        embed = discord.Embed(title='Guild icon', color=xz)
+        embed = discord.Embed(title='Guild icon', color=thecolor())
         embed.set_image(url=ctx.guild.icon_url)
 
         await ctx.send(embed=embed)
-    @commands.command(aliases=['messages'], help="Says how many messages have been sent since the bot joined")
+    @commands.command(aliases=['messages'], description="Says how many messages have been sent since the bot joined")
     async def servermessages(self, ctx, server=""):
         join = ctx.guild.get_member(828363172717133874)
         when = "24th of June 2021"
@@ -107,26 +115,27 @@ class Misc(commands.Cog):
 
             
 
-                embed = discord.Embed(title=f"{data[str(ctx.guild.id)]['Score']} messages since the {when}", colour=xz)
+                embed = discord.Embed(title=f"{data[str(ctx.guild.id)]['Score']} messages since the {when}", colour=thecolor())
             else:
-                embed = discord.Embed(title=f"{data[server]['Score']} messages since {when}", colour=xz)
+                embed = discord.Embed(title=f"{data[server]['Score']} messages since {when}", colour=thecolor())
             await ctx.send(embed=embed)
 
     
-    @commands.command(aliases=['s', 'Sugg', 'Sug', 'Suggester'], help="Follow the instructions and a suggestion will appear")
+
+    @commands.command(aliases=['s', 'Sugg', 'Sug', 'Suggester'], description="Follow the instructions and a suggestion will appear")
     async def suggest(self, ctx):
         user = ctx.author.id
         username = self.client.get_user(user)
 
         try:
                         
-            embed = discord.Embed(title="Suggestion", colour=xz)
-            embed1 = discord.Embed(title=f"What is the title of your suggestion? Type end at any point to stop and type title to remove the description", colour=xz)
+            embed = discord.Embed(title="Suggestion", colour=thecolor())
+            embed1 = discord.Embed(title=f"What is the title of your suggestion? Type end at any point to stop and type title to remove the description", colour=thecolor())
             x = await ctx.send(embed=embed1)
             received_msg = str((await self.client.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)).content).lower()
             if received_msg not in ["end", "title"]:
                 msg1 = received_msg
-                embed2 = discord.Embed(title=f"What is the description of your suggestion? Type end at any point to stop", colour=xz)
+                embed2 = discord.Embed(title=f"What is the description of your suggestion? Type end at any point to stop", colour=thecolor())
                 y = await ctx.send(embed=embed2)
                 received_msg1 = str((await self.client.wait_for('message', timeout=90.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel,)).content).lower()
                 if received_msg1 != "end":
@@ -146,7 +155,7 @@ class Misc(commands.Cog):
                     await msg.add_reaction("👎")
                     
                 else:
-                    embed3 = discord.Embed(title="Goodbye", colour=xz)
+                    embed3 = discord.Embed(title="Goodbye", colour=thecolor())
                     await x.delete()
                     await y.delete()
                     await ctx.message.delete()
@@ -156,10 +165,10 @@ class Misc(commands.Cog):
             elif received_msg == "end":
                 await x.delete()
                 await ctx.channel.purge(limit=2, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)
-                embed3 = discord.Embed(title="Goodbye", colour=xz)
+                embed3 = discord.Embed(title="Goodbye", colour=thecolor())
                 await ctx.send(embed=embed3)
             else:
-                embed2 = discord.Embed(title=f"What is the Title of your suggestion? Type end at any point to stop", colour=xz)
+                embed2 = discord.Embed(title=f"What is the Title of your suggestion? Type end at any point to stop", colour=thecolor())
                 y = await ctx.send(embed=embed2)
                 received_msg1 = str((await self.client.wait_for('message', timeout=90.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel,)).content).lower()
                 if received_msg1 != "end":
@@ -178,7 +187,7 @@ class Misc(commands.Cog):
                     await msg.add_reaction("👍")
                     await msg.add_reaction("👎")
         except asyncio.TimeoutError:
-            embed = discord.Embed(title="Time ran out, restart the ticket", colour=xz)
+            embed = discord.Embed(title="Time ran out, restart the ticket", colour=thecolor())
             await ctx.send(embed=embed)
    
     @commands.command()
@@ -218,7 +227,7 @@ class Misc(commands.Cog):
         embed.add_field(name="`4` Large file uploads", value="Larger file upload size from 8mb to 100mb with nitro or 50mb with nitro classic", inline=False)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/803430815714902060/852926789981437982/image0.png")
         await ctx.send(embed=embed)
-
+   
 
 
 def setup(client):

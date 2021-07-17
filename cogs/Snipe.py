@@ -77,7 +77,7 @@ class Snipe(commands.Cog):
             else:
                 data[g] = {
                     c: {
-                        'list': [before.content],
+                        
                         'author': [before.author.name],
                         'id': [before.author.id],
                         'time': [str(before.created_at)],
@@ -90,14 +90,15 @@ class Snipe(commands.Cog):
 
     @commands.command(aliases=['esnipe'])
     async def editsnipe(self, ctx, ammount:int=1):
-        with open('./dicts/Snipe.json') as k:
+        with open('./dicts/ESnipe.json') as k:
             data = json.load(k)
             g = str(ctx.guild.id) 
             c = str(ctx.channel.id)
             if g in data:
                 if c in data[g]:
                     if len(data[g][c]['id']) >= ammount:
-                        us = self.client.get_user(data[g][c]['id'][len(data[g][c]['before'])-ammount])
+                        us = self.client.get_user(data[g][c]['id'][len(data[g][c]['id'])-ammount])
+                        
                         embed = discord.Embed(description=f"**{data[g][c]['author'][len(data[g][c]['before'])-ammount]} said:** {data[g][c]['before'][len(data[g][c]['before'])-ammount]} \n**Then edited it to:** {data[g][c]['after'][len(data[g][c]['after'])-ammount]}", color=thecolor())
                         embed.set_footer(text="At: " + str(data[g][c]['time'][len(data[g][c]['before'])-ammount][:-7]))
                         embed.set_author(icon_url=us.avatar_url, name="Most recent message:")
