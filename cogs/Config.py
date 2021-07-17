@@ -1,47 +1,19 @@
-import discord, os, requests, json, asyncio
+import discord
+import json
 from discord.ext.commands import has_permissions
 from discord.ext import commands 
 from discord.utils import get
-from discord.ext import tasks
-from discord import Intents
-from asyncio import sleep
-import yfinance as yf
-from traceback import print_exc
-import itertools
-import sys
-import traceback
 from async_timeout import timeout
-from functools import partial
-from youtube_dl import YoutubeDL
-from random import choice, randint
-class TheColor:
-    
-    def __init__(self):
-        
-        with open('./dicts/Color.json', 'r') as k:
-            data = json.load(k)
-            self.color = data['Color']['color'] 
-    
-    
-xz = int(TheColor().color, 16)
-
-def Json(pref, data1):
-    pref.seek(0)  # set point at the beginning of the file
-    pref.truncate(0)  # clear previous content
-    pref.write(json.dumps(data1, indent=4)) # write to file
-async def embed1(ctx, title, description=""):
-    embed = discord.Embed(title=title, color=xz)
-    if description:
-
-        embed = discord.Embed(title=title, description=description, color=xz)
-    await ctx.send(embed=embed)
+import asyncio
+from dutils import thecolor, Json, thebed, Cmds
 
 class Config(commands.Cog):
     def __init__(self, client):
    
 
         self.client = client
-    @commands.command(aliases=['Welcomer', 'welcome'], help="Adds a welcome feature into the current channel (everytime someone joins the server it says welcome) - `[message]` is a good welcome message")
+    
+    @commands.command(aliases=['Welcomer', 'welcome'], description="Adds a welcome feature into the current channel (everytime someone joins the server it says welcome) - `[message]` is a good welcome message")
     @has_permissions(administrator=True)
     async def welcomechannel(self, ctx, role:discord.Role="",*,  message:str = ""):
         with open('./dicts/Welcome.json', 'r+') as f:
@@ -57,7 +29,7 @@ class Config(commands.Cog):
                 f.seek(0)  # set point at the beginning of the file
                 f.truncate(0)  # clear previous content
                 f.write(json.dumps(loaded, indent=4)) # write to file
-                embed = discord.Embed(title="Added!", colour=xz)
+                embed = discord.Embed(title="Added!", colour=thecolor())
                 await ctx.send(embed=embed)
             else:
 
@@ -73,7 +45,7 @@ class Config(commands.Cog):
                 f.seek(0)  # set point at the beginning of the file
                 f.truncate(0)  # clear previous content
                 f.write(json.dumps(loaded, indent=4)) # write to file
-                embed = discord.Embed(title="Added!", colour=xz)
+                embed = discord.Embed(title="Added!", colour=thecolor())
                 await ctx.send(embed=embed)
                 
 
@@ -86,7 +58,7 @@ class Config(commands.Cog):
             a = ""
             for z in data['emojis']:
                 a += f"\n{z} │ {data['emojis'][z]['em']}"
-            embed = discord.Embed(title="Config channels", description=a, color=xz)
+            embed = discord.Embed(title="Config channels", description=a, color=thecolor())
             msg = await ctx.send(embed=embed)
             
             for e in data['emojis']:
@@ -113,7 +85,7 @@ class Config(commands.Cog):
 
                                             alx.append(f"`{al}`")
                                     client_av = self.client.get_user(828363172717133874)
-                                    em = discord.Embed(description=command1.help if command1.help else "*No help just yet*", colour=0x4286ff)
+                                    em = discord.Embed(description=Cmds(command1.name).chelp, colour=0x4286ff)
                                     name = f"{command1.name.capitalize()}"
                                     
                                     em.add_field(name="Name", value=f"`{name}`", inline=False)
@@ -129,7 +101,7 @@ class Config(commands.Cog):
                                     
                                     
                                     await msg.remove_reaction(member=ctx.author, emoji=emoji)
-                                    embed = discord.Embed(title=f"{data['emojis'][e]} │ {emoji}", description=f"{the_list1}", color=xz)
+                                    embed = discord.Embed(title=f"{data['emojis'][e]} │ {emoji}", description=f"{the_list1}", color=thecolor())
                                     
                                     await msg.edit(embed=em)
                                    
@@ -155,16 +127,16 @@ class Config(commands.Cog):
                 if 'pickuplinechannel' not in data[x]:
                     data[x]['pickuplinechannel'] = i
                     Json(k, data)
-                    return await embed1(ctx, 'Success')
+                    return await thebed(ctx, 'Success')
             else:
                 data[x] = {
                     'pickuplinechannel': i
 
                 }
                 Json(k, data)
-                return await embed1(ctx, 'Success')
+                return await thebed(ctx, 'Success')
 
-            await embed1(ctx, 'There is already a pickuplinechannel here or something went wrong')
+            await thebed(ctx, 'There is already a pickuplinechannel here or something went wrong')
     @commands.command()
     @has_permissions(manage_channels=True)
     async def jokechannel(self, ctx, channel:discord.TextChannel=""):
@@ -179,16 +151,16 @@ class Config(commands.Cog):
                 if 'jokechannel' not in data[x]:
                     data[x]['jokechannel'] = i
                     Json(k, data)
-                    return await embed1(ctx, 'Success')
+                    return await thebed(ctx, 'Success')
             else:
                 data[x] = {
                     'jokechannel': i
 
                 }
                 Json(k, data)
-                return await embed1(ctx, 'Success')
+                return await thebed(ctx, 'Success')
 
-            await embed1(ctx, 'There is already a jokechannel here or something went wrong')
+            await thebed(ctx, 'There is already a jokechannel here or something went wrong')
         
     @commands.command()
     @has_permissions(manage_channels=True)
@@ -204,16 +176,16 @@ class Config(commands.Cog):
                 if 'quotechannel' not in data[x]:
                     data[x]['quotechannel'] = i
                     Json(k, data)
-                    return await embed1(ctx, 'Success')
+                    return await thebed(ctx, 'Success')
             else:
                 data[x] = {
                     'quotechannel': i
 
                 }
                 Json(k, data)
-                return await embed1(ctx, 'Success')
+                return await thebed(ctx, 'Success')
 
-            await embed1(ctx, 'There is already a quotechannel here or something went wrong')
+            await thebed(ctx, 'There is already a quotechannel here or something went wrong')
         
     @commands.command()
     @has_permissions(manage_channels=True)
@@ -229,16 +201,16 @@ class Config(commands.Cog):
                 if 'factchannel' not in data[x]:
                     data[x]['factchannel'] = i
                     Json(k, data)
-                    return await embed1(ctx, 'Success')
+                    return await thebed(ctx, 'Success')
             else:
                 data[x] = {
                     'factchannel': i
 
                 }
                 Json(k, data)
-                return await embed1(ctx, 'Success')
+                return await thebed(ctx, 'Success')
 
-            await embed1(ctx, 'There is already a factchannel here or something went wrong')
+            await thebed(ctx, 'There is already a factchannel here or something went wrong')
 
 
 
@@ -247,7 +219,7 @@ class Config(commands.Cog):
 
             
   
-    @commands.command(aliases=['Unwelcome', 'Stop_Welcome'], help="Removes the ^welcome command")
+    @commands.command(aliases=['Unwelcome', 'Stop_Welcome'], description="Removes the ^welcome command")
     async def remove_welcome(self, ctx):
         with open('./dicts/Welcome.json', 'r+') as f:
             data = json.load(f)
@@ -257,10 +229,10 @@ class Config(commands.Cog):
                 f.seek(0)
                 f.truncate(0)
                 f.write(json.dumps(data, indent=4))
-                embed = discord.Embed(title="Removed!", colour=xz)
+                embed = discord.Embed(title="Removed!", colour=thecolor())
                 await ctx.send(embed=embed)
     @has_permissions(manage_channels=True)
-    @commands.command(help="Makes the channel specified a suggestion channel - members can only type ^suggest or their message gets deleted. Nice and orderly")
+    @commands.command(description="Makes the channel specified a suggestion channel - members can only type ^suggest or their message gets deleted. Nice and orderly")
     async def suggestchannel(self, ctx, channel:discord.TextChannel):
 
         with open('./dicts/Suggest.json', 'r+') as k:
@@ -273,22 +245,18 @@ class Config(commands.Cog):
 
 
                 }
-            
-                k.seek(0)  # set point at the beginning of the file
-                k.truncate(0)  # clear previous content
-                k.write(json.dumps(data, indent=4)) # write to file
+                Json(k, data)
                 if channel.id == ctx.channel.id:
                     pass
                 else:
-                    embed = discord.Embed(title="Applied", colour=xz)
+                    embed = discord.Embed(title="Applied", colour=thecolor())
                     await ctx.send(embed=embed)
                 await channel.purge(limit=10000)
                 embed1 = discord.Embed(title="Suggest", description="""
                 This channel is now a suggestion only channel. 
-                This means that you can only type `^suggest`, which will formally create a ticket that only you can reply to. After giving a title and a description, your suggestion will be sent.
-                Any messages that aren't `^suggest` are automatically deleted.
-                To get the prefix of the bot, or to get aliases of the command help do `^prefixes`, or `^help suggest`
-                """, colour=xz)
+                This means that you can only type `suggest`, which will formally create a ticket that only you can reply to. After giving a title and a description, your suggestion will be sent.
+                Any messages that aren't `suggest` are automatically deleted
+                """, colour=thecolor())
                 x = await channel.send(embed=embed1)
                 await x.pin()
                 await channel.purge(limit=1)
@@ -298,45 +266,45 @@ class Config(commands.Cog):
                     k.seek(0)  # set point at the beginning of the file
                     k.truncate(0)  # clear previous content
                     k.write(json.dumps(data, indent=4)) # write to file
-                    embed = discord.Embed(title="Applied", colour=xz)
+                    embed = discord.Embed(title="Applied", colour=thecolor())
                     await ctx.send(embed=embed)
                 else:
-                    embed = discord.Embed(title="Already applied", colour=xz)
+                    embed = discord.Embed(title="Already applied", colour=thecolor())
                 await ctx.send(embed=embed)
 
 
     @has_permissions(manage_channels=True)
-    @commands.command(aliases=['removesuggestchannel', 'rschannel', 'remschannel'], help="Removes the channel specified as a suggestion channel")
+    @commands.command(aliases=['removesuggestchannel', 'rschannel', 'remschannel'], description="Removes the channel specified as a suggestion channel")
     async def delsuggestchannel(self, ctx, channel:discord.TextChannel):
 
         with open('./dicts/Suggest.json', 'r+') as k:
             data = json.load(k)
             if str(channel.id) not in data:
             
-                embed = discord.Embed(title="Already removed", colour=xz)
+                embed = discord.Embed(title="Already removed", colour=thecolor())
             else:
                 data[str(channel.id)]['Yes'] = False
         
                 k.seek(0)  # set point at the beginning of the file
                 k.truncate(0)  # clear previous content
                 k.write(json.dumps(data, indent=4)) # write to file
-                embed = discord.Embed(title="Removed", colour=xz)
+                embed = discord.Embed(title="Removed", colour=thecolor())
 
             await ctx.send(embed=embed)
-    @commands.command(aliases=['verify'], help="""
+    @commands.command(aliases=['verify'], description="""
     Creates a channel/uses an existing channel to make the server be secure by adding the need to say `verify` to access the server...Remove with `^removeverify` 
     1. If channel is not given, this command will create a role called `⚘ Member ⚘` and a role called `⚘ Unverified ⚘`
     2. It will create a channel called `⚘ verify ⚘`
     3. When a new member joins they will only see the channel `⚘ verify ⚘`, and if they write `verify` they can text in and see all other channels""")
     @has_permissions(administrator=True)
     async def verifychannel(self, ctx, channel:discord.TextChannel=None, role:discord.Role=""):
-        embed = discord.Embed(title="Warning", description="While this command can help your server by adding a verification, it can also add roles and channels you may not like the look of. To get more information type `^help verifychannel`. To proceed type y", colour=xz)
+        embed = discord.Embed(title="Warning", description="While this command can help your server by adding a verification, it can also add roles and channels you may not like the look of. To get more information type `^help verifychannel`. To proceed type y", colour=thecolor())
         await ctx.send(embed=embed)
         received_msg = str((await self.client.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)).content).lower()
         if received_msg != "y":
            
       
-            embed = discord.Embed(title="Goodbye!", colour=xz)
+            embed = discord.Embed(title="Goodbye!", colour=thecolor())
             return await ctx.send(embed=embed)
         
         with open('./dicts/VerifyChannel.json') as k:
@@ -353,7 +321,7 @@ class Config(commands.Cog):
         if not channel:
             channel = await ctx.guild.create_text_channel(name="⚘ verify ⚘")                   
         with open('./dicts/VerifyChannel.json', 'r+') as k:
-            
+            print('works')
             if role == "":
                 await ctx.guild.create_role(name="⚘ Member ⚘", permissions=discord.Permissions(send_messages=True))
             membrole = discord.utils.get(ctx.guild.roles, name="⚘ Member ⚘")
@@ -408,7 +376,7 @@ class Config(commands.Cog):
             This channel is a verify channel. 
             Type `verify` to get acess to the server!
             Have fun and make sure to follow the rules.
-            """, colour=xz)
+            """, colour=thecolor())
             x = await channel.send(embed=embed1)
             await x.pin()
             embed = discord.Embed(title=f"Applied!")
@@ -416,47 +384,22 @@ class Config(commands.Cog):
             await channel.purge(limit=1)
 
     
-    @commands.command(aliases=['remverify'], help="removes the need for a verification")
+    @commands.command(aliases=['remverify'], description="removes the need for a verification")
     @has_permissions(administrator=True)
     async def removeverify(self, ctx):
         with open('./dicts/VerifyChannel.json', 'r+') as k:
             data = json.load(k)
             for key in data:
                 if data[key]['Guild'] == ctx.guild.id:
-                    data[key]['Yes'] = False
+                    del data[key]
                     Json(k, data)
-                    embed = discord.Embed(title=f"Removed!")
+                    embed = discord.Embed(title=f"Removed!", color=thecolor())
                     return await ctx.send(embed=embed)
                     
-                else:
-                    embed = discord.Embed(title=f"There was never a verification here!")
-                    return await ctx.send(embed=embed)
+                
+            await thebed(ctx, 'There was never a verify!')
 
-    @commands.command()
-    async def levels(self, ctx, rankup:int=20):
-        with open('./dicts/Levels.json', 'r+') as k:
-            data = json.load(k)
-            g = str(ctx.guild.id)
-            if g in data:
-                return await embed1(ctx, '', 'This server is already registered!')
-            data[g] = {
-                "true": True,
-                "rankup": rankup
-
-            }
-            Json(k, data)
-            await embed1(ctx, '', 'Applied!')
-            
-    @commands.command()
-    async def removelevels(self, ctx):
-        with open('./dicts/Levels.json', 'r+') as k:
-            data = json.load(k)
-            g = str(ctx.guild.id)
-            if g not in data:
-                return await embed1(ctx, '', 'This server was never registered!')
-            del data[g]
-            Json(k, data)
-            await embed1(ctx, '', 'Removed!')
+    
     @commands.command()
     async def leavechannel(self, ctx, channel:discord.TextChannel=""):
         
@@ -464,7 +407,7 @@ class Config(commands.Cog):
         with open('./dicts/LeaveChannel.json', 'r+') as k:
             data = json.load(k)
             if str(ctx.guild.id) in data:
-                return await embed1(ctx, 'Leaving', 'This server is already registered!')
+                return await thebed(ctx, 'Leaving', 'This server is already registered!')
             else:
 
                 if not channel:
@@ -475,16 +418,16 @@ class Config(commands.Cog):
 
                 }
                 Json(k, data)
-        await embed1(channel, 'This is a leaving channel, everyone who leaves will be announced here...')
+        await thebed(channel, 'This is a leaving channel, everyone who leaves will be announced here...')
 
     @commands.command()
     async def removeleavechannel(self, ctx, channel:discord.TextChannel):
         with open('./dicts/LeaveChannel.json', 'r+') as k:
             data = json.load(k)
             if str(ctx.guild.id) not in data:
-                return await embed1(ctx, 'Leaving', 'There was never a leaving channel here!')
+                return await thebed(ctx, 'Leaving', 'There was never a leaving channel here!')
             del data[str(ctx.guild.id)]
-            await embed1(ctx, 'Done!')
+            await thebed(ctx, 'Done!')
     @commands.Cog.listener()
     async def on_member_remove(self, memb):
         with open('./dicts/LeaveChannel.json', 'r+') as k:
@@ -492,7 +435,7 @@ class Config(commands.Cog):
            
             if str(memb.guild.id) in data:
                 channel = self.client.get_channel(data[str(memb.guild.id)]['id'])
-                await embed1(channel, 'Goodbye', f'You wil be missed *{memb.name}*...')
+                await thebed(channel, 'Goodbye', f'You wil be missed *{memb.name}*...')
 
 
     

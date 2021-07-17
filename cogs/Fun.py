@@ -20,47 +20,89 @@ from animals import Animals
 from traceback import format_exception
 from pyMorseTranslator import translator
 import vacefron
-
+from art import text2art
+from dutils import thecolor, Json, thebed
 vace_api = vacefron.Client()
 
 encoder = translator.Encoder()
 decoder = translator.Decoder()
 
 import praw
-reddit = praw.Reddit(client_id = "GfF3CEfYXsz3yw", client_secret = "_gRjhHHlRcb9uWoaJQbJddtqc-E", username = "Codex_2006", password = "senuka123", user_agent = "Codex")
-def Json(pref, data1):
-    pref.seek(0)  # set point at the beginning of the file
-    pref.truncate(0)  # clear previous content
-    pref.write(json.dumps(data1, indent=4)) # write to file
-class TheColor:
-    def __init__(self):
-        
-        with open('./dicts/Color.json', 'r') as k:
-            data = json.load(k)
-            self.color = data['Color']['color'] 
-    
-xz = int(TheColor().color, 16)
-async def embed(ctx, title, description=""):
-    embed = discord.Embed(title=title, color=xz)
-    if description:
+reddit = praw.Reddit("shhh")
 
-        embed = discord.Embed(title=title, description=description, color=xz)
-    await ctx.send(embed=embed)
+
 
 class Fun(commands.Cog):
     def __init__(self, client):
    
 
         self.client = client
+    @commands.command(aliases=['art'])
+    async def asciiart(self, ctx, *, text: str):
+        if len(text) > 10:
+            return await thebed(ctx, '', f":x: Length of Text cannot be more than 10 Characters!")
 
+        art = text2art(text)
+
+        if len(art) > 1990:
+            return await ctx.send(embed=discord.Embed(description=f"Oops! ASCII Art crossed more than 2000 Words. Please try a smaller Text.", color=0x36393F))
+
+        await ctx.send(embed=discord.Embed(description=f"```yaml\n{art}```", color=self.client.discordcolor))
+    @commands.command()
+    async def sudo(self, ctx, member:discord.Member, *, text):
+        await ctx.message.delete()
+        webhook = await ctx.channel.create_webhook(name=f"{member}")
+
+        await webhook.send(text, username=member.name, avatar_url=member.avatar_url)
     
-    @commands.command(help="Fake hacks the specified member")
+    @commands.command()
+    async def minecraft(self, ctx, username):
+        try:
+
+            async with ctx.typing():
+                response = requests.get(f"https://some-random-api.ml/mc?username={username}")
+                fox = response.json()
+                my_list = []
+                t = 0
+                
+                for k in fox["name_history"]:
+                    
+                    #print(fox["name_history"][0][k])
+                    my_list.append(f"**{fox['name_history'][t]['name']}** - {fox['name_history'][t]['changedToAt']}")
+                    t += 1
+                l = "\n - ".join(my_list)
+            return await thebed(ctx, f'{username}', f'''
+                **All names:** 
+                - {l}
+                
+                
+                
+                
+                ''')
+        except:
+            await thebed(ctx, '', 'They are not a minecraft player! Enter their in-game username')
+        
+    @commands.command(aliases=['emojis', 'sentance'])
+    async def name(self, ctx, *, name):
+        list = []
+        for k in name:
+            if k == " ":
+                list.append(' ')
+            else:
+
+
+                list.append(f':regional_indicator_{k}:')
+        await thebed(ctx, 'Name in emojis...', "".join(list))
+    
+    @commands.command(description="Fake hacks the specified member")
     async def hack(self, ctx, member:discord.Member=""):
         if ctx.guild.name == "Top.gg Verification Center":
-            return await embed1(ctx, 'Not completed yet!')
+            return await thebed(ctx, 'Not completed yet!')
         #LOOP
+        
         x = False
         key = ""
+    
         if not member:
             member = ctx.author
         act = member.activity
@@ -83,10 +125,11 @@ class Fun(commands.Cog):
         f = randint(100, 900)
         d = randint(10, 90)
         ip = f'192.168.{f}.{d}'
+        
         msg_loop = [
         "\nexec hack.", "..",
         f"\npass credentials through mainstream..."
-        f"\nname: '{member.name.lower()}'", 
+        f"\nname: '{member}'", 
         f"\nping : {self.client.latency * 1000}", 
         f"\nraise bot account: {member.bot}", 
         f"\nawait object(): '{member.avatar}'", 
@@ -109,6 +152,7 @@ class Fun(commands.Cog):
         f"\n{member.name} has been succesfully hacked."
         ]
         for k in msg_loop:
+        
             for end in ('.', '-', ':'):
 
                 if k.endswith(end):
@@ -118,16 +162,16 @@ class Fun(commands.Cog):
                     
                     new_msg_list += k
                     break
-          
+            
             await msg.edit(content=f"```py\n{new_msg_list}```")
         
-    
+
         
     # @morse.command()
     # async def decode(self, ctx, *, morse_code):
         
         
-    #     embed = discord.Embed(colour=xz)
+    #     embed = discord.Embed(colour=thecolor())
     #     embed.set_footer(text=str(ctx.author) + " | Text from Morse [Decoded] |", icon_url=ctx.author.avatar_url)
         
     #     embed.add_field(name="Morse code: ", value=f'```py\n"{morse_code}"\n```', inline=False)
@@ -140,15 +184,80 @@ class Fun(commands.Cog):
  
         
     
-   
-    @commands.command(help="Sends the users pp size")
+    @commands.command(aliases=['findemoji', 'emojipicker', 'getemojis'])
+    async def pickemoji(self, ctx):
+        
+
+        other = open('./dicts/emojsend.json')
+        data = json.load(other)
+        x = []
+        n = []
+        for k in data:
+            n.append(f":{str(k)[:-4]}:")
+            x.append(data[k])
+        slide = 0
+        embed = discord.Embed(title=n[slide], description="Choose emojis for this server! \nIf you press the green tick it \nautomatically adds the emoji to \nthe server by the **name**!", color=thecolor())
+        embed.set_image(url=x[slide])
+        embed.set_footer(text=f"{slide} / 709")
+        msg = await ctx.send(embed=embed)
+        await msg.add_reaction('⬅')
+        await msg.add_reaction('➡')
+        await msg.add_reaction('✅')
+        await msg.add_reaction('❌')
+        def check(e, u):
+            return u == ctx.author and e.message.id==msg.id
+        emoji, user = await self.client.wait_for('reaction_add', check = check)
+        while emoji.emoji != '❌':
+            if emoji.emoji == "➡":
+                slide += 1
+                newembed = discord.Embed(title=n[slide], color=thecolor())
+                newembed.set_footer(text=f"{slide} / 709")
+                newembed.set_image(url=x[slide])
+                await msg.edit(embed=newembed)
+                await msg.remove_reaction(emoji.emoji, member=ctx.author)
+                
+            elif emoji.emoji == "⬅":
+                slide -= 1
+                newembed = discord.Embed(title=n[slide], color=thecolor())
+                newembed.set_footer(text=f"{slide} / 709")
+                newembed.set_image(url=x[slide])
+                await msg.edit(embed=newembed)
+                await msg.remove_reaction(emoji.emoji, member=ctx.author)
+                
+            elif emoji.emoji == "✅":
+                name = n[slide].strip(':')
+                await msg.remove_reaction('✅', member=ctx.author)
+                try:
+
+                    with open(f'./emojis/{name}.png', 'rb') as k:
+                        
+                        y = await ctx.guild.create_custom_emoji(name=name, image=k.read())
+                        
+                        await ctx.send(f"{y} has been added!")
+                except:
+                   
+                    with open(f'./emojis/{name}.gif', 'rb') as k:
+
+                        y = await ctx.guild.create_custom_emoji(name=name, image=k.read())
+                        
+                        await ctx.send(f"{y} has been added!")
+            
+            emoji, user = await self.client.wait_for('reaction_add',check=check)
+        else:
+            await msg.clear_reactions()
+
+    
+                
+        Json(file1, data)
+    
+    @commands.command(description="Sends the users pp size")
     async def pp(self, ctx):
         with open('./dicts/pp.json', 'r+') as k:
             randomsizeint = randint(1, 12)
             randomsizef = randint(1, 9)
             data = json.load(k)
             if str(ctx.author.id) in data:
-                embed = discord.Embed(title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches", colour=xz)
+                embed = discord.Embed(title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches", colour=thecolor())
             else:
                 data[str(ctx.author.id)] = {
                     "inches": f"{randomsizeint}.{randomsizef}"
@@ -156,10 +265,10 @@ class Fun(commands.Cog):
 
                 }
                 Json(k, data)
-                embed = discord.Embed(title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches", colour=xz)
+                embed = discord.Embed(title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches", colour=thecolor())
             await ctx.send(embed=embed)
         
-    @commands.command(help="Sends the users new pp size")
+    @commands.command(description="Sends the users new pp size")
     async def newpp(self, ctx):
         with open('./dicts/pp.json', 'r+') as k:
             randomsizeint = randint(1, 12)
@@ -172,7 +281,7 @@ class Fun(commands.Cog):
 
                 }
                 Json(k, data)
-                embed = discord.Embed(title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches", colour=xz)
+                embed = discord.Embed(title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches", colour=thecolor())
             else:
                 data[str(ctx.author.id)] = {
                     "inches": f"{randomsizeint}.{randomsizef}"
@@ -180,16 +289,13 @@ class Fun(commands.Cog):
 
                 }
                 Json(k, data)
-                embed = discord.Embed(title=f"Your new pp is {data[str(ctx.author.id)]['inches']} inches", colour=xz)
+                embed = discord.Embed(title=f"Your new pp is {data[str(ctx.author.id)]['inches']} inches", colour=thecolor())
             await ctx.send(embed=embed)
     @commands.command()
     async def hello(self, ctx):
-        embed = discord.Embed(description=f"hello {ctx.author.mention}", colour=xz)
+        embed = discord.Embed(description=f"hello {ctx.author.mention}", colour=thecolor())
         await ctx.send(embed=embed)
-    @commands.command(aliases=['Bow to me', 'BowToMe', 'Bow_To_Me', 'btm'], help="Forces the pinged member to bow down to the user", hidden=True)
-    async def bow(self, ctx,member1:discord.Member, member2:discord.Member, *, unne="is jesus"):
-        embed = discord.Embed(description=f"Bow to {member1}, {member2} because {member1} {unne}", colour=xz)
-        await ctx.send(embed=embed)
+   
     
 
     
@@ -201,7 +307,7 @@ class Fun(commands.Cog):
         lenf = fox['players']['online']
         x = False
         try:
-            embed = discord.Embed(title=lenf, colour=xz)
+            embed = discord.Embed(title=lenf, colour=thecolor())
             
             if 'list' in fox['players']:
                 foxupdate = (fox["players"]["list"])
@@ -219,33 +325,33 @@ class Fun(commands.Cog):
    
 
         
-    @commands.command(aliases=['echos'], help="Echo's the message the user sends after sending the command")
+    @commands.command(aliases=['echos'], description="Echo's the message the user sends after sending the command")
     async def echo(self, ctx):
         user = self.client.get_user(ctx.author.id)
         try:
-            embed = discord.Embed(title="What would you like to echo?", colour=xz)
+            embed = discord.Embed(title="What would you like to echo?", colour=thecolor())
             x = await ctx.send(embed=embed)
             msg = await self.client.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)
             await msg.delete()
             await ctx.message.delete()
             await x.delete()
             
-            embed1 = discord.Embed(title = f"{msg.content}", colour=xz)   
+            embed1 = discord.Embed(title = f"{msg.content}", colour=thecolor())   
             embed1.set_author(name=ctx.author.name, icon_url = user.avatar_url)
             await ctx.send(embed=embed1)
         except asyncio.TimeoutError:
-            embed = discord.Embed(title="Time ran out, restart the echo", colour=xz)
+            embed = discord.Embed(title="Time ran out, restart the echo", colour=thecolor())
             await ctx.send(embed=embed)
 
             
     
-    @commands.command(name = 'rand', aliases=['randomnum', 'rant', 'randomnumber', 'random_number'], help="Sends a random number between `<first_number>` and `<second_number>`")
+    @commands.command(name = 'rand', aliases=['randomnum', 'rant', 'randomnumber', 'random_number'], description="Sends a random number between `<first_number>` and `<second_number>`")
     async def random_num(self, ctx, num1: int, num2: int):
         
         embed = discord.Embed(title="randomnum", description=randint(num1, num2))
         await ctx.send(embed=embed)
         
-    @commands.command(aliases=['flip', 'coin', 'ht', 'headsandtails', 'Coinflip', 'coin_flip', 'flip_coin', 'fc'], help="Sends heads or tails, 50% chance")
+    @commands.command(aliases=['flip', 'coin', 'ht', 'headsandtails', 'Coinflip', 'coin_flip', 'flip_coin', 'fc'], description="Sends heads or tails, 50% chance")
     async def flipcoin(self, ctx): 
         
 
@@ -257,59 +363,33 @@ class Fun(commands.Cog):
             coin = "Tails"
         
 
-        embed = discord.Embed(title=coin, colour=xz)
+        embed = discord.Embed(title=coin, colour=thecolor())
         await ctx.send(embed=embed)
     
         
-    @commands.command(aliases=['rev', 'Reversemessage', 'Message_Reverse', 'Reverse_messgae', 'Reverse_Message'], help="Reverses the `<message>` letters and words (like a mirror)")
+    @commands.command(aliases=['rev', 'Reversemessage', 'Message_Reverse', 'Reverse_messgae', 'Reverse_Message'], description="Reverses the `<message>` letters and words (like a mirror)")
     async def reverse(self, ctx, *, message):
 
     
         def reverse(string):
-            return string[:: -1]
-        embed = discord.Embed(title=f"{reverse(message)}", colour=xz)
+            return string[::-1]
+        embed = discord.Embed(description=f"{reverse(message)}", colour=thecolor())
         await ctx.send(embed=embed)
         
     
     
 
-    @commands.command(help="The specified member takes an L")
+    @commands.command(description="The specified member takes an L")
     async def l(self, ctx, user:discord.Member=""):
             if user == "":
                 user = self.client.get_user(ctx.author.id)
-            embed = discord.Embed(description=f"{user.mention} took an L", colour=xz)
+            embed = discord.Embed(description=f"{user.mention} took an L", colour=thecolor())
             msg = await ctx.send(f"{user.mention}")
             await msg.delete()
             await ctx.send(embed=embed)
 
 
 
-    @commands.command(help="Pokes the `<member>` specified")
-    async def poke(self, ctx, member: discord.Member=""):
-        if member == "":
-            embed = discord.Embed(description=f"**{ctx.author.name}** has poked you 😗", colour=xz)
-            await ctx.author.send(embed=embed)
-            embed = discord.Embed(description=f"The **poke** will be sent to the specified member in aprox {round(self.client.latency * 1000)}ms", colour=xz)
-            await ctx.send(embed=embed)     
-        else:
-            embed = discord.Embed(description=f"**{ctx.author.name}** has poked you 😗", colour=xz)
-            await member.send(embed=embed)
-            embed = discord.Embed(description=f"The **poke** will be sent to the specified member in aprox **{round(self.client.latency * 1000)}** ms", colour=xz)
-            await ctx.send(embed=embed) 
-
-    @commands.command(help="Sends a hug to the `<member>` specified")
-    async def hug(self, ctx, member:discord.Member=""):
-        if member == "":
-
-            embed = discord.Embed(description=f"**{ctx.author.name}** has given you the gift of a hug 🌷", colour=xz)
-            await ctx.author.send(embed=embed)
-            embed = discord.Embed(description=f"The **hug** will be sent to the specified member in aprox **{round(self.client.latency * 1000)}**ms", colour=xz)
-            await ctx.send(embed=embed) 
-        else:
-
-            embed = discord.Embed(description=f"**{ctx.author.name}** has given you the gift of a hug 🌷", colour=xz)
-            await member.send(embed=embed)
-            embed = discord.Embed(description=f"The **hug** will be sent to the specified member in aprox **{round(self.client.latency * 1000)}**ms", colour=xz)
-            await ctx.send(embed=embed) 
+   
 def setup(client):
   client.add_cog(Fun(client))

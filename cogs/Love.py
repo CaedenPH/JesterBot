@@ -19,32 +19,65 @@ import textwrap
 import contextlib
 from discord.ext.buttons import Paginator
 from traceback import format_exception
-from dutils import color, Json, thebed
-
-
-# def Json(pref, data1):
-#     pref.seek(0)  # set point at the beginning of the file
-#     pref.truncate(0)  # clear previous content
-#     pref.write(json.dumps(data1, indent=4)) # write to file
-# class TheColor:
-#     def __init__(self):
+from dutils import thecolor, Json, thebed
+class GetUser:
+    def __init__(self, file, user="", family=""):
+        thefile = open(f'./dicts/{file}', 'r+')
+        thedata = json.load(thefile)
+        if user in thedata:
+            theuser = user
+            thefamily = thedata[str(user)][family]
+        else:
+            theuser = False
+            thefamily = False
         
-#         with open('./dicts/Color.json', 'r') as k:
-#             data = json.load(k)
-#             self.color = data['Color']['color'] 
-    
-# async def embed1(ctx, title, description=""):
-#     embed = discord.Embed(title=title, color=color())
-#     if description:
 
-#         embed = discord.Embed(title=title, description=description, color=color())
-#     await ctx.send(embed=embed)
-# color() = int(TheColor().color, 16)
+        self.file = thefile
+        self.data = thedata
+        self.theuser = theuser
+        self.family = thefamily
+        self.append = Json(thefile, thedata)
+    def user(self, user=""):
+        
+        if user in self.data:
+            theuser = self.data[str(user)]
+           
+        else:
+            theuser = user
+            
+        self.user = theuser
+
 class Love(commands.Cog):
     def __init__(self, client):
 
         self.client = client
+    @commands.command(help="Pokes the `<member>` specified")
+    async def poke(self, ctx, member: discord.Member=""):
+        if member == "":
+            embed = discord.Embed(description=f"**{ctx.author.name}** has poked you 😗", colour=thecolor())
+            await ctx.author.send(embed=embed)
+            embed = discord.Embed(description=f"The **poke** will be sent to the specified member in aprox {round(self.client.latency * 1000)}ms", colour=thecolor())
+            await ctx.send(embed=embed)     
+        else:
+            embed = discord.Embed(description=f"**{ctx.author.name}** has poked you 😗", colour=thecolor())
+            await member.send(embed=embed)
+            embed = discord.Embed(description=f"The **poke** will be sent to the specified member in aprox **{round(self.client.latency * 1000)}** ms", colour=thecolor())
+            await ctx.send(embed=embed) 
 
+    @commands.command(help="Sends a hug to the `<member>` specified")
+    async def hug(self, ctx, member:discord.Member=""):
+        if member == "":
+
+            embed = discord.Embed(description=f"**{ctx.author.name}** has given you the gift of a hug 🌷", colour=thecolor())
+            await ctx.author.send(embed=embed)
+            embed = discord.Embed(description=f"The **hug** will be sent to the specified member in aprox **{round(self.client.latency * 1000)}**ms", colour=thecolor())
+            await ctx.send(embed=embed) 
+        else:
+
+            embed = discord.Embed(description=f"**{ctx.author.name}** has given you the gift of a hug 🌷", colour=thecolor())
+            await member.send(embed=embed)
+            embed = discord.Embed(description=f"The **hug** will be sent to the specified member in aprox **{round(self.client.latency * 1000)}**ms", colour=thecolor())
+            await ctx.send(embed=embed) 
     @commands.command()
     async def love(self, ctx):
         await thebed(ctx, 'Name 1')
@@ -89,7 +122,7 @@ class Love(commands.Cog):
         File = GetUser('Love.json', f'{str(ctx.author.id)}', 'marriage')
         if File.family:
 
-            embed = discord.Embed(title="👨 Family 👩", description=f"**{ctx.author.name}** x **{File.family}** \n They have been married since {File.data[str(ctx.author.id)]['since']}", color=color())
+            embed = discord.Embed(title="👨 Family 👩", description=f"**{ctx.author.name}** x **{File.family}** \n They have been married since {File.data[str(ctx.author.id)]['since']}", color=thecolor())
             embed.set_footer(text="\nMay ever hapiness bless them")
             await ctx.send(embed=embed)
         else:
@@ -101,7 +134,7 @@ class Love(commands.Cog):
     async def marry(self, ctx, member:discord.Member):
         if member == ctx.author:
             return await thebed(ctx, 'You cannot marry yourself...')
-        embed = discord.Embed(title="🎉 Marriage 🎉", description=f"**{member.name}** do you accept **{ctx.author.name}** to be your partner? React with this message if you want to get married", colour=color())
+        embed = discord.Embed(title="🎉 Marriage 🎉", description=f"**{member.name}** do you accept **{ctx.author.name}** to be your partner? React with this message if you want to get married", colour=thecolor())
         msg = await ctx.send(embed=embed)
         await msg.add_reaction('💖')
         partner = member
@@ -146,7 +179,7 @@ class Love(commands.Cog):
                 }
             
             Json(File.file, File.data)
-            em = discord.Embed(title="Success!", description="Ah, the wonders of life, congratulations on getting married!", color=color())
+            em = discord.Embed(title="Success!", description="Ah, the wonders of life, congratulations on getting married!", color=thecolor())
             em.set_image(url="https://giphy.com/clips/livingsingle-7GN899Bf6g98SdFpra")
             await ctx.send(embed=em)
         except asyncio.TimeoutError:

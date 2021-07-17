@@ -26,8 +26,16 @@ from discord.ext.buttons import Paginator
 import pytz
 import datetime
 from datetime import datetime
-#from dutils import color, Json, embed1, GetUser
+from dutils import thecolor, Json, thebed
+from dpymenus import Page, PaginatedMenu
+import simpleeval
 
+def clean_code(content):
+    if content.startswith("```") and content.endswith("```"):
+        
+        return content.strip('```')
+    else:
+        return content
 class Pag(Paginator):
     async def teardown(self):
         try:
@@ -41,183 +49,28 @@ encoder = translator.Encoder()
 decoder = translator.Decoder()
 
 
-def Json(pref, data1):
-    pref.seek(0)  # set point at the beginning of the file
-    pref.truncate(0)  # clear previous content
-    pref.write(json.dumps(data1, indent=4)) # write to file
-class TheColor:
-    def __init__(self):
-        
-        with open('./dicts/Color.json', 'r') as k:
-            data = json.load(k)
-            self.color = data['Color']['color'] 
-    
-xz = int(TheColor().color, 16)
-
-    
 class Utils(commands.Cog):
     def __init__(self, client):
    
         self.client = client
-    
-    @commands.command(aliases=['evalcalc', 'calc'], description='run code')
-    async def calculator(self, ctx, *, code):
-     
-        z = 0
- 
-
-        if code == "reset":
-
-            with open('./dicts/Num.json', 'r+') as k:
-                data = json.load(k)
-                if str(ctx.author.id) in data:
-                    data[str(ctx.author.id)]['Score'] = 0
-                    z = data[str(ctx.author.id)]['Score']
-                else:
-                    data[str(ctx.author.id)] = {
-                        "Name": ctx.author.name,
-                        "Score": 0
-
-
-                    }
-                Json(k, data)
-                await ctx.send('reset')
-        else:
-
-            with open('./dicts/Num.json', 'r+') as k:
-                    data = json.load(k)
-                    if str(ctx.author.id) in data:
-                        data[str(ctx.author.id)]['Score'] += 1
-                        z = data[str(ctx.author.id)]['Score']
-                    else:
-                        data[str(ctx.author.id)] = {
-                            "Name": ctx.author.name,
-                            "Score": 1
-
-
-                        }
-                    Json(k, data)
-            x = False
-            def clean_code(content):
-                if content.startswith("```") and content.endswith("```"):
-                    return "\n".join(content.split("\n")[1:][:-3])
-                else:
-                    return content
-            if ctx.author.id != 298043305927639041:
-                for item in ('import', 'file', 'range', 'print', 'delete', 'truncate', 'open'):
-                       
-                    if item in code:
-                        x = True 
-                        
-            if x:
-                embed = discord.Embed(title="This is a calculator!", colour=xz)
-                embed.set_image(url="https://cdn.discordapp.com/attachments/836812307971571762/846334605669826600/unknown.png")
-                return await ctx.send(embed=embed)
-            code = clean_code(code)
-            
-            if ctx.author.id == 298043305927639041:
-
-                local_variables = {
-                    "discord": discord,
-                    "commands": commands, 
-                    "bot": self.client, 
-                    "client": self.client,
-                    "ctx": ctx, 
-                    "channel": ctx.channel, 
-                    "author": ctx.author,
-                    "guild": ctx.guild,
-                    "message": ctx.message
-
-                }
-            else:
-                 local_variables = {
-                    "discord": discord,
-                    "commands": commands, 
-                    "ctx": ctx, 
-                    "channel": ctx.channel, 
-                    "author": ctx.author,
-                    "guild": ctx.guild,
-                    "message": ctx.message
-
-                }
-
-    
-            
-
-            stdout = io.StringIO()
-            
-            if ctx.message.content[6:].startswith('run'):
-                if ctx.message.content[5::].startswith('print'):
-                
-                    code = f"return {ctx.message.content[11::][:-1]}"
-                
-                    pass
-                elif ctx.message.content[5::].startswith('return'):
-                    pass
-                else:
-                    code = f"return {code}"
-
-            else:
-
-                if ctx.message.content[6::].startswith('print'):
-                    
-                    code = f"return {ctx.message.content[12::][:-1]}"
-                    
-                    pass
-                elif ctx.message.content[6::].startswith('return'):
-                    pass
-                else:
-                    code = f"return {code}"
-              
-
-            
-            try:
-                with contextlib.redirect_stdout(stdout):
-                    exec(
-                        f"async def func():\n{textwrap.indent(code, '    ')}",  local_variables, 
-                    )
-                    obj = await local_variables["func"]()
-                   
-                    result = f"{stdout.getvalue()}{obj}\n"
-            except Exception as e:
-                result = "".join(format_exception(e, e, e.__traceback__))
-                pass    
-            if ctx.message.content[1:].startswith('run'):
-                y = ctx.message.content[5::]
-             
-            else:
-                y = ctx.message.content[6::]
-            
-            new_result = result.split(', ')
-            # await ctx.send(new_result)
-            my_list = []
-            for key in new_result:
-                
-                my_list.append(f"'{key[1:][:-1]}")
-   
-
-           
-            if len(result) < 2000:
-                 await ctx.send(f"```py\nIn[{z}]: {y}\nOut[{z}]: {result}\n```")
-            else:
-                pager = Pag(
-                    timeout=100,
-                    #entries=[f"`{result[1:][:-1]}`"[i: i + 2000] for i in range(0, len(result), 2000)],
-                    entries=[result[i: i + 2000] for i in range(0, len(result), 2000)],
-                    length = 1,
-                    prefix = "```py\n", 
-                    suffix = "```",
-                    colour=xz
-                    )
-
-
-                await pager.start(ctx) 
-    @commands.command(aliases=['stock', 'market'], help="Sends information about the stocks specified") 
+        
+    @commands.command()
+    async def calc(self, ctx, *, math=""):
+        if not math:
+            return await thebed(ctx, '', "**The current list of available eval operations**", i="https://cdn.discordapp.com/attachments/836812307971571762/846334605669826600/unknown.png")
+       
+        result = simpleeval.simple_eval(math)
+        embed = discord.Embed(color=discord.Color.green())
+        embed.set_footer(text=str(ctx.author) + " | Evaluation", icon_url=ctx.author.avatar_url)
+        embed.add_field(name="Your expression: ", value=f'```yaml\n"{math}"\n```', inline=False)
+        embed.add_field(name="Result: ", value=f"```\n{result}\n```")
+        await ctx.send(embed=embed)
+    @commands.command(aliases=['stock', 'market'], description="Sends information about the stocks specified") 
     async def stocks(self, ctx, stock:str=""):
         async with ctx.typing():
 
             if stock == "":
-                embed = discord.Embed(title="Type the stock symbol (e.g AAPL = apple)", description="[Stocks](https://swingtradebot.com/equities)", colour=xz)
+                embed = discord.Embed(title="Type the stock symbol (e.g AAPL = apple)", description="[Stocks](https://swingtradebot.com/equities)", colour=thecolor())
                 
            
             else:
@@ -228,7 +81,7 @@ class Utils(commands.Cog):
                 
                 if 'longName' in tickerData.info:
 
-                    embed = discord.Embed(title=f"{tickerData.info['longName']}", colour=xz)
+                    embed = discord.Embed(title=f"{tickerData.info['longName']}", colour=thecolor())
                     embed.set_author(icon_url=ctx.author.avatar_url, name="Stock market")
                     
                     if 'fullTimeEmployees' in tickerData.info: 
@@ -241,7 +94,7 @@ class Utils(commands.Cog):
                             embed.set_thumbnail(url=tickerData.info['logo_url'])
                    
                         else:
-                            embed = discord.Embed(title=f"{stock} doesn't have enough info!", colour=xz)
+                            embed = discord.Embed(title=f"{stock} doesn't have enough info!", colour=thecolor())
                        
 
 
@@ -253,41 +106,41 @@ class Utils(commands.Cog):
                             
                             
                         else:
-                            embed = discord.Embed(title=f"{stock} doesn't have enough info!", colour=xz)
+                            embed = discord.Embed(title=f"{stock} doesn't have enough info!", colour=thecolor())
                             
                             
                 else:
-                    embed = discord.Embed(title=f"{stock} couldn't be found!", colour=xz)
+                    embed = discord.Embed(title=f"{stock} couldn't be found!", colour=thecolor())
         await ctx.send(embed=embed)
-    @commands.command(aliases=['fib'], help="Sends the numbers of the fibinaci upto the number provided")
-    async def fibinaci(self, ctx, upto=10000000000000):
+    @commands.command(aliases=['fib'], description="Sends the numbers of the fibinaci upto the number provided")
+    async def fibonacci(self, ctx, upto=10000000000000):
         x = []
         
         if upto > 10000000000:
             upto = 1000000000
-        else:
+        
 
-            def fib(n):
+            
                 # if x in []:
                 #     pass
                 # else:
 
-                a,b = 0, 1
-                while a < n:
-                    x.append(str(a))
-                    
-                    a, b = b, a+b
+        a,b = 0, 1
+        while a < upto:
+            x.append(str(a))
+            
+            a, b = b, a+b
 
-            fib(upto)
         
-            embed = discord.Embed(title="Fibinaci", description=f"**{', '.join(x)}**", colour=xz)
-            await ctx.send(embed=embed)
-    @commands.command(aliases=['av', 'avatars'], help="Sends the mentioned users avatar or if none is specified, the usrs avatar")
+    
+        embed = discord.Embed(title="Fibinaci", description=f"{', '.join(x)}", colour=thecolor())
+        await ctx.send(embed=embed)
+    @commands.command(aliases=['av', 'avatars'], description="Sends the mentioned users avatar or if none is specified, the usrs avatar")
     async def avatar(self, ctx, user:discord.Member = ""):
         if user == "":
             user = ctx.author.id
             username = self.client.get_user(user)
-            embed = discord.Embed(title=f"Avatar", colour=xz)
+            embed = discord.Embed(title=f"Avatar", colour=thecolor())
             embed.set_author(name=username.name, icon_url=username.avatar_url)
             embed.set_image(url=username.avatar_url)
             await ctx.send(embed=embed)
@@ -295,12 +148,12 @@ class Utils(commands.Cog):
         else:
 
             username = self.client.get_user(user.id)
-            embed = discord.Embed(title=f"Avatar", colour=xz)
+            embed = discord.Embed(title=f"Avatar", colour=thecolor())
             embed.set_author(name=username.name, icon_url=username.avatar_url)
             embed.set_image(url=username.avatar_url)
             await ctx.send(embed=embed)
     
-    @commands.command(aliases=['tz', 'time', 'zone'], help="Sends the current time of the [origin]. To get all of the places recognisable, leave `origin` blank")
+    @commands.command(aliases=['tz', 'time', 'zone'], description="Sends the current time of the [origin]. To get all of the places recognisable, leave `origin` blank")
     async def timezone(self, ctx, origin=None):
         try:
 
@@ -325,7 +178,7 @@ class Utils(commands.Cog):
                     length = 1,
                     prefix = "```py\n", 
                     suffix = "```",
-                    colour=xz
+                    colour=thecolor()
                     )
 
 
@@ -335,16 +188,16 @@ class Utils(commands.Cog):
             x = str(now)
             _date = x[:10]
             _time = x[11:19]         
-            embed = discord.Embed(title=f"**Time:** {_time} │ **Date:** {_date}", colour=xz)  
+            embed = discord.Embed(title=f"**Time:** {_time} │ **Date:** {_date}", colour=thecolor())  
             embed.set_author(name="Datetime", icon_url=ctx.author.avatar_url)
             
             await ctx.send(embed=embed)
         except Exception as e:
-            embed = discord.Embed(title="Error", description=f"**TimeZoneError: {e}**", colour=xz)
+            embed = discord.Embed(title="Error", description=f"**TimeZoneError: {e}**", colour=thecolor())
             await ctx.send(embed=embed)
 
         
-    @commands.command()
+    @commands.command(hidden=True)
     async def pager(self, ctx, *, args):
         pager = Pag(
             timeout = 100,
@@ -355,16 +208,28 @@ class Utils(commands.Cog):
         )
         await pager.start(ctx)
     @commands.command(aliases=['bin'])
-    async def binary(self, ctx, text):
-        a_string = text
-        a_byte_array = bytearray(a_string, "utf8")
-        byte_list = []
-        for byte in a_byte_array:
-            binary_representation = bin(byte)
-            byte_list. append(binary_representation) 
-        await ctx.send(", ".join(byte_list))
+    async def binary(self, ctx, *, text):
+       
+        
+        response = requests.get(f'https://some-random-api.ml/binary?text={text}')
+        fox = response.json()
+        embed=discord.Embed(color=thecolor())
+        embed.add_field(name="Binary", value=f"{fox['binary']}")
+        await ctx.send(embed=embed)
+   
+
+    @commands.command(aliases=['unbin'])
+    async def unbinary(self, ctx, *, nums:str):
+      
+        
+        response = requests.get(f'https://some-random-api.ml/binary?decode={nums}')
+        fox = response.json()
+        embed=discord.Embed(color=thecolor())
+        embed.add_field(name="Decoded from binary", value=f"{fox['text']}") 
+        await ctx.send(embed=embed)
+   
     
-    @commands.command(help="""ASCII was developed from telegraph code. Work on the ASCII standard began in May 1961. The first edition of the standard was published in 1963. Compared to earlier telegraph codes, the proposed Bell code and ASCII were both ordered for more convenient sorting (i.e., alphabetization) of lists.
+    @commands.command(description="""ASCII was developed from telegraph code. Work on the ASCII standard began in May 1961. The first edition of the standard was published in 1963. Compared to earlier telegraph codes, the proposed Bell code and ASCII were both ordered for more convenient sorting (i.e., alphabetization) of lists.
 
 The use of ASCII format for Network Interchange was described in 1969. That document was formally elevated to an Internet Standard in 2015.
 
@@ -389,7 +254,7 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
 
 
                     x.append(f"{chr(i)}")
-            embed = discord.Embed(title="Ascii:", description="\n*starting from 32 because characters prior to that number are not used, therefore sending blanks* \n" + f'```py\n{", ".join(x)}```', colour=xz)
+            embed = discord.Embed(title="Ascii:", description="\n*starting from 32 because characters prior to that number are not used, therefore sending blanks* \n" + f'```py\n{", ".join(x)}```', colour=thecolor())
             embed.set_footer(text="Type ^help ascii to get information about what the ascii table is. | `,` signifies a new character.")
             return await ctx.send(embed=embed)
                         
@@ -403,45 +268,99 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
                
             x.append(f"\n`{c}: {'-'.join(p)}`")
             p = []
-        embed = discord.Embed(title="Ascii:", description=", ".join(x), colour=xz)
+        embed = discord.Embed(title="Ascii:", description=", ".join(x), colour=thecolor())
         embed.set_footer(text="Type ^help ascii to get information about what the ascii table is. | '-' signifies a new character.")
         await ctx.send(embed=embed)
         
 
-    @commands.command(aliases=["morse_code", 'mcode'], help="""Encode or decode text/morse code into morse code/plain text, type .morse for help""")
-    async def morse(self, ctx):
+    @commands.command(aliases=["morse_code", 'mcode'], description="""Encode or decode text/morse code into morse code/plain text, type .morse for help""")
+    async def morse(self, ctx, *, string):
         
+        TEXT_TO_MORSE = {'A':'.-', 'B':'-...', 'C':'-.-.', 'D':'-..', 'E':'.', 'F':'..-.', 'G':'--.', 'H':'....',
+            'I':'..', 'J':'.---', 'K':'-.-', 'L':'.-..', 'M':'--', 'N':'-.', 'O':'---', 'P':'.--.', 'Q':'--.-',
+            'R':'.-.', 'S':'...', 'T':'-', 'U':'..-', 'V':'...-', 'W':'.--', 'X':'-..-', 'Y':'-.--', 'Z':'--..',
+            '1':'.----', '2':'..---', '3':'...--', '4':'....-', '5':'.....', '6':'-....', '7':'--...', '8':'---..',
+            '9':'----.', '0':'-----', ',':'--..--', '.':'.-.-.-', '?':'..--..', '/':'-..-.', '-':'-....-', '(':'-.--.',
+            ')':'-.--.-', ':': '---...', "'": '.----.', "’": ".----.", '"': '.-..-.', ' ': '.......', '!': '-.-.--',
+            '@': '.--.-.', '$': '...-..-', '&': '.-...', ';': '-.-.-.', '=': '-...-', '+': '.-.-.', '_': '..--.-'
+        }
+
+        MORSE_TO_TEXT = {'.-': 'A', '-...': 'B', '-.-.': 'C', '-..': 'D', '.': 'E', '..-.': 'F', '--.': 'G', '....': 'H',
+            '..': 'I', '.---': 'J', '-.-': 'K', '.-..': 'L', '--': 'M', '-.': 'N', '---': 'O', '.--.': 'P', '--.-': 'Q',
+            '.-.': 'R', '...': 'S', '-': 'T', '..-': 'U', '...-': 'V', '.--': 'W', '-..-': 'X', '-.--': 'Y', '--..': 'Z',
+            '.----': '1', '..---': '2', '...--': '3', '....-': '4', '.....': '5', '-....': '6', '--...': '7', '---..': '8', '----.': '9',
+            '-----': '0', '--..--': ',', '.-.-.-': '.', '..--..': '?', '-..-.': '/', '-....-': '-', '-.--.': '(', '-.--.-': ')',
+            '---...': ':', '.----.': "'", '.-..-.': '"', '.......': ' ', '-.-.--': '!', '.--.-.': '@', '...-..-': '$', '.-...': '&',
+            '-.-.-.': ';', '-...-': '=', '.-.-.': '+', '..--.-': '_'
+        }
+
+        _tempset = set(string)
+        check = True
+        for char in _tempset:
+            if char not in ['.', '-', ' ']:
+                check = False
         
-        
-        embed = discord.Embed(description="Type ^encode <text> to encode some text")
+        if check is True:
+            _templist = str(string).split(' ')
+            converted = "".join(MORSE_TO_TEXT[str(i)] for i in _templist)
+
+            await thebed(ctx, 'Morse ---> Text', f"```yaml\n{converted}```")
+        else:
+            _templist = []
+            for char in str(string):
+                _templist.append(char)
+            try:
+                converted = " ".join(TEXT_TO_MORSE[str(i).upper()] for i in _templist)
+                if len(converted) <= 1998:
+                    await thebed(ctx, 'Text ---> Morse', f"```yaml\n{converted}```")
+                else:
+                    entries = [f"`{converted[i:i+1998]}`" for i in range(0, len(converted), 1998)]
+                    pager = StringPaginator(
+                        pages=entries,
+                        timeout=60
+                    )
+                    await pager.start(ctx)
+            except KeyError as e:
+                return await ctx.reply(f":x: The String contains some characters which cannot be converted into Morse!\n> If you think that's a Mistake, please report it to my Developers, they'll Review and fix it :)")
+
+
+
 
         
-    @commands.command(help="""Encode some plain text into Morse code""")
-    async def encode(self, ctx, *, text):
         
-        
-        embed = discord.Embed(title=f"Morse [Coded]: ", description=f"```bash\n{encoder.encode(text).morse}```", colour=xz)
-        embed.set_footer(text=str(ctx.author) + " | Morse from Text [Encoded] ", icon_url=ctx.author.avatar_url)
-        
-        #embed.add_field(name="Input: ", value=f'```py\n"{text}"\n```', inline=False)
-        #embed.add_field(name="Output:  ", value=f"```\n{encoder.encode(text).morse}\n```")
-        
-        await ctx.send(embed=embed)
+       
 
-
-    @commands.command(aliases=['eval2'], description='run code')
+    @commands.command(aliases=['eval2', 'e2'], description='run code', hidden=True)
     async def evaldir(self, ctx, *, code):
+        local_variables = {
+                        "discord": discord,
+                        "commands": commands, 
+                        "bot": self.client, 
+                        "client": self.client,
+                        "ctx": ctx, 
+                        "channel": ctx.channel, 
+                        "author": ctx.author,
+                        "guild": ctx.guild,
+                        "message": ctx.message
+
+                    }
         x = False
-        item1 = ('import', 'file', 'truncate', 'remove', 'delete', 'open', 'input')
-        if ctx.author.id != 298043305927639041:
+        with open('./dicts/Admins.json', 'r+') as k:
+            data = json.load(k)
+            
+            for k in data['admins']:
+                if ctx.author.id == k:
+                    x = True
+                    
+            
+            
+
         
-            for item in ('import', 'file', 'truncate', 'remove', 'delete', 'open', 'input'):
-                
-                if item in code:
-                    x = True    
-        if x:
-            return await ctx.send(item1)
-        z = 0
+
+        
+
+        if not x:
+            return
  
 
         if code == "reset":
@@ -477,42 +396,14 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
                     Json(k, data)
 
             
-            def clean_code(content):
-                if content.startswith("```") and content.endswith("```"):
-                    return "\n".join(content.split("\n")[1:][:-3])
-                else:
-                    return content
             
         
         code = clean_code(code)
         
-        if ctx.author.id == 298043305927639041:
+    
 
-            local_variables = {
-                "discord": discord,
-                "commands": commands, 
-                "bot": self.client, 
-                "client": self.client,
-                "ctx": ctx, 
-                "channel": ctx.channel, 
-                "author": ctx.author,
-                "guild": ctx.guild,
-                "message": ctx.message,
-                "datetime": datetime
-
-            }
-        else:
-                local_variables = {
-                "discord": discord,
-                "commands": commands, 
-                "ctx": ctx, 
-                "channel": ctx.channel, 
-                "author": ctx.author,
-                "guild": ctx.guild,
-                "message": ctx.message
-
-            }
         
+      
         code = f"return dir({code})"
         stdout = io.StringIO()
         try:
@@ -526,11 +417,14 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
         except Exception as e:
             result = "".join(format_exception(e, e, e.__traceback__))
             pass    
-        if ctx.message.content[1:].startswith('run'):
-            y = ctx.message.content[5::]
+        pre = await self.client.get_prefix(ctx.message)
+        if ctx.message.content.strip(pre[0]).startswith('eval1'):
+            y = ctx.message.content[6::]
+            
+            
             
         else:
-            y = ctx.message.content[6::]
+            y = ctx.message.content[3::]
         
         new_result = result.split(', ')
         # await ctx.send(new_result)
@@ -551,24 +445,42 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
                 length = 1,
                 prefix = "```py\n", 
                 suffix = "```",
-                colour=xz
+                colour=thecolor()
                 )
 
 
             await pager.start(ctx) 
-    @commands.command(aliases=['eval1'], description='run code')
+    @commands.command(aliases=['eval1', 'e1'], description='run code', hidden=True)
     async def evalreturn(self, ctx, *, code):
+        local_variables = {
+                        "discord": discord,
+                        "commands": commands, 
+                        "bot": self.client, 
+                        "client": self.client,
+                        "ctx": ctx, 
+                        "channel": ctx.channel, 
+                        "author": ctx.author,
+                        "guild": ctx.guild,
+                        "message": ctx.message
+
+                    }
         x = False
-        item1 = ('import', 'file', 'truncate', 'remove', 'delete', 'open', 'input')
-        if ctx.author.id != 298043305927639041:
+        with open('./dicts/Admins.json', 'r+') as k:
+            data = json.load(k)
+            
+            for k in data['admins']:
+                if ctx.author.id == k:
+                    x = True
+                    
+            
+            
+
         
-            for item in ('import', 'file', 'truncate', 'remove', 'delete', 'open', 'input'):
-                
-                if item in code:
-                    x = True    
-        if x:
-            return await ctx.send(item1)
-        z = 0
+
+        
+
+        if not x:
+            return
  
 
         if code == "reset":
@@ -603,41 +515,14 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
                         }
                     Json(k, data)
             x = False
-            def clean_code(content):
-                if content.startswith("```") and content.endswith("```"):
-                    
-                    return code.strip('```')
-                else:
-                    return content
+            
                 
             code = clean_code(code)
             
-            if ctx.author.id == 298043305927639041:
+            
 
-                local_variables = {
-                    "discord": discord,
-                    "commands": commands, 
-                    "bot": self.client, 
-                    "client": self.client,
-                    "ctx": ctx, 
-                    "channel": ctx.channel, 
-                    "author": ctx.author,
-                    "guild": ctx.guild,
-                    "message": ctx.message
-
-                }
-            else:
-                 local_variables = {
-                    "discord": discord,
-                    "commands": commands, 
-                    "ctx": ctx, 
-                    "channel": ctx.channel, 
-                    "author": ctx.author,
-                    "guild": ctx.guild,
-                    "message": ctx.message
-
-                }
-
+           
+        
     
             
 
@@ -679,11 +564,18 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
             except Exception as e:
                 result = "".join(format_exception(e, e, e.__traceback__))
                 pass    
-            if ctx.message.content[1:].startswith('run'):
-                y = ctx.message.content[5::]
+            
+            
+            #await self.client.chan.send(ctx.message.content.strip(pre[0]))
+            pre = await self.client.get_prefix(ctx.message)
+            
+            if ctx.message.content.strip(pre[0]).startswith('eval1'):
+                y = ctx.message.content[6::]
+                
+                
              
             else:
-                y = ctx.message.content[6::]
+                y = ctx.message.content[3::]
             
             new_result = result.split(', ')
             # await ctx.send(new_result)
@@ -704,28 +596,47 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
                     length = 1,
                     prefix = "```py\n", 
                     suffix = "```",
-                    colour=xz
+                    colour=thecolor()
                     )
 
 
                 await pager.start(ctx) 
 
-    
-    @commands.command(description='run code')
+    @commands.command(hidden=True)
+    async def wcog(self, ctx, n):
+        cmd = self.client.get_command(n)
+        await ctx.send(cmd.cog.qualified_name)
+    @commands.command(description='run code', hidden=True, aliases=['e'])
     async def eval(self, ctx, *, code):
+        local_variables = {
+                        "discord": discord,
+                        "commands": commands, 
+                        "bot": self.client, 
+                        "client": self.client,
+                        "ctx": ctx, 
+                        "channel": ctx.channel, 
+                        "author": ctx.author,
+                        "guild": ctx.guild,
+                        "message": ctx.message
+
+                    }
         x = False
-        item1 = ('import', 'file', 'truncate', 'remove', 'delete', 'open', 'input')
-        if ctx.author.id != 298043305927639041:
+        with open('./dicts/Admins.json', 'r+') as k:
+            data = json.load(k)
+            
+            for k in data['admins']:
+                if ctx.author.id == k:
+                    x = True
+                    
+            
+            
+
         
-            for item in ('import', 'file', 'truncate', 'remove', 'delete', 'open', 'input'):
-                
-                if item in code:
-                    x = True    
-        if x:
-            return await ctx.send(item1)
 
-        z = 0
+        
 
+        if not x:
+            return
 
         if code == "reset":
 
@@ -742,7 +653,7 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
 
                     }
                 Json(k, data)
-                await ctx.send('reset')
+                return await ctx.send('reset')
         else:
 
             with open('./dicts/Num.json', 'r+') as k:
@@ -759,52 +670,11 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
                     }
                 Json(k, data)
     
-       
-        def clean_code(content):
-            if content.startswith("```") and content.endswith("```"):
-                
-                return content.strip('```')
-            else:
-                return content
-                
-        
-                
-
-        
-        
-
-                    
-        
+    
         
         code = clean_code(code)
-        
-        if ctx.author.id == 298043305927639041:
-
-            local_variables = {
-                "discord": discord,
-                "commands": commands, 
-                "bot": self.client, 
-                "client": self.client,
-                "ctx": ctx, 
-                "channel": ctx.channel, 
-                "author": ctx.author,
-                "guild": ctx.guild,
-                "message": ctx.message,
-                "datetime": datetime
-
-            }
-        else:
-                local_variables = {
-                "discord": discord,
-                "commands": commands, 
-                "ctx": ctx, 
-                "channel": ctx.channel, 
-                "author": ctx.author,
-                "guild": ctx.guild,
-                "message": ctx.message
-
-            }
-        
+    
+       
             
         stdout = io.StringIO()
             
@@ -824,22 +694,19 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
         theresult = result.split('None')
 
     
-        if ctx.message.content[1:].startswith('run'):
-            y = ctx.message.content[5::]
-        
-        else:
+        pre = await self.client.get_prefix(ctx.message)
+        if ctx.message.content.strip(pre[0]).startswith('eval'):
             y = ctx.message.content[6::]
-        
-        new_result = result.split(', ')
-        # await ctx.send(new_result)
-        my_list = []
-        for key in new_result:
             
-            my_list.append(f"'{key[1:][:-1]}")
+            
+            
+        else:
+            y = ctx.message.content[3::]
+        
 
         ty = y.strip('```')
     
-        if len(result) < 2000:
+        if len(result) < 1800:
             await ctx.send(f"```py\nIn[{z}]: {ty}\nOut[{z}]: {theresult[0]}\n```")
         else:
             pager = Pag(
@@ -849,11 +716,28 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
                 length = 1,
                 prefix = "```py\n", 
                 suffix = "```",
-                colour=xz
+                colour=thecolor()
                 )
 
 
             await pager.start(ctx)
+    @commands.command()
+    async def dpy(self, ctx):
+
+
+        page1 = Page(title='Page 1', description='First page test!')
+        page1.add_field(name='Example A', value='Example B')
+
+        page2 = Page(title='Page 2', description='Second page test!')
+        page2.add_field(name='Example C', value='Example D')
+
+        page3 = Page(title='Page 3', description='Third page test!')
+        page3.add_field(name='Example E', value='Example F')
+
+        menu = PaginatedMenu(ctx)
+        menu.add_pages([page1, page2, page3])
+
+        await menu.open()
     
 
 def setup(client):
