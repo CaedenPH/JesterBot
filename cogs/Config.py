@@ -26,7 +26,7 @@ class Config(commands.Cog):
                 "channel_id": ctx.channel.id,
                 "Welcome": True
             }   
-                Json(k, data)
+                Json(f, data)
                 embed = discord.Embed(title="Added!", colour=thecolor())
                 await ctx.send(embed=embed)
             else:
@@ -218,8 +218,8 @@ class Config(commands.Cog):
             
             if str(ctx.guild.id) in data:
                 data[str(ctx.guild.id)]['Welcome'] = False
-                Json(k, data)
-                embed = discord.Embed(title="Removed!", colour=thecolor())
+                Json(f, data)
+                embed = discord.Embed(title="Re`moved!", colour=thecolor())
                 await ctx.send(embed=embed)
     @has_permissions(manage_channels=True)
     @commands.command(description="Makes the channel specified a suggestion channel - members can only type ^suggest or their message gets deleted. Nice and orderly")
