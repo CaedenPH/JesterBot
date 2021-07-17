@@ -1,53 +1,27 @@
 import discord, os, requests, json, asyncio
-from discord.ext.commands import has_permissions
 from discord.ext import commands 
-from discord.utils import get
-from discord.ext import tasks
-from discord import Intents
 from asyncio import sleep
-import yfinance as yf
-from traceback import print_exc
-import itertools
-import sys
-import traceback
-from async_timeout import timeout
-from functools import partial
-from youtube_dl import YoutubeDL
 from random import choice, randint
-import io
-import textwrap
-import contextlib
-import shutil
-from discord.ext.buttons import Paginator
-from traceback import format_exception
 from dutils import thecolor, Json, thebed
-import time
-from discord_components import DiscordComponents, Button, ButtonStyle, InteractionType
-from dislash import SlashClient, ActionRow, Button, SelectMenu, SelectOption
 from datetime import datetime
-from sys import executable
-from subprocess import call
-
 
 class JesterInfo(commands.Cog):
     def __init__(self, client):
 
         self.client = client
     
-   
-   
     @commands.command()
     async def uptime(self, ctx):
+
         delta_uptime = datetime.utcnow() - self.client.launch_time
         hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
         minutes, seconds = divmod(remainder, 60)
         days, hours = divmod(hours, 24)
         return await thebed(ctx, '', f"I've been Up since **{days}** Days, **{hours}** Hours, **{minutes}** Minutes, and **{seconds}** Seconds!")
-   
-    
         
     @commands.command(aliases=['Ver', 'versions'], description="Sends the version that the discord bot is currently on - Changes frequently as updates occur")
     async def version(self, ctx):
+
         with open('./dicts/Updates.json', 'r') as x:
             data = json.load(x)
             for m in data:
@@ -61,7 +35,6 @@ class JesterInfo(commands.Cog):
             data = json.load(x)
             embed = discord.Embed(title=f"{data['Score']['Score1']}", colour=thecolor())
             await ctx.send(embed=embed)
-        
     
     @commands.command(description="Sends information about my account")
     async def info(self, ctx, member: discord.Member = ""):
@@ -91,18 +64,15 @@ class JesterInfo(commands.Cog):
         serverinvite = await channel.create_invite()
         serverid = ctx.guild.id
         servername = ctx.guild.name
-        embed = discord.Embed(title="Your info", colour=0x4286ff)
+        embed = discord.Embed(title="Your info", colour=thecolor())
         embed.add_field(name="Name", value=f"{servername}", inline=False)
         embed.add_field(name="Id", value=f"{serverid}", inline=False)
         embed.add_field(name="Invite", value=f"{serverinvite}", inline=False)
-        # embed.add_field(name=)
-        await ctx.send(embed=embed)
 
-    
+        await ctx.send(embed=embed)
 
     @commands.command(aliases=['notes', 'patchnotes', 'Updates', 'Patch_Notes', 'PT', 'up'], description="Sends the most recent update to the bot")
     async def update(self, ctx):
-        
         
         with open('./dicts/Updates.json', 'r') as x:
             data = json.load(x)
@@ -130,14 +100,11 @@ class JesterInfo(commands.Cog):
                     embed.add_field(value=f"{data[str(m)]['New commands']}",name = "**New commands**", inline=True)
                     embed.add_field(value=f"{data[str(m)]['Other']}", name= "**Other**", inline=False)
                     
-                    
                     embed.set_footer(text=ctx.author.name, icon_url=username.avatar_url)
                     embed.set_thumbnail(url='https://media.giphy.com/media/xT5LMHxhOfscxPfIfm/giphy.gif')
                     
                     await ctx.send(embed=embed)
        
-   
-
     @commands.command(aliases=['selfruns', 'commandsused', 'Selfrun', 'Self_Score'], description="Sends the ammount of commands that you personally have ran")
     async def selfscore(self, ctx):
         with open('./dicts/Selfscore.json') as f:
@@ -145,21 +112,6 @@ class JesterInfo(commands.Cog):
             if str(ctx.author.id) in data:
                 embed = discord.Embed(title=f"The ammount of commands you have ran are {data[str(ctx.author.id)]['selfscore']}", colour=thecolor())
                 await ctx.send(embed=embed)
-                
-
-            
-    # Giveawaytime.start()
-    # @commands.command(aliases=['json'], description="Sends some of the json files being used, dm the coder for all the json files")
-    # async def jsonfile(self, ctx):
-
-    #     await ctx.send(file=discord.File("./dicts/Selfscore.json"))
-    #     await ctx.send(file=discord.File("./dicts/Welcome.json"))
-    #     await ctx.send(file=discord.File("./dicts/Scoreoverall.json"))
-    
-    #     await ctx.send(file=discord.File("./dicts/Reactionrole.json"))
-    #     await ctx.send(file=discord.File("./dicts/Updates.json"))
-    #     await ctx.send(file=discord.File("./dicts/Commandsused.json"))
-    
 
     @commands.command(aliases=['binv', 'botinv'])
     async def invite(self, ctx):
@@ -169,8 +121,6 @@ class JesterInfo(commands.Cog):
 
         await ctx.send(embed=embed)
 
-
-
     @commands.command(aliases=['commandtop', 'cmdtop', 'topcmd'])
     async def topcommands(self, ctx):
         score_list = []
@@ -179,7 +129,7 @@ class JesterInfo(commands.Cog):
         x = []
         y = '\n'
         with open('./dicts/Commandsused.json') as k:
-            embed = discord.Embed(colour=0x4286ff)
+            embed = discord.Embed(colour=thecolor())
             embed.set_author(name="Top commands", icon_url=ctx.author.avatar_url)
 
             data = json.load(k)
@@ -190,17 +140,10 @@ class JesterInfo(commands.Cog):
             for item in sorted_scores:
                 
                 x.append(f"{item[0]}: {item[1]['score']}")
-                
-                #embed.add_field(name=f"\u200b", value=f"**{item[0]}**: {item[1]['score']}", inline=False)
+               
             embed.add_field(name=f"\u200b", value=f"**{y.join(x)}**", inline=False)
 
             await ctx.send(embed=embed)
-
-        
-                
-
-
-
 
     @commands.command(aliases=['membtop', 'topmemb', 'memtop'], description="Sends the top members that have used the bot") 
     async def topmembers(self, ctx):
@@ -210,7 +153,7 @@ class JesterInfo(commands.Cog):
         x = []
         y = '\n'
         with open('./dicts/Selfscore.json') as k:
-            embed = discord.Embed(colour=0x4286ff)
+            embed = discord.Embed(colour=thecolor())
             embed.set_author(name="Top members", icon_url=ctx.author.avatar_url)
             data = json.load(k)
             def get_key(item):
@@ -224,7 +167,6 @@ class JesterInfo(commands.Cog):
                         name = data[datas]['Name']
                 x.append(f"{name}: {item[1]['selfscore']}")
                 
-                #embed.add_field(name=f"\u200b", value=f"**{item[0]}**: {item[1]['score']}", inline=False)
             embed.add_field(name=f"\u200b", value=f"**{y.join(x)}**", inline=False)
 
             await ctx.send(embed=embed)
@@ -253,9 +195,6 @@ class JesterInfo(commands.Cog):
 
         await ctx.send(embed=embed)
 
-
-   
-    
     @commands.command(aliases=['pin', 'pingy', 'ms', 'Latency'], description="Sends the ping of the bot")
     async def ping(self, ctx):
         embed = discord.Embed(description=f"My current ping is **{round(self.client.latency * 500)}** ms", colour=thecolor())
@@ -315,10 +254,6 @@ class JesterInfo(commands.Cog):
             embed.set_author(icon_url=ctx.author.avatar_url, name="Prefix")
             await ctx.send(embed=embed)
 
-    
-
-   
-    
     @commands.command()
     async def credits(self, ctx):
         coder = self.client.get_user(298043305927639041)
@@ -333,9 +268,6 @@ class JesterInfo(commands.Cog):
         **Helpers:** *{helper.name}*, *{helper2.name}*
         **Sales/Promoter:** *{sales.name}*
         **Ideas/layout designer:** *{ideas_designer}*
-        
-        
-        
         
         """, color=thecolor())
         await ctx.send(embed=embed)
@@ -353,8 +285,6 @@ class JesterInfo(commands.Cog):
             embed = discord.Embed(title="Color", description='Put `0x` infront of the six letter/number [color](https://www.color-hex.com/)', colour=thecolor())
             await ctx.send(embed=embed)
     
-            
-
 
 def setup(client):
   client.add_cog(JesterInfo(client))
