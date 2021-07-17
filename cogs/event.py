@@ -2,52 +2,30 @@ import discord, os, requests, json, asyncio
 from async_timeout import timeout
 from random import choice, randint
 from dutils import thecolor, Json, thebed
-from discord.ext import commands 
-from discord_components import DiscordComponents
 from dislash import SlashClient, ActionRow, Button
+from discord.ext import commands
 import datetime
-selected_channel = None
+
    
 class Event(commands.Cog):
     def __init__(self, client):
 
         self.client = client
-
-
        
-    
-    @commands.Cog.listener()
-    async def on_disconnect(self):
-        print("Offline :(")
-
     @commands.Cog.listener()
     async def on_ready(self):
 
-        #DiscordComponents(self.client)
         slash = SlashClient(self.client)
         
         guild_ids = []
         for guild1 in self.client.guilds:
             guild_ids.append(guild1.id)
-        print(guild_ids)
-        print("The bot is ready")
-        print()
+
         selected_channel = self.client.get_guild(830161446523371540).get_channel(830161446523371545)
-        # # for server in client.guilds:
-        # #     # # chan = random.choice(server.text_channels)
-        # #     # # invite = await chan.create_invite()
-        # #     # print(server.name)
-        # #     # await selected_channel.send(server.name + ' ')
         await self.client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"pings for prefix // {len(self.client.guilds)} servers"))
         self.client.launch_time = datetime.datetime.utcnow()
         self.client.chan = selected_channel
         self.client.discordcolor = 0x36393F
-
-    @commands.Cog.listener()
-    async def on_guild_channel_delete(self, channel):
-        print(f"{channel.guild.name} {channel.name} got deleted")
-        
-
 
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
@@ -60,8 +38,6 @@ class Event(commands.Cog):
         │ **My prefix is:** `^`, `.` │
         │ Type `^server_prefix <prefix>, [prefix], etc` 
         to change the prefix for the server │
-        
-
         
         """, colour=thecolor())
        
@@ -86,7 +62,6 @@ class Event(commands.Cog):
         selected_channel1 = self.client.get_guild(830161446523371540).get_channel(865309892776951808)
         
         await selected_channel1.send(f'I have left {guild.name}.')
-   
 
     @commands.Cog.listener()
     async def on_reaction_add(self, reaction, user):
@@ -101,8 +76,6 @@ class Event(commands.Cog):
             await ctx.send(embed=embed)
         elif isinstance(error, AttributeError):
             pass
-        #elif isinstance(error, ValueError):
-            #await thebed(ctx, '', 'Your name makes me want to **cry**')
         elif isinstance(error, commands.CheckFailure):
             pass
         
@@ -124,8 +97,6 @@ class Event(commands.Cog):
             embed.set_footer(text="<> = needed │ [] = not needed")
             await ctx.send(embed=embed)
 
-        
-        
         elif isinstance(error, commands.CommandNotFound):
             with open('./dicts/Suggest.json') as l:
                 data = json.load(l)
@@ -151,12 +122,7 @@ class Event(commands.Cog):
                 my_string = ""
                 n = 0
                 for string in y:
-                    
-                    
                 
-                    # if string.endswith("---"):
-                    #     my_string += f" \n - `{str(string[:-3])}`"
-                        # print(f"`{str(string[:-3])}`")
                     my_string += f" \n - {str(string)}"
             
                 
@@ -234,8 +200,6 @@ class Event(commands.Cog):
         elif isinstance(error, commands.CommandOnCooldown):
             embed = discord.Embed(description=f'This command is on cooldown for **{error.retry_after:.2f}** seconds', colour=thecolor())
             await ctx.send(embed=embed)
-        # elif isinstance(error, commands.):
-        #     await ctx.send('g')
         else:
             k = open('./dicts/Errors.json', 'r+')
             data = json.load(k) 
@@ -301,7 +265,6 @@ class Event(commands.Cog):
                                 
                                 embed.set_image(url=f"{member.guild.icon_url}") 
                                 embed.set_author(name=f"{member.name}", icon_url=f"{member.avatar_url}")
-                                # role = discord.utils.get(member.guild.roles, id=loaded[str(member.guild.id)]['role'])
                                 await channel.send(embed=embed)
                                 role = discord.utils.get(member.guild.roles, id=loaded[str(member.guild.id)]['role'])
                                 if role:
@@ -354,11 +317,6 @@ class Event(commands.Cog):
         
         zx = False
 
-        #mg = str(message.guild.id)  
-        
-      
-
-        #mc = str(message.channel.id)
         with open('./dicts/VerifyChannel.json') as k:
             data = json.load(k)
         
@@ -443,50 +401,7 @@ class Event(commands.Cog):
                 l.seek(0)
                 l.truncate(0)
                 l.write(json.dumps(data, indent=4))
-            
 
-        # with open('./dicts/Suggest.json') as ee:
-        #     data = json.load(ee)
-        #     us = self.client.get_user(828363172717133874)
-            
-        
-        #     if str(message.channel.id) in data and data[str(message.channel.id)]['Yes'] == True:
-        #         if message.content != "suggest":
-        #             await message.delete()
-            
-            
-            
-                
-
-                    # embed = discord.Embed(title=f"Type .suggest to make a suggestion! You cannot type in the {message.channel.name}", colour=thecolor())
-                    # await message.author.send(embed=embed)
-                # else:
-                #     await self.client.process_command(suggest)
-            # , {data[message.channel.id]}
-
-        # if 'Jesterbot' or 'Jester' or 'BestBot' or 'JesterBot' or 'jesterbot' in [message.content]:
-        #     response = requests.get('https://official-joke-api.appspot.com/random_joke')
-        #     fox = response.json()
-        #     foxupdate = (fox["setup"]) 
-        #     foxupdatey = (fox["punchline"])
-
-        #     x = []
-        #     prefix = await self.client.get_prefix(message)
-        #     for pref in prefix:
-        #         x.append(f"`{pref}`")
-        #     embed = discord.Embed(title=f"Hello {message.author.name}", description=f"""
-        #     │ My default prefix is: `.` │
-        #     │ My prefix for you is: {', '.join(x)} │ 
-        #     │ Type `.prefix <prefix> [prefix], [prefix], etc` to change the prefix for you! │
-            
-            
-            
-        #     """, colour=thecolor())
-        #     embed.set_author(name="JesterBot", icon_url=us.avatar_url)
-
-        #     embed.add_field(name="Also here is a joke for you:", value=f"│ {foxupdate} ... {foxupdatey} │", inline=False)
-        #     embed.set_footer(text="You can get more of these jokes with .joke!")
-        # ['Jesterbot', 'Jester', 'BestBot', 'JesterBot', 'jesterbot']
         us = self.client.user
         for item in ('Jesterbot', 'JesterBot', 'jesterbot'):
             if item in message.content:
@@ -529,31 +444,16 @@ class Event(commands.Cog):
                         num = 2 
                         await message.remove_reaction(member=message.author, emoji="👍")
                         emoji, user = await self.client.wait_for('reaction_add', timeout=30.0, check=check)
-                        
                     
                     else:
-
                         if num == 2:
-                            
-
                             await msg12.delete()
-                            
-                                
                             await message.clear_reactions()
                         else:
-                            
                             await message.clear_reactions()
 
-
-
                 except asyncio.TimeoutError:
-                    
-                
                     await message.clear_reactions()
-
-
-
-            
 
         if message.mentions:
             
@@ -583,7 +483,6 @@ class Event(commands.Cog):
                     embed.add_field(name="Also here is a joke for you:", value=f"│ {foxupdate} ... {foxupdatey} │", inline=False)
                     embed.set_footer(text="You can get more of these jokes with .joke!")
                 return await message.channel.send(embed=embed)
-
 
             
 def setup(client):
