@@ -1,9 +1,7 @@
 import discord, os, requests, json, asyncio
 from async_timeout import timeout
-from random import choice, randint
 from dutils import thecolor, Json, thebed
 from discord.ext import commands 
-from discord_components import DiscordComponents
 from dislash import SlashClient, ActionRow, Button
 import datetime
 import shutil
@@ -75,6 +73,42 @@ class Staff(commands.Cog):
                             }
                             Json(e, data)
             await thebed(ctx, 'All done!')
+    @commands.command(hidden=True)
+    async def dpy(self, ctx):
+
+        page1 = Page(title='Page 1', description='First page test!')
+        page1.add_field(name='Example A', value='Example B')
+
+        page2 = Page(title='Page 2', description='Second page test!')
+        page2.add_field(name='Example C', value='Example D')
+
+        page3 = Page(title='Page 3', description='Third page test!')
+        page3.add_field(name='Example E', value='Example F')
+
+        menu = PaginatedMenu(ctx)
+        menu.add_pages([page1, page2, page3])
+
+        await menu.open()
+
+    @commands.command(hidden=True)
+    async def close(self, ctx):
+
+        if ctx.author.id == 298043305927639041:
+            embed = discord.Embed(title=f"Goodbye", colour=thecolor())
+            await ctx.send(embed=embed)
+            
+            await self.client.close()
+
+    @commands.command(hidden=True)
+    async def ditest(self, ctx):
+     
+
+        msg = await ctx.send('hi', components=[dislash.Button(label='hello', custom_id='test', style=dislash.ButtonStyle.green)])
+        def check(inter):
+            return inter.message.id == msg.id and inter.author == ctx.author
+        inter = await ctx.wait_for_button_click(check)
+       
+        await inter.reply(type=dislash.InteractionType.Acknowledge)
 
     @commands.command(hidden=True)
     async def blacklist(self, ctx, user1:int, cmd):
