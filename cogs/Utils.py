@@ -1,34 +1,16 @@
 import discord, os, requests, json, asyncio
-from discord.ext.commands import has_permissions
 from discord.ext import commands 
-from discord.utils import get
-from discord.ext import tasks
-from discord import Intents
-from asyncio import sleep
-import yfinance as yf
-from traceback import print_exc
-import itertools
-import randfacts
 import io
 import textwrap
 import contextlib
-import sys
-import traceback
-from async_timeout import timeout
-from functools import partial
-from youtube_dl import YoutubeDL
-from random import choice, randint
-from bs4 import BeautifulSoup
-from animals import Animals
 from traceback import format_exception
 from pyMorseTranslator import translator
 from discord.ext.buttons import Paginator   
 import pytz
-import datetime
 from datetime import datetime
 from dutils import thecolor, Json, thebed
-from dpymenus import Page, PaginatedMenu
 import simpleeval
+import yfinance as yf
 
 def clean_code(content):
     if content.startswith("```") and content.endswith("```"):
@@ -36,6 +18,7 @@ def clean_code(content):
         return content.strip('```')
     else:
         return content
+
 class Pag(Paginator):
     async def teardown(self):
         try:
@@ -54,8 +37,12 @@ class Utils(commands.Cog):
    
         self.client = client
         
-    @commands.command()
-    async def calc(self, ctx, *, math=""):
+    @commands.command(
+        
+        aliases=['calculator', 'maths', 'math']
+        
+        )
+    async def calc(self, ctx, *, math=None):
         if not math:
             return await thebed(ctx, '', "**The current list of available eval operations**", i="https://cdn.discordapp.com/attachments/836812307971571762/846334605669826600/unknown.png")
        
@@ -65,77 +52,71 @@ class Utils(commands.Cog):
         embed.add_field(name="Your expression: ", value=f'```yaml\n"{math}"\n```', inline=False)
         embed.add_field(name="Result: ", value=f"```\n{result}\n```")
         await ctx.send(embed=embed)
-    @commands.command(aliases=['stock', 'market'], description="Sends information about the stocks specified") 
-    async def stocks(self, ctx, stock:str=""):
+
+
+    @commands.command(
+        aliases=['stock', 'market'],
+        description="Sends information about the stocks specified"
+        ) 
+
+    async def stocks(self, ctx, stock=None):
+        
+        if not stock:
+            embed = discord.Embed(title="Type the stock symbol (e.g AAPL = apple)", description="[Stocks](https://swingtradebot.com/equities)", colour=thecolor())
+            return await ctx.send(embed=embed)
+
+        tickerData = yf.Ticker(stock)
+        inf = tickerData.info
+    
+        if 'longName' not in inf:
+            return await thebed(ctx, '', 'Not enough information')
         async with ctx.typing():
-
-            if stock == "":
-                embed = discord.Embed(title="Type the stock symbol (e.g AAPL = apple)", description="[Stocks](https://swingtradebot.com/equities)", colour=thecolor())
-                
-           
-            else:
-                
-                tickerSymbol = stock
-                tickerData = yf.Ticker(tickerSymbol)
+            embed = discord.Embed(title=f"{inf['longName'] if inf['longName'] else 'No name data'}", colour=thecolor())
+            embed.set_author(icon_url=ctx.author.avatar_url, name="Stock market")
+            if 'fullTimeEmployees' in inf:
+                embed.add_field(name="Employees", value=f"{inf['fullTimeEmployees']}", inline=False)
+            if 'dividendRate': 
+                embed.add_field(name="Employees", value=f"{inf['dividendRate']}", inline=False)   
+            if 'country' in inf:
+                embed.add_field(name="Location", value=f"{inf['country']}, {inf['state']}, {inf['city']}", inline=False)
+            if 'sharesShort' in inf:
+                embed.add_field(name="Shares", value=f"{inf['sharesShort']}", inline=False)
+            if 'fiftyTwoWeekLow' in inf:
+                embed.add_field(name="Value", value=f"Market Cap: *${inf['marketCap']}*\nLow: *${inf['fiftyTwoWeekLow']}*\nHigh: *${inf['fiftyTwoWeekHigh']}*", inline=False)
+            if 'logo_url' in inf:
+                embed.set_thumbnail(url=inf['logo_url'])
             
+        await ctx.send(embed=embed)                
+                    
+                            
+                            
                 
-                if 'longName' in tickerData.info:
 
-                    embed = discord.Embed(title=f"{tickerData.info['longName']}", colour=thecolor())
-                    embed.set_author(icon_url=ctx.author.avatar_url, name="Stock market")
-                    
-                    if 'fullTimeEmployees' in tickerData.info: 
-                        embed.add_field(name="Employees", value=f"{tickerData.info['fullTimeEmployees']}", inline=False)
-                    
-                        if 'country' in tickerData.info:
-                            embed.add_field(name="Value", value=f"Market Cap: *${tickerData.info['marketCap']}*\nLow: *${tickerData.info['fiftyTwoWeekLow']}*\nHigh: *${tickerData.info['fiftyTwoWeekHigh']}*", inline=False)
-                            embed.add_field(name="Location", value=f"{tickerData.info['country']}, {tickerData.info['state']}, {tickerData.info['city']}", inline=False)
-                            embed.add_field(name="Shares", value=f"{tickerData.info['sharesShort']}", inline=False)
-                            embed.set_thumbnail(url=tickerData.info['logo_url'])
-                   
-                        else:
-                            embed = discord.Embed(title=f"{stock} doesn't have enough info!", colour=thecolor())
-                       
+    @commands.command(
+        aliases=['fib'], 
+        description="Sends the numbers of the fibinaci upto the number provided"
+        )
 
-
-                    else:
-                        if 'country' in tickerData.info:
-                            embed.add_field(name="Value", value=f"Market Cap: *${tickerData.info['marketCap']}*\nLow: *${tickerData.info['fiftyTwoWeekLow']}*\nHigh: *${tickerData.info['fiftyTwoWeekHigh']}*", inline=False)
-                            embed.add_field(name="Location", value=f"{tickerData.info['country']}, {tickerData.info['state']}, {tickerData.info['city']}", inline=False)
-                            embed.add_field(name="Shares", value=f"{tickerData.info['sharesShort']}", inline=False)
-                            
-                            
-                        else:
-                            embed = discord.Embed(title=f"{stock} doesn't have enough info!", colour=thecolor())
-                            
-                            
-                else:
-                    embed = discord.Embed(title=f"{stock} couldn't be found!", colour=thecolor())
-        await ctx.send(embed=embed)
-    @commands.command(aliases=['fib'], description="Sends the numbers of the fibinaci upto the number provided")
-    async def fibonacci(self, ctx, upto=10000000000000):
+    async def fibonacci(self, ctx, sequences=10000000000000):
         x = []
         
-        if upto > 10000000000:
-            upto = 1000000000
-        
-
-            
-                # if x in []:
-                #     pass
-                # else:
+        if upto > 1000000000000000:
+            upto = 100000000000000
 
         a,b = 0, 1
         while a < upto:
             x.append(str(a))
             
             a, b = b, a+b
-
-        
     
         embed = discord.Embed(title="Fibinaci", description=f"{', '.join(x)}", colour=thecolor())
         await ctx.send(embed=embed)
-    @commands.command(aliases=['av', 'avatars'], description="Sends the mentioned users avatar or if none is specified, the usrs avatar")
+
+    @commands.command(
+        aliases=['av', 'avatars'], 
+        description="Sends the mentioned users avatar or if none is specified, the usrs avatar"
+        )
+
     async def avatar(self, ctx, user:discord.Member = ""):
         if user == "":
             user = ctx.author.id
@@ -173,7 +154,6 @@ class Utils(commands.Cog):
 
                 pager = Pag(
                     timeout=100,
-                    #entries=[f"`{result[1:][:-1]}`"[i: i + 2000] for i in range(0, len(result), 2000)],
                     entries=[var[i: i + 2000] for i in range(0, len(var), 2000)],
                     length = 1,
                     prefix = "```py\n", 
@@ -323,11 +303,6 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
             except KeyError as e:
                 return await ctx.reply(f":x: The String contains some characters which cannot be converted into Morse!\n> If you think that's a Mistake, please report it to my Developers, they'll Review and fix it :)")
 
-
-
-
-        
-        
        
 
     @commands.command(aliases=['eval2', 'e2'], description='run code', hidden=True)
@@ -352,12 +327,6 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
                 if ctx.author.id == k:
                     x = True
                     
-            
-            
-
-        
-
-        
 
         if not x:
             return
@@ -394,14 +363,8 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
 
                         }
                     Json(k, data)
-
-            
-            
         
         code = clean_code(code)
-        
-    
-
         
       
         code = f"return dir({code})"
@@ -426,21 +389,12 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
         else:
             y = ctx.message.content[3::]
         
-        new_result = result.split(', ')
-        # await ctx.send(new_result)
-        my_list = []
-        for key in new_result:
-            
-            my_list.append(f"'{key[1:][:-1]}")
-
-
-        
+       
         if len(result) < 2000:
                 await ctx.send(f"```py\nIn[{z}]: {y}\nOut[{z}]: {result}\n```")
         else:
             pager = Pag(
                 timeout=100,
-                #entries=[f"`{result[1:][:-1]}`"[i: i + 2000] for i in range(0, len(result), 2000)],
                 entries=[result[i: i + 2000] for i in range(0, len(result), 2000)],
                 length = 1,
                 prefix = "```py\n", 
@@ -471,13 +425,6 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
             for k in data['admins']:
                 if ctx.author.id == k:
                     x = True
-                    
-            
-            
-
-        
-
-        
 
         if not x:
             return
@@ -518,12 +465,6 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
             
                 
             code = clean_code(code)
-            
-            
-
-           
-        
-    
             
 
             stdout = io.StringIO()
@@ -566,7 +507,6 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
                 pass    
             
             
-            #await self.client.chan.send(ctx.message.content.strip(pre[0]))
             pre = await self.client.get_prefix(ctx.message)
             
             if ctx.message.content.strip(pre[0]).startswith('eval1'):
@@ -577,21 +517,12 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
             else:
                 y = ctx.message.content[3::]
             
-            new_result = result.split(', ')
-            # await ctx.send(new_result)
-            my_list = []
-            for key in new_result:
-                
-                my_list.append(f"'{key[1:][:-1]}")
    
-
-           
             if len(result) < 2000:
                  await ctx.send(f"```py\nIn[{z}]: {y}\nOut[{z}]: {result}\n```")
             else:
                 pager = Pag(
                     timeout=100,
-                    #entries=[f"`{result[1:][:-1]}`"[i: i + 2000] for i in range(0, len(result), 2000)],
                     entries=[result[i: i + 2000] for i in range(0, len(result), 2000)],
                     length = 1,
                     prefix = "```py\n", 
@@ -627,13 +558,6 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
             for k in data['admins']:
                 if ctx.author.id == k:
                     x = True
-                    
-            
-            
-
-        
-
-        
 
         if not x:
             return
@@ -669,12 +593,8 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
 
                     }
                 Json(k, data)
-    
-    
         
         code = clean_code(code)
-    
-       
             
         stdout = io.StringIO()
             
@@ -695,23 +615,20 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
 
     
         pre = await self.client.get_prefix(ctx.message)
+
         if ctx.message.content.strip(pre[0]).startswith('eval'):
             y = ctx.message.content[6::]
-            
-            
-            
         else:
             y = ctx.message.content[3::]
         
 
-        ty = y.strip('```')
+        
     
         if len(result) < 1800:
             await ctx.send(f"```py\nIn[{z}]: {ty}\nOut[{z}]: {theresult[0]}\n```")
         else:
             pager = Pag(
                 timeout=100,
-                #entries=[f"`{result[1:][:-1]}`"[i: i + 2000] for i in range(0, len(result), 2000)],
                 entries=[result[i: i + 2000] for i in range(0, len(result), 2000)],
                 length = 1,
                 prefix = "```py\n", 
@@ -721,23 +638,7 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
 
 
             await pager.start(ctx)
-    @commands.command()
-    async def dpy(self, ctx):
-
-
-        page1 = Page(title='Page 1', description='First page test!')
-        page1.add_field(name='Example A', value='Example B')
-
-        page2 = Page(title='Page 2', description='Second page test!')
-        page2.add_field(name='Example C', value='Example D')
-
-        page3 = Page(title='Page 3', description='Third page test!')
-        page3.add_field(name='Example E', value='Example F')
-
-        menu = PaginatedMenu(ctx)
-        menu.add_pages([page1, page2, page3])
-
-        await menu.open()
+    
     
 
 def setup(client):
