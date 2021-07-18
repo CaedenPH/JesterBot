@@ -9,7 +9,6 @@ import asyncpraw
 import randfacts
 from dutils import thecolor, Json, thebed
 
-reddit = asyncpraw.Reddit(client_id = "GfF3CEfYXsz3yw", client_secret = "_gRjhHHlRcb9uWoaJQbJddtqc-E", username = "Codex_2006", password = "senuka123", user_agent = "Codex")
 vace_api = vacefron.Client()
 
 def get_prefix(bot, message):
