@@ -16,6 +16,7 @@ class Config(commands.Cog):
     @commands.command(aliases=['Welcomer', 'welcome'], description="Adds a welcome feature into the current channel (everytime someone joins the server it says welcome) - `[message]` is a good welcome message")
     @has_permissions(administrator=True)
     async def welcomechannel(self, ctx, role:discord.Role="",*,  message:str = ""):
+
         with open('./dicts/Welcome.json', 'r+') as f:
             if role == "":
                 loaded = json.load(f)
@@ -25,10 +26,7 @@ class Config(commands.Cog):
                 "channel_id": ctx.channel.id,
                 "Welcome": True
             }   
-                
-                f.seek(0)  # set point at the beginning of the file
-                f.truncate(0)  # clear previous content
-                f.write(json.dumps(loaded, indent=4)) # write to file
+                Json(f, data)
                 embed = discord.Embed(title="Added!", colour=thecolor())
                 await ctx.send(embed=embed)
             else:
@@ -42,12 +40,9 @@ class Config(commands.Cog):
                     "Welcome": True
                 }   
 
-                f.seek(0)  # set point at the beginning of the file
-                f.truncate(0)  # clear previous content
-                f.write(json.dumps(loaded, indent=4)) # write to file
+                Json(k, data)
                 embed = discord.Embed(title="Added!", colour=thecolor())
                 await ctx.send(embed=embed)
-                
 
     @commands.command(aliases=['channelconfig'])
     async def config(self, ctx):
@@ -109,9 +104,6 @@ class Config(commands.Cog):
                     emoji, user = await self.client.wait_for('reaction_add', timeout=60.0, check=lambda e, u:u == ctx.author and e.message.id==msg.id)
             except asyncio.TimeoutError:
                 await msg.clear_reactions()
-
-
-    
 
     @commands.command()
     @has_permissions(manage_channels=True)
@@ -226,10 +218,8 @@ class Config(commands.Cog):
             
             if str(ctx.guild.id) in data:
                 data[str(ctx.guild.id)]['Welcome'] = False
-                f.seek(0)
-                f.truncate(0)
-                f.write(json.dumps(data, indent=4))
-                embed = discord.Embed(title="Removed!", colour=thecolor())
+                Json(f, data)
+                embed = discord.Embed(title="Re`moved!", colour=thecolor())
                 await ctx.send(embed=embed)
     @has_permissions(manage_channels=True)
     @commands.command(description="Makes the channel specified a suggestion channel - members can only type ^suggest or their message gets deleted. Nice and orderly")
@@ -263,9 +253,7 @@ class Config(commands.Cog):
             else:
                 if data[str(channel.id)]['Yes'] == False:
                     data[str(channel.id)]['Yes'] = True
-                    k.seek(0)  # set point at the beginning of the file
-                    k.truncate(0)  # clear previous content
-                    k.write(json.dumps(data, indent=4)) # write to file
+                    Json(k, data)
                     embed = discord.Embed(title="Applied", colour=thecolor())
                     await ctx.send(embed=embed)
                 else:
@@ -285,12 +273,11 @@ class Config(commands.Cog):
             else:
                 data[str(channel.id)]['Yes'] = False
         
-                k.seek(0)  # set point at the beginning of the file
-                k.truncate(0)  # clear previous content
-                k.write(json.dumps(data, indent=4)) # write to file
+                Json(k, data)
                 embed = discord.Embed(title="Removed", colour=thecolor())
 
             await ctx.send(embed=embed)
+
     @commands.command(aliases=['verify'], description="""
     Creates a channel/uses an existing channel to make the server be secure by adding the need to say `verify` to access the server...Remove with `^removeverify` 
     1. If channel is not given, this command will create a role called `⚘ Member ⚘` and a role called `⚘ Unverified ⚘`
@@ -302,7 +289,6 @@ class Config(commands.Cog):
         await ctx.send(embed=embed)
         received_msg = str((await self.client.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)).content).lower()
         if received_msg != "y":
-           
       
             embed = discord.Embed(title="Goodbye!", colour=thecolor())
             return await ctx.send(embed=embed)
@@ -314,8 +300,6 @@ class Config(commands.Cog):
                 if "Yes" in data[key]:
                     if data[key]['Yes']:
                         if data[key]['Guild'] == ctx.guild.id:
-                        
-                            
                          
                             return await ctx.send('There is already a verify here!')
         if not channel:
@@ -338,7 +322,6 @@ class Config(commands.Cog):
                 else:
                     await x.set_permissions(Urole, speak=True, send_messages=True, read_message_history=True, read_messages=True)
 
-
             every = discord.utils.get(ctx.guild.roles, name="@everyone")
             for y in ctx.guild.channels:
                 await y.set_permissions(every, speak=True, send_messages=True, read_message_history=True, read_messages=True)
@@ -352,9 +335,6 @@ class Config(commands.Cog):
                         else:
 
                             await z.set_permissions(g, speak=True, send_messages=True, read_message_history=True, read_messages=True)
-                
-    
-
 
             data = json.load(k)
             if str(channel.id) in data:
@@ -365,11 +345,9 @@ class Config(commands.Cog):
                     "MRole id": membrole.id,
                     "URole id": Urole.id,
                     "Guild": ctx.guild.id
-
                 }
 
             Json(k, data)
-    
         
             await channel.purge(limit=10000)
             embed1 = discord.Embed(title="Verify", description="""
@@ -383,10 +361,10 @@ class Config(commands.Cog):
             await ctx.send(embed=embed)
             await channel.purge(limit=1)
 
-    
     @commands.command(aliases=['remverify'], description="removes the need for a verification")
     @has_permissions(administrator=True)
     async def removeverify(self, ctx):
+
         with open('./dicts/VerifyChannel.json', 'r+') as k:
             data = json.load(k)
             for key in data:
@@ -399,10 +377,8 @@ class Config(commands.Cog):
                 
             await thebed(ctx, 'There was never a verify!')
 
-    
     @commands.command()
     async def leavechannel(self, ctx, channel:discord.TextChannel=""):
-        
         
         with open('./dicts/LeaveChannel.json', 'r+') as k:
             data = json.load(k)
@@ -414,8 +390,6 @@ class Config(commands.Cog):
                     channel = await ctx.guild.create_text_channel(name="Leaving Channel")
                 data[str(ctx.guild.id)] = {
                     "id": channel.id
-
-
                 }
                 Json(k, data)
         await thebed(channel, 'This is a leaving channel, everyone who leaves will be announced here...')
@@ -423,11 +397,13 @@ class Config(commands.Cog):
     @commands.command()
     async def removeleavechannel(self, ctx, channel:discord.TextChannel):
         with open('./dicts/LeaveChannel.json', 'r+') as k:
+
             data = json.load(k)
             if str(ctx.guild.id) not in data:
                 return await thebed(ctx, 'Leaving', 'There was never a leaving channel here!')
             del data[str(ctx.guild.id)]
             await thebed(ctx, 'Done!')
+
     @commands.Cog.listener()
     async def on_member_remove(self, memb):
         with open('./dicts/LeaveChannel.json', 'r+') as k:
@@ -436,7 +412,6 @@ class Config(commands.Cog):
             if str(memb.guild.id) in data:
                 channel = self.client.get_channel(data[str(memb.guild.id)]['id'])
                 await thebed(channel, 'Goodbye', f'You wil be missed *{memb.name}*...')
-
 
     
 def setup(client):

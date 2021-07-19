@@ -3,26 +3,32 @@ from discord.ext import commands
 from theutil import dcutils
 import youtube_dl
 from dutils import thecolor, Json, thebed
-import asyncio
-import aiohttp
 import re
 import requests
+
 async def embed2(ctx, description):
+
     embed = discord.Embed(description=description, color=thecolor())
     embed.set_footer(text='Type ^help Music to get all the music commands!')
     embed.set_author(name="Music", icon_url=ctx.author.avatar_url)
     await ctx.send(embed=embed)
+
+
 class Music(commands.Cog):
     def __init__(self, client):
         self.client = client
         self.music = dcutils.Music()
+
     @commands.command()
     async def lyrics(self, ctx, *, song):
+
         response = requests.get(f"https://some-random-api.ml/lyrics?title={song}")
         fox = response.json()
         await thebed(ctx, f'Lyrics of {fox["title"]}', fox['lyrics'])
+
     @commands.command()
     async def join(self, ctx):
+
         if not ctx.author.voice:
             return await embed2(ctx, 'You are not in a music channel!')
         voice_channel = ctx.author.voice.channel
@@ -95,9 +101,7 @@ class Music(commands.Cog):
         player = self.music.get_player(guild_id=ctx.guild.id)
         
         for song in player.current_queue():
-            
             if z == 0:
-
                 x.append(f"**{z}**: {song.name} - {round(song.duration / 60)}m")
             else:
                 x.append(f"\n**{z}**: {song.name}- {round(song.duration / 60)}m")
@@ -124,10 +128,6 @@ class Music(commands.Cog):
                 song2 = song.name
             z += 1
         await embed2(ctx, f"**Skipped from:** *{song1}* **To:** \n*{song2}*")
-        
-       
-   
-        
 
     @commands.command()
     async def volume(self, ctx, vol):

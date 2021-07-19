@@ -5,7 +5,7 @@ from random import choice, randint
 import vacefron
 import asyncpraw
 from dutils import thecolor, Json, thebed
-reddit = asyncpraw.Reddit("shhh")
+
 vace_api = vacefron.Client()
 
 
@@ -41,7 +41,6 @@ class JesterJokes(commands.Cog):
         embed.add_field(name="Quote", value=f"{fox[1]['q']}")
         await ctx.send(embed=embed)
    
-
     @commands.command(description="""Returns a random Pickup Line.""")
     async def redit(self, ctx, *, redt):
         async with ctx.typing():
@@ -58,6 +57,7 @@ class JesterJokes(commands.Cog):
                 embed = discord.Embed(title=pickupline.selftext, color=thecolor())
             embed.set_author(name=redt)
         await ctx.send(embed=embed)
+
     @commands.command(aliases=['pl', 'pickup', 'pickline'], description="""Returns a random Pickup Line.""")
     async def pickup_line(self, ctx):
         async with ctx.typing():
@@ -67,6 +67,7 @@ class JesterJokes(commands.Cog):
             embed = discord.Embed(color=thecolor())
             embed.add_field(name=pickupline.title, value=pickupline.selftext)
         await ctx.send(embed=embed)
+
     @commands.command(aliases=['insultme', 'Mean', 'Insult_Me'], description="The specified member gets insulted")
     async def insult(self, ctx, user:discord.Member=""):
         
@@ -113,6 +114,7 @@ class JesterJokes(commands.Cog):
         embed = discord.Embed(description=f"{foxupdate}", colour=thecolor())
     
         await ctx.send(embed=embed)
+
     @commands.command(aliases=['adj', 'random_adj','randadj', 'Rand_Adj', 'random_adjective'], description="Sends a random adjective")
     async def adjective(self, ctx):
         
@@ -123,6 +125,7 @@ class JesterJokes(commands.Cog):
         embed = discord.Embed(title=f"{foxupdate[randint(1, 950)]}", colour=thecolor())
         
         await ctx.send(embed=embed)
+
     @commands.command(aliases=['smck', 'slap', 'BitchSlap', 'Hit', 'Spank'], description="The specified member gets slapped - Sends a random giffy")
     async def smack(self, ctx, user:discord.Member=""):
         if user == "":
@@ -133,6 +136,7 @@ class JesterJokes(commands.Cog):
         embed = discord.Embed(description=f"{user.mention} got smacked", colour=thecolor())
         embed.set_image(url=choice(url))
         await ctx.send(embed=embed)
+
     @commands.command(aliases=['jokes'], description="Sends a random joke")
     async def joke(self, ctx):
         response = requests.get('https://official-joke-api.appspot.com/random_joke')
@@ -141,5 +145,6 @@ class JesterJokes(commands.Cog):
         foxupdatey = (fox["punchline"])
         embed = discord.Embed(title="Joke", description=f"{foxupdate} ... {foxupdatey}", colour=thecolor())
         await ctx.send(embed=embed)
+        
 def setup(client):
   client.add_cog(JesterJokes(client))

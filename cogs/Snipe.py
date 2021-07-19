@@ -1,19 +1,15 @@
 import discord, os, requests, json, asyncio
-from async_timeout import timeout
-from random import choice, randint
 from dutils import thecolor, Json, thebed
 from discord.ext import commands 
-from discord_components import DiscordComponents
-from datetime import datetime
    
 class Snipe(commands.Cog):
     def __init__(self, client):
 
         self.client = client
 
-
     @commands.Cog.listener()
     async def on_message_delete(self, message):
+
         with open('./dicts/Snipe.json', 'r+') as k:
             data = json.load(k)   
             g = str(message.guild.id)
@@ -33,9 +29,7 @@ class Snipe(commands.Cog):
                         'author': [message.author.name],
                         'id': [message.author.id],
                         'time': [str(message.created_at)]
-
                     } 
-                    
             else:
                 data[g] = {
                     c: {
@@ -47,8 +41,10 @@ class Snipe(commands.Cog):
                     }
                 }
             Json(k, data)
+
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
+
         with open('./dicts/ESnipe.json', 'r+') as k:
             data = json.load(k)   
             g = str(before.guild.id)
@@ -71,7 +67,6 @@ class Snipe(commands.Cog):
                         'time': [str(before.created_at)],
                         'after': [after.content],
                         'before': [before.content]
-
                     } 
                     
             else:
@@ -83,13 +78,13 @@ class Snipe(commands.Cog):
                         'time': [str(before.created_at)],
                         'after': [after.content],
                         'before': [before.content]
-
                     }
                 }
             Json(k, data)
 
     @commands.command(aliases=['esnipe'])
     async def editsnipe(self, ctx, ammount:int=1):
+
         with open('./dicts/ESnipe.json') as k:
             data = json.load(k)
             g = str(ctx.guild.id) 
@@ -108,8 +103,10 @@ class Snipe(commands.Cog):
                         return await thebed(ctx, '', 'The sniped messages dont go back that far!')
 
             await thebed(ctx, '', 'No deleted messages were ever here!')
+
     @commands.command(aliases=['eaim'])
     async def editaim(self, ctx, user:discord.Member):
+
         with open('./dicts/Snipe.json') as k:
             data = json.load(k)
             g = str(ctx.guild.id) 
@@ -126,14 +123,13 @@ class Snipe(commands.Cog):
                             embed.set_footer(text="At: " + str(data[g][c]['time'][t-1][:-7]))
                             embed.set_author(icon_url=us.avatar_url, name="Most recent message:")
                             return await ctx.send(embed=embed)
-                            
-                            
                         t -= 1
 
-
             await thebed(ctx, '', 'No deleted messages were ever here!')         
+
     @commands.command()
     async def snipe(self, ctx, ammount:int=1):
+
         with open('./dicts/Snipe.json') as k:
             data = json.load(k)
             g = str(ctx.guild.id) 
@@ -171,14 +167,9 @@ class Snipe(commands.Cog):
                             embed.set_author(icon_url=us.avatar_url, name="Most recent message:")
                             return await ctx.send(embed=embed)
                             
-                            
                         t -= 1
 
-
             await thebed(ctx, '', 'No deleted messages were ever here!')
-
-
-
 
 def setup(client):
   client.add_cog(Snipe(client))

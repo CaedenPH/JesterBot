@@ -1,34 +1,18 @@
 
 import discord, os, requests, json, asyncio
-from discord.ext.commands import has_permissions
 from discord.ext import commands 
-from discord.utils import get
 from discord.ext import tasks
 from discord import Intents
-from asyncio import sleep
-import yfinance as yf
-from traceback import print_exc
-import itertools
-import sys
-import traceback
 from async_timeout import timeout
-from functools import partial
-from youtube_dl import YoutubeDL
-from random import choice, randint
-from discord.ext.buttons import Paginator
-from traceback import format_exception
 import vacefron
 import asyncpraw
 import randfacts
 from dutils import thecolor, Json, thebed
-from pretty_help import PrettyHelp
 
-reddit = asyncpraw.Reddit("shh")
 vace_api = vacefron.Client()
 
 def get_prefix(bot, message):
     try:
-
         with open("./dicts/prefixes.json") as fin:
             prefixes = json.load(fin)
     
@@ -51,16 +35,11 @@ def get_prefix(bot, message):
             return prefixes[str(message.author.id)]['prefix']
         else:
             return ["^", "."]
-        
-
-
-
     
 intents = Intents.all()
 intents.members = True
-client = commands.Bot(command_prefix = get_prefix, intents=intents, case_insensitive=True) #help_command=PrettyHelp())
+client = commands.Bot(command_prefix = get_prefix, intents=intents, case_insensitive=True)
 client.remove_command('help')
-
 
 for filename in os.listdir("./cogs/"):
     if filename.endswith('.py'):
@@ -68,12 +47,8 @@ for filename in os.listdir("./cogs/"):
 
             client.load_extension(f'cogs.{filename[:-3]}')
 
-
-
 @client.listen('on_message')
 async def precheck(message):
-
-
 
     with open('./dicts/Suggest.json') as k:
         data = json.load(k)
@@ -100,18 +75,13 @@ async def precheck(message):
                                     msg2 = received_msg1
                                     embed.add_field(name="Title", value=msg1, inline=False)
                                     embed.add_field(name="Description", value=msg2, inline=False)
-                                    # embed.set_thumbnail(url=username.avatar_url_as(size=256))
                                     embed.set_footer(text=message.author.name, icon_url=username.avatar_url)
-                                    # {username.avatar_url_as(size=256)} 
-                                    
-                                    
-                                    
                                     await thebed(message.author, '', 'Completed!')
                                     
                                     msg = await message.channel.send(embed=embed)
-                                    await msg.add_reaction("ðŸ‘")
+                                    await msg.add_reaction("👍")
                                     await message.delete()
-                                    return await msg.add_reaction("ðŸ‘Ž")
+                                    return await msg.add_reaction("👎")
                                     
                                 else:
                                     embed3 = discord.Embed(description="Goodbye", colour=thecolor())
@@ -133,24 +103,16 @@ async def precheck(message):
 
                                     embed.add_field(name="Title", value=received_msg1, inline=False)
                                     
-                                    # embed.set_thumbnail(url=username.avatar_url_as(size=256))
                                     embed.set_footer(text=message.author.name, icon_url=username.avatar_url)
-                                    # {username.avatar_url_as(size=256)} 
-                                    
-                                   
                                     
                                     
                                     msg = await message.channel.send(embed=embed)
                                     await thebed(message.author, '', 'Completed!')
-                                    await msg.add_reaction("ðŸ‘")
+                                    await msg.add_reaction("👍")
                                     await message.delete()
-                                    return await msg.add_reaction("ðŸ‘Ž")
+                                    return await msg.add_reaction("👎")
                         except Exception as e:
                             print(e)
-                        # except asyncio.TimeoutError:
-                        #     embed = discord.Embed(title="Time ran out, restart the ticket", colour=thecolor())
-                        #     return await message.author.send(embed=embed)
-                        
                         
                         
                     else:
@@ -161,7 +123,6 @@ async def precheck(message):
                                 await message.delete()
                             except:
                                 pass
-                        #pass
 
 @client.check
 async def mycheck(ctx):      
@@ -258,7 +219,6 @@ def quote():
     embed=discord.Embed(color=thecolor())
     embed.add_field(name="Quote", value='*"{quoteText}"*\n{quoteAuthor}'.format(**json.loads(response.text)))
     return embed
- 
 
 def joke():
     response = requests.get('https://official-joke-api.appspot.com/random_joke')
@@ -267,6 +227,7 @@ def joke():
     foxupdatey = (fox["punchline"])
     embed = discord.Embed(title="Joke", description=f"{foxupdate} ... {foxupdatey}", colour=thecolor())
     return embed
+
 @tasks.loop(seconds=3600.0)
 async def printer():
     with open('./dicts/ConfigChannel.json') as k:
@@ -305,14 +266,11 @@ async def executed(ctx):
     user = client.get_user(298043305927639041)
     if ctx.author.id != 298043305927639041:
         await user.send(f"Name:{ctx.author.name} \nGuild:{ctx.guild}  \nCommand:{ctx.command.name} \nChannel:{ctx.channel.name}")
-    # global scoreded
-   
     
     if ctx.command.name == "color":
         for cog in tuple(client.extensions):
             
                 client.reload_extension(cog)
-         
    
     with open('./dicts/Selfscore.json', 'r+') as k:
         loaded1 = json.load(k)
@@ -323,21 +281,15 @@ async def executed(ctx):
             "Name":    ctx.author.name,
             "Guild":    ctx.guild.name,
             "selfscore":  0,
-            
-        
 
         }
 
-            k.seek(0)  # set point at the beginning of the file
-            k.truncate(0)  # clear previous content
-            k.write(json.dumps(loaded1, indent=4)) # write to file
+            Json(k, data)
 
     with open('./dicts/Scoreoverall.json', 'r+') as x:
         data = json.load(x)
         data["Score"]["Score1"] += 1
-        x.seek(0)
-        x.truncate(0)
-        x.write(json.dumps(data, indent=4))
+        Json(x, data)
 
 
 
@@ -346,36 +298,22 @@ async def executed(ctx):
         
         if str(ctx.author.id) in data:
             data[str(ctx.author.id)]['selfscore'] += 1
-            f.seek(0)
-            f.truncate(0)
-            f.write(json.dumps(data, indent=4))
-
-
-    
+            Json(f, data)
 
     with open('./dicts/Commandsused.json') as y:
         data = json.load(y)
         if str(ctx.command) not in data:
             data[str(ctx.command)] = {
                 'score': 1
-                
             } 
             
-            
             with open('./dicts/Commandsused.json', 'r+') as y:
-                
-                y.seek(0)
-                y.truncate(0)
-                y.write(json.dumps(data, indent=4))
-
+                Json(y, data)
         else:
-    
             
             with open('./dicts/Commandsused.json', 'r+') as y:
                 data[str(ctx.command)]['score'] += 1
-                y.seek(0)
-                y.truncate(0)
-                y.write(json.dumps(data, indent=4))
+                Json(y, data)
 
 
 filed = open("./dicts/Text.txt")

@@ -13,5 +13,5 @@ This can also be paired with the ^giveroles command. Giveroles gives everyone in
 Pinging the bot gives you the prefix that you chose (default is ^ but you can change your personal prefix with ^prefix [prefix] etc). If you say "Hey Jesterbot" jesterbot reacts with a thumbs up and a thumbs down. If you press the thumbsup it shows up with what your prefix is (just like @jesterbot).
 
 ### Credits
-Make sure to type `^credits` to get the makers of JesterBot!
+Make sure to type `^credits` to get the devs of JesterBot!
 

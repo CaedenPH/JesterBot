@@ -1,43 +1,14 @@
 import discord, os, requests, json, asyncio
-from discord.ext.commands import has_permissions
 from discord.ext import commands 
-from discord.utils import get
-from discord.ext import tasks
-from discord import Intents
-from asyncio import sleep
-import yfinance as yf
-from traceback import print_exc
-import itertools
-import sys
-import traceback
 from async_timeout import timeout
-from functools import partial
-from youtube_dl import YoutubeDL
-from random import choice, randint
-import io
-import textwrap
-import contextlib
-from discord.ext.buttons import Paginator
-from traceback import format_exception
-import animals
-import vacefron
+from random import choice
 from dutils import thecolor, Json, thebed
 from discord import Webhook, AsyncWebhookAdapter
-import aiohttp
-vace_api = vacefron.Client()
-
-class Pag(Paginator):
-    async def teardown(self):
-        try:
-            
-            await self.page.clear_reactions()
-            
-        except discord.HTTPException:
-            pass
 
 class Misc(commands.Cog):
     def __init__(self, client):
         self.client = client 
+
     @commands.command()
     async def invited(self, ctx, user:discord.Member=None):
         if not user:
@@ -47,8 +18,10 @@ class Misc(commands.Cog):
             if i.inviter == user:
                 totalInvites += i.uses
         await thebed(ctx, "", f"{user.name} has invited **{totalInvites}** member{'' if totalInvites == 1 else 's'} to the server!")
+
     @commands.command(aliases=['Channel_info', 'InfoChannel'])
     async def channel(self, ctx):
+
         channelname = ctx.channel.name
         channelid = ctx.channel.id
 
@@ -57,6 +30,7 @@ class Misc(commands.Cog):
         embed.add_field(name="Name", value=f"{channelname}", inline=False)
         embed.add_field(name="Id", value=f"{channelid}", inline=False)
         await ctx.send(embed=embed)
+
     @commands.command(description="Make a secure password with a length that you can choose")
     async def password(self, ctx, lengthofpassword:int=12):
         
@@ -73,8 +47,10 @@ class Misc(commands.Cog):
             password += str(choice(my_list))
         x = await ctx.author.send(password)
         await thebed(ctx, 'Password', f'||{x.jump_url}||')
+
     @commands.command(aliases=['stat'], description="Sends statistics about the server")
     async def stats(self, ctx):
+
         members, bots = [m for m in ctx.guild.members if not m.bot], [m for m in ctx.guild.members if not m.bot]
         embed = discord.Embed(title="Stats", color = thecolor())
         embed.add_field(name="Server statistics", value=f"""
@@ -87,9 +63,7 @@ class Misc(commands.Cog):
         """)
         await ctx.send(embed=embed)
     
-    @commands.command(hidden=True)
-    async def raiseerror(self, ctx, error):
-        raise error
+    
     @commands.command(aliases=['Server_icon', 'Icon_server', 'Guild_icon', 'Server_Avatar', 'avg', 'guildav', 'gc'], description="Sends the avatar of the server (profile pic)", hidden=True)
     async def avatarguild(self, ctx):
         embed = discord.Embed(title='Guild icon', color=thecolor())
@@ -106,24 +80,20 @@ class Misc(commands.Cog):
         if int(joinedat[5:7]) > 6:
             if int(joinedat[7:9]) > 12:
                 when = str(join.joined_at)
-            
       
         with open('./dicts/Server.json') as k:
             data = json.load(k)
                 
-            if server == "":
-
-            
+            if not server:
 
                 embed = discord.Embed(title=f"{data[str(ctx.guild.id)]['Score']} messages since the {when}", colour=thecolor())
             else:
                 embed = discord.Embed(title=f"{data[server]['Score']} messages since {when}", colour=thecolor())
             await ctx.send(embed=embed)
 
-    
-
     @commands.command(aliases=['s', 'Sugg', 'Sug', 'Suggester'], description="Follow the instructions and a suggestion will appear")
     async def suggest(self, ctx):
+
         user = ctx.author.id
         username = self.client.get_user(user)
 
@@ -142,9 +112,7 @@ class Misc(commands.Cog):
                     msg2 = received_msg1
                     embed.add_field(name="Title", value=msg1, inline=False)
                     embed.add_field(name="Description", value=msg2, inline=False)
-                    # embed.set_thumbnail(url=username.avatar_url_as(size=256))
                     embed.set_footer(text=ctx.author.name, icon_url=username.avatar_url)
-                    # {username.avatar_url_as(size=256)} 
                     
                     await x.delete()
                     await y.delete()
@@ -175,9 +143,7 @@ class Misc(commands.Cog):
 
                     embed.add_field(name="Title", value=received_msg1, inline=False)
                     
-                    # embed.set_thumbnail(url=username.avatar_url_as(size=256))
                     embed.set_footer(text=ctx.author.name, icon_url=username.avatar_url)
-                    # {username.avatar_url_as(size=256)} 
                     
                     await x.delete()
                     await y.delete()
@@ -193,7 +159,7 @@ class Misc(commands.Cog):
     @commands.command()
     async def rules(self, ctx):
         embed = discord.Embed(title="Standard Rules", description="", color=0xffd1dc)
-        embed.add_field(name="`1` NSFW ", value="All NSFW outside of <#851561842417467392> is banned and you will be muted and even banned up to the severity of the content.", inline=False)
+        embed.add_field(name="`1` NSFW ", value="All NSFW outside of an nsfw channel is banned and you will be muted and even banned up to the severity of the content.", inline=False)
     
         embed.add_field(name="`2` Hate ", value="All forms of racism and homophobia will result in a ban with potential ban appeal in the near future after the ban.", inline=False)
     
@@ -228,7 +194,5 @@ class Misc(commands.Cog):
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/803430815714902060/852926789981437982/image0.png")
         await ctx.send(embed=embed)
    
-
-
 def setup(client):
   client.add_cog(Misc(client))

@@ -1,44 +1,22 @@
 import discord, os, requests, json, asyncio
-from discord.ext.commands import has_permissions
 from discord.ext import commands 
-from discord.utils import get
-from discord.ext import tasks
-from discord import Intents
-from asyncio import sleep
-import yfinance as yf
-from traceback import print_exc
-import itertools
-import randfacts
-import sys
-import traceback
-from async_timeout import timeout
-from functools import partial
-from youtube_dl import YoutubeDL
 from random import choice, randint
-from bs4 import BeautifulSoup
-from animals import Animals
-from traceback import format_exception
 from pyMorseTranslator import translator
-import vacefron
 from art import text2art
 from dutils import thecolor, Json, thebed
-vace_api = vacefron.Client()
 
 encoder = translator.Encoder()
 decoder = translator.Decoder()
-
-import praw
-reddit = praw.Reddit("shhh")
-
 
 
 class Fun(commands.Cog):
     def __init__(self, client):
    
-
         self.client = client
+
     @commands.command(aliases=['art'])
     async def asciiart(self, ctx, *, text: str):
+
         if len(text) > 10:
             return await thebed(ctx, '', f":x: Length of Text cannot be more than 10 Characters!")
 
@@ -48,8 +26,10 @@ class Fun(commands.Cog):
             return await ctx.send(embed=discord.Embed(description=f"Oops! ASCII Art crossed more than 2000 Words. Please try a smaller Text.", color=0x36393F))
 
         await ctx.send(embed=discord.Embed(description=f"```yaml\n{art}```", color=self.client.discordcolor))
+
     @commands.command()
     async def sudo(self, ctx, member:discord.Member, *, text):
+
         await ctx.message.delete()
         webhook = await ctx.channel.create_webhook(name=f"{member}")
 
@@ -75,9 +55,6 @@ class Fun(commands.Cog):
                 **All names:** 
                 - {l}
                 
-                
-                
-                
                 ''')
         except:
             await thebed(ctx, '', 'They are not a minecraft player! Enter their in-game username')
@@ -90,15 +67,12 @@ class Fun(commands.Cog):
                 list.append(' ')
             else:
 
-
                 list.append(f':regional_indicator_{k}:')
+
         await thebed(ctx, 'Name in emojis...', "".join(list))
     
     @commands.command(description="Fake hacks the specified member")
     async def hack(self, ctx, member:discord.Member=""):
-        if ctx.guild.name == "Top.gg Verification Center":
-            return await thebed(ctx, 'Not completed yet!')
-        #LOOP
         
         x = False
         key = ""
@@ -164,25 +138,6 @@ class Fun(commands.Cog):
                     break
             
             await msg.edit(content=f"```py\n{new_msg_list}```")
-        
-
-        
-    # @morse.command()
-    # async def decode(self, ctx, *, morse_code):
-        
-        
-    #     embed = discord.Embed(colour=thecolor())
-    #     embed.set_footer(text=str(ctx.author) + " | Text from Morse [Decoded] |", icon_url=ctx.author.avatar_url)
-        
-    #     embed.add_field(name="Morse code: ", value=f'```py\n"{morse_code}"\n```', inline=False)
-    #     embed.add_field(name="Decrypted result:  ", value=f"```\n{decoder.decode(morse_code).plaintext}\n```")
-        
-    #     await ctx.send(embed=embed)
-    
-        
-        
- 
-        
     
     @commands.command(aliases=['findemoji', 'emojipicker', 'getemojis'])
     async def pickemoji(self, ctx):
@@ -245,13 +200,12 @@ class Fun(commands.Cog):
             emoji, user = await self.client.wait_for('reaction_add',check=check)
         else:
             await msg.clear_reactions()
-
-    
                 
         Json(file1, data)
     
     @commands.command(description="Sends the users pp size")
     async def pp(self, ctx):
+
         with open('./dicts/pp.json', 'r+') as k:
             randomsizeint = randint(1, 12)
             randomsizef = randint(1, 9)
@@ -270,6 +224,7 @@ class Fun(commands.Cog):
         
     @commands.command(description="Sends the users new pp size")
     async def newpp(self, ctx):
+        
         with open('./dicts/pp.json', 'r+') as k:
             randomsizeint = randint(1, 12)
             randomsizef = randint(1, 9)
@@ -291,42 +246,11 @@ class Fun(commands.Cog):
                 Json(k, data)
                 embed = discord.Embed(title=f"Your new pp is {data[str(ctx.author.id)]['inches']} inches", colour=thecolor())
             await ctx.send(embed=embed)
-    @commands.command()
-    async def hello(self, ctx):
-        embed = discord.Embed(description=f"hello {ctx.author.mention}", colour=thecolor())
-        await ctx.send(embed=embed)
-   
-    
-
-    
-    @commands.command(hidden=True)
-    async def online(self, ctx):
-        response = requests.get("https://api.mcsrvstat.us/2/play.thelastblockbender.com")
-            
-        fox = response.json()
-        lenf = fox['players']['online']
-        x = False
-        try:
-            embed = discord.Embed(title=lenf, colour=thecolor())
-            
-            if 'list' in fox['players']:
-                foxupdate = (fox["players"]["list"])
-                embed.add_field(name=", ".join(foxupdate), value="\u200b") 
-           
-         
-
-                
-            await ctx.send(embed=embed)
-        except Exception as e:
-            await ctx.send(e)
-   
-        
-        
-   
 
         
     @commands.command(aliases=['echos'], description="Echo's the message the user sends after sending the command")
     async def echo(self, ctx):
+
         user = self.client.get_user(ctx.author.id)
         try:
             embed = discord.Embed(title="What would you like to echo?", colour=thecolor())
@@ -343,8 +267,6 @@ class Fun(commands.Cog):
             embed = discord.Embed(title="Time ran out, restart the echo", colour=thecolor())
             await ctx.send(embed=embed)
 
-            
-    
     @commands.command(name = 'rand', aliases=['randomnum', 'rant', 'randomnumber', 'random_number'], description="Sends a random number between `<first_number>` and `<second_number>`")
     async def random_num(self, ctx, num1: int, num2: int):
         
@@ -353,7 +275,6 @@ class Fun(commands.Cog):
         
     @commands.command(aliases=['flip', 'coin', 'ht', 'headsandtails', 'Coinflip', 'coin_flip', 'flip_coin', 'fc'], description="Sends heads or tails, 50% chance")
     async def flipcoin(self, ctx): 
-        
 
         rand = randint(1, 2)
         if rand == 1:
@@ -361,23 +282,18 @@ class Fun(commands.Cog):
 
         elif rand != 1: 
             coin = "Tails"
-        
 
         embed = discord.Embed(title=coin, colour=thecolor())
         await ctx.send(embed=embed)
     
-        
     @commands.command(aliases=['rev', 'Reversemessage', 'Message_Reverse', 'Reverse_messgae', 'Reverse_Message'], description="Reverses the `<message>` letters and words (like a mirror)")
     async def reverse(self, ctx, *, message):
-
     
         def reverse(string):
             return string[::-1]
         embed = discord.Embed(description=f"{reverse(message)}", colour=thecolor())
         await ctx.send(embed=embed)
         
-    
-    
 
     @commands.command(description="The specified member takes an L")
     async def l(self, ctx, user:discord.Member=""):
@@ -387,8 +303,6 @@ class Fun(commands.Cog):
             msg = await ctx.send(f"{user.mention}")
             await msg.delete()
             await ctx.send(embed=embed)
-
-
 
    
 def setup(client):
