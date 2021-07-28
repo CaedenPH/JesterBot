@@ -1,0 +1,14 @@
+discord.py
+InfixParser
+animals
+randfacts
+dislash.py
+requests
+yfinance
+youtube_dl
+discord-buttons
+asyncpraw
+vacefron
+matplotlib
+unicodedata
+pyMorseTranslator
