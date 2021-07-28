@@ -1,7 +1,9 @@
 import discord, json, asyncio, random, requests
 from discord.ext import commands
 from discord_components import DiscordComponents, Button, ButtonStyle, InteractionType
-from dutils import thecolor, Json, thebed, Cmds
+from core.utils.utils import thecolor, Json, thebed, Cmds
+from core.Context import Context
+
 from dislash import SlashClient, ActionRow, Button, SelectMenu, SelectOption, MenuOption
 
 ddata = {
@@ -24,11 +26,9 @@ ddata = {
                         }
 
 class THEACTUALHelp(commands.Cog):
-    def __init__(self, client):
+    def __init__(self, bot):
 
-        self.client = client
-   
-           
+        self.bot = bot
 
     @commands.command(
         
@@ -36,16 +36,16 @@ class THEACTUALHelp(commands.Cog):
         
         )
 
-    async def help(self, ctx, command=""):
+    async def help(self, ctx:Context, command=""):
         
-        client_av = self.client.get_user(828363172717133874)
+        bot_av = self.bot.get_user(828363172717133874)
         
-        command1 = self.client.get_command(command)
+        command1 = self.bot.get_command(command)
         
         with open('./dicts/Emoji.json') as k:
             data = json.load(k)
 
-            cog = self.client.get_cog(command)
+            cog = self.bot.get_cog(command)
 
             if cog:
                 the_list = ""
@@ -60,9 +60,9 @@ class THEACTUALHelp(commands.Cog):
                             the_list += f"`{cmd}`"
                         num += 1
                 
-                embed = discord.Embed(title=cog.qualified_name, description=f"I'm a multi-use bot with new features being created every week! \nTo get a more detailed description of a command use `^help <command>`. To get a more detailed description of a cog, type `^help <Category>` , but make sure you capitlize the name of the category\n{the_list}", colour=thecolor())
-                embed.set_author(name="Help", icon_url = client_av.avatar_url)
-                embed.add_field(name="Links:", value= "[Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.client_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot)")
+                embed = discord.Embed(title=cog.qualified_name, description=f"I'm a multi-use bot with new features being created every week! \nTo get a more detailed description of a command use `j!help <command>`. To get a more detailed description of a cog, type `j!help <Category>` , but make sure you capitlize the name of the category\n{the_list}", colour=thecolor())
+                embed.set_author(name="Help", icon_url = bot_av.avatar_url)
+                embed.add_field(name="Links:", value= "[Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.bot_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot)")
                 return await ctx.send(embed=embed)
 
             
@@ -74,7 +74,7 @@ class THEACTUALHelp(commands.Cog):
 
                     y = []
 
-                    for cmd in self.client.walk_commands():
+                    for cmd in self.bot.walk_commands():
                         
                         if cmd.name[:1] == command[:1]:
                             if cmd.hidden:
@@ -119,7 +119,7 @@ class THEACTUALHelp(commands.Cog):
                             await msg.add_reaction("➡")
                             await msg.add_reaction("⛔")
                             try:
-                                emoji, user = await self.client.wait_for('reaction_add', timeout=60.0, check=check)
+                                emoji, user = await self.bot.wait_for('reaction_add', timeout=60.0, check=check)
                                 
                                 
                                 while emoji.emoji != "⛔":
@@ -145,7 +145,7 @@ class THEACTUALHelp(commands.Cog):
                                         await msg.remove_reaction(member=ctx.author, emoji="➡")
                                         await msg.remove_reaction(member=ctx.author, emoji="⬅")
 
-                                    emoji, user = await self.client.wait_for('reaction_add', timeout=60.0, check=lambda r, u: u == ctx.author)
+                                    emoji, user = await self.bot.wait_for('reaction_add', timeout=60.0, check=lambda r, u: u == ctx.author)
                                 else:
                                     return await msg.delete()
                                     
@@ -157,9 +157,7 @@ class THEACTUALHelp(commands.Cog):
 
                     
                 elif not command1 and not command:
-                    
-                
-                    us = ctx.guild.get_member(828363172717133874)
+                    us = ctx.me
                     if us.guild_permissions.manage_messages:
 
                         desc1 = ""
@@ -179,54 +177,60 @@ class THEACTUALHelp(commands.Cog):
                             )
                         z = 0
 
-                        for cog in self.client.cogs:
+                        for cog in self.bot.cogs:
                             
                             if cog not in ["Event", "THEACTUALHelp", "Staff"]:
                                 
-                                name = self.client.get_emoji(ddata[cog]).name
+                                name = self.bot.get_emoji(ddata[cog]).name
                                 emoj = f"<:{name}:{ddata[cog]}>"
                                 
                                 
                                 emoj1 = data['emojis'][cog]['description']
                                 
-                                cg = self.client.get_cog(cog)
+                                cg = self.bot.get_cog(cog)
                                 te = 0
                                 for cmd in cg.walk_commands():
                                     if not cmd.hidden:
 
                                         te += 1
                                
-                                if z < 5:
-                                    desc1 += f"\n{emoj} │ {cog}"
+                                if z % 2 == 0:
+                                    desc1 += f"\n> {emoj} **{cog}**"
                                     opt.add_option(f"{cog}", f"{emoj} {cog}", f"{cog} has {te} commands", emoji=emoj)
-                                elif z < 10 and z >= 5:
-                                    desc2 += f"\n{emoj} │ {cog}"
-                                    opt.add_option(f"{cog}", f"{emoj} {cog}", f"{cog} has {te} commands", emoji=emoj)
+                               
                                 else:
-                                    desc3 += f"\n{emoj} │ {cog}"
+                                    desc2 += f"\n> {emoj} **{cog}**"
                                     opt.add_option(f"{cog}", f"{emoj} {cog}", f"{cog} has {te} commands", emoji=emoj)
 
                                 z += 1
-                        e = self.client.get_emoji(863313854150606848)
-                        j = self.client.get_emoji(863313855286607932)
-                        s = self.client.get_emoji(863313855061164062)
-                        r = self.client.get_emoji(863313855119360022)
-                        t = self.client.get_emoji(863313855399329812)
+                        e = self.bot.get_emoji(863313854150606848)
+                        j = self.bot.get_emoji(863313855286607932)
+                        s = self.bot.get_emoji(863313855061164062)
+                        r = self.bot.get_emoji(863313855119360022)
+                        t = self.bot.get_emoji(863313855399329812)
                        
+                        linkemoj = '<:JesterLink:868529282647986196>'
+                        catemoj = '<:JesterCat:868529295822319666>'
+                        links = "> [Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.bot_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot) │ [Vote for me!](https://top.gg/bot/828363172717133874/vote)"
+                        description = f'''\n
+                        
+                        ```fix\n[] - Required Argument | () - Optional Argument``````diff\n+Use the dropbar to navigate through Categories``````diff\n+Type {ctx.prefix}help prefix for information about the prefix```
+                        
+                        
+                        
+                        '''
+                        #description=f"{description}",
+                        em = discord.Embed(title=f"{j}{e}{s}{t}{e}{r}", description=description, colour=thecolor())
+                        #em.set_thumbnail(url=self.bot.user.avatar_url```yaml\nTo get a more detailed description of a command use j!help <command/Category>. Press the button to see the category.```)
+                        #u200b\n
+                        em.add_field(name=f"{catemoj} **Categories:**", value=f"{desc1}")
+                        em.add_field(name="\u200b", value=f"{desc2}")
+                        #em.add_field(name="\u200b",value =f"{desc3}\u200b\n")
+                        #diff, fix  
+                        em.add_field(name=f"{linkemoj} **Links:**", value=f"**{links}**", inline=False)
                        
-                        links = "[Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.client_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot) │ [Vote for me!](https://top.gg/bot/828363172717133874/vote)"
-                        em = discord.Embed(title=f"{j}{e}{s}{t}{e}{r}", description=f"{links}", colour=thecolor())
-                        em.set_thumbnail(url=self.client.user.avatar_url)
-                        
-                        em.add_field(name="\u200b", value=f"{desc1}\u200b\n")
-                        em.add_field(name="\u200b", value=f"{desc2}\u200b\n")
-                        em.add_field(name="\u200b",value =f"{desc3}\u200b\n")
-                        
-                        
-                       
-                        em.add_field(value="```yaml\nTo get a more detailed description of a command use ^help <command/Category>. Press the button to see the category.``` ```ini\n[To give feedback, use the feedback command]```", name="\u200b")
-                        
-                        em.set_footer(text="<> - Required Parameters │ [] - Optional Parameters")
+                        #em.add_field(value=f"""```yaml\nTo get a more detailed description of a command use j!help <command/Category>. Press the button to see the category.``` ```ini\n[If you require assistance use the support command. To understand the prefixes type {ctx.prefix}help prefix]```""", name="\u200b", inline=False)
+                        em.set_footer(text=f"{str(ctx.message.created_at)[11:16]} • Expires in 5 minutes")
                         msg = await ctx.send(embed=em, components=[opt
                             
                         ]
@@ -234,6 +238,7 @@ class THEACTUALHelp(commands.Cog):
 
                         the_list1 = ""
                         def check(inter):
+
                             return inter.message.id == msg.id
                         
                         
@@ -249,12 +254,12 @@ class THEACTUALHelp(commands.Cog):
                                     else:
                                         await inter.reply(type=4, embed=em, ephemeral=True)
 
-                                for cog in self.client.cogs:
+                                for cog in self.bot.cogs:
 
                                     if cog not in ["Event", "THEACTUALHelp", "Staff"]:
                                             
                                         if cog == inter.select_menu.selected_options[0].label:
-                                            name = self.client.get_emoji(ddata[cog]).name
+                                            name = self.bot.get_emoji(ddata[cog]).name
                                             emoj = f"<:{name}:{ddata[cog]}>"
                                             the_list3 = ""
                                             the_list4 = ""
@@ -263,7 +268,7 @@ class THEACTUALHelp(commands.Cog):
                                                 the_list3 = "\n-`permmute/unmute`\n-`ban/unban`"
                                                 the_list4 = "\n-`mute/reactmute`\n-`permreactmute/unreactmute`"
                                                 
-                                                dcog1 = self.client.get_cog(cog)
+                                                dcog1 = self.bot.get_cog(cog)
                                                 for cmd in dcog1.walk_commands():
                                                     if not cmd.hidden:
                                                         if cmd.name not in ['permmute', 'unmute', 'permreactmute', 'unreactmute', 'mute', 'reactmute', 'ban', 'unban']:
@@ -288,7 +293,7 @@ class THEACTUALHelp(commands.Cog):
                                             else:
                                                 the_list = ""
                                                 num = 0
-                                                actualcog = self.client.get_cog(cog)
+                                                actualcog = self.bot.get_cog(cog)
                                                 for cmd in actualcog.walk_commands():
                                                     if not cmd.hidden: 
                                                         if not " " in cmd.qualified_name:
@@ -315,13 +320,13 @@ class THEACTUALHelp(commands.Cog):
                     else:
 
                         the_list = []
-                        em = discord.Embed(description="**I'm a multi-use bot with new features being created every week! \nTo get a more detailed description of a command use `^help <command>`.**\nLinks:  [Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.client_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot)", colour=thecolor())
-                        em.set_author(name="Help", icon_url = client_av.avatar_url)
-                        for cog in self.client.cogs:
+                        em = discord.Embed(description="**I'm a multi-use bot with new features being created every week! \nTo get a more detailed description of a command use `j!help <command>`.**\nLinks:  [Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.bot_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot)", colour=thecolor())
+                        em.set_author(name="Help", icon_url = bot_av.avatar_url)
+                        for cog in self.bot.cogs:
                             
                             if cog not in ["Event", "THEACTUALHelp", "Staff"]:
                                 
-                                thecog = self.client.get_cog(cog)
+                                thecog = self.bot.get_cog(cog)
                                 for cmd in thecog.walk_commands():
                                     if not cmd.hidden:
 
@@ -343,18 +348,17 @@ class THEACTUALHelp(commands.Cog):
                         for al in command1.aliases:
 
                             alx.append(f"`{al}`")
-                    client_av = self.client.get_user(828363172717133874)
+                    bot_av = self.bot.get_user(828363172717133874)
                     em = discord.Embed(colour=thecolor())
                     name = f"{command1.name.capitalize()}"
                     
                     em.add_field(name=" ❯❯ Name", value=f"`{name}`", inline=False)
                     em.add_field(name=" ❯❯ Alias", value=f"{', '.join(alx)} " if alias else f"`none`", inline=False)
-                    em.add_field(name=" ❯❯ Usage", value=f"`^{command1.name} {sig}`" if sig else f'`^{command1.name}`', inline=False)
+                    em.add_field(name=" ❯❯ Usage", value=f"`j!{command1.name} {sig}`" if sig else f'`j!{command1.name}`', inline=False)
                     em.add_field(name=" ❯❯ Description", value=thehelp if thehelp else "Currently no help!", inline=False)
-                    em.set_author(name="Help", icon_url = client_av.avatar_url)
+                    em.set_author(name="Help", icon_url = bot_av.avatar_url)
                     em.set_footer(text="<> = needed │ [] = not needed")
                     await ctx.send(embed=em)
 
-         
-def setup(client):
-  client.add_cog(THEACTUALHelp(client))
+def setup(bot):
+  bot.add_cog(THEACTUALHelp(bot))

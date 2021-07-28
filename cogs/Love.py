@@ -1,6 +1,8 @@
 import discord, os, requests, json, asyncio
 from discord.ext import commands
-from dutils import thecolor, Json, thebed
+from core.utils.utils import thecolor, Json, thebed
+from core.Context import Context
+
 
 class GetUser:
 
@@ -33,45 +35,45 @@ class GetUser:
         self.user = theuser
 
 class Love(commands.Cog):
-    def __init__(self, client):
+    def __init__(self, bot):
 
-        self.client = client
+        self.bot = bot
 
     @commands.command(help="Pokes the `<member>` specified")
-    async def poke(self, ctx, member: discord.Member=""):
+    async def poke(self, ctx:Context, member: discord.Member=""):
 
         if member == "":
             embed = discord.Embed(description=f"**{ctx.author.name}** has poked you 😗", colour=thecolor())
             await ctx.author.send(embed=embed)
-            embed = discord.Embed(description=f"The **poke** will be sent to the specified member in aprox **{round(self.client.latency * 1000)}**ms", colour=thecolor())
+            embed = discord.Embed(description=f"The **poke** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}**ms", colour=thecolor())
             await ctx.send(embed=embed)     
         else:
             embed = discord.Embed(description=f"**{ctx.author.name}** has poked you 😗", colour=thecolor())
             await member.send(embed=embed)
-            embed = discord.Embed(description=f"The **poke** will be sent to the specified member in aprox **{round(self.client.latency * 1000)}** ms", colour=thecolor())
+            embed = discord.Embed(description=f"The **poke** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}** ms", colour=thecolor())
             await ctx.send(embed=embed) 
 
     @commands.command(help="Sends a hug to the `<member>` specified")
-    async def hug(self, ctx, member:discord.Member=""):
+    async def hug(self, ctx:Context, member:discord.Member=""):
         if member == "":
 
             embed = discord.Embed(description=f"**{ctx.author.name}** has given you the gift of a hug 🌷", colour=thecolor())
             await ctx.author.send(embed=embed)
-            embed = discord.Embed(description=f"The **hug** will be sent to the specified member in aprox **{round(self.client.latency * 1000)}**ms", colour=thecolor())
+            embed = discord.Embed(description=f"The **hug** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}**ms", colour=thecolor())
             await ctx.send(embed=embed) 
         else:
 
             embed = discord.Embed(description=f"**{ctx.author.name}** has given you the gift of a hug 🌷", colour=thecolor())
             await member.send(embed=embed)
-            embed = discord.Embed(description=f"The **hug** will be sent to the specified member in aprox **{round(self.client.latency * 1000)}**ms", colour=thecolor())
+            embed = discord.Embed(description=f"The **hug** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}**ms", colour=thecolor())
             await ctx.send(embed=embed) 
 
     @commands.command()
-    async def love(self, ctx):
+    async def love(self, ctx:Context):
         await thebed(ctx, 'Name 1')
-        received_msg = str((await self.client.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)).content).lower()
+        received_msg = str((await self.bot.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)).content).lower()
         await thebed(ctx, 'Name 2?')
-        received_msg1 = str((await self.client.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)).content).lower()
+        received_msg1 = str((await self.bot.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)).content).lower()
         try:
             x = int(received_msg)
             z = int(received_msg1)
@@ -104,7 +106,7 @@ class Love(commands.Cog):
             await thebed(ctx, f"Compatabiliy between {received_msg} and {received_msg1}" , f"**Percentage:** {over2}%")
             
     @commands.command(aliases=['marrage'])
-    async def family(self, ctx):
+    async def family(self, ctx:Context):
         File = GetUser('Love.json', f'{str(ctx.author.id)}', 'marriage')
         if File.family:
 
@@ -115,7 +117,7 @@ class Love(commands.Cog):
             await thebed(ctx, 'Marriage', 'You are single bro...')
         
     @commands.command()
-    async def marry(self, ctx, member:discord.Member):
+    async def marry(self, ctx:Context, member:discord.Member):
         if member == ctx.author:
             return await thebed(ctx, 'You cannot marry yourself...')
         embed = discord.Embed(title="🎉 Marriage 🎉", description=f"**{member.name}** do you accept **{ctx.author.name}** to be your partner? React with this message if you want to get married", colour=thecolor())
@@ -123,13 +125,13 @@ class Love(commands.Cog):
         await msg.add_reaction('💖')
         partner = member
         try:
-            emoji, user = await self.client.wait_for('reaction_add', timeout=300.0, check=lambda e, u:u == member and e.message.id==msg.id)
+            emoji, user = await self.bot.wait_for('reaction_add', timeout=300.0, check=lambda e, u:u == member and e.message.id==msg.id)
             File = GetUser('Love.json')
             
             if str(ctx.author.id) in File.data:
                 arr = File.data[str(ctx.author.id)]['id']
                 del File.data[str(arr)]
-                us = self.client.get_user(int(arr))
+                us = self.bot.get_user(int(arr))
                 await us.send(f'You got divorced from {ctx.author.name} and they married {member.name}!')
                 File.data[str(ctx.author.id)]['marriage'] = partner.name    
                 File.data[str(member.id)]['id'] = str(partner.id)
@@ -172,7 +174,7 @@ class Love(commands.Cog):
         
         
     @commands.command()
-    async def divorce(self, ctx):
+    async def divorce(self, ctx:Context):
         File = GetUser('Love.json')
         if str(ctx.author.id) in File.data:
             marr = File.data[str(ctx.author.id)]['id']
@@ -185,5 +187,5 @@ class Love(commands.Cog):
         else:
             await thebed(ctx, 'Marriage', 'You are single bro...')
 
-def setup(client):
-  client.add_cog(Love(client))
+def setup(bot):
+  bot.add_cog(Love(bot))

@@ -2,15 +2,21 @@ import discord, os, requests, json, asyncio
 from discord.ext import commands 
 from async_timeout import timeout
 from random import choice
-from dutils import thecolor, Json, thebed
 from discord import Webhook, AsyncWebhookAdapter
+from io import BytesIO
+import zipfile
+
+
+from core.utils.utils import thecolor, Json, thebed
+from core.Context import Context
+
 
 class Misc(commands.Cog):
-    def __init__(self, client):
-        self.client = client 
+    def __init__(self, bot):
+        self.bot = bot 
 
     @commands.command()
-    async def invited(self, ctx, user:discord.Member=None):
+    async def invited(self, ctx:Context, user:discord.Member=None):
         if not user:
             user = ctx.author
         totalInvites = 0
@@ -18,9 +24,31 @@ class Misc(commands.Cog):
             if i.inviter == user:
                 totalInvites += i.uses
         await thebed(ctx, "", f"{user.name} has invited **{totalInvites}** member{'' if totalInvites == 1 else 's'} to the server!")
+        
+    @commands.command(description="Sends information about my account")
+    async def info(self, ctx:Context, member: discord.Member = ""):
+        embed = discord.Embed(title="Information", timestamp=ctx.message.created_at, colour=thecolor())
+        if not member:
+            member = ctx.author
+        x = []
+        
+        username = member.name
+        userip = member.id
+        embed.set_thumbnail(url=member.avatar_url)
+        embed.add_field(name="Name", value=f"{username}")
+        embed.add_field(name="Id", value=f"{userip}")
+        embed.add_field(name="Joined server at", value=f"{member.joined_at}")
+        embed.add_field(name="Joined discord at", value=f"{member.created_at}")
+        embed.add_field(name="Nitro", value=f"{member.premium_since}") 
+        embed.add_field(name="Mobile", value=f"{member.is_on_mobile()}")
+        for k in member.public_flags.all():
+            x.append(f"`{k.name}`")
+        embed.add_field(name="Flags", value=f"{', '.join(x)}")
+        
+        await ctx.send(embed=embed)
 
     @commands.command(aliases=['Channel_info', 'InfoChannel'])
-    async def channel(self, ctx):
+    async def channel(self, ctx:Context):
 
         channelname = ctx.channel.name
         channelid = ctx.channel.id
@@ -32,7 +60,7 @@ class Misc(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(description="Make a secure password with a length that you can choose")
-    async def password(self, ctx, lengthofpassword:int=12):
+    async def password(self, ctx:Context, lengthofpassword:int=12):
         
         my_list = ['!', '?', '#']
         for c in range(97, 123):
@@ -49,7 +77,7 @@ class Misc(commands.Cog):
         await thebed(ctx, 'Password', f'||{x.jump_url}||')
 
     @commands.command(aliases=['stat'], description="Sends statistics about the server")
-    async def stats(self, ctx):
+    async def stats(self, ctx:Context):
 
         members, bots = [m for m in ctx.guild.members if not m.bot], [m for m in ctx.guild.members if not m.bot]
         embed = discord.Embed(title="Stats", color = thecolor())
@@ -65,13 +93,13 @@ class Misc(commands.Cog):
     
     
     @commands.command(aliases=['Server_icon', 'Icon_server', 'Guild_icon', 'Server_Avatar', 'avg', 'guildav', 'gc'], description="Sends the avatar of the server (profile pic)", hidden=True)
-    async def avatarguild(self, ctx):
+    async def avatarguild(self, ctx:Context):
         embed = discord.Embed(title='Guild icon', color=thecolor())
         embed.set_image(url=ctx.guild.icon_url)
 
         await ctx.send(embed=embed)
     @commands.command(aliases=['messages'], description="Says how many messages have been sent since the bot joined")
-    async def servermessages(self, ctx, server=""):
+    async def servermessages(self, ctx:Context, server=""):
         join = ctx.guild.get_member(828363172717133874)
         when = "24th of June 2021"
         joinedat = ""
@@ -92,22 +120,22 @@ class Misc(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['s', 'Sugg', 'Sug', 'Suggester'], description="Follow the instructions and a suggestion will appear")
-    async def suggest(self, ctx):
+    async def suggest(self, ctx:Context):
 
         user = ctx.author.id
-        username = self.client.get_user(user)
+        username = self.bot.get_user(user)
 
         try:
                         
             embed = discord.Embed(title="Suggestion", colour=thecolor())
             embed1 = discord.Embed(title=f"What is the title of your suggestion? Type end at any point to stop and type title to remove the description", colour=thecolor())
             x = await ctx.send(embed=embed1)
-            received_msg = str((await self.client.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)).content).lower()
+            received_msg = str((await self.bot.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)).content).lower()
             if received_msg not in ["end", "title"]:
                 msg1 = received_msg
                 embed2 = discord.Embed(title=f"What is the description of your suggestion? Type end at any point to stop", colour=thecolor())
                 y = await ctx.send(embed=embed2)
-                received_msg1 = str((await self.client.wait_for('message', timeout=90.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel,)).content).lower()
+                received_msg1 = str((await self.bot.wait_for('message', timeout=90.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel,)).content).lower()
                 if received_msg1 != "end":
                     msg2 = received_msg1
                     embed.add_field(name="Title", value=msg1, inline=False)
@@ -138,7 +166,7 @@ class Misc(commands.Cog):
             else:
                 embed2 = discord.Embed(title=f"What is the Title of your suggestion? Type end at any point to stop", colour=thecolor())
                 y = await ctx.send(embed=embed2)
-                received_msg1 = str((await self.client.wait_for('message', timeout=90.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel,)).content).lower()
+                received_msg1 = str((await self.bot.wait_for('message', timeout=90.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel,)).content).lower()
                 if received_msg1 != "end":
 
                     embed.add_field(name="Title", value=received_msg1, inline=False)
@@ -157,7 +185,7 @@ class Misc(commands.Cog):
             await ctx.send(embed=embed)
    
     @commands.command()
-    async def rules(self, ctx):
+    async def rules(self, ctx:Context):
         embed = discord.Embed(title="Standard Rules", description="", color=0xffd1dc)
         embed.add_field(name="`1` NSFW ", value="All NSFW outside of an nsfw channel is banned and you will be muted and even banned up to the severity of the content.", inline=False)
     
@@ -171,7 +199,7 @@ class Misc(commands.Cog):
         await ctx.send(embed=embed)
     
     @commands.command()
-    async def booster(self, ctx):
+    async def booster(self, ctx:Context):
         embed = discord.Embed(title="Booster perks", description="Boosting this server can help give us many other perks! Although it's not required we would love for you to boost us!", color=0xffd1dc)
         embed.add_field(name="`1` Free role ", value="When you boost you'll be able to choose a role for you and a friend!", inline=False)
     
@@ -185,7 +213,7 @@ class Misc(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def nitro(self, ctx):
+    async def nitro(self, ctx:Context):
         embed = discord.Embed(title="Nitro perks", description="Nitro can improve discord experience and give many fun perks!", color=0xffd1dc)
         embed.add_field(name="`1` Live streams", value="Screen share on PC in `720p 60fps` or `1080p 30fps` - Stream at source", inline=False)
         embed.add_field(name="`2` Gif", value="Upload and use animated avatars and emojis", inline=False)
@@ -194,5 +222,30 @@ class Misc(commands.Cog):
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/803430815714902060/852926789981437982/image0.png")
         await ctx.send(embed=embed)
    
-def setup(client):
-  client.add_cog(Misc(client))
+    @commands.command()
+    async def zipemojis(self, ctx):
+        if len(ctx.guild.emojis) == 0:
+            return await ctx.em(f"Breh, Your server doesn't have any custom emojis.")
+
+        m = await ctx.em(f"Alright! Zipping all emojis owned by this server for you, This can take some time")
+        buf = BytesIO()
+
+        async with ctx.typing():
+            with zipfile.ZipFile(buf, 'w') as f:
+                for emoji in ctx.guild.emojis:
+                    _bytes = await emoji.url.read()
+                    f.writestr(
+                        f'{emoji.name}.{"gif" if emoji.animated else "png"}', _bytes)
+
+            buf.seek(0)
+
+        try:
+            await m.delete()
+        except:
+            pass
+        finally:
+            await ctx.send(f'{ctx.author.mention} Sorry to keep you waiting, here you go:', file=discord.File(fp=buf, filename='emojis.zip'))
+
+
+def setup(bot):
+  bot.add_cog(Misc(bot))

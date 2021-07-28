@@ -1,26 +1,71 @@
 import discord, os, requests, json, asyncio
-from async_timeout import timeout
-from dutils import thecolor, Json, thebed
 from discord.ext import commands 
-from dislash import SlashClient, ActionRow, Button
+from dislash import *
 import datetime
 import shutil
+
+from core.utils.utils import thecolor, Json, thebed
+from core.Context import Context
+
 selected_channel = None
    
 class Staff(commands.Cog):
-    def __init__(self, client):
+    def __init__(self, bot):
 
-        self.client = client
+        self.bot = bot
 
     @commands.command(hidden=True)
-    async def abort(self, ctx):
+    async def load(self, ctx:Context, extension):
+        if ctx.author.id == 298043305927639041:
+            embed = discord.Embed(color=discord.Color.dark_gold())
+            self.bot.load_extension(f'cogs.{extension}')
+            embed.add_field(name="Load Extension", value=f"Loaded cog: ``{extension}`` successfully")
+            await ctx.send(embed=embed)
+
+        else:
+            await ctx.send("You're not the owner of this bot...")
+
+        #unload
+    @commands.command(hidden=True)
+    async def unload(self, ctx:Context, extension):
+        if ctx.author.id == 298043305927639041:
+            self.bot.unload_extension(f'cogs.{extension}')
+            embed = discord.Embed(color=discord.Color.dark_gold())
+            embed.add_field(name="Unload Extension", value=f"Unloaded cog: ``{extension}`` successfully")
+            await ctx.send(embed=embed)
+
+        else:
+            await ctx.send("You're not the owner of this bot...")
+        #reload
+    @commands.command(aliases=['r'], hidden=True)
+    async def reload(self, ctx:Context, extension=""):
+        if ctx.author.id == 298043305927639041:
+            if not extension:
+        
+                for cog in tuple(self.bot.extensions):
+            
+                    self.bot.reload_extension(cog)
+                embed = discord.Embed(color=discord.Color.dark_gold())
+                embed.add_field(name="Reload Extension", value=f"Reloaded cogs successfully")
+                await ctx.send(embed=embed)
+            else:
+
+                self.bot.reload_extension(f'cogs.{extension}')
+                embed = discord.Embed(color=discord.Color.dark_gold())
+                embed.add_field(name="Reload Extension", value=f"Reloaded cog: ``{extension}`` successfully")
+                await ctx.send(embed=embed)
+        else: 
+            await ctx.send("You're not the owner of this bot...")
+
+    @commands.command(hidden=True)
+    async def abort(self, ctx:Context):
         await thebed(ctx, '', 'Aborting')
         
-        await self.client.close()
+        await self.bot.close()
         os.system('python3 main.py')  
 
     @commands.command(hidden=True)
-    async def drop(self, ctx):
+    async def drop(self, ctx:Context):
         msg = await ctx.send(
             "This message has a select menu!",
             components=[
@@ -46,24 +91,24 @@ class Staff(commands.Cog):
         await inter.reply(f"Options: {inter.select_menu}")
 
     @commands.command(hidden=True)
-    async def chelp(self, ctx):
+    async def chelp(self, ctx:Context):
         
           
         with open('./dicts/Cmds.json', 'r+') as e:
             j = 0
             data = json.load(e)
-            for k in self.client.commands:
+            for k in self.bot.commands:
                 if not k.hidden:
 
                     j += 1
-            for k in self.client.walk_commands():   
+            for k in self.bot.walk_commands():   
                 if not k.hidden:
                     if k.name not in data:
                         
                         await thebed(ctx, f"{k}", f'**{k.signature if k.signature else "no"}**  │  help cmd?', f=f"{len(data)} / {j}")
                         try:
-                            received_msg = str((await self.client.wait_for('message', timeout=900.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel,)).content).lower()
-                        except Asyncio.TimeoutError:
+                            received_msg = str((await self.bot.wait_for('message', timeout=900.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel,)).content).lower()
+                        except asyncio.TimeoutError:
                             return
                         if received_msg == "end":
                             return
@@ -73,49 +118,33 @@ class Staff(commands.Cog):
                             }
                             Json(e, data)
             await thebed(ctx, 'All done!')
+    
     @commands.command(hidden=True)
-    async def dpy(self, ctx):
-
-        page1 = Page(title='Page 1', description='First page test!')
-        page1.add_field(name='Example A', value='Example B')
-
-        page2 = Page(title='Page 2', description='Second page test!')
-        page2.add_field(name='Example C', value='Example D')
-
-        page3 = Page(title='Page 3', description='Third page test!')
-        page3.add_field(name='Example E', value='Example F')
-
-        menu = PaginatedMenu(ctx)
-        menu.add_pages([page1, page2, page3])
-
-        await menu.open()
-
-    @commands.command(hidden=True)
-    async def close(self, ctx):
+    async def close(self, ctx:Context):
 
         if ctx.author.id == 298043305927639041:
             embed = discord.Embed(title=f"Goodbye", colour=thecolor())
             await ctx.send(embed=embed)
             
-            await self.client.close()
+            await self.bot.close()
 
     @commands.command(hidden=True)
-    async def ditest(self, ctx):
+    async def ditest(self, ctx:Context):
      
 
-        msg = await ctx.send('hi', components=[dislash.Button(label='hello', custom_id='test', style=dislash.ButtonStyle.green)])
+        msg = await ctx.send('hi', components=[Button(label='hello', custom_id='test', style=ButtonStyle.green)])
         def check(inter):
             return inter.message.id == msg.id and inter.author == ctx.author
         inter = await ctx.wait_for_button_click(check)
        
-        await inter.reply(type=dislash.InteractionType.Acknowledge)
+        await inter.reply(type=InteractionType.Acknowledge)
 
     @commands.command(hidden=True)
-    async def blacklist(self, ctx, user1:int, cmd):
+    async def blacklist(self, ctx:Context, user1:int, cmd):
        
             
-        user = self.client.get_user(user1)
-        command = self.client.get_command(cmd)
+        user = self.bot.get_user(user1)
+        command = self.bot.get_command(cmd)
         with open('./dicts/Check.json', 'r+') as k:
             data = json.load(k)
             if str(user.id) in data:
@@ -130,11 +159,11 @@ class Staff(commands.Cog):
     
         await thebed(ctx, 'done')
     @commands.command(hidden=True)
-    async def rblacklist(self, ctx, user1:int, cmd):
+    async def rblacklist(self, ctx:Context, user1:int, cmd):
        
         
-        user = self.client.get_user(user1)
-        command = self.client.get_command(cmd)
+        user = self.bot.get_user(user1)
+        command = self.bot.get_command(cmd)
         with open('./dicts/Check.json', 'r+') as k:
             data = json.load(k)
             if str(user.id) in data:
@@ -145,12 +174,12 @@ class Staff(commands.Cog):
     
         await thebed(ctx, 'done')
     @commands.command(hidden=True)
-    async def newup(self, ctx):
+    async def newup(self, ctx:Context):
     
         try:
             embed = discord.Embed(title="Version?")
             await ctx.send(embed=embed)
-            ver = await self.client.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)
+            ver = await self.bot.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)
             with open('./dicts/Updates.json', 'r+') as k:
                 loaded1 = json.load(k)
                 for m in loaded1:
@@ -171,7 +200,7 @@ class Staff(commands.Cog):
                         k.write(json.dumps(loaded1, indent=4)) # write to file
             embed = discord.Embed(title="Bug fixes")
             await ctx.send(embed=embed)
-            y = str((await self.client.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30)).content).lower()
+            y = str((await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30)).content).lower()
             while y not in  ["apply", "q"]:
                 embed1 = discord.Embed(title="Bug fixes")
                 await ctx.send(embed=embed1)
@@ -191,11 +220,11 @@ class Staff(commands.Cog):
                             k.seek(0)
                             k.truncate(0)  # clear previous content
                             k.write(json.dumps(loaded1, indent=4)) # write to file
-                y = str((await self.client.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30)).content).lower()
+                y = str((await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30)).content).lower()
             else:
                 embed2 = discord.Embed(title="New commands")
                 await ctx.send(embed=embed2)
-                z = str((await self.client.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30)).content).lower()
+                z = str((await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30)).content).lower()
                 while z not in  ["apply", "q"]:
                     embed3 = discord.Embed(title="New commands")
                     await ctx.send(embed=embed3)
@@ -216,11 +245,11 @@ class Staff(commands.Cog):
                                 k.write(json.dumps(loaded1, indent=4)) # write to file
                     
                     
-                    z = str((await self.client.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30)).content).lower()
+                    z = str((await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30)).content).lower()
                 else:
                     embed = discord.Embed(title="Other")
                     await ctx.send(embed=embed)
-                    a = str((await self.client.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30)).content).lower()
+                    a = str((await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30)).content).lower()
                     while a not in  ["apply", "q"]:
                         embed3 = discord.Embed(title="Other")
                         await ctx.send(embed=embed3)
@@ -239,7 +268,7 @@ class Staff(commands.Cog):
                                     k.seek(0)
                                     k.truncate(0)  # clear previous content
                                     k.write(json.dumps(loaded1, indent=4)) # write to file
-                        a = str((await self.client.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30)).content).lower()
+                        a = str((await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30)).content).lower()
                     else:
                         embed4 = discord.Embed(title="Applied")
                         await ctx.send(embed=embed4)
@@ -257,7 +286,7 @@ class Staff(commands.Cog):
 
 
     @commands.command(hidden=True)
-    async def newver(self, ctx, *, Destroy=""):
+    async def newver(self, ctx:Context, *, Destroy=""):
         
         if Destroy == "":
             with open('./dicts/Updates.json', 'r+') as k:
@@ -299,7 +328,7 @@ class Staff(commands.Cog):
 
 
     @commands.command(hidden=True)
-    async def balded(self, ctx):
+    async def balded(self, ctx:Context):
         
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
@@ -309,7 +338,7 @@ class Staff(commands.Cog):
                 if "Bal" in data[key]:
                     await ctx.send(key)
 
-                    x = self.client.get_user(int(key))
+                    x = self.bot.get_user(int(key))
                     if not x:
                         pass
                     else:
@@ -323,7 +352,7 @@ class Staff(commands.Cog):
         
 
     @commands.command(hidden=True)
-    async def baladd(self, ctx, bal:int):
+    async def baladd(self, ctx:Context, bal:int):
        
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
@@ -333,7 +362,7 @@ class Staff(commands.Cog):
                 if "Bal" in data[key]:
                     await ctx.send(key)
 
-                    x = self.client.get_user(int(key))
+                    x = self.bot.get_user(int(key))
                     if not x:
                         pass
                     else:
@@ -346,7 +375,7 @@ class Staff(commands.Cog):
                     pass
     
     @commands.command(hidden=True)
-    async def removefile(self, ctx, filed, dicte:str):
+    async def removefile(self, ctx:Context, filed, dicte:str):
     
         with open(f'./dicts/{filed}', 'r+') as k:
 
@@ -370,7 +399,7 @@ class Staff(commands.Cog):
     
 
     @commands.command(hidden=True)
-    async def data(self, ctx, file1="", data1="", data2="", int1='False', *, add=""):
+    async def data(self, ctx:Context, file1="", data1="", data2="", int1='False', *, add=""):
         if int1 == 'True':
             add = int(add)
             
@@ -405,7 +434,7 @@ class Staff(commands.Cog):
                         if len(key) == len('483631842554019841'):
                             try:
 
-                                the_num = self.client.get_user(int(key))
+                                the_num = self.bot.get_user(int(key))
                             except:
 
                                 if not the_num:
@@ -451,11 +480,11 @@ class Staff(commands.Cog):
         
 
     @commands.command(hidden=True)
-    async def serversin(self, ctx):
+    async def serversin(self, ctx:Context):
    
         x = []
         num = 0
-        for g in self.client.guilds:
+        for g in self.bot.guilds:
             x.append(g.name)
             num += 1
             
@@ -464,10 +493,10 @@ class Staff(commands.Cog):
         await ctx.send(", ".join(x[26:len(x)]))
 
     @commands.command(hidden=True)
-    async def showcmds(self, ctx):
+    async def showcmds(self, ctx:Context):
         x = []
         embed = discord.Embed(color=discord.Color.green())
-        for command in self.client.commands:
+        for command in self.bot.commands:
             
             x.append(f"`{command.name}`")
         xnum = 0
@@ -485,7 +514,7 @@ class Staff(commands.Cog):
             
         await ctx.send(embed=embed)
     @commands.command(hidden=True)
-    async def but(self, ctx):
+    async def but(self, ctx:Context):
         
 
         # Make a row of buttons
@@ -514,13 +543,13 @@ class Staff(commands.Cog):
         button_text = inter.clicked_button.label
         await inter.reply(f"Button: {button_text}")
     @commands.command(hidden=True)
-    async def but2(self, ctx):
+    async def but2(self, ctx:Context):
         await ctx.channel.send("Context",components=[Button(style=ButtonStyle.blue, label="Test", custom_id="TTTT")]) #Blue button with button label of "Test"
-        res = await self.client.wait_for("button_click") #Wait for button to be clicked
+        res = await self.bot.wait_for("button_click") #Wait for button to be clicked
         print(res.user, dir(res))
         await res.respond(type=InteractionType.UpdateMessage, content=f'Button Clicked')
     @commands.command(hidden=True, aliases=['save', 'backup'])
-    async def savebackup(self, ctx):
+    async def savebackup(self, ctx:Context):
         x = 1
         for f in os.listdir('../backup'):
             if int(f[-3:]) > x:
@@ -546,17 +575,17 @@ class Staff(commands.Cog):
                 shutil.copy(f'./cogs/{t}', dirname)
         await thebed(ctx, 'success', f'you have made a new backup folder called *{dirname}*')
     @commands.command(hidden=True)
-    async def file(self, ctx, file):
+    async def file(self, ctx:Context, file):
         await ctx.send(file=discord.File(f"./dicts/{file}"))
     @commands.command(hidden=True)
-    async def thecog(self, ctx):
-        for thecog in self.client.cogs:
+    async def thecog(self, ctx:Context):
+        for thecog in self.bot.cogs:
 
-            cog = self.client.get_cog(thecog)
+            cog = self.bot.get_cog(thecog)
 
             await ctx.send(thecog)
     @commands.command(hidden=True)
-    async def thetest(self, ctx):
+    async def thetest(self, ctx:Context):
         with open('./dicts/Emoji.json', 'r+') as k:
             data = json.load(k)
             data['emojis'] = {
@@ -564,7 +593,7 @@ class Staff(commands.Cog):
                 "Games": "🎮",
                 "Moderation": "⚠",
                 "Misc": "🤔",
-                "Botinfo": "ℹ",
+                "botinfo": "ℹ",
                 "Economy": "💰"
 
 
@@ -573,7 +602,7 @@ class Staff(commands.Cog):
             Json(k, data)
    
     @commands.command(hidden=True)
-    async def formathelp(self, ctx):
+    async def formathelp(self, ctx:Context):
         
         x = 0 
         xy = []
@@ -599,27 +628,27 @@ class Staff(commands.Cog):
                         Json(K, data)
             await ctx.send('done')
     @commands.command(hidden=True)
-    async def t(self, ctx, d, t=""):
+    async def t(self, ctx:Context, d, t=""):
         await thebed(ctx, d, t)
 
     @commands.command(hidden=True)
-    async def addcmd(self, ctx, name, *, cmd):
+    async def addcmd(self, ctx:Context, name, *, cmd):
         with open('./dicts/Commands.json', 'r+') as k:
             data = json.load(k)
             if name in data:
                 return await thebed(ctx, 'Already there mate')
             data[name] = {
                 'code': cmd,
-                'makecmd': f'@client.command()\nasync def {name}(ctx):'
+                'makecmd': f'@bot.command()\nasync def {name}(ctx):'
 
             }
             Json(k, data)
             thecmd = f"{data[name]['makecmd']}\n    {data[name]['code']}"
             await thebed(ctx, thecmd)
-            self.client.add_command(thecmd)
+            self.bot.add_command(thecmd)
 
     @commands.command(hidden=True)
-    async def tag(self, ctx, errornum:str=None):
+    async def tag(self, ctx:Context, errornum:str=None):
         k = open('./dicts/Errors.json', 'r+')
         data = json.load(k) 
         if not errornum:
@@ -643,7 +672,7 @@ class Staff(commands.Cog):
         
         ''')
     @commands.command(hidden=True)
-    async def resolve(self, ctx, errornum:str=None):
+    async def resolve(self, ctx:Context, errornum:str=None):
         k = open('./dicts/Errors.json', 'r+')
         data = json.load(k) 
         if not errornum:
@@ -667,11 +696,11 @@ class Staff(commands.Cog):
     **cmd** : `{data[errornum]["command"]}`
     ''', color=thecolor()))
         await m.add_reaction('👍')
-        reaction, user = await self.client.wait_for('reaction_add', check=lambda r, u: u == ctx.author)
+        reaction, user = await self.bot.wait_for('reaction_add', check=lambda r, u: u == ctx.author)
         await thebed(ctx, '', 'Done')
         del data[errornum]
         Json(k, data)
         
         
-def setup(client):
-  client.add_cog(Staff(client))
+def setup(bot):
+  bot.add_cog(Staff(bot))

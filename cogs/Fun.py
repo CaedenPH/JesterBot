@@ -3,19 +3,21 @@ from discord.ext import commands
 from random import choice, randint
 from pyMorseTranslator import translator
 from art import text2art
-from dutils import thecolor, Json, thebed
+from core.utils.utils import thecolor, Json, thebed
+from core.Context import Context
+
+from discord.ext import tasks
 
 encoder = translator.Encoder()
 decoder = translator.Decoder()
 
-
 class Fun(commands.Cog):
-    def __init__(self, client):
+    def __init__(self, bot):
    
-        self.client = client
-
+        self.bot = bot
+        
     @commands.command(aliases=['art'])
-    async def asciiart(self, ctx, *, text: str):
+    async def asciiart(self, ctx:Context, *, text: str):
 
         if len(text) > 10:
             return await thebed(ctx, '', f":x: Length of Text cannot be more than 10 Characters!")
@@ -23,20 +25,23 @@ class Fun(commands.Cog):
         art = text2art(text)
 
         if len(art) > 1990:
-            return await ctx.send(embed=discord.Embed(description=f"Oops! ASCII Art crossed more than 2000 Words. Please try a smaller Text.", color=0x36393F))
+            return await ctx.send(embed=discord.Embed(description=f"Oops! ASCII Art crossed more than 2000 Words. Please try a smaller Text.", color=thecolor()))
 
-        await ctx.send(embed=discord.Embed(description=f"```yaml\n{art}```", color=self.client.discordcolor))
+        await ctx.send(embed=discord.Embed(description=f"```yaml\n{art}```", color=self.bot.discordcolor))
 
     @commands.command()
-    async def sudo(self, ctx, member:discord.Member, *, text):
+    async def sudo(self, ctx:Context, member:discord.Member, *, text):
 
         await ctx.message.delete()
+        for k in await ctx.channel.webhooks():
+            if k.user == ctx.me:
+                await k.delete()
         webhook = await ctx.channel.create_webhook(name=f"{member}")
-
-        await webhook.send(text, username=member.name, avatar_url=member.avatar_url)
+        
+        await webhook.send(text, username=member.name, avatar_url=member.avatar_url, allowed_mentions=discord.AllowedMentions(roles=False, users=False, everyone=False))
     
     @commands.command()
-    async def minecraft(self, ctx, username):
+    async def minecraft(self, ctx:Context, username):
         try:
 
             async with ctx.typing():
@@ -60,7 +65,7 @@ class Fun(commands.Cog):
             await thebed(ctx, '', 'They are not a minecraft player! Enter their in-game username')
         
     @commands.command(aliases=['emojis', 'sentance'])
-    async def name(self, ctx, *, name):
+    async def name(self, ctx:Context, *, name):
         list = []
         for k in name:
             if k == " ":
@@ -72,7 +77,7 @@ class Fun(commands.Cog):
         await thebed(ctx, 'Name in emojis...', "".join(list))
     
     @commands.command(description="Fake hacks the specified member")
-    async def hack(self, ctx, member:discord.Member=""):
+    async def hack(self, ctx:Context, member:discord.Member=""):
         
         x = False
         key = ""
@@ -104,7 +109,7 @@ class Fun(commands.Cog):
         "\nexec hack.", "..",
         f"\npass credentials through mainstream..."
         f"\nname: '{member}'", 
-        f"\nping : {self.client.latency * 1000}", 
+        f"\nping : {self.bot.latency * 1000}", 
         f"\nraise bot account: {member.bot}", 
         f"\nawait object(): '{member.avatar}'", 
         f"\nstatus: ", f"{member.status}", 
@@ -140,7 +145,7 @@ class Fun(commands.Cog):
             await msg.edit(content=f"```py\n{new_msg_list}```")
     
     @commands.command(aliases=['findemoji', 'emojipicker', 'getemojis'])
-    async def pickemoji(self, ctx):
+    async def pickemoji(self, ctx:Context):
         
 
         other = open('./dicts/emojsend.json')
@@ -161,7 +166,7 @@ class Fun(commands.Cog):
         await msg.add_reaction('❌')
         def check(e, u):
             return u == ctx.author and e.message.id==msg.id
-        emoji, user = await self.client.wait_for('reaction_add', check = check)
+        emoji, user = await self.bot.wait_for('reaction_add', check = check)
         while emoji.emoji != '❌':
             if emoji.emoji == "➡":
                 slide += 1
@@ -197,14 +202,13 @@ class Fun(commands.Cog):
                         
                         await ctx.send(f"{y} has been added!")
             
-            emoji, user = await self.client.wait_for('reaction_add',check=check)
+            emoji, user = await self.bot.wait_for('reaction_add',check=check)
         else:
             await msg.clear_reactions()
                 
-        Json(file1, data)
     
     @commands.command(description="Sends the users pp size")
-    async def pp(self, ctx):
+    async def pp(self, ctx:Context):
 
         with open('./dicts/pp.json', 'r+') as k:
             randomsizeint = randint(1, 12)
@@ -223,7 +227,7 @@ class Fun(commands.Cog):
             await ctx.send(embed=embed)
         
     @commands.command(description="Sends the users new pp size")
-    async def newpp(self, ctx):
+    async def newpp(self, ctx:Context):
         
         with open('./dicts/pp.json', 'r+') as k:
             randomsizeint = randint(1, 12)
@@ -249,13 +253,13 @@ class Fun(commands.Cog):
 
         
     @commands.command(aliases=['echos'], description="Echo's the message the user sends after sending the command")
-    async def echo(self, ctx):
+    async def echo(self, ctx:Context):
 
-        user = self.client.get_user(ctx.author.id)
+        user = self.bot.get_user(ctx.author.id)
         try:
             embed = discord.Embed(title="What would you like to echo?", colour=thecolor())
             x = await ctx.send(embed=embed)
-            msg = await self.client.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)
+            msg = await self.bot.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)
             await msg.delete()
             await ctx.message.delete()
             await x.delete()
@@ -268,13 +272,13 @@ class Fun(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command(name = 'rand', aliases=['randomnum', 'rant', 'randomnumber', 'random_number'], description="Sends a random number between `<first_number>` and `<second_number>`")
-    async def random_num(self, ctx, num1: int, num2: int):
+    async def random_num(self, ctx:Context, num1: int, num2: int):
         
         embed = discord.Embed(title="randomnum", description=randint(num1, num2))
         await ctx.send(embed=embed)
         
     @commands.command(aliases=['flip', 'coin', 'ht', 'headsandtails', 'Coinflip', 'coin_flip', 'flip_coin', 'fc'], description="Sends heads or tails, 50% chance")
-    async def flipcoin(self, ctx): 
+    async def flipcoin(self, ctx:Context): 
 
         rand = randint(1, 2)
         if rand == 1:
@@ -287,7 +291,7 @@ class Fun(commands.Cog):
         await ctx.send(embed=embed)
     
     @commands.command(aliases=['rev', 'Reversemessage', 'Message_Reverse', 'Reverse_messgae', 'Reverse_Message'], description="Reverses the `<message>` letters and words (like a mirror)")
-    async def reverse(self, ctx, *, message):
+    async def reverse(self, ctx:Context, *, message):
     
         def reverse(string):
             return string[::-1]
@@ -296,14 +300,14 @@ class Fun(commands.Cog):
         
 
     @commands.command(description="The specified member takes an L")
-    async def l(self, ctx, user:discord.Member=""):
+    async def l(self, ctx:Context, user:discord.Member=""):
             if user == "":
-                user = self.client.get_user(ctx.author.id)
+                user = self.bot.get_user(ctx.author.id)
             embed = discord.Embed(description=f"{user.mention} took an L", colour=thecolor())
             msg = await ctx.send(f"{user.mention}")
             await msg.delete()
             await ctx.send(embed=embed)
 
    
-def setup(client):
-  client.add_cog(Fun(client))
+def setup(bot):
+  bot.add_cog(Fun(bot))

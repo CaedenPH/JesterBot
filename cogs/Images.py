@@ -3,19 +3,21 @@ from discord.ext import commands
 from random import choice, randint
 import vacefron
 from animals import Animals
-from dutils import thecolor, Json, thebed
+from core.utils.utils import thecolor, Json, thebed
+from core.Context import Context
+
 import aiohttp
 vace_api = vacefron.Client()
 
 class Images(commands.Cog):
-    def __init__(self, client):
+    def __init__(self, bot):
    
 
-        self.client = client
+        self.bot = bot
     
     
     @commands.command(aliases=['change', 'changemind', 'change_my_mind'])
-    async def mindchange(self, ctx, *, text:str=None):
+    async def mindchange(self, ctx:Context, *, text:str=None):
         async with ctx.typing():
             embed = discord.Embed(title="Change my mind...", colour=thecolor())
             x = await vace_api.change_my_mind(text)
@@ -24,7 +26,7 @@ class Images(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command()
-    async def nasapic(self, ctx):
+    async def nasapic(self, ctx:Context):
         f = requests.get("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=1")
         up = f.json()
         
@@ -39,14 +41,14 @@ class Images(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def rover(self, ctx):
+    async def rover(self, ctx:Context):
         key2 = "dS9ecIIo07Q0gGLYXnCoJW6uCAKwDM9j0UnYbVre"
         async with aiohttp.ClientSession().get("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key={}".format(key2)) as resp:
             response = await resp.json()
             await ctx.send(response)
 
     @commands.command(aliases=['rpic', 'randpic'])
-    async def randompicture(self, ctx):
+    async def randompicture(self, ctx:Context):
         async with ctx.typing():
             response = requests.get(f"https://source.unsplash.com/random")
             my_file = open('./images/random.png', 'wb')
@@ -56,13 +58,13 @@ class Images(commands.Cog):
         await ctx.send(file=discord.File('./images/random.png')) 
 
     @commands.command()
-    async def meme(self, ctx):
+    async def meme(self, ctx:Context):
         async with aiohttp.ClientSession().get("https://some-random-api.ml/meme") as resp:
             response = await resp.json()
             await ctx.send(response['image'])
 
     @commands.command(description="""Sends a wasted filtered avatar""")
-    async def wasted(self, ctx, member: discord.Member=None):
+    async def wasted(self, ctx:Context, member: discord.Member=None):
        
         if member is None:
             avatar = ctx.author.avatar_url_as(format='png')
@@ -78,7 +80,7 @@ class Images(commands.Cog):
         await ctx.send(file=discord.File('./images/wasted.png'))
 
     @commands.command(description="""Sends a wasted filtered avatar""")
-    async def threshold(self, ctx, member: discord.Member=None):
+    async def threshold(self, ctx:Context, member: discord.Member=None):
        
         if member is None:
             avatar = ctx.author.avatar_url_as(format='png')
@@ -94,7 +96,7 @@ class Images(commands.Cog):
             await ctx.send(file=discord.File('./images/threshold.png'))    
 
     @commands.command()
-    async def hornypass(self, ctx, member=None):
+    async def hornypass(self, ctx:Context, member=None):
         if member is None:
             avatar = ctx.author.avatar_url_as(format='png')
         else:
@@ -109,7 +111,7 @@ class Images(commands.Cog):
         await ctx.send(file=discord.File('./images/hornypass.png'))   
         
     @commands.command(description="""Sends a fay filtered avatar""")
-    async def gay(self, ctx, member:discord.Member=None):
+    async def gay(self, ctx:Context, member:discord.Member=None):
         
         if member is None:
             avatar = ctx.author.avatar_url_as(format='png')
@@ -126,7 +128,7 @@ class Images(commands.Cog):
         await ctx.send(file=discord.File('./images/gay.png')) 
 
     @commands.command(description="""Sends a glass filtered avatar""")
-    async def glass(self, ctx, member:discord.Member=None):
+    async def glass(self, ctx:Context, member:discord.Member=None):
         
         if member is None:
             avatar = ctx.author.avatar_url_as(format='png')
@@ -141,7 +143,7 @@ class Images(commands.Cog):
         await ctx.send(file=discord.File('./images/glass.png')) 
 
     @commands.command(description="""Sends a triggered filtered avatar""")
-    async def triggered(self, ctx, member:discord.Member=None):
+    async def triggered(self, ctx:Context, member:discord.Member=None):
        
         if member is None:
             avatar = ctx.author.avatar_url_as(format='png')
@@ -156,7 +158,7 @@ class Images(commands.Cog):
         await ctx.send(file=discord.File('./images/triggered.png')) 
 
     @commands.command(description="""Sends a bloody filtered avatar""")
-    async def bloody(self, ctx, member:discord.Member=None):
+    async def bloody(self, ctx:Context, member:discord.Member=None):
        
         if member is None:
             avatar = ctx.author.avatar_url_as(format='png')
@@ -171,7 +173,7 @@ class Images(commands.Cog):
         await ctx.send(file=discord.File('./images/bloody.png')) 
         
     @commands.command(description="""Sends a YouTube comment with your custom comment""")
-    async def ytcomment(self, ctx, *, comment):
+    async def ytcomment(self, ctx:Context, *, comment):
        
         async with ctx.typing():
             response = requests.get(f"https://some-random-api.ml/canvas/youtube-comment?avatar={ctx.author.avatar_url_as(format='png')}&comment={comment}&username={ctx.author.display_name}")
@@ -181,7 +183,7 @@ class Images(commands.Cog):
         await ctx.send(file=discord.File('./images/yt-comment.png'))
 
     @commands.command(description="""Makes a bright filtered avatar""")
-    async def bright(self, ctx, member:discord.Member=None):
+    async def bright(self, ctx:Context, member:discord.Member=None):
         
         if member is None:
             avatar = ctx.author.avatar_url_as(format='png')
@@ -198,7 +200,7 @@ class Images(commands.Cog):
         await ctx.send(file=discord.File('./images/brightness.png')) 
             
     @commands.command(description="""Makes a bright filtered avatar""")
-    async def invert(self, ctx, member:discord.Member=None):
+    async def invert(self, ctx:Context, member:discord.Member=None):
         
         if member is None:
             avatar = ctx.author.avatar_url_as(format='png')
@@ -213,7 +215,7 @@ class Images(commands.Cog):
         await ctx.send(file=discord.File('./images/invert.png')) 
             
     @commands.command(description="""Makes a bright filtered avatar""")
-    async def colorview(self, ctx, hexcolor):
+    async def colorview(self, ctx:Context, hexcolor):
 
         async with ctx.typing():
             response = requests.get(f"https://some-random-api.ml/canvas/colorviewer?hex={hexcolor}")
@@ -223,7 +225,7 @@ class Images(commands.Cog):
         await ctx.send(file=discord.File('./images/color.png')) 
 
     @commands.command(aliases=['pic', 'imag', 'images', 'image'])
-    async def picture(self, ctx, *, pic):
+    async def picture(self, ctx:Context, *, pic):
         
         async with ctx.typing():
             response = requests.get('https://source.unsplash.com/1600x900/?{}'.format(pic))
@@ -233,8 +235,8 @@ class Images(commands.Cog):
                 
         await ctx.send(file=discord.File('./images/picture.png')) 
 
-    @commands.command(invoke_without_command=True, description="Sends certain images of animals such as `dog`, `fox`, `cat`, to get the full list type `^image`", aliases=['animalpic', 'animage'])
-    async def animalimage(self, ctx, imag=""):
+    @commands.command(invoke_without_command=True, description="Sends certain images of animals such as `dog`, `fox`, `cat`, to get the full list type `j.image`", aliases=['animalpic', 'animage'])
+    async def animalimage(self, ctx:Context, imag=""):
         
         if imag not in ['cat', 'dog', 'panda', 'koala', 'fox', 'racoon', 'kangaroo']:
             embed = discord.Embed(title=f"{imag} is not a valid option" if imag else "Options", description="Valid Options are `cat`, `dog`, `panda`, `koala`, `fox`, `racoon`, `kangaroo`", colour=thecolor())
@@ -249,5 +251,5 @@ class Images(commands.Cog):
             embed.set_image(url=animal.image())
         await ctx.send(embed=embed)
 
-def setup(client):
-  client.add_cog(Images(client))
+def setup(bot):
+  bot.add_cog(Images(bot))

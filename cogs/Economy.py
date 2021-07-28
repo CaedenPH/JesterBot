@@ -14,21 +14,23 @@ from async_timeout import timeout
 from functools import partial
 from youtube_dl import YoutubeDL
 from random import choice, randint
-from dutils import thecolor, Json, thebed
-FALSCH = False
-class Economy(commands.Cog):
-    def __init__(self, client):
+from core.utils.utils import thecolor, Json, thebed
+from core.Context import Context
 
-        self.client = client
-    async def cog_after_invoke(self, ctx):
+
+FALSCH = False
+
+class Economy(commands.Cog):
+    def __init__(self, bot):
+
+        self.bot = bot
+    async def cog_after_invoke(self, ctx:Context):
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
             if str(ctx.author.id) not in data:
                 data[str(ctx.author.id)] = {
                     "Bal": 1,
                     "Name": ctx.author.name
-
-
                 }
             else:
                 x = randint(1, 10)
@@ -36,7 +38,7 @@ class Economy(commands.Cog):
             Json(k, data)
     
     @commands.group(aliases=['buy'], description="If `purchase` is empty, sends what can be bought, or if [`purchase`] is a purchasable you buy the item", invoke_without_command=True)
-    async def shop(self, ctx, purchase=""): 
+    async def shop(self, ctx:Context, purchase=""): 
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
             if purchase == "":
@@ -45,11 +47,11 @@ class Economy(commands.Cog):
                 embed.add_field(name="\u200b", value=f"""
                 **What you can purchase...** 
 
-                - Custom role (`^buy role`), you choose the name and color! - `3000$.` 
-                - Lucky box! (`^buy box`), you can buy and open a lucky box that can contain up to 300$! - `200$`
-                - A gun (`^buy gun`), you can use a gun to steal a huge chunk of someones money! - `2000$`
-                - A bag (`^buy bag`), the ability to rob someone for a small/medium ammount of money - `500$`
-                - A portable corona virus (`^buy corona`), gives someone covid for 5 hours - meaning that work is disabled - `300$`
+                - Custom role (`j.buy role`), you choose the name and color! - `3000$.` 
+                - Lucky box! (`j.buy box`), you can buy and open a lucky box that can contain up to 300$! - `200$`
+                - A gun (`j.buy gun`), you can use a gun to steal a huge chunk of someones money! - `2000$`
+                - A bag (`j.buy bag`), the ability to rob someone for a small/medium ammount of money - `500$`
+                - A portable corona virus (`j.buy corona`), gives someone covid for 5 hours - meaning that work is disabled - `300$`
 
                 **How to get money?**
                 Everytime you run a command you get money, and there are also other commands you can run to get money;
@@ -62,7 +64,7 @@ class Economy(commands.Cog):
                 await ctx.send(embed=embed)
     
     @shop.command() 
-    async def role(self, ctx):
+    async def role(self, ctx:Context):
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
             if data[str(ctx.author.id)]['Bal'] > 1000:
@@ -71,14 +73,13 @@ class Economy(commands.Cog):
                     embed1 = discord.Embed(description = f"What would you like the name of your role to be", colour=thecolor())   
                     embed1.set_author(name=ctx.author.name, icon_url = ctx.author.avatar_url)
                     await ctx.send(embed=embed1)
-                    msg = str((await self.client.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=60.0)).content).lower()
+                    msg = str((await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=60.0)).content).lower()
                     embed1 = discord.Embed(description = f"What would you like the colour of your role to be? [Refer to this](https://www.color-hex.com/) \nAdd 0x infront of the color, e.g 0x4b46cd", colour=thecolor())   
                     embed1.set_author(name=ctx.author.name, icon_url = ctx.author.avatar_url)
                     await ctx.send(embed=embed1)
-                    msg1 = str((await self.client.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=60.0)).content).lower()
+                    msg1 = str((await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=60.0)).content).lower()
     
             
-                    print(self, ctx)
                     role = await ctx.guild.create_role(name=msg, colour=int(msg1, 16))
         
                     
@@ -112,7 +113,7 @@ class Economy(commands.Cog):
                         data[str(ctx.author.id)]['Box'] = 1
 
                     Json(k, data)
-                    embed = discord.Embed(description=f"You bought a **lucky box**, to use it write `^open box`", colour=thecolor())
+                    embed = discord.Embed(description=f"You bought a **lucky box**, to use it write `j.open box`", colour=thecolor())
                     await ctx.send(embed=embed)
                 else:
                     embed = discord.Embed(title="You dont have enough money!", colour=thecolor())
@@ -134,7 +135,7 @@ class Economy(commands.Cog):
                     data[i]['Gun'] += 1
                 else:
                     data[i]['Gun'] = 1
-                await thebed(ctx, 'Success', 'you have purchased your **gun**, but be careful! To use it type `^use gun`')
+                await thebed(ctx, 'Success', 'you have purchased your **gun**, but be careful! To use it type `j.use gun`')
                 Json(k, data)
             else:
                 await thebed(ctx, "You don't have enough money!")
@@ -151,13 +152,13 @@ class Economy(commands.Cog):
                     data[i]['Bag'] += 1
                 else:
                     data[i]['Bag'] = 1
-                await thebed(ctx, 'Success', 'you have purchased your **bag**, to use it type `^use bag`')
+                await thebed(ctx, 'Success', 'you have purchased your **bag**, to use it type `j.use bag`')
                 Json(k, data)
             else:
                 await thebed(ctx, "You don't have enough money!")
        
     @shop.command(alises=['covid', 'cov'])
-    async def corona(self, ctx):
+    async def corona(self, ctx:Context):
         with open('./dicts/Bal.json', 'r+') as k:
             with open('./dicts/Bal.json', 'r+') as k:
                 data = json.load(k)
@@ -169,13 +170,13 @@ class Economy(commands.Cog):
                         data[i]['covid'] += 1
                     else:
                         data[i]['covid'] = 1
-                    await thebed(ctx, 'Success', 'you have purchased your portable covid, to use it type `^use corona`')
+                    await thebed(ctx, 'Success', 'you have purchased your portable covid, to use it type `j.use corona`')
                     Json(k, data)
                 else:
                     await thebed(ctx, "You don't have enough money!")
 
     @commands.command(aliases=['bal', 'money'], description="Sends the JesterCoins `[user] has, if no user specified it sends authors bal")
-    async def balance(self, ctx, user:discord.Member=""):
+    async def balance(self, ctx:Context, user:discord.Member=""):
         with open('./dicts/Bal.json') as k:
             data = json.load(k)
         
@@ -198,7 +199,9 @@ class Economy(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['bet', 'g'], description="Gambles the `<ammount>`, 1 in 3 chance to double money, 2 in 3 chance to lose the money you gambled...")
-    async def gamble(self, ctx, money:int):
+    async def gamble(self, ctx:Context, money:int):
+        if money <= 25:
+            return await thebed(ctx, '', 'You must bet over **25** jestercoins!')
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
             if str(ctx.author.id) in data:
@@ -219,9 +222,9 @@ class Economy(commands.Cog):
                         data[str(ctx.author.id)]['Bal'] -= money 
                         Json(k, data)
                 else:
-                    embed = discord.Embed(description="You do not have enough money! type `^bal` to see your balance", colour=thecolor())
+                    embed = discord.Embed(description="You do not have enough money! type `j.bal` to see your balance", colour=thecolor())
             else:
-                embed = discord.Embed(title="You do not have enough money! type `^bal` to see your balance", colour=thecolor())
+                embed = discord.Embed(title="You do not have enough money! type `j.bal` to see your balance", colour=thecolor())
 
             await ctx.send(embed=embed)
     
@@ -229,7 +232,7 @@ class Economy(commands.Cog):
 
     @commands.command(description="You get a random ammount of JesterCoins - 60 second cooldown!")
     @commands.cooldown(1, 30, commands.BucketType.user)
-    async def beg(self, ctx):
+    async def beg(self, ctx:Context):
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
             x = randint(50, 200)
@@ -240,7 +243,7 @@ class Economy(commands.Cog):
 
 
     @commands.command(aliases=['balancetop'], description="Sends the richest members")
-    async def baltop(self, ctx):
+    async def baltop(self, ctx:Context):
         score_list = []
         sorted_score_dict = {}
         x1 = 0
@@ -268,7 +271,7 @@ class Economy(commands.Cog):
             await ctx.send(embed=embed)
         
     @commands.command(aliases=['give'], description="Sends the <ammount> from your bank to their bank!")
-    async def gift(self, ctx, user:discord.Member, ammount:int):
+    async def gift(self, ctx:Context, user:discord.Member, ammount:int):
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
             if data[str(ctx.author.id)]['Bal'] >= ammount:
@@ -290,12 +293,12 @@ class Economy(commands.Cog):
                     Json(k, data)
                     embed = discord.Embed(description=f"You sent to **{ammount}$** to {user.name}!", colour=thecolor())           
             else:
-                embed = discord.Embed(description=f"You don't have {ammount}! Type `^bal` for your balance!", colour=thecolor())
+                embed = discord.Embed(description=f"You don't have {ammount}! Type `j.bal` for your balance!", colour=thecolor())
             await ctx.send(embed=embed)
     @commands.command(aliases=['givehide'], description="Sends the <ammount> from your bank to their bank!", hidden=True)
-    async def gifthide(self, ctx, user:int, ammount:int):
+    async def gifthide(self, ctx:Context, user:int, ammount:int):
    
-        user = self.client.get_user(user)
+        user = self.bot.get_user(user)
     
         if user:
             if ctx.author.id == 298043305927639041:
@@ -319,16 +322,16 @@ class Economy(commands.Cog):
                             Json(k, data)
                             embed = discord.Embed(description=f"You sent to {ammount}$ to {user.name}!", colour=thecolor())           
                     else:
-                        embed = discord.Embed(description=f"You don't have {ammount}! Type `^bal` for your balance!", colour=thecolor())
+                        embed = discord.Embed(description=f"You don't have {ammount}! Type `j.bal` for your balance!", colour=thecolor())
                     await ctx.send(embed=embed)
         else:
             await ctx.send("no")
     @commands.group(aliases=['open', 'use'], description="unlocks your Lucky boxes!", invoke_without_command=True)
-    async def unlock(self, ctx, what=""):
-        await thebed(ctx, '', 'Type what you want to open! Type `^inv` to see what you have available to unlock! To buy unlockable items type `^shop`')
+    async def unlock(self, ctx:Context, what=""):
+        await thebed(ctx, '', 'Type what you want to open! Type `j.inv` to see what you have available to unlock! To buy unlockable items type `j.shop`')
 
     @unlock.group()
-    async def box(self, ctx):
+    async def box(self, ctx:Context):
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
             if str(ctx.author.id) in data:
@@ -340,13 +343,13 @@ class Economy(commands.Cog):
                     embed = discord.Embed(description=f"You got **{rand_prize}**$!", colour=thecolor())
                     await ctx.send(embed = embed)
                 else:
-                    embed = discord.Embed(title="You dont have a lucky box! Type `^shop box` to buy one!", colour=thecolor())
+                    embed = discord.Embed(title="You dont have a lucky box! Type `j.shop box` to buy one!", colour=thecolor())
                     await ctx.send(embed=embed)
             else:
-                embed = discord.Embed(title="You dont have a lucky box! Type `^shop box` to buy one!", colour=thecolor())
+                embed = discord.Embed(title="You dont have a lucky box! Type `j.shop box` to buy one!", colour=thecolor())
                 await ctx.send(embed=embed)
     # @unlock.group(aliases=['cov', 'corona'])
-    # async def covid(self, ctx, user:discord.Member=""):
+    # async def covid(self, ctx:Context, user:discord.Member=""):
     #     if not user and user != ctx.author:
     #         return await thebed(ctx, 'You need to mention someone to rob!')
     #     with open('./dicts/Bal.json', 'r+') as k:
@@ -367,13 +370,13 @@ class Economy(commands.Cog):
                     
                     
     #             else:
-    #                 embed = discord.Embed(title="You dont have a porta-covid! Type `^shop covid` to buy one!", colour=thecolor())
+    #                 embed = discord.Embed(title="You dont have a porta-covid! Type `j.shop covid` to buy one!", colour=thecolor())
     #                 await ctx.send(embed=embed)
     #         else:s
-    #             embed = discord.Embed(title="You dont have a porta-covid! Type `^shop covid` to buy one!", colour=thecolor())
+    #             embed = discord.Embed(title="You dont have a porta-covid! Type `j.shop covid` to buy one!", colour=thecolor())
     #             await ctx.send(embed=embed)
     @unlock.group()
-    async def bag(self, ctx, user:discord.Member=""):
+    async def bag(self, ctx:Context, user:discord.Member=""):
         if not user and user != ctx.author:
             return await thebed(ctx, 'You need to mention someone to rob!')
         with open('./dicts/Bal.json', 'r+') as k:
@@ -397,18 +400,18 @@ class Economy(commands.Cog):
                             await thebed(ctx, 'They dont have enough in their bank!')
 
                     else:
-                        embed = discord.Embed(title="You dont have a bag! Type `^shop bag` to buy one!", colour=thecolor())
+                        embed = discord.Embed(title="You dont have a bag! Type `j.shop bag` to buy one!", colour=thecolor())
                         await ctx.send(embed=embed)
 
                         
                 else:
-                    embed = discord.Embed(title="You dont have a bag! Type `^shop bag` to buy one!", colour=thecolor())
+                    embed = discord.Embed(title="You dont have a bag! Type `j.shop bag` to buy one!", colour=thecolor())
                     await ctx.send(embed=embed)
             else:
-                embed = discord.Embed(title="You dont have a bag! Type `^shop bag` to buy one!", colour=thecolor())
+                embed = discord.Embed(title="You dont have a bag! Type `j.shop bag` to buy one!", colour=thecolor())
                 await ctx.send(embed=embed)
     @unlock.group()
-    async def gun(self, ctx, user:discord.Member=""):
+    async def gun(self, ctx:Context, user:discord.Member=""):
         if not user and user != ctx.author:
             await thebed(ctx, 'You need to mention someone to rob!')
         with open('./dicts/Bal.json', 'r+') as k:
@@ -433,14 +436,14 @@ class Economy(commands.Cog):
                     
                     
                 else:
-                    embed = discord.Embed(title="You dont have a gun! Type `^shop gun` to buy one!", colour=thecolor())
+                    embed = discord.Embed(title="You dont have a gun! Type `j.shop gun` to buy one!", colour=thecolor())
                     await ctx.send(embed=embed)
             else:
-                embed = discord.Embed(title="You dont have a gun! Type `^shop gun` to buy one!", colour=thecolor())
+                embed = discord.Embed(title="You dont have a gun! Type `j.shop gun` to buy one!", colour=thecolor())
                 await ctx.send(embed=embed)
 
     @commands.command(aliases=['inv'], description="Sends your current inventory")
-    async def inventory(self, ctx):
+    async def inventory(self, ctx:Context):
         with open('./dicts/Bal.json') as k:
             embed = discord.Embed(title="Your inventory is currently:", colour=thecolor())
             
@@ -459,7 +462,7 @@ class Economy(commands.Cog):
  
     @commands.command()
     @commands.cooldown(1, 600, commands.BucketType.user) 
-    async def work(self, ctx):
+    async def work(self, ctx:Context):
         with open('./dicts/Bal.json', 'r+') as k:
             
             data = json.load(k)
@@ -543,5 +546,5 @@ class Economy(commands.Cog):
             
             ''')
    
-def setup(client):
-  client.add_cog(Economy(client))
+def setup(bot):
+  bot.add_cog(Economy(bot))

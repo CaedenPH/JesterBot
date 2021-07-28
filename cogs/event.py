@@ -1,42 +1,34 @@
-import discord, os, requests, json, asyncio
+import discord, os, requests, json, asyncio, traceback
 from async_timeout import timeout
 from random import choice, randint
-from dutils import thecolor, Json, thebed
+from core.utils.utils import thecolor, Json, thebed
+from core.Context import Context
+
 from dislash import SlashClient, ActionRow, Button
 from discord.ext import commands
 import datetime
 
    
 class Event(commands.Cog):
-    def __init__(self, client):
+    def __init__(self, bot):
 
-        self.client = client
+        self.bot = bot
        
     @commands.Cog.listener()
-    async def on_ready(self):
-
-        slash = SlashClient(self.client)
-        
-        guild_ids = []
-        for guild1 in self.client.guilds:
-            guild_ids.append(guild1.id)
-
-        selected_channel = self.client.get_guild(830161446523371540).get_channel(830161446523371545)
-        await self.client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"pings for prefix // {len(self.client.guilds)} servers"))
-        self.client.launch_time = datetime.datetime.utcnow()
-        self.client.chan = selected_channel
-        self.client.discordcolor = 0x36393F
-
-    @commands.Cog.listener()
     async def on_guild_join(self, guild):
-        e = self.client.get_emoji(863313854150606848)
-        j = self.client.get_emoji(863313855286607932)
-        s = self.client.get_emoji(863313855061164062)
-        r = self.client.get_emoji(863313855119360022)
-        t = self.client.get_emoji(863313855399329812)
+        chan = choice(guild.text_channels)
+        invite = await chan.create_invite()
+        selected_channel1 = self.bot.get_guild(830161446523371540).get_channel(865309892776951808)
+        print('I have joined', guild.name + '. Here is the invite: ', invite)
+        await selected_channel1.send(f'I have joined {guild.name}. Here is the invite: {invite}')
+        e = self.bot.get_emoji(863313854150606848)
+        j = self.bot.get_emoji(863313855286607932)
+        s = self.bot.get_emoji(863313855061164062)
+        r = self.bot.get_emoji(863313855119360022)
+        t = self.bot.get_emoji(863313855399329812)
         embed = discord.Embed(title=f"{j}{e}{s}{t}{e}{r}", description=f"""
-        │ **My prefix is:** `^`, `.` │
-        │ Type `^server_prefix <prefix>, [prefix], etc` 
+        │ **My prefix is:** `j.` │
+        │ Type `j.server_prefix <prefix>, [prefix], etc` 
         to change the prefix for the server │
         
         """, colour=thecolor())
@@ -46,189 +38,27 @@ class Event(commands.Cog):
         foxupdate = (fox["setup"]) 
         foxupdatey = (fox["punchline"])
         embed.add_field(name="Here is a joke for you:", value=f"│ {foxupdate} ... {foxupdatey} │", inline=False)
-        embed.set_footer(text="You can get more of these jokes with ^joke!")
+        embed.set_footer(text="You can get more of these jokes with j.joke!")
+        names = ['general', 'genchat', 'generalchat', 'general-chat', 'general-talk', 'gen', 'talk', 'general-1', '🗣general-chat','🗣', '🗣general']
+        for k in guild.text_channels:
+            if k.name in names:
+                return await k.send(embed=embed)
         await guild.system_channel.send(embed=embed)
-        chan = choice(guild.text_channels)
-        invite = await chan.create_invite()
-        selected_channel1 = self.client.get_guild(830161446523371540).get_channel(865309892776951808)
-        print('I have joined', guild.name + '. Here is the invite: ', invite)
-        await selected_channel1.send(f'I have joined {guild.name}. Here is the invite: {invite}')
+        
    
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
         pass
-    @commands.Cog.listener()
-    async def on_guild_remove(self, guild):
-        selected_channel1 = self.client.get_guild(830161446523371540).get_channel(865309892776951808)
-        
-        await selected_channel1.send(f'I have left {guild.name}.')
+    
 
     @commands.Cog.listener()
     async def on_reaction_add(self, reaction, user):
-        if reaction.emoji == "🥵" and reaction.message.author == self.client.user:
+        if reaction.emoji == "🥵" and reaction.message.author == self.bot.user:
             await reaction.message.delete()
             
-
-    @commands.Cog.listener()
-    async def on_command_error(self, ctx, error):
-        if isinstance(error, commands.MissingPermissions):
-            embed = discord.Embed(description="You do not have permissions to do that!", colour=thecolor())
-            await ctx.send(embed=embed)
-        elif isinstance(error, AttributeError):
-            pass
-        elif isinstance(error, commands.CheckFailure):
-            pass
-        
-        elif isinstance(error, commands.MissingRequiredArgument):
-            com = str(ctx.command.signature)
-            x = com.split(f"{error.param.name}")
-            y = ""
-            z = "  "
-            for k in str(ctx.command):
-                z += " "
-            for e in error.param.name:
-                y += "^"
-            
-            
-            for k in range(0, len(x[0])):
-                z += " "
-            
-            embed = discord.Embed(title=f"<{error.param.name}>  is missing:", description=f"```^{ctx.command} {ctx.command.signature}\n{z}{y}```", colour=thecolor())
-            embed.set_footer(text="<> = needed │ [] = not needed")
-            await ctx.send(embed=embed)
-
-        elif isinstance(error, commands.CommandNotFound):
-            with open('./dicts/Suggest.json') as l:
-                data = json.load(l)
-                if str(ctx.channel.id) in data and data[str(ctx.channel.id)]['Yes'] == True:
-                    return   
-            try:
-                y = []
-                content = ctx.message.content
-                content_replace = content.replace(ctx.prefix, '')
-            
-                for cmd in self.client.commands:
-            
-                    if  cmd.name[:1] == content_replace[:1]:
-                        
-                        if cmd.hidden:
-                            pass
-                        else:
-
-                            if len(y) == 5:
-                                y.append(f"`{cmd.name}`---")
-                            else:
-                                y.append(f"`{cmd.name}`")
-                my_string = ""
-                n = 0
-                for string in y:
-                
-                    my_string += f" \n - {str(string)}"
-            
-                
-                num = 1
-                my_string = my_string.split("---")
-
-            
-                embed = discord.Embed(title="Error!", colour=thecolor())
-                embed.set_author(icon_url=ctx.author.avatar_url, name=f"{ctx.message.content} is not a command!")
-                
-                if my_string[0] not in [""]:
-
-                    embed.add_field(name="Did you mean:", value=f"{my_string[0]}")
-                    
-                msg = await ctx.send(embed=embed)
-                def check(e, u):
-                    return u == ctx.author and e.message.id==msg.id
-
-                    
-                if len(my_string) >= 2:
-                    if my_string[1] != "":
-
-                        await msg.add_reaction("⬅")
-                        await msg.add_reaction("➡")
-                        await msg.add_reaction("⛔")
-                        try:
-                            emoji, user = await self.client.wait_for('reaction_add', timeout=60.0, check=check)
-                            
-                            
-                            while emoji.emoji != "⛔":
-                                if emoji.emoji == "➡" and num == 1:
-                            
-                                    embed = discord.Embed(title="Error!", colour=thecolor())
-                                    embed.set_author(icon_url=ctx.author.avatar_url, name=f"{ctx.message.content} is not a command!")
-                                    embed.add_field(name="Did you mean:", value=f"{my_string[1]}")
-                                    embed.set_footer(text="Page 2")
-                                    await msg.edit(embed=embed)
-                                    await msg.remove_reaction(member=ctx.author, emoji="➡")
-                                    num = 2
-
-                                elif emoji.emoji == "⬅" and num == 2:
-                                    embed = discord.Embed(title="Error!", colour=thecolor())
-                                    embed.set_author(icon_url=ctx.author.avatar_url, name=f"{ctx.message.content} is not a command!")
-                                    embed.add_field(name="Did you mean:", value=f"{my_string[0]}")
-                                    embed.set_footer(text="Page 1")
-                                    await msg.edit(embed=embed)
-                                    await msg.remove_reaction(member=ctx.author, emoji="⬅")
-                                    num = 1
-                                else:
-                                    await msg.remove_reaction(member=ctx.author, emoji="➡")
-                                    await msg.remove_reaction(member=ctx.author, emoji="⬅")
-
-                                emoji, user = await self.client.wait_for('reaction_add', timeout=60.0, check=lambda r, u: u == ctx.author)
-                            else:
-                                embed = discord.Embed(title="Error!", description="Goodbye", colour=thecolor())
-                                embed.set_author(icon_url=ctx.author.avatar_url, name=f"{ctx.message.content} is not a command!")
-                                embed.set_footer(text="Have fun!")
-                                return await msg.edit(embed=embed)
-                                
-                        except asyncio.TimeoutError:
-                            embed = discord.Embed(title="Error!", description="Session timed out", colour=thecolor())
-                            embed.set_author(icon_url=ctx.author.avatar_url, name=f"{ctx.message.content} is not a command!")
-                            embed.set_footer(text="Have fun!")
-                            return await msg.edit(embed=embed)
-                
-            except:
-                pass
-        elif isinstance(error, commands.MemberNotFound):
-            embed = discord.Embed(description=f"They are not a **member!**", colour=thecolor())
-            await ctx.send(embed=embed)
-        elif isinstance(error, commands.RoleNotFound):
-            embed = discord.Embed(description=f"That is not a **role!**", colour=thecolor())
-            await ctx.send(embed=embed)
-        
-        elif isinstance(error, commands.CommandOnCooldown):
-            embed = discord.Embed(description=f'This command is on cooldown for **{error.retry_after:.2f}** seconds', colour=thecolor())
-            await ctx.send(embed=embed)
-        else:
-            k = open('./dicts/Errors.json', 'r+')
-            data = json.load(k) 
-            num = str(len(data))
-            
-            data[num] = {'author': ctx.author.name, 'id': ctx.author.id, 'error': str(error), 'error_dir': str(dir(error)), 'command': ctx.command.name}
-            Json(k, data)
-            await thebed(self.client.chan, f'{ctx.guild}; {ctx.author}; {ctx.command.name}', error)
-            await thebed(ctx, '', error)
-            
-            
-    
-    @commands.Cog.listener()
-    async def on_raw_reaction_add(self, payload):
-        if payload.member.bot:
-            pass
-        else:
-            with open('./dicts/Reactionrole.json') as react:
-                data = json.load(react)
-                for x in data:
-                
-                    if data[x]['emoji'] == payload.emoji.name and data[x]['message_id'] == payload.message_id:
-                        role = discord.utils.get(client.get_guild(payload.guild_id).roles, id=data[x]['role_id'])
-                        await payload.member.add_roles(role)
-
-
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        await self.client.wait_until_ready()
+        await self.bot.wait_until_ready()
         
         x = 0
         with open('./dicts/VerifyChannel.json') as k:
@@ -261,7 +91,7 @@ class Event(commands.Cog):
                                 channel = member.guild.get_channel(loaded[str(member.guild.id)]["channel_id"])
                                 msg = await channel.send(f"{member.mention}")
                                 await msg.delete()
-                                embed = discord.Embed(title=f"Welcome!", description=f"{member.mention} don't forget to type `^rules` to see the rules for the server, but most of all dont forget to have fun at {member.guild}!", colour=thecolor())
+                                embed = discord.Embed(title=f"Welcome!", description=f"{member.mention} don't forget to type `j.rules` to see the rules for the server, but most of all dont forget to have fun at {member.guild}!", colour=thecolor())
                                 
                                 embed.set_image(url=f"{member.guild.icon_url}") 
                                 embed.set_author(name=f"{member.name}", icon_url=f"{member.avatar_url}")
@@ -300,20 +130,18 @@ class Event(commands.Cog):
             
             if str(after) != str(before):
                 await after.channel.clone(name=f'{member}-channel')
-                channel = discord.utils.get(self.client.get_all_channels(), name = f"{member}-channel") 
+                channel = discord.utils.get(self.bot.get_all_channels(), name = f"{member}-channel") 
                 guild = member.guild
                 await channel.set_permissions(guild.default_role, view_channel=False)
                 
                 await member.move_to(channel)
                 
-                
-                    
         
     @commands.Cog.listener()
     async def on_message(self, message):
         if not message.guild:
             return
-        await self.client.wait_until_ready()
+        await self.bot.wait_until_ready()
         
         zx = False
 
@@ -362,7 +190,7 @@ class Event(commands.Cog):
                                             channel = message.guild.get_channel(weldata[str(message.guild.id)]["channel_id"])
                                             msg = await channel.send(f"{message.author.mention}")
                                             await msg.delete()
-                                            embed = discord.Embed(title=f"Welcome!", description=f"{message.author.mention} don't forget to type `^rules` to see the rules for the server, but most of all dont forget to have fun at {message.guild}!", colour=thecolor())
+                                            embed = discord.Embed(title=f"Welcome!", description=f"{message.author.mention} don't forget to type `j.rules` to see the rules for the server, but most of all dont forget to have fun at {message.guild}!", colour=thecolor())
 
                                             embed.set_thumbnail(url=f"{message.guild.icon_url}") 
                                             embed.set_image(url='https://cdn.discordapp.com/attachments/847528639125258322/855559791384592404/360_F_361521131_tvclR3GrsVQBFVsUe1EPNFgH2MWIN1w7.png')
@@ -371,7 +199,7 @@ class Event(commands.Cog):
                                             await channel.send(embed=embed)
                                         
                                         else:
-                                            channel = member.guild.get_channel(weldata[str(message.guild.id)]["channel_id"])
+                                            channel = self.bot.get_channel(weldata[str(message.guild.id)]["channel_id"])
                                             await channel.send(f"{weldata[str(message.guild.id)]['message']}")
                                     
                                 else:
@@ -386,23 +214,23 @@ class Event(commands.Cog):
                         
                 
 
-        with open('./dicts/Server.json', 'r+') as l:
-            data = json.load(l)
-            if message.author.id != 828363172717133874: 
-                if str(message.guild.id) not in data:
-                    data[str(message.guild.id)] = {
-                        "Score": 1
+        # with open('./dicts/Server.json', 'r+') as l:
+        #     data = json.load(l)
+        #     if message.author.id != 828363172717133874: 
+        #         if str(message.guild.id) not in data:
+        #             data[str(message.guild.id)] = {
+        #                 "Score": 1
 
 
-                    }
-                else:
-                    data[str(message.guild.id)]['Score'] += 1
+        #             }
+        #         else:
+        #             data[str(message.guild.id)]['Score'] += 1
                 
-                l.seek(0)
-                l.truncate(0)
-                l.write(json.dumps(data, indent=4))
+        #         l.seek(0)
+        #         l.truncate(0)
+        #         l.write(json.dumps(data, indent=4))
 
-        us = self.client.user
+        us = self.bot.user
         for item in ('Jesterbot', 'JesterBot', 'jesterbot'):
             if item in message.content:
 
@@ -416,7 +244,7 @@ class Event(commands.Cog):
                     return u == message.author and e.message.id==message.id
                 try:
 
-                    emoji, user = await self.client.wait_for('reaction_add', timeout=30.0, check=check)
+                    emoji, user = await self.bot.wait_for('reaction_add', timeout=30.0, check=check)
                     while emoji.emoji not in ["👎"]:
                         async with message.channel.typing():
                             x = []
@@ -424,13 +252,13 @@ class Event(commands.Cog):
                             fox = response.json()
                             foxupdate = (fox["setup"]) 
                             foxupdatey = (fox["punchline"])
-                            prefix = await self.client.get_prefix(message)
+                            prefix = await self.bot.get_prefix(message)
                             for pref in prefix:
                                 x.append(f"`{pref}`")
                             embed = discord.Embed(title=f"Hello {message.author.name}", description=f"""
-                            │ My default prefix is: `^`, `.` │
+                            │ My default prefix is: `j.` │
                             │ My prefix for you is: {', '.join(x)} │ 
-                            │ Type `^prefix <prefix> [prefix], [prefix], etc` to change the prefix for you! │
+                            │ Type `j.prefix <prefix> [prefix], [prefix], etc` to change the prefix for you! │
                             
                             
                             
@@ -438,12 +266,12 @@ class Event(commands.Cog):
                             embed.set_author(name="JesterBot", icon_url=us.avatar_url)
                     
                             embed.add_field(name="Also here is a joke for you:", value=f"│ {foxupdate} ... {foxupdatey} │", inline=False)
-                            embed.set_footer(text="You can get more of these jokes with ^joke!")
+                            embed.set_footer(text="You can get more of these jokes with j.joke!")
                     
                         msg12 = await message.channel.send(embed=embed)
                         num = 2 
                         await message.remove_reaction(member=message.author, emoji="👍")
-                        emoji, user = await self.client.wait_for('reaction_add', timeout=30.0, check=check)
+                        emoji, user = await self.bot.wait_for('reaction_add', timeout=30.0, check=check)
                     
                     else:
                         if num == 2:
@@ -457,7 +285,7 @@ class Event(commands.Cog):
 
         if message.mentions:
             
-            if self.client.user in message.mentions:
+            if self.bot.user in message.mentions:
                 if message.reference:
                     return
                 async with message.channel.typing():
@@ -467,11 +295,11 @@ class Event(commands.Cog):
                     foxupdatey = (fox["punchline"])
 
                     x = []
-                    prefix = await self.client.get_prefix(message)
+                    prefix = await self.bot.get_prefix(message)
                     for pref in prefix:
                         x.append(f"`{pref}`")
                     embed = discord.Embed(title=f"Hello {message.author.name}", description=f"""
-                    │ My default prefix is: `^`, `.` │
+                    │ My default prefix is: `j.` │
                     │ My prefix for you is: {', '.join(x)} │ 
                     │ Type `.prefix <prefix> [prefix], [prefix], etc` to change the prefix for you! │
                     
@@ -485,5 +313,5 @@ class Event(commands.Cog):
                 return await message.channel.send(embed=embed)
 
             
-def setup(client):
-  client.add_cog(Event(client))
+def setup(bot):
+  bot.add_cog(Event(bot))

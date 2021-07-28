@@ -1,0 +1,10 @@
+{
+    "hi": {
+        "code": "async def hi(ctx):\n    await ctx.send('hi')",
+        "makecmd": "@client.command"
+    },
+    "test": {
+        "code": "await ctx.send('hi')",
+        "makecmd": "@client.command()\nasync def test(ctx):"
+    }
+}

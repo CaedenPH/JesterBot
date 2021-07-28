@@ -5,7 +5,9 @@ from async_timeout import timeout
 from random import choice, randint
 from discord.ext.buttons import Paginator
 from datetime import datetime
-from dutils import thecolor, Json, thebed
+from core.utils.utils import thecolor, Json, thebed
+from core.Context import Context
+
 
 class Pag(Paginator):
     async def teardown(self):
@@ -15,26 +17,26 @@ class Pag(Paginator):
             pass
 
 class Mod(commands.Cog):
-    def __init__(self, client):
+    def __init__(self, bot):
         
-        self.client = client
+        self.bot = bot
         
 
     @has_permissions(administrator=True)
     @commands.command(aliases=['del', 'deletes'], description="Deletes the specified channel, if no channel is specified - the current channel. Sends a warning.")
-    async def delete(self, ctx, channel_id:int=""):
+    async def delete(self, ctx:Context, channel_id:int=""):
         embed = discord.Embed(title=f"This will delete the current channel, are you sure you want to procede? Type y if you do", colour=thecolor())
         await ctx.send(embed=embed)
-        msg = str((await self.client.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)).content).lower()
+        msg = str((await self.bot.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)).content).lower()
         if msg == "y":
             
             if channel_id == "":
                 
-                await self.client.get_channel(self, ctx.channel.id).delete()
+                await self.bot.get_channel(self, ctx.channel.id).delete()
                 
             else:
                 
-                x = await self.client.get_channel(channel_id).delete()
+                x = await self.bot.get_channel(channel_id).delete()
                 embed = discord.Embed(title=f"{x} got deleted", colour=thecolor())
                 await ctx.send(embed=embed)
         else:
@@ -43,7 +45,7 @@ class Mod(commands.Cog):
         
     @has_permissions(administrator=True)
     @commands.command(aliases=['nicks'], hidden=True)
-    async def nick(self, ctx, member: discord.Member, *, nick):
+    async def nick(self, ctx:Context, member: discord.Member, *, nick):
 
         await member.edit(nick=nick)
         embed = discord.Embed(description=f'Nickname was changed for {member.mention} ', colour=thecolor())
@@ -51,15 +53,15 @@ class Mod(commands.Cog):
     
     @has_permissions(administrator=True)
     @commands.command(hidden=True, description="Deletes the specified invite", aliases=['deleteinv', 'invdelete', 'revokeinv', 'delinv', 'Invdel', 'Revinv', 'Invrev', 'Revokeinvite', 'Revoke_invite', 'xinv', 'X_inv', 'invitex', 'xinvite', 'Inv_x'])
-    async def delete_invite(self, ctx, invite:str):
+    async def delete_invite(self, ctx:Context, invite:str):
 
         embed = discord.Embed(title=f"Deleted invite", colour=thecolor())
         await ctx.send(embed=embed)
-        await self.client.delete_invite(invite)
+        await self.bot.delete_invite(invite)
 
     @has_permissions(manage_messages=True)
     @commands.command(name='purge', aliases=['Message_delete', 'Msg_Del'], description="Purges the ammount of messages sent")
-    async def _purge (self, ctx, amount=80):
+    async def _purge (self, ctx:Context, amount=80):
 
         await ctx.channel.purge(limit=amount)
         embed = discord.Embed(title='Purge Sucsessful', value=f'Purge has been sucsessful.', colour =thecolor())
@@ -68,7 +70,7 @@ class Mod(commands.Cog):
 
     @has_permissions(ban_members=True)
     @commands.command(aliases=['b', 'banhammer', 'bann'], description="Bans the specified member - Reason goes in the audit log")
-    async def ban(self, ctx,member : discord.Member,*, reason = "No reason provided"):
+    async def ban(self, ctx:Context,member : discord.Member,*, reason = "No reason provided"):
 
         await member.send("You have been banned: " + reason)
         await member.ban(reason=reason)
@@ -79,7 +81,7 @@ class Mod(commands.Cog):
 
     @has_permissions(ban_members=True)
     @commands.command(aliases=['ub', 'Revoke_Ban'], description="Unbans the specified member - Reason goes in the audit log")
-    async def unban(self, ctx, user_id: int, *, reason = "No reason provided"):
+    async def unban(self, ctx:Context, user_id: int, *, reason = "No reason provided"):
 
         user = await ctx.bot.fetch_user(user_id)
         await ctx.guild.unban(user, reason=reason)
@@ -90,7 +92,7 @@ class Mod(commands.Cog):
     
     @has_permissions(manage_roles=True)
     @commands.command(aliases=['add', '+role', 'add_role'])
-    async def addrole(self, ctx, member: discord.Member, role: discord.Role):
+    async def addrole(self, ctx:Context, member: discord.Member, role: discord.Role):
 
         await member.add_roles(role)
         embed = discord.Embed(title="Addrole", description=f"{member.mention} got a role.", colour=thecolor())
@@ -100,14 +102,14 @@ class Mod(commands.Cog):
         
     @has_permissions(move_members=True)
     @commands.command(aliases=['m', 'move'], description="Moves a member from their current vc to the channel specified. If no channel has been specified it will kick the member from the vc.")
-    async def move_to(self, ctx, member: discord.Member, channel: str): 
+    async def move_to(self, ctx:Context, member: discord.Member, channel: str): 
 
         await member.move_to(discord.utils.get(self, ctx.guild.voice_channels, name=channel))
         embed = discord.Embed(title="Moved", description=f"{member.mention} got moved. to {channel}", colour=thecolor())
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def deletemessages(self, ctx, user:discord.Member, limit=10):
+    async def deletemessages(self, ctx:Context, user:discord.Member, limit=10):
 
         embed = discord.Embed(title="Working....", color=thecolor())
         x = await ctx.send(embed=embed)
@@ -121,33 +123,33 @@ class Mod(commands.Cog):
 
 
     @commands.command(name='purgewithoutmessage', aliases=['purge1'], hidden=True)
-    async def _purge1 (self, ctx, amount=80, member:discord.Member=""):
+    async def _purge1 (self, ctx:Context, amount=80, member:discord.Member=""):
         await ctx.channel.purge(limit=amount)
 
     @has_permissions(administrator=True)
     @commands.command(description="Set the prefix for JesterBot for the entire server (personal prefix changes are not affected")
-    async def server_prefix(self, ctx, *, prefix=None):
+    async def server_prefix(self, ctx:Context, *, prefix=None):
         if not prefix:
             x = []
-            us = self.client.user
+            us = self.bot.user
             async with ctx.typing():
                 response = requests.get('https://official-joke-api.appspot.com/random_joke')
                 fox = response.json()
                 foxupdate = (fox["setup"]) 
                 foxupdatey = (fox["punchline"])
-                prefix = await self.client.get_prefix(ctx.message)
+                prefix = await self.bot.get_prefix(ctx.message)
                 for pref in prefix:
                     x.append(f"`{pref}`")
                 embed = discord.Embed(title=f"Hello {ctx.author.name}", description=f"""
-                │ My default prefix is: `^` │
+                │ My default prefix is: `j.`, `.` │
                 │ My prefix for you is: {', '.join(x)} │ 
-                │ Type `^prefix <prefix> [prefix], [prefix], etc` to change the prefix for you! │
+                │ Type `j.prefix <prefix> [prefix], [prefix], etc` to change the prefix for you! │
                 
                 """, colour=thecolor())
                 embed.set_author(name="JesterBot", icon_url=us.avatar_url)
         
                 embed.add_field(name="Also here is a joke for you:", value=f"│ {foxupdate} ... {foxupdatey} │", inline=False)
-                embed.set_footer(text="You can get more of these jokes with ^joke!")
+                embed.set_footer(text="You can get more of these jokes with j.joke!")
             return await ctx.send(embed=embed)
         prefix = prefix.split(" ")
        
@@ -172,20 +174,16 @@ class Mod(commands.Cog):
     
     @commands.command(aliases=['k'], description="Kicks the specified member - Reason goes in the audit log")
     @has_permissions(kick_members=True)
-    async def kick(self, ctx,member : discord.Member,*, reason = "No reason provided"):
-
-        if member.bot:
-            pass
-        else:
-            await member.send("You have been kicked: " + reason)
+    async def kick(self, ctx:Context,member : discord.Member,*, reason = "No reason provided"):
         await member.kick(reason=reason)
+        await member.send("You have been kicked: " + reason)
         embed = discord.Embed(title="Kicked", description=f"{member.mention}  got kicked.", colour=thecolor())
         embed.add_field(name="Reason:", value=reason)
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['permrmute'], description="Indefinitely permreactmutes the member from adding reactions to messages")
     @has_permissions(manage_messages=True)
-    async def permreactmute(self, ctx, member: discord.Member, *, reason=None):
+    async def permreactmute(self, ctx:Context, member: discord.Member, *, reason=None):
 
         guild = ctx.guild
         mutedRole = discord.utils.get(guild.roles, name="ReactMuted")
@@ -203,7 +201,7 @@ class Mod(commands.Cog):
 
     @commands.command(description="Indefinitely mutes the member from sending messages")
     @has_permissions(manage_messages=True)
-    async def permmute(self, ctx, member: discord.Member, *, reason=None):
+    async def permmute(self, ctx:Context, member: discord.Member, *, reason=None):
 
         guild = ctx.guild
         mutedRole = discord.utils.get(guild.roles, name="Muted")
@@ -221,7 +219,7 @@ class Mod(commands.Cog):
 
     @commands.command(aliases=['unrmute', 'runmute'], description="Unreactmutes `<member>`")
     @has_permissions(manage_messages=True)
-    async def unreactmute(self, ctx, member: discord.Member, *, reason=None):
+    async def unreactmute(self, ctx:Context, member: discord.Member, *, reason=None):
 
         guild = ctx.guild
 
@@ -241,7 +239,7 @@ class Mod(commands.Cog):
 
     @commands.command(aliases=['unmut'], description="Unmutes `<member>`")
     @has_permissions(manage_messages=True)
-    async def unmute(self, ctx, member: discord.Member, *, reason=None):
+    async def unmute(self, ctx:Context, member: discord.Member, *, reason=None):
 
         guild = ctx.guild
         Reactmuted = discord.utils.get(guild.roles, name="Muted")
@@ -260,7 +258,7 @@ class Mod(commands.Cog):
 
     @commands.command(aliases=['tempmute'], description="Mutes the member from sending messages for `<time>` Format `time` like `1s` (second), `1m` (minute), `1h`(hour), 1d` (day)")
     @has_permissions(manage_messages=True)
-    async def mute(self, ctx, member: discord.Member, time, *, reason=None):
+    async def mute(self, ctx:Context, member: discord.Member, time, *, reason=None):
 
         async with ctx.typing():
         
@@ -316,7 +314,7 @@ class Mod(commands.Cog):
 
     @commands.command(aliases=['rmute'], description="Reactmutes the member from adding reactions to messages for `<time>` Format `time` like `1s` (second), `1m` (minute), `1h`(hour), 1d` (day)")
     @has_permissions(manage_messages=True)
-    async def reactmute(self, ctx, member: discord.Member, time, *, reason="no reason"):
+    async def reactmute(self, ctx:Context, member: discord.Member, time, *, reason="no reason"):
 
         #Now timed mute manipulation
         try:
@@ -343,7 +341,7 @@ class Mod(commands.Cog):
         if not Muted:
             Muted = await guild.create_role(name="ReactMuted")
             for channel in guild.channels:
-                await channel.set_permissions(mutedRole, speak=False, send_messages=False, read_message_history=True, read_messages=False)
+                await channel.set_permissions(Muted, speak=False, send_messages=False, read_message_history=True, read_messages=False)
         await member.add_roles(Muted, reason=reason)
         muted_embed = discord.Embed(title="Muted a user", description=f"{member.mention} Was muted by {ctx.author.mention} for {reason} for {time}", colour=thecolor())
         await ctx.send(embed=muted_embed)
@@ -357,7 +355,7 @@ class Mod(commands.Cog):
 
     @has_permissions(administrator=True)
     @commands.command(aliases=['give_role', 'gv', 'give_rol'], description="Gives every member in the guild the specified role")
-    async def give_roles(self, ctx, role:discord.Role):
+    async def give_roles(self, ctx:Context, role:discord.Role):
 
         embed = discord.Embed(title="Working...", colour=thecolor())
         await ctx.send(embed=embed)
@@ -369,7 +367,7 @@ class Mod(commands.Cog):
 
 
     @commands.command(description="Sends a list of all the server roles and positions (hierachy)")
-    async def showroles(self, ctx):
+    async def showroles(self, ctx:Context):
 
         x = ""
         for role in ctx.guild.roles:
@@ -392,7 +390,7 @@ class Mod(commands.Cog):
             await pager.start(ctx)
 
     @commands.command(hidden=True)
-    async def showroleperm(self, ctx, roled="member"):
+    async def showroleperm(self, ctx:Context, roled="member"):
 
         role = discord.utils.get(self, ctx.guild.roles, name=roled)
         
@@ -404,7 +402,7 @@ class Mod(commands.Cog):
         await ctx.send(role.position)
 
     @commands.command()
-    async def showrolepermid(self, ctx, id1:int):
+    async def showrolepermid(self, ctx:Context, id1:int):
         x = []
         for role in ctx.guild.roles:
             x.append(role.position)
@@ -418,7 +416,7 @@ class Mod(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def position(self, ctx, member:discord.Member):
+    async def position(self, ctx:Context, member:discord.Member):
 
         x = []
         for role in member.roles:
@@ -430,9 +428,9 @@ class Mod(commands.Cog):
 
     
     @commands.command(hidden=True)
-    async def get_person(self, ctx, id1):
+    async def get_person(self, ctx:Context, id1):
         
-        x = self.client.get_user(id1)
+        x = self.bot.get_user(id1)
         await ctx.send(x.name)
 
    
@@ -440,5 +438,5 @@ class Mod(commands.Cog):
 
 
 
-def setup(client):
-  client.add_cog(Mod(client))
+def setup(bot):
+  bot.add_cog(Mod(bot))

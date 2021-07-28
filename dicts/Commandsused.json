@@ -1,0 +1,950 @@
+{
+    "flipcoin": {
+        "score": 11
+    },
+    "commands_used": {
+        "score": 26
+    },
+    "joke": {
+        "score": 155
+    },
+    "rand": {
+        "score": 4
+    },
+    "online": {
+        "score": 16
+    },
+    "command": {
+        "score": 70
+    },
+    "code": {
+        "score": 37
+    },
+    "coder": {
+        "score": 19
+    },
+    "invite": {
+        "score": 90
+    },
+    "help": {
+        "score": 1726
+    },
+    "jsonfile": {
+        "score": 19
+    },
+    "selfscore": {
+        "score": 11
+    },
+    "score": {
+        "score": 35
+    },
+    "welcome": {
+        "score": 24
+    },
+    "ping": {
+        "score": 141
+    },
+    "giveaway": {
+        "score": 17
+    },
+    "chantest": {
+        "score": 1
+    },
+    "Purge": {
+        "score": 26
+    },
+    "blackjack": {
+        "score": 176
+    },
+    "ping_jesus": {
+        "score": 10
+    },
+    "spamping": {
+        "score": 15
+    },
+    "close": {
+        "score": 20
+    },
+    "stats": {
+        "score": 24
+    },
+    "reactroles": {
+        "score": 60
+    },
+    "guessinggame": {
+        "score": 18
+    },
+    "testt": {
+        "score": 2
+    },
+    "suggest": {
+        "score": 120
+    },
+    "av": {
+        "score": 25
+    },
+    "rps": {
+        "score": 15
+    },
+    "Purge1": {
+        "score": 3
+    },
+    "calculator": {
+        "score": 199
+    },
+    "calc*": {
+        "score": 1
+    },
+    "squarerootcalc": {
+        "score": 1
+    },
+    "setprefix": {
+        "score": 2
+    },
+    "channel": {
+        "score": 5
+    },
+    "fetch_user": {
+        "score": 4
+    },
+    "prefix": {
+        "score": 167
+    },
+    "rpsfail": {
+        "score": 4
+    },
+    "version": {
+        "score": 15
+    },
+    "avatar": {
+        "score": 67
+    },
+    "nick": {
+        "score": 20
+    },
+    "leave": {
+        "score": 50
+    },
+    "purgewithoutmessage": {
+        "score": 70
+    },
+    "unban": {
+        "score": 3
+    },
+    "info": {
+        "score": 15
+    },
+    "l": {
+        "score": 29
+    },
+    "insult": {
+        "score": 76
+    },
+    "smack": {
+        "score": 49
+    },
+    "adjective": {
+        "score": 19
+    },
+    "disthem": {
+        "score": 59
+    },
+    "Chuck": {
+        "score": 3
+    },
+    "chuck": {
+        "score": 10
+    },
+    "avatarguild": {
+        "score": 6
+    },
+    "echo": {
+        "score": 66
+    },
+    "reverse": {
+        "score": 24
+    },
+    "update": {
+        "score": 107
+    },
+    "newup": {
+        "score": 56
+    },
+    "newver": {
+        "score": 10
+    },
+    "magik": {
+        "score": 13
+    },
+    "loop": {
+        "score": 15
+    },
+    "loopbreak": {
+        "score": 12
+    },
+    "stocks": {
+        "score": 90
+    },
+    "help command": {
+        "score": 1
+    },
+    "purge": {
+        "score": 71
+    },
+    "remove_welcome": {
+        "score": 7
+    },
+    "rr": {
+        "score": 7
+    },
+    "help russianroulette": {
+        "score": 4
+    },
+    "help loop": {
+        "score": 2
+    },
+    "tictactoe": {
+        "score": 3
+    },
+    "place": {
+        "score": 13
+    },
+    "hi": {
+        "score": 2
+    },
+    "help **": {
+        "score": 2
+    },
+    "squarecalc": {
+        "score": 1
+    },
+    "help stocks": {
+        "score": 3
+    },
+    "help calc": {
+        "score": 1
+    },
+    "calc+": {
+        "score": 2
+    },
+    "help joke": {
+        "score": 4
+    },
+    "fibinaci": {
+        "score": 18
+    },
+    "help fibinaci": {
+        "score": 2
+    },
+    "hello": {
+        "score": 16
+    },
+    "topcommands": {
+        "score": 41
+    },
+    "help avatar": {
+        "score": 2
+    },
+    "muterole": {
+        "score": 9
+    },
+    "mute": {
+        "score": 82
+    },
+    "reactmute": {
+        "score": 6
+    },
+    "unreactmute": {
+        "score": 24
+    },
+    "kick": {
+        "score": 49
+    },
+    "unmute": {
+        "score": 20
+    },
+    "tmute": {
+        "score": 23
+    },
+    "russianroulette": {
+        "score": 59
+    },
+    "lengthcommand": {
+        "score": 26
+    },
+    "help l": {
+        "score": 1
+    },
+    "poke": {
+        "score": 227
+    },
+    "hug": {
+        "score": 27
+    },
+    "help poke": {
+        "score": 1
+    },
+    "topmembers": {
+        "score": 12
+    },
+    "help //": {
+        "score": 1
+    },
+    "help rps": {
+        "score": 1
+    },
+    "admin": {
+        "score": 14
+    },
+    "help reactmute": {
+        "score": 1
+    },
+    "give_roles": {
+        "score": 14
+    },
+    "suggestchannel": {
+        "score": 35
+    },
+    "dice": {
+        "score": 18
+    },
+    "delsuggestchannel": {
+        "score": 4
+    },
+    "time": {
+        "score": 2
+    },
+    "shop": {
+        "score": 103
+    },
+    "showroles": {
+        "score": 40
+    },
+    "showroleperm": {
+        "score": 10
+    },
+    "showrolepermid": {
+        "score": 10
+    },
+    "mypos": {
+        "score": 9
+    },
+    "role": {
+        "score": 6
+    },
+    "bal": {
+        "score": 1
+    },
+    "gamble": {
+        "score": 103
+    },
+    "beg": {
+        "score": 51
+    },
+    "verifychannel": {
+        "score": 55
+    },
+    "delete": {
+        "score": 10
+    },
+    "balance": {
+        "score": 133
+    },
+    "is_role": {
+        "score": 7
+    },
+    "help random_num": {
+        "score": 1
+    },
+    "remove_roles": {
+        "score": 11
+    },
+    "help ping": {
+        "score": 1
+    },
+    "reload": {
+        "score": 3868
+    },
+    "pp": {
+        "score": 139
+    },
+    "newpp": {
+        "score": 302
+    },
+    "addhelp": {
+        "score": 16
+    },
+    "removehelp": {
+        "score": 86
+    },
+    "me": {
+        "score": 15
+    },
+    "baltop": {
+        "score": 31
+    },
+    "balded": {
+        "score": 4
+    },
+    "gifthide": {
+        "score": 9
+    },
+    "baladd": {
+        "score": 4
+    },
+    "inventory": {
+        "score": 36
+    },
+    "botprefix": {
+        "score": 7
+    },
+    "load": {
+        "score": 28
+    },
+    "nitro": {
+        "score": 16
+    },
+    "rules": {
+        "score": 8
+    },
+    "booster": {
+        "score": 4
+    },
+    "data": {
+        "score": 365
+    },
+    "serversin": {
+        "score": 7
+    },
+    "ban": {
+        "score": 11
+    },
+    "showcmds": {
+        "score": 28
+    },
+    "servermessages": {
+        "score": 21
+    },
+    "unload": {
+        "score": 12
+    },
+    "eval": {
+        "score": 1733
+    },
+    "pager": {
+        "score": 12
+    },
+    "gift": {
+        "score": 10
+    },
+    "color": {
+        "score": 46
+    },
+    "fox": {
+        "score": 10
+    },
+    "dog": {
+        "score": 3
+    },
+    "image": {
+        "score": 105
+    },
+    "formathelp": {
+        "score": 7
+    },
+    "thecog": {
+        "score": 58
+    },
+    "thetest": {
+        "score": 3
+    },
+    "position": {
+        "score": 18
+    },
+    "unlock": {
+        "score": 50
+    },
+    "addrole": {
+        "score": 10
+    },
+    "server": {
+        "score": 3
+    },
+    "eval1": {
+        "score": 182
+    },
+    "quote": {
+        "score": 22
+    },
+    "pickup_line": {
+        "score": 107
+    },
+    "ff": {
+        "score": 39
+    },
+    "redit": {
+        "score": 29
+    },
+    "kys": {
+        "score": 4
+    },
+    "file": {
+        "score": 3
+    },
+    "image cat": {
+        "score": 6
+    },
+    "image dog": {
+        "score": 1
+    },
+    "image an": {
+        "score": 2
+    },
+    "fact": {
+        "score": 26
+    },
+    "hack": {
+        "score": 179
+    },
+    "eval2": {
+        "score": 6
+    },
+    "evalreturn": {
+        "score": 205
+    },
+    "evaldir": {
+        "score": 182
+    },
+    "quote1": {
+        "score": 4
+    },
+    "get_person": {
+        "score": 4
+    },
+    "encode": {
+        "score": 26
+    },
+    "binary": {
+        "score": 15
+    },
+    "ascii": {
+        "score": 56
+    },
+    "morse": {
+        "score": 25
+    },
+    "removeverify": {
+        "score": 8
+    },
+    "raiseerror": {
+        "score": 1
+    },
+    "bow": {
+        "score": 1
+    },
+    "timezone": {
+        "score": 88
+    },
+    "timez": {
+        "score": 2
+    },
+    "mindchange": {
+        "score": 17
+    },
+    "t": {
+        "score": 13
+    },
+    "family": {
+        "score": 63
+    },
+    "marry": {
+        "score": 57
+    },
+    "divorce": {
+        "score": 8
+    },
+    "love": {
+        "score": 126
+    },
+    "work": {
+        "score": 41
+    },
+    "levels": {
+        "score": 9
+    },
+    "leavechannel": {
+        "score": 14
+    },
+    "level": {
+        "score": 98
+    },
+    "removelevels": {
+        "score": 1
+    },
+    "shop box": {
+        "score": 39
+    },
+    "shop bag": {
+        "score": 7
+    },
+    "shop corona": {
+        "score": 10
+    },
+    "unlock box": {
+        "score": 30
+    },
+    "savebackup": {
+        "score": 259
+    },
+    "unlock bag": {
+        "score": 12
+    },
+    "shop gun": {
+        "score": 2
+    },
+    "unlock covid": {
+        "score": 7
+    },
+    "channelconfig": {
+        "score": 13
+    },
+    "config": {
+        "score": 15
+    },
+    "factchannel": {
+        "score": 6
+    },
+    "quotechannel": {
+        "score": 2
+    },
+    "credits": {
+        "score": 25
+    },
+    "jokechannel": {
+        "score": 2
+    },
+    "nasapic": {
+        "score": 17
+    },
+    "rover": {
+        "score": 13
+    },
+    "join": {
+        "score": 82
+    },
+    "play": {
+        "score": 181
+    },
+    "disconnect": {
+        "score": 9
+    },
+    "pickuplinechannel": {
+        "score": 2
+    },
+    "pause": {
+        "score": 4
+    },
+    "queue": {
+        "score": 54
+    },
+    "deletequeue": {
+        "score": 3
+    },
+    "resume": {
+        "score": 4
+    },
+    "blacklist": {
+        "score": 20
+    },
+    "name": {
+        "score": 22
+    },
+    "help2": {
+        "score": 1
+    },
+    "help3": {
+        "score": 2
+    },
+    "___hi2": {
+        "score": 1
+    },
+    "rblacklist": {
+        "score": 9
+    },
+    "_hel": {
+        "score": 3
+    },
+    "addcmd": {
+        "score": 7
+    },
+    "nowplaying": {
+        "score": 4
+    },
+    "skip": {
+        "score": 38
+    },
+    "volume": {
+        "score": 28
+    },
+    "stop": {
+        "score": 6
+    },
+    "remove": {
+        "score": 1
+    },
+    "song": {
+        "score": 21
+    },
+    "create_role": {
+        "score": 1
+    },
+    "password": {
+        "score": 11
+    },
+    "snipe": {
+        "score": 188
+    },
+    "aim": {
+        "score": 20
+    },
+    "picture": {
+        "score": 24
+    },
+    "randompicture": {
+        "score": 8
+    },
+    "meme": {
+        "score": 9
+    },
+    "ytcomment": {
+        "score": 9
+    },
+    "threshold": {
+        "score": 8
+    },
+    "wasted": {
+        "score": 2
+    },
+    "gay": {
+        "score": 25
+    },
+    "lyrics": {
+        "score": 14
+    },
+    "minecraft": {
+        "score": 44
+    },
+    "invert": {
+        "score": 6
+    },
+    "colorview": {
+        "score": 15
+    },
+    "set_prefix": {
+        "score": 4
+    },
+    "unbinary": {
+        "score": 20
+    },
+    "deletemessages": {
+        "score": 6
+    },
+    "bloody": {
+        "score": 12
+    },
+    "hornypass": {
+        "score": 28
+    },
+    "dpy": {
+        "score": 5
+    },
+    "send": {
+        "score": 14
+    },
+    "but": {
+        "score": 18
+    },
+    "helptest": {
+        "score": 34
+    },
+    "but2": {
+        "score": 4
+    },
+    "ttex": {
+        "score": 47
+    },
+    "feedback": {
+        "score": 9
+    },
+    "repeat": {
+        "score": 37
+    },
+    "editsnipe": {
+        "score": 24
+    },
+    "editaim": {
+        "score": 2
+    },
+    "viewfeedback": {
+        "score": 11
+    },
+    "triggered": {
+        "score": 5
+    },
+    "fibonacci": {
+        "score": 23
+    },
+    "invitesd": {
+        "score": 3
+    },
+    "invited": {
+        "score": 10
+    },
+    "ditest": {
+        "score": 10
+    },
+    "dir": {
+        "score": 5
+    },
+    "glass": {
+        "score": 4
+    },
+    "top3": {
+        "score": 1
+    },
+    "top4": {
+        "score": 1
+    },
+    "top5": {
+        "score": 1
+    },
+    "top6": {
+        "score": 3
+    },
+    "bright": {
+        "score": 4
+    },
+    "animalimage": {
+        "score": 5
+    },
+    "chelp": {
+        "score": 44
+    },
+    "abort": {
+        "score": 8
+    },
+    "wcog": {
+        "score": 15
+    },
+    "foo": {
+        "score": 1
+    },
+    "foo1": {
+        "score": 1
+    },
+    "sudo": {
+        "score": 26
+    },
+    "permmute": {
+        "score": 1
+    },
+    "pickemoji": {
+        "score": 20
+    },
+    "versions": {
+        "score": 1
+    },
+    "drop": {
+        "score": 6
+    },
+    "configlevels": {
+        "score": 5
+    },
+    "leaderboard": {
+        "score": 27
+    },
+    "uno": {
+        "score": 159
+    },
+    "wtf": {
+        "score": 34
+    },
+    "eee": {
+        "score": 2
+    },
+    "sleep": {
+        "score": 7
+    },
+    "uptime": {
+        "score": 49
+    },
+    "tag": {
+        "score": 19
+    },
+    "resolve": {
+        "score": 33
+    },
+    "_asciiart": {
+        "score": 1
+    },
+    "asciiart": {
+        "score": 42
+    },
+    "calc": {
+        "score": 17
+    },
+    "links": {
+        "score": 6
+    },
+    "ct": {
+        "score": 35
+    },
+    "math": {
+        "score": 9
+    },
+    "support": {
+        "score": 20
+    },
+    "closesupport": {
+        "score": 27
+    },
+    "qr": {
+        "score": 31
+    },
+    "tt": {
+        "score": 2
+    },
+    "shop role": {
+        "score": 5
+    },
+    "hibernation": {
+        "score": 1
+    },
+    "hiber": {
+        "score": 3
+    },
+    "hibernate": {
+        "score": 1
+    },
+    "charinfo": {
+        "score": 11
+    },
+    "minecraftstats": {
+        "score": 6
+    },
+    "_plot": {
+        "score": 7
+    },
+    "plot": {
+        "score": 29
+    },
+    "server_prefix": {
+        "score": 3
+    },
+    "rank": {
+        "score": 4
+    },
+    "zipemojis": {
+        "score": 1
+    }
+}
