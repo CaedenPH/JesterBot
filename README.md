@@ -5,7 +5,7 @@
 <br />
 <p align="center">
   <a href="https://sites.google.com/view/jesterbot">
-    <img src="https://images-ext-2.discordapp.net/external/kyAZe_dSdtyWkGpY2gj3bQ5QmlZ2FXIGn1sMLu7E0ks/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/746348747918934096/d6d9b5c3476078f542a56699bf5d391a.png?width=656&height=656" alt="Logo" width="80" height="80">
+    <img src="https://cdn.discordapp.com/avatars/828363172717133874/d7994eda8d7dc99bae2ccd995b5b682d.webp?size=1024" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">JesterBot</h3>
