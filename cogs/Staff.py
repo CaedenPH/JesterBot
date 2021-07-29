@@ -14,6 +14,9 @@ class Staff(commands.Cog):
 
         self.bot = bot
 
+    @commands.command()
+    async def dd(self, ctx):
+        print(dir(ctx))
     @commands.command(hidden=True)
     async def load(self, ctx:Context, extension):
         if ctx.author.id == 298043305927639041:
@@ -26,6 +29,10 @@ class Staff(commands.Cog):
             await ctx.send("You're not the owner of this bot...")
 
         #unload
+    @commands.command(hidden=True)
+    async def wcog(self, ctx:Context, n):
+        cmd = self.bot.get_command(n)
+        await ctx.send(cmd.cog.qualified_name)
     @commands.command(hidden=True)
     async def unload(self, ctx:Context, extension):
         if ctx.author.id == 298043305927639041:

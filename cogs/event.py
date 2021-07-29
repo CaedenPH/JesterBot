@@ -136,19 +136,13 @@ class Event(commands.Cog):
                 
                 await member.move_to(channel)
                 
-        
+         
     @commands.Cog.listener()
-    async def on_message(self, message):
-        if not message.guild:
-            return
-        await self.bot.wait_until_ready()
-        
+    async def on_message(self, message):    
         zx = False
 
         with open('./dicts/VerifyChannel.json') as k:
             data = json.load(k)
-        
-            
            
             if str(message.channel.id) in data:
                 if data[str(message.channel.id)]['Yes'] == True:
@@ -178,11 +172,7 @@ class Event(commands.Cog):
                                     
                                         role = discord.utils.get(message.guild.roles, id=data[str(message.channel.id)]['URole id'])
                                         
-                                
-                            
                                         await message.author.remove_roles(role)
-
-                                        
 
                                         await message.delete()
                                         if weldata[str(message.guild.id)]['message'] == "":
@@ -212,26 +202,12 @@ class Event(commands.Cog):
                         else:
                             await message.delete()
                         
-                
-
-        # with open('./dicts/Server.json', 'r+') as l:
-        #     data = json.load(l)
-        #     if message.author.id != 828363172717133874: 
-        #         if str(message.guild.id) not in data:
-        #             data[str(message.guild.id)] = {
-        #                 "Score": 1
-
-
-        #             }
-        #         else:
-        #             data[str(message.guild.id)]['Score'] += 1
-                
-        #         l.seek(0)
-        #         l.truncate(0)
-        #         l.write(json.dumps(data, indent=4))
-
         us = self.bot.user
+        if message.author == self.bot.user:
+            return
+
         for item in ('Jesterbot', 'JesterBot', 'jesterbot'):
+            
             if item in message.content:
 
                 msg12 = ""
@@ -276,16 +252,24 @@ class Event(commands.Cog):
                     else:
                         if num == 2:
                             await msg12.delete()
-                            await message.clear_reactions()
+                            try:
+                                await message.clear_reactions()
+                            except:
+                                pass
                         else:
-                            await message.clear_reactions()
-
+                            try:
+                                await message.clear_reactions()
+                            except:
+                                pass
                 except asyncio.TimeoutError:
-                    await message.clear_reactions()
+                    try:
+                        await message.clear_reactions()
+                    except:
+                        pass
 
         if message.mentions:
             
-            if self.bot.user in message.mentions:
+            if message.content in ('<@!828363172717133874>', 'help <@!828363172717133874>'):
                 if message.reference:
                     return
                 async with message.channel.typing():

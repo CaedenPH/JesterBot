@@ -60,7 +60,7 @@ class THEACTUALHelp(commands.Cog):
                             the_list += f"`{cmd}`"
                         num += 1
                 
-                embed = discord.Embed(title=cog.qualified_name, description=f"I'm a multi-use bot with new features being created every week! \nTo get a more detailed description of a command use `j!help <command>`. To get a more detailed description of a cog, type `j!help <Category>` , but make sure you capitlize the name of the category\n{the_list}", colour=thecolor())
+                embed = discord.Embed(title=cog.qualified_name, description=f"I'm a multi-use bot with new features being created every week! \nTo get a more detailed description of a command use `j.help <command>`. To get a more detailed description of a cog, type `j.help <Category>` , but make sure you capitlize the name of the category\n{the_list}", colour=thecolor())
                 embed.set_author(name="Help", icon_url = bot_av.avatar_url)
                 embed.add_field(name="Links:", value= "[Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.bot_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot)")
                 return await ctx.send(embed=embed)
@@ -169,7 +169,7 @@ class THEACTUALHelp(commands.Cog):
                        
                         opt = SelectMenu(
                                 custom_id="test",
-                                placeholder=f"Choose 1 option",
+                                placeholder=f"Choose a category",
                                 max_values=1,
                                 options=[
                                     MenuOption("home", "r", "Go back to the main help panel", emoji=home),
@@ -211,17 +211,17 @@ class THEACTUALHelp(commands.Cog):
                        
                         linkemoj = '<:JesterLink:868529282647986196>'
                         catemoj = '<:JesterCat:868529295822319666>'
-                        links = "> [Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.bot_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot) │ [Vote for me!](https://top.gg/bot/828363172717133874/vote)"
+                        links = "> [Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot) │ [Vote for me!](https://top.gg/bot/828363172717133874/vote)"
                         description = f'''\n
                         
-                        ```fix\n[] - Required Argument | () - Optional Argument``````diff\n+Use the dropbar to navigate through Categories``````diff\n+Type {ctx.prefix}help prefix for information about the prefix```
+                        ```ml\n[] - Required Argument | () - Optional Argument``````diff\n+Use the dropbar to navigate through Categories``````diff\n+Use ({ctx.prefix}help prefix) for info about the prefix```
                         
                         
                         
                         '''
                         #description=f"{description}",
                         em = discord.Embed(title=f"{j}{e}{s}{t}{e}{r}", description=description, colour=thecolor())
-                        #em.set_thumbnail(url=self.bot.user.avatar_url```yaml\nTo get a more detailed description of a command use j!help <command/Category>. Press the button to see the category.```)
+                        #em.set_thumbnail(url=self.bot.user.avatar_url```yaml\nTo get a more detailed description of a command use j.help <command/Category>. Press the button to see the category.```)
                         #u200b\n
                         em.add_field(name=f"{catemoj} **Categories:**", value=f"{desc1}")
                         em.add_field(name="\u200b", value=f"{desc2}")
@@ -229,18 +229,15 @@ class THEACTUALHelp(commands.Cog):
                         #diff, fix  
                         em.add_field(name=f"{linkemoj} **Links:**", value=f"**{links}**", inline=False)
                        
-                        #em.add_field(value=f"""```yaml\nTo get a more detailed description of a command use j!help <command/Category>. Press the button to see the category.``` ```ini\n[If you require assistance use the support command. To understand the prefixes type {ctx.prefix}help prefix]```""", name="\u200b", inline=False)
+                        #em.add_field(value=f"""```yaml\nTo get a more detailed description of a command use j.help <command/Category>. Press the button to see the category.``` ```ini\n[If you require assistance use the support command. To understand the prefixes type {ctx.prefix}help prefix]```""", name="\u200b", inline=False)
                         em.set_footer(text=f"{str(ctx.message.created_at)[11:16]} • Expires in 5 minutes")
-                        msg = await ctx.send(embed=em, components=[opt
-                            
-                        ]
-                        )
+                        
+                        msg = await ctx.send(embed=em, components=[opt])
 
                         the_list1 = ""
                         def check(inter):
 
                             return inter.message.id == msg.id
-                        
                         
                         try:
                             inter = await msg.wait_for_dropdown(check, timeout=360)
@@ -320,7 +317,7 @@ class THEACTUALHelp(commands.Cog):
                     else:
 
                         the_list = []
-                        em = discord.Embed(description="**I'm a multi-use bot with new features being created every week! \nTo get a more detailed description of a command use `j!help <command>`.**\nLinks:  [Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.bot_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot)", colour=thecolor())
+                        em = discord.Embed(description="**I'm a multi-use bot with new features being created every week! \nTo get a more detailed description of a command use `j.help <command>`.**\nLinks:  [Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.bot_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot)", colour=thecolor())
                         em.set_author(name="Help", icon_url = bot_av.avatar_url)
                         for cog in self.bot.cogs:
                             
@@ -354,7 +351,7 @@ class THEACTUALHelp(commands.Cog):
                     
                     em.add_field(name=" ❯❯ Name", value=f"`{name}`", inline=False)
                     em.add_field(name=" ❯❯ Alias", value=f"{', '.join(alx)} " if alias else f"`none`", inline=False)
-                    em.add_field(name=" ❯❯ Usage", value=f"`j!{command1.name} {sig}`" if sig else f'`j!{command1.name}`', inline=False)
+                    em.add_field(name=" ❯❯ Usage", value=f"`j.{command1.name} {sig}`" if sig else f'`j.{command1.name}`', inline=False)
                     em.add_field(name=" ❯❯ Description", value=thehelp if thehelp else "Currently no help!", inline=False)
                     em.set_author(name="Help", icon_url = bot_av.avatar_url)
                     em.set_footer(text="<> = needed │ [] = not needed")

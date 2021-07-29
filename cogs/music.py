@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 import youtube_dl
-
 from core.utils import dcutils
 from core.utils.utils import thecolor, Json, thebed
 from core.Context import Context
@@ -35,19 +34,19 @@ class Music(commands.Cog):
         if not ctx.author.voice:
             return await embed2(ctx, 'You are not in a music channel!')
         voice_channel = ctx.author.voice.channel
-        if ctx.voice_bot is None:
+        if ctx.voice_client is None:
             await voice_channel.connect()
             return await embed2(ctx, 'Joined')
         else:
-            if ctx.voice_bot.channel == voice_channel:
+            if ctx.voice_client.channel == voice_channel:
                 return await embed2(ctx, 'Already here!')
-            await ctx.voice_bot.move_to(voice_channel)
+            await ctx.voice_client.move_to(voice_channel)
 
     @commands.command()
     async def leave(self, ctx:Context):
-        if ctx.voice_bot:
+        if ctx.voice_client:
 
-            await ctx.voice_bot.disconnect()
+            await ctx.voice_client.disconnect()
             return await ctx.message.add_reaction('🎵')
         await embed2(ctx, 'I am not in a music channel!')
 
@@ -56,13 +55,13 @@ class Music(commands.Cog):
         if not ctx.author.voice:
             return await embed2(ctx, 'You are not in a music channel!')
         voice_channel = ctx.author.voice.channel
-        if ctx.voice_bot is None:
+        if ctx.voice_client is None:
             await voice_channel.connect()
             
         player = self.music.get_player(guild_id=ctx.guild.id)
         if not player:
             player = self.music.create_player(ctx, ffmpeg_error_betterfix=True)
-        if not ctx.voice_bot.is_playing():
+        if not ctx.voice_client.is_playing():
             await player.queue(url, search=True)
             song = await player.play()
             await embed2(ctx, f"**Playing:** {song.name} \n**Duration**: {round(song.duration / 60)} minutes")

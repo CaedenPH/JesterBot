@@ -99,8 +99,8 @@ class JesterInfo(commands.Cog):
 
     @commands.command(aliases=['binv', 'botinv'])
     async def invite(self, ctx:Context):
-        embed = discord.Embed(title=f"I am currently in {len(self.bot.guilds)} servers!", description="[Official server](https://discord.gg/2654CuU3ZU) │ [Invite me!](https://discord.com/oauth2/authorize?bot_id=828363172717133874&scope=bot&permissions=8589934591)", colour = thecolor())
-        
+        embed = discord.Embed(title=f"I am currently in {len(self.bot.guilds)} servers!", description="[Official server](https://discord.gg/2654CuU3ZU) │ [Invite me!](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591)", colour = thecolor())
+    
         embed.set_author(icon_url=ctx.author.avatar_url, name="Invite")
 
         await ctx.send(embed=embed)
@@ -173,8 +173,7 @@ class JesterInfo(commands.Cog):
         embed = discord.Embed(description=f"My current ping is **{round(self.bot.latency * 500)}** ms", colour=thecolor())
         y = 0
         for m in self.bot.guilds:
-            for e in m.members:
-                y += 1
+            y += len(m.members)
         embed.set_footer(text=f"Servers in: {len(self.bot.guilds)} │ Overall users: {y}")
         await ctx.send(embed=embed)
     @commands.command(aliases=['pref', 'prefixs', 'pre', 'prefixes'], description="Change the prefix of the bot for you personally")
@@ -191,9 +190,9 @@ class JesterInfo(commands.Cog):
                 for pref in prefix:
                     x.append(f"`{pref}`")
                 embed = discord.Embed(title=f"Hello {ctx.author.name}", description=f"""
-                │ My default prefix is: `j!` │
+                │ My default prefix is: `j.` │
                 │ My prefix for you is: {', '.join(x)} │ 
-                │ Type `j!prefix <prefix> [prefix], [prefix], etc` to change the prefix for you! │
+                │ Type `j.prefix <prefix> [prefix], [prefix], etc` to change the prefix for you! │
                 
                 
                 
@@ -201,7 +200,7 @@ class JesterInfo(commands.Cog):
                 embed.set_author(name="JesterBot", icon_url=us.avatar_url)
         
                 embed.add_field(name="Also here is a joke for you:", value=f"│ {foxupdate} ... {foxupdatey} │", inline=False)
-                embed.set_footer(text="You can get more of these jokes with j!joke!")
+                embed.set_footer(text="You can get more of these jokes with j.joke!")
             return await ctx.send(embed=embed)
         prefix = prefix.split(" ")
        

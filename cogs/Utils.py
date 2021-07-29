@@ -177,7 +177,7 @@ class Utils(commands.Cog):
             return await thebed(ctx, '', 'Custom emojis are not allowed')
 
         if len(characters) > 50:
-            return await messages.send_denial(ctx, f"Too many characters ({len(characters)}/50)")
+            return await thebed(ctx, '', f"Too many characters ({len(characters)}/50)")
 
         def get_info(char: str) -> Tuple[str, str]:
             digit = f"{ord(char):x}"
@@ -669,8 +669,8 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
                     await thebed(ctx, 'Text ---> Morse', f"```yaml\n{converted}```")
                 else:
                     entries = [f"`{converted[i:i+1998]}`" for i in range(0, len(converted), 1998)]
-                    pager = StringPaginator(
-                        pages=entries,
+                    pager = Pag(
+                        entries=entries,
                         timeout=60
                     )
                     await pager.start(ctx)
@@ -686,7 +686,7 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
                         "InfixParser": InfixParser,
                         "commands": commands, 
                         "bot": self.bot, 
-                        "bot": self.bot,
+                        "client": self.bot,
                         "ctx": ctx, 
                         "channel": ctx.channel, 
                         "author": ctx.author,
@@ -785,7 +785,7 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
                         "discord": discord,
                         "InfixParser": InfixParser,
                         "commands": commands, 
-                        "bot": self.bot, 
+                        "client": self.bot, 
                         "bot": self.bot,
                         "ctx": ctx, 
                         "channel": ctx.channel, 
@@ -909,10 +909,7 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
 
                 await pager.start(ctx) 
 
-    @commands.command(hidden=True)
-    async def wcog(self, ctx:Context, n):
-        cmd = self.bot.get_command(n)
-        await ctx.send(cmd.cog.qualified_name)
+    
     @commands.command(description='run code', hidden=True, aliases=['e'])
     async def eval(self, ctx:Context, *, code):
         local_variables = {
@@ -920,7 +917,7 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
                         "InfixParser": InfixParser,
                         "commands": commands, 
                         "bot": self.bot, 
-                        "bot": self.bot,
+                        "client": self.bot,
                         "ctx": ctx, 
                         "channel": ctx.channel, 
                         "author": ctx.author,

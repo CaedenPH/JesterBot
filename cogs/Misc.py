@@ -92,7 +92,7 @@ class Misc(commands.Cog):
         await ctx.send(embed=embed)
     
     
-    @commands.command(aliases=['Server_icon', 'Icon_server', 'Guild_icon', 'Server_Avatar', 'avg', 'guildav', 'gc'], description="Sends the avatar of the server (profile pic)", hidden=True)
+    @commands.command(aliases=['Server_icon', 'Icon_server', 'Guild_icon', 'Server_Avatar', 'avg', 'guildav', 'gc'], description="Sends the avatar of the server (profile pic)")
     async def avatarguild(self, ctx:Context):
         embed = discord.Embed(title='Guild icon', color=thecolor())
         embed.set_image(url=ctx.guild.icon_url)
