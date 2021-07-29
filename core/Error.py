@@ -4,6 +4,15 @@ from discord.ext.commands import *
 
 from core.utils.utils import thecolor, thebed, Json
 
+async def unexpected(bot, ctx, error):
+    k = open('./dicts/Errors.json', 'r+')
+    data = json.load(k) 
+    num = str(len(data))
+    
+    data[num] = {'author': ctx.author.name, 'id': ctx.author.id, 'error': str(error), 'error_dir': str(dir(error)), 'command': ctx.command.name}
+    Json(k, data)
+    await thebed(bot.chan, f'{ctx.guild}; {ctx.author}; {ctx.command.name}', error)
+    await ctx.error(bot, error=error)
 async def error_handler(bot, ctx, error):
     if isinstance(error, MissingPermissions):
         embed = discord.Embed(description="You do not have permissions to do that!", colour=thecolor())
@@ -142,13 +151,7 @@ async def error_handler(bot, ctx, error):
 
             await ctx.em('You unfortunately did not invite my bot with enough permissions for me to complete this action!')
         else:
-            print(error.args[0])
-    else:
-        k = open('./dicts/Errors.json', 'r+')
-        data = json.load(k) 
-        num = str(len(data))
+            await unexpected(bot, ctx, error)
         
-        data[num] = {'author': ctx.author.name, 'id': ctx.author.id, 'error': str(error), 'error_dir': str(dir(error)), 'command': ctx.command.name}
-        Json(k, data)
-        await thebed(bot.chan, f'{ctx.guild}; {ctx.author}; {ctx.command.name}', error)
-        await ctx.em(error)
+    else:
+        await unexpected(bot, ctx, error)

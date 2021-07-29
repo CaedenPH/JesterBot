@@ -2,7 +2,9 @@ import vacefron, randfacts, asyncpraw, datetime, json, requests
 import discord
 
 from .utils import thecolor
+from core.utils.HIDDEN import *
 
+reddit = asyncpraw.Reddit(client_id = client_id, client_secret = client_secret, username = username, password = password, user_agent = user_agent)
 vace_api = vacefron.Client()
 
 def fact():

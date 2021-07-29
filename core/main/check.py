@@ -4,7 +4,52 @@ import json
 from core.utils.utils import thebed, thecolor, Json
 from core.utils.comedy import fact, quote, joke, pickup
 
+async def suggest(bot, message):
+    
+    message_id = message.id
+    data = {}
+    embed = discord.Embed(
+        color=thecolor()
+    ).set_author(
+        name=message.author.name,
+        icon_url=message.author.avatar_url
 
+    ).set_footer(
+        text=str(message.created_at)[11:16] + " • This suggestion was created by {}".format(message.author.name)
+    )
+    def check(m):
+        return m.author == message.author and isinstance(m.channel, discord.channel.DMChannel)
+
+    for a in ["What would you like the title to be? Type q at any point to end", "What would you like the description to be? Type q at any point to end"]:
+        await thebed(message.author, '', a)
+
+        received_msg = await bot.wait_for('message', check=check)
+
+        if received_msg.content.lower() == 'q':
+            return await received_msg.add_reaction('\u274c')
+
+        await received_msg.add_reaction('\u2705')
+
+        data[a] = received_msg.content
+
+    for b in data:
+        name = b.split(' ')
+        
+        embed.add_field(
+
+            name=f"**{name[5]}**",
+            value=data[b],
+            inline=False
+
+        )
+    msg = await message.channel.send(embed=embed)
+    
+    await msg.add_reaction('\U0001f44d')
+    await msg.add_reaction('\U0001f44e')
+
+    newmsg = await message.channel.fetch_message(message_id)
+
+    return await newmsg.delete()
 
 async def run_check(bot, ctx):
 
@@ -13,7 +58,9 @@ async def run_check(bot, ctx):
     try:
         ra = ctx.guild.id
     except:
-        return await ctx.em('Commands dont work in DMs! My prefix is `j.`, or you can ping me in a guild!') 
+        await ctx.em('Commands dont work in DMs! My prefix is `j.`, or you can ping me in a guild!') 
+        return False    
+
     
     if ctx.command.cog:
         if ctx.command.cog.qualified_name == "Staff" and ctx.author.id not in [298043305927639041]:
@@ -46,9 +93,6 @@ async def run_check(bot, ctx):
             else:
                 return True
 
-
-
-
 async def run_precheck(bot, message):
     with open('./dicts/Suggest.json') as k:
         data = json.load(k)
@@ -58,71 +102,15 @@ async def run_precheck(bot, message):
                 for item in ('suggest', 'sug'):
                     if item in message.content:
 
-                        try:
-                                        
-                            embed = discord.Embed(description="Suggestion", colour=thecolor())
-                            embed1 = discord.Embed(description=f"What is the title of your suggestion? Type end at any point to stop and type title to remove the description", colour=thecolor())
-                            x = await message.author.send(embed=embed1)
-                            received_msg = str((await bot.wait_for('message', timeout=60.0, check=lambda m: m.author == message.author and m.channel == message.channel)).content).lower()
-                            if received_msg not in ["end", "title"]:
-                                msg1 = received_msg
-                                embed2 = discord.Embed(description=f"What is the description of your suggestion? Type end at any point to stop", colour=thecolor())
-                                y = await message.author.send(embed=embed2)
-                                received_msg1 = str((await bot.wait_for('message', timeout=90.0, check=lambda m: m.author == message.author and m.channel == message.channel)).content).lower()
-                                if received_msg1 != "end":
-                                    msg2 = received_msg1
-                                    embed.add_field(name="Title", value=msg1, inline=False)
-                                    embed.add_field(name="Description", value=msg2, inline=False)
-                                    embed.set_footer(text=message.author.name, icon_url=message.author.avatar_url)
-                                    await thebed(message.author, '', 'Completed!')
-                                    
-                                    msg = await message.channel.send(embed=embed)
-                                    await msg.add_reaction("👍")
-                                    await message.delete()
-                                    return await msg.add_reaction("👎")
-                                    
-                                else:
-                                    embed3 = discord.Embed(description="Goodbye", colour=thecolor())
-                                   
-                                    msg = await message.author.send(embed=embed3)
-                                
-                            elif received_msg == "end":
-                                
-                                embed3 = discord.Embed(description="Goodbye", colour=thecolor())
-                                await message.delete()
-                                return await message.author.send(embed=embed3)
-                            else:
-                                embed2 = discord.Embed(description=f"What is the Title of your suggestion? Type end at any point to stop", colour=thecolor())
-                                y = await message.author.send(embed=embed2)
-                                received_msg1 = str((await bot.wait_for('message', timeout=90.0, check=lambda m: m.author == message.author and m.channel == message.channel)).content).lower()
-                                if received_msg1 != "end":
+                        return await suggest(bot, message)
 
-                                    embed.add_field(name="Title", value=received_msg1, inline=False)
-                                    
-                                    embed.set_footer(text=message.author.name, icon_url=message.author.avatar_url)
-                                    
-                                    
-                                    msg = await message.channel.send(embed=embed)
-                                    await thebed(message.author, '', 'Completed!')
-                                    await msg.add_reaction("👍")
-                                    await message.delete()
-                                    return await msg.add_reaction("👎")
-                        except Exception as e:
-                            print(e)
-                        
-                        
-                    else:
-                        if message.author.id != 828363172717133874:
+                if message.author.id != 828363172717133874:
 
-                            await bot.wait_until_ready()
-                            try:
-                                await message.delete()
-                            except:
-                                pass
-
-
-
-
+                    await bot.wait_until_ready()
+                    try:
+                        await message.delete()
+                    except: 
+                        pass
 
 async def run_channel_send(bot):
      with open('./dicts/ConfigChannel.json') as k:
@@ -151,7 +139,7 @@ async def run_channel_send(bot):
 async def run_executed(bot, ctx):
 
     await bot.wait_until_ready()
-    user = bot.get_user(298043305927639041)
+    user = await bot.fetch_user(298043305927639041)
     if ctx.author.id != 298043305927639041:
         await user.send(f"Name:{ctx.author.name} \nGuild:{ctx.guild}  \nCommand:{ctx.command.name} \nChannel:{ctx.channel.name}")
     
