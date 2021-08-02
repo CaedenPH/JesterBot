@@ -62,9 +62,12 @@ async def run_check(bot, ctx):
         return False    
 
     
-    if ctx.command.cog:
-        if ctx.command.cog.qualified_name == "Staff" and ctx.author.id not in [298043305927639041]:
-            return False          
+    if ctx.command.hidden:
+        y = await bot.is_owner(ctx.author)  
+        if not y:
+            await ctx.em('You cannot run this command, it is a `hidden` command which only bot admins can run.')        
+            return False
+        return True
     x = False
     with open('./dicts/Check.json') as k:
         data = json.load(k)

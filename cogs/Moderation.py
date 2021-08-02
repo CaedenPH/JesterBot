@@ -1,20 +1,13 @@
+from core.Paginator import Paginator
 import discord, os, requests, json, asyncio
 from discord.ext.commands import has_permissions
 from discord.ext import commands 
 from async_timeout import timeout
 from random import choice, randint
-from discord.ext.buttons import Paginator
 from datetime import datetime
 from core.utils.utils import thecolor, Json, thebed
 from core.Context import Context
 
-
-class Pag(Paginator):
-    async def teardown(self):
-        try:
-            await self.page.clear_reactions()
-        except discord.HTTPException:
-            pass
 
 class Mod(commands.Cog):
     def __init__(self, bot):
@@ -379,15 +372,9 @@ class Mod(commands.Cog):
                 await ctx.send(x)
         
         else:
-            pager = Pag(
-                timeout=100,
-                entries=[x[i: i + 1000] for i in range(0, len(x), 1000)],
-                length = 1,
-                prefix = "```py\n", 
-                suffix = "```",
-                colour=thecolor()
-                )
-            await pager.start(ctx)
+            y = Paginator(ctx)
+
+            await y.paginate(content=x, name='Roles')
 
     @commands.command(hidden=True)
     async def showroleperm(self, ctx:Context, roled="member"):

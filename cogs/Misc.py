@@ -1,4 +1,5 @@
-import discord, os, requests, json, asyncio
+import discord, os, requests, json, asyncio, datetime
+
 from discord.ext import commands 
 from async_timeout import timeout
 from random import choice
@@ -9,6 +10,7 @@ import zipfile
 
 from core.utils.utils import thecolor, Json, thebed
 from core.Context import Context
+from core.Paginator import Paginator
 
 
 class Misc(commands.Cog):
@@ -91,7 +93,31 @@ class Misc(commands.Cog):
         """)
         await ctx.send(embed=embed)
     
-    
+    @commands.command()
+    @commands.cooldown(1, 180, commands.BucketType.user)
+    async def check(self, ctx, days:float=None, member:discord.Member=None, channel:discord.TextChannel=None):
+        if not member:
+            member = ctx.author
+        if not channel:
+            channel = ctx.channel
+        if not days:
+            days = 1
+        if days >= 8:
+            
+            days = 7
+        embed = discord.Embed(description=f'**Thinking**... **processing...**\n**Calculated time it wil take:** {days * 14.6}\n**From:** {member.name}\n**In channel:** {channel}\nIt roughly takes 12 seconds per extra day, hence why you can only loop through 7 days', color=thecolor()).set_footer(text='This process may take a while because it is gathering all data from the past week while getting ratelimited')
+        m = await ctx.send(embed=embed)
+        async with ctx.typing():
+            x = datetime.datetime.utcnow() - datetime.timedelta(days=days)
+            k = await channel.history(after=x, limit=None).flatten()
+            messages = [f"{e.content.replace('`', '')}" for e in k if e.author == member and e.channel == channel]
+        await m.delete()
+        pag = Paginator(ctx)
+        await pag.paginate(content=", ".join(messages), name=f'{member} has said {len(messages)} messages in the past {days} days')
+
+
+
+
     @commands.command(aliases=['Server_icon', 'Icon_server', 'Guild_icon', 'Server_Avatar', 'avg', 'guildav', 'gc'], description="Sends the avatar of the server (profile pic)")
     async def avatarguild(self, ctx:Context):
         embed = discord.Embed(title='Guild icon', color=thecolor())
@@ -114,9 +140,9 @@ class Misc(commands.Cog):
                 
             if not server:
 
-                embed = discord.Embed(title=f"{data[str(ctx.guild.id)]['Score']} messages since the {when}", colour=thecolor())
+                embed = discord.Embed(description=f"**{data[str(ctx.guild.id)]['Score']}** messages since the {when}", colour=thecolor())
             else:
-                embed = discord.Embed(title=f"{data[server]['Score']} messages since {when}", colour=thecolor())
+                embed = discord.Embed(description=f"**{data[server]['Score']}** messages since {when}", colour=thecolor())
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['s', 'Sugg', 'Sug', 'Suggester'], description="Follow the instructions and a suggestion will appear")

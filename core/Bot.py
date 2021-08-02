@@ -4,11 +4,13 @@ from discord.ext import tasks
 from discord import Intents
 
 from core.utils.utils import thecolor, Json, thebed
+from core.utils.commands.eval import run_eval
 from core.Context import Context
 from core.Error import error_handler
 from core.main.check import run_channel_send
 from core.main.prefix import get_prefix
 from core.utils.HIDDEN import TOKEN
+
 from dislash import *
 
 class JesterBot(commands.Bot):
@@ -20,7 +22,7 @@ class JesterBot(commands.Bot):
             intents=discord.Intents.all(),
             case_insensitive=True,
             strip_after_prefix=True,
-            owner_ids=[298043305927639041, 521226389559443461],
+            owner_ids=[298043305927639041],
             help_command=None
 
         )
@@ -30,8 +32,8 @@ class JesterBot(commands.Bot):
         self.time_limit:int = 120
         self.discordcolor = 0x36393F
         self.hiber = False
-        self.suglist = []
-           
+        self.data = {}
+        
         
         
         for files in os.listdir(f"./cogs/"):
@@ -46,10 +48,12 @@ class JesterBot(commands.Bot):
         await self.invoke(ctx)
 
     def setup(self) -> None:
-        print(" ~ ".join(self.COGS))
+        print("Cogs:\n-----------------------------------")
+        print(", ".join(self.COGS))
         for filename in self.COGS:
             self.load_extension(f"{filename[:-3]}")
-        print(f"Loaded Cogs Successfully! Total Cogs: {len(self.COGS)}")
+        self.load_extension('jishaku')
+        print(f"Loaded Cogs Successfully! Total Cogs: {len(self.COGS)}\n-----------------------------------")
 
     @tasks.loop(seconds=3600.0)
     async def chansend(self):
@@ -69,10 +73,12 @@ class JesterBot(commands.Bot):
         await asyncio.sleep(180)
     
     def run(self) -> None:
-
+        print('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
         print('Setting up...')
+        print('-----------------------------------')
         self.setup()
         print('Running the bot...')
+        print('-----------------------------------')
         super().run(TOKEN, reconnect=True)
 
     async def on_connect(self) -> None:
@@ -82,11 +88,10 @@ class JesterBot(commands.Bot):
         print("Client Disconnected.")
 
     async def on_ready(self) -> None:
-        print('Started')
         self.update_presence.start()
         print("Client Ready!")
         self.chansend.start()
-
+        print("Guilds:\n-----------------------------------")
         guild_ids = []
         for guild1 in self.guilds:
             guild_ids.append(guild1.id)
@@ -96,6 +101,12 @@ class JesterBot(commands.Bot):
         selected_channel = self.get_guild(830161446523371540).get_channel(830161446523371545)
         self.chan = selected_channel
         self.dev = await self.fetch_user(298043305927639041)
+        guild = self.get_guild(830161446523371540)
+        role = guild.get_role(857347445398044704)
+        print("Admins:\n-----------------------------------")
+        for k in role.members:
+            print(k)
+            self.owner_ids.append(k.id)
 
     async def process_commands(self, message: discord.Message) -> None:
         ctx = await self.get_context(message, cls=Context)
@@ -106,10 +117,26 @@ class JesterBot(commands.Bot):
             return
         if before.content == after.content:
             return
-        time_diff = after.edited_at - before.created_at
-        if time_diff.seconds > self.time_limit:
+        time_difference = after.edited_at - before.created_at
+        if time_difference.seconds > self.time_limit:
             return
-        await self.process_commands(after)
+        ctx = await self.get_context(after)
+        pref = await self.get_prefix(ctx.message)
+        if ctx.command:
+            if before in self.data:
+
+                if ctx.command.name in ['eval', 'evaldir', 'evalreturn']:
+                    code = " ".join(after.content.split(' ')[1:])
+                    print(ctx.command.name)
+                    msg = await run_eval(ctx, code, eval=ctx.command.name)
+                    try:
+                        bot_msg = self.data[before]['bot']
+                        return await bot_msg.edit(content=msg)
+                    except Exception as e:
+                        return print(e)
+
+                await self.data[before]['bot'].delete()
+                await self.process_commands(after)
 
     async def on_command_error(self, context, exception):
         await error_handler(self, context, exception)

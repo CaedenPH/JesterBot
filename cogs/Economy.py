@@ -227,8 +227,6 @@ class Economy(commands.Cog):
                 embed = discord.Embed(title="You do not have enough money! type `j.bal` to see your balance", colour=thecolor())
 
             await ctx.send(embed=embed)
-    
-
 
     @commands.command(description="You get a random ammount of JesterCoins - 60 second cooldown!")
     @commands.cooldown(1, 30, commands.BucketType.user)
@@ -301,29 +299,28 @@ class Economy(commands.Cog):
         user = self.bot.get_user(user)
     
         if user:
-            if ctx.author.id == 298043305927639041:
-                with open('./dicts/Bal.json', 'r+') as k:
-                    data = json.load(k)
-                    if data[str(ctx.author.id)]['Bal'] >= ammount:
+            with open('./dicts/Bal.json', 'r+') as k:
+                data = json.load(k)
+                if data[str(ctx.author.id)]['Bal'] >= ammount:
+                    
+
+                    if str(user.id) in data:
+                        data[str(user.id)]['Bal'] += ammount
+                        Json(k, data)
                         
-
-                        if str(user.id) in data:
-                            data[str(user.id)]['Bal'] += ammount
-                            Json(k, data)
-                            
-                            embed = discord.Embed(description=f"You sent to {ammount}$ to {user.name}!", colour=thecolor())
-                        else:
-                            data[str(user.id)] = {
-                                "Bal": ammount,
-                                "Name": user.name
-
-                            }
-                
-                            Json(k, data)
-                            embed = discord.Embed(description=f"You sent to {ammount}$ to {user.name}!", colour=thecolor())           
+                        embed = discord.Embed(description=f"You sent to {ammount}$ to {user.name}!", colour=thecolor())
                     else:
-                        embed = discord.Embed(description=f"You don't have {ammount}! Type `j.bal` for your balance!", colour=thecolor())
-                    await ctx.send(embed=embed)
+                        data[str(user.id)] = {
+                            "Bal": ammount,
+                            "Name": user.name
+
+                        }
+            
+                        Json(k, data)
+                        embed = discord.Embed(description=f"You sent to {ammount}$ to {user.name}!", colour=thecolor())           
+                else:
+                    embed = discord.Embed(description=f"You don't have {ammount}! Type `j.bal` for your balance!", colour=thecolor())
+                await ctx.send(embed=embed)
         else:
             await ctx.send("no")
     @commands.group(aliases=['open', 'use'], description="unlocks your Lucky boxes!", invoke_without_command=True)

@@ -1,25 +1,27 @@
+from discord.ext.commands import context
+from core.utils.emojis import CLOSE
 import discord, os, requests, json, asyncio
 from discord.ext import commands 
-import io
-import textwrap
-import contextlib
-from traceback import format_exception
+
 from pyMorseTranslator import translator
-from discord.ext.buttons import Paginator   
 import pytz
 from datetime import datetime
+
 from core.utils.utils import thecolor, Json, thebed
+from core.utils.commands.eval import run_eval
+from core.Paginator import Paginator
 from core.Context import Context
 
 from dislash import *
 import simpleeval
 import yfinance as yf
-import InfixParser
+#import InfixParser
 import re
 from typing import Tuple, Union
 import unicodedata
 import matplotlib.pyplot as plt
 import numpy as np
+
 
 sub = { 
                             '0': '⁰',
@@ -122,19 +124,7 @@ def but(mode):
 
 
 
-def clean_code(content):
-    if content.startswith("```") and content.endswith("```"):
-        
-        return content.strip('```')
-    else:
-        return content
 
-class Pag(Paginator):
-    async def teardown(self):
-        try:
-            await self.page.clear_reactions()
-        except discord.HTTPException:
-            pass
 
 encoder = translator.Encoder()
 decoder = translator.Decoder()
@@ -285,7 +275,7 @@ class Utils(commands.Cog):
                             adv = True
                             break
                     if adv:
-                        parser = InfixParser.Evaluator()
+                        #parser = InfixParser.Evaluator()
                         ndisplay = displayed
                     
                         ndisplay = displayed.replace('⁻¹', 'j.-1')
@@ -300,7 +290,7 @@ class Utils(commands.Cog):
                         for kk in sub:
                             ndisplay = ndisplay.replace(sub[kk], kk)
                         
-                        output: float = parser.eval(ndisplay)
+                        #output: float = parser.eval(ndisplay)
                     else:
                         if '√' in calc[str(l)]['d']:
                             ndisplay = ''
@@ -511,32 +501,13 @@ class Utils(commands.Cog):
     @commands.command(aliases=['tz', 'time', 'zone'], description="Sends the current time of the [origin]. To get all of the places recognisable, leave `origin` blank")
     async def timezone(self, ctx:Context, origin=None):
         try:
-
-
             if not origin:
                 var = ""
                 num = 0
                 result = pytz.all_timezones
-                for key in result:
-                    num += 1
-                    if num == len(result):
+                y = Paginator(ctx)   
+                return await y.paginate(content=", ".join(result), name='Timezones')
 
-                        var += f"{result}"
-                    else:
-                        
-                        var += f"{result}, "
-
-                pager = Pag(
-                    timeout=100,
-                    entries=[var[i: i + 2000] for i in range(0, len(var), 2000)],
-                    length = 1,
-                    prefix = "```py\n", 
-                    suffix = "```",
-                    colour=thecolor()
-                    )
-
-
-                return await pager.start(ctx) 
             tz_NY = pytz.timezone(origin) 
             now = datetime.now(tz_NY)
             x = str(now)
@@ -549,18 +520,7 @@ class Utils(commands.Cog):
         except Exception as e:
             embed = discord.Embed(title="Error", description=f"**TimeZoneError: {e}**", colour=thecolor())
             await ctx.send(embed=embed)
-
-        
-    @commands.command(hidden=True)
-    async def pager(self, ctx:Context, *, args):
-        pager = Pag(
-            timeout = 100,
-            entries = [args],
-            length = 1
-
-
-        )
-        await pager.start(ctx)
+    
     @commands.command(aliases=['bin'])
     async def binary(self, ctx:Context, *, text):
        
@@ -668,346 +628,40 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
                 if len(converted) <= 1998:
                     await thebed(ctx, 'Text ---> Morse', f"```yaml\n{converted}```")
                 else:
-                    entries = [f"`{converted[i:i+1998]}`" for i in range(0, len(converted), 1998)]
-                    pager = Pag(
-                        entries=entries,
-                        timeout=60
-                    )
-                    await pager.start(ctx)
+                    
+                    y = await Paginator(ctx)
+                    await y.paginate(content=converted, name='Morse/Text')
             except KeyError as e:
-                return await ctx.reply(f":x: The String contains some characters which cannot be converted into Morse!\n> If you think that's a Mistake, please report it to my Developers, they'll Review and fix it :)")
+                return await ctx.reply(f"{CLOSE} The String contains some characters which cannot be converted into Morse!\n> If you think that's a Mistake, please report it to my Developers, they'll Review and fix it :)")
 
        
 
     @commands.command(aliases=['eval2', 'e2'], description='run code', hidden=True)
     async def evaldir(self, ctx:Context, *, code):
-        local_variables = {
-                        "discord": discord,
-                        "InfixParser": InfixParser,
-                        "commands": commands, 
-                        "bot": self.bot, 
-                        "client": self.bot,
-                        "ctx": ctx, 
-                        "channel": ctx.channel, 
-                        "author": ctx.author,
-                        "guild": ctx.guild,
-                        "message": ctx.message
+        x = await run_eval(ctx, code, _eval='dir')
 
-                    }
-        x = False
-        with open('./dicts/Admins.json', 'r+') as k:
-            data = json.load(k)
-            
-            for k in data['admins']:
-                if ctx.author.id == k:
-                    x = True
-                    
-
-        if not x:
-            return
- 
-
-        if code == "reset":
-
-            with open('./dicts/Num.json', 'r+') as k:
-                data = json.load(k)
-                if str(ctx.author.id) in data:
-                    data[str(ctx.author.id)]['Score'] = 0
-                    z = data[str(ctx.author.id)]['Score']
-                else:
-                    data[str(ctx.author.id)] = {
-                        "Name": ctx.author.name,
-                        "Score": 0
-
-
-                    }
-                Json(k, data)
-                await ctx.send('reset')
-        else:
-
-            with open('./dicts/Num.json', 'r+') as k:
-                    data = json.load(k)
-                    if str(ctx.author.id) in data:
-                        data[str(ctx.author.id)]['Score'] += 1
-                        z = data[str(ctx.author.id)]['Score']
-                    else:
-                        data[str(ctx.author.id)] = {
-                            "Name": ctx.author.name,
-                            "Score": 1
-
-
-                        }
-                    Json(k, data)
-        
-        code = clean_code(code)
-        
-      
-        code = f"return dir({code})"
-        stdout = io.StringIO()
         try:
-            with contextlib.redirect_stdout(stdout):
-                exec(
-                    f"async def func():\n{textwrap.indent(code, '    ')}",  local_variables, 
-                )
-                obj = await local_variables["func"]()
-                
-                result = f"{stdout.getvalue()}{obj}\n"
-        except Exception as e:
-            result = "".join(format_exception(e, e, e.__traceback__))
-            pass    
-        pre = await self.bot.get_prefix(ctx.message)
-        if ctx.message.content.strip(pre[0]).startswith('eval1'):
-            y = ctx.message.content[6::]
-            
-            
-            
-        else:
-            y = ctx.message.content[3::]
-        
-       
-        if len(result) < 2000:
-                await ctx.send(f"```py\nIn[{z}]: {y}\nOut[{z}]: {result}\n```")
-        else:
-            pager = Pag(
-                timeout=100,
-                entries=[result[i: i + 2000] for i in range(0, len(result), 2000)],
-                length = 1,
-                prefix = "```py\n", 
-                suffix = "```",
-                colour=thecolor()
-                )
+            await ctx.send(x)
+        except:
+            pass
 
-
-            await pager.start(ctx) 
     @commands.command(aliases=['eval1', 'e1'], description='run code', hidden=True)
     async def evalreturn(self, ctx:Context, *, code):
-        local_variables = {
-                        "discord": discord,
-                        "InfixParser": InfixParser,
-                        "commands": commands, 
-                        "client": self.bot, 
-                        "bot": self.bot,
-                        "ctx": ctx, 
-                        "channel": ctx.channel, 
-                        "author": ctx.author,
-                        "guild": ctx.guild,
-                        "message": ctx.message
+        x = await run_eval(ctx, code, _eval='return')
 
-                    }
-        x = False
-        with open('./dicts/Admins.json', 'r+') as k:
-            data = json.load(k)
-            
-            for k in data['admins']:
-                if ctx.author.id == k:
-                    x = True
-
-        if not x:
-            return
- 
-
-        if code == "reset":
-
-            with open('./dicts/Num.json', 'r+') as k:
-                data = json.load(k)
-                if str(ctx.author.id) in data:
-                    data[str(ctx.author.id)]['Score'] = 0
-                    z = data[str(ctx.author.id)]['Score']
-                else:
-                    data[str(ctx.author.id)] = {
-                        "Name": ctx.author.name,
-                        "Score": 0
-
-
-                    }
-                Json(k, data)
-                await ctx.send('reset')
-        else:
-
-            with open('./dicts/Num.json', 'r+') as k:
-                    data = json.load(k)
-                    if str(ctx.author.id) in data:
-                        data[str(ctx.author.id)]['Score'] += 1
-                        z = data[str(ctx.author.id)]['Score']
-                    else:
-                        data[str(ctx.author.id)] = {
-                            "Name": ctx.author.name,
-                            "Score": 1
-
-
-                        }
-                    Json(k, data)
-            x = False
-            
-                
-            code = clean_code(code)
-            
-
-            stdout = io.StringIO()
-            
-            if ctx.message.content[6:].startswith('run'):
-                if ctx.message.content[5::].startswith('print'):
-                
-                    code = f"return {ctx.message.content[11::][:-1]}"
-                
-                    pass
-                elif ctx.message.content[5::].startswith('return'):
-                    pass
-                else:
-                    code = f"return {code}"
-
-            else:
-
-                if ctx.message.content[6::].startswith('print'):
-                    
-                    code = f"return {ctx.message.content[12::][:-1]}"
-                    
-                    pass
-                elif ctx.message.content[6::].startswith('return'):
-                    pass
-                else:
-                    code = f"return {code}"
-              
-
-            
-            try:
-                with contextlib.redirect_stdout(stdout):
-                    exec(
-                        f"async def func():\n{textwrap.indent(code, '    ')}",  local_variables, 
-                    )
-                    obj = await local_variables["func"]()
-                   
-                    result = f"{stdout.getvalue()}{obj}\n"
-            except Exception as e:
-                result = "".join(format_exception(e, e, e.__traceback__))
-                pass    
-            
-            
-            pre = await self.bot.get_prefix(ctx.message)
-            
-            if ctx.message.content.strip(pre[0]).startswith('eval1'):
-                y = ctx.message.content[6::]
-                
-                
-             
-            else:
-                y = ctx.message.content[3::]
-            
-   
-            if len(result) < 2000:
-                 await ctx.send(f"```py\nIn[{z}]: {y}\nOut[{z}]: {result}\n```")
-            else:
-                pager = Pag(
-                    timeout=100,
-                    entries=[result[i: i + 2000] for i in range(0, len(result), 2000)],
-                    length = 1,
-                    prefix = "```py\n", 
-                    suffix = "```",
-                    colour=thecolor()
-                    )
-
-
-                await pager.start(ctx) 
-
+        try:
+            await ctx.send(x)
+        except:
+            pass
     
     @commands.command(description='run code', hidden=True, aliases=['e'])
     async def eval(self, ctx:Context, *, code):
-        local_variables = {
-                        "discord": discord,
-                        "InfixParser": InfixParser,
-                        "commands": commands, 
-                        "bot": self.bot, 
-                        "client": self.bot,
-                        "ctx": ctx, 
-                        "channel": ctx.channel, 
-                        "author": ctx.author,
-                        "guild": ctx.guild,
-                        "message": ctx.message
-
-                    }
-        x = False
-        with open('./dicts/Admins.json', 'r+') as k:
-            data = json.load(k)
-            
-            for k in data['admins']:
-                if ctx.author.id == k:
-                    x = True
-
-        if not x:
-            return
-
-        if code == "reset":
-
-            with open('./dicts/Num.json', 'r+') as k:
-                data = json.load(k)
-                if str(ctx.author.id) in data:
-                    data[str(ctx.author.id)]['Score'] = 0
-                    z = data[str(ctx.author.id)]['Score']
-                else:
-                    data[str(ctx.author.id)] = {
-                        "Name": ctx.author.name,
-                        "Score": 0
-
-
-                    }
-                Json(k, data)
-                return await ctx.send('reset')
-        else:
-
-            with open('./dicts/Num.json', 'r+') as k:
-                data = json.load(k)
-                if str(ctx.author.id) in data:
-                    data[str(ctx.author.id)]['Score'] += 1
-                    z = data[str(ctx.author.id)]['Score']
-                else:
-                    data[str(ctx.author.id)] = {
-                        "Name": ctx.author.name,
-                        "Score": 1
-
-
-                    }
-                Json(k, data)
-        
-        code = clean_code(code)
-            
-        stdout = io.StringIO()
-            
+        x = await run_eval(ctx, code)
         try:
-            with contextlib.redirect_stdout(stdout):
-                exec(
-                    f"async def func():\n{textwrap.indent(code, '    ')}",  local_variables, 
-                )
-                obj = await local_variables["func"]()
-            
-                result = f"{stdout.getvalue()}{obj}\n"
-        except Exception as e:
-            result = "".join(format_exception(e, e, e.__traceback__))
+            await ctx.send(x)
+        except:
             pass
-    
-    
-        theresult = result.split('None')
-
-    
-        pre = await self.bot.get_prefix(ctx.message)
-
-        if ctx.message.content.strip(pre[0]).startswith('eval'):
-            y = ctx.message.content[6::]
-        else:
-            y = ctx.message.content[3::]
-    
-        if len(result) < 1800:
-            await ctx.send(f"```py\nIn[{z}]: {y}\nOut[{z}]: {theresult[0]}\n```")
-        else:
-            pager = Pag(
-                timeout=100,
-                entries=[result[i: i + 2000] for i in range(0, len(result), 2000)],
-                length = 1,
-                prefix = "```py\n", 
-                suffix = "```",
-                colour=thecolor()
-                )
-
-            await pager.start(ctx)
+       
     
 def setup(bot):
   bot.add_cog(Utils(bot))

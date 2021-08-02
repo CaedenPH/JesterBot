@@ -6,8 +6,6 @@ import shutil
 
 from core.utils.utils import thecolor, Json, thebed
 from core.Context import Context
-
-selected_channel = None
    
 class Staff(commands.Cog):
     def __init__(self, bot):
@@ -16,53 +14,42 @@ class Staff(commands.Cog):
 
     @commands.command()
     async def dd(self, ctx):
-        print(dir(ctx))
+        pass
     @commands.command(hidden=True)
     async def load(self, ctx:Context, extension):
-        if ctx.author.id == 298043305927639041:
-            embed = discord.Embed(color=discord.Color.dark_gold())
-            self.bot.load_extension(f'cogs.{extension}')
-            embed.add_field(name="Load Extension", value=f"Loaded cog: ``{extension}`` successfully")
-            await ctx.send(embed=embed)
+        embed = discord.Embed(color=discord.Color.dark_gold())
+        self.bot.load_extension(f'cogs.{extension}')
+        embed.add_field(name="Load Extension", value=f"Loaded cog: ``{extension}`` successfully")
+        await ctx.send(embed=embed)
 
-        else:
-            await ctx.send("You're not the owner of this bot...")
-
-        #unload
     @commands.command(hidden=True)
     async def wcog(self, ctx:Context, n):
         cmd = self.bot.get_command(n)
         await ctx.send(cmd.cog.qualified_name)
     @commands.command(hidden=True)
     async def unload(self, ctx:Context, extension):
-        if ctx.author.id == 298043305927639041:
             self.bot.unload_extension(f'cogs.{extension}')
             embed = discord.Embed(color=discord.Color.dark_gold())
             embed.add_field(name="Unload Extension", value=f"Unloaded cog: ``{extension}`` successfully")
             await ctx.send(embed=embed)
 
-        else:
-            await ctx.send("You're not the owner of this bot...")
-        #reload
     @commands.command(aliases=['r'], hidden=True)
     async def reload(self, ctx:Context, extension=""):
-        if ctx.author.id == 298043305927639041:
-            if not extension:
-        
-                for cog in tuple(self.bot.extensions):
-            
+        if not extension:
+    
+            for cog in tuple(self.bot.extensions):
+                if cog[5:] not in ["Misc", "Economy"]:
                     self.bot.reload_extension(cog)
-                embed = discord.Embed(color=discord.Color.dark_gold())
-                embed.add_field(name="Reload Extension", value=f"Reloaded cogs successfully")
-                await ctx.send(embed=embed)
-            else:
+            embed = discord.Embed(color=discord.Color.dark_gold())
+            embed.add_field(name="Reload Extension", value=f"Reloaded cogs successfully")
+            print('\n\n\n\nReloaded\n--------------------------------')
+            await ctx.send(embed=embed)
+        else:
 
-                self.bot.reload_extension(f'cogs.{extension}')
-                embed = discord.Embed(color=discord.Color.dark_gold())
-                embed.add_field(name="Reload Extension", value=f"Reloaded cog: ``{extension}`` successfully")
-                await ctx.send(embed=embed)
-        else: 
-            await ctx.send("You're not the owner of this bot...")
+            self.bot.reload_extension(f'cogs.{extension}')
+            embed = discord.Embed(color=discord.Color.dark_gold())
+            embed.add_field(name="Reload Extension", value=f"Reloaded cog: ``{extension}`` successfully")
+            await ctx.send(embed=embed)
 
     @commands.command(hidden=True)
     async def abort(self, ctx:Context):
@@ -129,11 +116,10 @@ class Staff(commands.Cog):
     @commands.command(hidden=True)
     async def close(self, ctx:Context):
 
-        if ctx.author.id == 298043305927639041:
-            embed = discord.Embed(title=f"Goodbye", colour=thecolor())
-            await ctx.send(embed=embed)
-            
-            await self.bot.close()
+        embed = discord.Embed(title=f"Goodbye", colour=thecolor())
+        await ctx.send(embed=embed)
+        
+        await self.bot.close()
 
     @commands.command(hidden=True)
     async def ditest(self, ctx:Context):

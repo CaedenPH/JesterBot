@@ -3,8 +3,12 @@ from discord.ext import commands
 from random import choice, randint
 from pyMorseTranslator import translator
 from art import text2art
+
 from core.utils.utils import thecolor, Json, thebed
 from core.Context import Context
+from core.utils.emojis import CLOSE
+from core.Paginator import Paginator
+
 
 from discord.ext import tasks
 
@@ -20,7 +24,7 @@ class Fun(commands.Cog):
     async def asciiart(self, ctx:Context, *, text: str):
 
         if len(text) > 10:
-            return await thebed(ctx, '', f":x: Length of Text cannot be more than 10 Characters!")
+            return await thebed(ctx, '', f"{CLOSE} Length of Text cannot be more than 10 Characters!")
 
         art = text2art(text)
 

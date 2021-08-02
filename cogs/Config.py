@@ -262,24 +262,7 @@ class Config(commands.Cog):
                     embed = discord.Embed(title="Already applied", colour=thecolor())
                 await ctx.send(embed=embed)
 
-
-    @has_permissions(manage_channels=True)
-    @commands.command(aliases=['removesuggestchannel', 'rschannel', 'remschannel'], description="Removes the channel specified as a suggestion channel")
-    async def delsuggestchannel(self, ctx:Context, channel:discord.TextChannel):
-
-        with open('./dicts/Suggest.json', 'r+') as k:
-            data = json.load(k)
-            if str(channel.id) not in data:
-            
-                embed = discord.Embed(title="Already removed", colour=thecolor())
-            else:
-                data[str(channel.id)]['Yes'] = False
-        
-                Json(k, data)
-                embed = discord.Embed(title="Removed", colour=thecolor())
-
-            await ctx.send(embed=embed)
-
+    
     @commands.command(aliases=['verify'], description="""
     Creates a channel/uses an existing channel to make the server be secure by adding the need to say `verify` to access the server...Remove with `j.removeverify` 
     1. If channel is not given, this command will create a role called `⚘ Member ⚘` and a role called `⚘ Unverified ⚘`

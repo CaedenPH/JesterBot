@@ -1,29 +1,12 @@
 import discord, json, asyncio, random, requests
 from discord.ext import commands
-from discord_components import DiscordComponents, Button, ButtonStyle, InteractionType
+
 from core.utils.utils import thecolor, Json, thebed, Cmds
+from core.utils.emojis import j, e, s, t, e, r, COGemojis, CATEGORIES, LINK, HOME
 from core.Context import Context
 
 from dislash import SlashClient, ActionRow, Button, SelectMenu, SelectOption, MenuOption
 
-ddata = {
-                            'JesterInfo': 863075610048987166,
-                            'Feedback': 863075610851147777,
-                            'Music': 863075611320647719,
-                            'Snipe': 863075611269791794,
-                            'Fun': 863075609781075968,
-                            'Mod': 863075610784301068,
-                            'Games': 863075611329167380,
-                            'Utils': 863075611161788478,
-                            'Images': 863075611277656124,
-                            'Economy': 863075610913800233,
-                            'Misc': 863075610979729409,
-                            'Levels': 863075611182628895,
-                            'Config': 863075611169259550,
-                            'Love': 863075611374125056,
-                            'JesterJokes': 863075611278704670
-
-                        }
 
 class THEACTUALHelp(commands.Cog):
     def __init__(self, bot):
@@ -164,25 +147,26 @@ class THEACTUALHelp(commands.Cog):
                         desc2 = ""
                         desc3 = ""
 
-                        close = "<:Cross:863313854069997578>"
-                        home = "<:Arrow:863313854040506379>"
                        
                         opt = SelectMenu(
                                 custom_id="test",
                                 placeholder=f"Choose a category",
                                 max_values=1,
                                 options=[
-                                    MenuOption("home", "r", "Go back to the main help panel", emoji=home),
+                                    MenuOption("home", "r", "Go back to the main help panel", emoji=HOME),
                                 ]
                             )
                         z = 0
 
                         for cog in self.bot.cogs:
                             
-                            if cog not in ["Event", "THEACTUALHelp", "Staff"]:
+                            if cog not in ["Event", "THEACTUALHelp", "Staff", "Jishaku"]:
                                 
-                                name = self.bot.get_emoji(ddata[cog]).name
-                                emoj = f"<:{name}:{ddata[cog]}>"
+                                try:
+                                    name = self.bot.get_emoji(COGemojis[cog]).name
+                                except:
+                                    print(cog)
+                                emoj = f"<:{name}:{COGemojis[cog]}>"
                                 
                                 
                                 emoj1 = data['emojis'][cog]['description']
@@ -195,22 +179,16 @@ class THEACTUALHelp(commands.Cog):
                                         te += 1
                                
                                 if z % 2 == 0:
-                                    desc1 += f"\n> {emoj} **{cog}**"
+                                    desc1 += f"\n> {emoj} \u200b **{cog}**"
                                     opt.add_option(f"{cog}", f"{emoj} {cog}", f"{cog} has {te} commands", emoji=emoj)
                                
                                 else:
-                                    desc2 += f"\n> {emoj} **{cog}**"
+                                    desc2 += f"\n> {emoj}  \u200b **{cog}**"
                                     opt.add_option(f"{cog}", f"{emoj} {cog}", f"{cog} has {te} commands", emoji=emoj)
 
                                 z += 1
-                        e = self.bot.get_emoji(863313854150606848)
-                        j = self.bot.get_emoji(863313855286607932)
-                        s = self.bot.get_emoji(863313855061164062)
-                        r = self.bot.get_emoji(863313855119360022)
-                        t = self.bot.get_emoji(863313855399329812)
+                        
                        
-                        linkemoj = '<:JesterLink:868529282647986196>'
-                        catemoj = '<:JesterCat:868529295822319666>'
                         links = "> [Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot) │ [Vote for me!](https://top.gg/bot/828363172717133874/vote)"
                         description = f'''\n
                         
@@ -223,13 +201,13 @@ class THEACTUALHelp(commands.Cog):
                         em = discord.Embed(title=f"{j}{e}{s}{t}{e}{r}", description=description, colour=thecolor())
                         #em.set_thumbnail(url=self.bot.user.avatar_url```yaml\nTo get a more detailed description of a command use j.help <command/Category>. Press the button to see the category.```)
                         #u200b\n
-                        em.add_field(name=f"{catemoj} **Categories:**", value=f"{desc1}")
-                        em.add_field(name="\u200b", value=f"{desc2}")
+                        em.add_field(name=f"{CATEGORIES} **Categories:**\n\u200b", value=f"{desc1}\n\u200b")
+                        em.add_field(name="\u200b\n\u200b", value=f"{desc2}")
                         #em.add_field(name="\u200b",value =f"{desc3}\u200b\n")
                         #diff, fix  
-                        em.add_field(name=f"{linkemoj} **Links:**", value=f"**{links}**", inline=False)
+                        em.add_field(name=f"{LINK} **Links:**", value=f"**{links}**", inline=False)
                        
-                        #em.add_field(value=f"""```yaml\nTo get a more detailed description of a command use j.help <command/Category>. Press the button to see the category.``` ```ini\n[If you require assistance use the support command. To understand the prefixes type {ctx.prefix}help prefix]```""", name="\u200b", inline=False)
+                        #em.add_field(value=f"""```yaml\nTo get a more detailed description of a command use j.help     command/Category>. Press the button to see the category.``` ```ini\n[If you require assistance use the support command. To understand the prefixes type {ctx.prefix}help prefix]```""", name="\u200b", inline=False)
                         em.set_footer(text=f"{str(ctx.message.created_at)[11:16]} • Expires in 5 minutes")
                         
                         msg = await ctx.send(embed=em, components=[opt])
@@ -253,11 +231,11 @@ class THEACTUALHelp(commands.Cog):
 
                                 for cog in self.bot.cogs:
 
-                                    if cog not in ["Event", "THEACTUALHelp", "Staff"]:
+                                    if cog not in ["Event", "THEACTUALHelp", "Staff", "Jishaku"]:
                                             
                                         if cog == inter.select_menu.selected_options[0].label:
-                                            name = self.bot.get_emoji(ddata[cog]).name
-                                            emoj = f"<:{name}:{ddata[cog]}>"
+                                            name = self.bot.get_emoji(COGemojis[cog]).name
+                                            emoj = f"<:{name}:{COGemojis[cog]}>"
                                             the_list3 = ""
                                             the_list4 = ""
                                             if cog == "Mod":
@@ -278,7 +256,7 @@ class THEACTUALHelp(commands.Cog):
                                                             num += 1
                                                 
                                                 
-                                                embed = discord.Embed(title=f"{cog} │ {emoj}", color=thecolor())
+                                                embed = discord.Embed(title=f"{cog} │ {emoj}", description=data['emojis'][cog]['description'], color=thecolor())
                                                 embed.add_field(value=the_list3, name="\u200b")
                                                 embed.add_field(value=the_list4, name="\u200b")
                                                 if inter.author == ctx.author:
@@ -289,7 +267,8 @@ class THEACTUALHelp(commands.Cog):
 
                                             else:
                                                 the_list = ""
-                                                num = 0
+                                                the_list5 = ""
+                                                num = 1
                                                 actualcog = self.bot.get_cog(cog)
                                                 for cmd in actualcog.walk_commands():
                                                     if not cmd.hidden: 
@@ -297,14 +276,25 @@ class THEACTUALHelp(commands.Cog):
 
                                                             if num % 2 == 0:
                                                                 
-                                                                the_list3 += f"\n- `{cmd}`"
-                                                            else:
                                                                 the_list4 += f"\n- `{cmd}`"
+                                                            else:
+                                                                if num % 3 == 0:
+                                                                    the_list5 += f"\n - `{cmd}`"
+                                                                    
+                                                                else:
+
+                                                                    the_list3 += f"\n- `{cmd}`"
                                                             num += 1
-                                                
-                                                embed = discord.Embed(title=f"{cog} │ {emoj}", color=thecolor())
+                                                            if num == 4:
+                                                                num = 1
+                                                            
+                                                desc = data['emojis'][cog]['description']
+                                                embed = discord.Embed(title=f"{cog} │ {emoj}", description=desc, color=thecolor())
                                                 embed.add_field(value=the_list3, name="\u200b")
                                                 embed.add_field(value=the_list4, name="\u200b")
+                                                if the_list5:
+
+                                                    embed.add_field(name="\u200b", value=the_list5)
                                                 if inter.author == ctx.author:
 
                                                     await inter.reply(type=7, embed=embed)
@@ -321,7 +311,7 @@ class THEACTUALHelp(commands.Cog):
                         em.set_author(name="Help", icon_url = bot_av.avatar_url)
                         for cog in self.bot.cogs:
                             
-                            if cog not in ["Event", "THEACTUALHelp", "Staff"]:
+                            if cog not in ["Event", "THEACTUALHelp", "Staff", "Jishaku"]:
                                 
                                 thecog = self.bot.get_cog(cog)
                                 for cmd in thecog.walk_commands():

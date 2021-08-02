@@ -1,8 +1,11 @@
 import json, asyncio, traceback
 import discord
 from discord.ext.commands import *
+from youtube_dl.utils import LockFileEx
 
 from core.utils.utils import thecolor, thebed, Json
+from core.utils.emojis import LOCATIONemojis
+from core.Paginator import Paginator
 
 async def unexpected(bot, ctx, error):
     k = open('./dicts/Errors.json', 'r+')
@@ -12,7 +15,9 @@ async def unexpected(bot, ctx, error):
     data[num] = {'author': ctx.author.name, 'id': ctx.author.id, 'error': str(error), 'error_dir': str(dir(error)), 'command': ctx.command.name}
     Json(k, data)
     await thebed(bot.chan, f'{ctx.guild}; {ctx.author}; {ctx.command.name}', error)
-    await ctx.error(bot, error=error)
+    e = "".join(traceback.format_exception(error, error, error.__traceback__))
+    y = Paginator(ctx)
+    await y.paginate(content=f"{e}", name='error')
 async def error_handler(bot, ctx, error):
     if isinstance(error, MissingPermissions):
         embed = discord.Embed(description="You do not have permissions to do that!", colour=thecolor())
@@ -32,13 +37,10 @@ async def error_handler(bot, ctx, error):
         for e in error.param.name:
             y += "^"
         
-        
         for k in range(0, len(x[0])):
             z += " "
         
-        embed = discord.Embed(title=f"<{error.param.name}>  is missing:", description=f"```j.{ctx.command} {ctx.command.signature}\n{z}{y}```", colour=thecolor())
-        embed.set_footer(text="<> = needed │ [] = not needed")
-        await ctx.send(embed=embed)
+        await thebed(ctx, f"<{error.param.name}> is missing:", f"```j.{ctx.command} {ctx.command.signature}\n{z}{y}```", f="<> = needed | [] = not needed")
 
     elif isinstance(error, CommandNotFound):
         if bot.hiber:
@@ -74,9 +76,10 @@ async def error_handler(bot, ctx, error):
             num = 1
             my_string = my_string.split("---")
 
-        
+            failed_cmd = ctx.message.content.split(' ')
+            failed_cmd = failed_cmd[0]
             embed = discord.Embed(title="Error!", colour=thecolor())
-            embed.set_author(icon_url=ctx.author.avatar_url, name=f"{ctx.message.content} is not a command!")
+            embed.set_author(icon_url=ctx.author.avatar_url, name=f"{failed_cmd} is not a command!")
             
             if my_string[0] not in [""]:
 
@@ -86,55 +89,57 @@ async def error_handler(bot, ctx, error):
             def check(e, u):
                 return u == ctx.author and e.message.id==msg.id
 
-                
+            left = LOCATIONemojis['backwards']
+            right = LOCATIONemojis['forwards']
+            close = LOCATIONemojis['close']
             if len(my_string) >= 2:
                 if my_string[1] != "":
 
-                    await msg.add_reaction("⬅")
-                    await msg.add_reaction("➡")
-                    await msg.add_reaction("⛔")
+                    await msg.add_reaction(left)
+                    await msg.add_reaction(close)
+                    await msg.add_reaction(right)
                     try:
                         emoji, user = await bot.wait_for('reaction_add', timeout=60.0, check=check)
                         
                         
-                        while emoji.emoji != "⛔":
-                            if emoji.emoji == "➡" and num == 1:
+                        while str(emoji.emoji) != close:
+                            if str(emoji.emoji) == right and num == 1:
                         
                                 embed = discord.Embed(title="Error!", colour=thecolor())
-                                embed.set_author(icon_url=ctx.author.avatar_url, name=f"{ctx.message.content} is not a command!")
+                                embed.set_author(icon_url=ctx.author.avatar_url, name=f"{failed_cmd} is not a command!")
                                 embed.add_field(name="Did you mean:", value=f"{my_string[1]}")
                                 embed.set_footer(text="Page 2")
                                 await msg.edit(embed=embed)
-                                await msg.remove_reaction(member=ctx.author, emoji="➡")
+                                await msg.remove_reaction(member=ctx.author, emoji=right)
                                 num = 2
 
-                            elif emoji.emoji == "⬅" and num == 2:
+                            elif str(emoji.emoji) == left and num == 2:
                                 embed = discord.Embed(title="Error!", colour=thecolor())
-                                embed.set_author(icon_url=ctx.author.avatar_url, name=f"{ctx.message.content} is not a command!")
+                                embed.set_author(icon_url=ctx.author.avatar_url, name=f"{failed_cmd} is not a command!")
                                 embed.add_field(name="Did you mean:", value=f"{my_string[0]}")
                                 embed.set_footer(text="Page 1")
                                 await msg.edit(embed=embed)
-                                await msg.remove_reaction(member=ctx.author, emoji="⬅")
+                                await msg.remove_reaction(member=ctx.author, emoji=left)
                                 num = 1
                             else:
-                                await msg.remove_reaction(member=ctx.author, emoji="➡")
-                                await msg.remove_reaction(member=ctx.author, emoji="⬅")
+                                await msg.remove_reaction(member=ctx.author, emoji=right)
+                                await msg.remove_reaction(member=ctx.author, emoji=left)
 
                             emoji, user = await bot.wait_for('reaction_add', timeout=60.0, check=lambda r, u: u == ctx.author)
                         else:
                             embed = discord.Embed(title="Error!", description="Goodbye", colour=thecolor())
-                            embed.set_author(icon_url=ctx.author.avatar_url, name=f"{ctx.message.content} is not a command!")
+                            embed.set_author(icon_url=ctx.author.avatar_url, name=f"{failed_cmd} is not a command!")
                             embed.set_footer(text="Have fun!")
                             return await msg.edit(embed=embed)
                             
                     except asyncio.TimeoutError:
                         embed = discord.Embed(title="Error!", description="Session timed out", colour=thecolor())
-                        embed.set_author(icon_url=ctx.author.avatar_url, name=f"{ctx.message.content} is not a command!")
-                        embed.set_footer(text="Have fun!")
+                        embed.set_author(icon_url=ctx.author.avatar_url, name=f"{failed_cmd} is not a command!")
+                        embed.set_footer()
                         return await msg.edit(embed=embed)
             
-        except:
-            pass
+        except Exception as e:
+            print(e)
     elif isinstance(error, MemberNotFound):
         embed = discord.Embed(description=f"They are not a **member!**", colour=thecolor())
         await ctx.send(embed=embed)

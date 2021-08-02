@@ -1,10 +1,13 @@
+from discord.errors import HTTPException
+from core.utils.emojis import CLOSE, HOME, TRASHCAN
 import discord, asyncio
 from discord.ext import commands
 from dislash import *
 
 from core.utils.utils import thecolor, thebed
 
-def comps():
+
+def Components():
     components = [
             ActionRow(Button(
                 style=ButtonStyle.green,
@@ -56,32 +59,40 @@ class Context(commands.Context):
             content = None
         
         msg = await super().send(content, **kwargs)
+        self.bot.data[self.message] = {'bot':msg}
         try:
             async def reaction_task(msg, arg, kwargs):
                 def check(r, u):
                     return r.message == msg and u == arg.author
-                em = kwargs.get('embed')
-                if em:
+                
                     
-                    await msg.add_reaction('<:bin:870364030362087454>')
+                await asyncio.sleep(3)
+                try:
+
+                    await msg.add_reaction(TRASHCAN)
+                except HTTPException:
+                    return
+
+                try:
+                    r, u = await arg.bot.wait_for('reaction_add', check=check, timeout=250)
+                    if str(r) == TRASHCAN:
+                        await msg.delete()
+                except asyncio.TimeoutError:
                     try:
-                        r, u = await arg.bot.wait_for('reaction_add', check=check, timeout=540)
-                        if str(r) == '<:bin:870364030362087454>':
-                            await msg.delete()
-                    except asyncio.TimeoutError:
                         await msg.clear_reactions()
+                    except:
+                        pass
          
 
             loop = asyncio.get_running_loop()
             loop.create_task(reaction_task(msg, self, kwargs))
         except:
             pass
-        finally:
-            return msg
+        return msg
 
     async def confirm(self, content: any = None, **kwargs):
         
-        components=comps()
+        components=Components()
         msg = await super().send(content, **kwargs, components=components)
 
         def check(inter):
@@ -100,11 +111,11 @@ class Context(commands.Context):
         async with self.typing():
             error = kwargs.get('error')
 
-            await self.message.add_reaction('\u274c')
+            await self.message.add_reaction(CLOSE)
 
-            components=comps()
+            components=Components()
 
-        msg = await super().send(components=components, embed=discord.Embed(description=f"`Error:`{error}\n\u200b\n**Would you like to submit this error to the developer?**", color=thecolor()).set_author(name="Error", icon_url=self.author.avatar_url).set_footer(text='This error command is slow because it takes a lot of time to process it!'))
+        msg = await super().send(components=components, embed=discord.Embed(description=f"**Error:**{error}\n\u200b\n**Would you like to submit this error to the developer?**", color=thecolor()).set_author(name="Error", icon_url=self.author.avatar_url).set_footer(text='This error command is slow because it takes a lot of time to process it!'))
         x = False
         inter = await msg.wait_for_button_click(check)
         if inter.clicked_button.custom_id == "Yes":
@@ -113,8 +124,16 @@ class Context(commands.Context):
         else:
             await inter.reply('Not sent!', type=4, ephemeral=True)
             x =  False
-       
         if x:
             await thebed(bot.dev, f"{error} - {self.author} - {self.guild} - {self.channel}")
+    async def expected_error(self, **kwargs):
+        async with self.typing():
+            error = kwargs.get('error')
+
+            await self.message.add_reaction(CLOSE)
+
+
+        msg = await super().send(embed=discord.Embed(description=f"**Error: **{error}"))
+       
 
         

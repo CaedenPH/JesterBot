@@ -1,23 +1,27 @@
 import discord, os, requests, json, asyncio
-from dutils import thecolor, Json, thebed
+from core.utils.utils import thecolor, Json, thebed
 from discord.ext import commands 
    
 class Snipe(commands.Cog):
     def __init__(self, client):
-
         self.client = client
 
     @commands.Cog.listener()
     async def on_message_delete(self, message):
-
         with open('./dicts/Snipe.json', 'r+') as k:
+            amessage = message.clean_content
+            if not amessage:
+                try:
+                    amessage = str(message.embeds[0].to_dict())
+                except Exception as e:
+                    print(e)
             data = json.load(k)   
             g = str(message.guild.id)
             c = str(message.channel.id)
             if g in data:
                 if c in data[g]:
 
-                    data[g][c]['list'].append(message.content)
+                    data[g][c]['list'].append(amessage)
                     data[g][c]['author'].append(message.author.name)
                     data[g][c]['id'].append(message.author.id)
                     data[g][c]['time'].append(str(message.created_at))
@@ -25,7 +29,7 @@ class Snipe(commands.Cog):
 
                 else:
                     data[g][c] = {
-                        'list': [message.content],
+                        'list': [amessage],
                         'author': [message.author.name],
                         'id': [message.author.id],
                         'time': [str(message.created_at)]
@@ -33,7 +37,7 @@ class Snipe(commands.Cog):
             else:
                 data[g] = {
                     c: {
-                        'list': [message.content],
+                        'list': [amessage],
                         'author': [message.author.name],
                         'id': [message.author.id],
                         'time': [str(message.created_at)]
@@ -46,14 +50,26 @@ class Snipe(commands.Cog):
     async def on_message_edit(self, before, after):
 
         with open('./dicts/ESnipe.json', 'r+') as k:
+            bmessage = before.clean_content
+            amessage = after.clean_content
+            if not bmessage:
+                try:
+                    bmessage = bmessage.embeds[0].to_dict()
+                except Exception as e:
+                    pass
+            if not amessage:
+                try:
+                    amessage = amessage.embeds[0].to_dict()
+                except Exception as e:
+                    pass   
             data = json.load(k)   
             g = str(before.guild.id)
             c = str(before.channel.id)
             if g in data:
                 if c in data[g]:
 
-                    data[g][c]['before'].append(before.content)
-                    data[g][c]['after'].append(after.content)
+                    data[g][c]['before'].append(bmessage)
+                    data[g][c]['after'].append(amessage)
                     data[g][c]['author'].append(before.author.name)
                     data[g][c]['id'].append(before.author.id)
                     data[g][c]['time'].append(str(before.created_at))
@@ -65,8 +81,8 @@ class Snipe(commands.Cog):
                         'author': [before.author.name],
                         'id': [before.author.id],
                         'time': [str(before.created_at)],
-                        'after': [after.content],
-                        'before': [before.content]
+                        'after': [amessage],
+                        'before': [bmessage]
                     } 
                     
             else:
@@ -76,8 +92,8 @@ class Snipe(commands.Cog):
                         'author': [before.author.name],
                         'id': [before.author.id],
                         'time': [str(before.created_at)],
-                        'after': [after.content],
-                        'before': [before.content]
+                        'after': [amessage],
+                        'before': [bmessage]
                     }
                 }
             Json(k, data)
