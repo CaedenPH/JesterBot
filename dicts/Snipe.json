@@ -4568,7 +4568,12 @@
                 "Answer the questions in the format above to be verified.",
                 "Name: My name is Max\nDenomination: I am orthodox (although very new)\nAge: I am 16\nWhat does Jesus mean to you?:.....That\u2019s a good question. I\u2019m fairly new to christianity. I was born into atheism but that never stuck. I was agnostic for a while but the \u201cunknowingness\u201d bothered me. So i researched and found Jesus. Jesus brought me out of depression and helped me become a better person. He gives me meaning and a reason to be my best self every day. He\u2019s the reason i could be happy for the first time in a while. He\u2019s my Lord and saviour and he guides me everyday.\n\n\n\nWhy you decided to join the server: A community of people my age that i could discuss my new religion with seems like a great thing. Besides i could learn a lot.\n\n\n\nI agree with the rules  @Server Staff",
                 "Ariel\nSeven day advenist \n24 :) \nThat he always watching over us.\nI want to meet new advenist friends \nYes :)",
-                "Ryan\nChristian Methodist\n20\nJesus means everything to me, my lord my saviour.\nFellowship\nYes"
+                "Ryan\nChristian Methodist\n20\nJesus means everything to me, my lord my saviour.\nFellowship\nYes",
+                "oop",
+                "im doing good, you?",
+                "sorry about that",
+                "Edward\nCatholic\n15\nMy life\ni saw it on that errver thjngy\nYes",
+                "@Server Staff"
             ],
             "author": [
                 "weird.layla",
@@ -4740,7 +4745,12 @@
                 "Cure",
                 "Tovari\u0161 Sanders",
                 "Ari\ud83d\udc9c",
-                "GodsWarrior"
+                "GodsWarrior",
+                "marcoo",
+                "marcoo",
+                "marcoo",
+                "Edwarddd AAAAAAAa",
+                "Edwarddd AAAAAAAa"
             ],
             "id": [
                 862851271258144788,
@@ -4912,7 +4922,12 @@
                 304023515709833216,
                 602930595764633641,
                 352069013104230410,
-                869295035106078730
+                869295035106078730,
+                507319101732159504,
+                507319101732159504,
+                507319101732159504,
+                791256597204697099,
+                791256597204697099
             ],
             "time": [
                 "2021-07-09 01:25:09.683000",
@@ -5084,7 +5099,12 @@
                 "2021-08-04 17:02:57.298000",
                 "2021-08-04 17:45:39.199000",
                 "2021-08-06 03:40:31.182000",
-                "2021-08-07 05:10:31.573000"
+                "2021-08-07 05:10:31.573000",
+                "2021-08-07 17:45:32.846000",
+                "2021-08-07 17:45:46.676000",
+                "2021-08-07 17:45:38.053000",
+                "2021-08-07 18:01:04.196000",
+                "2021-08-07 18:01:14.562000"
             ]
         },
         "854828012897697853": {
@@ -18711,6 +18731,20 @@
             ],
             "time": [
                 "2021-07-16 23:29:00.954000"
+            ]
+        },
+        "872795492172595210": {
+            "list": [
+                "I do"
+            ],
+            "author": [
+                "Eazyscop3O_O"
+            ],
+            "id": [
+                846230168011538433
+            ],
+            "time": [
+                "2021-08-07 18:55:27.381000"
             ]
         }
     },
@@ -44511,7 +44545,16 @@
                 "{'footer': {'text': 'This message will be deleted in 60s'}, 'fields': [{'value': '!create discord.com', 'name': '** You entered: **', 'inline': False}, {'value': 'This is an LFG channel. You need to have the user role to execute this command.', 'name': '** Possible problem: **', 'inline': False}], 'color': 15878987, 'type': 'rich', 'description': 'You (metju#0012) do not have the permissions to run that command!\\n\\nFor more help enter !help', 'title': 'User permission error'}",
                 "{'footer': {'text': '16:15 \u2022 Expires in 5 minutes'}, 'fields': [{'value': '> <:Jesterinfo:863075610048987166> \\u200b **JesterInfo**\\n> <:Feedback:863075610851147777> \\u200b **Feedback**\\n> <:the_world:872473402638762025> \\u200b **Countries**\\n> <:Fun:863075609781075968> \\u200b **Fun**\\n> <:Mod:863075610784301068> \\u200b **Mod**\\n> <:Utils:863075611161788478> \\u200b **Utils**\\n> <:Economy:863075610913800233> \\u200b **Economy**\\n> <:Levels:863075611182628895> \\u200b **Levels**\\n> <:Love:863075611374125056> \\u200b **Love**\\n> <:cryptocurrency:872473402764570624> \\u200b **Cryptocurrency**\\n\\u200b', 'name': '<:menus:870781340746932225> **Categories:**\\n\\u200b', 'inline': True}, {'value': '> <:chatbot:872473402693259324>  \\u200b **Chatbot**\\n> <:Music:863075611320647719>  \\u200b **Music**\\n> <:Snipe:863075611269791794>  \\u200b **Snipe**\\n> <:game_night:872473402840076288>  \\u200b **DiscordTogether**\\n> <:Games:863075611329167380>  \\u200b **Games**\\n> <:Images:863075611277656124>  \\u200b **Images**\\n> <:Misc:863075610979729409>  \\u200b **Misc**\\n> <:Config:863075611169259550>  \\u200b **Config**\\n> <:JesterJokes:873327129016811528>  \\u200b **JesterJokes**', 'name': '\\u200b\\n\\u200b', 'inline': True}, {'value': '**> [Official server](https://discord.gg/2654CuU3ZU) \u2502 [Bot invite](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) \u2502 [Website](https://sites.google.com/view/jesterbot) \u2502 [Vote for me!](https://top.gg/bot/828363172717133874/vote)**', 'name': '<:links:870781340700782612> **Links:**', 'inline': False}], 'color': 16712965, 'type': 'rich', 'description': '```ml\\n[] - Required Argument | <> - Optional Argument``````diff\\n+ Use the dropbar to navigate through Categories``````diff\\n+ Use j.help prefix for info about the prefix```', 'title': '<:J_:863313855286607932><:E_:863313854150606848><:S:863313855061164062><:T:863313855399329812><:E_:863313854150606848><:R_:863313855119360022>'}",
                 "j.h",
-                "{'color': 3333631, 'type': 'rich', 'description': 'Developers Only !'}"
+                "{'color': 3333631, 'type': 'rich', 'description': 'Developers Only !'}",
+                "<a:loading:747680523459231834> | Rendering wheel...",
+                "",
+                "{'color': 11099611, 'type': 'rich', 'description': '**\ud83c\udf89-Congrats \ud835\udc0f\ud835\udc00\u30fdCYPHON\ud83e\udd42#0417**, you have reached level **1**'}",
+                "||ish closed source :^||",
+                "{'author': {'proxy_icon_url': 'https://images-ext-2.discordapp.net/external/NYvIhRB1epl-JI8JOPjkjouNUWIzxo0ct1csGdgYBTs/https/cdn.discordapp.com/icons/110373943822540800/a_280f68348c167703bec255e18184f7b0.webp', 'name': 'Hurricane', 'icon_url': 'https://cdn.discordapp.com/icons/110373943822540800/a_280f68348c167703bec255e18184f7b0.webp'}, 'color': 3066993, 'type': 'rich', 'description': '**Message Has Been Sent to You In DMs!**'}",
+                "{'fields': [{'value': '`2110.` <a:GiveawayEmoji:858393513786736650> `;;GiveawayEmoji`', 'name': 'page 212/212', 'inline': True}], 'color': 16745472, 'type': 'rich', 'description': 'Do `j;toggle` to toggle on/off emoji auto response', 'title': 'Available emojis'}",
+                "{'footer': {'text': 'Page 1 of 7'}, 'fields': [{'value': 'guide\\n help\\n report\\n suggest\\n vote\\n choose\\n discord\\n embed\\n invite\\n pfp\\n pftext\\n rep\\n sign', 'name': 'Commands:', 'inline': True}, {'value': \"Tiny guide about Memeral\\nView command info\\nReport a bug\\nSuggest a feature/command\\nStart a vote\\nPicks 1 of your inputs randomly\\nMemeral's Discord server\\nCreate embed message\\nMemeral's invite link\\nLarger profile picture\\nEdit your profile text\\nGive a reputation point\\nWrite something clever\", 'name': 'Description:', 'inline': True}], 'color': 16716947, 'timestamp': '2021-08-07T17:36:08.941000+00:00', 'type': 'rich', 'title': 'Memeral commands \\n -----------------------------------------------------------------------------'}",
+                "{'color': 11099611, 'type': 'rich', 'description': '**\ud83c\udf89-Congrats Jeyy#8538**, you have reached level **3**'}",
+                "{'color': 15158332, 'type': 'rich', 'description': 'You must be a server administrator in order to view the help command! You can invite ServerDB to your own server(s) [here](https://server-db.xyz/invite).', 'title': 'Oops!'}"
             ],
             "author": [
                 "Country Bot",
@@ -44872,7 +44915,16 @@
                 "Raid Organizer",
                 "[j.] JesterBot",
                 "Fred123",
-                "JS BOT [>]"
+                "JS BOT [>]",
+                "Jeyy Bot",
+                "\ud835\udc0f\ud835\udc00\u30fdCYPHON\ud83e\udd42",
+                "Mega",
+                "Jeyy Bot",
+                "Hurricane",
+                "Jeyy Bot",
+                "Memeral",
+                "Mega",
+                "ServerDB"
             ],
             "id": [
                 810662403217948672,
@@ -45233,7 +45285,16 @@
                 658698521570181140,
                 828363172717133874,
                 298043305927639041,
-                748400109045284944
+                748400109045284944,
+                779783517613588520,
+                501952990291296266,
+                790538993451270154,
+                779783517613588520,
+                808333920298467350,
+                779783517613588520,
+                532928166281347072,
+                790538993451270154,
+                810163593801891860
             ],
             "time": [
                 "2021-07-21 22:51:02.954000",
@@ -45594,21 +45655,34 @@
                 "2021-08-07 16:12:10.343000",
                 "2021-08-07 16:15:33.986000",
                 "2021-08-07 16:15:33.566000",
-                "2021-08-07 16:22:56.422000"
+                "2021-08-07 16:22:56.422000",
+                "2021-08-07 17:29:19.389000",
+                "2021-08-07 17:29:21.116000",
+                "2021-08-07 17:31:24.578000",
+                "2021-08-07 17:34:59.883000",
+                "2021-08-07 17:36:08.983000",
+                "2021-08-07 17:38:46.249000",
+                "2021-08-07 17:36:09.029000",
+                "2021-08-07 17:39:35.678000",
+                "2021-08-07 19:27:06.533000"
             ]
         },
         "374594284915261440": {
             "list": [
-                "Congratulations **A5rocks#9289** you reached level **4**!"
+                "Congratulations **A5rocks#9289** you reached level **4**!",
+                "{'footer': {'text': 'Musify', 'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/PqwbdAGDo3AbiltUk-VtVRRQGb2MIpPPdPgJEAzqPUI/%3Fsize%3D4096/https/cdn.discordapp.com/avatars/862657304166924329/172c671c86b52c22497b585c5e507d7e.webp', 'icon_url': 'https://cdn.discordapp.com/avatars/862657304166924329/172c671c86b52c22497b585c5e507d7e.webp?size=4096'}, 'color': 14687745, 'type': 'rich', 'description': 'The prefix for this Guild is: `>`\\nYou can also ping me, instead of using a Prefix!\\n\\nTo play Music simply type `>play <Title / Url>`\\n\\nTo create a unique Requesting Setup type `>setup`', 'title': '\u274c Unkown command, try: **`>help`**'}"
             ],
             "author": [
-                "Child Deku"
+                "Child Deku",
+                "Musify"
             ],
             "id": [
-                854732491402772511
+                854732491402772511,
+                862657304166924329
             ],
             "time": [
-                "2021-07-21 23:28:23.049000"
+                "2021-07-21 23:28:23.049000",
+                "2021-08-07 18:40:03.100000"
             ]
         },
         "119222314964353025": {
@@ -47730,7 +47804,9 @@
                 "Verilecek rol sizin rol\u00fcn\u00fcz\u00fcn \u00fcst\u00fcnde bu y\u00fczden rol\u00fc **veremiyorum!**",
                 "Bu komutu sadece #\ud83d\ude80\u30fbbot-add kanal\u0131nda kullanabilirsin.",
                 "@\u0584\u0585\u0584 \u0584\u029f\u01df\u028f\u0586",
-                "Bu komutu sadece #\ud83d\ude80\u30fbbot-add kanal\u0131nda kullanabilirsin."
+                "Bu komutu sadece #\ud83d\ude80\u30fbbot-add kanal\u0131nda kullanabilirsin.",
+                "Oc",
+                "Arkadaslar mustafa tam bir pi\u00e7tir"
             ],
             "author": [
                 "Hera",
@@ -47746,7 +47822,9 @@
                 "Hera",
                 "Hera",
                 "Xenzai",
-                "Hera"
+                "Hera",
+                "Xenzai",
+                "Xenzai"
             ],
             "id": [
                 803925896259043348,
@@ -47762,7 +47840,9 @@
                 803925896259043348,
                 803925896259043348,
                 852820205024313374,
-                803925896259043348
+                803925896259043348,
+                852820205024313374,
+                852820205024313374
             ],
             "time": [
                 "2021-08-02 06:59:50.285000",
@@ -47778,7 +47858,9 @@
                 "2021-08-02 10:13:15.195000",
                 "2021-08-04 09:38:17.230000",
                 "2021-08-04 09:37:43.341000",
-                "2021-08-04 09:39:22.933000"
+                "2021-08-04 09:39:22.933000",
+                "2021-08-07 18:38:20.666000",
+                "2021-08-07 18:38:13.224000"
             ]
         },
         "869149963630821416": {

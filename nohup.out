@@ -30,3 +30,44 @@ Traceback (most recent call last):
   File "/usr/lib/python3.7/ssl.py", line 767, in unwrap
     return self._sslobj.shutdown()
 ssl.SSLError: [SSL: KRB5_S_INIT] application data after close notify (_ssl.c:2609)
+Version 7.3.1 of asyncpraw is outdated. Version 7.4.0 was released Friday July 30, 2021.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Setting up...
+-----------------------------------
+Cogs:
+-----------------------------------
+cogs.helpcommand.py, cogs.JesterInfo.py, cogs.Chatbot.py, cogs.Feedback.py, cogs.music.py, cogs.Countries.py, cogs.Staff.py, cogs.Snipe.py, cogs.Fun.py, cogs.DiscordTogether.py, cogs.Moderation.py, cogs.Games.py, cogs.Utils.py, cogs.Images.py, cogs.Economy.py, cogs.Misc.py, cogs.Levels.py, cogs.Config.py, cogs.Love.py, cogs.event.py, cogs.Gifs.py, cogs.Crypto.py
+Loaded Cogs Successfully! Total Cogs: 22
+-----------------------------------
+Running the bot...
+-----------------------------------

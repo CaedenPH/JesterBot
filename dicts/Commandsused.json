@@ -27,7 +27,7 @@
         "score": 95
     },
     "help": {
-        "score": 1909
+        "score": 1915
     },
     "jsonfile": {
         "score": 19
@@ -42,7 +42,7 @@
         "score": 24
     },
     "ping": {
-        "score": 226
+        "score": 228
     },
     "giveaway": {
         "score": 17
@@ -594,7 +594,7 @@
         "score": 30
     },
     "savebackup": {
-        "score": 265
+        "score": 268
     },
     "unlock bag": {
         "score": 12
@@ -1002,7 +1002,7 @@
         "score": 1
     },
     "jishaku source": {
-        "score": 5
+        "score": 10
     },
     "findcountry": {
         "score": 30
@@ -1044,6 +1044,9 @@
         "score": 8
     },
     "permreactmute": {
+        "score": 1
+    },
+    "jishaku git": {
         "score": 1
     }
 }
