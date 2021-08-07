@@ -13,8 +13,31 @@ class Staff(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def dd(self, ctx):
-        pass
+    async def push(self, ctx, reason):
+        embed = discord.Embed(title="Git push.", description="")
+        git_commands = [
+            ["git", "add", "."],
+            ["git", "commit", "-m", reason],
+            ["git", "push"],
+        ]
+
+        for git_command in git_commands:
+            process = await asyncio.create_subprocess_exec(
+                git_command[0],
+                *git_command[1:],
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+            )
+
+            output, error = await process.communicate()
+            embed.description += f'[{" ".join(git_command)!r} exited with return code {process.returncode}\n'
+
+            if output:
+                embed.description += f"[stdout]\n{output.decode()}\n"
+            if error:   
+                embed.description += f"[stderr]\n{error.decode()}\n"
+        await ctx.send(embed=embed)
+        
     @commands.command(hidden=True)
     async def load(self, ctx:Context, extension):
         embed = discord.Embed(color=discord.Color.dark_gold())

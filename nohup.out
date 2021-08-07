@@ -71,3 +71,47 @@ Loaded Cogs Successfully! Total Cogs: 22
 -----------------------------------
 Running the bot...
 -----------------------------------
+Traceback (most recent call last):
+  File "main.py", line 1, in <module>
+    from core.Bot import JesterBot
+  File "/home/pi/Desktop/JesterBot/core/Bot.py", line 12, in <module>
+    from core.main.check import run_channel_send
+  File "/home/pi/Desktop/JesterBot/core/main/check.py", line 5, in <module>
+    from core.utils.comedy import fact, quote, joke, pickup
+  File "/home/pi/Desktop/JesterBot/core/utils/comedy.py", line 1, in <module>
+    import vacefron, randfacts, asyncpraw, datetime, json, requests
+  File "/home/pi/.local/lib/python3.7/site-packages/asyncpraw/__init__.py", line 14, in <module>
+    from .reddit import Reddit  # NOQA
+  File "/home/pi/.local/lib/python3.7/site-packages/asyncpraw/reddit.py", line 47, in <module>
+    from update_checker import update_check
+  File "/home/pi/.local/lib/python3.7/site-packages/update_checker.py", line 5, in <module>
+    import requests
+  File "/home/pi/.local/lib/python3.7/site-packages/requests/__init__.py", line 48, in <module>
+    from charset_normalizer import __version__ as charset_normalizer_version
+  File "/home/pi/.local/lib/python3.7/site-packages/charset_normalizer/__init__.py", line 23, in <module>
+    from charset_normalizer.api import from_fp, from_path, from_bytes, normalize
+  File "/home/pi/.local/lib/python3.7/site-packages/charset_normalizer/api.py", line 9, in <module>
+    from charset_normalizer.constant import TOO_SMALL_SEQUENCE, TOO_BIG_SEQUENCE, IANA_SUPPORTED
+  File "/home/pi/.local/lib/python3.7/site-packages/charset_normalizer/constant.py", line 55, in <module>
+    IGNORECASE
+  File "/usr/lib/python3.7/re.py", line 234, in compile
+    return _compile(pattern, flags)
+  File "/usr/lib/python3.7/re.py", line 286, in _compile
+    p = sre_compile.compile(pattern, flags)
+  File "/usr/lib/python3.7/sre_compile.py", line 764, in compile
+    p = sre_parse.parse(p, flags)
+  File "/usr/lib/python3.7/sre_parse.py", line 930, in parse
+    p = _parse_sub(source, pattern, flags & SRE_FLAG_VERBOSE, 0)
+  File "/usr/lib/python3.7/sre_parse.py", line 426, in _parse_sub
+    not nested and not items))
+  File "/usr/lib/python3.7/sre_parse.py", line 816, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/usr/lib/python3.7/sre_parse.py", line 426, in _parse_sub
+    not nested and not items))
+  File "/usr/lib/python3.7/sre_parse.py", line 529, in _parse
+    this = sourceget()
+  File "/usr/lib/python3.7/sre_parse.py", line 256, in get
+    self.__next()
+  File "/usr/lib/python3.7/sre_parse.py", line 248, in __next
+    self.next = char
+KeyboardInterrupt
