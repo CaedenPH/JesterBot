@@ -363,7 +363,7 @@
         "score": 1
     },
     "reload": {
-        "score": 4200
+        "score": 4202
     },
     "pp": {
         "score": 141
@@ -1047,6 +1047,9 @@
         "score": 1
     },
     "jishaku git": {
+        "score": 1
+    },
+    "push": {
         "score": 1
     }
 }
