@@ -1,12 +1,12 @@
 {
     "flipcoin": {
-        "score": 11
+        "score": 12
     },
     "commands_used": {
         "score": 26
     },
     "joke": {
-        "score": 155
+        "score": 154
     },
     "rand": {
         "score": 4
@@ -24,10 +24,10 @@
         "score": 19
     },
     "invite": {
-        "score": 90
+        "score": 95
     },
     "help": {
-        "score": 1726
+        "score": 1909
     },
     "jsonfile": {
         "score": 19
@@ -42,7 +42,7 @@
         "score": 24
     },
     "ping": {
-        "score": 141
+        "score": 226
     },
     "giveaway": {
         "score": 17
@@ -63,10 +63,10 @@
         "score": 15
     },
     "close": {
-        "score": 20
+        "score": 22
     },
     "stats": {
-        "score": 24
+        "score": 26
     },
     "reactroles": {
         "score": 60
@@ -108,7 +108,7 @@
         "score": 4
     },
     "prefix": {
-        "score": 167
+        "score": 175
     },
     "rpsfail": {
         "score": 4
@@ -126,10 +126,10 @@
         "score": 50
     },
     "purgewithoutmessage": {
-        "score": 70
+        "score": 71
     },
     "unban": {
-        "score": 3
+        "score": 4
     },
     "info": {
         "score": 15
@@ -165,7 +165,7 @@
         "score": 24
     },
     "update": {
-        "score": 107
+        "score": 108
     },
     "newup": {
         "score": 56
@@ -189,7 +189,7 @@
         "score": 1
     },
     "purge": {
-        "score": 71
+        "score": 73
     },
     "remove_welcome": {
         "score": 7
@@ -249,7 +249,7 @@
         "score": 9
     },
     "mute": {
-        "score": 82
+        "score": 83
     },
     "reactmute": {
         "score": 6
@@ -258,19 +258,19 @@
         "score": 24
     },
     "kick": {
-        "score": 49
+        "score": 40
     },
     "unmute": {
-        "score": 20
+        "score": 22
     },
     "tmute": {
         "score": 23
     },
     "russianroulette": {
-        "score": 59
+        "score": 58
     },
     "lengthcommand": {
-        "score": 26
+        "score": 32
     },
     "help l": {
         "score": 1
@@ -279,7 +279,7 @@
         "score": 227
     },
     "hug": {
-        "score": 27
+        "score": 28
     },
     "help poke": {
         "score": 1
@@ -315,10 +315,10 @@
         "score": 2
     },
     "shop": {
-        "score": 103
+        "score": 104
     },
     "showroles": {
-        "score": 40
+        "score": 42
     },
     "showroleperm": {
         "score": 10
@@ -348,7 +348,7 @@
         "score": 10
     },
     "balance": {
-        "score": 133
+        "score": 134
     },
     "is_role": {
         "score": 7
@@ -363,13 +363,13 @@
         "score": 1
     },
     "reload": {
-        "score": 3868
+        "score": 4199
     },
     "pp": {
-        "score": 139
+        "score": 141
     },
     "newpp": {
-        "score": 302
+        "score": 308
     },
     "addhelp": {
         "score": 16
@@ -381,13 +381,13 @@
         "score": 15
     },
     "baltop": {
-        "score": 31
+        "score": 33
     },
     "balded": {
         "score": 4
     },
     "gifthide": {
-        "score": 9
+        "score": 10
     },
     "baladd": {
         "score": 4
@@ -399,37 +399,37 @@
         "score": 7
     },
     "load": {
-        "score": 28
+        "score": 31
     },
     "nitro": {
-        "score": 16
+        "score": 18
     },
     "rules": {
-        "score": 8
+        "score": 9
     },
     "booster": {
         "score": 4
     },
     "data": {
-        "score": 365
+        "score": 376
     },
     "serversin": {
         "score": 7
     },
     "ban": {
-        "score": 11
-    },
-    "showcmds": {
-        "score": 28
-    },
-    "servermessages": {
-        "score": 21
-    },
-    "unload": {
         "score": 12
     },
+    "showcmds": {
+        "score": 29
+    },
+    "servermessages": {
+        "score": 25
+    },
+    "unload": {
+        "score": 8
+    },
     "eval": {
-        "score": 1733
+        "score": 2056
     },
     "pager": {
         "score": 12
@@ -438,7 +438,7 @@
         "score": 10
     },
     "color": {
-        "score": 46
+        "score": 47
     },
     "fox": {
         "score": 10
@@ -501,19 +501,19 @@
         "score": 2
     },
     "fact": {
-        "score": 26
+        "score": 27
     },
     "hack": {
-        "score": 179
+        "score": 178
     },
     "eval2": {
         "score": 6
     },
     "evalreturn": {
-        "score": 205
+        "score": 233
     },
     "evaldir": {
-        "score": 182
+        "score": 249
     },
     "quote1": {
         "score": 4
@@ -543,22 +543,22 @@
         "score": 1
     },
     "timezone": {
-        "score": 88
+        "score": 89
     },
     "timez": {
         "score": 2
     },
     "mindchange": {
-        "score": 17
+        "score": 18
     },
     "t": {
         "score": 13
     },
     "family": {
-        "score": 63
+        "score": 64
     },
     "marry": {
-        "score": 57
+        "score": 58
     },
     "divorce": {
         "score": 8
@@ -576,25 +576,25 @@
         "score": 14
     },
     "level": {
-        "score": 98
+        "score": 97
     },
     "removelevels": {
         "score": 1
     },
     "shop box": {
-        "score": 39
+        "score": 40
     },
     "shop bag": {
         "score": 7
     },
     "shop corona": {
-        "score": 10
+        "score": 11
     },
     "unlock box": {
         "score": 30
     },
     "savebackup": {
-        "score": 259
+        "score": 265
     },
     "unlock bag": {
         "score": 12
@@ -609,7 +609,7 @@
         "score": 13
     },
     "config": {
-        "score": 15
+        "score": 16
     },
     "factchannel": {
         "score": 6
@@ -618,7 +618,7 @@
         "score": 2
     },
     "credits": {
-        "score": 25
+        "score": 26
     },
     "jokechannel": {
         "score": 2
@@ -633,7 +633,7 @@
         "score": 82
     },
     "play": {
-        "score": 181
+        "score": 185
     },
     "disconnect": {
         "score": 9
@@ -702,7 +702,7 @@
         "score": 11
     },
     "snipe": {
-        "score": 188
+        "score": 201
     },
     "aim": {
         "score": 20
@@ -711,7 +711,7 @@
         "score": 24
     },
     "randompicture": {
-        "score": 8
+        "score": 10
     },
     "meme": {
         "score": 9
@@ -723,7 +723,7 @@
         "score": 8
     },
     "wasted": {
-        "score": 2
+        "score": 3
     },
     "gay": {
         "score": 25
@@ -780,7 +780,7 @@
         "score": 37
     },
     "editsnipe": {
-        "score": 24
+        "score": 21
     },
     "editaim": {
         "score": 2
@@ -792,13 +792,13 @@
         "score": 5
     },
     "fibonacci": {
-        "score": 23
+        "score": 24
     },
     "invitesd": {
         "score": 3
     },
     "invited": {
-        "score": 10
+        "score": 11
     },
     "ditest": {
         "score": 10
@@ -828,7 +828,7 @@
         "score": 5
     },
     "chelp": {
-        "score": 44
+        "score": 53
     },
     "abort": {
         "score": 8
@@ -843,13 +843,13 @@
         "score": 1
     },
     "sudo": {
-        "score": 26
+        "score": 18
     },
     "permmute": {
         "score": 1
     },
     "pickemoji": {
-        "score": 20
+        "score": 22
     },
     "versions": {
         "score": 1
@@ -861,7 +861,7 @@
         "score": 5
     },
     "leaderboard": {
-        "score": 27
+        "score": 30
     },
     "uno": {
         "score": 159
@@ -876,7 +876,7 @@
         "score": 7
     },
     "uptime": {
-        "score": 49
+        "score": 57
     },
     "tag": {
         "score": 19
@@ -894,13 +894,13 @@
         "score": 17
     },
     "links": {
-        "score": 6
+        "score": 8
     },
     "ct": {
         "score": 35
     },
     "math": {
-        "score": 9
+        "score": 11
     },
     "support": {
         "score": 20
@@ -915,16 +915,16 @@
         "score": 2
     },
     "shop role": {
-        "score": 5
+        "score": 7
     },
     "hibernation": {
         "score": 1
     },
     "hiber": {
-        "score": 3
+        "score": 4
     },
     "hibernate": {
-        "score": 1
+        "score": 3
     },
     "charinfo": {
         "score": 11
@@ -936,15 +936,114 @@
         "score": 7
     },
     "plot": {
-        "score": 29
+        "score": 30
     },
     "server_prefix": {
-        "score": 3
-    },
-    "rank": {
         "score": 4
     },
-    "zipemojis": {
+    "rank": {
+        "score": 10
+    },
+    "sendroleid": {
+        "score": 1
+    },
+    "dd": {
+        "score": 9
+    },
+    "wee": {
+        "score": 5
+    },
+    "jishaku rtt": {
+        "score": 1
+    },
+    "jishaku": {
+        "score": 9
+    },
+    "jishaku py": {
+        "score": 4
+    },
+    "jishaku py_inspect": {
+        "score": 1
+    },
+    "jishaku pip": {
+        "score": 9
+    },
+    "jishaku cat": {
+        "score": 1
+    },
+    "jishaku show": {
+        "score": 1
+    },
+    "jishaku permtrace": {
+        "score": 1
+    },
+    "jishaku tasks": {
+        "score": 1
+    },
+    "jishaku debug": {
+        "score": 1
+    },
+    "exchange": {
+        "score": 2
+    },
+    "Symbols": {
+        "score": 2
+    },
+    "country": {
+        "score": 50
+    },
+    "flag": {
+        "score": 71
+    },
+    "check": {
+        "score": 20
+    },
+    "viewconfig": {
+        "score": 1
+    },
+    "jishaku source": {
+        "score": 5
+    },
+    "findcountry": {
+        "score": 30
+    },
+    "yt_together": {
+        "score": 6
+    },
+    "screenshot": {
+        "score": 6
+    },
+    "glitch": {
+        "score": 9
+    },
+    "pixelate": {
+        "score": 20
+    },
+    "rotate": {
+        "score": 11
+    },
+    "flip": {
+        "score": 3
+    },
+    "sharp": {
+        "score": 5
+    },
+    "enhance": {
+        "score": 2
+    },
+    "contrast": {
+        "score": 17
+    },
+    "welcomechannel": {
+        "score": 3
+    },
+    "deleteemoji": {
+        "score": 3
+    },
+    "createemoji": {
+        "score": 8
+    },
+    "permreactmute": {
         "score": 1
     }
 }

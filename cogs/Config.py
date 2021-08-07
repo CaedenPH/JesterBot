@@ -21,8 +21,7 @@ class Config(commands.Cog):
         with open('./dicts/Welcome.json', 'r+') as f:
             data = json.load(f)
             if role == "":
-                loaded = json.load(f)
-                loaded[str(ctx.guild.id)] = {
+                data[str(ctx.guild.id)] = {
                 "message":    message,
                 "name":       ctx.guild.name, 
                 "channel_id": ctx.channel.id,
@@ -33,8 +32,7 @@ class Config(commands.Cog):
                 await ctx.send(embed=embed)
             else:
 
-                loaded = json.load(f)
-                loaded[str(ctx.guild.id)] = {
+                data[str(ctx.guild.id)] = {
                     "message":    message,
                     "name":       ctx.guild.name, 
                     "channel_id": ctx.channel.id,
@@ -42,7 +40,7 @@ class Config(commands.Cog):
                     "Welcome": True
                 }   
 
-                Json(f, loaded)
+                Json(f, data)
                 embed = discord.Embed(title="Added!", colour=thecolor())
                 await ctx.send(embed=embed)
 

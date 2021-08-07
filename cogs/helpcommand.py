@@ -1,4 +1,4 @@
-import discord, json, asyncio, random, requests
+import discord, json, asyncio, random, requests, traceback
 from discord.ext import commands
 
 from core.utils.utils import thecolor, Json, thebed, Cmds
@@ -141,188 +141,189 @@ class THEACTUALHelp(commands.Cog):
                     
                 elif not command1 and not command:
                     us = ctx.me
-                    if us.guild_permissions.manage_messages:
+                    #if us.guild_permissions.manage_messages:
 
-                        desc1 = ""
-                        desc2 = ""
-                        desc3 = ""
+                    desc1 = ""
+                    desc2 = ""
+                    desc3 = ""
 
-                       
-                        opt = SelectMenu(
-                                custom_id="test",
-                                placeholder=f"Choose a category",
-                                max_values=1,
-                                options=[
-                                    MenuOption("home", "r", "Go back to the main help panel", emoji=HOME),
-                                ]
-                            )
-                        z = 0
+                    
+                    opt = SelectMenu(
+                            custom_id="test",
+                            placeholder=f"Choose a category",
+                            max_values=1,
+                            options=[
+                                MenuOption("home", "r", "Go back to the main help panel", emoji=HOME),
+                            ]
+                        )
+                    z = 0
 
-                        for cog in self.bot.cogs:
+                    for cog in self.bot.cogs:
+                        
+                        if cog not in ["Event", "THEACTUALHelp", "Staff", "Jishaku"]:
                             
-                            if cog not in ["Event", "THEACTUALHelp", "Staff", "Jishaku"]:
-                                
-                                try:
-                                    name = self.bot.get_emoji(COGemojis[cog]).name
-                                except:
-                                    print(cog)
-                                emoj = f"<:{name}:{COGemojis[cog]}>"
-                                
-                                
-                                emoj1 = data['emojis'][cog]['description']
-                                
-                                cg = self.bot.get_cog(cog)
-                                te = 0
-                                for cmd in cg.walk_commands():
-                                    if not cmd.hidden:
+                            try:
+                                name = self.bot.get_emoji(COGemojis[cog]).name
+                            except:
+                                print(cog)
+                            emoj = f"<:{name}:{COGemojis[cog]}>"
+                            
+                            
+                            emoj1 = data['emojis'][cog]['description']
+                            
+                            cg = self.bot.get_cog(cog)
+                            te = 0
+                            for cmd in cg.walk_commands():
+                                if not cmd.hidden:
 
-                                        te += 1
-                               
-                                if z % 2 == 0:
-                                    desc1 += f"\n> {emoj} \u200b **{cog}**"
-                                    opt.add_option(f"{cog}", f"{emoj} {cog}", f"{cog} has {te} commands", emoji=emoj)
-                               
+                                    te += 1
+                            
+                            if z % 2 == 0:
+                                desc1 += f"\n> {emoj} \u200b **{cog}**"
+                                opt.add_option(f"{cog}", f"{emoj} {cog}", f"{cog} has {te} commands", emoji=emoj)
+                            
+                            else:
+                                desc2 += f"\n> {emoj}  \u200b **{cog}**"
+                                opt.add_option(f"{cog}", f"{emoj} {cog}", f"{cog} has {te} commands", emoji=emoj)
+
+                            z += 1
+                    
+                    
+                    links = "> [Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot) │ [Vote for me!](https://top.gg/bot/828363172717133874/vote)"
+                    description = f'''\n
+                    
+                    ```ml\n[] - Required Argument | <> - Optional Argument``````diff\n+ Use the dropbar to navigate through Categories``````diff\n+ Use {ctx.prefix}help prefix for info about the prefix```
+                    
+                    
+                    
+                    '''
+                    #description=f"{description}",
+                    em = discord.Embed(title=f"{j}{e}{s}{t}{e}{r}", description=description, colour=thecolor())
+                    #em.set_thumbnail(url=self.bot.user.avatar_url```yaml\nTo get a more detailed description of a command use j.help <command/Category>. Press the button to see the category.```)
+                    #u200b\n
+                    em.add_field(name=f"{CATEGORIES} **Categories:**\n\u200b", value=f"{desc1}\n\u200b")
+                    em.add_field(name="\u200b\n\u200b", value=f"{desc2}")
+                    #em.add_field(name="\u200b",value =f"{desc3}\u200b\n")
+                    #diff, fix  
+                    em.add_field(name=f"{LINK} **Links:**", value=f"**{links}**", inline=False)
+                    
+                    #em.add_field(value=f"""```yaml\nTo get a more detailed description of a command use j.help     command/Category>. Press the button to see the category.``` ```ini\n[If you require assistance use the support command. To understand the prefixes type {ctx.prefix}help prefix]```""", name="\u200b", inline=False)
+                    em.set_footer(text=f"{str(ctx.message.created_at)[11:16]} • Expires in 5 minutes")
+                    
+                    msg = await ctx.send(embed=em, components=[opt])
+
+                    the_list1 = ""
+                    def check(inter):
+
+                        return inter.message.id == msg.id
+                    
+                    try:
+                        inter = await msg.wait_for_dropdown(check, timeout=360)
+
+                        while inter.select_menu != "eejekedjedemkemek":
+
+                            if inter.select_menu.selected_options[0].label == "home":
+                                if inter.author == ctx.author:
+
+                                    await inter.reply(type=7, embed=em)
                                 else:
-                                    desc2 += f"\n> {emoj}  \u200b **{cog}**"
-                                    opt.add_option(f"{cog}", f"{emoj} {cog}", f"{cog} has {te} commands", emoji=emoj)
+                                    await inter.reply(type=4, embed=em, ephemeral=True)
 
-                                z += 1
-                        
-                       
-                        links = "> [Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot) │ [Vote for me!](https://top.gg/bot/828363172717133874/vote)"
-                        description = f'''\n
-                        
-                        ```ml\n[] - Required Argument | () - Optional Argument``````diff\n+Use the dropbar to navigate through Categories``````diff\n+Use ({ctx.prefix}help prefix) for info about the prefix```
-                        
-                        
-                        
-                        '''
-                        #description=f"{description}",
-                        em = discord.Embed(title=f"{j}{e}{s}{t}{e}{r}", description=description, colour=thecolor())
-                        #em.set_thumbnail(url=self.bot.user.avatar_url```yaml\nTo get a more detailed description of a command use j.help <command/Category>. Press the button to see the category.```)
-                        #u200b\n
-                        em.add_field(name=f"{CATEGORIES} **Categories:**\n\u200b", value=f"{desc1}\n\u200b")
-                        em.add_field(name="\u200b\n\u200b", value=f"{desc2}")
-                        #em.add_field(name="\u200b",value =f"{desc3}\u200b\n")
-                        #diff, fix  
-                        em.add_field(name=f"{LINK} **Links:**", value=f"**{links}**", inline=False)
-                       
-                        #em.add_field(value=f"""```yaml\nTo get a more detailed description of a command use j.help     command/Category>. Press the button to see the category.``` ```ini\n[If you require assistance use the support command. To understand the prefixes type {ctx.prefix}help prefix]```""", name="\u200b", inline=False)
-                        em.set_footer(text=f"{str(ctx.message.created_at)[11:16]} • Expires in 5 minutes")
-                        
-                        msg = await ctx.send(embed=em, components=[opt])
+                            for cog in self.bot.cogs:
 
-                        the_list1 = ""
-                        def check(inter):
-
-                            return inter.message.id == msg.id
-                        
-                        try:
-                            inter = await msg.wait_for_dropdown(check, timeout=360)
-
-                            while inter.select_menu != "eejekedjedemkemek":
-
-                                if inter.select_menu.selected_options[0].label == "home":
-                                    if inter.author == ctx.author:
-
-                                        await inter.reply(type=7, embed=em)
-                                    else:
-                                        await inter.reply(type=4, embed=em, ephemeral=True)
-
-                                for cog in self.bot.cogs:
-
-                                    if cog not in ["Event", "THEACTUALHelp", "Staff", "Jishaku"]:
+                                if cog not in ["Event", "THEACTUALHelp", "Staff", "Jishaku"]:
+                                        
+                                    if cog == inter.select_menu.selected_options[0].label:
+                                        name = self.bot.get_emoji(COGemojis[cog]).name
+                                        emoj = f"<:{name}:{COGemojis[cog]}>"
+                                        the_list3 = ""
+                                        the_list4 = ""
+                                        if cog == "Mod":
+                                            num = 0
+                                            the_list3 = "\n-`permmute/unmute`\n-`ban/unban`"
+                                            the_list4 = "\n-`mute/reactmute`\n-`permreactmute/unreactmute`"
                                             
-                                        if cog == inter.select_menu.selected_options[0].label:
-                                            name = self.bot.get_emoji(COGemojis[cog]).name
-                                            emoj = f"<:{name}:{COGemojis[cog]}>"
-                                            the_list3 = ""
-                                            the_list4 = ""
-                                            if cog == "Mod":
-                                                num = 0
-                                                the_list3 = "\n-`permmute/unmute`\n-`ban/unban`"
-                                                the_list4 = "\n-`mute/reactmute`\n-`permreactmute/unreactmute`"
-                                                
-                                                dcog1 = self.bot.get_cog(cog)
-                                                for cmd in dcog1.walk_commands():
-                                                    if not cmd.hidden:
-                                                        if cmd.name not in ['permmute', 'unmute', 'permreactmute', 'unreactmute', 'mute', 'reactmute', 'ban', 'unban']:
+                                            dcog1 = self.bot.get_cog(cog)
+                                            for cmd in dcog1.walk_commands():
+                                                if not cmd.hidden:
+                                                    if cmd.name not in ['permmute', 'unmute', 'permreactmute', 'unreactmute', 'mute', 'reactmute', 'ban', 'unban']:
 
-                                                            if num % 2 == 0:
-                                                                
-                                                                the_list3 += f"\n- `{cmd}`"
-                                                            else:
-                                                                the_list4 += f"\n- `{cmd}`"
-                                                            num += 1
-                                                
-                                                
-                                                embed = discord.Embed(title=f"{cog} │ {emoj}", description=data['emojis'][cog]['description'], color=thecolor())
-                                                embed.add_field(value=the_list3, name="\u200b")
-                                                embed.add_field(value=the_list4, name="\u200b")
-                                                if inter.author == ctx.author:
-
-                                                    await inter.reply(type=7, embed=embed)
-                                                else:
-                                                    await inter.reply(type=4, embed=embed, ephemeral=True)
-
-                                            else:
-                                                the_list = ""
-                                                the_list5 = ""
-                                                num = 1
-                                                actualcog = self.bot.get_cog(cog)
-                                                for cmd in actualcog.walk_commands():
-                                                    if not cmd.hidden: 
-                                                        if not " " in cmd.qualified_name:
-
-                                                            if num % 2 == 0:
-                                                                
-                                                                the_list4 += f"\n- `{cmd}`"
-                                                            else:
-                                                                if num % 3 == 0:
-                                                                    the_list5 += f"\n - `{cmd}`"
-                                                                    
-                                                                else:
-
-                                                                    the_list3 += f"\n- `{cmd}`"
-                                                            num += 1
-                                                            if num == 4:
-                                                                num = 1
+                                                        if num % 2 == 0:
                                                             
-                                                desc = data['emojis'][cog]['description']
-                                                embed = discord.Embed(title=f"{cog} │ {emoj}", description=desc, color=thecolor())
-                                                embed.add_field(value=the_list3, name="\u200b")
-                                                embed.add_field(value=the_list4, name="\u200b")
-                                                if the_list5:
+                                                            the_list3 += f"\n- `{cmd}`"
+                                                        else:
+                                                            the_list4 += f"\n- `{cmd}`"
+                                                        num += 1
+                                            
+                                            
+                                            embed = discord.Embed(title=f"{cog} │ {emoj}", description=data['emojis'][cog]['description'], color=thecolor())
+                                            embed.add_field(value=the_list3, name="\u200b")
+                                            embed.add_field(value=the_list4, name="\u200b")
+                                            if inter.author == ctx.author:
 
-                                                    embed.add_field(name="\u200b", value=the_list5)
-                                                if inter.author == ctx.author:
+                                                await inter.reply(type=7, embed=embed)
+                                            else:
+                                                await inter.reply(type=4, embed=embed, ephemeral=True)
 
-                                                    await inter.reply(type=7, embed=embed)
-                                                else:
-                                                    await inter.reply(type=4, embed=embed, ephemeral=True)
-                                    
-                                inter = await msg.wait_for_dropdown(check)
-                        except asyncio.TimeoutError:
-                            await msg.edit(components=[])
-                    else:
+                                        else:
+                                            the_list = ""
+                                            the_list5 = ""
+                                            num = 1
+                                            actualcog = self.bot.get_cog(cog)
+                                            for cmd in actualcog.walk_commands():
+                                                if not cmd.hidden: 
+                                                    if not " " in cmd.qualified_name:
 
-                        the_list = []
-                        em = discord.Embed(description="**I'm a multi-use bot with new features being created every week! \nTo get a more detailed description of a command use `j.help <command>`.**\nLinks:  [Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.bot_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot)", colour=thecolor())
-                        em.set_author(name="Help", icon_url = bot_av.avatar_url)
-                        for cog in self.bot.cogs:
-                            
-                            if cog not in ["Event", "THEACTUALHelp", "Staff", "Jishaku"]:
+                                                        if num % 2 == 0:
+                                                            
+                                                            the_list4 += f"\n- `{cmd}`"
+                                                        else:
+                                                            if num % 3 == 0:
+                                                                the_list5 += f"\n - `{cmd}`"
+                                                                
+                                                            else:
+
+                                                                the_list3 += f"\n- `{cmd}`"
+                                                        num += 1
+                                                        if num == 4:
+                                                            num = 1
+                                                        
+                                            desc = data['emojis'][cog]['description']
+                                            embed = discord.Embed(title=f"{cog} │ {emoj}", description=desc, color=thecolor())
+                                            embed.add_field(value=the_list3, name="\u200b")
+                                            embed.add_field(value=the_list4, name="\u200b")
+                                            if the_list5:
+
+                                                embed.add_field(name="\u200b", value=the_list5)
+                                            if inter.author == ctx.author:
+
+                                                await inter.reply(type=7, embed=embed)
+                                            else:
+                                                await inter.reply(type=4, embed=embed, ephemeral=True)
                                 
-                                thecog = self.bot.get_cog(cog)
-                                for cmd in thecog.walk_commands():
-                                    if not cmd.hidden:
+                            inter = await msg.wait_for_dropdown(check)
+                    except asyncio.TimeoutError:
+                        em.set_footer(text="Help timed out")
+                        await msg.edit(embed=em, components=[])
+                    # else:
 
-                                        the_list.append(f"`{cmd}`")
+                    #     the_list = []
+                    #     em = discord.Embed(description="**I'm a multi-use bot with new features being created every week! \nTo get a more detailed description of a command use `j.help <command>`.**\nLinks:  [Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.bot_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot)", colour=thecolor())
+                    #     em.set_author(name="Help", icon_url = bot_av.avatar_url)
+                    #     for cog in self.bot.cogs:
                             
-                                em.add_field(name=cog, value="│".join(the_list), inline=False)
-                                the_list = []
-                        em.add_field(name="Help command", value="The help command looks bad because the main help command requires the `discord.Permission` `manage_messages`... This is because it uses emojis to control it")
-                        await ctx.send(embed=em)
+                    #         if cog not in ["Event", "THEACTUALHelp", "Staff", "Jishaku"]:
+                                
+                    #             thecog = self.bot.get_cog(cog)
+                    #             for cmd in thecog.walk_commands():
+                    #                 if not cmd.hidden:
+
+                    #                     the_list.append(f"`{cmd}`")
+                            
+                    #             em.add_field(name=cog, value="│".join(the_list), inline=False)
+                    #             the_list = []
+                    #     em.add_field(name="Help command", value="The help command looks bad because the main help command requires the `discord.Permission` `manage_messages`... This is because it uses emojis to control it")
+                    #     await ctx.send(embed=em)
 
                 elif command1 != None and command:
                     alx = []
@@ -338,10 +339,23 @@ class THEACTUALHelp(commands.Cog):
                     bot_av = self.bot.get_user(828363172717133874)
                     em = discord.Embed(colour=thecolor())
                     name = f"{command1.name.capitalize()}"
-                    
+                    try:
+
+                        check = command1.checks[0]
+                        check(0)
+                    except Exception as ee:
+                        *frames, last_frame = traceback.walk_tb(ee.__traceback__)
+                        frame = last_frame[0]
+    
+                        try:
+                            perms = ", ".join([f"`{k}`" for k in frame.f_locals['perms']])
+                        except:
+                            perms = '`None`'         
+
                     em.add_field(name=" ❯❯ Name", value=f"`{name}`", inline=False)
                     em.add_field(name=" ❯❯ Alias", value=f"{', '.join(alx)} " if alias else f"`none`", inline=False)
                     em.add_field(name=" ❯❯ Usage", value=f"`j.{command1.name} {sig}`" if sig else f'`j.{command1.name}`', inline=False)
+                    em.add_field(name=" ❯❯ Permissions", value=perms, inline=False)
                     em.add_field(name=" ❯❯ Description", value=thehelp if thehelp else "Currently no help!", inline=False)
                     em.set_author(name="Help", icon_url = bot_av.avatar_url)
                     em.set_footer(text="<> = needed │ [] = not needed")

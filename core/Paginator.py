@@ -1,7 +1,18 @@
 import discord
 
-from core.utils.utils import thecolor
-from core.utils.emojis import LOCATIONemojis as l
+try:
+
+    from core.utils.utils import thecolor
+    from core.utils.emojis import LOCATIONemojis as l
+except:
+    thecolor =  0xfffff
+    l = LOCATIONemojis = {
+    'fastbackwards': ':track_previous:',
+    'backwards': ':arrow_backward:',
+    'close': ':x:',
+    'forwards': ':arrow_forward:',
+    'fastforwards': ':track_next:'
+}
 
 async def message_edit(embed, **kwargs):
     content = kwargs.get('content')

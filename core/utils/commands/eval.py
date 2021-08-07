@@ -92,7 +92,7 @@ async def run_eval(ctx, code, **kwargs):
     theresult = result.split('None')
 
 
-    if len(result) < 1800:
+    if len(result) < 2000:
         msg = f"```py\nIn[{z}]: {message}\nOut[{z}]: {theresult[0]}\n```"
     else:
         y = Paginator(ctx)

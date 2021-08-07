@@ -15,7 +15,7 @@ from core.Context import Context
 from dislash import *
 import simpleeval
 import yfinance as yf
-#import InfixParser
+import InfixParser
 import re
 from typing import Tuple, Union
 import unicodedata
@@ -275,7 +275,7 @@ class Utils(commands.Cog):
                             adv = True
                             break
                     if adv:
-                        #parser = InfixParser.Evaluator()
+                        parser = InfixParser.Evaluator()
                         ndisplay = displayed
                     
                         ndisplay = displayed.replace('⁻¹', 'j.-1')
@@ -290,7 +290,7 @@ class Utils(commands.Cog):
                         for kk in sub:
                             ndisplay = ndisplay.replace(sub[kk], kk)
                         
-                        #output: float = parser.eval(ndisplay)
+                        output: float = parser.eval(ndisplay)
                     else:
                         if '√' in calc[str(l)]['d']:
                             ndisplay = ''
@@ -418,43 +418,6 @@ class Utils(commands.Cog):
         await ctx.send(embed=embed)
 
 
-    @commands.command(
-        aliases=['stock', 'market'],
-        description="Sends information about the stocks specified"
-        ) 
-
-    async def stocks(self, ctx:Context, stock=None):
-        
-        if not stock:
-            embed = discord.Embed(title="Type the stock symbol (e.g AAPL = apple)", description="[Stocks](https://swingtradebot.com/equities)", colour=thecolor())
-            return await ctx.send(embed=embed)
-
-        tickerData = yf.Ticker(stock)
-        inf = tickerData.info
-    
-        if 'longName' not in inf:
-            return await thebed(ctx, '', 'Not enough information')
-        async with ctx.typing():
-            embed = discord.Embed(title=f"{inf['longName'] if inf['longName'] else 'No name data'}", colour=thecolor())
-            embed.set_author(icon_url=ctx.author.avatar_url, name="Stock market")
-            if 'fullTimeEmployees' in inf:
-                embed.add_field(name="Employees", value=f"{inf['fullTimeEmployees']}", inline=False)
-            if 'dividendRate': 
-                embed.add_field(name="Employees", value=f"{inf['dividendRate']}", inline=False)   
-            if 'country' in inf:
-                embed.add_field(name="Location", value=f"{inf['country']}, {inf['state']}, {inf['city']}", inline=False)
-            if 'sharesShort' in inf:
-                embed.add_field(name="Shares", value=f"{inf['sharesShort']}", inline=False)
-            if 'fiftyTwoWeekLow' in inf:
-                embed.add_field(name="Value", value=f"Market Cap: *${inf['marketCap']}*\nLow: *${inf['fiftyTwoWeekLow']}*\nHigh: *${inf['fiftyTwoWeekHigh']}*", inline=False)
-            if 'logo_url' in inf:
-                embed.set_thumbnail(url=inf['logo_url'])
-            
-        await ctx.send(embed=embed)                
-                    
-                            
-                            
-                
 
     @commands.command(
         aliases=['fib'], 

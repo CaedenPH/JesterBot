@@ -3,8 +3,7 @@ from discord.ext import commands
 import aiosqlite
 import math
 import random
-import aiohttp
-import io
+import io, aiohttp
 from PIL import Image, ImageDraw, ImageFont
 
 
@@ -34,7 +33,7 @@ class Levels(commands.Cog):
         sendresult = await sendcurs.fetchone()
 
         chan, message='kek', 'kekw'
-
+        
         if sendresult is not None:
             guild, chan, ping = sendresult
 
@@ -92,7 +91,7 @@ class Levels(commands.Cog):
         logo.putalpha(mask)
         ##############################
         img.paste(logo, (20, 20), mask=logo)
-
+    
         # Black Circle
         draw = ImageDraw.Draw(img, 'RGB')
         draw.ellipse((152, 152, 208, 208), fill='#000')
@@ -298,13 +297,15 @@ class Levels(commands.Cog):
         )
         desc = ''
         cursor = await self.db.cursor()
-        await cursor.execute("SELECT user_id, xp, level, name FROM users WHERE guild_id = ? ORDER BY xp ASC LIMIT 10",(ctx.guild.id,))
+        await cursor.execute("SELECT user_id, xp, level, name FROM users WHERE guild_id = ? ORDER BY xp ASC",(ctx.guild.id,))
         result = await cursor.fetchall()
 
         for k, value in enumerate(result[::-1], start=1):  
-
-           
             desc += f"\n**{k}.** {value[3]}: level **{value[2]}**"
+
+            if k == 10:
+                break
+
              
         embed.description=desc
         await ctx.send(embed=embed)

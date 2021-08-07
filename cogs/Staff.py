@@ -38,7 +38,7 @@ class Staff(commands.Cog):
         if not extension:
     
             for cog in tuple(self.bot.extensions):
-                if cog[5:] not in ["Misc", "Economy"]:
+                if cog[5:] not in ["Misc", "Economy", "Mod"]:
                     self.bot.reload_extension(cog)
             embed = discord.Embed(color=discord.Color.dark_gold())
             embed.add_field(name="Reload Extension", value=f"Reloaded cogs successfully")

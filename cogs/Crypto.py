@@ -1,7 +1,11 @@
 import discord
 import requests
 import json
-from core.utils.utils import Color, thecolor
+import yfinance as yf
+
+from core.utils.utils import Color, thecolor, thebed
+from core.Context import Context
+
 from discord.ext import commands
 
 
@@ -58,5 +62,38 @@ class Cryptocurrency(commands.Cog):
         response = requests.request("GET", url, headers=headers)    
         await ctx.send("2")
 
+    @commands.command(
+        aliases=['stock', 'market'],
+        description="Sends information about the stocks specified"
+        ) 
+
+    async def stocks(self, ctx:Context, stock=None):
+        
+        if not stock:
+            embed = discord.Embed(title="Type the stock symbol (e.g AAPL = apple)", description="[Stocks](https://swingtradebot.com/equities)", colour=thecolor())
+            return await ctx.send(embed=embed)
+
+        tickerData = yf.Ticker(stock)
+        inf = tickerData.info
+    
+        if 'longName' not in inf:
+            return await thebed(ctx, '', 'Not enough information')
+        async with ctx.typing():
+            embed = discord.Embed(title=f"{inf['longName'] if inf['longName'] else 'No name data'}", colour=thecolor())
+            embed.set_author(icon_url=ctx.author.avatar_url, name="Stock market")
+            if 'fullTimeEmployees' in inf:
+                embed.add_field(name="Employees", value=f"{inf['fullTimeEmployees']}", inline=False)
+            if 'dividendRate': 
+                embed.add_field(name="Employees", value=f"{inf['dividendRate']}", inline=False)   
+            if 'country' in inf:
+                embed.add_field(name="Location", value=f"{inf['country']}, {inf['state']}, {inf['city']}", inline=False)
+            if 'sharesShort' in inf:
+                embed.add_field(name="Shares", value=f"{inf['sharesShort']}", inline=False)
+            if 'fiftyTwoWeekLow' in inf:
+                embed.add_field(name="Value", value=f"Market Cap: *${inf['marketCap']}*\nLow: *${inf['fiftyTwoWeekLow']}*\nHigh: *${inf['fiftyTwoWeekHigh']}*", inline=False)
+            if 'logo_url' in inf:
+                embed.set_thumbnail(url=inf['logo_url'])
+            
+        await ctx.send(embed=embed)                
 def setup(bot):
     bot.add_cog(Cryptocurrency(bot))

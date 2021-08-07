@@ -50,6 +50,18 @@
         },
         "Feedback": {
             "description": "Send feedback to the developer"
+        },
+        "Cryptocurrency": {
+            "description": "Sends information about crypto stocks and stuff!"
+        }, 
+        "Countries": {
+            "description": "Get information about every country in the world!"
+        },
+        "DiscordTogether": {
+            "description": "PLay an amazing game night on a call with all your friends!"
+        },
+        "Chatbot": {
+            "description": "Are you lonely? Talk to the bot!"
         }
 
 

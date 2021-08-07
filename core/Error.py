@@ -1,7 +1,6 @@
 import json, asyncio, traceback
 import discord
 from discord.ext.commands import *
-from youtube_dl.utils import LockFileEx
 
 from core.utils.utils import thecolor, thebed, Json
 from core.utils.emojis import LOCATIONemojis

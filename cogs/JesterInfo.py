@@ -170,7 +170,7 @@ class JesterInfo(commands.Cog):
 
     @commands.command(aliases=['pin', 'pingy', 'ms', 'Latency'], description="Sends the ping of the bot")
     async def ping(self, ctx:Context):
-        embed = discord.Embed(description=f"My current ping is **{round(self.bot.latency * 500)}** ms", colour=thecolor())
+        embed = discord.Embed(description=f"My current ping is **{round(self.bot.latency * 1000)}** ms", colour=thecolor())
         y = 0
         for m in self.bot.guilds:
             y += len(m.members)

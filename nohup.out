@@ -1,0 +1,32 @@
+Version 7.3.1 of asyncpraw is outdated. Version 7.4.0 was released Friday July 30, 2021.
+Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0xa1fe4db0>
+Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0xa81bcc50>
+Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0xa44a8c10>
+Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0xa2e311f0>
+SSL error in data received
+protocol: <asyncio.sslproto.SSLProtocol object at 0xa4045890>
+transport: <_SelectorSocketTransport fd=8 read=polling write=<idle, bufsize=0>>
+Traceback (most recent call last):
+  File "/usr/lib/python3.7/asyncio/sslproto.py", line 526, in data_received
+    ssldata, appdata = self._sslpipe.feed_ssldata(data)
+  File "/usr/lib/python3.7/asyncio/sslproto.py", line 207, in feed_ssldata
+    self._sslobj.unwrap()
+  File "/usr/lib/python3.7/ssl.py", line 767, in unwrap
+    return self._sslobj.shutdown()
+ssl.SSLError: [SSL: KRB5_S_INIT] application data after close notify (_ssl.c:2609)
+Version 7.3.1 of asyncpraw is outdated. Version 7.4.0 was released Friday July 30, 2021.
+SSL error in data received
+protocol: <asyncio.sslproto.SSLProtocol object at 0xa7e46c90>
+transport: <_SelectorSocketTransport fd=8 read=polling write=<idle, bufsize=0>>
+Traceback (most recent call last):
+  File "/usr/lib/python3.7/asyncio/sslproto.py", line 526, in data_received
+    ssldata, appdata = self._sslpipe.feed_ssldata(data)
+  File "/usr/lib/python3.7/asyncio/sslproto.py", line 207, in feed_ssldata
+    self._sslobj.unwrap()
+  File "/usr/lib/python3.7/ssl.py", line 767, in unwrap
+    return self._sslobj.shutdown()
+ssl.SSLError: [SSL: KRB5_S_INIT] application data after close notify (_ssl.c:2609)

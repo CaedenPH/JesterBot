@@ -1,25 +1,66 @@
-import discord, os, requests, json, asyncio
+import discord, os, requests, json, asyncio, aiohttp
 from discord.ext import commands 
 from random import choice, randint
 from pyMorseTranslator import translator
 from art import text2art
+from glitch_this import ImageGlitcher
+import cv2 as cv
+import numpy as np
 
 from core.utils.utils import thecolor, Json, thebed
 from core.Context import Context
 from core.utils.emojis import CLOSE
 from core.Paginator import Paginator
 
-
 from discord.ext import tasks
+from io import BytesIO
 
 encoder = translator.Encoder()
 decoder = translator.Decoder()
+glitcher = ImageGlitcher()
+
+async def img(ctx, member, name):
+    await ctx.trigger_typing()
+
+    if member is None:
+        member = ctx.author
+    async with aiohttp.ClientSession() as s:
+        async with s.get(str(member.avatar_url)) as r:
+            f = open(f'./images/{name}.png', 'wb')
+            f.write(await r.read())
+            f.close()
+
+    return f"./images/{name}.png"
 
 class Fun(commands.Cog):
     def __init__(self, bot):
    
         self.bot = bot
+
         
+    @commands.command()
+    async def glitch(self, ctx, member:discord.Member=None):
+        
+        await img(ctx, member, 'glitch')
+
+        glitch_img = glitcher.glitch_image('./images/glitch.png', 2, color_offset=True, gif=True)
+        glitch_img[0].save('./images/glitched.gif',
+                            format='GIF',
+                            append_images=glitch_img[1:],
+                            save_all=True,
+                            duration=200,
+                            loop=0                            
+                            )
+        await ctx.send(file=discord.File('./images/glitched.gif'))
+
+    @commands.command(name='screenshot')
+    async def _screenshot(self, ctx, *, url):
+        if ctx.channel.nsfw:
+
+            urll = f"https://image.thum.io/get/http://{url}"
+            return await thebed(ctx, '', url, i=urll)
+        await ctx.em("This channel is not nsfw! I dont want to be deleted as a bot because you cheeky peoples couldnt keep your hands to yeselfs!")  
+
     @commands.command(aliases=['art'])
     async def asciiart(self, ctx:Context, *, text: str):
 
@@ -150,8 +191,6 @@ class Fun(commands.Cog):
     
     @commands.command(aliases=['findemoji', 'emojipicker', 'getemojis'])
     async def pickemoji(self, ctx:Context):
-        
-
         other = open('./dicts/emojsend.json')
         data = json.load(other)
         x = []
@@ -281,7 +320,7 @@ class Fun(commands.Cog):
         embed = discord.Embed(title="randomnum", description=randint(num1, num2))
         await ctx.send(embed=embed)
         
-    @commands.command(aliases=['flip', 'coin', 'ht', 'headsandtails', 'Coinflip', 'coin_flip', 'flip_coin', 'fc'], description="Sends heads or tails, 50% chance")
+    @commands.command(aliases=['coin', 'ht', 'headsandtails', 'Coinflip', 'coin_flip', 'flip_coin', 'fc'], description="Sends heads or tails, 50% chance")
     async def flipcoin(self, ctx:Context): 
 
         rand = randint(1, 2)

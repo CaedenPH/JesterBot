@@ -1,20 +1,97 @@
-import discord, os, requests, json, asyncio
+import discord, os, requests, json, asyncio, aiohttp
 from discord.ext import commands 
 from random import choice, randint
-import vacefron
+import vacefron, PIL
 from animals import Animals
+import cv2 as cv
+from PIL import ImageEnhance
+
 from core.utils.utils import thecolor, Json, thebed
 from core.Context import Context
 
-import aiohttp
+
+
 vace_api = vacefron.Client()
 
+async def img(ctx, member, name):
+    await ctx.trigger_typing()
+
+    if member is None:
+        member = ctx.author
+
+    url:str = member.avatar_url
+
+    if member.is_avatar_animated():
+        print('hi')
+        url:str = member.avatar_url.replace('.gif', '.png')
+        print(url)
+        
+
+    async with aiohttp.ClientSession() as s:
+        async with s.get(url) as r:
+            f = open(f'./images/{name}.png', 'wb')
+            f.write(await r.read())
+            f.close()
+
+    return f"./images/{name}.png"
+
+async def pilimg(ctx, member, name):
+    await ctx.trigger_typing()
+
+    if member is None:
+        member = ctx.author
+
+    url:str = member.avatar_url
+
+    if member.is_avatar_animated():
+        print('hi')
+        url:str = str(member.avatar_url).replace('.gif', '.webp')
+        print(url)
+
+    path = f'./images/{name}.png'
+    async with aiohttp.ClientSession() as s:
+        async with s.get(url) as r:
+            f = open(path, 'wb')
+            f.write(await r.read())
+            f.close()
+
+    with PIL.Image.open(path) as im:
+        return im, path
 class Images(commands.Cog):
     def __init__(self, bot):
-   
-
         self.bot = bot
     
+    @commands.command()
+    async def sharp(self, ctx, sharpness:float=10, member:discord.Member=None):
+        x = await pilimg(ctx, member, 'sharp')
+        enhancer = ImageEnhance.Sharpness(x[0])
+        enhancer.enhance(sharpness)
+        enhancer.image.save(x[1])
+        await ctx.send(file=discord.File(x[1]))
+    
+    @commands.command()
+    async def enhance(self, ctx, factor:float, member:discord.Member=None):
+        x = await pilimg(ctx, member, 'contrast')
+        enhancer = ImageEnhance._Enhance()
+        enhancer.enhance(factor)
+        enhancer.image.save(x[1])
+        await ctx.send(file=discord.File(x[1]))
+
+    @commands.command()
+    async def contrast(self, ctx, factor:float, member:discord.Member=None):
+        x = await pilimg(ctx, member, 'contrast')
+        enhancer = ImageEnhance.Contrast(x[0])
+        enhancer.enhance(factor)    
+        enhancer.image.save(x[1])
+        await ctx.send(file=discord.File(x[1]))
+
+    @commands.command()
+    async def brightness(self, ctx, factor:float, member:discord.Member=None):
+        x = await pilimg(ctx, member, 'brightness')
+        enhancer = ImageEnhance.factor(x[0])
+        enhancer.enhance(factor)
+        enhancer.image.save(x[1])
+        await ctx.send(file=discord.File(x[1]))
     
     @commands.command(aliases=['change', 'changemind', 'change_my_mind'])
     async def mindchange(self, ctx:Context, *, text:str=None):
@@ -43,9 +120,10 @@ class Images(commands.Cog):
     @commands.command()
     async def rover(self, ctx:Context):
         key2 = "dS9ecIIo07Q0gGLYXnCoJW6uCAKwDM9j0UnYbVre"
-        async with aiohttp.ClientSession().get("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key={}".format(key2)) as resp:
-            response = await resp.json()
-            await ctx.send(response)
+        async with aiohttp.ClientSession() as sess:
+            async with sess.get("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key={}".format(key2)) as resp:
+                response = await resp.json()
+                await ctx.send(response)
 
     @commands.command(aliases=['rpic', 'randpic'])
     async def randompicture(self, ctx:Context):
@@ -59,9 +137,10 @@ class Images(commands.Cog):
 
     @commands.command()
     async def meme(self, ctx:Context):
-        async with aiohttp.ClientSession().get("https://some-random-api.ml/meme") as resp:
-            response = await resp.json()
-            await ctx.send(response['image'])
+        async with aiohttp.ClientSession() as client:
+            async with client.get("https://some-random-api.ml/meme") as resp:
+                response = await resp.json()
+                await ctx.send(response['image'])
 
     @commands.command(description="""Sends a wasted filtered avatar""")
     async def wasted(self, ctx:Context, member: discord.Member=None):
@@ -251,5 +330,37 @@ class Images(commands.Cog):
             embed.set_image(url=animal.image())
         await ctx.send(embed=embed)
 
+    @commands.command()
+    async def flip(self, ctx, member:discord.Member = None):
+        x = await img(ctx, member, 'flip')
+
+        image = cv.imread(x)
+
+        flip = cv.flip(image, 1)
+        cv.imwrite(x, flip)
+        await ctx.send(file=discord.File(x))
+
+    @commands.command()
+    async def rotate(self, ctx, degrees:float=-180, member:discord.Member=None):
+        await img(ctx, member, 'rotate')
+
+        image = cv.imread("./images/rotate.png")
+        h, w = image.shape[:2]
+
+        rotation_matrix = cv.getRotationMatrix2D((w/2,h/2), degrees, 1)
+
+        rotated_image = cv.warpAffine(image, rotation_matrix, (w, h))
+        cv.imwrite("./images/rotate.png", rotated_image)
+        await ctx.send(file=discord.File('./images/rotate.png'))
+
+    @commands.command(aliases=['pixel'])
+    async def pixelate(self, ctx, member:discord.Member=None):
+        await img(ctx, member, 'pixel')
+
+        image = cv.imread("./images/pixel.png")
+        image_scaled = cv.resize(image, None, fx=0.15, fy=0.15)
+        image_scaled = cv.resize(image_scaled, (400, 400))
+        cv.imwrite('./images/pixel.png', image_scaled)
+        await ctx.send(file=discord.File('./images/pixel.png'))
 def setup(bot):
   bot.add_cog(Images(bot))
