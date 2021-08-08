@@ -7,6 +7,9 @@ from core.utils.emojis import LOCATIONemojis
 from core.Paginator import Paginator
 
 async def unexpected(bot, ctx, error):
+    if ctx.author.id in ctx.bot.owner_ids:
+        return
+        
     k = open('./dicts/Errors.json', 'r+')
     data = json.load(k) 
     num = str(len(data))
@@ -17,6 +20,7 @@ async def unexpected(bot, ctx, error):
     e = "".join(traceback.format_exception(error, error, error.__traceback__))
     y = Paginator(ctx)
     await y.paginate(content=f"{e}", name='error')
+
 async def error_handler(bot, ctx, error):
     if isinstance(error, MissingPermissions):
         embed = discord.Embed(description="You do not have permissions to do that!", colour=thecolor())

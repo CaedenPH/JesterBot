@@ -161,5 +161,4 @@ class JesterBot(commands.Bot):
         selected_channel1 = self.get_guild(830161446523371540).get_channel(865309892776951808)
         await selected_channel1.send(f'I have left {guild.name}.')
     
-    async def on_error(self, event, *args, **kwargs):
-        await self.chan.send(f"{event} - {args} - {kwargs}")
+    
