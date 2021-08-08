@@ -40,9 +40,9 @@ async def push(ctx, reason):
         embed.description += f'[{" ".join(git_command)!r} exited with return code {process.returncode}\n'
 
         if output:
-            embed.description += f"[stdout]\n{output.decode()}\n"
+            embed.description += f"**[stdout]**\n{output.decode()}\n"
         if error:   
-            embed.description += f"[stderr]\n{error.decode()}\n"
+            embed.description += f"**[stderr]**\n{error.decode()}\n"
     await ctx.send(embed=embed)
     
 if __name__ == "__main__":

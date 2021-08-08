@@ -197,3 +197,75 @@ Traceback (most recent call last):
   File "/usr/lib/python3.7/ssl.py", line 767, in unwrap
     return self._sslobj.shutdown()
 ssl.SSLError: [SSL: KRB5_S_INIT] application data after close notify (_ssl.c:2609)
+SSL error in data received
+protocol: <asyncio.sslproto.SSLProtocol object at 0xa27cb0b0>
+transport: <_SelectorSocketTransport fd=8 read=polling write=<idle, bufsize=0>>
+Traceback (most recent call last):
+  File "/usr/lib/python3.7/asyncio/sslproto.py", line 526, in data_received
+    ssldata, appdata = self._sslpipe.feed_ssldata(data)
+  File "/usr/lib/python3.7/asyncio/sslproto.py", line 207, in feed_ssldata
+    self._sslobj.unwrap()
+  File "/usr/lib/python3.7/ssl.py", line 767, in unwrap
+    return self._sslobj.shutdown()
+ssl.SSLError: [SSL: KRB5_S_INIT] application data after close notify (_ssl.c:2609)
+SSL error in data received
+protocol: <asyncio.sslproto.SSLProtocol object at 0xa74df250>
+transport: <_SelectorSocketTransport fd=8 read=polling write=<idle, bufsize=0>>
+Traceback (most recent call last):
+  File "/usr/lib/python3.7/asyncio/sslproto.py", line 526, in data_received
+    ssldata, appdata = self._sslpipe.feed_ssldata(data)
+  File "/usr/lib/python3.7/asyncio/sslproto.py", line 207, in feed_ssldata
+    self._sslobj.unwrap()
+  File "/usr/lib/python3.7/ssl.py", line 767, in unwrap
+    return self._sslobj.shutdown()
+ssl.SSLError: [SSL: KRB5_S_INIT] application data after close notify (_ssl.c:2609)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Setting up...
+-----------------------------------
+Cogs:
+-----------------------------------
+cogs.helpcommand.py, cogs.JesterInfo.py, cogs.Chatbot.py, cogs.Feedback.py, cogs.music.py, cogs.Countries.py, cogs.Staff.py, cogs.Snipe.py, cogs.Fun.py, cogs.DiscordTogether.py, cogs.Moderation.py, cogs.Games.py, cogs.Utils.py, cogs.Images.py, cogs.Economy.py, cogs.Misc.py, cogs.Levels.py, cogs.Config.py, cogs.Love.py, cogs.event.py, cogs.Gifs.py, cogs.Crypto.py
+Loaded Cogs Successfully! Total Cogs: 22
+-----------------------------------
+Running the bot...
+-----------------------------------
+Connected to bot. Latency: 127 ms
+Client Ready!
+Guilds:
+-----------------------------------
+[593805403016396817, 801958621104832542, 764648063032885288, 827088097799831603, 843107189165260830, 851164219817984020, 846032738707832882, 110373943822540800, 817371635233062913, 782966978918744105, 800102903507058688, 834413080573378610, 861310040292065331, 673303075280388117, 793102507156701184, 831109278382948362, 859435997040345108, 707335479326015559, 850425394192580628, 809623148513329162, 808781108095352832, 813837741770801163, 808057945957990420, 823751270414286908, 837790134790783006, 772083939112124417, 817728197016944681, 840995227534622782, 834509878205874197, 830161446523371540, 704287808252280882, 809747740115992607, 868155750697021501, 861253572787175456, 824399343917989930, 853274948231102484, 671687376745005066, 781547697667964928, 833677482589683754, 834073210063552553, 812942306764259399, 868802716607078431, 799321945518505984, 849184957414899733, 829959100171026453, 804393586241437726, 803430815714902057, 812053139350880287, 869732483564982302, 772497051132493874, 831775556084170782, 826494680002723870, 854816114509217812, 814545701479645264, 801255165202006036, 684235302650511411, 830502079377178684]
+Admins:
+-----------------------------------
+Fred123#7205
+stealthninja#1990
+Client Disconnected.
