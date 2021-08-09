@@ -1,7 +1,5 @@
 from core.Paginator import Paginator
-import discord, aiohttp
-from io import BytesIO
-import os, requests, json, asyncio
+import discord, os, requests, json, asyncio
 from discord.ext.commands import has_permissions
 from discord.ext import commands 
 from async_timeout import timeout
@@ -16,34 +14,7 @@ class Mod(commands.Cog):
         
         self.bot = bot
         
-    @commands.command()
-    @commands.has_permissions(manage_emojis=True)
-    async def createemoji(self, ctx, url: str, *, name):
-        guild = ctx.guild
-        async with aiohttp.ClientSession() as ses:
-            async with ses.get(url) as r:
-                
-                try:
-                    img_or_gif = BytesIO(await r.read())
-                    b_value = img_or_gif.getvalue()
-                    if r.status in range(200, 299):
-                        emoji = await guild.create_custom_emoji(image=b_value, name=name)
-                        await ctx.send(f'Successfully created emoji: <:{name}:{emoji.id}>')
-                        await ses.close()
-                    else:
-                        await ctx.send(f'Error when making request | {r.status} response.')
-                        await ses.close()
-                        
-                except discord.HTTPException:
-                    await ctx.send('File size is too big!')
 
-    @commands.command()
-    @commands.has_permissions(manage_emojis=True)
-    async def deleteemoji(self, ctx, emoji: discord.Emoji):
-        guild = ctx.guild
-        await ctx.send(f'Successfully deleted (or not): {emoji}')
-        await emoji.delete()
-        
     @has_permissions(administrator=True)
     @commands.command(aliases=['del', 'deletes'], description="Deletes the specified channel, if no channel is specified - the current channel. Sends a warning.")
     async def delete(self, ctx:Context, channel_id:int=""):

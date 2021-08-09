@@ -12,6 +12,9 @@ class Staff(commands.Cog):
 
         self.bot = bot
 
+    @commands.command()
+    async def dd(self, ctx):
+        pass
     @commands.command(hidden=True)
     async def load(self, ctx:Context, extension):
         embed = discord.Embed(color=discord.Color.dark_gold())
@@ -53,7 +56,7 @@ class Staff(commands.Cog):
         await thebed(ctx, '', 'Aborting')
         
         await self.bot.close()
-        os.system('python3 main.py')  
+        os.system('python main.py')  
 
     @commands.command(hidden=True)
     async def drop(self, ctx:Context):

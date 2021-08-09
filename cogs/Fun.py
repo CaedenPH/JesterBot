@@ -12,8 +12,8 @@ from core.Context import Context
 from core.utils.emojis import CLOSE
 from core.Paginator import Paginator
 
+
 from discord.ext import tasks
-from io import BytesIO
 
 encoder = translator.Encoder()
 decoder = translator.Decoder()
@@ -37,7 +37,6 @@ class Fun(commands.Cog):
    
         self.bot = bot
 
-        
     @commands.command()
     async def glitch(self, ctx, member:discord.Member=None):
         

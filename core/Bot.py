@@ -1,6 +1,4 @@
-import os, asyncio, aiosqlite, datetime
-
-import discord
+import discord, os, requests, json, asyncio, datetime
 from discord.ext import commands 
 from discord.ext import tasks
 from discord import Intents
@@ -35,7 +33,6 @@ class JesterBot(commands.Bot):
         self.discordcolor = 0x36393F
         self.hiber = False
         self.data = {}
-        self.db = None
         
         
         
@@ -62,26 +59,17 @@ class JesterBot(commands.Bot):
     async def chansend(self):
         await run_channel_send(self) 
 
-    @tasks.loop(seconds=900)
+    @tasks.loop(seconds=540)
     async def update_presence(self):
         x:int = 0
         for guild in self.guilds:
             for k in guild.members:
                 x += 1
-        delta_uptime = datetime.datetime.utcnow() - self.launch_time
-        hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
-        minutes, seconds = divmod(remainder, 60)
-        days, hours = divmod(hours, 24)
-        
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="ping me for prefix // j.help"))
         await asyncio.sleep(180)
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"ping me for prefix // {x} Members in {len(self.guilds)} Servers!"))
         await asyncio.sleep(180)
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name=f"ping me for prefix // {len([e for e in self.commands if not e.hidden])} commands"))
-        await asyncio.sleep(180)
-        await self.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name=f"ping me for prefix // {round(self.latency * 1000)} ping"))
-        await asyncio.sleep(180)
-        await self.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name=f"ping me for prefix // I've been up for {days} Days, {hours} Hours, and {minutes} Minutes"))
         await asyncio.sleep(180)
     
     def run(self) -> None:
@@ -99,11 +87,8 @@ class JesterBot(commands.Bot):
     async def on_disconnect(self) -> None:
         print("Client Disconnected.")
     
-    async def connect_database(self):
-        self.db = await aiosqlite.connect('./db/database.db')
 
     async def on_ready(self) -> None:
-        self.loop.create_task(self.connect_database())
         self.update_presence.start()
         print("Client Ready!")
         self.chansend.start()
@@ -119,7 +104,7 @@ class JesterBot(commands.Bot):
         self.dev = await self.fetch_user(298043305927639041)
         guild = self.get_guild(830161446523371540)
         role = guild.get_role(857347445398044704)
-        print("Admins:\n-----------------------------------")   
+        print("Admins:\n-----------------------------------")
         for k in role.members:
             print(k)
             self.owner_ids.append(k.id)

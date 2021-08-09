@@ -1,4 +1,4 @@
-import discord, json, asyncio, random, requests, traceback
+import discord, json, asyncio, random, requests
 from discord.ext import commands
 
 from core.utils.utils import thecolor, Json, thebed, Cmds
@@ -339,23 +339,10 @@ class THEACTUALHelp(commands.Cog):
                     bot_av = self.bot.get_user(828363172717133874)
                     em = discord.Embed(colour=thecolor())
                     name = f"{command1.name.capitalize()}"
-                    try:
-
-                        check = command1.checks[0]
-                        check(0)
-                    except Exception as ee:
-                        *frames, last_frame = traceback.walk_tb(ee.__traceback__)
-                        frame = last_frame[0]
-    
-                        try:
-                            perms = ", ".join([f"`{k}`" for k in frame.f_locals['perms']])
-                        except:
-                            perms = '`None`'         
-
+                    
                     em.add_field(name=" ❯❯ Name", value=f"`{name}`", inline=False)
                     em.add_field(name=" ❯❯ Alias", value=f"{', '.join(alx)} " if alias else f"`none`", inline=False)
                     em.add_field(name=" ❯❯ Usage", value=f"`j.{command1.name} {sig}`" if sig else f'`j.{command1.name}`', inline=False)
-                    em.add_field(name=" ❯❯ Permissions", value=perms, inline=False)
                     em.add_field(name=" ❯❯ Description", value=thehelp if thehelp else "Currently no help!", inline=False)
                     em.set_author(name="Help", icon_url = bot_av.avatar_url)
                     em.set_footer(text="<> = needed │ [] = not needed")

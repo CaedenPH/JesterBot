@@ -17,12 +17,12 @@ async def embed2(ctx, description):
 class Music(commands.Cog):
     def __init__(self, client):
         self.client = client
-        self.music = dcutils.Music()
+        self.music = dcutils.Music()s
 
     @commands.command()
     async def lyrics(self, ctx, *, song):
 
-        response = requests.get(f"https://some-random-api.ml/lyrics?title={song}")
+        response = requests.get(f"https://some-random-api.ml/lyrics?title={song}")s
         fox = response.json()
         await thebed(ctx, f'Lyrics of {fox["title"]}', fox['lyrics'])
 
