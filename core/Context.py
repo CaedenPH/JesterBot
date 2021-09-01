@@ -68,19 +68,19 @@ class Context(commands.Context):
                     
                 await asyncio.sleep(3)
                 try:
-
+                    
                     await msg.add_reaction(TRASHCAN)
-                except HTTPException:
+                except Exception as a:
                     return
 
                 try:
                     r, u = await arg.bot.wait_for('reaction_add', check=check, timeout=250)
-                    if str(r) == TRASHCAN:
+                    if str(r.emoji.id) == TRASHCAN[11:-1]:
                         await msg.delete()
-                except asyncio.TimeoutError:
+                except Exception as b:
                     try:
                         await msg.clear_reactions()
-                    except:
+                    except Exception as c:
                         pass
          
 

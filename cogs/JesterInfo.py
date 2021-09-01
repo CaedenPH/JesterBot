@@ -239,7 +239,7 @@ class JesterInfo(commands.Cog):
         **Designer:** *{designer.name}*
         **Helpers:** *{helper.name}*, *{helper2.name}*
         **Sales/Promoter:** *{sales.name}*
-        **Ideas/layout designer:** *{ideas_designer}*
+        **Ideas/layout designer:** *{ideas_designer.name}*
         
         """, color=thecolor())
         await ctx.send(embed=embed)

@@ -54,7 +54,7 @@ class Fun(commands.Cog):
 
     @commands.command(name='screenshot')
     async def _screenshot(self, ctx, *, url):
-        if ctx.channel.nsfw:
+        if True:
 
             urll = f"https://image.thum.io/get/http://{url}"
             return await thebed(ctx, '', url, i=urll)

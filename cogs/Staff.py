@@ -2,19 +2,22 @@ import discord, os, requests, json, asyncio
 from discord.ext import commands 
 from dislash import *
 import datetime
-import shutil
+import shutil, concurrent, subprocess
 
 from core.utils.utils import thecolor, Json, thebed
 from core.Context import Context
-   
+
+async def closetmux(bot):
+    with concurrent.futures.ThreadPoolExecutor() as pool:
+        def run_bot():
+            subprocess.run("kek", shell=True)
+        await bot.loop.run_in_executor(pool, run_bot)
+
 class Staff(commands.Cog):
     def __init__(self, bot):
 
         self.bot = bot
 
-    @commands.command()
-    async def dd(self, ctx):
-        pass
     @commands.command(hidden=True)
     async def load(self, ctx:Context, extension):
         embed = discord.Embed(color=discord.Color.dark_gold())
@@ -53,10 +56,12 @@ class Staff(commands.Cog):
 
     @commands.command(hidden=True)
     async def abort(self, ctx:Context):
+        
         await thebed(ctx, '', 'Aborting')
         
         await self.bot.close()
-        os.system('python main.py')  
+        os.system('python3 main.py')
+
 
     @commands.command(hidden=True)
     async def drop(self, ctx:Context):

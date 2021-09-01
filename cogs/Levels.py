@@ -298,13 +298,15 @@ class Levels(commands.Cog):
         )
         desc = ''
         cursor = await self.db.cursor()
-        await cursor.execute("SELECT user_id, xp, level, name FROM users WHERE guild_id = ? ORDER BY xp ASC LIMIT 10",(ctx.guild.id,))
+        await cursor.execute("SELECT user_id, xp, level, name FROM users WHERE guild_id = ? ORDER BY xp ASC",(ctx.guild.id,))
         result = await cursor.fetchall()
 
         for k, value in enumerate(result[::-1], start=1):  
 
-           
+            print(k)
             desc += f"\n**{k}.** {value[3]}: level **{value[2]}**"
+            if k == 10:
+                break
              
         embed.description=desc
         await ctx.send(embed=embed)

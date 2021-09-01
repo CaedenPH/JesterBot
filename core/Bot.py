@@ -97,7 +97,7 @@ class JesterBot(commands.Bot):
         for guild1 in self.guilds:
             guild_ids.append(guild1.id)
         print(guild_ids)
-        slash = SlashClient(self)
+        self.slash = SlashClient(self)
 
         selected_channel = self.get_guild(830161446523371540).get_channel(830161446523371545)
         self.chan = selected_channel

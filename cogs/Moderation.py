@@ -168,8 +168,9 @@ class Mod(commands.Cog):
     @commands.command(aliases=['k'], description="Kicks the specified member - Reason goes in the audit log")
     @has_permissions(kick_members=True)
     async def kick(self, ctx:Context,member : discord.Member,*, reason = "No reason provided"):
-        await member.kick(reason=reason)
+      
         await member.send("You have been kicked: " + reason)
+        await member.kick(reason=reason)
         embed = discord.Embed(title="Kicked", description=f"{member.mention}  got kicked.", colour=thecolor())
         embed.add_field(name="Reason:", value=reason)
         await ctx.send(embed=embed)

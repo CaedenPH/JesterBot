@@ -27,9 +27,6 @@ class Paginator:
         content = kwargs.get('content')
         name = kwargs.get('name')
         icon_url = kwargs.get('icon_url')
-
-        content = content[1:-1]
-        content = content.replace("'", "")
         result = []
         for i in  range(0, len(content), 2000):
             result.append(content[i: i + 2000])

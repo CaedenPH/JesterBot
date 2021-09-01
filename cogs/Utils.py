@@ -22,6 +22,10 @@ import unicodedata
 import matplotlib.pyplot as plt
 import numpy as np
 
+import wikipedia
+import googletrans
+
+
 
 sub = { 
                             '0': '⁰',
@@ -158,6 +162,26 @@ class Utils(commands.Cog):
         plt.savefig(fname=f"./graphs/{str(name)}.png")
         await ctx.send(file=discord.File(f"./graphs/{str(name)}.png"))
         #os.remove('plot.png')
+
+    @commands.command(aliases=['wiki'])
+    async def wikipedia(self, ctx, *, query):
+        await ctx.em(wikipedia.summary(query))
+
+
+
+    @commands.command(aliases=['trans', 'lang'])
+    async def translate(self, ctx, _destination):
+        translator = googletrans.Translator()
+        
+        await ctx.em(f'What language would you like to translate? **To:** {_destination}')
+        msg = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)
+
+        product = translator.translate(msg.content, dest=_destination)
+        await ctx.em(product)
+
+
+
+
 
     @commands.command()
     async def charinfo(self, ctx:Context, *, characters: str):

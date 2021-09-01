@@ -796,10 +796,13 @@ class Games(commands.Cog):
             
             await inter.reply("\u200b", type=4, ephemeral=True, components=[player_cards[inter.author]['opt']])
 
-        def check(inter):
-            return inter.message.id == msg.id and inter.author in participants
+        def check(interd):
+            print(interd.author, participants, interd.message.id, msg.id)
+            #return interd.message.id == msg.id and interd.author in participants
+            return True
+        print(participants)
         new_inter = await msg.wait_for_dropdown(check)
-
+        print(new_inter.author)
     
         if new_inter.author != participants[0]:
             await new_inter.reply("It isn't your turn!", type=4, ephemeral=True)

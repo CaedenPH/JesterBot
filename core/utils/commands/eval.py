@@ -88,14 +88,15 @@ async def run_eval(ctx, code, **kwargs):
     except Exception as e:
         result = "".join(format_exception(e, e, e.__traceback__))
         pass
-
-    theresult = result.split('None')
-
-
+   
+    result = result.replace('`', '')
+    message = message.replace('`', '')
+    if result.replace('\n', '').endswith('None') and result != "None":
+        result = result[:-5]
     if len(result) < 2000:
-        msg = f"```py\nIn[{z}]: {message}\nOut[{z}]: {theresult[0]}\n```"
+        msg = f"```py\nIn[{z}]: {message}\nOut[{z}]: {result}\n```"
     else:
         y = Paginator(ctx)
-        return await y.paginate(content=theresult[0], name='Eval')
+        return await y.paginate(content=result, name='Eval')
 
     return msg
