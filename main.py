@@ -19,31 +19,6 @@ async def _check(ctx):
 async def executed(ctx):
     await run_executed(bot, ctx)
 
-@bot.command()
-async def push(ctx, reason):
-    embed = discord.Embed(title="Git push.", description="")
-    git_commands = [
-        ["git", "add", "."],
-        ["git", "commit", "-m", reason],
-        ["git", "push"],
-    ]
-
-    for git_command in git_commands:
-        process = await asyncio.create_subprocess_exec(
-            git_command[0],
-            *git_command[1:],
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE,
-        )
-
-        output, error = await process.communicate()
-        embed.description += f'[{" ".join(git_command)!r} exited with return code {process.returncode}\n'
-
-        if output:
-            embed.description += f"**[stdout]**\n{output.decode()}\n"
-        if error:   
-            embed.description += f"**[stderr]**\n{error.decode()}\n"
-    await ctx.send(embed=embed)
     
 if __name__ == "__main__":
     bot.run()

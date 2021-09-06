@@ -20,9 +20,8 @@ class Config(commands.Cog):
 
         with open('./dicts/Welcome.json', 'r+') as f:
             data = json.load(f)
-            if role == "":
-                loaded = json.load(f)
-                loaded[str(ctx.guild.id)] = {
+            if not role:
+                data[str(ctx.guild.id)] = {
                 "message":    message,
                 "name":       ctx.guild.name, 
                 "channel_id": ctx.channel.id,
@@ -30,21 +29,20 @@ class Config(commands.Cog):
             }   
                 Json(f, data)
                 embed = discord.Embed(title="Added!", colour=thecolor())
-                await ctx.send(embed=embed)
-            else:
+                return await ctx.send(embed=embed)
+            
 
-                loaded = json.load(f)
-                loaded[str(ctx.guild.id)] = {
-                    "message":    message,
-                    "name":       ctx.guild.name, 
-                    "channel_id": ctx.channel.id,
-                    "role": role.id,
-                    "Welcome": True
-                }   
+            data[str(ctx.guild.id)] = {
+                "message":    message,
+                "name":       ctx.guild.name, 
+                "channel_id": ctx.channel.id,
+                "role": role.id,
+                "Welcome": True
+            }   
 
-                Json(f, loaded)
-                embed = discord.Embed(title="Added!", colour=thecolor())
-                await ctx.send(embed=embed)
+            Json(f, data)
+            embed = discord.Embed(title="Added!", colour=thecolor())
+            await ctx.send(embed=embed)
 
     @commands.command(aliases=['channelconfig'])
     async def config(self, ctx:Context):

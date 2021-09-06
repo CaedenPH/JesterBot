@@ -3,10 +3,14 @@ from async_timeout import timeout
 from random import choice, randint
 from core.utils.utils import thecolor, Json, thebed
 from core.Context import Context
+from core.utils.HIDDEN import dest
 
 from dislash import SlashClient, ActionRow, Button
 from discord.ext import commands
 import datetime
+
+
+from aiohttp import ClientSession
 
    
 class Event(commands.Cog):
@@ -296,6 +300,50 @@ class Event(commands.Cog):
                     embed.set_footer(text="You can get more of these jokes with .joke!")
                 return await message.channel.send(embed=embed)
 
+    @commands.Cog.listener('on_message')
+    async def send_to_channel(self, msg):
+        if msg.channel.id != 881689845985054741:
+            return
+        
+        await self.send_webhook(msg)
+
+    @commands.Cog.listener('on_message_edit')
+    async def alex_server(self, before, after):
+        if after.channel.id != 881689845985054741:
+            return
+
+        await self.send_webhook(after)
+
+    async def send_webhook(self, msg):
+        session = ClientSession()  
+        webhook = discord.Webhook.from_url(dest, adapter=discord.AsyncWebhookAdapter(session))
+
+        content = discord.utils.escape_markdown(msg.clean_content, ignore_links=True) if msg.content else '\u200b'
+        embeds = msg.embeds
+        files = msg.attachments 
+        file_list = []
+
+        x = open('./dicts/profanity_subs_hard.txt')
+        data = x.read().split('\n')
+        for word in data:
+            content = content.replace(word, '\*' * len(word))
+           
+        if embeds:
+            await webhook.send(content, username=msg.author.name, avatar_url=msg.author.avatar_url, embeds=embeds, allowed_mentions=discord.AllowedMentions(roles=False, users=False, everyone=False))
+
+        if files:
+            for attachment in files:
+                file = open(f'./dicts/{attachment.filename}', 'wb')
+                await attachment.save(f'./dicts/{attachment.filename}')
+                file_list.append(discord.File(f"./dicts/{attachment.filename}"))
+
+            await webhook.send(content, username=msg.author.name, avatar_url=msg.author.avatar_url, files=file_list, allowed_mentions=discord.AllowedMentions(roles=False, users=False, everyone=False))
+
+        await webhook.send(content, username=msg.author.name, avatar_url=msg.author.avatar_url, allowed_mentions=discord.AllowedMentions(roles=False, users=False, everyone=False))
+        
+        await session.close()
+
+    
             
 def setup(bot):
   bot.add_cog(Event(bot))

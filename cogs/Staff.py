@@ -7,16 +7,37 @@ import shutil, concurrent, subprocess
 from core.utils.utils import thecolor, Json, thebed
 from core.Context import Context
 
-async def closetmux(bot):
-    with concurrent.futures.ThreadPoolExecutor() as pool:
-        def run_bot():
-            subprocess.run("kek", shell=True)
-        await bot.loop.run_in_executor(pool, run_bot)
 
 class Staff(commands.Cog):
     def __init__(self, bot):
 
         self.bot = bot
+    
+    @commands.command(hidden=True)
+    async def push(self, ctx, reason):
+        embed = discord.Embed(title="Git push.", description="")
+        git_commands = [
+            ["git", "add", "."],
+            ["git", "commit", "-m", reason],
+            ["git", "push"],
+        ]
+
+        for git_command in git_commands:
+            process = await asyncio.create_subprocess_exec(
+                git_command[0],
+                *git_command[1:],
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+            )
+
+            output, error = await process.communicate()
+            embed.description += f'[{" ".join(git_command)!r} exited with return code {process.returncode}\n'
+
+            if output:
+                embed.description += f"**[stdout]**\n{output.decode()}\n"
+            if error:   
+                embed.description += f"**[stderr]**\n{error.decode()}\n"
+        await ctx.send(embed=embed)
 
     @commands.command(hidden=True)
     async def load(self, ctx:Context, extension):

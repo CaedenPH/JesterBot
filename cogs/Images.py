@@ -174,20 +174,7 @@ class Images(commands.Cog):
             file.close()    
             await ctx.send(file=discord.File('./images/threshold.png'))    
 
-    @commands.command()
-    async def hornypass(self, ctx:Context, member=None):
-        if member is None:
-            avatar = ctx.author.avatar_url_as(format='png')
-        else:
-            avatar = member.avatar_url_as(format='png')
-
-        async with ctx.typing():
-            response = requests.get(f"https://some-random-api.ml/canvas/horny?avatar={avatar}")
-            
-            file = open('./images/hornypass.png', 'wb')
-            file.write(response.content)
-            file.close()    
-        await ctx.send(file=discord.File('./images/hornypass.png'))   
+   
         
     @commands.command(description="""Sends a fay filtered avatar""")
     async def gay(self, ctx:Context, member:discord.Member=None):
