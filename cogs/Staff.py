@@ -44,7 +44,7 @@ class Staff(commands.Cog):
         embed = discord.Embed(title="Git pull.", description="")
         git_commands = [
             ["git", "stash"],
-            ["git", "pull"]
+            ["git", "pull", "--ff-only"]
         ]
 
         for git_command in git_commands:
