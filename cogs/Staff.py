@@ -42,20 +42,26 @@ class Staff(commands.Cog):
     @commands.command(hidden=True)
     async def pull(self, ctx, reason):
         embed = discord.Embed(title="Git pull.", description="")
+        git_commands = [
+            ["git", "stash"],
+            ["git", "pull"]
+        ]
 
-        process = await asyncio.create_subprocess_exec(
-            "git pull"
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE,
-        )
+        for git_command in git_commands:
+            process = await asyncio.create_subprocess_exec(
+                git_command[0],
+                *git_command[1:],
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+            )
 
-        output, error = await process.communicate()
-        embed.description += f'[{" ".join(git_command)!r} exited with return code {process.returncode}\n'
+            output, error = await process.communicate()
+            embed.description += f'[{" ".join(git_command)!r} exited with return code {process.returncode}\n'
 
-        if output:
-            embed.description += f"**[stdout]**\n{output.decode()}\n"
-        if error:   
-            embed.description += f"**[stderr]**\n{error.decode()}\n"
+            if output:
+                embed.description += f"**[stdout]**\n{output.decode()}\n"
+            if error:   
+                embed.description += f"**[stderr]**\n{error.decode()}\n"
         await ctx.send(embed=embed)
 
     @commands.command(hidden=True)
