@@ -1,0 +1,8 @@
+{
+    "Updates": {
+        "Version": "3.4.5",
+        "Bug fixes": "\n- findemoji not recognising animated emojis\n- editsnipe linking to the wrong file",
+        "New commands": "\n- findemoji\n- abort\n- editsnipe/snipe\n- plot",
+        "Other": "\n- purchased custom emojis\n- help reformatted\n- prefix changed to `j.`"
+    }
+}

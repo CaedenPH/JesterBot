@@ -1,0 +1,17 @@
+{
+    "calculator": {
+        "help": "a calculator for your calculation needs"
+    },
+    "invited": {
+        "help": "shows your invites to this server"
+    },
+    "shop": {
+        "help": "buy things from the shop using jester coins"
+    },
+    "role": {
+        "help": "buy your self a role (creates new roles  // cosmetic only)"
+    },
+    "corona": {
+        "help": "buy someone covid 19 to make them not be able to work"
+    }
+}
