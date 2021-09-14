@@ -1,5 +1,6 @@
 import vacefron, randfacts, asyncpraw, datetime, json, requests
 import discord
+from jokeapi import Jokes
 
 from .utils import thecolor
 from core.utils.HIDDEN import *
@@ -20,13 +21,12 @@ def quote():
     embed.add_field(name="Quote", value='*"{quoteText}"*\n{quoteAuthor}'.format(**json.loads(response.text)))
     return embed
 
-def joke():
-    response = requests.get('https://official-joke-api.appspot.com/random_joke')
-    fox = response.json()
-    foxupdate = (fox["setup"]) 
-    foxupdatey = (fox["punchline"])
-    embed = discord.Embed(title="Joke", description=f"{foxupdate} ... {foxupdatey}", colour=thecolor())
-    return embed
+async def joke():
+    j = await Jokes()
+    joke = await j.get_joke()
+    if joke["type"] == "single":
+        return joke["joke"]
+    return f"**{joke['setup']}** - {joke['delivery']}"
 
 async def pickup():
     subreddit = await reddit.subreddit("pickuplines") 

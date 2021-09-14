@@ -1,6 +1,8 @@
 import discord, os, requests, json, asyncio
 from core.utils.utils import thecolor, Json, thebed
 from discord.ext import commands 
+
+from datetime import datetime
    
 class Snipe(commands.Cog):
     def __init__(self, client):
@@ -110,8 +112,9 @@ class Snipe(commands.Cog):
                     if len(data[g][c]['id']) >= ammount:
                         us = self.client.get_user(data[g][c]['id'][len(data[g][c]['id'])-ammount])
                         
-                        embed = discord.Embed(description=f"**{data[g][c]['author'][len(data[g][c]['before'])-ammount]} said:** {data[g][c]['before'][len(data[g][c]['before'])-ammount]} \n**Then edited it to:** {data[g][c]['after'][len(data[g][c]['after'])-ammount]}", color=thecolor())
-                        embed.set_footer(text="At: " + str(data[g][c]['time'][len(data[g][c]['before'])-ammount][:-7]))
+                        time = datetime.strptime(str(data[g][c]['time'][len(data[g][c]['before'])-ammount][:-7]), '%Y-%m-%d %X')
+
+                        embed = discord.Embed(timestamp=time, description=f"**{data[g][c]['author'][len(data[g][c]['before'])-ammount]} said:** {data[g][c]['before'][len(data[g][c]['before'])-ammount]} \n**Then edited it to:** {data[g][c]['after'][len(data[g][c]['after'])-ammount]}", color=thecolor())
                         embed.set_author(icon_url=us.avatar_url, name="Most recent message:")
                         return await ctx.send(embed=embed)
                     else:
@@ -135,8 +138,10 @@ class Snipe(commands.Cog):
                     for e in data[g][c]['id'][::-1]:
                         if e == user.id:
                             us = self.client.get_user(data[g][c]['id'][t-1])
-                            embed = discord.Embed(description=f"**{data[g][c]['author'][t-1]} said:** {data[g][c]['before'][t-1]}\n**Then changed it to: **{data[g][c]['after'][t-1]}", color=thecolor())
-                            embed.set_footer(text="At: " + str(data[g][c]['time'][t-1][:-7]))
+
+                            time = datetime.strptime(str(data[g][c]['time'][t-1][:-7]), '%Y-%m-%d %X')
+
+                            embed = discord.Embed(timestamp=time, description=f"**{data[g][c]['author'][t-1]} said:** {data[g][c]['before'][t-1]}\n**Then changed it to: **{data[g][c]['after'][t-1]}", color=thecolor())
                             embed.set_author(icon_url=us.avatar_url, name="Most recent message:")
                             return await ctx.send(embed=embed)
                         t -= 1
@@ -153,9 +158,11 @@ class Snipe(commands.Cog):
             if g in data:
                 if c in data[g]:
                     if len(data[g][c]['id']) >= ammount:
+
+                        time = datetime.strptime(str(data[g][c]['time'][len(data[g][c]['list'])-ammount][:-7]), '%Y-%m-%d %X')
+
                         us = self.client.get_user(data[g][c]['id'][len(data[g][c]['list'])-ammount])
-                        embed = discord.Embed(description=f"**{data[g][c]['author'][len(data[g][c]['list'])-ammount]} said:** {data[g][c]['list'][len(data[g][c]['list'])-ammount]}", color=thecolor())
-                        embed.set_footer(text="At: " + str(data[g][c]['time'][len(data[g][c]['list'])-ammount][:-7]))
+                        embed = discord.Embed(timestamp=time, description=f"**{data[g][c]['author'][len(data[g][c]['list'])-ammount]} said:** {data[g][c]['list'][len(data[g][c]['list'])-ammount]}", color=thecolor())
                         embed.set_author(icon_url=us.avatar_url, name="Most recent message:")
                         return await ctx.send(embed=embed)
                     else:

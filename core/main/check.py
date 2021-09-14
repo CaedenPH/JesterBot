@@ -127,7 +127,7 @@ async def run_channel_send(bot):
                         if e == "factchannel":
                             send = fact()
                         elif e == "jokechannel":
-                            send = joke()
+                            send = await joke()
                         elif e == "pickuplinechannel":
                             send = await pickup()
                         elif e == "quotechannel":

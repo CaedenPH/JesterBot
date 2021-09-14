@@ -1,10 +1,11 @@
 import discord, os, requests, json, asyncio
 from discord.ext import commands 
 from random import choice, randint
+
 from core.utils.utils import thecolor, Json, thebed
 from core.utils.comedy import fact, quote, joke, pickup
 from core.Context import Context
-
+from core.utils.comedy import joke
 
 
 class JesterJokes(commands.Cog):
@@ -110,11 +111,10 @@ class JesterJokes(commands.Cog):
         embed.set_image(url=choice(url))
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['jokes'], description="Sends a random joke")
-    async def joke(self, ctx:Context):
+    @commands.command(aliases=['jokes', 'joke'], description="Sends a random joke")
+    async def _joke(self, ctx:Context):
         
-        embed = joke()
-        await ctx.send(embed=embed)
-        
+        await thebed(ctx, 'Joke', await joke())
+
 def setup(bot):
   bot.add_cog(JesterJokes(bot))

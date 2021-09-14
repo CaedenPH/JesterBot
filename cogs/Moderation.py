@@ -5,8 +5,10 @@ from discord.ext import commands
 from async_timeout import timeout
 from random import choice, randint
 from datetime import datetime
+
 from core.utils.utils import thecolor, Json, thebed
 from core.Context import Context
+from core.utils.comedy import joke
 
 
 class Mod(commands.Cog):
@@ -126,12 +128,9 @@ class Mod(commands.Cog):
             x = []
             us = self.bot.user
             async with ctx.typing():
-                response = requests.get('https://official-joke-api.appspot.com/random_joke')
-                fox = response.json()
-                foxupdate = (fox["setup"]) 
-                foxupdatey = (fox["punchline"])
+               
                 prefix = await self.bot.get_prefix(ctx.message)
-                for pref in prefix:
+                for pref in [prefix1 for prefix1 in prefix if not prefix1.startswith('<@')]:
                     x.append(f"`{pref}`")
                 embed = discord.Embed(title=f"Hello {ctx.author.name}", description=f"""
                 │ My default prefix is: `j.`, `.` │
@@ -141,7 +140,7 @@ class Mod(commands.Cog):
                 """, colour=thecolor())
                 embed.set_author(name="JesterBot", icon_url=us.avatar_url)
         
-                embed.add_field(name="Also here is a joke for you:", value=f"│ {foxupdate} ... {foxupdatey} │", inline=False)
+                embed.add_field(name="Also here is a joke for you:", value=f"│ {await joke()} │", inline=False)
                 embed.set_footer(text="You can get more of these jokes with j.joke!")
             return await ctx.send(embed=embed)
         prefix = prefix.split(" ")

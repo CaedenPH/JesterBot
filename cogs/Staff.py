@@ -40,6 +40,25 @@ class Staff(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(hidden=True)
+    async def pull(self, ctx, reason):
+        embed = discord.Embed(title="Git pull.", description="")
+
+        process = await asyncio.create_subprocess_exec(
+            "git pull"
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+        )
+
+        output, error = await process.communicate()
+        embed.description += f'[{" ".join(git_command)!r} exited with return code {process.returncode}\n'
+
+        if output:
+            embed.description += f"**[stdout]**\n{output.decode()}\n"
+        if error:   
+            embed.description += f"**[stderr]**\n{error.decode()}\n"
+        await ctx.send(embed=embed)
+
+    @commands.command(hidden=True)
     async def load(self, ctx:Context, extension):
         embed = discord.Embed(color=discord.Color.dark_gold())
         self.bot.load_extension(f'cogs.{extension}')
