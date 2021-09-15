@@ -1,0 +1,46 @@
+{
+    "830161446523371540": {
+        "850774385740480523": {
+            "list": [
+                "```sh\n$ pip uninstall glitch-this\n\n```\nPage 1/1"
+            ],
+            "author": [
+                "[j.] JesterBot"
+            ],
+            "id": [
+                828363172717133874
+            ],
+            "time": [
+                "2021-09-15 07:57:43.119000"
+            ]
+        }
+    },
+    "881689539192713256": {
+        "881689937265700875": {
+            "list": [
+                "{'footer': {'text': 'To interact with your virtual calculator, click the shown buttons.'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/9d4h0YOfvjMejdSOeYDicbblCUHMVYPpTSWVGjmcS2c/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/447836242395004938/8ca79b2ecc3c7c346feaafc866b552de.webp', 'name': 'Calculator', 'icon_url': 'https://cdn.discordapp.com/avatars/447836242395004938/8ca79b2ecc3c7c346feaafc866b552de.webp?size=1024'}, 'color': 3553599, 'type': 'rich', 'description': '```yaml\\nSession ended```'}",
+                "\u200b",
+                "{'footer': {'text': '08:34 \u2022 Expires in 5 minutes'}, 'fields': [{'value': '> <:Utils:863075611161788478> \\u200b **Utils**\\n> <:Config:863075611169259550> \\u200b **Config**\\n> <:Misc:863075610979729409> \\u200b **Misc**\\n> <:Feedback:863075610851147777> \\u200b **Feedback**\\n> <:cryptocurrency:872473402764570624> \\u200b **Cryptocurrency**\\n> <:Economy:863075610913800233> \\u200b **Economy**\\n> <:Love:863075611374125056> \\u200b **Love**\\n> <:Games:863075611329167380> \\u200b **Games**\\n> <:Mod:863075610784301068> \\u200b **Mod**\\n\\u200b', 'name': '<:menus:870781340746932225> **Categories:**\\n\\u200b', 'inline': True}, {'value': '> <:Images:863075611277656124>  \\u200b **Images**\\n> <:Snipe:863075611269791794>  \\u200b **Snipe**\\n> <:game_night:872473402840076288>  \\u200b **DiscordTogether**\\n> <:Jesterinfo:863075610048987166>  \\u200b **JesterInfo**\\n> <:JesterJokes:873327129016811528>  \\u200b **JesterJokes**\\n> <:Music:863075611320647719>  \\u200b **Music**\\n> <:Fun:863075609781075968>  \\u200b **Fun**\\n> <:Levels:863075611182628895>  \\u200b **Levels**\\n> <:the_world:872473402638762025>  \\u200b **Countries**', 'name': '\\u200b\\n\\u200b', 'inline': True}, {'value': '**> [Official server](https://discord.gg/2654CuU3ZU) \u2502 [Bot invite](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) \u2502 [Website](https://sites.google.com/view/jesterbot) \u2502 [Vote for me!](https://top.gg/bot/828363172717133874/vote)**', 'name': '<:links:870781340700782612> **Links:**', 'inline': False}], 'color': 3553599, 'type': 'rich', 'description': '```ml\\n[] - Required Argument | <> - Optional Argument``````diff\\n+ Use the dropbar to navigate through Categories``````diff\\n+ Use j.help prefix for info about the prefix```', 'title': '<:J_:863313855286607932><:E_:863313854150606848><:S:863313855061164062><:T:863313855399329812><:E_:863313854150606848><:R_:863313855119360022>'}",
+                "{'footer': {'text': '08:34 \u2022 Expires in 5 minutes'}, 'fields': [{'value': '> <:Economy:863075610913800233> \\u200b **Economy**\\n> <:Levels:863075611182628895> \\u200b **Levels**\\n> <:Config:863075611169259550> \\u200b **Config**\\n> <:Music:863075611320647719> \\u200b **Music**\\n> <:Love:863075611374125056> \\u200b **Love**\\n> <:Games:863075611329167380> \\u200b **Games**\\n> <:Mod:863075610784301068> \\u200b **Mod**\\n> <:Snipe:863075611269791794> \\u200b **Snipe**\\n> <:Feedback:863075610851147777> \\u200b **Feedback**\\n\\u200b', 'name': '<:menus:870781340746932225> **Categories:**\\n\\u200b', 'inline': True}, {'value': '> <:Misc:863075610979729409>  \\u200b **Misc**\\n> <:game_night:872473402840076288>  \\u200b **DiscordTogether**\\n> <:the_world:872473402638762025>  \\u200b **Countries**\\n> <:Images:863075611277656124>  \\u200b **Images**\\n> <:JesterJokes:873327129016811528>  \\u200b **JesterJokes**\\n> <:cryptocurrency:872473402764570624>  \\u200b **Cryptocurrency**\\n> <:Utils:863075611161788478>  \\u200b **Utils**\\n> <:Jesterinfo:863075610048987166>  \\u200b **JesterInfo**\\n> <:Fun:863075609781075968>  \\u200b **Fun**', 'name': '\\u200b\\n\\u200b', 'inline': True}, {'value': '**> [Official server](https://discord.gg/2654CuU3ZU) \u2502 [Bot invite](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) \u2502 [Website](https://sites.google.com/view/jesterbot) \u2502 [Vote for me!](https://top.gg/bot/828363172717133874/vote)**', 'name': '<:links:870781340700782612> **Links:**', 'inline': False}], 'color': 3553599, 'type': 'rich', 'description': '```ml\\n[] - Required Argument | <> - Optional Argument``````diff\\n+ Use the dropbar to navigate through Categories``````diff\\n+ Use j.help prefix for info about the prefix```', 'title': '<:J_:863313855286607932><:E_:863313854150606848><:S:863313855061164062><:T:863313855399329812><:E_:863313854150606848><:R_:863313855119360022>'}"
+            ],
+            "author": [
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot"
+            ],
+            "id": [
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874
+            ],
+            "time": [
+                "2021-09-15 08:31:38.471000",
+                "2021-09-15 08:32:31.193000",
+                "2021-09-15 08:34:30.403000",
+                "2021-09-15 08:34:30.396000"
+            ]
+        }
+    }
+}
