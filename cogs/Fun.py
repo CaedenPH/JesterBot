@@ -12,8 +12,7 @@ from core.Context import Context
 from core.utils.emojis import CLOSE
 from core.Paginator import Paginator
 
-
-from discord.ext import tasks
+from youtubesearchpython.__future__  import VideosSearch 
 
 encoder = translator.Encoder()
 decoder = translator.Decoder()
@@ -34,12 +33,26 @@ async def img(ctx, member, name):
 
 class Fun(commands.Cog):
     def __init__(self, bot):
-   
         self.bot = bot
+
+    @commands.command(aliases=['yt_search', 'search'])
+    async def ytsearch(self, ctx, *, query):
+        vid = VideosSearch(query, limit=10)
+        result = await vid.next()
+
+        formatted = []
+        for iteration, item in enumerate(result['result'], start=1):
+            formatted.append(f"**{iteration}**: [{item['title']}]({item['link']})")
+            
+        embed = discord.Embed(timestamp=ctx.message.created_at, description="\n".join(formatted), color=thecolor())
+        
+        embed.set_author(name=f"Youtube searches for {query}: ", icon_url=ctx.author.avatar_url)
+        embed.set_footer(text=f"Requested by {ctx.author}")
+        await ctx.send(embed)   
+
 
     @commands.command()
     async def glitch(self, ctx, member:discord.Member=None):
-        
         await img(ctx, member, 'glitch')
 
         glitch_img = glitcher.glitch_image('./images/glitch.png', 2, color_offset=True, gif=True)

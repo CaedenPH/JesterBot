@@ -17,9 +17,6 @@ async def _check(ctx):
 async def executed(ctx):
     await run_executed(bot, ctx)
 
-
-    
-
 if __name__ == "__main__":
     bot.run()
 

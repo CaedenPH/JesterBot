@@ -40,7 +40,7 @@ class Staff(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(hidden=True)
-    async def pull(self, ctx, reason):
+    async def pull(self, ctx):
         embed = discord.Embed(title="Git pull.", description="")
         git_commands = [
             ["git", "stash"],
