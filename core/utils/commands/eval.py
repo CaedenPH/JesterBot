@@ -12,7 +12,7 @@ from core.utils.utils import Json, thecolor
 from core.Paginator import Paginator 
 
 def clean_code(content:str):
-    content = content.strip('')
+    content = content.strip('`')
     content = content.replace("‘", "'").replace('“', '"')
     return content
 
@@ -63,11 +63,10 @@ async def run_eval(ctx, code, **kwargs):
             Json(k, data)
     
     code = clean_code(code)
-        
     stdout = io.StringIO()
 
     pref = await ctx.bot.get_prefix(ctx.message)
-    message = ctx.message.content[len(pref):]
+    message = clean_code(ctx.message.content[len(pref) -1:])
 
     if _eval == 'dir':
         code = f"print(dir({code}))"

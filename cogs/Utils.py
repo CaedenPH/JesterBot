@@ -15,11 +15,9 @@ from core.Context import Context
 from dislash import *
 import simpleeval
 import yfinance as yf
-import InfixParser
 import re
 from typing import Tuple, Union
 import unicodedata
-import matplotlib.pyplot as plt
 import numpy as np
 
 import wikipedia
@@ -299,7 +297,7 @@ class Utils(commands.Cog):
                             adv = True
                             break
                     if adv:
-                        parser = InfixParser.Evaluator()
+                        #parser = InfixParser.Evaluator()
                         ndisplay = displayed
                     
                         ndisplay = displayed.replace('⁻¹', 'j.-1')
