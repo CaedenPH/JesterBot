@@ -12,7 +12,8 @@ from core.utils.utils import Json, thecolor
 from core.Paginator import Paginator 
 
 def clean_code(content:str):
-    content = content.strip('`')
+    content = content.strip('')
+    content = content.replace("‘", "'").replace('“', '"')
     return content
 
 
@@ -58,7 +59,6 @@ async def run_eval(ctx, code, **kwargs):
                 data[str(ctx.author.id)] = {
                     "Name": ctx.author.name,
                     "Score": 1
-
                 }
             Json(k, data)
     
@@ -67,15 +67,14 @@ async def run_eval(ctx, code, **kwargs):
     stdout = io.StringIO()
 
     pref = await ctx.bot.get_prefix(ctx.message)
-    message = ctx.message.content.strip(pref[0])[2:]
+    message = ctx.message.content[len(pref):]
 
     if _eval == 'dir':
         code = f"print(dir({code}))"
-        message = message[1:]
             
     elif _eval == 'return':
         code = f"return {code}"
-        message = message[1:]
+    
         
     try:
         with contextlib.redirect_stdout(stdout):
