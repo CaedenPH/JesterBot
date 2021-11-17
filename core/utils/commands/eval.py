@@ -13,7 +13,7 @@ from core.Paginator import Paginator
 
 def clean_code(content:str):
     content = content.strip('`')
-    content = content.replace("‘", "'").replace('“', '"')
+    content = content.replace("‘", "'").replace('“', '"').replace("”", "\"").replace("’", "'")
     return content
 
 
