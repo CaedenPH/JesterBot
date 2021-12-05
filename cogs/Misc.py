@@ -7,6 +7,7 @@ from discord import Webhook, AsyncWebhookAdapter
 from io import BytesIO
 import zipfile
 
+import inspect
 
 from core.utils.utils import thecolor, Json, thebed
 from core.Context import Context
@@ -16,6 +17,12 @@ from core.Paginator import Paginator
 class Misc(commands.Cog):
     def __init__(self, bot):
         self.bot = bot 
+
+    @commands.command()
+    async def src(self, ctx, command): 
+        cmd = self.bot.get_command(command)
+        if cmd:
+            await ctx.send(f"https://github.com/caedenph/jesterbot/tree/main/cogs/{cmd.cog.qualified_name}.py#L{inspect.getsourcelines(inspect.unwrap(cmd.callback).__code__)[1]}")
 
     @commands.command()
     async def invited(self, ctx:Context, user:discord.Member=None):

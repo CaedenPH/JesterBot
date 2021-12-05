@@ -2,7 +2,7 @@
     "298043305927639041": {
         "Name": "Fred123",
         "Guild": "\ud835\ude3f\ud835\ude67\ud835\ude5e\ud835\ude5b\ud835\ude69 // \ud835\ude63\ud835\ude5a\ud835\ude6c \ud835\ude68\ud835\ude5a\ud835\ude67\ud835\ude6b\ud835\ude5a\ud835\ude67",
-        "selfscore": 16580
+        "selfscore": 16796
     },
     "829683806045863968": {
         "Name": "\u02da \u0f18\u2661 \u22c6\u2113or\u0131",
@@ -27,7 +27,7 @@
     "483631842554019841": {
         "Name": "Ropra",
         "Guild": "The lilnissy SMP",
-        "selfscore": 613
+        "selfscore": 631
     },
     "575467351315841045": {
         "Name": "zaddy",
@@ -587,7 +587,7 @@
     "521226389559443461": {
         "Name": "stealthninja",
         "Guild": "JesterBot Official",
-        "selfscore": 565
+        "selfscore": 590
     },
     "374335173938118656": {
         "Name": "Antimatter",
@@ -717,7 +717,7 @@
     "763854419484999722": {
         "Name": "Capitalism",
         "Guild": "JesterBot Official",
-        "selfscore": 145
+        "selfscore": 324
     },
     "859119951209431050": {
         "Name": "Baby girl",
@@ -762,7 +762,7 @@
     "738065875827163137": {
         "Name": "F904",
         "Guild": "Blaze Support",
-        "selfscore": 1
+        "selfscore": 2
     },
     "791236931304030248": {
         "Name": "Asterix",
@@ -1167,6 +1167,21 @@
     "761159873194491915": {
         "Name": "Osama cool",
         "Guild": "+BYDPP Member Bots",
+        "selfscore": 23
+    },
+    "862410618094354472": {
+        "Name": "Indigu",
+        "Guild": "Stealthy bois",
+        "selfscore": 1
+    },
+    "744454973277995019": {
+        "Name": "CheeseLord1",
+        "Guild": "Stealthy bois",
+        "selfscore": 4
+    },
+    "823867838279581726": {
+        "Name": "Anas Rayyan",
+        "Guild": "+Build Your Dream Python Project",
         "selfscore": 1
     }
 }

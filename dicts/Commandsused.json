@@ -27,7 +27,7 @@
         "score": 104
     },
     "help": {
-        "score": 2041
+        "score": 2056
     },
     "jsonfile": {
         "score": 19
@@ -42,7 +42,7 @@
         "score": 24
     },
     "ping": {
-        "score": 301
+        "score": 304
     },
     "giveaway": {
         "score": 17
@@ -54,7 +54,7 @@
         "score": 26
     },
     "blackjack": {
-        "score": 181
+        "score": 183
     },
     "ping_jesus": {
         "score": 10
@@ -108,7 +108,7 @@
         "score": 4
     },
     "prefix": {
-        "score": 188
+        "score": 196
     },
     "rpsfail": {
         "score": 4
@@ -132,7 +132,7 @@
         "score": 4
     },
     "info": {
-        "score": 25
+        "score": 26
     },
     "l": {
         "score": 30
@@ -429,7 +429,7 @@
         "score": 12
     },
     "eval": {
-        "score": 2526
+        "score": 2659
     },
     "pager": {
         "score": 12
@@ -510,10 +510,10 @@
         "score": 6
     },
     "evalreturn": {
-        "score": 416
+        "score": 441
     },
     "evaldir": {
-        "score": 329
+        "score": 343
     },
     "quote1": {
         "score": 4
@@ -528,7 +528,7 @@
         "score": 21
     },
     "ascii": {
-        "score": 62
+        "score": 65
     },
     "morse": {
         "score": 25
@@ -564,7 +564,7 @@
         "score": 10
     },
     "love": {
-        "score": 132
+        "score": 137
     },
     "work": {
         "score": 44
@@ -708,7 +708,7 @@
         "score": 27
     },
     "picture": {
-        "score": 153
+        "score": 160
     },
     "randompicture": {
         "score": 10
@@ -726,7 +726,7 @@
         "score": 3
     },
     "gay": {
-        "score": 26
+        "score": 27
     },
     "lyrics": {
         "score": 14
@@ -861,7 +861,7 @@
         "score": 5
     },
     "leaderboard": {
-        "score": 37
+        "score": 39
     },
     "uno": {
         "score": 159
@@ -876,7 +876,7 @@
         "score": 7
     },
     "uptime": {
-        "score": 70
+        "score": 72
     },
     "tag": {
         "score": 19
@@ -900,7 +900,7 @@
         "score": 35
     },
     "math": {
-        "score": 17
+        "score": 25
     },
     "support": {
         "score": 32
@@ -942,7 +942,7 @@
         "score": 4
     },
     "rank": {
-        "score": 15
+        "score": 17
     },
     "sendroleid": {
         "score": 1
@@ -966,7 +966,7 @@
         "score": 1
     },
     "jishaku pip": {
-        "score": 9
+        "score": 11
     },
     "jishaku cat": {
         "score": 1
@@ -1038,7 +1038,7 @@
         "score": 7
     },
     "jishaku shell": {
-        "score": 18
+        "score": 31
     },
     "jishaku git": {
         "score": 1
@@ -1053,7 +1053,7 @@
         "score": 22
     },
     "wikipedia": {
-        "score": 3
+        "score": 9
     },
     "push": {
         "score": 3
@@ -1071,9 +1071,15 @@
         "score": 1
     },
     "_joke": {
-        "score": 5
+        "score": 208
     },
     "ytsearch": {
         "score": 21
+    },
+    "pull": {
+        "score": 1
+    },
+    "src": {
+        "score": 11
     }
 }
