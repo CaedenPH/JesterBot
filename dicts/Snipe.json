@@ -11,7 +11,13 @@
                 "{'color': 3553599, 'type': 'rich', 'description': \"**What's the difference between a baby and a watermelon?** - One's satisfying to hit with a sledgehammer. The other's a watermelon.\", 'title': 'Joke'}",
                 ".joke",
                 "{'color': 3553599, 'type': 'rich', 'description': '**What is the least spoken language in the world?** - Sign language.', 'title': 'Joke'}",
-                "(if your ctx is called channel)"
+                "(if your ctx is called channel)",
+                "{'color': 3553599, 'type': 'rich', 'title': 'What is the title of your suggestion? Type end at any point to stop and type title to remove the description'}",
+                "{'color': 3553599, 'type': 'rich', 'title': 'What is the title of your suggestion? Type end at any point to stop and type title to remove the description'}",
+                "{'color': 3553599, 'type': 'rich', 'title': 'What is the description of your suggestion? Type end at any point to stop'}",
+                "{'color': 3553599, 'type': 'rich', 'title': 'What is the description of your suggestion? Type end at any point to stop'}",
+                "@[j.] JesterBot s",
+                "end"
             ],
             "author": [
                 "[j.] JesterBot",
@@ -23,6 +29,12 @@
                 "[j.] JesterBot",
                 "undefined++",
                 "[j.] JesterBot",
+                "Caeden",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "Caeden",
                 "Caeden"
             ],
             "id": [
@@ -35,6 +47,12 @@
                 828363172717133874,
                 763854419484999722,
                 828363172717133874,
+                298043305927639041,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                298043305927639041,
                 298043305927639041
             ],
             "time": [
@@ -47,7 +65,13 @@
                 "2021-11-28 21:38:03.211000",
                 "2021-11-28 21:38:02.770000",
                 "2021-11-29 08:14:09.849000",
-                "2021-12-03 15:34:49.089000"
+                "2021-12-03 15:34:49.089000",
+                "2021-12-11 20:31:33.979000",
+                "2021-12-11 20:31:33.885000",
+                "2021-12-11 20:31:37.285000",
+                "2021-12-11 20:31:37.312000",
+                "2021-12-11 20:31:33.691000",
+                "2021-12-11 20:31:40.491000"
             ]
         },
         "830177106465783858": {

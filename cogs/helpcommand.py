@@ -8,7 +8,7 @@ from core.Context import Context
 from dislash import SlashClient, ActionRow, Button, SelectMenu, SelectOption, MenuOption
 
 
-class THEACTUALHelp(commands.Cog):
+class Help(commands.Cog):
     def __init__(self, bot):
 
         self.bot = bot
@@ -160,7 +160,7 @@ class THEACTUALHelp(commands.Cog):
 
                     for cog in self.bot.cogs:
                         
-                        if cog not in ["Event", "THEACTUALHelp", "Staff", "Jishaku"]:
+                        if cog not in ["Event", "Help", "Staff", "Jishaku"]:
                             
                             try:
                                 name = self.bot.get_emoji(COGemojis[cog]).name
@@ -231,7 +231,7 @@ class THEACTUALHelp(commands.Cog):
 
                             for cog in self.bot.cogs:
 
-                                if cog not in ["Event", "THEACTUALHelp", "Staff", "Jishaku"]:
+                                if cog not in ["Event", "Help", "Staff", "Jishaku"]:
                                         
                                     if cog == inter.select_menu.selected_options[0].label:
                                         name = self.bot.get_emoji(COGemojis[cog]).name
@@ -305,26 +305,6 @@ class THEACTUALHelp(commands.Cog):
                     except asyncio.TimeoutError:
                         em.set_footer(text="Help timed out")
                         await msg.edit(embed=em, components=[])
-                    # else:
-
-                    #     the_list = []
-                    #     em = discord.Embed(description="**I'm a multi-use bot with new features being created every week! \nTo get a more detailed description of a command use `j.help <command>`.**\nLinks:  [Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.bot_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot)", colour=thecolor())
-                    #     em.set_author(name="Help", icon_url = bot_av.avatar_url)
-                    #     for cog in self.bot.cogs:
-                            
-                    #         if cog not in ["Event", "THEACTUALHelp", "Staff", "Jishaku"]:
-                                
-                    #             thecog = self.bot.get_cog(cog)
-                    #             for cmd in thecog.walk_commands():
-                    #                 if not cmd.hidden:
-
-                    #                     the_list.append(f"`{cmd}`")
-                            
-                    #             em.add_field(name=cog, value="│".join(the_list), inline=False)
-                    #             the_list = []
-                    #     em.add_field(name="Help command", value="The help command looks bad because the main help command requires the `discord.Permission` `manage_messages`... This is because it uses emojis to control it")
-                    #     await ctx.send(embed=em)
-
                 elif command1 != None and command:
                     alx = []
                     
@@ -349,4 +329,4 @@ class THEACTUALHelp(commands.Cog):
                     await ctx.send(embed=em)
 
 def setup(bot):
-  bot.add_cog(THEACTUALHelp(bot))
+  bot.add_cog(Help(bot))

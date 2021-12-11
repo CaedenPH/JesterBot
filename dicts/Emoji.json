@@ -39,7 +39,7 @@
         "Music": {
             "description": "Got a song in your head that you need to listen to? JesterBot's music category has all the musical needs"
         },
-        "THEACTUALHelp": {
+        "Help": {
             "description": "Information about JesterBot, for example - do you want to see the most popular commands?"
         },
         "Snipe": {

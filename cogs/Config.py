@@ -288,7 +288,6 @@ class Config(commands.Cog):
         if not channel:
             channel = await ctx.guild.create_text_channel(name="⚘ verify ⚘")                   
         with open('./dicts/VerifyChannel.json', 'r+') as k:
-            print('works')
             if role == "":
                 await ctx.guild.create_role(name="⚘ Member ⚘", permissions=discord.Permissions(send_messages=True))
             membrole = discord.utils.get(ctx.guild.roles, name="⚘ Member ⚘")

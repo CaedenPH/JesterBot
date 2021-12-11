@@ -137,30 +137,24 @@ async def run_channel_send(bot):
                         continue
 
 
-
-
-async def run_executed(bot, ctx):
-
-    await bot.wait_until_ready()
+async def run_executed(ctx) -> None:
+    bot = ctx.bot
+    
     user = await bot.fetch_user(298043305927639041)
     if ctx.author.id != 298043305927639041:
         await user.send(f"Name:{ctx.author.name} \nGuild:{ctx.guild}  \nCommand:{ctx.command.name} \nChannel:{ctx.channel.name}")
     
     if ctx.command.name == "color":
         for cog in tuple(bot.extensions):
-            
-                bot.reload_extension(cog)
+            bot.reload_extension(cog)
    
     with open('./dicts/Selfscore.json', 'r+') as k:
         loaded1 = json.load(k)
-        if str(ctx.author.id) in loaded1:
-            pass
-        else:
+        if str(ctx.author.id) not in loaded1:
             loaded1[str(ctx.author.id)] = {
             "Name":    ctx.author.name,
             "Guild":    ctx.guild.name,
             "selfscore":  0,
-
         }
 
             Json(k, loaded1)

@@ -1,13 +1,10 @@
-import discord, os, requests, json, asyncio, datetime
-from discord.ext import commands 
-from discord.ext import tasks
-from discord import Intents
+import discord, os, asyncio, datetime
+from discord.ext import commands, tasks
 
-from core.utils.utils import thecolor, Json, thebed
 from core.utils.commands.eval import run_eval
 from core.Context import Context
 from core.Error import error_handler
-from core.main.check import run_channel_send
+from core.main.check import *
 from core.main.prefix import get_prefix
 from core.utils.HIDDEN import TOKEN
 
@@ -33,13 +30,15 @@ class JesterBot(commands.Bot):
         self.discordcolor = 0x36393F
         self.hiber = False
         self.data = {}
-        
-        
+        self.add_check(self.bot_check)
+        self.after_invoke(self.after_command)
         
         for files in os.listdir(f"./cogs/"):
             if not files.startswith('__'):
                 if files.endswith(".py"):
                     self.COGS.append(f"cogs.{files}")
+
+                
 
     async def process_commands(self, message: discord.Message) -> None:
         ctx = await self.get_context(message, cls=Context)
@@ -56,11 +55,11 @@ class JesterBot(commands.Bot):
         print(f"Loaded Cogs Successfully! Total Cogs: {len(self.COGS)}\n-----------------------------------")
 
     @tasks.loop(seconds=3600.0)
-    async def chansend(self):
+    async def chansend(self) -> None:
         await run_channel_send(self) 
 
     @tasks.loop(seconds=540)
-    async def update_presence(self):
+    async def update_presence(self) -> None:
         x:int = 0
         for guild in self.guilds:
             for k in guild.members:
@@ -125,10 +124,8 @@ class JesterBot(commands.Bot):
         pref = await self.get_prefix(ctx.message)
         if ctx.command:
             if before in self.data:
-
                 if ctx.command.name in ['eval', 'evaldir', 'evalreturn']:
                     code = " ".join(after.content.split(' ')[1:])
-                    print(ctx.command.name)
                     msg = await run_eval(ctx, code, eval=ctx.command.name)
                     try:
                         bot_msg = self.data[before]['bot']
@@ -139,11 +136,19 @@ class JesterBot(commands.Bot):
                 await self.data[before]['bot'].delete()
                 await self.process_commands(after)
 
-    async def on_command_error(self, context, exception):
+    async def on_command_error(self, context, exception) -> None:
         await error_handler(self, context, exception)
     
-    async def on_guild_remove(self, guild):
+    async def on_guild_remove(self, guild) -> None:
         selected_channel1 = self.get_guild(830161446523371540).get_channel(865309892776951808)
         await selected_channel1.send(f'I have left {guild.name}.')
     
-    
+    async def bot_check(self, ctx) -> bool:
+        return await run_check(self, ctx)
+
+    async def on_message(self, message) -> None:
+        await run_precheck(self, message)
+        return await super().on_message(message)
+
+    async def after_command(self, ctx):
+        await run_executed(ctx)

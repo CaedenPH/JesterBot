@@ -12,7 +12,9 @@ from core.utils.utils import Json, thecolor
 from core.Paginator import Paginator 
 
 def clean_code(content:str):
-    content = content.strip('`')
+    if content.startswith("```py"):
+        content = content[5:-3]
+    content = content.strip("`")
     content = content.replace("‘", "'").replace('“', '"').replace("”", "\"").replace("’", "'")
     return content
 

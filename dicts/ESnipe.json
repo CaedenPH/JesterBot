@@ -131,7 +131,14 @@
                 "Caeden",
                 "Caeden",
                 "Caeden",
-                "Caeden"
+                "Caeden",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot"
             ],
             "id": [
                 828363172717133874,
@@ -263,7 +270,14 @@
                 298043305927639041,
                 298043305927639041,
                 298043305927639041,
-                298043305927639041
+                298043305927639041,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874
             ],
             "time": [
                 "2021-09-15 07:50:29.169000",
@@ -395,7 +409,14 @@
                 "2021-11-30 18:12:40.645000",
                 "2021-12-01 17:24:33.708000",
                 "2021-12-04 17:55:01.999000",
-                "2021-12-04 17:56:58.290000"
+                "2021-12-04 17:56:58.290000",
+                "2021-12-11 20:56:19.710000",
+                "2021-12-11 20:53:33.064000",
+                "2021-12-11 20:55:16.568000",
+                "2021-12-11 20:55:16.612000",
+                "2021-12-11 20:56:19.710000",
+                "2021-12-11 21:20:31.437000",
+                "2021-12-11 21:35:38.276000"
             ],
             "after": [
                 "['[A Color Test That Can Tell Your Mental Age](https://www.youtube.com/watch?v=iVbopWyBR5Y)', '[A Simple Test Will Reveal Your Deepest Fear](https://www.youtube.com/watch?v=pyKmVy2TC2E)', '[10 Hardest Choices Ever (Personality Test)](https://www.youtube.com/watch?v=Kt8RupLIkBQ)', '[National SAT Practice Test Day 2021](https://www.youtube.com/watch?v=_lyyvZFiAjQ)', '[Learner Fails Driving Test In The FIRST 5 MINUTES](https://www.youtube.com/watch?v=QaE4jsE3Emg)', '[SNEAKY SCHOOL HACKS FOR A TEST! || Funny School DIYs And Tricks by 123 Go! Live](https://www.youtube.com/watch?v=h6oRraSOyos)', '[International Breakfast Sandwiches Taste Test](https://www.youtube.com/watch?v=-xofptVHF1A)', '[The Chemical Brothers - The Test (Official Music Video)](https://www.youtube.com/watch?v=yhS9LnDoo_w)', \"[What's Your True Spirit Animal? Personality Test](https://www.youtube.com/watch?v=-KGnRe1f2DA)\", \"[What's Your Hidden Superpower? | Personality Test](https://www.youtube.com/watch?v=BMRlr2DE0Dg)\"]",
@@ -527,7 +548,14 @@
                 "nah i was just testing some dudes bot",
                 "ill clone it and place the files in",
                 "how many mistakes can you count?\n```py\nVar1 = False\nvar 2 = False\nDef outterfunction(ip)\n\u00a0nonlocal var1\n\u00a0nonlocal var2\n\u00a0\u00a0\u00a0 def innerfunction(ip)\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 nonlocal var1\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 nonlocal var2\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 while var1 == False and var2 == False:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 if var1 == false:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 do stuff\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 var1 = true\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 return var1\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 if var1 == True and var2 == False:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 do stuff\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 var2 == True\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 return var2\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 else:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 if var1 == True and var2 == True:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 break\u00a0\u00a0 \n\ndef main()\n\u00a0 for ip in ips:\n\u00a0\u00a0\u00a0 outterfunctio(ip)\n```",
-                "opposite of `global`"
+                "opposite of `global`",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
             ],
             "before": [
                 "['[A Color Test That Can Tell Your Mental Age](https://www.youtube.com/watch?v=iVbopWyBR5Y)', '[A Simple Test Will Reveal Your Deepest Fear](https://www.youtube.com/watch?v=pyKmVy2TC2E)', '[10 Hardest Choices Ever (Personality Test)](https://www.youtube.com/watch?v=Kt8RupLIkBQ)', '[National SAT Practice Test Day 2021](https://www.youtube.com/watch?v=_lyyvZFiAjQ)', '[Learner Fails Driving Test In The FIRST 5 MINUTES](https://www.youtube.com/watch?v=QaE4jsE3Emg)', '[SNEAKY SCHOOL HACKS FOR A TEST! || Funny School DIYs And Tricks by 123 Go! Live](https://www.youtube.com/watch?v=h6oRraSOyos)', '[International Breakfast Sandwiches Taste Test](https://www.youtube.com/watch?v=-xofptVHF1A)', '[The Chemical Brothers - The Test (Official Music Video)](https://www.youtube.com/watch?v=yhS9LnDoo_w)', \"[What's Your True Spirit Animal? Personality Test](https://www.youtube.com/watch?v=-KGnRe1f2DA)\", \"[What's Your Hidden Superpower? | Personality Test](https://www.youtube.com/watch?v=BMRlr2DE0Dg)\"]",
@@ -659,7 +687,14 @@
                 "nah i was just testing some dudes bnot",
                 "ill pull it and place the files in",
                 "how many mistakes can you guys count?\n```py\nVar1 = False\nvar 2 = False\nDef outterfunction(ip)\n\u00a0nonlocal var1\n\u00a0nonlocal var2\n\u00a0\u00a0\u00a0 def innerfunction(ip)\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 nonlocal var1\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 nonlocal var2\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 while var1 == False and var2 == False:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 if var1 == false:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 do stuff\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 var1 = true\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 return var1\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 if var1 == True and var2 == False:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 do stuff\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 var2 == True\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 return var2\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 else:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 if var1 == True and var2 == True:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 break\u00a0\u00a0 \n\ndef main()\n\u00a0 for ip in ips:\n\u00a0\u00a0\u00a0 outterfunctio(ip)\n```",
-                "opposite of `globa`l"
+                "opposite of `globa`l",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
             ]
         },
         "910925145160441856": {
@@ -10649,7 +10684,10 @@
                 "[j.] JesterBot",
                 "Dank Memer",
                 "Dank Memer",
-                "stealthninja"
+                "stealthninja",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot"
             ],
             "id": [
                 889922820317007928,
@@ -11023,7 +11061,10 @@
                 828363172717133874,
                 270904126974590976,
                 270904126974590976,
-                521226389559443461
+                521226389559443461,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874
             ],
             "time": [
                 "2021-11-23 12:48:23.785000",
@@ -11397,7 +11438,10 @@
                 "2021-12-05 09:00:40.844000",
                 "2021-12-05 09:32:02.288000",
                 "2021-12-05 09:32:02.288000",
-                "2021-12-05 10:59:19.685000"
+                "2021-12-05 10:59:19.685000",
+                "2021-12-11 20:54:23.564000",
+                "2021-12-11 20:54:30.368000",
+                "2021-12-11 20:54:30.396000"
             ],
             "after": [
                 "",
@@ -11771,7 +11815,10 @@
                 "",
                 "@fake stealthninja What color was next to the word `tomato`?",
                 "@fake stealthninja What color was next to the word `tomato`?",
-                "i use controller but they use keyboard"
+                "i use controller but they use keyboard",
+                "",
+                "",
+                ""
             ],
             "before": [
                 "",
@@ -12145,7 +12192,10 @@
                 "",
                 "**Work for Fast Food Cook** - Color Match - Match the color to the selected word.\n<:Green:863886248527134730> `patty`\n<:Black:863886248431190066> `cheeseburger`\n<:Marine:863886248572878939> `tomato`",
                 "@fake stealthninja What color was next to the word `tomato`?",
-                "i a controller but they use keyboard"
+                "i a controller but they use keyboard",
+                "",
+                "",
+                ""
             ]
         },
         "901847011232460841": {

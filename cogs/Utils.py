@@ -16,7 +16,7 @@ from dislash import *
 import simpleeval
 import yfinance as yf
 import re
-from typing import Tuple, Union
+from typing import Tuple
 import unicodedata
 import numpy as np
 
@@ -26,18 +26,18 @@ import googletrans
 
 
 sub = { 
-                            '0': '⁰',
-                            '1': '¹',
-                            '2': '²',
-                            '3': '³',
-                            '4': '⁴',
-                            '5': '⁵',
-                            '6': '⁶',
-                            '7': '⁷',
-                            '8': '⁸',
-                            '9': '⁹',
-                            '-': '⁻'
-                        }
+                '0': '⁰',
+                '1': '¹',
+                '2': '²',
+                '3': '³',
+                '4': '⁴',
+                '5': '⁵',
+                '6': '⁶',
+                '7': '⁷',
+                '8': '⁸',
+                '9': '⁹',
+                '-': '⁻'
+            }
 calc = {}
 
 def but(mode):
@@ -134,32 +134,7 @@ decoder = translator.Decoder()
 
 class Utils(commands.Cog):
     def __init__(self, bot):
-   
         self.bot = bot
-
-    @commands.command(name='plot')
-    async def _plot(self, ctx:Context, xvals, yvals):
-        xList = []
-        yList = []
-        for varx in xvals:
-            xList.append(varx)
-        for vary in yvals:
-            yList.append(vary)
-        xList.sort()
-        yList.sort()
-        x = np.array(xList)
-        y = np.array(yList)
-        arr = np.vstack((x, y))
-        plt.plot(arr[0], arr[1])
-        plt.title(f'{ctx.message.author}\'s Graph')
-        file = open('./dicts/Name.json', 'r+')
-        data = json.load(file)
-        data['score'] += 1
-        name = data['score']
-        Json(file, data) 
-        plt.savefig(fname=f"./graphs/{str(name)}.png")
-        await ctx.send(file=discord.File(f"./graphs/{str(name)}.png"))
-        #os.remove('plot.png')
 
     @commands.command(aliases=['wiki'])
     async def wikipedia(self, ctx, *, query):
@@ -176,9 +151,6 @@ class Utils(commands.Cog):
 
         product = translator.translate(msg.content, dest=_destination)
         await ctx.em(product)
-
-
-
 
 
     @commands.command()

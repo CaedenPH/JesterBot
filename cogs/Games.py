@@ -2,19 +2,9 @@ import discord, os, requests, json, asyncio
 from discord.ext.commands import has_permissions
 from discord.ext import commands 
 from discord.utils import get
-from discord.ext import tasks
-from discord import Intents
 from asyncio import sleep
-import yfinance as yf
-from traceback import print_exc
-import itertools
-import sys
-import traceback
-from async_timeout import timeout
-from functools import partial
-from youtube_dl import YoutubeDL
 from random import choice, randint
-from core.utils.utils import thecolor, Json, thebed
+from core.utils.utils import thecolor, thebed
 from core.Context import Context
 
 from dislash import *
@@ -99,21 +89,6 @@ class Games(commands.Cog):
     async def blackjack(self, ctx:Context):
         one_ace = False
         BotHit = False
-        # embed = discord.Embed(colour=thecolor())
-        # embed.set_author(name="Blackjack", icon_url = ctx.author.avatar_url)
-        class Card:
-            def __init__(self):
-                self.suit = choice(['Hearts 🎔', 'Diamonds ◆', 'Clubs ♧', 'Spades ♤'])
-                self.num = randint(1, 13)
-                self.show = self.num
-                if self.num in [1, 11, 12, 13]:
-                    if self.num == 1:
-                        self.show = 'Ace'
-                        self.num = 0
-                    else:
-                        self.num = 10
-                        self.show = choice(['King', 'Jack', 'Queen'])
-                self.card = f"{self.show} of {self.suit}"
 
         Player_Card_1 = Card()
         Player_Card_2 = Card()

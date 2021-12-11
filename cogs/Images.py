@@ -22,7 +22,7 @@ async def img(ctx, member, name):
     url:str = member.avatar_url
 
     if member.is_avatar_animated():
-        print('hi')
+        
         url:str = member.avatar_url.replace('.gif', '.png')
         print(url)
         
@@ -44,7 +44,7 @@ async def pilimg(ctx, member, name):
     url:str = member.avatar_url
 
     if member.is_avatar_animated():
-        print('hi')
+        
         url:str = str(member.avatar_url).replace('.gif', '.webp')
         print(url)
 

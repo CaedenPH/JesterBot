@@ -1,23 +1,30 @@
-from core.Bot import JesterBot
-from core.main.check import run_check, run_executed, run_precheck
+"""
+The MIT License (MIT)
 
-bot = JesterBot()
+Copyright (c) 2015-present Rapptz
 
-@bot.listen('on_message')
-async def _message(message):
-    output = await run_precheck(bot, message)
-    return output
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the "Software"),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
 
-@bot.check
-async def _check(ctx):      
-    output = await run_check(bot, ctx)
-    return output
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-@bot.after_invoke
-async def executed(ctx):
-    await run_executed(bot, ctx)
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+"""
+
+from core import JesterBot
 
 if __name__ == "__main__":
-    bot.run()
+    JesterBot().run()
 
 

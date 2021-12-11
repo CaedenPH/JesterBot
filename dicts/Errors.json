@@ -4569,5 +4569,19 @@
         "error": "Command raised an exception: DisambiguationError: \"text\" may refer to: \nPlain text\nText file\nText string\nText message\nText (Chrome app)\nTEXT\nText & Talk\nJ.R. Rotem\nTxT (film)\nText (film)\nText (2008 film)\nAll pages with titles beginning with Text\nCopy (written)\nDiscourse (disambiguation)\nEnriched text\nRich text\nTex (disambiguation)\nText display\nText mode\nText segment\nWriting",
         "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
         "command": "wikipedia"
+    },
+    "653": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: TypeError: Messageable.send() got an unexpected keyword argument 'components'",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "help"
+    },
+    "654": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: TypeError: Messageable.send() got an unexpected keyword argument 'components'",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "help"
     }
 }
