@@ -28,7 +28,7 @@ class Help(commands.Cog):
         with open('./dicts/Emoji.json') as k:
             data = json.load(k)
 
-            cog = self.bot.get_cog(command)
+            cog = self.bot.get_cog(command.capitalize())
 
             if cog:
                 the_list = ""
