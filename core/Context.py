@@ -115,7 +115,7 @@ class Context(commands.Context):
 
             components=Components()
 
-        msg = await super().send(components=components, embed=discord.Embed(description=f"**Error:**{error}\n\u200b\n**Would you like to submit this error to the developer?**", color=thecolor()).set_author(name="Error", icon_url=self.author.avatar_url).set_footer(text='This error command is slow because it takes a lot of time to process it!'))
+        msg = await super().send(components=components, embed=discord.Embed(description=f"**Error:**{error}\n\u200b\n**Would you like to submit this error to the developer?**", color=thecolor()).set_author(name="Error", icon_url=self.author.avatar.url).set_footer(text='This error command is slow because it takes a lot of time to process it!'))
         x = False
         inter = await msg.wait_for_button_click(check)
         if inter.clicked_button.custom_id == "Yes":

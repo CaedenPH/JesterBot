@@ -82,7 +82,7 @@ class Event(commands.Cog):
                                 embed = discord.Embed(title=f"Welcome!", description=f"{member.mention} don't forget to type `j.rules` to see the rules for the server, but most of all dont forget to have fun at {member.guild}!", colour=thecolor())
                                 
                                 embed.set_image(url=f"{member.guild.icon_url}") 
-                                embed.set_author(name=f"{member.name}", icon_url=f"{member.avatar_url}")
+                                embed.set_author(name=f"{member.name}", icon_url=f"{member.avatar.url}")
                                 await channel.send(embed=embed)
                                 role = discord.utils.get(member.guild.roles, id=loaded[str(member.guild.id)]['role'])
                                 if role:
@@ -100,7 +100,7 @@ class Event(commands.Cog):
                                 embed = discord.Embed(description=f"Welcome to {member.guild}! {member.mention}, enjoy your stay!", colour=thecolor())
                                 
                                 embed.set_image(url=f"{member.guild.icon_url}") 
-                                embed.set_author(name=f"{member.name}", icon_url=f"{member.avatar_url}")
+                                embed.set_author(name=f"{member.name}", icon_url=f"{member.avatar.url}")
                                 
                                 await channel.send(embed=embed)
                                 # await member.add_roles(role)
@@ -172,7 +172,7 @@ class Event(commands.Cog):
 
                                             embed.set_thumbnail(url=f"{message.guild.icon_url}") 
                                             embed.set_image(url='https://cdn.discordapp.com/attachments/847528639125258322/855559791384592404/360_F_361521131_tvclR3GrsVQBFVsUe1EPNFgH2MWIN1w7.png')
-                                            embed.set_author(name=f"{message.author.name}", icon_url=f"{message.author.avatar_url}")
+                                            embed.set_author(name=f"{message.author.name}", icon_url=f"{message.author.avatar.url}")
                                             # role = discord.utils.get(member.guild.roles, id=loaded[str(member.guild.id)]['role'])
                                             await channel.send(embed=embed)
                                         

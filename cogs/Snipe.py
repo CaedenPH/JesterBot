@@ -115,7 +115,7 @@ class Snipe(commands.Cog):
                         time = datetime.strptime(str(data[g][c]['time'][len(data[g][c]['before'])-ammount][:-7]), '%Y-%m-%d %X')
 
                         embed = discord.Embed(timestamp=time, description=f"**{data[g][c]['author'][len(data[g][c]['before'])-ammount]} said:** {data[g][c]['before'][len(data[g][c]['before'])-ammount]} \n**Then edited it to:** {data[g][c]['after'][len(data[g][c]['after'])-ammount]}", color=thecolor())
-                        embed.set_author(icon_url=us.avatar_url, name="Most recent message:")
+                        embed.set_author(icon_url=us.avatar.url, name="Most recent message:")
                         return await ctx.send(embed=embed)
                     else:
                         await ctx.message.add_reaction('❌')
@@ -142,7 +142,7 @@ class Snipe(commands.Cog):
                             time = datetime.strptime(str(data[g][c]['time'][t-1][:-7]), '%Y-%m-%d %X')
 
                             embed = discord.Embed(timestamp=time, description=f"**{data[g][c]['author'][t-1]} said:** {data[g][c]['before'][t-1]}\n**Then changed it to: **{data[g][c]['after'][t-1]}", color=thecolor())
-                            embed.set_author(icon_url=us.avatar_url, name="Most recent message:")
+                            embed.set_author(icon_url=us.avatar.url, name="Most recent message:")
                             return await ctx.send(embed=embed)
                         t -= 1
 
@@ -163,7 +163,7 @@ class Snipe(commands.Cog):
 
                         us = self.client.get_user(data[g][c]['id'][len(data[g][c]['list'])-ammount])
                         embed = discord.Embed(timestamp=time, description=f"**{data[g][c]['author'][len(data[g][c]['list'])-ammount]} said:** {data[g][c]['list'][len(data[g][c]['list'])-ammount]}", color=thecolor())
-                        embed.set_author(icon_url=us.avatar_url, name="Most recent message:")
+                        embed.set_author(icon_url=us.avatar.url, name="Most recent message:")
                         return await ctx.send(embed=embed)
                     else:
                         await ctx.message.add_reaction('❌')
@@ -187,7 +187,7 @@ class Snipe(commands.Cog):
                             us = self.client.get_user(data[g][c]['id'][t-1])
                             embed = discord.Embed(description=f"**{data[g][c]['author'][t-1]} said:** {data[g][c]['list'][t-1]}", color=thecolor())
                             embed.set_footer(text="At: " + str(data[g][c]['time'][t-1][:-7]))
-                            embed.set_author(icon_url=us.avatar_url, name="Most recent message:")
+                            embed.set_author(icon_url=us.avatar.url, name="Most recent message:")
                             return await ctx.send(embed=embed)
                             
                         t -= 1

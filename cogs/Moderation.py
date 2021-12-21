@@ -148,7 +148,7 @@ class Mod(commands.Cog):
             for num in prefix:
                 prefix1.append(f"`{num}`")
             embed = discord.Embed(description=f"New prefix for this server is {', '.join(prefix1) if prefix else f'{prefix1}'}!, ping me for my prefixes if you forget!", colour=thecolor())
-            embed.set_author(icon_url=ctx.author.avatar_url, name="Prefix")
+            embed.set_author(icon_url=ctx.author.avatar.url, name="Prefix")
             await ctx.send(embed=embed)
     
     @commands.command(aliases=['k'], description="Kicks the specified member - Reason goes in the audit log")
@@ -371,7 +371,7 @@ class Mod(commands.Cog):
         for channel in ctx.guild.text_channels:
            pass
         embed = discord.Embed(description=role.permissions.name, colour=thecolor())
-        embed.set_author(icon_url=ctx.author.avatar_url, name=ctx.author.name)
+        embed.set_author(icon_url=ctx.author.avatar.url, name=ctx.author.name)
         await ctx.send(embed=embed)
         await ctx.send(role.position)
 

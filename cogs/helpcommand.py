@@ -44,7 +44,7 @@ class Help(commands.Cog):
                         num += 1
                 
                 embed = discord.Embed(title=cog.qualified_name, description=f"I'm a multi-use bot with new features being created every week! \nTo get a more detailed description of a command use `j.help <command>`. To get a more detailed description of a cog, type `j.help <Category>` , but make sure you capitlize the name of the category\n{the_list}", colour=thecolor())
-                embed.set_author(name="Help", icon_url = bot_av.avatar_url)
+                embed.set_author(name="Help", icon_url = bot_av.avatar.url)
                 embed.add_field(name="Links:", value= "[Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.bot_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot)")
                 return await ctx.send(embed=embed)
 
@@ -83,7 +83,7 @@ class Help(commands.Cog):
                     my_string = my_string.split("---")
                     num = 1
                     embed = discord.Embed(title="Error!", colour=thecolor())
-                    embed.set_author(icon_url=ctx.author.avatar_url, name=f"{command} is not a command!")
+                    embed.set_author(icon_url=ctx.author.avatar.url, name=f"{command} is not a command!")
                     
         
                     if my_string[0] not in [""]:
@@ -109,7 +109,7 @@ class Help(commands.Cog):
                                     if emoji.emoji == "➡" and num == 1:
                                 
                                         embed = discord.Embed(title="Error!", colour=thecolor())
-                                        embed.set_author(icon_url=ctx.author.avatar_url, name=f"{ctx.message.content} is not a command!")
+                                        embed.set_author(icon_url=ctx.author.avatar.url, name=f"{ctx.message.content} is not a command!")
                                         embed.add_field(name="Did you mean:", value=f"{my_string[1]}")
                                         embed.set_footer(text="Page 2")
                                         await msg.edit(embed=embed)
@@ -118,7 +118,7 @@ class Help(commands.Cog):
 
                                     elif emoji.emoji == "⬅" and num == 2:
                                         embed = discord.Embed(title="Error!", colour=thecolor())
-                                        embed.set_author(icon_url=ctx.author.avatar_url, name=f"{ctx.message.content} is not a command!")
+                                        embed.set_author(icon_url=ctx.author.avatar.url, name=f"{ctx.message.content} is not a command!")
                                         embed.add_field(name="Did you mean:", value=f"{my_string[0]}")
                                         embed.set_footer(text="Page 1")
                                         await msg.edit(embed=embed)
@@ -134,7 +134,7 @@ class Help(commands.Cog):
                                     
                             except asyncio.TimeoutError:
                                 embed = discord.Embed(title="Error!", description="Session timed out", colour=thecolor())
-                                embed.set_author(icon_url=ctx.author.avatar_url, name=f"{ctx.message.content} is not a command!")
+                                embed.set_author(icon_url=ctx.author.avatar.url, name=f"{ctx.message.content} is not a command!")
                                 embed.set_footer(text="Have fun!")
                                 return await msg.edit(embed=embed)
 
@@ -199,7 +199,7 @@ class Help(commands.Cog):
                     '''
                     #description=f"{description}",
                     em = discord.Embed(title=f"{j}{e}{s}{t}{e}{r}", description=description, colour=thecolor())
-                    #em.set_thumbnail(url=self.bot.user.avatar_url```yaml\nTo get a more detailed description of a command use j.help <command/Category>. Press the button to see the category.```)
+                    #em.set_thumbnail(url=self.bot.user.avatar.url```yaml\nTo get a more detailed description of a command use j.help <command/Category>. Press the button to see the category.```)
                     #u200b\n
                     em.add_field(name=f"{CATEGORIES} **Categories:**\n\u200b", value=f"{desc1}\n\u200b")
                     em.add_field(name="\u200b\n\u200b", value=f"{desc2}")
@@ -324,7 +324,7 @@ class Help(commands.Cog):
                     em.add_field(name=" ❯❯ Alias", value=f"{', '.join(alx)} " if alias else f"`none`", inline=False)
                     em.add_field(name=" ❯❯ Usage", value=f"`j.{command1.name} {sig}`" if sig else f'`j.{command1.name}`', inline=False)
                     em.add_field(name=" ❯❯ Description", value=thehelp if thehelp else "Currently no help!", inline=False)
-                    em.set_author(name="Help", icon_url = bot_av.avatar_url)
+                    em.set_author(name="Help", icon_url = bot_av.avatar.url)
                     em.set_footer(text="<> = needed │ [] = not needed")
                     await ctx.send(embed=em)
 

@@ -43,7 +43,7 @@ class Economy(commands.Cog):
             data = json.load(k)
             if purchase == "":
                 embed = discord.Embed(colour=thecolor())
-                embed.set_author(icon_url=ctx.author.avatar_url, name="Shop")
+                embed.set_author(icon_url=ctx.author.avatar.url, name="Shop")
                 embed.add_field(name="\u200b", value=f"""
                 **What you can purchase...** 
 
@@ -71,11 +71,11 @@ class Economy(commands.Cog):
                 try:
                     
                     embed1 = discord.Embed(description = f"What would you like the name of your role to be", colour=thecolor())   
-                    embed1.set_author(name=ctx.author.name, icon_url = ctx.author.avatar_url)
+                    embed1.set_author(name=ctx.author.name, icon_url = ctx.author.avatar.url)
                     await ctx.send(embed=embed1)
                     msg = str((await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=60.0)).content).lower()
                     embed1 = discord.Embed(description = f"What would you like the colour of your role to be? [Refer to this](https://www.color-hex.com/) \nAdd 0x infront of the color, e.g 0x4b46cd", colour=thecolor())   
-                    embed1.set_author(name=ctx.author.name, icon_url = ctx.author.avatar_url)
+                    embed1.set_author(name=ctx.author.name, icon_url = ctx.author.avatar.url)
                     await ctx.send(embed=embed1)
                     msg1 = str((await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=60.0)).content).lower()
     
@@ -87,7 +87,7 @@ class Economy(commands.Cog):
                     await ctx.author.add_roles(role)
 
                     embed1 = discord.Embed(title = f"Created!", colour=thecolor())   
-                    embed1.set_author(name=ctx.author.name, icon_url = ctx.author.avatar_url)
+                    embed1.set_author(name=ctx.author.name, icon_url = ctx.author.avatar.url)
                     await ctx.send(embed=embed1)
                     data[str(ctx.author.id)]['Bal'] -= 1000
                     Json(k, data)
@@ -185,10 +185,10 @@ class Economy(commands.Cog):
                 if str(ctx.author.id) in data:
                     embed = discord.Embed(description=f"**{data[str(ctx.author.id)]['Bal']}** JesterCoins", colour=thecolor())
                     embed.set_footer(text="Every time you run an economy command you get money!")
-                    embed.set_author(icon_url=ctx.author.avatar_url, name="Balance")
+                    embed.set_author(icon_url=ctx.author.avatar.url, name="Balance")
                 else:
                     embed = discord.Embed(description=f"You have 0$", colour=thecolor())
-                    embed.set_author(icon_url=ctx.author.avatar_url, name="Balance")
+                    embed.set_author(icon_url=ctx.author.avatar.url, name="Balance")
 
             else:
                 if str(user.id) in data:
@@ -213,12 +213,12 @@ class Economy(commands.Cog):
                     if x == 1:
 
                         embed = discord.Embed(description = f"you gambled **{money}$** and got **{money * 2}$**", colour=thecolor())
-                        embed.set_author(icon_url=ctx.author.avatar_url, name="You won!")
+                        embed.set_author(icon_url=ctx.author.avatar.url, name="You won!")
                         data[str(ctx.author.id)]['Bal'] += money * 2
                         Json(k, data)
                     else:
                         embed = discord.Embed(description = f"you gambled **{money}$** and lost **{money}$**", colour=thecolor())
-                        embed.set_author(icon_url=ctx.author.avatar_url, name="You lost!")
+                        embed.set_author(icon_url=ctx.author.avatar.url, name="You lost!")
                         data[str(ctx.author.id)]['Bal'] -= money 
                         Json(k, data)
                 else:
@@ -249,7 +249,7 @@ class Economy(commands.Cog):
         y = '\n'
         with open('./dicts/Bal.json') as k:
             embed = discord.Embed(colour=thecolor())
-            embed.set_author(name="Baltop", icon_url=ctx.author.avatar_url)
+            embed.set_author(name="Baltop", icon_url=ctx.author.avatar.url)
             data = json.load(k)
             def get_key(item):
                 return item[1]['Bal']

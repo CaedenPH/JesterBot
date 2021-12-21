@@ -1465,28 +1465,28 @@
     "209": {
         "author": "Fred123",
         "id": 298043305927639041,
-        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'avatar_url'",
+        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'avatar.url'",
         "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
         "command": "editsnipe"
     },
     "210": {
         "author": "Fred123",
         "id": 298043305927639041,
-        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'avatar_url'",
+        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'avatar.url'",
         "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
         "command": "editsnipe"
     },
     "211": {
         "author": "Fred123",
         "id": 298043305927639041,
-        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'avatar_url'",
+        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'avatar.url'",
         "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
         "command": "editsnipe"
     },
     "212": {
         "author": "Fred123",
         "id": 298043305927639041,
-        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'avatar_url'",
+        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'avatar.url'",
         "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
         "command": "snipe"
     },
@@ -4202,35 +4202,35 @@
     "600": {
         "author": "alexandros",
         "id": 494927280091561984,
-        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'avatar_url'",
+        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'avatar.url'",
         "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
         "command": "snipe"
     },
     "601": {
         "author": "\u039bc\u0454",
         "id": 642791754160013312,
-        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'avatar_url'",
+        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'avatar.url'",
         "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
         "command": "snipe"
     },
     "602": {
         "author": "\u039bc\u0454",
         "id": 642791754160013312,
-        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'avatar_url'",
+        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'avatar.url'",
         "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
         "command": "snipe"
     },
     "603": {
         "author": "\u039bc\u0454",
         "id": 642791754160013312,
-        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'avatar_url'",
+        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'avatar.url'",
         "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
         "command": "snipe"
     },
     "604": {
         "author": "alexandros",
         "id": 494927280091561984,
-        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'avatar_url'",
+        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'avatar.url'",
         "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
         "command": "snipe"
     },

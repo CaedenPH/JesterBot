@@ -10,7 +10,7 @@ async def embed2(ctx, description):
 
     embed = discord.Embed(description=description, color=thecolor())
     embed.set_footer(text='Type j.help Music to get all the music commands!')
-    embed.set_author(name="Music", icon_url=ctx.author.avatar_url)
+    embed.set_author(name="Music", icon_url=ctx.author.avatar.url)
     await ctx.send(embed=embed)
 
 

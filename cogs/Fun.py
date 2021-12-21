@@ -24,7 +24,7 @@ async def img(ctx, member, name):
     if member is None:
         member = ctx.author
     async with aiohttp.ClientSession() as s:
-        async with s.get(str(member.avatar_url)) as r:
+        async with s.get(str(member.avatar.url)) as r:
             f = open(f'./images/{name}.png', 'wb')
             f.write(await r.read())
             f.close()
@@ -46,7 +46,7 @@ class Fun(commands.Cog):
             
         embed = discord.Embed(timestamp=ctx.message.created_at, description="\n".join(formatted), color=thecolor())
         
-        embed.set_author(name=f"Youtube searches for {query}: ", icon_url=ctx.author.avatar_url)
+        embed.set_author(name=f"Youtube searches for {query}: ", icon_url=ctx.author.avatar.url)
         embed.set_footer(text=f"Requested by {ctx.author}")
         await ctx.send(embed)   
 
@@ -95,7 +95,7 @@ class Fun(commands.Cog):
                 await k.delete()
         webhook = await ctx.channel.create_webhook(name=f"{member}")
         
-        await webhook.send(text, username=member.name, avatar_url=member.avatar_url, allowed_mentions=discord.AllowedMentions(roles=False, users=False, everyone=False))
+        await webhook.send(text, username=member.name, avatar_url=member.avatar.url, allowed_mentions=discord.AllowedMentions(roles=False, users=False, everyone=False))
     
     @commands.command()
     async def minecraft(self, ctx:Context, username):
@@ -320,7 +320,7 @@ class Fun(commands.Cog):
             await x.delete()
             
             embed1 = discord.Embed(title = f"{msg.content}", colour=thecolor())   
-            embed1.set_author(name=ctx.author.name, icon_url = user.avatar_url)
+            embed1.set_author(name=ctx.author.name, icon_url = user.avatar.url)
             await ctx.send(embed=embed1)
         except asyncio.TimeoutError:
             embed = discord.Embed(title="Time ran out, restart the echo", colour=thecolor())

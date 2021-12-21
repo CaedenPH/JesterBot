@@ -86,7 +86,7 @@ class JesterInfo(commands.Cog):
                     embed.add_field(value=f"{data[str(m)]['New commands']}",name = "**New commands**", inline=True)
                     embed.add_field(value=f"{data[str(m)]['Other']}", name= "**Other**", inline=False)
                     
-                    embed.set_footer(text=ctx.author.name, icon_url=username.avatar_url)
+                    embed.set_footer(text=ctx.author.name, icon_url=username.avatar.url)
                     embed.set_thumbnail(url='https://media.giphy.com/media/xT5LMHxhOfscxPfIfm/giphy.gif')
                     
                     await ctx.send(embed=embed)
@@ -103,7 +103,7 @@ class JesterInfo(commands.Cog):
     async def invite(self, ctx:Context):
         embed = discord.Embed(title=f"I am currently in {len(self.bot.guilds)} servers!", description="[Official server](https://discord.gg/2654CuU3ZU) │ [Invite me!](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591)", colour = thecolor())
     
-        embed.set_author(icon_url=ctx.author.avatar_url, name="Invite")
+        embed.set_author(icon_url=ctx.author.avatar.url, name="Invite")
 
         await ctx.send(embed=embed)
 
@@ -116,7 +116,7 @@ class JesterInfo(commands.Cog):
         y = '\n'
         with open('./dicts/Commandsused.json') as k:
             embed = discord.Embed(colour=thecolor())
-            embed.set_author(name="Top commands", icon_url=ctx.author.avatar_url)
+            embed.set_author(name="Top commands", icon_url=ctx.author.avatar.url)
 
             data = json.load(k)
             def get_key(item):
@@ -140,7 +140,7 @@ class JesterInfo(commands.Cog):
         y = '\n'
         with open('./dicts/Selfscore.json') as k:
             embed = discord.Embed(colour=thecolor())
-            embed.set_author(name="Top members", icon_url=ctx.author.avatar_url)
+            embed.set_author(name="Top members", icon_url=ctx.author.avatar.url)
             data = json.load(k)
             def get_key(item):
                 return item[1]['selfscore']
@@ -206,7 +206,7 @@ class JesterInfo(commands.Cog):
             for num in prefix:
                 prefix1.append(f"`{num}`")
             embed = discord.Embed(description=f"New prefix is {', '.join(prefix1) if prefix else f'{prefix1}'}!, ping me for my prefixes if you forget!", colour=thecolor())
-            embed.set_author(icon_url=ctx.author.avatar_url, name="Prefix")
+            embed.set_author(icon_url=ctx.author.avatar.url, name="Prefix")
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['devs', 'helpers', 'coder', 'coders'])

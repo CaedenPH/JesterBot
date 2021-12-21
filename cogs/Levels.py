@@ -75,7 +75,7 @@ class Levels(commands.Cog):
         await self.db.commit()
 
     async def make_rank_image(self, member: discord.Member, rank, level, xp, final_xp):
-        user_avatar_image = str(member.avatar_url_as(format='png', size=512))
+        user_avatar_image = str(member.avatar.url_as(format='png', size=512))
         async with aiohttp.ClientSession() as session:
             async with session.get(user_avatar_image) as resp:
                 avatar_bytes = io.BytesIO(await resp.read())
@@ -259,7 +259,7 @@ class Levels(commands.Cog):
             await self.db.commit()
 
             return await ctx.send(embed=embed)
-        await ctx.send(embed=discord.Embed(description="You already have a config!", color=discord.Color.green()).set_author(name="Config", icon_url=ctx.author.avatar_url))
+        await ctx.send(embed=discord.Embed(description="You already have a config!", color=discord.Color.green()).set_author(name="Config", icon_url=ctx.author.avatar.url))
 
     @commands.command(aliases=['vconf'])
     async def viewconfig(self, ctx:commands.Context):
@@ -294,7 +294,7 @@ class Levels(commands.Cog):
         embed = discord.Embed(color=discord.Color.green())
         embed.set_author(
             name = "Leaderboard",
-            icon_url = ctx.author.avatar_url
+            icon_url = ctx.author.avatar.url
         )
         desc = ''
         cursor = await self.db.cursor()

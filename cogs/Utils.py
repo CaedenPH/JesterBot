@@ -191,7 +191,7 @@ class Utils(commands.Cog):
     async def calculator(self, ctx:Context):
 
         embed = discord.Embed(description=f"```yaml\n0```", color=self.bot.discordcolor)
-        embed.set_author(name="Calculator", icon_url=ctx.author.avatar_url)
+        embed.set_author(name="Calculator", icon_url=ctx.author.avatar.url)
         embed.set_footer(text="To interact with your virtual calculator, click the shown buttons.")     
 
         msg = await ctx.send(embed=embed, components=[k for k in but('comp')])
@@ -369,7 +369,7 @@ class Utils(commands.Cog):
                                 calc[k]['d'] += inter.clicked_button.custom_id
                             msg = calc[k]['m']
                             embed = discord.Embed(description=f"```yaml\n{calc[k]['d']}```", color=self.bot.discordcolor)
-                            embed.set_author(name="Calculator", icon_url=inter.author.avatar_url)
+                            embed.set_author(name="Calculator", icon_url=inter.author.avatar.url)
                             embed.set_footer(text="To interact with your virtual calculator, click the shown buttons.")
                             await msg.edit(embed=embed)
                             await inter.respond(type=6)
@@ -406,7 +406,7 @@ class Utils(commands.Cog):
        
         result = simpleeval.simple_eval(math)
         embed = discord.Embed(color=thecolor())
-        embed.set_footer(text=str(ctx.author) + " | Evaluation", icon_url=ctx.author.avatar_url)
+        embed.set_footer(text=str(ctx.author) + " | Evaluation", icon_url=ctx.author.avatar.url)
         embed.add_field(name="Your expression: ", value=f'```yaml\n"{math}"\n```', inline=False)
         embed.add_field(name="Result: ", value=f"```\n{result}\n```")
         await ctx.send(embed=embed)
@@ -443,16 +443,16 @@ class Utils(commands.Cog):
             user = ctx.author.id
             username = self.bot.get_user(user)
             embed = discord.Embed(title=f"Avatar", colour=thecolor())
-            embed.set_author(name=username.name, icon_url=username.avatar_url)
-            embed.set_image(url=username.avatar_url)
+            embed.set_author(name=username.name, icon_url=username.avatar.url)
+            embed.set_image(url=username.avatar.url)
             await ctx.send(embed=embed)
         
         else:
 
             username = self.bot.get_user(user.id)
             embed = discord.Embed(title=f"Avatar", colour=thecolor())
-            embed.set_author(name=username.name, icon_url=username.avatar_url)
-            embed.set_image(url=username.avatar_url)
+            embed.set_author(name=username.name, icon_url=username.avatar.url)
+            embed.set_image(url=username.avatar.url)
             await ctx.send(embed=embed)
     
     @commands.command(aliases=['tz', 'time', 'zone'], description="Sends the current time of the [origin]. To get all of the places recognisable, leave `origin` blank")
@@ -471,7 +471,7 @@ class Utils(commands.Cog):
             _date = x[:10]
             _time = x[11:19]         
             embed = discord.Embed(title=f"**Time:** {_time} │ **Date:** {_date}", colour=thecolor())  
-            embed.set_author(name="Datetime", icon_url=ctx.author.avatar_url)
+            embed.set_author(name="Datetime", icon_url=ctx.author.avatar.url)
             
             await ctx.send(embed=embed)
         except Exception as e:

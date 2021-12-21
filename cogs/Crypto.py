@@ -80,7 +80,7 @@ class Cryptocurrency(commands.Cog):
             return await thebed(ctx, '', 'Not enough information')
         async with ctx.typing():
             embed = discord.Embed(title=f"{inf['longName'] if inf['longName'] else 'No name data'}", colour=thecolor())
-            embed.set_author(icon_url=ctx.author.avatar_url, name="Stock market")
+            embed.set_author(icon_url=ctx.author.avatar.url, name="Stock market")
             if 'fullTimeEmployees' in inf:
                 embed.add_field(name="Employees", value=f"{inf['fullTimeEmployees']}", inline=False)
             if 'dividendRate': 

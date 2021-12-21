@@ -87,7 +87,7 @@ class Config(commands.Cog):
                                     em.add_field(name="Alias", value=f"{', '.join(alx)} " if alias else f"`none`", inline=False)
                                     em.add_field(name="Usage", value=f"`j.{command1.name} {sig}`" if sig else f'`j.{command1.name}`', inline=False)
                                     
-                                    em.set_author(name="Help", icon_url = bot_av.avatar_url)
+                                    em.set_author(name="Help", icon_url = bot_av.avatar.url)
                                     em.set_footer(text="<> = needed │ [] = not needed")
                                     
                                 

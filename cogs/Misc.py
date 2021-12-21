@@ -1,9 +1,9 @@
-import discord, os, requests, json, asyncio, datetime
+import discord, json, asyncio, datetime
 
 from discord.ext import commands 
 from async_timeout import timeout
 from random import choice
-from discord import Webhook, AsyncWebhookAdapter
+from discord import Webhook
 from io import BytesIO
 import zipfile
 
@@ -43,7 +43,7 @@ class Misc(commands.Cog):
         
         username = member.name
         userip = member.id
-        embed.set_thumbnail(url=member.avatar_url)
+        embed.set_thumbnail(url=member.avatar.url)
         embed.add_field(name="Name", value=f"{username}")
         embed.add_field(name="Id", value=f"{userip}")
         embed.add_field(name="Joined server at", value=f"{member.joined_at}")
@@ -173,7 +173,7 @@ class Misc(commands.Cog):
                     msg2 = received_msg1
                     embed.add_field(name="Title", value=msg1, inline=False)
                     embed.add_field(name="Description", value=msg2, inline=False)
-                    embed.set_footer(text=ctx.author.name, icon_url=username.avatar_url)
+                    embed.set_footer(text=ctx.author.name, icon_url=username.avatar.url)
                     
                     await x.delete()
                     await y.delete()
@@ -204,7 +204,7 @@ class Misc(commands.Cog):
 
                     embed.add_field(name="Title", value=received_msg1, inline=False)
                     
-                    embed.set_footer(text=ctx.author.name, icon_url=username.avatar_url)
+                    embed.set_footer(text=ctx.author.name, icon_url=username.avatar.url)
                     
                     await x.delete()
                     await y.delete()

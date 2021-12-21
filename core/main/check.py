@@ -12,7 +12,7 @@ async def suggest(bot, message):
         color=thecolor()
     ).set_author(
         name=message.author.name,
-        icon_url=message.author.avatar_url
+        icon_url=message.author.avatar.url
 
     ).set_footer(
         text=str(message.created_at)[11:16] + " • This suggestion was created by {}".format(message.author.name)

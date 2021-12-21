@@ -53,7 +53,7 @@ class Card:
             self.card = f"{self.show} of {self.suit}"
 async def buno(ctx, title, description='', **kwargs):
     theembed = discord.Embed(title=title, description=description, color=thecolor())
-    theembed.set_author(icon_url=ctx.author.avatar_url, name='Uno')
+    theembed.set_author(icon_url=ctx.author.avatar.url, name='Uno')
     author = kwargs.get('a')
     icon_url = kwargs.get('i_u')
     footer = kwargs.get('f')
@@ -100,7 +100,7 @@ class Games(commands.Cog):
         Oposition_Total = Oposition_Card_1.num + Oposition_Card_2.num 
 
         embed = discord.Embed(description=f"**Your cards:** \n{Player_Card_1.card} \n {Player_Card_2.card}\n\n**Type h to hit or s to stand**", colour=thecolor())
-        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar_url)
+        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar.url)
         embed.set_footer(text="K, Q, J = 10  |  A = 1 or 11")
         await ctx.send(embed=embed)
         #Opponent ace
@@ -133,33 +133,33 @@ class Games(commands.Cog):
                         Player_Total += Player_Card_3.num
                         embed = discord.Embed(description=f"**Your card:** \n {Player_Card_3.card}", colour=thecolor())
                         embed.set_footer(text="Type s to stand or h to hit")
-                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar_url)
+                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar.url)
                         await ctx.send(embed=embed)
                         if Player_Total > 21:
                             embed = discord.Embed(title="You lose because you went over! Restart the game", colour=thecolor())
-                            embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar_url)
+                            embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar.url)
                             return await ctx.send(embed=embed)
                         
 
 
                     else:
                         embed = discord.Embed(description="You drew an ace, choose 1 or 11 for its value", colour=thecolor())
-                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar_url)
+                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar.url)
                         await ctx.send(embed=embed)
                         try:
                             received_msg1 = str((await self.bot.wait_for('message', timeout=90.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel,)).content).lower()
                             if received_msg1 == "1":
                                 Player_Total += 1
                                 embed = discord.Embed(description=f"Type h to hit or s to stand", colour=thecolor())
-                                embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar_url)
+                                embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar.url)
                             elif received_msg1 == "11":
                                 Player_Total += 11
                                 embed = discord.Embed(description=f"Type h to hit or s to stand", colour=thecolor())
-                                embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar_url)
+                                embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar.url)
                             else:
                                 embed = discord.Embed(title="Choose 1 or 11, restart the game", colour=thecolor())
                             embed = discord.Embed(description=f"Type h to hit or s to stand", colour=thecolor())
-                            embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar_url)
+                            embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar.url)
                         except asyncio.TimeoutError:
                             embed = discord.Embed(title="I gave up waiting", colour=thecolor())
                             return await ctx.send(embed=embed)
@@ -172,7 +172,7 @@ class Games(commands.Cog):
             else:
                 if Player_Card_1.num == 0:
                     embed = discord.Embed(description="You have an ace, choose 1 or 11 for its value", colour=thecolor())
-                    embed.set_author(name="Blackjack", icon_url = ctx.author.avatar_url)
+                    embed.set_author(name="Blackjack", icon_url = ctx.author.avatar.url)
                     await ctx.send(embed=embed)
                     one_ace = True
                     try:
@@ -208,7 +208,7 @@ class Games(commands.Cog):
                     if one_ace:
 
                         embed = discord.Embed(description="You have an ace, choose 1 or 11 for its value", colour=thecolor())
-                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar_url)
+                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar.url)
                         await ctx.send(embed=embed)
                         try:
                             received_msg = str((await self.bot.wait_for('message', timeout=90.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel,)).content).lower()
@@ -228,7 +228,7 @@ class Games(commands.Cog):
 
                     else:
                         embed = discord.Embed(description="You have an ace, choose 1 or 11 for its value", colour=thecolor())
-                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar_url)
+                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar.url)
                         await ctx.send(embed=embed)
                         try:
                             received_msg = str((await self.bot.wait_for('message', timeout=90.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel,)).content).lower()
@@ -253,32 +253,32 @@ class Games(commands.Cog):
                 if BotHit:
                     if Player_Total > Oposition_Total:
                         embed = discord.Embed(title="You won against the opposition!", description=f"**The opponents cards were:** \n{Oposition_Card_1.card}\n{Oposition_Card_2.card}\n{Oposition_Card_3.card}\n**Opponent scored {Oposition_Total}**", colour=thecolor())
-                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar_url)
+                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar.url)
                         return await ctx.send(embed=embed)
 
                     elif Player_Total < Oposition_Total:
                         embed = discord.Embed(title="You lost to the opposition!", description=f"**The opponents cards were:** \n{Oposition_Card_1.card}\n{Oposition_Card_2.card}\n{Oposition_Card_3.card}\n**Opponent scored {Oposition_Total}**", colour=thecolor())
-                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar_url)
+                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar.url)
                         return await ctx.send(embed=embed)
                     else:
                         embed = discord.Embed(titlen="You drew with the opposition!", description=f"**The opponents cards were:** \n{Oposition_Card_1.card}\n{Oposition_Card_2.card}\n{Oposition_Card_3.card}\n**Opponent scored {Oposition_Total}**",  colour=thecolor())
-                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar_url)
+                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar.url)
                         return await ctx.send(embed=embed)
 
                 else:
 
                     if Player_Total > Oposition_Total:
                         embed = discord.Embed(title="You won against the opposition!", description=f"**The opponents cards were:** \n{Oposition_Card_1.card}\n{Oposition_Card_2.card}\n**Opponent scored {Oposition_Total}**", colour=thecolor())
-                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar_url)
+                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar.url)
                         return await ctx.send(embed=embed)
 
                     elif Player_Total < Oposition_Total:
                         embed = discord.Embed(title="You lost to the opposition!", description=f"**The opponents cards were:** \n{Oposition_Card_1.card}\n{Oposition_Card_2.card}\n**Opponent scored {Oposition_Total}**", colour=thecolor())
-                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar_url)
+                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar.url)
                         return await ctx.send(embed=embed)
                     else:
                         embed = discord.Embed(titlen="You drew with the opposition!", description=f"**The opponents cards were:** \n{Oposition_Card_1.card}\n{Oposition_Card_2.card}\n**Opponent scored {Oposition_Total}**",  colour=thecolor())
-                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar_url)
+                        embed.set_author(name=f"Blackjack - Score: {Player_Total}", icon_url = ctx.author.avatar.url)
                         return await ctx.send(embed=embed)
 
 
@@ -658,7 +658,7 @@ class Games(commands.Cog):
         participants = [ctx.author]
         #MEMBERS
 
-        await thebed(ctx, '', 'Mention who you would like to play against; if you do not want to play against anyone type `bot` to play against the bot. Put a space in between each person you want to ping.', a='Uno', i_u=ctx.author.avatar_url)
+        await thebed(ctx, '', 'Mention who you would like to play against; if you do not want to play against anyone type `bot` to play against the bot. Put a space in between each person you want to ping.', a='Uno', i_u=ctx.author.avatar.url)
 
 
         try:
@@ -726,7 +726,7 @@ class Games(commands.Cog):
         unobed1 = discord.Embed(description=f"""It is {participants[0].mention}'s go! 
         {participants[0].name} press  the button and select a card to play. 
         The order is {', '.join([m.name for m in participants])}""", color=thecolor())
-        unobed1.set_author(name="Uno", icon_url=ctx.author.avatar_url)
+        unobed1.set_author(name="Uno", icon_url=ctx.author.avatar.url)
         unobed1.set_footer(text="Press the button to see your cards")
         unobed1.set_image(url=starting_card_url)
 

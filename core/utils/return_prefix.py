@@ -3,7 +3,7 @@ from .utils import thecolor
 from core.utils.comedy import joke
 
 async def create_embed(message, bot) -> discord.Embed:
-    avatar = message.guild.get_member(bot.user.id).avatar_url
+    avatar = message.guild.get_member(bot.user.id).avatar.url
 
     x = []    
     prefix = await bot.get_prefix(message)
