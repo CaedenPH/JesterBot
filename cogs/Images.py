@@ -19,16 +19,14 @@ async def img(ctx, member, name):
     if member is None:
         member = ctx.author
 
-    url:str = member.avatar_url
+    url = member.avatar_url
 
     if member.is_avatar_animated():
-        
-        url:str = member.avatar_url.replace('.gif', '.png')
-        print(url)
+        url = member.avatar_url.replace('.gif', '.png')
         
 
     async with aiohttp.ClientSession() as s:
-        async with s.get(url) as r:
+        async with s.get(str(url)) as r:
             f = open(f'./images/{name}.png', 'wb')
             f.write(await r.read())
             f.close()
@@ -323,7 +321,7 @@ class Images(commands.Cog):
 
         image = cv.imread(x)
 
-        flip = cv.flip(image, 1)
+        flip = cv.flip(image, 1)    
         cv.imwrite(x, flip)
         await ctx.send(file=discord.File(x))
 

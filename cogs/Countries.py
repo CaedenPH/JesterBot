@@ -36,7 +36,7 @@ class Countries(commands.Cog):
         name = name.split(' ')
         name = '%20'.join(name)
         async with aiohttp.ClientSession() as client:
-            async with client.get(f"https://restcountries.eu/rest/v2/name/{name}") as resp:
+            async with client.get(f"https://restcountries.com/v3.1/name/{name}") as resp:
                 response = await resp.json()
                 if 'status' in response:
                     return await ctx.expected_error(error='That is not a valid **country** Try searching for full names, include spaces. Not capital-sensitive')

@@ -1,19 +1,14 @@
-import discord, os, requests, json, asyncio, traceback
-from async_timeout import timeout
-from random import choice, randint
-from core.utils.utils import thecolor, Json, thebed
-from core.Context import Context
-from core.utils.HIDDEN import dest
-
-from dislash import SlashClient, ActionRow, Button
+import discord, json, asyncio
 from discord.ext import commands
-import datetime
 
+from random import choice
+
+from core.utils.utils import thecolor
 from core.utils.comedy import joke
+from core.utils import create_embed
    
 class Event(commands.Cog):
     def __init__(self, bot):
-
         self.bot = bot
        
     @commands.Cog.listener()
@@ -44,11 +39,6 @@ class Event(commands.Cog):
                 return await k.send(embed=embed)
         await guild.system_channel.send(embed=embed)
         
-   
-    @commands.Cog.listener()
-    async def on_message_edit(self, before, after):
-        pass
-    
 
     @commands.Cog.listener()
     async def on_reaction_add(self, reaction, user):
@@ -73,7 +63,6 @@ class Event(commands.Cog):
                             await member.add_roles(role)
                             x = 1
                             break
-                        
                 
             if x == 1:
                 pass
@@ -205,87 +194,50 @@ class Event(commands.Cog):
         if message.author == self.bot.user:
             return
 
-        for item in ('Jesterbot', 'JesterBot', 'jesterbot'):
+        if 'jesterbot' in message.content.lower():
+            msg12 = ""
+            num = 1
             
-            if item in message.content:
+            await message.add_reaction("👍")
+            await message.add_reaction("👎")
+            def check(e, u):
+                return u == message.author and e.message.id==message.id
+            try:
 
-                msg12 = ""
-            # print()
-                num = 1
+                emoji, user = await self.bot.wait_for('reaction_add', timeout=30.0, check=check)
+                while emoji.emoji not in ["👎"]:
+                    async with message.channel.typing():
+                        embed = await create_embed(message, self.bot)
                 
-                await message.add_reaction("👍")
-                await message.add_reaction("👎")
-                def check(e, u):
-                    return u == message.author and e.message.id==message.id
-                try:
-
+                    msg12 = await message.channel.send(embed=embed)
+                    num = 2 
+                    await message.remove_reaction(member=message.author, emoji="👍")
                     emoji, user = await self.bot.wait_for('reaction_add', timeout=30.0, check=check)
-                    while emoji.emoji not in ["👎"]:
-                        async with message.channel.typing():
-                            x = []
-                            
-                            prefix = await self.bot.get_prefix(message)
-                            for pref in [prefix1 for prefix1 in prefix if not prefix1.startswith('<@')]:
-                                x.append(f"`{pref}`")
-                            embed = discord.Embed(title=f"Hello {message.author.name}", description=f"""
-                            │ My default prefix is: `j.` │
-                            │ My prefix for you is: {', '.join(x)} │ 
-                            │ Type `j.prefix <prefix> [prefix], [prefix], etc` to change the prefix for you! │
-                            
-                            
-                            
-                            """, colour=thecolor())
-                            embed.set_author(name="JesterBot", icon_url=us.avatar_url)
-                    
-                            embed.add_field(name="Also here is a joke for you:", value=f"│ {await joke()} │", inline=False)
-                            embed.set_footer(text="You can get more of these jokes with j.joke!")
-                    
-                        msg12 = await message.channel.send(embed=embed)
-                        num = 2 
-                        await message.remove_reaction(member=message.author, emoji="👍")
-                        emoji, user = await self.bot.wait_for('reaction_add', timeout=30.0, check=check)
-                    
+                
+                else:
+                    if num == 2:
+                        await msg12.delete()
+                        try:
+                            await message.clear_reactions()
+                        except:
+                            pass
                     else:
-                        if num == 2:
-                            await msg12.delete()
-                            try:
-                                await message.clear_reactions()
-                            except:
-                                pass
-                        else:
-                            try:
-                                await message.clear_reactions()
-                            except:
-                                pass
-                except asyncio.TimeoutError:
-                    try:
-                        await message.clear_reactions()
-                    except:
-                        pass
+                        try:
+                            await message.clear_reactions()
+                        except:
+                            pass
+            except asyncio.TimeoutError:
+                try:
+                    await message.clear_reactions()
+                except:
+                    pass
 
-        if message.mentions:
-            
-            if message.content in ('<@!828363172717133874>', 'help <@!828363172717133874>'):
-                if message.reference:
-                    return
-                async with message.channel.typing():
-                    x = []
-                    prefix = await self.bot.get_prefix(message)
-                    for pref in [prefix1 for prefix1 in prefix if not prefix1.startswith('<@')]:
-                        x.append(f"`{pref}`")
-                    embed = discord.Embed(title=f"Hello {message.author.name}", description=f"""
-                    │ My default prefix is: `j.` │
-                    │ My prefix for you is: {', '.join(x)} │ 
-                    │ Type `.prefix <prefix> [prefix], [prefix], etc` to change the prefix for you! │
-                    
-                    
-                    
-                    """, colour=thecolor())
-                    embed.set_author(name="JesterBot", icon_url=us.avatar_url)
-
-                    embed.add_field(name="Also here is a joke for you:", value=f"│ {await joke()} │", inline=False)
-                    embed.set_footer(text="You can get more of these jokes with .joke!")
-                return await message.channel.send(embed=embed)
+        if us in message.mentions:
+            if message.reference:
+                return
+            async with message.channel.typing():
+                embed = await create_embed(message, self.bot)
+            return await message.channel.send(embed=embed)
 
     
             

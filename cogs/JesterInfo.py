@@ -3,6 +3,7 @@ from discord.ext import commands
 from asyncio import sleep
 from random import choice, randint
 from datetime import datetime
+from core.utils import create_embed
 
 from core.utils.utils import thecolor, Json, thebed
 from core.Context import Context
@@ -180,25 +181,9 @@ class JesterInfo(commands.Cog):
     @commands.command(aliases=['pref', 'prefixs', 'pre', 'prefixes'], description="Change the prefix of the bot for you personally")
     async def prefix(self, ctx:Context, *, prefix=None):
         if not prefix:
-            x = []
-            us = self.bot.user
             async with ctx.typing():
-               
-                prefix = await self.bot.get_prefix(ctx.message)
-                for pref in [prefix1 for prefix1 in prefix if not prefix1.startswith('<@')]:
-                    x.append(f"`{pref}`")
-                embed = discord.Embed(title=f"Hello {ctx.author.name}", description=f"""
-                │ My default prefix is: `j.` │
-                │ My prefix for you is: {', '.join(x)} │ 
-                │ Type `j.prefix <prefix> [prefix], [prefix], etc` to change the prefix for you! │
+               embed = await create_embed(ctx.message, self.bot)
                 
-                
-                
-                """, colour=thecolor())
-                embed.set_author(name="JesterBot", icon_url=us.avatar_url)
-        
-                embed.add_field(name="Also here is a joke for you:", value=f"│ {await joke()} │", inline=False)
-                embed.set_footer(text="You can get more of these jokes with j.joke!")
             return await ctx.send(embed=embed)
         prefix = prefix.split(" ")
        

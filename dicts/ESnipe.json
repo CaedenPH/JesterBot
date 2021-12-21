@@ -138,6 +138,7 @@
                 "[j.] JesterBot",
                 "[j.] JesterBot",
                 "[j.] JesterBot",
+                "[j.] JesterBot",
                 "[j.] JesterBot"
             ],
             "id": [
@@ -271,6 +272,7 @@
                 298043305927639041,
                 298043305927639041,
                 298043305927639041,
+                828363172717133874,
                 828363172717133874,
                 828363172717133874,
                 828363172717133874,
@@ -416,7 +418,8 @@
                 "2021-12-11 20:55:16.612000",
                 "2021-12-11 20:56:19.710000",
                 "2021-12-11 21:20:31.437000",
-                "2021-12-11 21:35:38.276000"
+                "2021-12-11 21:35:38.276000",
+                "2021-12-21 03:48:43.641000"
             ],
             "after": [
                 "['[A Color Test That Can Tell Your Mental Age](https://www.youtube.com/watch?v=iVbopWyBR5Y)', '[A Simple Test Will Reveal Your Deepest Fear](https://www.youtube.com/watch?v=pyKmVy2TC2E)', '[10 Hardest Choices Ever (Personality Test)](https://www.youtube.com/watch?v=Kt8RupLIkBQ)', '[National SAT Practice Test Day 2021](https://www.youtube.com/watch?v=_lyyvZFiAjQ)', '[Learner Fails Driving Test In The FIRST 5 MINUTES](https://www.youtube.com/watch?v=QaE4jsE3Emg)', '[SNEAKY SCHOOL HACKS FOR A TEST! || Funny School DIYs And Tricks by 123 Go! Live](https://www.youtube.com/watch?v=h6oRraSOyos)', '[International Breakfast Sandwiches Taste Test](https://www.youtube.com/watch?v=-xofptVHF1A)', '[The Chemical Brothers - The Test (Official Music Video)](https://www.youtube.com/watch?v=yhS9LnDoo_w)', \"[What's Your True Spirit Animal? Personality Test](https://www.youtube.com/watch?v=-KGnRe1f2DA)\", \"[What's Your Hidden Superpower? | Personality Test](https://www.youtube.com/watch?v=BMRlr2DE0Dg)\"]",
@@ -549,6 +552,7 @@
                 "ill clone it and place the files in",
                 "how many mistakes can you count?\n```py\nVar1 = False\nvar 2 = False\nDef outterfunction(ip)\n\u00a0nonlocal var1\n\u00a0nonlocal var2\n\u00a0\u00a0\u00a0 def innerfunction(ip)\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 nonlocal var1\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 nonlocal var2\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 while var1 == False and var2 == False:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 if var1 == false:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 do stuff\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 var1 = true\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 return var1\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 if var1 == True and var2 == False:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 do stuff\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 var2 == True\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 return var2\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 else:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 if var1 == True and var2 == True:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 break\u00a0\u00a0 \n\ndef main()\n\u00a0 for ip in ips:\n\u00a0\u00a0\u00a0 outterfunctio(ip)\n```",
                 "opposite of `global`",
+                "",
                 "",
                 "",
                 "",
@@ -688,6 +692,7 @@
                 "ill pull it and place the files in",
                 "how many mistakes can you guys count?\n```py\nVar1 = False\nvar 2 = False\nDef outterfunction(ip)\n\u00a0nonlocal var1\n\u00a0nonlocal var2\n\u00a0\u00a0\u00a0 def innerfunction(ip)\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 nonlocal var1\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 nonlocal var2\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 while var1 == False and var2 == False:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 if var1 == false:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 do stuff\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 var1 = true\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 return var1\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 if var1 == True and var2 == False:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 do stuff\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 var2 == True\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 return var2\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 else:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 if var1 == True and var2 == True:\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 break\u00a0\u00a0 \n\ndef main()\n\u00a0 for ip in ips:\n\u00a0\u00a0\u00a0 outterfunctio(ip)\n```",
                 "opposite of `globa`l",
+                "",
                 "",
                 "",
                 "",
@@ -9655,7 +9660,8 @@
                 "sharkninja",
                 "TaeNigharaPhoPho",
                 "stealthninja",
-                "stealthninja"
+                "stealthninja",
+                "Jade_istheway"
             ],
             "id": [
                 339254240012664832,
@@ -9814,7 +9820,8 @@
                 861910395311882271,
                 888735643491008522,
                 521226389559443461,
-                521226389559443461
+                521226389559443461,
+                798861743148367883
             ],
             "time": [
                 "2021-11-17 16:14:00.061000",
@@ -9973,7 +9980,8 @@
                 "2021-12-05 05:20:16.270000",
                 "2021-12-05 06:33:19.854000",
                 "2021-12-05 06:39:08.720000",
-                "2021-12-05 06:40:52.198000"
+                "2021-12-05 06:40:52.198000",
+                "2021-12-21 03:58:02.418000"
             ],
             "after": [
                 "@Caeden",
@@ -10132,7 +10140,8 @@
                 "Im now th9",
                 "https://tenor.com/view/bts-jungkook-thinking-life-decision-gif-13566777",
                 "make him ***accidently*** fall  down the stairs <:KEKW:912697801010470963>",
-                "dont be a r/woosh andy srabe"
+                "dont be a r/woosh andy srabe",
+                "N I FCKING HV AN EXaM ON 24Th"
             ],
             "before": [
                 "@Caeden",
@@ -10291,7 +10300,8 @@
                 "Im not th9",
                 "https://tenor.com/view/bts-jungkook-thinking-life-decision-gif-13566777",
                 "make him accidently fall  down the stairs <:KEKW:912697801010470963>",
-                "dont be a woosh andy srabe"
+                "dont be a woosh andy srabe",
+                "N I FCKING HV AN EX ON 24TG"
             ]
         },
         "906554654450667572": {
