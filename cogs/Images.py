@@ -21,7 +21,7 @@ async def img(ctx, member, name):
 
     url = member.avatar.url
 
-    if member.is_avatar_animated():
+    if member.avatar.is_animated():
         url = member.avatar.url.replace('.gif', '.png')
         
 
@@ -41,7 +41,7 @@ async def pilimg(ctx, member, name):
 
     url:str = member.avatar.url
 
-    if member.is_avatar_animated():
+    if member.avatar.is_animated():
         
         url:str = str(member.avatar.url).replace('.gif', '.webp')
         print(url)
@@ -144,9 +144,9 @@ class Images(commands.Cog):
     async def wasted(self, ctx:Context, member: discord.Member=None):
        
         if member is None:
-            avatar = ctx.author.avatar.url_as(format='png')
+            avatar = ctx.author.avatar.with_format('png')
         else:
-            avatar = member.avatar.url_as(format='png')
+            avatar = member.avatar.with_format('png')
 
         async with ctx.typing():
             response = requests.get(f"https://some-random-api.ml/canvas/wasted?avatar={avatar}")
@@ -160,9 +160,9 @@ class Images(commands.Cog):
     async def threshold(self, ctx:Context, member: discord.Member=None):
        
         if member is None:
-            avatar = ctx.author.avatar.url_as(format='png')
+            avatar = ctx.author.avatar.with_format('png')
         else:
-            avatar = member.avatar.url_as(format='png')
+            avatar = member.avatar.with_format('png')
 
         async with ctx.typing():
             response = requests.get(f"https://some-random-api.ml/canvas/threshold/?avatar={avatar}")
@@ -178,9 +178,9 @@ class Images(commands.Cog):
     async def gay(self, ctx:Context, member:discord.Member=None):
         
         if member is None:
-            avatar = ctx.author.avatar.url_as(format='png')
+            avatar = ctx.author.avatar.with_format('png')
         else:
-            avatar = member.avatar.url_as(format='png')
+            avatar = member.avatar.with_format('png')
 
         
 
@@ -195,9 +195,9 @@ class Images(commands.Cog):
     async def glass(self, ctx:Context, member:discord.Member=None):
         
         if member is None:
-            avatar = ctx.author.avatar.url_as(format='png')
+            avatar = ctx.author.avatar.with_format('png')
         else:
-            avatar = member.avatar.url_as(format='png')
+            avatar = member.avatar.with_format('png')
 
         async with ctx.typing():
             response = requests.get(f"https://some-random-api.ml/canvas/glass?avatar={avatar}")
@@ -210,9 +210,9 @@ class Images(commands.Cog):
     async def triggered(self, ctx:Context, member:discord.Member=None):
        
         if member is None:
-            avatar = ctx.author.avatar.url_as(format='png')
+            avatar = ctx.author.avatar.with_format('png')
         else:
-            avatar = member.avatar.url_as(format='png')
+            avatar = member.avatar.with_format('png')
 
         async with ctx.typing():
             response = requests.get(f"https://some-random-api.ml/canvas/triggered?avatar={avatar}")
@@ -225,9 +225,9 @@ class Images(commands.Cog):
     async def bloody(self, ctx:Context, member:discord.Member=None):
        
         if member is None:
-            avatar = ctx.author.avatar.url_as(format='png')
+            avatar = ctx.author.avatar.with_format('png')
         else:
-            avatar = member.avatar.url_as(format='png')
+            avatar = member.avatar.with_format('png')
 
         async with ctx.typing():
             response = requests.get(f"https://some-random-api.ml/canvas/red?avatar={avatar}")
@@ -240,7 +240,7 @@ class Images(commands.Cog):
     async def ytcomment(self, ctx:Context, *, comment):
        
         async with ctx.typing():
-            response = requests.get(f"https://some-random-api.ml/canvas/youtube-comment?avatar={ctx.author.avatar.url_as(format='png')}&comment={comment}&username={ctx.author.display_name}")
+            response = requests.get(f"https://some-random-api.ml/canvas/youtube-comment?avatar={ctx.author.avatar.with_format('png')}&comment={comment}&username={ctx.author.display_name}")
             file = open('./images/yt-comment.png', 'wb')
             file.write(response.content)
             file.close()
@@ -250,9 +250,9 @@ class Images(commands.Cog):
     async def bright(self, ctx:Context, member:discord.Member=None):
         
         if member is None:
-            avatar = ctx.author.avatar.url_as(format='png')
+            avatar = ctx.author.avatar.with_format('png')
         else:
-            avatar = member.avatar.url_as(format='png')
+            avatar = member.avatar.with_format('png')
 
         
 
@@ -267,9 +267,9 @@ class Images(commands.Cog):
     async def invert(self, ctx:Context, member:discord.Member=None):
         
         if member is None:
-            avatar = ctx.author.avatar.url_as(format='png')
+            avatar = ctx.author.avatar.with_format('png')
         else:
-            avatar = member.avatar.url_as(format='png')
+            avatar = member.avatar.with_format('png')
 
         async with ctx.typing():
             response = requests.get(f"https://some-random-api.ml/canvas/invert?avatar={avatar}")

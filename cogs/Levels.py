@@ -75,7 +75,7 @@ class Levels(commands.Cog):
         await self.db.commit()
 
     async def make_rank_image(self, member: discord.Member, rank, level, xp, final_xp):
-        user_avatar_image = str(member.avatar.url_as(format='png', size=512))
+        user_avatar_image = str(member.avatar.with_format(format='png', size=512))
         async with aiohttp.ClientSession() as session:
             async with session.get(user_avatar_image) as resp:
                 avatar_bytes = io.BytesIO(await resp.read())
