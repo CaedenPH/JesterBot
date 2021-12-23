@@ -1,5 +1,5 @@
-import discord, os, requests, json, asyncio
-from discord.ext import commands
+import disnake, os, requests, json, asyncio
+from disnake.ext import commands
 from core.utils.utils import thecolor, Json, thebed
 from core.Context import Context
 
@@ -40,32 +40,32 @@ class Love(commands.Cog):
         self.bot = bot
 
     @commands.command(help="Pokes the `<member>` specified")
-    async def poke(self, ctx:Context, member: discord.Member=""):
+    async def poke(self, ctx:Context, member: disnake.Member=""):
 
         if member == "":
-            embed = discord.Embed(description=f"**{ctx.author.name}** has poked you 😗", colour=thecolor())
+            embed = disnake.Embed(description=f"**{ctx.author.name}** has poked you 😗", colour=thecolor())
             await ctx.author.send(embed=embed)
-            embed = discord.Embed(description=f"The **poke** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}**ms", colour=thecolor())
+            embed = disnake.Embed(description=f"The **poke** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}**ms", colour=thecolor())
             await ctx.send(embed=embed)     
         else:
-            embed = discord.Embed(description=f"**{ctx.author.name}** has poked you 😗", colour=thecolor())
+            embed = disnake.Embed(description=f"**{ctx.author.name}** has poked you 😗", colour=thecolor())
             await member.send(embed=embed)
-            embed = discord.Embed(description=f"The **poke** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}** ms", colour=thecolor())
+            embed = disnake.Embed(description=f"The **poke** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}** ms", colour=thecolor())
             await ctx.send(embed=embed) 
 
     @commands.command(help="Sends a hug to the `<member>` specified")
-    async def hug(self, ctx:Context, member:discord.Member=""):
+    async def hug(self, ctx:Context, member:disnake.Member=""):
         if member == "":
 
-            embed = discord.Embed(description=f"**{ctx.author.name}** has given you the gift of a hug 🌷", colour=thecolor())
+            embed = disnake.Embed(description=f"**{ctx.author.name}** has given you the gift of a hug 🌷", colour=thecolor())
             await ctx.author.send(embed=embed)
-            embed = discord.Embed(description=f"The **hug** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}**ms", colour=thecolor())
+            embed = disnake.Embed(description=f"The **hug** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}**ms", colour=thecolor())
             await ctx.send(embed=embed) 
         else:
 
-            embed = discord.Embed(description=f"**{ctx.author.name}** has given you the gift of a hug 🌷", colour=thecolor())
+            embed = disnake.Embed(description=f"**{ctx.author.name}** has given you the gift of a hug 🌷", colour=thecolor())
             await member.send(embed=embed)
-            embed = discord.Embed(description=f"The **hug** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}**ms", colour=thecolor())
+            embed = disnake.Embed(description=f"The **hug** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}**ms", colour=thecolor())
             await ctx.send(embed=embed) 
 
     @commands.command()
@@ -110,17 +110,17 @@ class Love(commands.Cog):
         File = GetUser('Love.json', f'{str(ctx.author.id)}', 'marriage')
         if File.family:
 
-            embed = discord.Embed(title="👨 Family 👩", description=f"**{ctx.author.name}** x **{File.family}** \n They have been married since {File.data[str(ctx.author.id)]['since']}", color=thecolor())
+            embed = disnake.Embed(title="👨 Family 👩", description=f"**{ctx.author.name}** x **{File.family}** \n They have been married since {File.data[str(ctx.author.id)]['since']}", color=thecolor())
             embed.set_footer(text="\nMay ever hapiness bless them")
             await ctx.send(embed=embed)
         else:
             await thebed(ctx, 'Marriage', 'You are single bro...')
         
     @commands.command()
-    async def marry(self, ctx:Context, member:discord.Member):
+    async def marry(self, ctx:Context, member:disnake.Member):
         if member == ctx.author:
             return await thebed(ctx, 'You cannot marry yourself...')
-        embed = discord.Embed(title="🎉 Marriage 🎉", description=f"**{member.name}** do you accept **{ctx.author.name}** to be your partner? React with this message if you want to get married", colour=thecolor())
+        embed = disnake.Embed(title="🎉 Marriage 🎉", description=f"**{member.name}** do you accept **{ctx.author.name}** to be your partner? React with this message if you want to get married", colour=thecolor())
         msg = await ctx.send(embed=embed)
         await msg.add_reaction('💖')
         partner = member
@@ -165,7 +165,7 @@ class Love(commands.Cog):
                 }
             
             Json(File.file, File.data)
-            em = discord.Embed(title="Success!", description="Ah, the wonders of life, congratulations on getting married!", color=thecolor())
+            em = disnake.Embed(title="Success!", description="Ah, the wonders of life, congratulations on getting married!", color=thecolor())
             em.set_image(url="https://giphy.com/clips/livingsingle-7GN899Bf6g98SdFpra")
             await ctx.send(embed=em)
         except asyncio.TimeoutError:

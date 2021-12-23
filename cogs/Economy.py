@@ -1,9 +1,9 @@
-import discord, os, requests, json, asyncio
-from discord.ext.commands import has_permissions
-from discord.ext import commands 
-from discord.utils import get
-from discord.ext import tasks
-from discord import Intents
+import disnake, os, requests, json, asyncio
+from disnake.ext.commands import has_permissions
+from disnake.ext import commands 
+from disnake.utils import get
+from disnake.ext import tasks
+from disnake import Intents
 from asyncio import sleep
 import yfinance as yf
 from traceback import print_exc
@@ -42,7 +42,7 @@ class Economy(commands.Cog):
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
             if purchase == "":
-                embed = discord.Embed(colour=thecolor())
+                embed = disnake.Embed(colour=thecolor())
                 embed.set_author(icon_url=ctx.author.avatar.url, name="Shop")
                 embed.add_field(name="\u200b", value=f"""
                 **What you can purchase...** 
@@ -70,11 +70,11 @@ class Economy(commands.Cog):
             if data[str(ctx.author.id)]['Bal'] > 1000:
                 try:
                     
-                    embed1 = discord.Embed(description = f"What would you like the name of your role to be", colour=thecolor())   
+                    embed1 = disnake.Embed(description = f"What would you like the name of your role to be", colour=thecolor())   
                     embed1.set_author(name=ctx.author.name, icon_url = ctx.author.avatar.url)
                     await ctx.send(embed=embed1)
                     msg = str((await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=60.0)).content).lower()
-                    embed1 = discord.Embed(description = f"What would you like the colour of your role to be? [Refer to this](https://www.color-hex.com/) \nAdd 0x infront of the color, e.g 0x4b46cd", colour=thecolor())   
+                    embed1 = disnake.Embed(description = f"What would you like the colour of your role to be? [Refer to this](https://www.color-hex.com/) \nAdd 0x infront of the color, e.g 0x4b46cd", colour=thecolor())   
                     embed1.set_author(name=ctx.author.name, icon_url = ctx.author.avatar.url)
                     await ctx.send(embed=embed1)
                     msg1 = str((await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=60.0)).content).lower()
@@ -86,16 +86,16 @@ class Economy(commands.Cog):
 
                     await ctx.author.add_roles(role)
 
-                    embed1 = discord.Embed(title = f"Created!", colour=thecolor())   
+                    embed1 = disnake.Embed(title = f"Created!", colour=thecolor())   
                     embed1.set_author(name=ctx.author.name, icon_url = ctx.author.avatar.url)
                     await ctx.send(embed=embed1)
                     data[str(ctx.author.id)]['Bal'] -= 1000
                     Json(k, data)
                 except asyncio.TimeoutError:
-                    embed = discord.Embed(title="I gave up waiting", colour=thecolor())
+                    embed = disnake.Embed(title="I gave up waiting", colour=thecolor())
                     await ctx.send(embed=embed)
             else:
-                embed = discord.Embed(title="You dont have enough money!", colour=thecolor())
+                embed = disnake.Embed(title="You dont have enough money!", colour=thecolor())
                 await ctx.send(embed=embed)
     @shop.command() 
     async def box(ctx):
@@ -113,14 +113,14 @@ class Economy(commands.Cog):
                         data[str(ctx.author.id)]['Box'] = 1
 
                     Json(k, data)
-                    embed = discord.Embed(description=f"You bought a **lucky box**, to use it write `j.open box`", colour=thecolor())
+                    embed = disnake.Embed(description=f"You bought a **lucky box**, to use it write `j.open box`", colour=thecolor())
                     await ctx.send(embed=embed)
                 else:
-                    embed = discord.Embed(title="You dont have enough money!", colour=thecolor())
+                    embed = disnake.Embed(title="You dont have enough money!", colour=thecolor())
                     await ctx.send(embed=embed)
 
             else:
-                embed = discord.Embed(title="You dont have enough money!", colour=thecolor())
+                embed = disnake.Embed(title="You dont have enough money!", colour=thecolor())
                 await ctx.send(embed=embed)
 
     @shop.command()
@@ -176,25 +176,25 @@ class Economy(commands.Cog):
                     await thebed(ctx, "You don't have enough money!")
 
     @commands.command(aliases=['bal', 'money'], description="Sends the JesterCoins `[user] has, if no user specified it sends authors bal")
-    async def balance(self, ctx:Context, user:discord.Member=""):
+    async def balance(self, ctx:Context, user:disnake.Member=""):
         with open('./dicts/Bal.json') as k:
             data = json.load(k)
         
 
             if user == "":
                 if str(ctx.author.id) in data:
-                    embed = discord.Embed(description=f"**{data[str(ctx.author.id)]['Bal']}** JesterCoins", colour=thecolor())
+                    embed = disnake.Embed(description=f"**{data[str(ctx.author.id)]['Bal']}** JesterCoins", colour=thecolor())
                     embed.set_footer(text="Every time you run an economy command you get money!")
                     embed.set_author(icon_url=ctx.author.avatar.url, name="Balance")
                 else:
-                    embed = discord.Embed(description=f"You have 0$", colour=thecolor())
+                    embed = disnake.Embed(description=f"You have 0$", colour=thecolor())
                     embed.set_author(icon_url=ctx.author.avatar.url, name="Balance")
 
             else:
                 if str(user.id) in data:
-                    embed = discord.Embed(description=f"{data[str(user.id)]['Bal']}$", colour=thecolor())
+                    embed = disnake.Embed(description=f"{data[str(user.id)]['Bal']}$", colour=thecolor())
                 else:
-                    embed = discord.Embed(description=f"They have 0$", colour=thecolor())
+                    embed = disnake.Embed(description=f"They have 0$", colour=thecolor())
         
         await ctx.send(embed=embed)
 
@@ -212,19 +212,19 @@ class Economy(commands.Cog):
                     x = randint(1, 3)
                     if x == 1:
 
-                        embed = discord.Embed(description = f"you gambled **{money}$** and got **{money * 2}$**", colour=thecolor())
+                        embed = disnake.Embed(description = f"you gambled **{money}$** and got **{money * 2}$**", colour=thecolor())
                         embed.set_author(icon_url=ctx.author.avatar.url, name="You won!")
                         data[str(ctx.author.id)]['Bal'] += money * 2
                         Json(k, data)
                     else:
-                        embed = discord.Embed(description = f"you gambled **{money}$** and lost **{money}$**", colour=thecolor())
+                        embed = disnake.Embed(description = f"you gambled **{money}$** and lost **{money}$**", colour=thecolor())
                         embed.set_author(icon_url=ctx.author.avatar.url, name="You lost!")
                         data[str(ctx.author.id)]['Bal'] -= money 
                         Json(k, data)
                 else:
-                    embed = discord.Embed(description="You do not have enough money! type `j.bal` to see your balance", colour=thecolor())
+                    embed = disnake.Embed(description="You do not have enough money! type `j.bal` to see your balance", colour=thecolor())
             else:
-                embed = discord.Embed(title="You do not have enough money! type `j.bal` to see your balance", colour=thecolor())
+                embed = disnake.Embed(title="You do not have enough money! type `j.bal` to see your balance", colour=thecolor())
 
             await ctx.send(embed=embed)
 
@@ -235,7 +235,7 @@ class Economy(commands.Cog):
             data = json.load(k)
             x = randint(50, 200)
             data[str(ctx.author.id)]['Bal'] += x
-            embed = discord.Embed(description=f"You begged and got **{x}** jestercoins!", colour=thecolor())
+            embed = disnake.Embed(description=f"You begged and got **{x}** jestercoins!", colour=thecolor())
             await ctx.send(embed=embed)
             Json(k, data)
 
@@ -248,7 +248,7 @@ class Economy(commands.Cog):
         x = []
         y = '\n'
         with open('./dicts/Bal.json') as k:
-            embed = discord.Embed(colour=thecolor())
+            embed = disnake.Embed(colour=thecolor())
             embed.set_author(name="Baltop", icon_url=ctx.author.avatar.url)
             data = json.load(k)
             def get_key(item):
@@ -269,7 +269,7 @@ class Economy(commands.Cog):
             await ctx.send(embed=embed)
         
     @commands.command(aliases=['give'], description="Sends the <ammount> from your bank to their bank!")
-    async def gift(self, ctx:Context, user:discord.Member, ammount:int):
+    async def gift(self, ctx:Context, user:disnake.Member, ammount:int):
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
             if data[str(ctx.author.id)]['Bal'] >= ammount:
@@ -280,7 +280,7 @@ class Economy(commands.Cog):
                     
                     data[str(ctx.author.id)]['Bal'] -= ammount
                     Json(k, data)
-                    embed = discord.Embed(description=f"You sent to **{ammount}$** to {user.name}!", colour=thecolor())
+                    embed = disnake.Embed(description=f"You sent to **{ammount}$** to {user.name}!", colour=thecolor())
                 else:
                     data[str(user.id)] = {
                         "Bal": ammount,
@@ -289,9 +289,9 @@ class Economy(commands.Cog):
                     }
                     data[str(ctx.author.id)]['Bal'] -= ammount
                     Json(k, data)
-                    embed = discord.Embed(description=f"You sent to **{ammount}$** to {user.name}!", colour=thecolor())           
+                    embed = disnake.Embed(description=f"You sent to **{ammount}$** to {user.name}!", colour=thecolor())           
             else:
-                embed = discord.Embed(description=f"You don't have {ammount}! Type `j.bal` for your balance!", colour=thecolor())
+                embed = disnake.Embed(description=f"You don't have {ammount}! Type `j.bal` for your balance!", colour=thecolor())
             await ctx.send(embed=embed)
     @commands.command(aliases=['givehide'], description="Sends the <ammount> from your bank to their bank!", hidden=True)
     async def gifthide(self, ctx:Context, user:int, ammount:int):
@@ -308,7 +308,7 @@ class Economy(commands.Cog):
                         data[str(user.id)]['Bal'] += ammount
                         Json(k, data)
                         
-                        embed = discord.Embed(description=f"You sent to {ammount}$ to {user.name}!", colour=thecolor())
+                        embed = disnake.Embed(description=f"You sent to {ammount}$ to {user.name}!", colour=thecolor())
                     else:
                         data[str(user.id)] = {
                             "Bal": ammount,
@@ -317,9 +317,9 @@ class Economy(commands.Cog):
                         }
             
                         Json(k, data)
-                        embed = discord.Embed(description=f"You sent to {ammount}$ to {user.name}!", colour=thecolor())           
+                        embed = disnake.Embed(description=f"You sent to {ammount}$ to {user.name}!", colour=thecolor())           
                 else:
-                    embed = discord.Embed(description=f"You don't have {ammount}! Type `j.bal` for your balance!", colour=thecolor())
+                    embed = disnake.Embed(description=f"You don't have {ammount}! Type `j.bal` for your balance!", colour=thecolor())
                 await ctx.send(embed=embed)
         else:
             await ctx.send("no")
@@ -337,16 +337,16 @@ class Economy(commands.Cog):
                     data[str(ctx.author.id)]['Box'] -= 1
                     data[str(ctx.author.id)]['Bal'] += rand_prize
                     Json(k, data)
-                    embed = discord.Embed(description=f"You got **{rand_prize}**$!", colour=thecolor())
+                    embed = disnake.Embed(description=f"You got **{rand_prize}**$!", colour=thecolor())
                     await ctx.send(embed = embed)
                 else:
-                    embed = discord.Embed(title="You dont have a lucky box! Type `j.shop box` to buy one!", colour=thecolor())
+                    embed = disnake.Embed(title="You dont have a lucky box! Type `j.shop box` to buy one!", colour=thecolor())
                     await ctx.send(embed=embed)
             else:
-                embed = discord.Embed(title="You dont have a lucky box! Type `j.shop box` to buy one!", colour=thecolor())
+                embed = disnake.Embed(title="You dont have a lucky box! Type `j.shop box` to buy one!", colour=thecolor())
                 await ctx.send(embed=embed)
     # @unlock.group(aliases=['cov', 'corona'])
-    # async def covid(self, ctx:Context, user:discord.Member=""):
+    # async def covid(self, ctx:Context, user:disnake.Member=""):
     #     if not user and user != ctx.author:
     #         return await thebed(ctx, 'You need to mention someone to rob!')
     #     with open('./dicts/Bal.json', 'r+') as k:
@@ -357,7 +357,7 @@ class Economy(commands.Cog):
                     
     #                 data[str(ctx.author.id)]['covid'] -= 1
     #                 Json(k, data)
-    #                 embed = discord.Embed(description=f"Success!", colour=thecolor())
+    #                 embed = disnake.Embed(description=f"Success!", colour=thecolor())
     #                 await ctx.send(embed = embed)
     #                 await asyncio.sleep(3600)
                     
@@ -367,13 +367,13 @@ class Economy(commands.Cog):
                     
                     
     #             else:
-    #                 embed = discord.Embed(title="You dont have a porta-covid! Type `j.shop covid` to buy one!", colour=thecolor())
+    #                 embed = disnake.Embed(title="You dont have a porta-covid! Type `j.shop covid` to buy one!", colour=thecolor())
     #                 await ctx.send(embed=embed)
     #         else:s
-    #             embed = discord.Embed(title="You dont have a porta-covid! Type `j.shop covid` to buy one!", colour=thecolor())
+    #             embed = disnake.Embed(title="You dont have a porta-covid! Type `j.shop covid` to buy one!", colour=thecolor())
     #             await ctx.send(embed=embed)
     @unlock.group()
-    async def bag(self, ctx:Context, user:discord.Member=""):
+    async def bag(self, ctx:Context, user:disnake.Member=""):
         if not user and user != ctx.author:
             return await thebed(ctx, 'You need to mention someone to rob!')
         with open('./dicts/Bal.json', 'r+') as k:
@@ -389,7 +389,7 @@ class Economy(commands.Cog):
                             data[str(ctx.author.id)]['Bal'] += ran
                             data[str(user.id)]['Bal'] -= ran
                             Json(k, data)
-                            embed = discord.Embed(description=f"You robbed **{ran}**$!", colour=thecolor())
+                            embed = disnake.Embed(description=f"You robbed **{ran}**$!", colour=thecolor())
                             await ctx.send(embed = embed)
                             
 
@@ -397,18 +397,18 @@ class Economy(commands.Cog):
                             await thebed(ctx, 'They dont have enough in their bank!')
 
                     else:
-                        embed = discord.Embed(title="You dont have a bag! Type `j.shop bag` to buy one!", colour=thecolor())
+                        embed = disnake.Embed(title="You dont have a bag! Type `j.shop bag` to buy one!", colour=thecolor())
                         await ctx.send(embed=embed)
 
                         
                 else:
-                    embed = discord.Embed(title="You dont have a bag! Type `j.shop bag` to buy one!", colour=thecolor())
+                    embed = disnake.Embed(title="You dont have a bag! Type `j.shop bag` to buy one!", colour=thecolor())
                     await ctx.send(embed=embed)
             else:
-                embed = discord.Embed(title="You dont have a bag! Type `j.shop bag` to buy one!", colour=thecolor())
+                embed = disnake.Embed(title="You dont have a bag! Type `j.shop bag` to buy one!", colour=thecolor())
                 await ctx.send(embed=embed)
     @unlock.group()
-    async def gun(self, ctx:Context, user:discord.Member=""):
+    async def gun(self, ctx:Context, user:disnake.Member=""):
         if not user and user != ctx.author:
             await thebed(ctx, 'You need to mention someone to rob!')
         with open('./dicts/Bal.json', 'r+') as k:
@@ -423,7 +423,7 @@ class Economy(commands.Cog):
                         data[str(ctx.author.id)]['Bal'] += ran
                         data[str(user.id)]['Bal'] -= ran
                         Json(k, data)
-                        embed = discord.Embed(description=f"You robbed **{ran}**$!", colour=thecolor())
+                        embed = disnake.Embed(description=f"You robbed **{ran}**$!", colour=thecolor())
                         await ctx.send(embed = embed)
                         
 
@@ -433,16 +433,16 @@ class Economy(commands.Cog):
                     
                     
                 else:
-                    embed = discord.Embed(title="You dont have a gun! Type `j.shop gun` to buy one!", colour=thecolor())
+                    embed = disnake.Embed(title="You dont have a gun! Type `j.shop gun` to buy one!", colour=thecolor())
                     await ctx.send(embed=embed)
             else:
-                embed = discord.Embed(title="You dont have a gun! Type `j.shop gun` to buy one!", colour=thecolor())
+                embed = disnake.Embed(title="You dont have a gun! Type `j.shop gun` to buy one!", colour=thecolor())
                 await ctx.send(embed=embed)
 
     @commands.command(aliases=['inv'], description="Sends your current inventory")
     async def inventory(self, ctx:Context):
         with open('./dicts/Bal.json') as k:
-            embed = discord.Embed(title="Your inventory is currently:", colour=thecolor())
+            embed = disnake.Embed(title="Your inventory is currently:", colour=thecolor())
             
             data = json.load(k)
             if str(ctx.author.id) in data:
@@ -453,7 +453,7 @@ class Economy(commands.Cog):
             
                 await ctx.send(embed=embed) 
             else:
-                embed = discord.Embed(title="Your inv is empty currently!", colour=thecolor())
+                embed = disnake.Embed(title="Your inv is empty currently!", colour=thecolor())
                 await ctx.send(embed=embed) 
 
  

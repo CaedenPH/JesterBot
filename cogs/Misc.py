@@ -1,9 +1,9 @@
-import discord, json, asyncio, datetime
+import disnake, json, asyncio, datetime
 
-from discord.ext import commands 
+from disnake.ext import commands 
 from async_timeout import timeout
 from random import choice
-from discord import Webhook
+from disnake import Webhook
 from io import BytesIO
 import zipfile
 
@@ -25,7 +25,7 @@ class Misc(commands.Cog):
             await ctx.send(f"https://github.com/caedenph/jesterbot/tree/main/cogs/{cmd.cog.qualified_name}.py#L{inspect.getsourcelines(inspect.unwrap(cmd.callback).__code__)[1]}")
 
     @commands.command()
-    async def invited(self, ctx:Context, user:discord.Member=None):
+    async def invited(self, ctx:Context, user:disnake.Member=None):
         if not user:
             user = ctx.author
         totalInvites = 0
@@ -35,8 +35,8 @@ class Misc(commands.Cog):
         await thebed(ctx, "", f"{user.name} has invited **{totalInvites}** member{'' if totalInvites == 1 else 's'} to the server!")
         
     @commands.command(description="Sends information about my account")
-    async def info(self, ctx:Context, member: discord.Member = ""):
-        embed = discord.Embed(title="Information", timestamp=ctx.message.created_at, colour=thecolor())
+    async def info(self, ctx:Context, member: disnake.Member = ""):
+        embed = disnake.Embed(title="Information", timestamp=ctx.message.created_at, colour=thecolor())
         if not member:
             member = ctx.author
         x = []
@@ -47,7 +47,7 @@ class Misc(commands.Cog):
         embed.add_field(name="Name", value=f"{username}")
         embed.add_field(name="Id", value=f"{userip}")
         embed.add_field(name="Joined server at", value=f"{member.joined_at}")
-        embed.add_field(name="Joined discord at", value=f"{member.created_at}")
+        embed.add_field(name="Joined disnake at", value=f"{member.created_at}")
         embed.add_field(name="Nitro", value=f"{member.premium_since}") 
         embed.add_field(name="Mobile", value=f"{member.is_on_mobile()}")
         for k in member.public_flags.all():
@@ -63,7 +63,7 @@ class Misc(commands.Cog):
         channelid = ctx.channel.id
 
         servername = ctx.guild.name
-        embed = discord.Embed(title="Your info", colour=thecolor())
+        embed = disnake.Embed(title="Your info", colour=thecolor())
         embed.add_field(name="Name", value=f"{channelname}", inline=False)
         embed.add_field(name="Id", value=f"{channelid}", inline=False)
         await ctx.send(embed=embed)
@@ -89,7 +89,7 @@ class Misc(commands.Cog):
     async def stats(self, ctx:Context):
 
         members, bots = [m for m in ctx.guild.members if not m.bot], [m for m in ctx.guild.members if not m.bot]
-        embed = discord.Embed(title="Stats", color = thecolor())
+        embed = disnake.Embed(title="Stats", color = thecolor())
         embed.add_field(name="Server statistics", value=f"""
     Text Channels: {len(ctx.guild.text_channels)}
     Voice Channels: {len(ctx.guild.voice_channels)}
@@ -102,7 +102,7 @@ class Misc(commands.Cog):
     
     @commands.command()
     @commands.cooldown(1, 180, commands.BucketType.user)
-    async def check(self, ctx, days:float=None, member:discord.Member=None, channel:discord.TextChannel=None):
+    async def check(self, ctx, days:float=None, member:disnake.Member=None, channel:disnake.TextChannel=None):
         if not member:
             member = ctx.author
         if not channel:
@@ -112,7 +112,7 @@ class Misc(commands.Cog):
         if days >= 8:
             
             days = 7
-        embed = discord.Embed(description=f'**Thinking**... **processing...**\n**Calculated time it wil take:** {days * 14.6}\n**From:** {member.name}\n**In channel:** {channel}\nIt roughly takes 12 seconds per extra day, hence why you can only loop through 7 days', color=thecolor()).set_footer(text='This process may take a while because it is gathering all data from the past week while getting ratelimited')
+        embed = disnake.Embed(description=f'**Thinking**... **processing...**\n**Calculated time it wil take:** {days * 14.6}\n**From:** {member.name}\n**In channel:** {channel}\nIt roughly takes 12 seconds per extra day, hence why you can only loop through 7 days', color=thecolor()).set_footer(text='This process may take a while because it is gathering all data from the past week while getting ratelimited')
         m = await ctx.send(embed=embed)
         async with ctx.typing():
             x = datetime.datetime.utcnow() - datetime.timedelta(days=days)
@@ -127,7 +127,7 @@ class Misc(commands.Cog):
 
     @commands.command(aliases=['Server_icon', 'Icon_server', 'Guild_icon', 'Server_Avatar', 'avg', 'guildav', 'gc'], description="Sends the avatar of the server (profile pic)")
     async def avatarguild(self, ctx:Context):
-        embed = discord.Embed(title='Guild icon', color=thecolor())
+        embed = disnake.Embed(title='Guild icon', color=thecolor())
         embed.set_image(url=ctx.guild.icon_url)
 
         await ctx.send(embed=embed)
@@ -147,9 +147,9 @@ class Misc(commands.Cog):
                 
             if not server:
 
-                embed = discord.Embed(description=f"**{data[str(ctx.guild.id)]['Score']}** messages since the {when}", colour=thecolor())
+                embed = disnake.Embed(description=f"**{data[str(ctx.guild.id)]['Score']}** messages since the {when}", colour=thecolor())
             else:
-                embed = discord.Embed(description=f"**{data[server]['Score']}** messages since {when}", colour=thecolor())
+                embed = disnake.Embed(description=f"**{data[server]['Score']}** messages since {when}", colour=thecolor())
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['s', 'Sugg', 'Sug', 'Suggester'], description="Follow the instructions and a suggestion will appear")
@@ -160,13 +160,13 @@ class Misc(commands.Cog):
 
         try:
                         
-            embed = discord.Embed(title="Suggestion", colour=thecolor())
-            embed1 = discord.Embed(title=f"What is the title of your suggestion? Type end at any point to stop and type title to remove the description", colour=thecolor())
+            embed = disnake.Embed(title="Suggestion", colour=thecolor())
+            embed1 = disnake.Embed(title=f"What is the title of your suggestion? Type end at any point to stop and type title to remove the description", colour=thecolor())
             x = await ctx.send(embed=embed1)
             received_msg = str((await self.bot.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)).content).lower()
             if received_msg not in ["end", "title"]:
                 msg1 = received_msg
-                embed2 = discord.Embed(title=f"What is the description of your suggestion? Type end at any point to stop", colour=thecolor())
+                embed2 = disnake.Embed(title=f"What is the description of your suggestion? Type end at any point to stop", colour=thecolor())
                 y = await ctx.send(embed=embed2)
                 received_msg1 = str((await self.bot.wait_for('message', timeout=90.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel,)).content).lower()
                 if received_msg1 != "end":
@@ -184,7 +184,7 @@ class Misc(commands.Cog):
                     await msg.add_reaction("👎")
                     
                 else:
-                    embed3 = discord.Embed(title="Goodbye", colour=thecolor())
+                    embed3 = disnake.Embed(title="Goodbye", colour=thecolor())
                     await x.delete()
                     await y.delete()
                     await ctx.message.delete()
@@ -194,10 +194,10 @@ class Misc(commands.Cog):
             elif received_msg == "end":
                 await x.delete()
                 await ctx.channel.purge(limit=2, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)
-                embed3 = discord.Embed(title="Goodbye", colour=thecolor())
+                embed3 = disnake.Embed(title="Goodbye", colour=thecolor())
                 await ctx.send(embed=embed3)
             else:
-                embed2 = discord.Embed(title=f"What is the Title of your suggestion? Type end at any point to stop", colour=thecolor())
+                embed2 = disnake.Embed(title=f"What is the Title of your suggestion? Type end at any point to stop", colour=thecolor())
                 y = await ctx.send(embed=embed2)
                 received_msg1 = str((await self.bot.wait_for('message', timeout=90.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel,)).content).lower()
                 if received_msg1 != "end":
@@ -214,12 +214,12 @@ class Misc(commands.Cog):
                     await msg.add_reaction("👍")
                     await msg.add_reaction("👎")
         except asyncio.TimeoutError:
-            embed = discord.Embed(title="Time ran out, restart the ticket", colour=thecolor())
+            embed = disnake.Embed(title="Time ran out, restart the ticket", colour=thecolor())
             await ctx.send(embed=embed)
    
     @commands.command()
     async def rules(self, ctx:Context):
-        embed = discord.Embed(title="Standard Rules", description="", color=0xffd1dc)
+        embed = disnake.Embed(title="Standard Rules", description="", color=0xffd1dc)
         embed.add_field(name="`1` NSFW ", value="All NSFW outside of an nsfw channel is banned and you will be muted and even banned up to the severity of the content.", inline=False)
     
         embed.add_field(name="`2` Hate ", value="All forms of racism and homophobia will result in a ban with potential ban appeal in the near future after the ban.", inline=False)
@@ -233,7 +233,7 @@ class Misc(commands.Cog):
     
     @commands.command()
     async def booster(self, ctx:Context):
-        embed = discord.Embed(title="Booster perks", description="Boosting this server can help give us many other perks! Although it's not required we would love for you to boost us!", color=0xffd1dc)
+        embed = disnake.Embed(title="Booster perks", description="Boosting this server can help give us many other perks! Although it's not required we would love for you to boost us!", color=0xffd1dc)
         embed.add_field(name="`1` Free role ", value="When you boost you'll be able to choose a role for you and a friend!", inline=False)
     
         embed.add_field(name="`2` Giveaway restrictions ", value="You will be able to bypass all giveaway restrictions!", inline=False)
@@ -242,17 +242,17 @@ class Misc(commands.Cog):
     
         embed.add_field(name="`4` Hugs", value="You'll get free hugs <3", inline=False)
     
-        embed.set_image(url = "https://support.discord.com/hc/article_attachments/360029033111/nitro_tank_gif.gif")
+        embed.set_image(url = "https://support.disnake.com/hc/article_attachments/360029033111/nitro_tank_gif.gif")
         await ctx.send(embed=embed)
 
     @commands.command()
     async def nitro(self, ctx:Context):
-        embed = discord.Embed(title="Nitro perks", description="Nitro can improve discord experience and give many fun perks!", color=0xffd1dc)
+        embed = disnake.Embed(title="Nitro perks", description="Nitro can improve disnake experience and give many fun perks!", color=0xffd1dc)
         embed.add_field(name="`1` Live streams", value="Screen share on PC in `720p 60fps` or `1080p 30fps` - Stream at source", inline=False)
         embed.add_field(name="`2` Gif", value="Upload and use animated avatars and emojis", inline=False)
         embed.add_field(name="`3` Custom emojis", value="Share custom emojis across all servers", inline=False)
         embed.add_field(name="`4` Large file uploads", value="Larger file upload size from 8mb to 100mb with nitro or 50mb with nitro classic", inline=False)
-        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/803430815714902060/852926789981437982/image0.png")
+        embed.set_thumbnail(url="https://cdn.disnakeapp.com/attachments/803430815714902060/852926789981437982/image0.png")
         await ctx.send(embed=embed)
    
     @commands.command()
@@ -277,7 +277,7 @@ class Misc(commands.Cog):
         except:
             pass
         finally:
-            await ctx.send(f'{ctx.author.mention} Sorry to keep you waiting, here you go:', file=discord.File(fp=buf, filename='emojis.zip'))
+            await ctx.send(f'{ctx.author.mention} Sorry to keep you waiting, here you go:', file=disnake.File(fp=buf, filename='emojis.zip'))
 
 
 def setup(bot):

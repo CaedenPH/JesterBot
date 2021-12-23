@@ -1,8 +1,8 @@
 
-from discord.errors import HTTPException
+from disnake.errors import HTTPException
 import requests
-import discord, aiohttp, pprint, json
-from discord.ext import commands
+import disnake, aiohttp, pprint, json
+from disnake.ext import commands
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM
 
@@ -20,7 +20,7 @@ async def makeimg(ctx, url):
                     drawing = svg2rlg('./images/country.svg')
                     renderPM.drawToFile(drawing, './images/country.png', fmt='PNG')
 
-        await ctx.send(file=discord.File('./images/country.png'))
+        await ctx.send(file=disnake.File('./images/country.png'))
         
         return True
     except Exception as e:
@@ -74,11 +74,11 @@ class Countries(commands.Cog):
 
 
 
-        # await ctx.send(file=discord.File('./images/flag.png')) 
+        # await ctx.send(file=disnake.File('./images/flag.png')) 
             
     @commands.command(aliases=["ewh"])
     async def endworldhunger(self, ctx):
-        embed=discord.Embed(title="How to end world hunger", description="What are the ways to stop world hunger? Work tirelessly for an international organization? [Donate](https://borgenproject.org/donate/) old clothes and toys to our local Salvation Army? Or is it even possible? There are hundreds of theories on how we can end world hunger and activists debate many of them. Some have been effective and others not. One thing is certain, and that is that we must do something. Discussed below are 10 effective world hunger solutions.", color=0xff0000)
+        embed=disnake.Embed(title="How to end world hunger", description="What are the ways to stop world hunger? Work tirelessly for an international organization? [Donate](https://borgenproject.org/donate/) old clothes and toys to our local Salvation Army? Or is it even possible? There are hundreds of theories on how we can end world hunger and activists debate many of them. Some have been effective and others not. One thing is certain, and that is that we must do something. Discussed below are 10 effective world hunger solutions.", color=0xff0000)
         embed.add_field(name="1. Sustainable Food", value="> Heifer International is an organization that helps transform agriculture. They fund projects so people can provide food for themselves in a sustainable way. This is very powerful, because ultimately we would like to see many impoverished areas not reliant on aid from foreign countries (which often causes debt) and able to create their own, steady, supply of food.", inline=False)
         embed.add_field(name="2. Access to Credit", value="> Many organizations are helping people in poor countries to gain access to credit. Most of these credit loans are repaid, and they have created many industries, such as farms, that help create a sustainable provision for people and also develop nations economically. If these people do not have access to credit, they cannot start up industries that combat poverty.", inline=False)
         embed.add_field(name="3. Food Donations",value="> Although ideally it would be better to get the entire world to a place of self-sustainability, it is not something that will happen overnight. In the meantime it is important to lend a helping hand. The impact of donations, both cash and food, have had an immense impact on world hunger. Organizations such as Food for All have customers donate $1-5 when checking out. Last year they raised a whopping $60 million to fight world hunger.",inline=False)

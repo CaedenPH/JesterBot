@@ -1,5 +1,5 @@
-import discord
-from discord.ext import commands
+import disnake
+from disnake.ext import commands
 import aiosqlite
 import math
 import random
@@ -17,7 +17,7 @@ class Levels(commands.Cog):
     async def connect_database(self):
         self.db = await aiosqlite.connect('./db/database.db')
 
-    async def find_or_insert_user(self, member: discord.Member):
+    async def find_or_insert_user(self, member: disnake.Member):
         cursor = await self.db.cursor()
         await cursor.execute('Select * from users where user_id = ? and guild_id = ?', (member.id,member.guild.id,))
         result = await cursor.fetchone()
@@ -53,7 +53,7 @@ class Levels(commands.Cog):
 
     
     @commands.Cog.listener()
-    async def on_message(self, message: discord.Message):
+    async def on_message(self, message: disnake.Message):
         if message.author.bot is True or message.guild is None:
             return
 
@@ -74,7 +74,7 @@ class Levels(commands.Cog):
         await cursor.execute('Update users set xp=?, level=? where user_id=? and guild_id=?', (xp, level, user_id, guild_id))
         await self.db.commit()
 
-    async def make_rank_image(self, member: discord.Member, rank, level, xp, final_xp):
+    async def make_rank_image(self, member: disnake.Member, rank, level, xp, final_xp):
         user_avatar_image = str(member.avatar.with_format(format='png', size=512))
         async with aiohttp.ClientSession() as session:
             async with session.get(user_avatar_image) as resp:
@@ -205,7 +205,7 @@ class Levels(commands.Cog):
     
 
     @commands.command()
-    async def rank(self, ctx: commands.Context, member: discord.Member=None):
+    async def rank(self, ctx: commands.Context, member: disnake.Member=None):
         member = member or ctx.author
         cursor = await self.db.cursor()
         user = await self.find_or_insert_user(member)
@@ -215,7 +215,7 @@ class Levels(commands.Cog):
         rank = result[0] + 1
         final_xp = self.calculate_xp(level + 1)
         bytes = await self.make_rank_image(member, rank, level, xp, final_xp)
-        file = discord.File(bytes, 'rank.png')
+        file = disnake.File(bytes, 'rank.png')
         await ctx.send(file=file)
 
     @commands.command(aliases=['conf'])
@@ -253,13 +253,13 @@ class Levels(commands.Cog):
             
             chan = self.bot.get_channel(channel_msg.raw_channel_mentions[0])
 
-            embed = discord.Embed(title=f"Config channel for {ctx.guild.name}").add_field(name="\u200b", value=f"**Channel:** {chan}\n**Ping:** {ping.content}")
+            embed = disnake.Embed(title=f"Config channel for {ctx.guild.name}").add_field(name="\u200b", value=f"**Channel:** {chan}\n**Ping:** {ping.content}")
 
             await cursor.execute('Insert into config values(?, ?, ?)', result)
             await self.db.commit()
 
             return await ctx.send(embed=embed)
-        await ctx.send(embed=discord.Embed(description="You already have a config!", color=discord.Color.green()).set_author(name="Config", icon_url=ctx.author.avatar.url))
+        await ctx.send(embed=disnake.Embed(description="You already have a config!", color=disnake.Color.green()).set_author(name="Config", icon_url=ctx.author.avatar.url))
 
     @commands.command(aliases=['vconf'])
     async def viewconfig(self, ctx:commands.Context):
@@ -291,7 +291,7 @@ class Levels(commands.Cog):
     @commands.command(aliases=['lb'])
     async def leaderboard(self, ctx:commands.Context):
 
-        embed = discord.Embed(color=discord.Color.green())
+        embed = disnake.Embed(color=disnake.Color.green())
         embed.set_author(
             name = "Leaderboard",
             icon_url = ctx.author.avatar.url

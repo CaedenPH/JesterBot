@@ -1,4 +1,4 @@
-import discord
+import disnake
 import requests
 import json
 import yfinance as yf
@@ -6,7 +6,7 @@ import yfinance as yf
 from core.utils.utils import Color, thecolor, thebed
 from core.Context import Context
 
-from discord.ext import commands
+from disnake.ext import commands
 
 
 class Cryptocurrency(commands.Cog):
@@ -35,7 +35,7 @@ class Cryptocurrency(commands.Cog):
         }
 
         response2 = requests.request("GET", url2, headers=headers2)
-        embed = discord.Embed(title=f"Crypto exchange rate",color=thecolor())
+        embed = disnake.Embed(title=f"Crypto exchange rate",color=thecolor())
         embed.add_field(name=f"exchanged from {exchangefrom} to {exchangeto}", value=response.json()["result"], inline=False)
         
         embed.add_field(name="Rate", value=response.json()["info"]["rate"], inline=False)
@@ -70,7 +70,7 @@ class Cryptocurrency(commands.Cog):
     async def stocks(self, ctx:Context, stock=None):
         
         if not stock:
-            embed = discord.Embed(title="Type the stock symbol (e.g AAPL = apple)", description="[Stocks](https://swingtradebot.com/equities)", colour=thecolor())
+            embed = disnake.Embed(title="Type the stock symbol (e.g AAPL = apple)", description="[Stocks](https://swingtradebot.com/equities)", colour=thecolor())
             return await ctx.send(embed=embed)
 
         tickerData = yf.Ticker(stock)
@@ -79,7 +79,7 @@ class Cryptocurrency(commands.Cog):
         if 'longName' not in inf:
             return await thebed(ctx, '', 'Not enough information')
         async with ctx.typing():
-            embed = discord.Embed(title=f"{inf['longName'] if inf['longName'] else 'No name data'}", colour=thecolor())
+            embed = disnake.Embed(title=f"{inf['longName'] if inf['longName'] else 'No name data'}", colour=thecolor())
             embed.set_author(icon_url=ctx.author.avatar.url, name="Stock market")
             if 'fullTimeEmployees' in inf:
                 embed.add_field(name="Employees", value=f"{inf['fullTimeEmployees']}", inline=False)

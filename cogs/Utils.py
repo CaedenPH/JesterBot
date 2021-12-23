@@ -1,7 +1,7 @@
-from discord.ext.commands import context
+from disnake.ext.commands import context
 from core.utils.emojis import CLOSE
-import discord, os, requests, json, asyncio
-from discord.ext import commands 
+import disnake, os, requests, json, asyncio
+from disnake.ext import commands 
 
 from pyMorseTranslator import translator
 import pytz
@@ -171,11 +171,11 @@ class Utils(commands.Cog):
                 u_code = f"\\U{digit:>08}"
             url = f"https://www.compart.com/en/unicode/U+{digit:>04}"
             name = f"[{unicodedata.name(char, '')}]({url})"
-            info = f"`{u_code.ljust(10)}`: {name} - {discord.utils.escape_markdown(char)}"
+            info = f"`{u_code.ljust(10)}`: {name} - {disnake.utils.escape_markdown(char)}"
             return info, u_code
 
         char_list, raw_list = zip(*(get_info(c) for c in characters))
-        embed = discord.Embed(color=thecolor())
+        embed = disnake.Embed(color=thecolor())
         embed.add_field(name="Character info", value="\n".join(char_list))
         if len(characters) > 1:
             # Maximum length possible is 502 out of 1024, so there's no need to truncate.
@@ -190,7 +190,7 @@ class Utils(commands.Cog):
     @commands.command(aliases=['calc'])
     async def calculator(self, ctx:Context):
 
-        embed = discord.Embed(description=f"```yaml\n0```", color=self.bot.discordcolor)
+        embed = disnake.Embed(description=f"```yaml\n0```", color=self.bot.disnakecolor)
         embed.set_author(name="Calculator", icon_url=ctx.author.avatar.url)
         embed.set_footer(text="To interact with your virtual calculator, click the shown buttons.")     
 
@@ -368,7 +368,7 @@ class Utils(commands.Cog):
                             else:
                                 calc[k]['d'] += inter.clicked_button.custom_id
                             msg = calc[k]['m']
-                            embed = discord.Embed(description=f"```yaml\n{calc[k]['d']}```", color=self.bot.discordcolor)
+                            embed = disnake.Embed(description=f"```yaml\n{calc[k]['d']}```", color=self.bot.disnakecolor)
                             embed.set_author(name="Calculator", icon_url=inter.author.avatar.url)
                             embed.set_footer(text="To interact with your virtual calculator, click the shown buttons.")
                             await msg.edit(embed=embed)
@@ -402,10 +402,10 @@ class Utils(commands.Cog):
         )
     async def math(self, ctx:Context, *, math=None):
         if not math:
-            return await thebed(ctx, '', "**The current list of available eval operations**", i="https://cdn.discordapp.com/attachments/836812307971571762/846334605669826600/unknown.png")
+            return await thebed(ctx, '', "**The current list of available eval operations**", i="https://cdn.disnakeapp.com/attachments/836812307971571762/846334605669826600/unknown.png")
        
         result = simpleeval.simple_eval(math)
-        embed = discord.Embed(color=thecolor())
+        embed = disnake.Embed(color=thecolor())
         embed.set_footer(text=str(ctx.author) + " | Evaluation", icon_url=ctx.author.avatar.url)
         embed.add_field(name="Your expression: ", value=f'```yaml\n"{math}"\n```', inline=False)
         embed.add_field(name="Result: ", value=f"```\n{result}\n```")
@@ -430,7 +430,7 @@ class Utils(commands.Cog):
             
             a, b = b, a+b
     
-        embed = discord.Embed(title="Fibinaci", description=f"{', '.join(x)}", colour=thecolor())
+        embed = disnake.Embed(title="Fibinaci", description=f"{', '.join(x)}", colour=thecolor())
         await ctx.send(embed=embed)
 
     @commands.command(
@@ -438,11 +438,11 @@ class Utils(commands.Cog):
         description="Sends the mentioned users avatar or if none is specified, the usrs avatar"
         )
 
-    async def avatar(self, ctx:Context, user:discord.Member = ""):
+    async def avatar(self, ctx:Context, user:disnake.Member = ""):
         if user == "":
             user = ctx.author.id
             username = self.bot.get_user(user)
-            embed = discord.Embed(title=f"Avatar", colour=thecolor())
+            embed = disnake.Embed(title=f"Avatar", colour=thecolor())
             embed.set_author(name=username.name, icon_url=username.avatar.url)
             embed.set_image(url=username.avatar.url)
             await ctx.send(embed=embed)
@@ -450,7 +450,7 @@ class Utils(commands.Cog):
         else:
 
             username = self.bot.get_user(user.id)
-            embed = discord.Embed(title=f"Avatar", colour=thecolor())
+            embed = disnake.Embed(title=f"Avatar", colour=thecolor())
             embed.set_author(name=username.name, icon_url=username.avatar.url)
             embed.set_image(url=username.avatar.url)
             await ctx.send(embed=embed)
@@ -470,12 +470,12 @@ class Utils(commands.Cog):
             x = str(now)
             _date = x[:10]
             _time = x[11:19]         
-            embed = discord.Embed(title=f"**Time:** {_time} │ **Date:** {_date}", colour=thecolor())  
+            embed = disnake.Embed(title=f"**Time:** {_time} │ **Date:** {_date}", colour=thecolor())  
             embed.set_author(name="Datetime", icon_url=ctx.author.avatar.url)
             
             await ctx.send(embed=embed)
         except Exception as e:
-            embed = discord.Embed(title="Error", description=f"**TimeZoneError: {e}**", colour=thecolor())
+            embed = disnake.Embed(title="Error", description=f"**TimeZoneError: {e}**", colour=thecolor())
             await ctx.send(embed=embed)
     
     @commands.command(aliases=['bin'])
@@ -484,7 +484,7 @@ class Utils(commands.Cog):
         
         response = requests.get(f'https://some-random-api.ml/binary?text={text}')
         fox = response.json()
-        embed=discord.Embed(color=thecolor())
+        embed=disnake.Embed(color=thecolor())
         embed.add_field(name="Binary", value=f"{fox['binary']}")
         await ctx.send(embed=embed)
    
@@ -495,7 +495,7 @@ class Utils(commands.Cog):
         
         response = requests.get(f'https://some-random-api.ml/binary?decode={nums}')
         fox = response.json()
-        embed=discord.Embed(color=thecolor())
+        embed=disnake.Embed(color=thecolor())
         embed.add_field(name="Decoded from binary", value=f"{fox['text']}") 
         await ctx.send(embed=embed)
    
@@ -525,7 +525,7 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
 
 
                     x.append(f"{chr(i)}")
-            embed = discord.Embed(title="Ascii:", description="\n*starting from 32 because characters prior to that number are not used, therefore sending blanks* \n" + f'```py\n{", ".join(x)}```', colour=thecolor())
+            embed = disnake.Embed(title="Ascii:", description="\n*starting from 32 because characters prior to that number are not used, therefore sending blanks* \n" + f'```py\n{", ".join(x)}```', colour=thecolor())
             embed.set_footer(text="Type j.help ascii to get information about what the ascii table is. | `,` signifies a new character.")
             return await ctx.send(embed=embed)
                         
@@ -539,7 +539,7 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
                
             x.append(f"\n`{c}: {'-'.join(p)}`")
             p = []
-        embed = discord.Embed(title="Ascii:", description=", ".join(x), colour=thecolor())
+        embed = disnake.Embed(title="Ascii:", description=", ".join(x), colour=thecolor())
         embed.set_footer(text="Type j.help ascii to get information about what the ascii table is. | '-' signifies a new character.")
         await ctx.send(embed=embed)
         

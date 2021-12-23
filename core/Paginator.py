@@ -1,4 +1,4 @@
-import discord
+import disnake
 
 from core.utils.utils import thecolor
 from core.utils.emojis import LOCATIONemojis as l
@@ -33,7 +33,7 @@ class Paginator:
         self._pages['0'] = {'content': result[0]} 
         self._top = len(result) - 1
 
-        embed = discord.Embed(
+        embed = disnake.Embed(
             color = thecolor()
         ).set_author(
             name=name,

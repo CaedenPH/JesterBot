@@ -1,5 +1,5 @@
-import discord, json, asyncio
-from discord.ext import commands
+import disnake, json, asyncio
+from disnake.ext import commands
 
 from random import choice
 
@@ -23,7 +23,7 @@ class Event(commands.Cog):
         s = self.bot.get_emoji(863313855061164062)
         r = self.bot.get_emoji(863313855119360022)
         t = self.bot.get_emoji(863313855399329812)
-        embed = discord.Embed(title=f"{j}{e}{s}{t}{e}{r}", description=f"""
+        embed = disnake.Embed(title=f"{j}{e}{s}{t}{e}{r}", description=f"""
         │ **My prefix is:** `j.` │
         │ Type `j.server_prefix <prefix>, [prefix], etc` 
         to change the prefix for the server │
@@ -58,7 +58,7 @@ class Event(commands.Cog):
                     if data[key]['Yes']:
                         if data[key]['Guild'] == member.guild.id:
                         
-                            role = discord.utils.get(member.guild.roles, id=data[key]['URole id'])
+                            role = disnake.utils.get(member.guild.roles, id=data[key]['URole id'])
                          
                             await member.add_roles(role)
                             x = 1
@@ -79,12 +79,12 @@ class Event(commands.Cog):
                                 channel = member.guild.get_channel(loaded[str(member.guild.id)]["channel_id"])
                                 msg = await channel.send(f"{member.mention}")
                                 await msg.delete()
-                                embed = discord.Embed(title=f"Welcome!", description=f"{member.mention} don't forget to type `j.rules` to see the rules for the server, but most of all dont forget to have fun at {member.guild}!", colour=thecolor())
+                                embed = disnake.Embed(title=f"Welcome!", description=f"{member.mention} don't forget to type `j.rules` to see the rules for the server, but most of all dont forget to have fun at {member.guild}!", colour=thecolor())
                                 
                                 embed.set_image(url=f"{member.guild.icon_url}") 
                                 embed.set_author(name=f"{member.name}", icon_url=f"{member.avatar.url}")
                                 await channel.send(embed=embed)
-                                role = discord.utils.get(member.guild.roles, id=loaded[str(member.guild.id)]['role'])
+                                role = disnake.utils.get(member.guild.roles, id=loaded[str(member.guild.id)]['role'])
                                 if role:
                                     await member.add_roles(role)
                                 else:
@@ -97,7 +97,7 @@ class Event(commands.Cog):
                                 channel = member.guild.get_channel(loaded[str(member.guild.id)]["channel_id"])
                                 msg = await channel.send(f"{member.mention}")
                                 await msg.delete()
-                                embed = discord.Embed(description=f"Welcome to {member.guild}! {member.mention}, enjoy your stay!", colour=thecolor())
+                                embed = disnake.Embed(description=f"Welcome to {member.guild}! {member.mention}, enjoy your stay!", colour=thecolor())
                                 
                                 embed.set_image(url=f"{member.guild.icon_url}") 
                                 embed.set_author(name=f"{member.name}", icon_url=f"{member.avatar.url}")
@@ -118,7 +118,7 @@ class Event(commands.Cog):
             
             if str(after) != str(before):
                 await after.channel.clone(name=f'{member}-channel')
-                channel = discord.utils.get(self.bot.get_all_channels(), name = f"{member}-channel") 
+                channel = disnake.utils.get(self.bot.get_all_channels(), name = f"{member}-channel") 
                 guild = member.guild
                 await channel.set_permissions(guild.default_role, view_channel=False)
                 
@@ -138,7 +138,7 @@ class Event(commands.Cog):
                     if message.content != "verify":
                         await message.delete()
                     else:
-                        role = discord.utils.get(message.guild.roles, id=data[str(message.channel.id)]['URole id'])
+                        role = disnake.utils.get(message.guild.roles, id=data[str(message.channel.id)]['URole id'])
                         for roled in message.author.roles:
                             
                             
@@ -155,10 +155,10 @@ class Event(commands.Cog):
                                     if 'role' in weldata[str(message.guild.id)]:
 
                                 
-                                        role = discord.utils.get(message.guild.roles, id=weldata[str(message.guild.id)]['role'])
+                                        role = disnake.utils.get(message.guild.roles, id=weldata[str(message.guild.id)]['role'])
                                         await message.author.add_roles(role)
                                     
-                                        role = discord.utils.get(message.guild.roles, id=data[str(message.channel.id)]['URole id'])
+                                        role = disnake.utils.get(message.guild.roles, id=data[str(message.channel.id)]['URole id'])
                                         
                                         await message.author.remove_roles(role)
 
@@ -168,12 +168,12 @@ class Event(commands.Cog):
                                             channel = message.guild.get_channel(weldata[str(message.guild.id)]["channel_id"])
                                             msg = await channel.send(f"{message.author.mention}")
                                             await msg.delete()
-                                            embed = discord.Embed(title=f"Welcome!", description=f"{message.author.mention} don't forget to type `j.rules` to see the rules for the server, but most of all dont forget to have fun at {message.guild}!", colour=thecolor())
+                                            embed = disnake.Embed(title=f"Welcome!", description=f"{message.author.mention} don't forget to type `j.rules` to see the rules for the server, but most of all dont forget to have fun at {message.guild}!", colour=thecolor())
 
                                             embed.set_thumbnail(url=f"{message.guild.icon_url}") 
-                                            embed.set_image(url='https://cdn.discordapp.com/attachments/847528639125258322/855559791384592404/360_F_361521131_tvclR3GrsVQBFVsUe1EPNFgH2MWIN1w7.png')
+                                            embed.set_image(url='https://cdn.disnakeapp.com/attachments/847528639125258322/855559791384592404/360_F_361521131_tvclR3GrsVQBFVsUe1EPNFgH2MWIN1w7.png')
                                             embed.set_author(name=f"{message.author.name}", icon_url=f"{message.author.avatar.url}")
-                                            # role = discord.utils.get(member.guild.roles, id=loaded[str(member.guild.id)]['role'])
+                                            # role = disnake.utils.get(member.guild.roles, id=loaded[str(member.guild.id)]['role'])
                                             await channel.send(embed=embed)
                                         
                                         else:
@@ -182,8 +182,8 @@ class Event(commands.Cog):
                                     
                                 else:
                                 
-                                    role = discord.utils.get(message.guild.roles, id=int(data[str(message.channel.id)]['MRole id']))
-                                    role1 = discord.utils.get(message.guild.roles, id=int(data[str(message.channel.id)]['URole id']))
+                                    role = disnake.utils.get(message.guild.roles, id=int(data[str(message.channel.id)]['MRole id']))
+                                    role1 = disnake.utils.get(message.guild.roles, id=int(data[str(message.channel.id)]['URole id']))
                                     await message.author.add_roles(role)
                                     await message.author.remove_roles(role1)
                                     await message.delete()
@@ -214,7 +214,7 @@ class Event(commands.Cog):
                     await message.remove_reaction(member=message.author, emoji="👍")
                     emoji, user = await self.bot.wait_for('reaction_add', timeout=30.0, check=check)
                 
-                else:
+                else: 
                     if num == 2:
                         await msg12.delete()
                         try:

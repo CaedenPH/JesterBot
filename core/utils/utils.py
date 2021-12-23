@@ -1,4 +1,4 @@
-import discord
+import disnake
 import json
 
 
@@ -37,7 +37,7 @@ class Cmds:
             
 
 async def thebed(ctx, title, description='', **kwargs):
-    theembed = discord.Embed(title=title, description=description, color=thecolor())
+    theembed = disnake.Embed(title=title, description=description, color=thecolor())
     author = kwargs.get('a')
     icon_url = kwargs.get('i_u')
     footer = kwargs.get('f')

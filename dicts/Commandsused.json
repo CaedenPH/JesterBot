@@ -27,7 +27,7 @@
         "score": 104
     },
     "help": {
-        "score": 2059
+        "score": 2086
     },
     "jsonfile": {
         "score": 19
@@ -42,7 +42,7 @@
         "score": 24
     },
     "ping": {
-        "score": 304
+        "score": 306
     },
     "giveaway": {
         "score": 17
@@ -90,7 +90,7 @@
         "score": 3
     },
     "calculator": {
-        "score": 209
+        "score": 212
     },
     "calc*": {
         "score": 1
@@ -363,7 +363,7 @@
         "score": 1
     },
     "reload": {
-        "score": 4266
+        "score": 4267
     },
     "pp": {
         "score": 142
@@ -504,7 +504,7 @@
         "score": 27
     },
     "hack": {
-        "score": 183
+        "score": 187
     },
     "eval2": {
         "score": 6
@@ -513,7 +513,7 @@
         "score": 441
     },
     "evaldir": {
-        "score": 343
+        "score": 344
     },
     "quote1": {
         "score": 4
@@ -528,7 +528,7 @@
         "score": 21
     },
     "ascii": {
-        "score": 65
+        "score": 66
     },
     "morse": {
         "score": 25
@@ -1023,7 +1023,7 @@
         "score": 11
     },
     "flip": {
-        "score": 16
+        "score": 17
     },
     "sharp": {
         "score": 6
@@ -1080,6 +1080,15 @@
         "score": 1
     },
     "src": {
-        "score": 11
+        "score": 13
+    },
+    "youtube_together": {
+        "score": 3
+    },
+    "checkers": {
+        "score": 2
+    },
+    "code_snippet": {
+        "score": 10
     }
 }

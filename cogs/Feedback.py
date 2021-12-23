@@ -1,5 +1,5 @@
-import discord, os, requests, json, asyncio
-from discord.ext import commands 
+import disnake, os, requests, json, asyncio
+from disnake.ext import commands 
 from core.utils.utils import thecolor, Json, thebed
 from core.Context import Context
 from typing import Union

@@ -1,5 +1,5 @@
 import json
-from discord.ext import commands
+from disnake.ext import commands
 
 def get_prefix(bot, message):
 

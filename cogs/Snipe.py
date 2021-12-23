@@ -1,6 +1,6 @@
-import discord, os, requests, json, asyncio
+import disnake, os, requests, json, asyncio
 from core.utils.utils import thecolor, Json, thebed
-from discord.ext import commands 
+from disnake.ext import commands 
 
 from datetime import datetime
    
@@ -114,7 +114,7 @@ class Snipe(commands.Cog):
                         
                         time = datetime.strptime(str(data[g][c]['time'][len(data[g][c]['before'])-ammount][:-7]), '%Y-%m-%d %X')
 
-                        embed = discord.Embed(timestamp=time, description=f"**{data[g][c]['author'][len(data[g][c]['before'])-ammount]} said:** {data[g][c]['before'][len(data[g][c]['before'])-ammount]} \n**Then edited it to:** {data[g][c]['after'][len(data[g][c]['after'])-ammount]}", color=thecolor())
+                        embed = disnake.Embed(timestamp=time, description=f"**{data[g][c]['author'][len(data[g][c]['before'])-ammount]} said:** {data[g][c]['before'][len(data[g][c]['before'])-ammount]} \n**Then edited it to:** {data[g][c]['after'][len(data[g][c]['after'])-ammount]}", color=thecolor())
                         embed.set_author(icon_url=us.avatar.url, name="Most recent message:")
                         return await ctx.send(embed=embed)
                     else:
@@ -124,7 +124,7 @@ class Snipe(commands.Cog):
             await thebed(ctx, '', 'No deleted messages were ever here!')
 
     @commands.command(aliases=['eaim'])
-    async def editaim(self, ctx, user:discord.Member):
+    async def editaim(self, ctx, user:disnake.Member):
 
         with open('./dicts/Snipe.json') as k:
             data = json.load(k)
@@ -141,7 +141,7 @@ class Snipe(commands.Cog):
 
                             time = datetime.strptime(str(data[g][c]['time'][t-1][:-7]), '%Y-%m-%d %X')
 
-                            embed = discord.Embed(timestamp=time, description=f"**{data[g][c]['author'][t-1]} said:** {data[g][c]['before'][t-1]}\n**Then changed it to: **{data[g][c]['after'][t-1]}", color=thecolor())
+                            embed = disnake.Embed(timestamp=time, description=f"**{data[g][c]['author'][t-1]} said:** {data[g][c]['before'][t-1]}\n**Then changed it to: **{data[g][c]['after'][t-1]}", color=thecolor())
                             embed.set_author(icon_url=us.avatar.url, name="Most recent message:")
                             return await ctx.send(embed=embed)
                         t -= 1
@@ -162,7 +162,7 @@ class Snipe(commands.Cog):
                         time = datetime.strptime(str(data[g][c]['time'][len(data[g][c]['list'])-ammount][:-7]), '%Y-%m-%d %X')
 
                         us = self.client.get_user(data[g][c]['id'][len(data[g][c]['list'])-ammount])
-                        embed = discord.Embed(timestamp=time, description=f"**{data[g][c]['author'][len(data[g][c]['list'])-ammount]} said:** {data[g][c]['list'][len(data[g][c]['list'])-ammount]}", color=thecolor())
+                        embed = disnake.Embed(timestamp=time, description=f"**{data[g][c]['author'][len(data[g][c]['list'])-ammount]} said:** {data[g][c]['list'][len(data[g][c]['list'])-ammount]}", color=thecolor())
                         embed.set_author(icon_url=us.avatar.url, name="Most recent message:")
                         return await ctx.send(embed=embed)
                     else:
@@ -172,7 +172,7 @@ class Snipe(commands.Cog):
             await thebed(ctx, '', 'No deleted messages were ever here!')
     
     @commands.command()
-    async def aim(self, ctx, user:discord.Member):
+    async def aim(self, ctx, user:disnake.Member):
         with open('./dicts/Snipe.json') as k:
             data = json.load(k)
             g = str(ctx.guild.id) 
@@ -185,7 +185,7 @@ class Snipe(commands.Cog):
                     for e in data[g][c]['id'][::-1]:
                         if e == user.id:
                             us = self.client.get_user(data[g][c]['id'][t-1])
-                            embed = discord.Embed(description=f"**{data[g][c]['author'][t-1]} said:** {data[g][c]['list'][t-1]}", color=thecolor())
+                            embed = disnake.Embed(description=f"**{data[g][c]['author'][t-1]} said:** {data[g][c]['list'][t-1]}", color=thecolor())
                             embed.set_footer(text="At: " + str(data[g][c]['time'][t-1][:-7]))
                             embed.set_author(icon_url=us.avatar.url, name="Most recent message:")
                             return await ctx.send(embed=embed)

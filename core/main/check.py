@@ -1,4 +1,4 @@
-import discord
+import disnake
 import json
 
 from core.utils.utils import thebed, thecolor, Json
@@ -8,7 +8,7 @@ async def suggest(bot, message):
     
     message_id = message.id
     data = {}
-    embed = discord.Embed(
+    embed = disnake.Embed(
         color=thecolor()
     ).set_author(
         name=message.author.name,
@@ -18,7 +18,7 @@ async def suggest(bot, message):
         text=str(message.created_at)[11:16] + " • This suggestion was created by {}".format(message.author.name)
     )
     def check(m):
-        return m.author == message.author and isinstance(m.channel, discord.channel.DMChannel)
+        return m.author == message.author and isinstance(m.channel, disnake.channel.DMChannel)
 
     for a in ["What would you like the title to be? Type q at any point to end", "What would you like the description to be? Type q at any point to end"]:
         await thebed(message.author, '', a)

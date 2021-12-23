@@ -1,8 +1,8 @@
-import discord
+import disnake
 import json
-from discord.ext.commands import has_permissions
-from discord.ext import commands 
-from discord.utils import get
+from disnake.ext.commands import has_permissions
+from disnake.ext import commands 
+from disnake.utils import get
 from async_timeout import timeout
 import asyncio
 from core.utils.utils import thecolor, Json, thebed, Cmds
@@ -16,7 +16,7 @@ class Config(commands.Cog):
     
     @commands.command(aliases=['Welcomer', 'welcome'], description="Adds a welcome feature into the current channel (everytime someone joins the server it says welcome) - `[message]` is a good welcome message")
     @has_permissions(administrator=True)
-    async def welcomechannel(self, ctx:Context, role:discord.Role="",*,  message:str = ""):
+    async def welcomechannel(self, ctx:Context, role:disnake.Role="",*,  message:str = ""):
 
         with open('./dicts/Welcome.json', 'r+') as f:
             data = json.load(f)
@@ -28,7 +28,7 @@ class Config(commands.Cog):
                 "Welcome": True
             }   
                 Json(f, data)
-                embed = discord.Embed(title="Added!", colour=thecolor())
+                embed = disnake.Embed(title="Added!", colour=thecolor())
                 return await ctx.send(embed=embed)
             
 
@@ -41,7 +41,7 @@ class Config(commands.Cog):
             }   
 
             Json(f, data)
-            embed = discord.Embed(title="Added!", colour=thecolor())
+            embed = disnake.Embed(title="Added!", colour=thecolor())
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['channelconfig'])
@@ -53,7 +53,7 @@ class Config(commands.Cog):
             a = ""
             for z in data['emojis']:
                 a += f"\n{z} │ {data['emojis'][z]['em']}"
-            embed = discord.Embed(title="Config channels", description=a, color=thecolor())
+            embed = disnake.Embed(title="Config channels", description=a, color=thecolor())
             msg = await ctx.send(embed=embed)
             
             for e in data['emojis']:
@@ -80,7 +80,7 @@ class Config(commands.Cog):
 
                                             alx.append(f"`{al}`")
                                     bot_av = self.bot.get_user(828363172717133874)
-                                    em = discord.Embed(description=Cmds(command1.name).chelp, colour=thecolor())
+                                    em = disnake.Embed(description=Cmds(command1.name).chelp, colour=thecolor())
                                     name = f"{command1.name.capitalize()}"
                                     
                                     em.add_field(name="Name", value=f"`{name}`", inline=False)
@@ -96,7 +96,7 @@ class Config(commands.Cog):
                                     
                                     
                                     await msg.remove_reaction(member=ctx.author, emoji=emoji)
-                                    embed = discord.Embed(title=f"{data['emojis'][e]} │ {emoji}", description=f"{the_list1}", color=thecolor())
+                                    embed = disnake.Embed(title=f"{data['emojis'][e]} │ {emoji}", description=f"{the_list1}", color=thecolor())
                                     
                                     await msg.edit(embed=em)
                                    
@@ -107,7 +107,7 @@ class Config(commands.Cog):
 
     @commands.command()
     @has_permissions(manage_channels=True)
-    async def pickuplinechannel(self, ctx:Context, channel:discord.TextChannel=""):
+    async def pickuplinechannel(self, ctx:Context, channel:disnake.TextChannel=""):
         if not channel: 
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
         with open('./dicts/ConfigChannel.json', 'r+') as k:
@@ -131,7 +131,7 @@ class Config(commands.Cog):
             await thebed(ctx, 'There is already a pickuplinechannel here or something went wrong')
     @commands.command()
     @has_permissions(manage_channels=True)
-    async def jokechannel(self, ctx:Context, channel:discord.TextChannel=""):
+    async def jokechannel(self, ctx:Context, channel:disnake.TextChannel=""):
         if not channel: 
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
         with open('./dicts/ConfigChannel.json', 'r+') as k:
@@ -156,7 +156,7 @@ class Config(commands.Cog):
         
     @commands.command()
     @has_permissions(manage_channels=True)
-    async def quotechannel(self, ctx:Context, channel:discord.TextChannel=""):
+    async def quotechannel(self, ctx:Context, channel:disnake.TextChannel=""):
         if not channel: 
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
         with open('./dicts/ConfigChannel.json', 'r+') as k:
@@ -181,7 +181,7 @@ class Config(commands.Cog):
         
     @commands.command()
     @has_permissions(manage_channels=True)
-    async def factchannel(self, ctx:Context, channel:discord.TextChannel=""):
+    async def factchannel(self, ctx:Context, channel:disnake.TextChannel=""):
         if not channel: 
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
         with open('./dicts/ConfigChannel.json', 'r+') as k:
@@ -219,11 +219,11 @@ class Config(commands.Cog):
             if str(ctx.guild.id) in data:
                 data[str(ctx.guild.id)]['Welcome'] = False
                 Json(f, data)
-                embed = discord.Embed(title="Re`moved!", colour=thecolor())
+                embed = disnake.Embed(title="Re`moved!", colour=thecolor())
                 await ctx.send(embed=embed)
     @has_permissions(manage_channels=True)
     @commands.command(description="Makes the channel specified a suggestion channel - members can only type j.suggest or their message gets deleted. Nice and orderly")
-    async def suggestchannel(self, ctx:Context, channel:discord.TextChannel):
+    async def suggestchannel(self, ctx:Context, channel:disnake.TextChannel):
 
         with open('./dicts/Suggest.json', 'r+') as k:
             data = json.load(k)
@@ -239,10 +239,10 @@ class Config(commands.Cog):
                 if channel.id == ctx.channel.id:
                     pass
                 else:
-                    embed = discord.Embed(title="Applied", colour=thecolor())
+                    embed = disnake.Embed(title="Applied", colour=thecolor())
                     await ctx.send(embed=embed)
                 await channel.purge(limit=10000)
-                embed1 = discord.Embed(title="Suggest", description="""
+                embed1 = disnake.Embed(title="Suggest", description="""
                 This channel is now a suggestion only channel. 
                 This means that you can only type `suggest`, which will formally create a ticket that only you can reply to. After giving a title and a description, your suggestion will be sent.
                 Any messages that aren't `suggest` are automatically deleted
@@ -254,10 +254,10 @@ class Config(commands.Cog):
                 if data[str(channel.id)]['Yes'] == False:
                     data[str(channel.id)]['Yes'] = True
                     Json(k, data)
-                    embed = discord.Embed(title="Applied", colour=thecolor())
+                    embed = disnake.Embed(title="Applied", colour=thecolor())
                     await ctx.send(embed=embed)
                 else:
-                    embed = discord.Embed(title="Already applied", colour=thecolor())
+                    embed = disnake.Embed(title="Already applied", colour=thecolor())
                 await ctx.send(embed=embed)
 
     
@@ -267,13 +267,13 @@ class Config(commands.Cog):
     2. It will create a channel called `⚘ verify ⚘`
     3. When a new member joins they will only see the channel `⚘ verify ⚘`, and if they write `verify` they can text in and see all other channels""")
     @has_permissions(administrator=True)
-    async def verifychannel(self, ctx:Context, channel:discord.TextChannel=None, role:discord.Role=""):
-        embed = discord.Embed(title="Warning", description="While this command can help your server by adding a verification, it can also add roles and channels you may not like the look of. To get more information type `j.help verifychannel`. To proceed type y", colour=thecolor())
+    async def verifychannel(self, ctx:Context, channel:disnake.TextChannel=None, role:disnake.Role=""):
+        embed = disnake.Embed(title="Warning", description="While this command can help your server by adding a verification, it can also add roles and channels you may not like the look of. To get more information type `j.help verifychannel`. To proceed type y", colour=thecolor())
         await ctx.send(embed=embed)
         received_msg = str((await self.bot.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)).content).lower()
         if received_msg != "y":
       
-            embed = discord.Embed(title="Goodbye!", colour=thecolor())
+            embed = disnake.Embed(title="Goodbye!", colour=thecolor())
             return await ctx.send(embed=embed)
         
         with open('./dicts/VerifyChannel.json') as k:
@@ -289,10 +289,10 @@ class Config(commands.Cog):
             channel = await ctx.guild.create_text_channel(name="⚘ verify ⚘")                   
         with open('./dicts/VerifyChannel.json', 'r+') as k:
             if role == "":
-                await ctx.guild.create_role(name="⚘ Member ⚘", permissions=discord.Permissions(send_messages=True))
-            membrole = discord.utils.get(ctx.guild.roles, name="⚘ Member ⚘")
-            await ctx.guild.create_role(name="⚘ Unverified ⚘", permissions=discord.Permissions(send_messages=False))
-            Urole = discord.utils.get(ctx.guild.roles, name="⚘ Unverified ⚘")
+                await ctx.guild.create_role(name="⚘ Member ⚘", permissions=disnake.Permissions(send_messages=True))
+            membrole = disnake.utils.get(ctx.guild.roles, name="⚘ Member ⚘")
+            await ctx.guild.create_role(name="⚘ Unverified ⚘", permissions=disnake.Permissions(send_messages=False))
+            Urole = disnake.utils.get(ctx.guild.roles, name="⚘ Unverified ⚘")
             for x in ctx.guild.channels:
                 if x.id == channel.id:
                     await x.set_permissions(membrole, send_messages=False, read_message_history=False, read_messages=False)
@@ -304,13 +304,13 @@ class Config(commands.Cog):
                 else:
                     await x.set_permissions(Urole, speak=True, send_messages=True, read_message_history=True, read_messages=True)
 
-            every = discord.utils.get(ctx.guild.roles, name="@everyone")
+            every = disnake.utils.get(ctx.guild.roles, name="@everyone")
             for y in ctx.guild.channels:
                 await y.set_permissions(every, speak=True, send_messages=True, read_message_history=True, read_messages=True)
             with open('./dicts/Welcome.json') as w:
                 weldata = json.load(w)
                 if str(ctx.guild.id) in weldata:
-                    g = discord.utils.get(ctx.guild.roles, id=weldata[str(ctx.guild.id)]['role'])
+                    g = disnake.utils.get(ctx.guild.roles, id=weldata[str(ctx.guild.id)]['role'])
                     for z in ctx.guild.channels:
                         if z.id == channel.id:
                             await z.set_permissions(g, send_messages=False, read_message_history=False, read_messages=False)
@@ -320,7 +320,7 @@ class Config(commands.Cog):
 
             data = json.load(k)
             if str(channel.id) in data:
-                embed = discord.Embed(title=f"Already applied!")
+                embed = disnake.Embed(title=f"Already applied!")
             else:
                 data[str(channel.id)] = {
                     "Yes": True,
@@ -332,14 +332,14 @@ class Config(commands.Cog):
             Json(k, data)
         
             await channel.purge(limit=10000)
-            embed1 = discord.Embed(title="Verify", description="""
+            embed1 = disnake.Embed(title="Verify", description="""
             This channel is a verify channel. 
             Type `verify` to get acess to the server!
             Have fun and make sure to follow the rules.
             """, colour=thecolor())
             x = await channel.send(embed=embed1)
             await x.pin()
-            embed = discord.Embed(title=f"Applied!")
+            embed = disnake.Embed(title=f"Applied!")
             await ctx.send(embed=embed)
             await channel.purge(limit=1)
 
@@ -353,14 +353,14 @@ class Config(commands.Cog):
                 if data[key]['Guild'] == ctx.guild.id:
                     del data[key]
                     Json(k, data)
-                    embed = discord.Embed(title=f"Removed!", color=thecolor())
+                    embed = disnake.Embed(title=f"Removed!", color=thecolor())
                     return await ctx.send(embed=embed)
                     
                 
             await thebed(ctx, 'There was never a verify!')
 
     @commands.command()
-    async def leavechannel(self, ctx:Context, channel:discord.TextChannel=""):
+    async def leavechannel(self, ctx:Context, channel:disnake.TextChannel=""):
         
         with open('./dicts/LeaveChannel.json', 'r+') as k:
             data = json.load(k)
@@ -377,7 +377,7 @@ class Config(commands.Cog):
         await thebed(channel, 'This is a leaving channel, everyone who leaves will be announced here...')
 
     @commands.command()
-    async def removeleavechannel(self, ctx:Context, channel:discord.TextChannel):
+    async def removeleavechannel(self, ctx:Context, channel:disnake.TextChannel):
         with open('./dicts/LeaveChannel.json', 'r+') as k:
 
             data = json.load(k)

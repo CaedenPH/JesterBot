@@ -1,8 +1,7 @@
-from discord.errors import HTTPException
+from disnake.errors import HTTPException
 from core.utils.emojis import CLOSE, HOME, TRASHCAN
-import discord, asyncio
-from discord.ext import commands
-from dislash import *
+import disnake, asyncio
+from disnake.ext import commands
 
 from core.utils.utils import thecolor, thebed
 
@@ -27,7 +26,7 @@ class Context(commands.Context):
 
     async def em(self, message):
         return await self.send(
-            embed = discord.Embed(
+            embed = disnake.Embed(
                 description=message,
                 color=thecolor() 
             )
@@ -40,7 +39,7 @@ class Context(commands.Context):
                 await self.author.send(
                     "I can't send any messages in that channel. \nPlease give me sufficient permissions to do so."
                 )
-            except discord.Forbidden:
+            except disnake.Forbidden:
                 pass
             return
 
@@ -51,10 +50,10 @@ class Context(commands.Context):
                 "Oops! I need **Embed Links** permission to work properly. \n"
                 "Please tell a server admin to grant me that permission."
             )
-        if isinstance(content, discord.Embed):
+        if isinstance(content, disnake.Embed):
             kwargs["embed"] = content
             content = None
-        if isinstance(content, discord.File):
+        if isinstance(content, disnake.File):
             kwargs["file"] = content
             content = None
         
@@ -115,7 +114,7 @@ class Context(commands.Context):
 
             components=Components()
 
-        msg = await super().send(components=components, embed=discord.Embed(description=f"**Error:**{error}\n\u200b\n**Would you like to submit this error to the developer?**", color=thecolor()).set_author(name="Error", icon_url=self.author.avatar.url).set_footer(text='This error command is slow because it takes a lot of time to process it!'))
+        msg = await super().send(components=components, embed=disnake.Embed(description=f"**Error:**{error}\n\u200b\n**Would you like to submit this error to the developer?**", color=thecolor()).set_author(name="Error", icon_url=self.author.avatar.url).set_footer(text='This error command is slow because it takes a lot of time to process it!'))
         x = False
         inter = await msg.wait_for_button_click(check)
         if inter.clicked_button.custom_id == "Yes":
@@ -133,7 +132,7 @@ class Context(commands.Context):
             await self.message.add_reaction(CLOSE)
 
 
-        msg = await super().send(embed=discord.Embed(description=f"**Error: **{error}"))
+        msg = await super().send(embed=disnake.Embed(description=f"**Error: **{error}"))
        
 
         

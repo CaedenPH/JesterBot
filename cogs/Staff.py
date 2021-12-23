@@ -1,5 +1,5 @@
-import discord, os, requests, json, asyncio
-from discord.ext import commands 
+import disnake, os, requests, json, asyncio
+from disnake.ext import commands 
 from dislash import *
 import datetime
 import shutil, concurrent, subprocess
@@ -15,7 +15,7 @@ class Staff(commands.Cog):
     
     @commands.command(hidden=True)
     async def push(self, ctx, reason):
-        embed = discord.Embed(title="Git push.", description="")
+        embed = disnake.Embed(title="Git push.", description="")
         git_commands = [
             ["git", "add", "."],
             ["git", "commit", "-m", reason],
@@ -41,7 +41,7 @@ class Staff(commands.Cog):
 
     @commands.command(hidden=True)
     async def pull(self, ctx):
-        embed = discord.Embed(title="Git pull.", description="")
+        embed = disnake.Embed(title="Git pull.", description="")
         git_commands = [
             ["git", "stash"],
             ["git", "pull", "--ff-only"]
@@ -66,7 +66,7 @@ class Staff(commands.Cog):
 
     @commands.command(hidden=True)
     async def load(self, ctx:Context, extension):
-        embed = discord.Embed(color=discord.Color.dark_gold())
+        embed = disnake.Embed(color=disnake.Color.dark_gold())
         self.bot.load_extension(f'cogs.{extension}')
         embed.add_field(name="Load Extension", value=f"Loaded cog: ``{extension}`` successfully")
         await ctx.send(embed=embed)
@@ -78,7 +78,7 @@ class Staff(commands.Cog):
     @commands.command(hidden=True)
     async def unload(self, ctx:Context, extension):
             self.bot.unload_extension(f'cogs.{extension}')
-            embed = discord.Embed(color=discord.Color.dark_gold())
+            embed = disnake.Embed(color=disnake.Color.dark_gold())
             embed.add_field(name="Unload Extension", value=f"Unloaded cog: ``{extension}`` successfully")
             await ctx.send(embed=embed)
 
@@ -89,14 +89,14 @@ class Staff(commands.Cog):
             for cog in tuple(self.bot.extensions):
                 if cog[5:] not in ["Misc", "Economy", "Mod"]:
                     self.bot.reload_extension(cog)
-            embed = discord.Embed(color=discord.Color.dark_gold())
+            embed = disnake.Embed(color=disnake.Color.dark_gold())
             embed.add_field(name="Reload Extension", value=f"Reloaded cogs successfully")
             print('\n\n\n\nReloaded\n--------------------------------')
             await ctx.send(embed=embed)
         else:
 
             self.bot.reload_extension(f'cogs.{extension}')
-            embed = discord.Embed(color=discord.Color.dark_gold())
+            embed = disnake.Embed(color=disnake.Color.dark_gold())
             embed.add_field(name="Reload Extension", value=f"Reloaded cog: ``{extension}`` successfully")
             await ctx.send(embed=embed)
 
@@ -167,7 +167,7 @@ class Staff(commands.Cog):
     @commands.command(hidden=True)
     async def close(self, ctx:Context):
 
-        embed = discord.Embed(title=f"Goodbye", colour=thecolor())
+        embed = disnake.Embed(title=f"Goodbye", colour=thecolor())
         await ctx.send(embed=embed)
         
         await self.bot.close()
@@ -221,7 +221,7 @@ class Staff(commands.Cog):
     async def newup(self, ctx:Context):
     
         try:
-            embed = discord.Embed(title="Version?")
+            embed = disnake.Embed(title="Version?")
             await ctx.send(embed=embed)
             ver = await self.bot.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)
             with open('./dicts/Updates.json', 'r+') as k:
@@ -242,11 +242,11 @@ class Staff(commands.Cog):
                         k.seek(0)
                         k.truncate(0)  # clear previous content
                         k.write(json.dumps(loaded1, indent=4)) # write to file
-            embed = discord.Embed(title="Bug fixes")
+            embed = disnake.Embed(title="Bug fixes")
             await ctx.send(embed=embed)
             y = str((await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30)).content).lower()
             while y not in  ["apply", "q"]:
-                embed1 = discord.Embed(title="Bug fixes")
+                embed1 = disnake.Embed(title="Bug fixes")
                 await ctx.send(embed=embed1)
 
 
@@ -266,11 +266,11 @@ class Staff(commands.Cog):
                             k.write(json.dumps(loaded1, indent=4)) # write to file
                 y = str((await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30)).content).lower()
             else:
-                embed2 = discord.Embed(title="New commands")
+                embed2 = disnake.Embed(title="New commands")
                 await ctx.send(embed=embed2)
                 z = str((await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30)).content).lower()
                 while z not in  ["apply", "q"]:
-                    embed3 = discord.Embed(title="New commands")
+                    embed3 = disnake.Embed(title="New commands")
                     await ctx.send(embed=embed3)
 
 
@@ -291,11 +291,11 @@ class Staff(commands.Cog):
                     
                     z = str((await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30)).content).lower()
                 else:
-                    embed = discord.Embed(title="Other")
+                    embed = disnake.Embed(title="Other")
                     await ctx.send(embed=embed)
                     a = str((await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30)).content).lower()
                     while a not in  ["apply", "q"]:
-                        embed3 = discord.Embed(title="Other")
+                        embed3 = disnake.Embed(title="Other")
                         await ctx.send(embed=embed3)
 
 
@@ -314,7 +314,7 @@ class Staff(commands.Cog):
                                     k.write(json.dumps(loaded1, indent=4)) # write to file
                         a = str((await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30)).content).lower()
                     else:
-                        embed4 = discord.Embed(title="Applied")
+                        embed4 = disnake.Embed(title="Applied")
                         await ctx.send(embed=embed4)
                         
                             
@@ -325,7 +325,7 @@ class Staff(commands.Cog):
                     
                 
         except asyncio.TimeoutError:
-            embed = discord.Embed(title="Time ran out, restart the ticket", colour=thecolor())
+            embed = disnake.Embed(title="Time ran out, restart the ticket", colour=thecolor())
             await ctx.send(embed=embed)
 
 
@@ -353,7 +353,7 @@ class Staff(commands.Cog):
                         k.seek(0)
                         k.truncate(0)  # clear previous content
                         k.write(json.dumps(loaded1, indent=4)) # write to file
-                        embed4 = discord.Embed(title="Applied")
+                        embed4 = disnake.Embed(title="Applied")
                         await ctx.send(embed=embed4)
         else:           
             with open('./dicts/Updates.json', 'r+') as k:
@@ -367,7 +367,7 @@ class Staff(commands.Cog):
                         k.seek(0)
                         k.truncate(0)  # clear previous content
                         k.write(json.dumps(loaded1, indent=4)) # write to file
-                        embed3 = discord.Embed(title="Applied")
+                        embed3 = disnake.Embed(title="Applied")
                         await ctx.send(embed=embed3)
 
 
@@ -459,7 +459,7 @@ class Staff(commands.Cog):
                     if file1.endswith('.json'):
                     
                         x.append(f"`{file1[:-5]}`")
-            embed = discord.Embed(title="Files", description=", ".join(x), colour=thecolor())
+            embed = disnake.Embed(title="Files", description=", ".join(x), colour=thecolor())
             await ctx.send(embed=embed)
             
                 
@@ -488,7 +488,7 @@ class Staff(commands.Cog):
                                 y.append(f"`{key}: {the_num}` │")
                         else:
                             y.append(f"`{key}`")
-                    embed = discord.Embed(description=", ".join(y))
+                    embed = disnake.Embed(description=", ".join(y))
                     await ctx.send(embed=embed)
                 
                 
@@ -499,7 +499,7 @@ class Staff(commands.Cog):
                     data = json.load(k)
                     if data1 in data:
                         if not data2:
-                            embed = discord.Embed(description=data[data1])
+                            embed = disnake.Embed(description=data[data1])
                             await ctx.send(embed=embed)
                     
                         else:
@@ -516,7 +516,7 @@ class Staff(commands.Cog):
                             
                         for key in data:
                             y.append(f"`{key}`")
-                        embed = discord.Embed(description=", ".join(y))
+                        embed = disnake.Embed(description=", ".join(y))
                         await ctx.send(embed=embed)
                         
                 
@@ -539,7 +539,7 @@ class Staff(commands.Cog):
     @commands.command(hidden=True)
     async def showcmds(self, ctx:Context):
         x = []
-        embed = discord.Embed(color=discord.Color.green())
+        embed = disnake.Embed(color=disnake.Color.green())
         for command in self.bot.commands:
             
             x.append(f"`{command.name}`")
@@ -620,7 +620,7 @@ class Staff(commands.Cog):
         await thebed(ctx, 'success', f'you have made a new backup folder called *{dirname}*')
     @commands.command(hidden=True)
     async def file(self, ctx:Context, file):
-        await ctx.send(file=discord.File(f"./dicts/{file}"))
+        await ctx.send(file=disnake.File(f"./dicts/{file}"))
     @commands.command(hidden=True)
     async def thecog(self, ctx:Context):
         for thecog in self.bot.cogs:
@@ -733,7 +733,7 @@ class Staff(commands.Cog):
             data[errornum]
         except:
             return await thebed(ctx, '', 'Out of range') 
-        m = await ctx.send(embed=discord.Embed(title='Error', description=f'''
+        m = await ctx.send(embed=disnake.Embed(title='Error', description=f'''
     **error code** : `{errornum}`
     **author** : `{data[errornum]["author"]}`
     **error** : `{data[errornum]["error"]}`

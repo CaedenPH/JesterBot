@@ -1,5 +1,5 @@
-import discord
-from discord.ext import commands
+import disnake
+from disnake.ext import commands
 from core.utils import dcutils
 import youtube_dl
 from core.utils.utils import thecolor, Json, thebed
@@ -8,7 +8,7 @@ import requests
 
 async def embed2(ctx, description):
 
-    embed = discord.Embed(description=description, color=thecolor())
+    embed = disnake.Embed(description=description, color=thecolor())
     embed.set_footer(text='Type j.help Music to get all the music commands!')
     embed.set_author(name="Music", icon_url=ctx.author.avatar.url)
     await ctx.send(embed=embed)

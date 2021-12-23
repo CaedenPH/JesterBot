@@ -1,6 +1,6 @@
 import json, asyncio, traceback
-import discord
-from discord.ext.commands import *
+import disnake
+from disnake.ext.commands import *
 
 from core.utils.utils import thecolor, thebed, Json
 from core.utils.emojis import LOCATIONemojis
@@ -19,7 +19,7 @@ async def unexpected(bot, ctx, error):
     await y.paginate(content=f"{e}", name='error')
 async def error_handler(bot, ctx, error):
     if isinstance(error, MissingPermissions):
-        embed = discord.Embed(description="You do not have permissions to do that!", colour=thecolor())
+        embed = disnake.Embed(description="You do not have permissions to do that!", colour=thecolor())
         await ctx.send(embed=embed)
     elif isinstance(error, AttributeError):
         pass
@@ -77,7 +77,7 @@ async def error_handler(bot, ctx, error):
 
             failed_cmd = ctx.message.content.split(' ')
             failed_cmd = failed_cmd[0]
-            embed = discord.Embed(title="Error!", colour=thecolor())
+            embed = disnake.Embed(title="Error!", colour=thecolor())
             embed.set_author(icon_url=ctx.author.avatar.url, name=f"{failed_cmd} is not a command!")
             
             if my_string[0] not in [""]:
@@ -104,7 +104,7 @@ async def error_handler(bot, ctx, error):
                         while str(emoji.emoji) != close:
                             if str(emoji.emoji) == right and num == 1:
                         
-                                embed = discord.Embed(title="Error!", colour=thecolor())
+                                embed = disnake.Embed(title="Error!", colour=thecolor())
                                 embed.set_author(icon_url=ctx.author.avatar.url, name=f"{failed_cmd} is not a command!")
                                 embed.add_field(name="Did you mean:", value=f"{my_string[1]}")
                                 embed.set_footer(text="Page 2")
@@ -113,7 +113,7 @@ async def error_handler(bot, ctx, error):
                                 num = 2
 
                             elif str(emoji.emoji) == left and num == 2:
-                                embed = discord.Embed(title="Error!", colour=thecolor())
+                                embed = disnake.Embed(title="Error!", colour=thecolor())
                                 embed.set_author(icon_url=ctx.author.avatar.url, name=f"{failed_cmd} is not a command!")
                                 embed.add_field(name="Did you mean:", value=f"{my_string[0]}")
                                 embed.set_footer(text="Page 1")
@@ -126,13 +126,13 @@ async def error_handler(bot, ctx, error):
 
                             emoji, user = await bot.wait_for('reaction_add', timeout=60.0, check=lambda r, u: u == ctx.author)
                         else:
-                            embed = discord.Embed(title="Error!", description="Goodbye", colour=thecolor())
+                            embed = disnake.Embed(title="Error!", description="Goodbye", colour=thecolor())
                             embed.set_author(icon_url=ctx.author.avatar.url, name=f"{failed_cmd} is not a command!")
                             embed.set_footer(text="Have fun!")
                             return await msg.edit(embed=embed)
                             
                     except asyncio.TimeoutError:
-                        embed = discord.Embed(title="Error!", description="Session timed out", colour=thecolor())
+                        embed = disnake.Embed(title="Error!", description="Session timed out", colour=thecolor())
                         embed.set_author(icon_url=ctx.author.avatar.url, name=f"{failed_cmd} is not a command!")
                         embed.set_footer()
                         return await msg.edit(embed=embed)
@@ -140,14 +140,14 @@ async def error_handler(bot, ctx, error):
         except Exception as e:
             print(e)
     elif isinstance(error, MemberNotFound):
-        embed = discord.Embed(description=f"They are not a **member!**", colour=thecolor())
+        embed = disnake.Embed(description=f"They are not a **member!**", colour=thecolor())
         await ctx.send(embed=embed)
     elif isinstance(error, RoleNotFound):
-        embed = discord.Embed(description=f"That is not a **role!**", colour=thecolor())
+        embed = disnake.Embed(description=f"That is not a **role!**", colour=thecolor())
         await ctx.send(embed=embed)
     
     elif isinstance(error, CommandOnCooldown):
-        embed = discord.Embed(description=f'This command is on cooldown for **{error.retry_after:.2f}** seconds', colour=thecolor())
+        embed = disnake.Embed(description=f'This command is on cooldown for **{error.retry_after:.2f}** seconds', colour=thecolor())
         await ctx.send(embed=embed)
     
     elif isinstance(error,CommandInvokeError):

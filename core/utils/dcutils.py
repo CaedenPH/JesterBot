@@ -3,7 +3,7 @@ import aiohttp
 import re
 try:
     import youtube_dl
-    import discord
+    import disnake
     has_voice = True
 except ImportError:
     has_voice = False
@@ -111,13 +111,13 @@ def check_queue(ctx, opts, music, after, on_play, loop):
         except IndexError:
             return
         if len(music.queue[ctx.guild.id]) > 0:
-            source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(music.queue[ctx.guild.id][0].source, **opts))
+            source = disnake.PCMVolumeTransformer(disnake.FFmpegPCMAudio(music.queue[ctx.guild.id][0].source, **opts))
             ctx.voice_client.play(source, after=lambda error: after(ctx, opts, music, after, on_play, loop))
             song = music.queue[ctx.guild.id][0]
             if on_play:
                 loop.create_task(on_play(ctx, song))
     else:
-        source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(music.queue[ctx.guild.id][0].source, **opts))
+        source = disnake.PCMVolumeTransformer(disnake.FFmpegPCMAudio(music.queue[ctx.guild.id][0].source, **opts))
         ctx.voice_client.play(source, after=lambda error: after(ctx, opts, music, after, on_play, loop))
         song = music.queue[ctx.guild.id][0]
         if on_play:
@@ -198,7 +198,7 @@ class MusicPlayer(object):
             await self.on_queue_func(self.ctx, song)
         return song
     async def play(self):
-        source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(self.music.queue[self.ctx.guild.id][0].source, **self.ffmpeg_opts))
+        source = disnake.PCMVolumeTransformer(disnake.FFmpegPCMAudio(self.music.queue[self.ctx.guild.id][0].source, **self.ffmpeg_opts))
         self.voice.play(source, after=lambda error: self.after_func(self.ctx, self.ffmpeg_opts, self.music, self.after_func, self.on_play_func, self.loop))
         song = self.music.queue[self.ctx.guild.id][0]
         if self.on_play_func:

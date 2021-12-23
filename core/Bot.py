@@ -1,5 +1,5 @@
-import discord, os, asyncio, datetime
-from discord.ext import commands, tasks
+import disnake, os, asyncio, datetime
+from disnake.ext import commands, tasks
 
 from core.utils.commands.eval import run_eval
 from core.Context import Context
@@ -8,15 +8,12 @@ from core.main.check import *
 from core.main.prefix import get_prefix
 from core.utils.HIDDEN import TOKEN
 
-from dislash import *
-
 class JesterBot(commands.Bot):
     def __init__(self):
-        
         super().__init__(
 
             command_prefix=get_prefix, 
-            intents=discord.Intents.all(),
+            intents=disnake.Intents.all(),
             case_insensitive=True,
             strip_after_prefix=True,
             owner_ids=[298043305927639041],
@@ -27,7 +24,7 @@ class JesterBot(commands.Bot):
         self.launch_time = datetime.datetime.utcnow()
         self.COGS:list = list()
         self.time_limit:int = 120
-        self.discordcolor = 0x36393F
+        self.disnakecolor = 0x36393F
         self.hiber = False
         self.data = {}
         self.add_check(self.bot_check)
@@ -40,7 +37,7 @@ class JesterBot(commands.Bot):
 
                 
 
-    async def process_commands(self, message: discord.Message) -> None:
+    async def process_commands(self, message: disnake.Message) -> None:
         ctx = await self.get_context(message, cls=Context)
         if ctx.command is None:
             return
@@ -64,11 +61,11 @@ class JesterBot(commands.Bot):
         for guild in self.guilds:
             for k in guild.members:
                 x += 1
-        await self.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="ping me for prefix // j.help"))
+        await self.change_presence(activity=disnake.Activity(type=disnake.ActivityType.listening, name="ping me for prefix // j.help"))
         await asyncio.sleep(180)
-        await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"ping me for prefix // {x} Members in {len(self.guilds)} Servers!"))
+        await self.change_presence(activity=disnake.Activity(type=disnake.ActivityType.watching, name=f"ping me for prefix // {x} Members in {len(self.guilds)} Servers!"))
         await asyncio.sleep(180)
-        await self.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name=f"ping me for prefix // {len([e for e in self.commands if not e.hidden])} commands"))
+        await self.change_presence(activity=disnake.Activity(type=disnake.ActivityType.playing, name=f"ping me for prefix // {len([e for e in self.commands if not e.hidden])} commands"))
         await asyncio.sleep(180)
     
     def run(self) -> None:
@@ -96,7 +93,6 @@ class JesterBot(commands.Bot):
         for guild1 in self.guilds:
             guild_ids.append(guild1.id)
         print(guild_ids)
-        self.slash = SlashClient(self)
 
         selected_channel = self.get_guild(830161446523371540).get_channel(830161446523371545)
         self.chan = selected_channel
@@ -108,11 +104,11 @@ class JesterBot(commands.Bot):
             print(k)
             self.owner_ids.append(k.id)
 
-    async def process_commands(self, message: discord.Message) -> None:
+    async def process_commands(self, message: disnake.Message) -> None:
         ctx = await self.get_context(message, cls=Context)
         await self.invoke(ctx)
 
-    async def on_message_edit(self, before: discord.Message, after: discord.Message) -> None:
+    async def on_message_edit(self, before: disnake.Message, after: disnake.Message) -> None:
         if before.author.bot:
             return
         if before.content == after.content:

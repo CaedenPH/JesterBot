@@ -1,5 +1,5 @@
-import discord
-from discord.ext import commands
+import disnake
+from disnake.ext import commands
 
 #import InfixParser
 import json
@@ -23,7 +23,7 @@ async def run_eval(ctx, code, **kwargs):
     _eval = kwargs.get('_eval')
 
     local_variables = {
-        "discord": discord,
+        "disnake": disnake,
         "commands": commands, 
         "bot": ctx.bot, 
         "client": ctx.bot,
