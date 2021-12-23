@@ -25,7 +25,7 @@ class HelpUtils:
             description=description,
             timestamp=ctx.message.created_at
         ).add_field(
-            name=f"{CATEGORIES} **Categories:**\n\u200b", 
+            name=f"{CATEGORIES} **Categories:**\n\u200b",   
             value='\n'.join([cogs[i] for i in range(0, len(cogs), 2)]) + "\n\u200b"
         ).add_field(
             name="\u200b\n\u200b", 
@@ -34,9 +34,8 @@ class HelpUtils:
             name=f"{LINK} **Links:**", 
             value=f"**{self.links}**", 
             inline=False
-        ).set_footer(
-            text=f"Expires in 5 minutes")
-
+        )
+        
     async def main_help(self, ctx: commands.Context) -> None:
         embed = await self.main_help_embed(ctx)
         await ctx.send(embed=embed, view=DropdownView(self.data, ctx, HelpUtils(self.bot)))

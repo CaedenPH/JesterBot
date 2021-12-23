@@ -9,6 +9,7 @@ class Dropdown(disnake.ui.Select):
         self.ctx = ctx
         self.utils = utils
 
+
         options = [
             disnake.SelectOption(
                 label="Home", 
@@ -46,7 +47,11 @@ class Dropdown(disnake.ui.Select):
             return await interaction.response.edit_message(embed=embed, view=self.view)
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
-class DropdownView(disnake.ui.View):
+class DropdownView(disnake.ui.View):    
     def __init__(self, data, ctx:commands.Context, utils):
-        super().__init__()
+        super().__init__(
+            timeout=None
+        )
         self.add_item(Dropdown(data, ctx, utils))
+
+        
