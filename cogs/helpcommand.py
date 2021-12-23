@@ -1,5 +1,6 @@
 import disnake, json
 from disnake.ext import commands
+from disnake.ext.commands import view
 
 from core.utils.utils import Cmds
 from core.utils.emojis import *
@@ -17,7 +18,7 @@ class HelpUtils:
 
     async def main_help_embed(self, ctx: commands.Context) -> disnake.Embed:
         description = f"\n```ml\n[] - Required Argument | <> - Optional Argument``````diff\n+ Use the dropbar to navigate through Categories``````diff\n+ Use {ctx.prefix}help prefix for info about the prefix```"
-        cogs = [f">  {self.bot.get_emoji(COGemojis[k])} **{k}**" for k in self.bot.cogs if k in self.data]
+        cogs = [f">  {self.bot.get_emoji(COGemojis[k])} **{k}** `({len([e for e in self.bot.get_cog(k).walk_commands() if not e.hidden])})`" for k in self.bot.cogs if k in self.data]
 
         return disnake.Embed(
             title=f"{j}{e}{s}{t}{e}{r}", 
@@ -105,7 +106,8 @@ class Help(commands.Cog):
         )
     async def help(self, ctx: Context, command=None) -> None:
         if not command:
-            return await self.utils.main_help(ctx)
+            embed = await self.utils.main_help_embed(ctx)
+            return await ctx.send(embed=embed, view=DropdownView(self.data, ctx, self.utils))
      
         cmd = self.bot.get_command(command)
         if cmd:
