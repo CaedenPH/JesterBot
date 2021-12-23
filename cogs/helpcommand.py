@@ -2,7 +2,7 @@ import disnake, json
 from disnake.ext import commands
 
 from core.utils.utils import Cmds
-from core.utils.emojis import j, s, t, e, r, COGemojis, CATEGORIES, LINK
+from core.utils.emojis import *
 from core.utils.view import DropdownView
 
 from core.Context import Context
@@ -15,7 +15,7 @@ class HelpUtils:
         with open('./dicts/Emoji.json') as k:
             self.data = json.load(k)
 
-    async def main_help_embed(self, ctx:commands.Context) -> disnake.Embed:
+    async def main_help_embed(self, ctx: commands.Context) -> disnake.Embed:
         description = f"\n```ml\n[] - Required Argument | <> - Optional Argument``````diff\n+ Use the dropbar to navigate through Categories``````diff\n+ Use {ctx.prefix}help prefix for info about the prefix```"
         cogs = [f">  {self.bot.get_emoji(COGemojis[k])} **{k}**" for k in self.bot.cogs if k in self.data]
 
@@ -36,11 +36,11 @@ class HelpUtils:
         ).set_footer(
             text=f"Expires in 5 minutes")
 
-    async def main_help(self, ctx:commands.Context) -> None:
+    async def main_help(self, ctx: commands.Context) -> None:
         embed = await self.main_help_embed(ctx)
         await ctx.send(embed=embed, view=DropdownView(self.data, ctx, HelpUtils(self.bot)))
 
-    async def specific_command(self, command:commands.Command, ctx:commands.Context) -> disnake.Embed:
+    async def specific_command(self, command: commands.Command, ctx: commands.Context) -> disnake.Embed:
         return disnake.Embed(
             ).add_field(
                 name=" ❯❯ Name", 
@@ -64,7 +64,7 @@ class HelpUtils:
             ).set_footer(
                 text="<> = needed │ [] = not needed")
 
-    async def specific_cog(self, cog:commands.Cog, ctx:commands.Context) -> disnake.Embed:
+    async def specific_cog(self, cog: commands.Cog, ctx: commands.Context) -> disnake.Embed:
         if cog.qualified_name not in self.data:
             return self.no_command(ctx)
 
@@ -82,7 +82,7 @@ class HelpUtils:
                 value="\n".join([commands[i] for i in range(1, len(commands), 2)]),
             )
 
-    async def no_command(self, ctx:commands.Context) -> disnake.Embed:
+    async def no_command(self, ctx: commands.Context) -> disnake.Embed:
         message = ctx.message.content.replace(f"{ctx.prefix}{ctx.invoked_with} ", "").strip()
         commands = [f"- `{k.name}`" for k in self.bot.commands if k.name.startswith(message[0]) and not k.hidden]
         
@@ -103,7 +103,7 @@ class Help(commands.Cog):
     @commands.command(
         aliases=['h', 'commands', 'cmd', 'command', '?', 'helpme', 'helpcommand', 'cmds']
         )
-    async def help(self, ctx:Context, command=None) -> None:
+    async def help(self, ctx: Context, command=None) -> None:
         if not command:
             return await self.utils.main_help(ctx)
      

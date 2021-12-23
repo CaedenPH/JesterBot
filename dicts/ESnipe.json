@@ -1072,6 +1072,23 @@
                 "https://github.com/caedenph/jesterbot/tree/main/cogs/Misc.py#L21",
                 "```sh\n$ git add . && git commit -m \"hi\" && git push\n\n```\nPage 1/1"
             ]
+        },
+        "878924003803287572": {
+            "author": [
+                "GitHub"
+            ],
+            "id": [
+                878976850850889738
+            ],
+            "time": [
+                "2021-12-23 21:42:55.981000+00:00"
+            ],
+            "after": [
+                ""
+            ],
+            "before": [
+                ""
+            ]
         }
     },
     "881689539192713256": {
@@ -4955,7 +4972,8 @@
                 "[j.] JesterBot",
                 "[j.] JesterBot",
                 "[j.] JesterBot",
-                "[j.] JesterBot"
+                "[j.] JesterBot",
+                "Caeden"
             ],
             "id": [
                 897896153968947210,
@@ -5168,7 +5186,8 @@
                 828363172717133874,
                 828363172717133874,
                 828363172717133874,
-                828363172717133874
+                828363172717133874,
+                298043305927639041
             ],
             "time": [
                 "2021-11-18 06:10:44.155000",
@@ -5381,7 +5400,8 @@
                 "2021-12-23 21:37:41.912000+00:00",
                 "2021-12-23 21:37:41.912000+00:00",
                 "2021-12-23 21:39:19.380000+00:00",
-                "2021-12-23 21:39:19.380000+00:00"
+                "2021-12-23 21:39:19.380000+00:00",
+                "2021-12-23 21:43:48.360000+00:00"
             ],
             "after": [
                 "https://media.tenor.com/images/e4a8f018e6d3258580602985906dfca7/tenor.gif",
@@ -5594,7 +5614,8 @@
                 "",
                 "",
                 "",
-                ""
+                "",
+                "https://github.com/CaedenPH/JesterBot/blob/main/cogs/helpcommand.py"
             ],
             "before": [
                 "https://media.tenor.com/images/e4a8f018e6d3258580602985906dfca7/tenor.gif",
@@ -5807,7 +5828,8 @@
                 "",
                 "",
                 "",
-                ""
+                "",
+                "https://github.com/CaedenPH/JesterBot/blob/main/cogs/helpcommand.py"
             ]
         },
         "852915414744694824": {
