@@ -1,8 +1,6 @@
 import disnake, os, requests, json, asyncio
 from disnake.ext import commands 
-from dislash import *
-import datetime
-import shutil, concurrent, subprocess
+import shutil
 
 from core.utils.utils import thecolor, Json, thebed
 from core.Context import Context

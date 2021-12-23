@@ -1,70 +1,20 @@
 {
-    "emojis": {
-        "Fun": {
-            "description": "Fun commands which have no purpose nor goal other than to be fun! You can even hack your friends!"
-        },
-        "Games": {
-            "description": "Play fun games with the bot or with other members, who doesnt love a game of blackjack against an ai?"
-        },
-        "Mod": {
-            "description": "A moderators dream, useful commands that no other bots offer - God in the palm of your hand"
-        },
-        "Misc": {
-            "description": "Random commands that cannot be categorized, not 'useless' commands, but like... hint is in the name"
-        },
-        "JesterInfo": {
-            "description": "Information about JesterBot, for example - do you want to see the most popular commands?"
-        },
-        "Economy": {
-            "description": "Interact with JesterBot's economy...With commands such as beg and bet you can become a rich person"
-        },
-        "Utils": {
-            "description": "Utility commands which may have a use; such as timezone - google has it but wheres the fun in that?"
-        },
-        "Images": {
-            "description": "All image commands, such as cute pictures of cats and dogs and more! Type ^help image for more info"
-        }
-        ,
-        "Config": {
-            "description": "Configure your server with jester commands such as welcome and auto-verification"
-        }
-        ,
-        "JesterJokes": {
-            "description": "Random api's such as joke, insult, etc...An api is a website or program that can give output"
-        },
-        "Love": {
-            "description": "Want to make a family? Want to test the compatability? JesterLove has all the commands!"
-        }
-        ,
-        "Music": {
-            "description": "Got a song in your head that you need to listen to? JesterBot's music category has all the musical needs"
-        },
-        "Help": {
-            "description": "Information about JesterBot, for example - do you want to see the most popular commands?"
-        },
-        "Snipe": {
-            "description": "Snipe messages or edited messages with JesterBot snipe commands!"
-        },
-        "Levels": {
-            "description": "Beat all of your friends in a race to activiness on your server, because, well, flexing rights!"
-        },
-        "Feedback": {
-            "description": "Send feedback to the developer"
-        },
-        "Cryptocurrency": {
-            "description": "Sends information about crypto stocks and stuff!"
-        }, 
-        "Countries": {
-            "description": "Get information about every country in the world!"
-        },
-        "DiscordTogether": {
-            "description": "PLay an amazing game night on a call with all your friends!"
-        },
-        "Chatbot": {
-            "description": "Are you lonely? Talk to the bot!"
-        }
-
-
-    }
-
+    "Fun": "Fun commands which have no purpose nor goal other than to be fun! You can even hack your friends!",
+    "Games": "Play fun games with the bot or with other members, who doesnt love a game of blackjack against an ai?",
+    "Mod": "A moderators dream, useful commands that no other bots offer - God in the palm of your hand",
+    "Misc": "Random commands that cannot be categorized, not 'useless' commands, but like... hint is in the name",
+    "JesterInfo": "Information about JesterBot, for example - do you want to see the most popular commands?",
+    "Economy": "Interact with JesterBot's economy...With commands such as beg and bet you can become a rich person",
+    "Utils": "Utility commands which may have a use; such as timezone - google has it but wheres the fun in that?",
+    "Images": "All image commands, such as cute pictures of cats and dogs and more! Type ^help image for more info",
+    "Config": "Configure your server with jester commands such as welcome and auto-verification",
+    "JesterJokes": "Random api's such as joke, insult, etc...An api is a website or program that can give output",
+    "Love": "Want to make a family? Want to test the compatability? JesterLove has all the commands!",
+    "Music": "Got a song in your head that you need to listen to? JesterBot's music category has all the musical needs",
+    "Snipe": "Snipe messages or edited messages with JesterBot snipe commands!",
+    "Levels": "Beat all of your friends in a race to activiness on your server, because, well, flexing rights!",
+    "Feedback": "Send feedback to the developer",
+    "Cryptocurrency": "Sends information about crypto stocks and stuff!",
+    "Countries": "Get information about every country in the world!",
+    "DiscordTogether": "PLay an amazing game night on a call with all your friends!"
 }

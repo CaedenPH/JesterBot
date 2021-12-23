@@ -152,10 +152,8 @@ async def error_handler(bot, ctx, error):
     
     elif isinstance(error,CommandInvokeError):
         if error.args[0] == 'Command raised an exception: Forbidden: 403 Forbidden (error code: 50013): Missing Permissions':
-
             await ctx.em('You unfortunately did not invite my bot with enough permissions for me to complete this action!')
         else:
             await unexpected(bot, ctx, error)
-        
     else:
         await unexpected(bot, ctx, error)

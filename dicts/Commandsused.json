@@ -27,7 +27,7 @@
         "score": 104
     },
     "help": {
-        "score": 2086
+        "score": 2147
     },
     "jsonfile": {
         "score": 19
@@ -363,7 +363,7 @@
         "score": 1
     },
     "reload": {
-        "score": 4267
+        "score": 4306
     },
     "pp": {
         "score": 142
@@ -549,7 +549,7 @@
         "score": 2
     },
     "mindchange": {
-        "score": 18
+        "score": 19
     },
     "t": {
         "score": 13
@@ -609,7 +609,7 @@
         "score": 13
     },
     "config": {
-        "score": 18
+        "score": 19
     },
     "factchannel": {
         "score": 7
@@ -1086,7 +1086,7 @@
         "score": 3
     },
     "checkers": {
-        "score": 2
+        "score": 4
     },
     "code_snippet": {
         "score": 10

@@ -2114,7 +2114,11 @@
                 "{'footer': {'text': '13:21 \u2022 Page: 0 / 0'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/8hRn46ZdIin2p9sfXYUMpRoZUMN1fxo6aI4HMwjlEYk/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/801924961727414313/fd51d78bb6d37c4332e244bb50c55b64.png', 'name': 'error', 'icon_url': 'https://cdn.discordapp.com/avatars/801924961727414313/fd51d78bb6d37c4332e244bb50c55b64.png?size=1024'}, 'color': 3553599, 'type': 'rich', 'description': '```yaml\\nTraceback (most recent call last):\\n  File \"C:\\\\Users\\\\caede\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\core.py\", line 176, in wrapped\\n    ret = await coro(*args, **kwargs)\\n  File \"c:\\\\Users\\\\caede\\\\Desktop\\\\JesterBot\\\\cogs\\\\Utils.py\", line 197, in calculator\\n    msg = await ctx.send(embed=embed, components=[k for k in but(\\'comp\\')])\\n  File \"c:\\\\Users\\\\caede\\\\Desktop\\\\JesterBot\\\\core\\\\Context.py\", line 61, in send\\n    msg = await super().send(content, **kwargs)\\nTypeError: send() got an unexpected keyword argument \\'components\\'\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \"C:\\\\Users\\\\caede\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\bot_base.py\", line 561, in invoke\\n    await ctx.command.invoke(ctx)\\n  File \"C:\\\\Users\\\\caede\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\core.py\", line 930, in invoke\\n    await injected(*ctx.args, **ctx.kwargs)\\n  File \"C:\\\\Users\\\\caede\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\core.py\", line 185, in wrapped\\n    raise CommandInvokeError(exc) from exc\\ndisnake.ext.commands.errors.CommandInvokeError: Command raised an exception: TypeError: send() got an unexpected keyword argument \\'components\\'\\n```'}",
                 "https://discord.gg/EBJ8uGnzuB",
                 "https://discord.gg/E45VABpufJ",
-                "its exactly same.. @Caeden..."
+                "its exactly same.. @Caeden...",
+                "fucking awesome",
+                "shit",
+                "fuck",
+                "{'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/dwGZFNemTzg_C9P2GKYsA30TJSPxQrFJb0a4pfOSj7M/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/494927280091561984/a0150f358d8ed49c190658804bc28cc9.png', 'name': 'j.checkers is not a command!', 'icon_url': 'https://cdn.discordapp.com/avatars/494927280091561984/a0150f358d8ed49c190658804bc28cc9.png?size=1024'}, 'fields': [{'value': '- `country` \\n - `check` \\n - `credits` \\n - `channel` \\n - `color` \\n - `config`', 'name': 'Did you mean:', 'inline': True}], 'color': 3553599, 'type': 'rich', 'title': 'Error!'}"
             ],
             "author": [
                 "Assistant",
@@ -2151,7 +2155,11 @@
                 "[j.] JesterBot",
                 "JAK Discord Bot",
                 "JAK Discord Bot",
-                "xxJonakAdiptaxx"
+                "xxJonakAdiptaxx",
+                "Caeden",
+                "Caeden",
+                "Caeden",
+                "[j.] JesterBot"
             ],
             "id": [
                 821445736322695179,
@@ -2188,7 +2196,11 @@
                 828363172717133874,
                 756402881913028689,
                 756402881913028689,
-                707207079936524330
+                707207079936524330,
+                298043305927639041,
+                298043305927639041,
+                298043305927639041,
+                828363172717133874
             ],
             "time": [
                 "2021-11-18 11:49:55.975000",
@@ -2225,7 +2237,11 @@
                 "2021-12-23 13:21:48.511000+00:00",
                 "2021-12-23 13:30:17.630000+00:00",
                 "2021-12-23 13:31:05.652000+00:00",
-                "2021-12-23 14:01:29.979000+00:00"
+                "2021-12-23 14:01:29.979000+00:00",
+                "2021-12-23 20:45:13.521000+00:00",
+                "2021-12-23 20:45:16.600000+00:00",
+                "2021-12-23 20:45:19.760000+00:00",
+                "2021-12-23 20:55:38.114000+00:00"
             ]
         },
         "871145725956878356": {
@@ -4122,6 +4138,144 @@
                 "2021-12-23 14:08:00.779000+00:00",
                 "2021-12-23 14:08:40.242000+00:00",
                 "2021-12-23 14:11:09.007000+00:00"
+            ]
+        },
+        "923664171894206524": {
+            "list": [
+                "Hello",
+                "Rule `1. rule` was registered!",
+                "Hello",
+                "Rule `Hello` was registered!",
+                "How are you?",
+                "Rule `How are you?` was registered!",
+                "end",
+                "Your Rules embed was sent in #general"
+            ],
+            "author": [
+                "FireTheFox",
+                "FoxManager",
+                "FireTheFox",
+                "FoxManager",
+                "FireTheFox",
+                "FoxManager",
+                "FireTheFox",
+                "FoxManager"
+            ],
+            "id": [
+                795401550875983904,
+                922872945599205376,
+                795401550875983904,
+                922872945599205376,
+                795401550875983904,
+                922872945599205376,
+                795401550875983904,
+                922872945599205376
+            ],
+            "time": [
+                "2021-12-23 20:09:40.020000+00:00",
+                "2021-12-23 20:09:40.424000+00:00",
+                "2021-12-23 20:10:15.707000+00:00",
+                "2021-12-23 20:10:16.258000+00:00",
+                "2021-12-23 20:10:23.976000+00:00",
+                "2021-12-23 20:10:24.599000+00:00",
+                "2021-12-23 20:10:28.311000+00:00",
+                "2021-12-23 20:10:31.337000+00:00"
+            ]
+        },
+        "877981387532169310": {
+            "list": [
+                "{'footer': {'text': 'Server rules', 'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/pf_c6anGp9ME0ME3iKWbY5c1ZDHIy9rrU1OwMkHPOXU/https/cdn.discordapp.com/avatars/795401550875983904/fedc2d816bb461f6013b8b11fa9fda9f.webp', 'icon_url': 'https://cdn.discordapp.com/avatars/795401550875983904/fedc2d816bb461f6013b8b11fa9fda9f.webp'}, 'thumbnail': {'width': 128, 'url': 'https://cdn.discordapp.com/icons/877981387532169307/33ee5ced91ea1d50678a230ada6895db.webp', 'proxy_url': 'https://images-ext-1.discordapp.net/external/ruTvxpKOCgX3cQFhD--YbCYPfKBKlsAhvq3VnqT3JWA/https/cdn.discordapp.com/icons/877981387532169307/33ee5ced91ea1d50678a230ada6895db.webp', 'height': 128}, 'fields': [{'value': 'Hello', 'name': '1. rule', 'inline': False}, {'value': 'How are you?', 'name': '2. rule', 'inline': False}], 'color': 16777215, 'timestamp': '2021-12-23T20:11:02.680000+00:00', 'type': 'rich', 'description': 'Server rules', 'title': 'Rules'}",
+                "Hello",
+                "Rule `Hello` was registered!",
+                "Your Rules embed was sent in #general",
+                "{'footer': {'text': 'Server rules', 'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/pf_c6anGp9ME0ME3iKWbY5c1ZDHIy9rrU1OwMkHPOXU/https/cdn.discordapp.com/avatars/795401550875983904/fedc2d816bb461f6013b8b11fa9fda9f.webp', 'icon_url': 'https://cdn.discordapp.com/avatars/795401550875983904/fedc2d816bb461f6013b8b11fa9fda9f.webp'}, 'thumbnail': {'width': 128, 'url': 'https://cdn.discordapp.com/icons/877981387532169307/33ee5ced91ea1d50678a230ada6895db.webp', 'proxy_url': 'https://images-ext-1.discordapp.net/external/ruTvxpKOCgX3cQFhD--YbCYPfKBKlsAhvq3VnqT3JWA/https/cdn.discordapp.com/icons/877981387532169307/33ee5ced91ea1d50678a230ada6895db.webp', 'height': 128}, 'fields': [{'value': 'Hello', 'name': '1. rule', 'inline': False}], 'color': 16777215, 'timestamp': '2021-12-23T20:41:09.241000+00:00', 'type': 'rich', 'description': 'Server rules', 'title': 'Rules'}",
+                "Something went wrong",
+                "Something went wrong",
+                "Hello again FireTheFox!",
+                "Hello FireTheFox!",
+                "f!setrules",
+                "f!setrules #final",
+                "{'footer': {'text': 'Server rules', 'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/pf_c6anGp9ME0ME3iKWbY5c1ZDHIy9rrU1OwMkHPOXU/https/cdn.discordapp.com/avatars/795401550875983904/fedc2d816bb461f6013b8b11fa9fda9f.webp', 'icon_url': 'https://cdn.discordapp.com/avatars/795401550875983904/fedc2d816bb461f6013b8b11fa9fda9f.webp'}, 'thumbnail': {'width': 128, 'url': 'https://cdn.discordapp.com/icons/877981387532169307/33ee5ced91ea1d50678a230ada6895db.webp', 'proxy_url': 'https://images-ext-1.discordapp.net/external/ruTvxpKOCgX3cQFhD--YbCYPfKBKlsAhvq3VnqT3JWA/https/cdn.discordapp.com/icons/877981387532169307/33ee5ced91ea1d50678a230ada6895db.webp', 'height': 128}, 'fields': [{'value': 'Ahoj', 'name': '1. rule', 'inline': False}, {'value': 'moja', 'name': '2. rule', 'inline': False}, {'value': 'laska', 'name': '3. rule', 'inline': False}], 'color': 16777215, 'timestamp': '2021-12-23T20:41:43.217000+00:00', 'type': 'rich', 'description': 'Server rules', 'title': 'Rules'}"
+            ],
+            "author": [
+                "FoxManager",
+                "FireTheFox",
+                "Fox's servers manager",
+                "Fox's servers manager",
+                "Fox's servers manager",
+                "Fox's servers manager",
+                "Fox's servers manager",
+                "Fox's servers manager",
+                "Fox's servers manager",
+                "FireTheFox",
+                "FireTheFox",
+                "Fox's servers manager"
+            ],
+            "id": [
+                922872945599205376,
+                795401550875983904,
+                922872945599205376,
+                922872945599205376,
+                922872945599205376,
+                922872945599205376,
+                922872945599205376,
+                922872945599205376,
+                922872945599205376,
+                795401550875983904,
+                795401550875983904,
+                922872945599205376
+            ],
+            "time": [
+                "2021-12-23 20:10:31.044000+00:00",
+                "2021-12-23 20:40:20.035000+00:00",
+                "2021-12-23 20:40:20.404000+00:00",
+                "2021-12-23 20:40:27.320000+00:00",
+                "2021-12-23 20:40:27.036000+00:00",
+                "2021-12-23 20:38:00.199000+00:00",
+                "2021-12-23 20:37:41.663000+00:00",
+                "2021-12-23 20:37:32.960000+00:00",
+                "2021-12-23 20:37:30.494000+00:00",
+                "2021-12-23 20:37:41.149000+00:00",
+                "2021-12-23 20:37:59.880000+00:00",
+                "2021-12-23 20:41:06.279000+00:00"
+            ]
+        },
+        "923664311128309760": {
+            "list": [
+                "Ahoj",
+                "moja",
+                "laska",
+                "Rule `Ahoj` was registered!",
+                "Rule `moja` was registered!",
+                "Rule `laska` was registered!",
+                "Your Rules embed was sent in #general"
+            ],
+            "author": [
+                "FireTheFox",
+                "FireTheFox",
+                "FireTheFox",
+                "Fox's servers manager",
+                "Fox's servers manager",
+                "Fox's servers manager",
+                "Fox's servers manager"
+            ],
+            "id": [
+                795401550875983904,
+                795401550875983904,
+                795401550875983904,
+                922872945599205376,
+                922872945599205376,
+                922872945599205376,
+                922872945599205376
+            ],
+            "time": [
+                "2021-12-23 20:40:54.290000+00:00",
+                "2021-12-23 20:40:55.099000+00:00",
+                "2021-12-23 20:40:56.915000+00:00",
+                "2021-12-23 20:40:54.762000+00:00",
+                "2021-12-23 20:40:55.591000+00:00",
+                "2021-12-23 20:40:57.430000+00:00",
+                "2021-12-23 20:41:06.476000+00:00"
             ]
         }
     }
