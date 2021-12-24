@@ -18,12 +18,58 @@ class Misc(commands.Cog):
     def __init__(self, bot):
         self.bot = bot 
 
+    @commands.command(aliases=["channel_stats", "channel_health", "channel_info", "channel_information"])
+    async def channel_status(self, ctx, channel: disnake.TextChannel = None):
+        if not channel:
+            channel = ctx.channel
+
+        guild = ctx.guild
+
+        embed = disnake.Embed(
+            description=""
+        )
+        embed.set_author(
+            name="Channel Health:",
+            icon_url=ctx.author.avatar.url
+            )
+
+        msg = await ctx.em("Processing... this may take a while.")
+        async with ctx.channel.typing():
+            count = 0
+            async for message in channel.history(limit=500000, after=datetime.datetime.today() - datetime.timedelta(days=100)): count += 1
+
+            if count >= 5000:
+                average = "OVER 5000!"
+                healthiness = "VERY HEALTHY"
+
+            else:
+                try:
+                    average = round(count / 100, 2)
+
+                    if 0 > guild.member_count / average: healthiness = "VERY HEALTHY"
+                    elif guild.member_count / average <= 5: healthiness = "HEALTHY"
+                    elif guild.member_count / average <= 10: healthiness = "NORMAL"
+                    elif guild.member_count / average <= 20: healthiness = "UNHEALTHY"
+                    else: healthiness = "VERY UNHEALTHY"
+
+                except ZeroDivisionError:
+                    average = 0
+                    healthiness = "VERY UNHEALTHY"
+
+            embed.description += f"**# of members in guild**: `{guild.member_count}`\n"
+            embed.description += f'**# of messages per day on average in {channel}**: `{average}`\n'
+            embed.description += f"**Channel health**: `{healthiness}`\n"
+            await msg.delete()  
+            await ctx.send(embed=embed)
+            
     @commands.command()
-    async def src(self, ctx, command): 
+    async def src(self, ctx, command=None): 
+        if not command:
+            await ctx.send("https://github.com/caedenph/jesterbot")
         cmd = self.bot.get_command(command)
         if cmd:
-            await ctx.send(f"https://github.com/caedenph/jesterbot/tree/main/cogs/{cmd.cog.qualified_name}.py#L{inspect.getsourcelines(inspect.unwrap(cmd.callback).__code__)[1]}")
-
+            return await ctx.send(f"https://github.com/caedenph/jesterbot/tree/main/cogs/{cmd.cog.qualified_name}.py#L{inspect.getsourcelines(inspect.unwrap(cmd.callback).__code__)[1]}")
+        await ctx.em("No such command!")
     @commands.command()
     async def invited(self, ctx:Context, user:disnake.Member=None):
         if not user:
@@ -56,7 +102,7 @@ class Misc(commands.Cog):
         
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['Channel_info', 'InfoChannel'])
+    @commands.command()
     async def channel(self, ctx:Context):
 
         channelname = ctx.channel.name
