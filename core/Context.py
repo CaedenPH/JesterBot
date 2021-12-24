@@ -90,7 +90,6 @@ class Context(commands.Context):
         return msg
 
     async def confirm(self, content: any = None, **kwargs):
-        
         components=Components()
         msg = await super().send(content, **kwargs, components=components)
 

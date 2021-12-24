@@ -1,6 +1,5 @@
 import disnake, json
 from disnake.ext import commands
-from disnake.ext.commands import view
 
 from core.utils.utils import Cmds
 from core.utils.emojis import *

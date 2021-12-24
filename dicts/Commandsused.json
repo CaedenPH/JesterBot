@@ -90,7 +90,7 @@
         "score": 3
     },
     "calculator": {
-        "score": 212
+        "score": 276
     },
     "calc*": {
         "score": 1
@@ -363,7 +363,7 @@
         "score": 1
     },
     "reload": {
-        "score": 4311
+        "score": 4371
     },
     "pp": {
         "score": 142
@@ -1023,7 +1023,7 @@
         "score": 11
     },
     "flip": {
-        "score": 17
+        "score": 18
     },
     "sharp": {
         "score": 6
@@ -1090,5 +1090,8 @@
     },
     "code_snippet": {
         "score": 10
+    },
+    "timeout": {
+        "score": 4
     }
 }

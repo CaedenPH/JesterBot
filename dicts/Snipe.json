@@ -915,6 +915,20 @@
             "time": [
                 "2021-12-23 13:49:16.892000+00:00"
             ]
+        },
+        "829310163353600020": {
+            "list": [
+                "why does my krybaord sound so good right now"
+            ],
+            "author": [
+                "Free_strider"
+            ],
+            "id": [
+                484896608505430017
+            ],
+            "time": [
+                "2021-12-24 04:27:48.277000+00:00"
+            ]
         }
     },
     "794684213697052712": {
@@ -2121,7 +2135,9 @@
                 "{'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/dwGZFNemTzg_C9P2GKYsA30TJSPxQrFJb0a4pfOSj7M/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/494927280091561984/a0150f358d8ed49c190658804bc28cc9.png', 'name': 'j.checkers is not a command!', 'icon_url': 'https://cdn.discordapp.com/avatars/494927280091561984/a0150f358d8ed49c190658804bc28cc9.png?size=1024'}, 'fields': [{'value': '- `country` \\n - `check` \\n - `credits` \\n - `channel` \\n - `color` \\n - `config`', 'name': 'Did you mean:', 'inline': True}], 'color': 3553599, 'type': 'rich', 'title': 'Error!'}",
                 "j.",
                 "{'footer': {'text': '22:01 \u2022 Expires in 5 minutes'}, 'fields': [{'value': '> <:Utils:863075611161788478> \\u200b **Utils**\\n> <:Config:863075611169259550> \\u200b **Config**\\n> <:Misc:863075610979729409> \\u200b **Misc**\\n> <:Feedback:863075610851147777> \\u200b **Feedback**\\n> <:cryptocurrency:872473402764570624> \\u200b **Cryptocurrency**\\n> <:Economy:863075610913800233> \\u200b **Economy**\\n> <:Love:863075611374125056> \\u200b **Love**\\n> <:Games:863075611329167380> \\u200b **Games**\\n> <:Mod:863075610784301068> \\u200b **Mod**\\n\\u200b', 'name': '<:menus:870781340746932225> **Categories:**\\n\\u200b', 'inline': True}, {'value': '> <:Images:863075611277656124>  \\u200b **Images**\\n> <:Snipe:863075611269791794>  \\u200b **Snipe**\\n> <:game_night:872473402840076288>  \\u200b **DiscordTogether**\\n> <:Jesterinfo:863075610048987166>  \\u200b **JesterInfo**\\n> <:JesterJokes:873327129016811528>  \\u200b **JesterJokes**\\n> <:Music:863075611320647719>  \\u200b **Music**\\n> <:Fun:863075609781075968>  \\u200b **Fun**\\n> <:Levels:863075611182628895>  \\u200b **Levels**\\n> <:the_world:872473402638762025>  \\u200b **Countries**', 'name': '\\u200b\\n\\u200b', 'inline': True}, {'value': '**> [Official server](https://discord.gg/2654CuU3ZU) \u2502 [Bot invite](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) \u2502 [Website](https://sites.google.com/view/jesterbot) \u2502 [Vote for me!](https://top.gg/bot/828363172717133874/vote)**', 'name': '<:links:870781340700782612> **Links:**', 'inline': False}], 'color': 3553599, 'type': 'rich', 'description': '```ml\\n[] - Required Argument | <> - Optional Argument``````diff\\n+ Use the dropbar to navigate through Categories``````diff\\n+ Use j.help prefix for info about the prefix```', 'title': '<:J_:863313855286607932><:E_:863313854150606848><:S:863313855061164062><:T:863313855399329812><:E_:863313854150606848><:R_:863313855119360022>'}",
-                "j.h"
+                "j.h",
+                "https://discord.gg/49YnFbvP",
+                "probably 3 steps:\n- `pip uninstall discord.py nextcord dislash.py`"
             ],
             "author": [
                 "Assistant",
@@ -2165,6 +2181,8 @@
                 "[j.] JesterBot",
                 "Caeden",
                 "[j.] JesterBot",
+                "Caeden",
+                "Caeden",
                 "Caeden"
             ],
             "id": [
@@ -2209,6 +2227,8 @@
                 828363172717133874,
                 298043305927639041,
                 828363172717133874,
+                298043305927639041,
+                298043305927639041,
                 298043305927639041
             ],
             "time": [
@@ -2253,7 +2273,9 @@
                 "2021-12-23 20:55:38.114000+00:00",
                 "2021-12-23 22:01:36.531000+00:00",
                 "2021-12-23 22:01:37.766000+00:00",
-                "2021-12-23 22:01:37.462000+00:00"
+                "2021-12-23 22:01:37.462000+00:00",
+                "2021-12-24 05:34:15.851000+00:00",
+                "2021-12-24 05:46:23.312000+00:00"
             ]
         },
         "871145725956878356": {
@@ -3444,7 +3466,8 @@
                 "Welcome back @MUSHROOM RAT, I removed your AFK",
                 "to what?",
                 "<:angry:922854050549084221> ILL FUCK FO-",
-                "0g"
+                "0g",
+                "Welcome back @Teacher Lady, I removed your AFK"
             ],
             "author": [
                 "stealthninja",
@@ -3463,7 +3486,8 @@
                 "Dyno",
                 "FireTheFox",
                 "\u041c\u00c2RZ|3",
-                "ASG"
+                "ASG",
+                "Dyno"
             ],
             "id": [
                 521226389559443461,
@@ -3482,7 +3506,8 @@
                 155149108183695360,
                 795401550875983904,
                 909379604081426463,
-                497311451531182080
+                497311451531182080,
+                155149108183695360
             ],
             "time": [
                 "2021-11-23 13:42:48.813000",
@@ -3501,7 +3526,8 @@
                 "2021-12-21 04:20:41.184000",
                 "2021-12-23 10:05:26.628000+00:00",
                 "2021-12-23 11:38:01.351000+00:00",
-                "2021-12-23 12:16:47.838000+00:00"
+                "2021-12-23 12:16:47.838000+00:00",
+                "2021-12-24 05:46:28.407000+00:00"
             ]
         },
         "907552229559504916": {

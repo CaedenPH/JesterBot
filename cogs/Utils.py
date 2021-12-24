@@ -1,10 +1,10 @@
-from disnake.ext.commands import context
+from disnake.utils import _get_description
 from core.utils.emojis import CLOSE
-import disnake, os, requests, json, asyncio
+import disnake, requests
 from disnake.ext import commands 
 
 from pyMorseTranslator import translator
-import pytz
+import pytz, typing
 from datetime import datetime
 
 from core.utils.utils import thecolor, Json, thebed
@@ -12,135 +12,325 @@ from core.utils.commands.eval import run_eval
 from core.Paginator import Paginator
 from core.Context import Context
 
-from dislash import *
 import simpleeval
-import yfinance as yf
 import re
 from typing import Tuple
 import unicodedata
-import numpy as np
 
 import wikipedia
 import googletrans
 
 
 
-sub = { 
-                '0': '⁰',
-                '1': '¹',
-                '2': '²',
-                '3': '³',
-                '4': '⁴',
-                '5': '⁵',
-                '6': '⁶',
-                '7': '⁷',
-                '8': '⁸',
-                '9': '⁹',
-                '-': '⁻'
-            }
-calc = {}
-
-def but(mode):
-    style = ButtonStyle.grey
-    style1 = ButtonStyle.green
-    style2 = ButtonStyle.blurple
-    
-    row_1 = ActionRow()
-    
-    
-    if mode != 'alg':
-        row_2 = ActionRow()
-        row_3 = ActionRow()
-        if mode != 'sci':
-            
-            row_4 = ActionRow()
-            row_5 = ActionRow()
-    
-
-    if mode == 'comp':
-        for i in range(1, 10):
-            if i <= 3:
-                row_1.add_button(label=str(i), custom_id=str(i), style=style)
-            elif i >= 3 and i <= 6:
-                row_2.add_button(label=str(i), custom_id=str(i), style=style)
-            else:
-                row_3.add_button(label=str(i), custom_id=str(i), style=style)
-        row_4.add_button(label="0", custom_id="0", style=style)
-        row_4.add_button(label=".", custom_id=".", style=style)
-        row_4.add_button(label="=", custom_id="=", style=style)
-
-        row_1.add_button(label="* ", custom_id="*", style=style1)
-        row_2.add_button(label="-", custom_id="-", style=style1)
-        row_3.add_button(label="+", custom_id="+", style=style1)
-        row_2.add_button(label="²", custom_id="²", style=style1)
-        row_4.add_button(label="/", custom_id="/", style=style1)
-        
-        row_1.add_button(label="√", custom_id="√", style=style1)
-    
-    i = 0
-
-    if mode == 'alg':
-        style = ButtonStyle.green
-        for e in ['x', 'y', 'z', ' --> ', ',']:
-            
-            row_1.add_button(label=str(e), custom_id=str(e), style=style)
-            
-           
-
-            i += 1
-        
-    elif mode == 'sci':
-        style = ButtonStyle.blurple
-        i = 0
-        for e in ['sin', 'cos', 'tan', 'sin⁻¹', 'cos', 'tan⁻¹', 'xⁿ', 'ₓ√ⁿ', 'π', '%', 'log', '!']:
-            if i < 4:
-                row_1.add_button(label=str(e), custom_id=str(e), style=style)
-            elif i >= 4 and i <= 7:
-                row_2.add_button(label=str(e), custom_id=str(e), style=style)
-            else:
-                row_3.add_button(label=str(e), custom_id=str(e), style=style)
-    
-            i += 1
-        
-        
-
-       
-    else:
-
-        row_3.add_button(label="⌫", custom_id="Back", style=ButtonStyle.red)
-        row_4.add_button(label="Clear", custom_id="Clear", style=ButtonStyle.red)
-        
-
-        row_5.add_button(label="(", custom_id="(", style=style2)
-        row_5.add_button(label=")", custom_id=")", style=style2)
-        
-        row_5.add_button(label="Alg", custom_id="Alg", style=ButtonStyle.red)
-        row_5.add_button(label="Sci", custom_id="Sci", style=ButtonStyle.red)
-        row_5.add_button(label="Exit", custom_id="Exit", style=ButtonStyle.red)
-    if mode == 'alg':
-
-        return row_1
-    elif mode == 'sci':
-        return row_1, row_2, row_3
-    return row_1, row_2, row_3, row_4, row_5
-
-
-
-
+sup = { 
+        '0': '⁰',
+        '1': '¹',
+        '2': '²',
+        '3': '³',
+        '4': '⁴',
+        '5': '⁵',
+        '6': '⁶',
+        '7': '⁷',
+        '8': '⁸',
+        '9': '⁹',
+        '-': '⁻'
+     }
+norm = { 
+        '⁰': '0',
+        '¹': '1',
+        '²': '2',
+        '³': '3',
+        '⁴': '4',
+        '⁵': '5',
+        '⁶': '6',
+        '⁷': '7',
+        '⁸': '8',
+        '⁹': '9',
+     }
+operations = [
+    '/', '*', '+', '-'
+    ]   
 
 encoder = translator.Encoder()
 decoder = translator.Decoder()
 
+class buttons(disnake.ui.View):
+    def __init__(self, embed: disnake.Embed, ctx: commands.Context):
+        super().__init__()
+
+        self.embed = embed
+        self.ctx = ctx
+
+    async def interaction_check(self, interaction: disnake.MessageInteraction) -> bool:
+        if interaction.author == self.ctx.author:
+            return True
+
+        await interaction.response.send_message("This is not your calculator!", ephemeral=True)
+        return False
+
+    def get_description(self) -> str:
+        return self.embed.description[8:-3]
+
+    def edit_embed(self, label) -> str:
+        content = self.get_description()
+        if content == '0':
+            return f"```yaml\n{label}```"
+
+        if "Out" in content:
+            return f"```yaml\n{label}```"
+        if content[-1] == 'ˣ':
+            return f"```yaml\n{content[:-1]}{sup[label]}```"
+        if content[-1] in norm:
+            return f"```yaml\n{content}{sup[label]}```"
+        return f"```yaml\n{content}{label}```"
+
+    @disnake.ui.button(label="1", style=disnake.ButtonStyle.grey, row=0)
+    async def first_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(button.label)
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="2", style=disnake.ButtonStyle.grey, row=0)
+    async def second_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(button.label)
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="3", style=disnake.ButtonStyle.grey, row=0)
+    async def third_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(button.label)
+        await interaction.response.edit_message(embed=self.embed)
+        
+    @disnake.ui.button(label="*", style=disnake.ButtonStyle.green, row=0)
+    async def fourth_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        
+        self.embed.description = self.edit_embed(" * ")
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="√", style=disnake.ButtonStyle.green, row=0)
+    async def fifth_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(button.label)
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="4", style=disnake.ButtonStyle.grey, row=1)
+    async def row_two_first_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(button.label)
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="5", style=disnake.ButtonStyle.grey, row=1)
+    async def row_two_second_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(button.label)
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="6", style=disnake.ButtonStyle.grey, row=1)
+    async def row_two_third_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(button.label)
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="-", style=disnake.ButtonStyle.green, row=1)
+    async def row_two_fourth_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(" - ")
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="ˣ", style=disnake.ButtonStyle.green, row=1)
+    async def row_two_fifth_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(button.label)
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="7", style=disnake.ButtonStyle.grey, row=2)
+    async def row_three_first_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(button.label)
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="8", style=disnake.ButtonStyle.grey, row=2)
+    async def row_three_second_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(button.label)
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="9", style=disnake.ButtonStyle.grey, row=2)
+    async def row_three_third_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(button.label)
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="+", style=disnake.ButtonStyle.green, row=2)
+    async def row_three_fourth_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(" + ")
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="⌫", style=disnake.ButtonStyle.red, row=2)
+    async def row_three_fifth_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        content = self.get_description()
+        display = f"```yaml\n{self.get_description()[:-1] if self.get_description() != '0' else '0'}```"
+
+        if content[-1] == ' ' and content[-2] in operations:
+            print('.')
+            display = f"```yaml\n{content[:-3]}```"
+
+        self.embed.description = display
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label=".", style=disnake.ButtonStyle.grey, row=3)
+    async def row_four_first_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(button.label)
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="0", style=disnake.ButtonStyle.grey, row=3)
+    async def row_four_second_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(button.label)
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="=", style=disnake.ButtonStyle.grey, row=3)
+    async def row_four_third_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        display = self.get_description()
+        equation = ''.join([k if k not in norm else f"**{norm[k]}" for k in display])
+        pattern = re.compile("^√(\d+)")
+        equation = pattern.sub("\\1 ** 0.5 ", equation)
+
+        try:
+            result = simpleeval.simple_eval(equation)
+        except Exception as e:
+            print(e)
+            result = "Error! Something went wrong"
+
+        self.embed.description = f"```yaml\nIn ❯❯ {display} \nOut ❯❯ {result}```"
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="/", style=disnake.ButtonStyle.green, row=3)
+    async def row_four_fourth_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(" / ")
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="Clear", style=disnake.ButtonStyle.red, row=3)
+    async def row_four_fifth_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = "```yaml\n0```"
+        await interaction.response.edit_message(embed=self.embed)
+    
+    @disnake.ui.button(label="(", style=disnake.ButtonStyle.blurple, row=4)
+    async def row_five_first_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(button.label)
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label=")", style=disnake.ButtonStyle.blurple, row=4)
+    async def row_five_second_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(button.label)
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="Space", style=disnake.ButtonStyle.red, row=4)
+    async def row_five_third_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        self.embed.description = self.edit_embed(" ")
+        await interaction.response.edit_message(embed=self.embed)
+
+    @disnake.ui.button(label="Sci", style=disnake.ButtonStyle.red, row=4)
+    async def row_five_fourth_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        await interaction.response.send_message("Soon to come...", ephemeral=True)
+
+    @disnake.ui.button(label="Exit", style=disnake.ButtonStyle.red, row=4)
+    async def row_five_fifth_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        await interaction.response.edit_message()
+        self.stop()
+    
 
 class Utils(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @commands.command(aliases=['calc'])
+    async def calculator(self, ctx :Context):
+        embed = disnake.Embed(
+            description="```yaml\n0```"
+        ).set_author(
+            name="Calculator",
+            icon_url=ctx.author.avatar.url,
+        ).set_footer(
+            text="To interact with your virtual calculator, click the shown buttons."
+        )
+
+        await ctx.send(embed=embed, view=buttons(embed, ctx))
+    
+
+    @commands.command()
+    async def qr(self, ctx:Context, *, text):
+        m = await ctx.send("**Creating...**")
+        async with ctx.typing():
+            response = requests.get(f'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={text}')   
+        
+        await thebed(ctx, f'Qr code for {text}', i=response.url)
+        await m.delete()
+
+    @commands.command(hidden=True)
+    async def hibernate(self, ctx:Context):
+        await ctx.send(':thumbsup:')
+        self.bot.hiber = True
+    @commands.command(hidden=True)
+    async def hiber(self, ctx:Context):
+        await ctx.send(':thumbsup:')
+        self.bot.hiber = False
+
+    @commands.command(
+        
+        )
+    async def math(self, ctx:Context, *, math=None):
+        if not math:
+            return await thebed(ctx, '', "**The current list of available eval operations**", i="https://cdn.disnakeapp.com/attachments/836812307971571762/846334605669826600/unknown.png")
+       
+        result = simpleeval.simple_eval(math)
+        embed = disnake.Embed(color=thecolor())
+        embed.set_footer(text=str(ctx.author) + " | Evaluation", icon_url=ctx.author.avatar.url)
+        embed.add_field(name="Your expression: ", value=f'```yaml\n"{math}"\n```', inline=False)
+        embed.add_field(name="Result: ", value=f"```\n{result}\n```")
+        await ctx.send(embed=embed)
+
     @commands.command(aliases=['wiki'])
     async def wikipedia(self, ctx, *, query):
         await ctx.em(wikipedia.summary(query))
-
-
 
     @commands.command(aliases=['trans', 'lang'])
     async def translate(self, ctx, _destination):
@@ -178,239 +368,9 @@ class Utils(commands.Cog):
         embed = disnake.Embed(color=thecolor())
         embed.add_field(name="Character info", value="\n".join(char_list))
         if len(characters) > 1:
-            # Maximum length possible is 502 out of 1024, so there's no need to truncate.
             embed.add_field(name='Full Raw Text', value=f"`{''.join(raw_list)}`", inline=False)
         
-        #await LinePaginator.paginate(char_list, ctx, embed, max_lines=10, max_size=2000, empty=False)
         await ctx.send(embed=embed)
-        
-    @commands.command(hidden=True)
-    async def tt(self, ctx:Context):
-        await ctx.send(dir(ctx.message))
-    @commands.command(aliases=['calc'])
-    async def calculator(self, ctx:Context):
-
-        embed = disnake.Embed(description=f"```yaml\n0```", color=self.bot.disnakecolor)
-        embed.set_author(name="Calculator", icon_url=ctx.author.avatar.url)
-        embed.set_footer(text="To interact with your virtual calculator, click the shown buttons.")     
-
-        msg = await ctx.send(embed=embed, components=[k for k in but('comp')])
-
-        
-        sci, alg = False, False
-
-        l = len(calc) + 1
-        calc[str(l)] = {'d': '', 'i': [], 'au': ctx.author, 'm': msg}
-        display = calc[str(l)]['d'] 
-        mode = 'Computer'
-
-        def check(inter):
-            return inter.author == ctx.author and inter.message.id == msg.id
-
-        try:
-            
-            inter = await msg.wait_for_button_click(check, timeout=10000000000) 
-
-            while inter.clicked_button != "ejejkdeked":
-                display = calc[str(l)]['d'] 
-                if inter.clicked_button.custom_id == "Clear":
-
-                    embed.description = f"```yaml\n0```"
-                    
-                    calc[str(l)]['d'] = ''
-
-                    await inter.reply(type=7, embed=embed)
-
-                elif inter.clicked_button.custom_id == "Exit":
-
-                    embed.description =f"```yaml\nSession ended```"
-
-                    return await inter.reply(type=7, embed=embed, components=[])
-                
-                elif inter.clicked_button.custom_id == "Sci":
-                    if not sci:
-
-                       # m = await ctx.send('\u200b', )
-                        m = await ctx.send('\u200b', components=[s for s in but('sci')])
-                        
-                        calc[str(l)]['i'].append(m.id)
-                        calc[str(l)]['s'] = m
-                        sci = True
-
-                    else:
-                        await m.delete()
-                        sci = False
-                    await inter.respond(type=6)
-                elif inter.clicked_button.custom_id == "Alg":
-                    if not alg:
-
-
-                        #y = await ctx.send('\u200b', components=[s for s in but('alg')])
-                        y = await ctx.send('\u200b', components=[but('alg')])
-                        calc[str(l)]['i'].append(y.id)
-                        calc[str(l)]['a'] = y
-                        alg = True
-                    else:
-                        await y.delete()
-                        alg = False
-                    await inter.respond(type=6)
-                elif inter.clicked_button.custom_id == "Back":
-                    
-                    calc[str(l)]['d'] = calc[str(l)]['d'][:-1]
-
-                    embed.description = f"```yaml\n{calc[str(l)]['d']}```"
-
-                    await inter.reply(type=7, embed=embed)
-                elif inter.clicked_button.custom_id == "=":
-                    displayed = calc[str(l)]['d']
-                    adv = False
-                    for i in ['sin', 'cos', 'tan', 'sin⁻¹', 'cos⁻¹', 'tan⁻¹', 'j.', 'ₓ√ⁿ', 'π', '%', 'log', '!', 'x', 'y', 'z']:
-                        if i in displayed:
-                            adv = True
-                            break
-                    if adv:
-                        #parser = InfixParser.Evaluator()
-                        ndisplay = displayed
-                    
-                        ndisplay = displayed.replace('⁻¹', 'j.-1')
-                        # for l in ('x', 'y', 'z'):
-                        #     if l in ndisplay:
-                        #         s = ndisplay.split(',')
-                        #         for k in s:
-                        #             if ' --> ' in k:
-                        #                 lis = k.split(' --> ')
-                        #                 parser.append_variable(str(lis[0]), int([lis[1]]))
-                                        
-                        for kk in sub:
-                            ndisplay = ndisplay.replace(sub[kk], kk)
-                        
-                        output: float = parser.eval(ndisplay)
-                    else:
-                        if '√' in calc[str(l)]['d']:
-                            ndisplay = ''
-                            nume = 0
-                            l = []
-                            e = display.split(' ')
-                            
-                            for t in e:
-                                if t == '√':
-                                    l.append(nume)
-
-                                nume += 1
-                            
-                            for k in l:
-
-                                e[k], e[k+1] = e[k+1], e[k]
-                            
-                            displayed = "".join(e) 
-                        
-                        if not calc[str(l)]['d']:
-                            calc[str(l)]['d'] = '0'
-                            output = '0'
-                        else:
-                            ndisplay = displayed.strip(' ').replace('√', '**0.5').replace('²', '**2')
-                            output = simpleeval.simple_eval(ndisplay)
-
-                    embed.description = f"```yaml\nIn ❯❯ {calc[str(l)]['d']} \nOut ❯❯ {output}```"
-                    
-                    
-                    await inter.reply(type=7, embed=embed)
-                        
-                    calc[str(l)]['d'] = str(output)
-
-                else:
-                    if calc[str(l)]['d'][::-1][:1] in ['j.', 
-                            '-',
-                            '⁰',
-                            '¹',
-                            '²',
-                            '³',
-                            '⁴',
-                            '⁵',
-                            '⁶',
-                            '⁷',
-                            '⁸',
-                            '⁹']:
-                            calc[str(l)]['d'] += f"{sub[inter.clicked_button.custom_id]}"
-                    elif inter.clicked_button.custom_id in ['*', '/', '-', '+', '√', '²']:
-                        calc[str(l)]['d'] += f" {inter.clicked_button.custom_id} "
-                    
-                        
-                    else:
-                        calc[str(l)]['d'] += f"{inter.clicked_button.custom_id}"
-
-                    embed.description = f"```yaml\n{calc[str(l)]['d']}```"
-
-                    await inter.reply(type=7, embed=embed)
-                
-                inter = await msg.wait_for_button_click(check, timeout=10000000000) 
-
-
-        except Exception as e:
-            
-            #await thebed(ctx, '', e)
-            await thebed(ctx, '', f'**Error. You somehow broke the calculator. Make sure you do:** ```yaml\nnumber operation number!``` **The error was:** ```yaml\n{e}```')
-
-    @commands.Cog.listener()
-    async def on_button_click(self, inter):
-        if calc != {}:
-            for k in calc:
-                
-                for uu in calc[k]['i']:
-                
-                    if inter.message.id == uu:
-                        if inter.author == calc[k]['au']:
-                            
-                            if inter.clicked_button.custom_id == 'xⁿ':
-                                calc[k]['d'] += 'j.'
-                            elif inter.clicked_button.custom_id == '=':
-                                pass
-                            else:
-                                calc[k]['d'] += inter.clicked_button.custom_id
-                            msg = calc[k]['m']
-                            embed = disnake.Embed(description=f"```yaml\n{calc[k]['d']}```", color=self.bot.disnakecolor)
-                            embed.set_author(name="Calculator", icon_url=inter.author.avatar.url)
-                            embed.set_footer(text="To interact with your virtual calculator, click the shown buttons.")
-                            await msg.edit(embed=embed)
-                            await inter.respond(type=6)
-                
-        
-
-            
-    @commands.command()
-    async def qr(self, ctx:Context, *, text):
-        m = await ctx.send("**Creating...**")
-        async with ctx.typing():
-
-            response = requests.get(f'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={text}')   
-        
-        
-        await thebed(ctx, f'Qr code for {text}', i=response.url)
-        await m.delete()
-
-    @commands.command(hidden=True)
-    async def hibernate(self, ctx:Context):
-        await ctx.send(':thumbsup:')
-        self.bot.hiber = True
-    @commands.command(hidden=True)
-    async def hiber(self, ctx:Context):
-        await ctx.send(':thumbsup:')
-        self.bot.hiber = False
-
-    @commands.command(
-        
-        )
-    async def math(self, ctx:Context, *, math=None):
-        if not math:
-            return await thebed(ctx, '', "**The current list of available eval operations**", i="https://cdn.disnakeapp.com/attachments/836812307971571762/846334605669826600/unknown.png")
-       
-        result = simpleeval.simple_eval(math)
-        embed = disnake.Embed(color=thecolor())
-        embed.set_footer(text=str(ctx.author) + " | Evaluation", icon_url=ctx.author.avatar.url)
-        embed.add_field(name="Your expression: ", value=f'```yaml\n"{math}"\n```', inline=False)
-        embed.add_field(name="Result: ", value=f"```\n{result}\n```")
-        await ctx.send(embed=embed)
-
 
 
     @commands.command(

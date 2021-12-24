@@ -107,31 +107,6 @@ class Staff(commands.Cog):
         os.system('python3 main.py')
 
 
-    @commands.command(hidden=True)
-    async def drop(self, ctx:Context):
-        msg = await ctx.send(
-            "This message has a select menu!",
-            components=[
-                SelectMenu(
-                    custom_id="test",
-                    placeholder="Choose up to 1 options",
-                    max_values=1,
-                    options=[
-                        SelectOption("Option 1", "value 1"),
-                        SelectOption("Option 2", "value 2"),
-                        SelectOption("Option 3", "value 3")
-                    ]
-                )
-            ]
-        )
-        print(dir(SelectMenu))
-        def check(inter):
-            return inter.message.id == msg.id and inter.author == ctx.author
-        # Wait for someone to click on it
-        inter = await msg.wait_for_dropdown(check)
-        
-        print(dir(inter))
-        await inter.reply(f"Options: {inter.select_menu}")
 
     @commands.command(hidden=True)
     async def chelp(self, ctx:Context):
@@ -170,16 +145,7 @@ class Staff(commands.Cog):
         
         await self.bot.close()
 
-    @commands.command(hidden=True)
-    async def ditest(self, ctx:Context):
-     
-
-        msg = await ctx.send('hi', components=[Button(label='hello', custom_id='test', style=ButtonStyle.green)])
-        def check(inter):
-            return inter.message.id == msg.id and inter.author == ctx.author
-        inter = await ctx.wait_for_button_click(check)
-       
-        await inter.reply(type=InteractionType.Acknowledge)
+    
 
     @commands.command(hidden=True)
     async def blacklist(self, ctx:Context, user1:int, cmd):
@@ -555,41 +521,7 @@ class Staff(commands.Cog):
                 xnum = 0
             
         await ctx.send(embed=embed)
-    @commands.command(hidden=True)
-    async def but(self, ctx:Context):
-        
-
-        # Make a row of buttons
-        row_of_buttons = ActionRow(
-            Button(
-                style=ButtonStyle.green,
-                label="Green button",
-                custom_id="green"
-            ),
-            Button(
-                style=ButtonStyle.red,
-                label="Red button",
-                custom_id="red"
-            )
-        )
-        # Send a message with buttons
-        msg = await ctx.send(
-            "This message has buttons!",
-            components=[row_of_buttons]
-        )
-        # Wait for someone to click on them
-        def check(inter):
-            return inter.message.id == msg.id
-        inter = await ctx.wait_for_button_click(check)
-        
-        button_text = inter.clicked_button.label
-        await inter.reply(f"Button: {button_text}")
-    @commands.command(hidden=True)
-    async def but2(self, ctx:Context):
-        await ctx.channel.send("Context",components=[Button(style=ButtonStyle.blue, label="Test", custom_id="TTTT")]) #Blue button with button label of "Test"
-        res = await self.bot.wait_for("button_click") #Wait for button to be clicked
-        print(res.user, dir(res))
-        await res.respond(type=InteractionType.UpdateMessage, content=f'Button Clicked')
+    
     @commands.command(hidden=True, aliases=['save', 'backup'])
     async def savebackup(self, ctx:Context):
         x = 1
@@ -626,23 +558,7 @@ class Staff(commands.Cog):
             cog = self.bot.get_cog(thecog)
 
             await ctx.send(thecog)
-    @commands.command(hidden=True)
-    async def thetest(self, ctx:Context):
-        with open('./dicts/Emoji.json', 'r+') as k:
-            data = json.load(k)
-            data['emojis'] = {
-                "Fun": "😎", 
-                "Games": "🎮",
-                "Moderation": "⚠",
-                "Misc": "🤔",
-                "botinfo": "ℹ",
-                "Economy": "💰"
 
-
-
-            }
-            Json(k, data)
-   
     @commands.command(hidden=True)
     async def formathelp(self, ctx:Context):
         

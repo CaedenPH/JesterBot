@@ -1,10 +1,11 @@
+import typing, difflib
 from core.Paginator import Paginator
 import disnake, os, requests, json, asyncio
 from disnake.ext.commands import has_permissions
 from disnake.ext import commands 
 from async_timeout import timeout
 from random import choice, randint
-from datetime import datetime
+import datetime 
 from core.utils import create_embed
 
 from core.utils.utils import thecolor, Json, thebed
@@ -60,7 +61,7 @@ class Mod(commands.Cog):
     async def _purge (self, ctx:Context, amount=80):
 
         await ctx.channel.purge(limit=amount)
-        embed = disnake.Embed(title='Purge Sucsessful', value=f'Purge has been sucsessful.', colour =thecolor())
+        embed = disnake.Embed(title='Purge Sucsessful', description =f'Purge has been sucsessful.', colour =thecolor())
         embed.add_field(name='Congrats!', value='Your purge has been sucsessful')
         await ctx.send(embed=embed)
 
@@ -406,6 +407,38 @@ class Mod(commands.Cog):
         
         x = self.bot.get_user(id1)
         await ctx.send(x.name)
+
+    @commands.command()
+    async def timeout(self, ctx: Context, member:disnake.Member, duration:typing.Union[float, datetime.timedelta]=3600, reason:str="No reason provided") -> None:
+        embed = disnake.Embed(
+            timestamp=ctx.message.created_at,
+            description=f"You timed out {member} for {duration} seconds! Thats {duration / 3600} hours."
+        ).set_author(
+            name=f"timeout for {member}",
+            icon_url=ctx.author.avatar.url,
+        )
+
+        try:
+            await member.timeout(
+                duration=duration,
+                reason=reason
+            )
+        except Exception as err:
+            embed.add_field(
+                name="Error",
+                value=str(err),
+            )
+        matches = difflib.get_close_matches(
+                member.name, [k.name for k in ctx.guild.members if k.id != member.id]
+            )
+        if matches:
+            embed.add_field(
+                name=f"Other users you might've meant",
+                value=', '.join(matches)
+            )
+
+        await ctx.send(embed=embed)
+
 
    
 
