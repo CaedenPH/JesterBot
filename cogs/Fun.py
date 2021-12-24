@@ -65,14 +65,6 @@ class Fun(commands.Cog):
                             )
         await ctx.send(file=disnake.File('./images/glitched.gif'))
 
-    @commands.command(name='screenshot')
-    async def _screenshot(self, ctx, *, url):
-        if True:
-
-            urll = f"https://image.thum.io/get/http://{url}"
-            return await thebed(ctx, '', url, i=urll)
-        await ctx.em("This channel is not nsfw! I dont want to be deleted as a bot because you cheeky peoples couldnt keep your hands to yeselfs!")  
-
     @commands.command(aliases=['art'])
     async def asciiart(self, ctx:Context, *, text: str):
 

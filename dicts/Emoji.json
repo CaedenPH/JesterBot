@@ -8,7 +8,7 @@
     "Utils": "Utility commands which may have a use; such as timezone - google has it but wheres the fun in that?",
     "Images": "All image commands, such as cute pictures of cats and dogs and more! Type ^help image for more info",
     "Config": "Configure your server with jester commands such as welcome and auto-verification",
-    "JesterJokes": "Random api's such as joke, insult, etc...An api is a website or program that can give output",
+    "JesterJokes": "JesterBot is truly a comedian, ask him about his latest joke hand?",
     "Love": "Want to make a family? Want to test the compatability? JesterLove has all the commands!",
     "Music": "Got a song in your head that you need to listen to? JesterBot's music category has all the musical needs",
     "Snipe": "Snipe messages or edited messages with JesterBot snipe commands!",
@@ -17,5 +17,6 @@
     "Cryptocurrency": "Sends information about crypto stocks and stuff!",
     "Countries": "Get information about every country in the world!",
     "DiscordTogether": "PLay an amazing game night on a call with all your friends!",
-    "UrbanDictionary": "Want to look up that kink you've been wondering about? Do it with urbandictionary!"
+    "UrbanDictionary": "Want to look up that kink you've been wondering about? Do it with urbandictionary!",
+    "Random": "Just a selection of commands that implement randomness - a bunch of random apis"
 }

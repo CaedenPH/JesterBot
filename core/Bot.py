@@ -1,3 +1,4 @@
+import aiohttp
 import disnake, os, asyncio, datetime
 from disnake.ext import commands, tasks
 
@@ -6,7 +7,7 @@ from core.Context import Context
 from core.Error import error_handler
 from core.main.check import *
 from core.main.prefix import get_prefix
-from core.utils.HIDDEN import TOKEN
+from core.utils.HIDDEN import TOKEN, weather_key
 
 class JesterBot(commands.Bot):
     def __init__(self):
@@ -27,6 +28,7 @@ class JesterBot(commands.Bot):
         self.disnakecolor = 0x36393F
         self.hiber = False
         self.data = {}
+        self.WEATHER_KEY = weather_key
         self.add_check(self.bot_check)
         self.after_invoke(self.after_command)
         
@@ -104,6 +106,8 @@ class JesterBot(commands.Bot):
             print(k)
             self.owner_ids.append(k.id)
 
+        self.client = aiohttp.ClientSession()
+
     async def process_commands(self, message: disnake.Message) -> None:
         ctx = await self.get_context(message, cls=Context)
         await self.invoke(ctx)
@@ -148,3 +152,7 @@ class JesterBot(commands.Bot):
 
     async def after_command(self, ctx):
         await run_executed(ctx)
+
+    async def close(self) -> None:
+        await self.client.close()
+        return await super().close()

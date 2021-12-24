@@ -27,7 +27,7 @@
         "score": 104
     },
     "help": {
-        "score": 2156
+        "score": 2161
     },
     "jsonfile": {
         "score": 19
@@ -42,7 +42,7 @@
         "score": 24
     },
     "ping": {
-        "score": 306
+        "score": 307
     },
     "giveaway": {
         "score": 17
@@ -363,7 +363,7 @@
         "score": 1
     },
     "reload": {
-        "score": 4400
+        "score": 4425
     },
     "pp": {
         "score": 142
@@ -399,7 +399,7 @@
         "score": 7
     },
     "load": {
-        "score": 31
+        "score": 32
     },
     "nitro": {
         "score": 17
@@ -429,7 +429,7 @@
         "score": 12
     },
     "eval": {
-        "score": 2662
+        "score": 2663
     },
     "pager": {
         "score": 12
@@ -510,7 +510,7 @@
         "score": 6
     },
     "evalreturn": {
-        "score": 441
+        "score": 447
     },
     "evaldir": {
         "score": 344
@@ -1011,7 +1011,7 @@
         "score": 8
     },
     "screenshot": {
-        "score": 17
+        "score": 19
     },
     "glitch": {
         "score": 11
@@ -1104,6 +1104,27 @@
         "score": 22
     },
     "urban_search": {
+        "score": 2
+    },
+    "channel_status": {
+        "score": 10
+    },
+    "bored": {
+        "score": 2
+    },
+    "kanye_quote": {
+        "score": 1
+    },
+    "age": {
+        "score": 1
+    },
+    "weather": {
+        "score": 5
+    },
+    "spacex": {
+        "score": 1
+    },
+    "covid": {
         "score": 2
     }
 }
