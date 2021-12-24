@@ -24,7 +24,8 @@ COGemojis= {
     'Cryptocurrency': 872473402764570624,
     "Countries": 872473402638762025,
     "Chatbot": 872473402693259324,
-    "DiscordTogether": 872473402840076288
+    "DiscordTogether": 872473402840076288,
+    "UrbanDictionary": 924042198742364210,
 }
 
 

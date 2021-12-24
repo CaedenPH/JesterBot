@@ -27,7 +27,7 @@
         "score": 104
     },
     "help": {
-        "score": 2155
+        "score": 2156
     },
     "jsonfile": {
         "score": 19
@@ -90,7 +90,7 @@
         "score": 3
     },
     "calculator": {
-        "score": 276
+        "score": 278
     },
     "calc*": {
         "score": 1
@@ -363,7 +363,7 @@
         "score": 1
     },
     "reload": {
-        "score": 4371
+        "score": 4400
     },
     "pp": {
         "score": 142
@@ -1095,6 +1095,15 @@
         "score": 4
     },
     "forceError": {
+        "score": 2
+    },
+    "shorten_url": {
+        "score": 6
+    },
+    "random_urban_search": {
+        "score": 22
+    },
+    "urban_search": {
         "score": 2
     }
 }

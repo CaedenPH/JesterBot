@@ -1,3 +1,4 @@
+from urllib.request import urlopen
 from disnake.utils import _get_description
 from core.utils.emojis import CLOSE
 import disnake, requests
@@ -578,6 +579,14 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
             await ctx.send(x)
         except:
             pass
+
+    @commands.command(aliases=['tinyurl', 'shorten'])
+    async def shorten_url(self, ctx: Context, *, url: str):
+        tinyurl = await self.bot.loop.run_in_executor(None, lambda: urlopen("http://tinyurl.com/api-create.php?url=" + url).read().decode("utf-8"))
+                
+        await ctx.message.delete()
+        return await ctx.em(f"**Your tinyurl:** {tinyurl}")
+         
        
     
 def setup(bot):

@@ -35,7 +35,7 @@ class Fun(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(aliases=['yt_search', 'search'])
+    @commands.command(aliases=['yt_search'])
     async def ytsearch(self, ctx, *, query):
         vid = VideosSearch(query, limit=10)
         result = await vid.next()

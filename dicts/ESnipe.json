@@ -314,6 +314,10 @@
                 "[j.] JesterBot",
                 "[j.] JesterBot",
                 "[j.] JesterBot",
+                "[j.] JesterBot",
+                "Caeden",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
                 "[j.] JesterBot"
             ],
             "id": [
@@ -627,6 +631,10 @@
                 828363172717133874,
                 828363172717133874,
                 828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                298043305927639041,
                 828363172717133874,
                 828363172717133874,
                 828363172717133874
@@ -944,7 +952,11 @@
                 "2021-12-24 05:24:37.863000+00:00",
                 "2021-12-24 05:24:49.566000+00:00",
                 "2021-12-24 05:24:49.566000+00:00",
-                "2021-12-24 05:24:49.566000+00:00"
+                "2021-12-24 05:24:49.566000+00:00",
+                "2021-12-24 20:31:13.682000+00:00",
+                "2021-12-24 20:31:38.023000+00:00",
+                "2021-12-24 20:34:34.422000+00:00",
+                "2021-12-24 21:09:24.691000+00:00"
             ],
             "after": [
                 "['[A Color Test That Can Tell Your Mental Age](https://www.youtube.com/watch?v=iVbopWyBR5Y)', '[A Simple Test Will Reveal Your Deepest Fear](https://www.youtube.com/watch?v=pyKmVy2TC2E)', '[10 Hardest Choices Ever (Personality Test)](https://www.youtube.com/watch?v=Kt8RupLIkBQ)', '[National SAT Practice Test Day 2021](https://www.youtube.com/watch?v=_lyyvZFiAjQ)', '[Learner Fails Driving Test In The FIRST 5 MINUTES](https://www.youtube.com/watch?v=QaE4jsE3Emg)', '[SNEAKY SCHOOL HACKS FOR A TEST! || Funny School DIYs And Tricks by 123 Go! Live](https://www.youtube.com/watch?v=h6oRraSOyos)', '[International Breakfast Sandwiches Taste Test](https://www.youtube.com/watch?v=-xofptVHF1A)', '[The Chemical Brothers - The Test (Official Music Video)](https://www.youtube.com/watch?v=yhS9LnDoo_w)', \"[What's Your True Spirit Animal? Personality Test](https://www.youtube.com/watch?v=-KGnRe1f2DA)\", \"[What's Your Hidden Superpower? | Personality Test](https://www.youtube.com/watch?v=BMRlr2DE0Dg)\"]",
@@ -1257,6 +1269,10 @@
                 "",
                 "",
                 "",
+                "",
+                "",
+                "",
+                "-tinyurl https://github.com/caedenph/jesterbot",
                 "",
                 "",
                 ""
@@ -1572,6 +1588,10 @@
                 "",
                 "",
                 "",
+                "",
+                "",
+                "",
+                "-tinyurl https://github.com/caedenph/jesterbot",
                 "",
                 "",
                 ""
@@ -7555,6 +7575,28 @@
             "before": [
                 ":_"
             ]
+        },
+        "794700751028224051": {
+            "author": [
+                "\u2746\ud835\udc13\ud835\udc04\ud835\udc0e\u2746",
+                "\u2746\ud835\udc13\ud835\udc04\ud835\udc0e\u2746"
+            ],
+            "id": [
+                370191573113241601,
+                370191573113241601
+            ],
+            "time": [
+                "2021-12-24 20:28:59.634000+00:00",
+                "2021-12-24 20:28:59.634000+00:00"
+            ],
+            "after": [
+                "```from turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_color=\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()```",
+                "```py\nfrom turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_color=\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()```"
+            ],
+            "before": [
+                "from turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_color=\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()",
+                "```from turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_color=\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()```"
+            ]
         }
     },
     "827088097799831603": {
@@ -11670,7 +11712,10 @@
                 "Miyuki",
                 "Dyno",
                 "KakaChi",
-                "Who-Iam"
+                "Who-Iam",
+                "Miyuki",
+                "Miyuki",
+                "Miyuki"
             ],
             "id": [
                 887044862485086258,
@@ -11706,7 +11751,10 @@
                 836243905867022366,
                 155149108183695360,
                 788799817908092978,
-                852831270409076746
+                852831270409076746,
+                836243905867022366,
+                836243905867022366,
+                836243905867022366
             ],
             "time": [
                 "2021-11-17 20:52:36.154000",
@@ -11742,7 +11790,10 @@
                 "2021-12-23 10:52:53.958000+00:00",
                 "2021-12-23 10:53:30.919000+00:00",
                 "2021-12-23 10:54:17.534000+00:00",
-                "2021-12-23 10:59:16.824000+00:00"
+                "2021-12-23 10:59:16.824000+00:00",
+                "2021-12-24 19:50:28.628000+00:00",
+                "2021-12-24 19:53:13.401000+00:00",
+                "2021-12-24 19:53:27.470000+00:00"
             ],
             "after": [
                 "https://tenor.com/view/peepo-exit-door-gif-15229894",
@@ -11778,7 +11829,10 @@
                 "",
                 "",
                 "",
-                ">play https://youtu.be/Z00U4q6BGjs"
+                ">play https://youtu.be/Z00U4q6BGjs",
+                "",
+                "",
+                ""
             ],
             "before": [
                 "https://tenor.com/view/peepo-exit-door-gif-15229894",
@@ -11814,7 +11868,10 @@
                 "",
                 "",
                 "",
-                ">play https://youtu.be/Z00U4q6BGjs"
+                ">play https://youtu.be/Z00U4q6BGjs",
+                "",
+                "",
+                ""
             ]
         }
     },

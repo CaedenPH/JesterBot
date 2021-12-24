@@ -1,24 +1,8 @@
-from disnake.errors import HTTPException
 from core.utils.emojis import CLOSE, HOME, TRASHCAN
 import disnake, asyncio
 from disnake.ext import commands
 
-from core.utils.utils import thecolor, thebed
-
-
-class View(disnake.ui.View):
-    @disnake.ui.button(label="Yes", style=disnake.ButtonStyle.green)
-    async def first_button(
-        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
-    ):
-        return True
-    
-    @disnake.ui.button(label="No", style=disnake.ButtonStyle.red)
-    async def second_button(
-        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
-    ):
-        return False
-
+from core.utils.utils import thecolor
 
 class Context(commands.Context):
     async def em(self, message):

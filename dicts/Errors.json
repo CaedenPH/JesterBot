@@ -4968,5 +4968,110 @@
         "error": "Command raised an exception: AttributeError: 'Context' object has no attribute 'ss'",
         "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
         "command": "forceError"
+    },
+    "710": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body\nIn embeds: Embed size exceeds maximum size of 6000",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "shorten_url"
+    },
+    "711": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body\nIn embeds: Embed size exceeds maximum size of 6000",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "shorten_url"
+    },
+    "712": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body\nIn embeds: Embed size exceeds maximum size of 6000",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "shorten_url"
+    },
+    "713": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: ContentTypeError: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://github.com/caedenph/jesterbot')",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "shorten_url"
+    },
+    "714": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: ContentTypeError: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://github.com/caedenph/jesterbot')",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "shorten_url"
+    },
+    "715": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: ExtensionFailed: Extension 'cogs.Utils' raised an error: NameError: name 's' is not defined",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "reload"
+    },
+    "716": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: TypeError: request() missing 1 required positional argument: 'method'",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "random_urban_search"
+    },
+    "717": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: AttributeError: 'UrbanDictionary' object has no attribute 'pase_dit'",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "random_urban_search"
+    },
+    "718": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: AttributeError: 'UrbanDictionary' object has no attribute 'parse_dit'",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "random_urban_search"
+    },
+    "719": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: TypeError: 'coroutine' object is not subscriptable",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "random_urban_search"
+    },
+    "720": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: TypeError: 'coroutine' object is not subscriptable",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "random_urban_search"
+    },
+    "721": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: TypeError: object str can't be used in 'await' expression",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "random_urban_search"
+    },
+    "722": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body\nIn content: Must be 4000 or fewer in length.",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "random_urban_search"
+    },
+    "723": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body\nIn content: Must be 4000 or fewer in length.",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "random_urban_search"
+    },
+    "724": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body\nIn content: Must be 4000 or fewer in length.",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "random_urban_search"
     }
 }
