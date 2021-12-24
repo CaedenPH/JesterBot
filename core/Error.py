@@ -17,12 +17,11 @@ async def unexpected(bot, ctx, error):
     e = "".join(traceback.format_exception(error, error, error.__traceback__))
     y = Paginator(ctx)
     await y.paginate(content=f"{e}", name='error')
+    
 async def error_handler(bot, ctx, error):
     if isinstance(error, MissingPermissions):
         embed = disnake.Embed(description="You do not have permissions to do that!", colour=thecolor())
         await ctx.send(embed=embed)
-    elif isinstance(error, AttributeError):
-        pass
     elif isinstance(error, CheckFailure):
         pass
     

@@ -429,7 +429,7 @@
         "score": 12
     },
     "eval": {
-        "score": 2659
+        "score": 2662
     },
     "pager": {
         "score": 12
@@ -1093,5 +1093,8 @@
     },
     "timeout": {
         "score": 4
+    },
+    "forceError": {
+        "score": 2
     }
 }

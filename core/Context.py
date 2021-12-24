@@ -6,24 +6,21 @@ from disnake.ext import commands
 from core.utils.utils import thecolor, thebed
 
 
-def Components():
-    components = [
-            ActionRow(Button(
-                style=ButtonStyle.green,
-                label="Yes",
-                custom_id="Yes"
-            ),
-            Button(
-                style=ButtonStyle.red,
-                label="No", 
-                custom_id="No"
+class View(disnake.ui.View):
+    @disnake.ui.button(label="Yes", style=disnake.ButtonStyle.green)
+    async def first_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        return True
+    
+    @disnake.ui.button(label="No", style=disnake.ButtonStyle.red)
+    async def second_button(
+        self, button: disnake.ui.Button, interaction: disnake.MessageInteraction
+    ):
+        return False
 
-            ))
-            ]
-    return components
 
 class Context(commands.Context):
-
     async def em(self, message):
         return await self.send(
             embed = disnake.Embed(
@@ -63,7 +60,6 @@ class Context(commands.Context):
             async def reaction_task(msg, arg, kwargs):
                 def check(r, u):
                     return r.message == msg and u == arg.author
-                
                     
                 await asyncio.sleep(3)
                 try:
@@ -89,49 +85,8 @@ class Context(commands.Context):
             pass
         return msg
 
-    async def confirm(self, content: any = None, **kwargs):
-        components=Components()
-        msg = await super().send(content, **kwargs, components=components)
 
-        def check(inter):
-            return inter.author == self.author and inter.message.id == msg.id
-        
-        inter = await msg.wait_for_button_click(check)
-        if inter.clicked_button.custom_id == "Yes":
-            await inter.respond(type=6)
-            return True
-        else:
-
-            await inter.reply('Not sent', type=7)
-            return False
-
-    async def error(self, bot, **kwargs):
-        async with self.typing():
-            error = kwargs.get('error')
-
-            await self.message.add_reaction(CLOSE)
-
-            components=Components()
-
-        msg = await super().send(components=components, embed=disnake.Embed(description=f"**Error:**{error}\n\u200b\n**Would you like to submit this error to the developer?**", color=thecolor()).set_author(name="Error", icon_url=self.author.avatar.url).set_footer(text='This error command is slow because it takes a lot of time to process it!'))
-        x = False
-        inter = await msg.wait_for_button_click(check)
-        if inter.clicked_button.custom_id == "Yes":
-            await inter.reply('Sent', type=4, ephemeral=True)
-            x = True
-        else:
-            await inter.reply('Not sent!', type=4, ephemeral=True)
-            x =  False
-        if x:
-            await thebed(bot.dev, f"{error} - {self.author} - {self.guild} - {self.channel}")
-    async def expected_error(self, **kwargs):
-        async with self.typing():
-            error = kwargs.get('error')
-
-            await self.message.add_reaction(CLOSE)
-
-
-        msg = await super().send(embed=disnake.Embed(description=f"**Error: **{error}"))
+    
        
 
         

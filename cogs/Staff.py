@@ -659,6 +659,9 @@ class Staff(commands.Cog):
         del data[errornum]
         Json(k, data)
         
+    @commands.command(hidden=True)
+    async def forceError(self, ctx):
+        await ctx.ss('e')
         
 def setup(bot):
   bot.add_cog(Staff(bot))

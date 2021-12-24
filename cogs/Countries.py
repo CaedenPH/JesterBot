@@ -59,22 +59,11 @@ class Countries(commands.Cog):
         y = True
         x = await makeimg(ctx, f"https://restcountries.eu/data/{country}.svg")
         if not x:
+            async with aiohttp.ClientSession() as client:
+                async with client.get(f"https://restcountries.eu/rest/v2/name/{country}") as resp:
+                    js = await resp.json()
+                    y = await makeimg(ctx, f"{js[0]['flag']}")
 
-            try:
-                async with aiohttp.ClientSession() as client:
-                    async with client.get(f"https://restcountries.eu/rest/v2/name/{country}") as resp:
-                        js = await resp.json()
-                        y = await makeimg(ctx, f"{js[0]['flag']}")
-
-            except:
-                return  await ctx.error(self.bot, error=f" That isnt recognised as a country! Type `j.findcountry {country}` to see all recognised countries basiced off of your search") 
-        # async with aiohttp.ClientSession().get(f"https://restcountries.eu/rest/v2/name/{country}") as response:
-        #     async with ctx.typing():
-        #         pass
-
-
-
-        # await ctx.send(file=disnake.File('./images/flag.png')) 
             
     @commands.command(aliases=["ewh"])
     async def endworldhunger(self, ctx):
