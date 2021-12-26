@@ -14,11 +14,11 @@ class JesterInfo(commands.Cog):
 
         self.bot = bot
     @commands.command()
-    async def links(self, ctx:Context):
+    async def links(self, ctx: Context):
         links = "[Official server](https://disnake.gg/2654CuU3ZU) │ [Bot invite](https://disnake.com/oauth2/authorize?self.bot_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot) │ [Vote for me!](https://top.gg/bot/828363172717133874/vote)"
         await thebed(ctx, '', links)
     @commands.command()
-    async def uptime(self, ctx:Context):
+    async def uptime(self, ctx: Context):
 
         delta_uptime = datetime.utcnow() - self.bot.launch_time
         hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
@@ -27,7 +27,7 @@ class JesterInfo(commands.Cog):
         return await thebed(ctx, '', f"I've been Up since **{days}** Days, **{hours}** Hours, **{minutes}** Minutes, and **{seconds}** Seconds!")
         
     @commands.command(aliases=['Ver', 'versions'], description="Sends the version that the disnake bot is currently on - Changes frequently as updates occur")
-    async def version(self, ctx:Context):
+    async def version(self, ctx: Context):
 
         with open('./dicts/Updates.json', 'r') as x:
             data = json.load(x)
@@ -37,7 +37,7 @@ class JesterInfo(commands.Cog):
                 await ctx.send(embed=embed)
         
     @commands.command(aliases=['scoreover', 'Overallscore', 'Overall_score'], description="Sends the total number of commands used")
-    async def score(self, ctx:Context):
+    async def score(self, ctx: Context):
         with open('./dicts/Scoreoverall.json', 'r') as x:
             data = json.load(x)
             embed = disnake.Embed(title=f"{data['Score']['Score1']}", colour=thecolor())
@@ -45,7 +45,7 @@ class JesterInfo(commands.Cog):
     
     
     @commands.command(aliases=['Servers', 'ServerInfo', 'Server_Info'])
-    async def server(self, ctx:Context):
+    async def server(self, ctx: Context):
         channel= ctx.channel
         serverinvite = await channel.create_invite()
         serverid = ctx.guild.id
@@ -58,7 +58,7 @@ class JesterInfo(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['notes', 'patchnotes', 'Updates', 'Patch_Notes', 'PT', 'up'], description="Sends the most recent update to the bot")
-    async def update(self, ctx:Context):
+    async def update(self, ctx: Context):
         
         with open('./dicts/Updates.json', 'r') as x:
             data = json.load(x)
@@ -92,7 +92,7 @@ class JesterInfo(commands.Cog):
                     await ctx.send(embed=embed)
        
     @commands.command(aliases=['selfruns', 'commandsused', 'Selfrun', 'Self_Score'], description="Sends the ammount of commands that you personally have ran")
-    async def selfscore(self, ctx:Context):
+    async def selfscore(self, ctx: Context):
         with open('./dicts/Selfscore.json') as f:
             data = json.load(f)
             if str(ctx.author.id) in data:
@@ -100,7 +100,7 @@ class JesterInfo(commands.Cog):
                 await ctx.send(embed=embed)
 
     @commands.command(aliases=['binv', 'botinv'])
-    async def invite(self, ctx:Context):
+    async def invite(self, ctx: Context):
         embed = disnake.Embed(title=f"I am currently in {len(self.bot.guilds)} servers!", description="[Official server](https://disnake.gg/2654CuU3ZU) │ [Invite me!](https://disnake.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591)", colour = thecolor())
     
         embed.set_author(icon_url=ctx.author.avatar.url, name="Invite")
@@ -108,7 +108,7 @@ class JesterInfo(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(hidden=True, aliases=['commandtop', 'cmdtop', 'topcmd'])
-    async def topcommands(self, ctx:Context):
+    async def topcommands(self, ctx: Context):
         score_list = []
         sorted_score_dict = {}
         
@@ -132,7 +132,7 @@ class JesterInfo(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command(hidden=True, aliases=['membtop', 'topmemb', 'memtop'], description="Sends the top members that have used the bot") 
-    async def topmembers(self, ctx:Context):
+    async def topmembers(self, ctx: Context):
         score_list = []
         sorted_score_dict = {}
         
@@ -158,7 +158,7 @@ class JesterInfo(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['lengthcmd', 'cmdamm'], hidden=True)
-    async def lengthcommand(self, ctx:Context):
+    async def lengthcommand(self, ctx: Context):
         num = 0
         for n in self.bot.commands:
             if not n.hidden:
@@ -171,7 +171,7 @@ class JesterInfo(commands.Cog):
     
 
     @commands.command(aliases=['pin', 'pingy', 'ms', 'Latency'], description="Sends the ping of the bot")
-    async def ping(self, ctx:Context):
+    async def ping(self, ctx: Context):
         embed = disnake.Embed(description=f"My current ping is **{round(self.bot.latency * 1000)}** ms", colour=thecolor())
         y = 0
         for m in self.bot.guilds:
@@ -179,7 +179,7 @@ class JesterInfo(commands.Cog):
         embed.set_footer(text=f"Servers in: {len(self.bot.guilds)} │ Overall users: {y}")
         await ctx.send(embed=embed)
     @commands.command(aliases=['pref', 'prefixs', 'pre', 'prefixes'], description="Change the prefix of the bot for you personally")
-    async def prefix(self, ctx:Context, *, prefix=None):
+    async def prefix(self, ctx: Context, *, prefix=None):
         if not prefix:
             async with ctx.typing():
                embed = await create_embed(ctx.message, self.bot)
@@ -210,7 +210,7 @@ class JesterInfo(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['devs', 'helpers', 'coder', 'coders'])
-    async def credits(self, ctx:Context):
+    async def credits(self, ctx: Context):
         coder = self.bot.get_user(298043305927639041)
         ideas_designer = self.bot.get_user(780555299106586634)
         helper = self.bot.get_user(483631842554019841)
@@ -228,7 +228,7 @@ class JesterInfo(commands.Cog):
         await ctx.send(embed=embed)
    
     @commands.command(aliases=['colour'], description="change the color of the embeds!")
-    async def color(self, ctx:Context, *, args):
+    async def color(self, ctx: Context, *, args):
         if args.startswith('0x') and len(args) == 8:
             with open('./dicts/Color.json', 'r+') as k:
                 data = json.load(k)

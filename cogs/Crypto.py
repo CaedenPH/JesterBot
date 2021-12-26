@@ -67,7 +67,7 @@ class Cryptocurrency(commands.Cog):
         description="Sends information about the stocks specified"
         ) 
 
-    async def stocks(self, ctx:Context, stock=None):
+    async def stocks(self, ctx: Context, stock=None):
         
         if not stock:
             embed = disnake.Embed(title="Type the stock symbol (e.g AAPL = apple)", description="[Stocks](https://swingtradebot.com/equities)", colour=thecolor())

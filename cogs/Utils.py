@@ -298,7 +298,7 @@ class Utils(commands.Cog):
     
 
     @commands.command()
-    async def qr(self, ctx:Context, *, text):
+    async def qr(self, ctx: Context, *, text):
         m = await ctx.send("**Creating...**")
         async with ctx.typing():
             response = requests.get(f'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={text}')   
@@ -307,18 +307,18 @@ class Utils(commands.Cog):
         await m.delete()
 
     @commands.command(hidden=True)
-    async def hibernate(self, ctx:Context):
+    async def hibernate(self, ctx: Context):
         await ctx.send(':thumbsup:')
         self.bot.hiber = True
     @commands.command(hidden=True)
-    async def hiber(self, ctx:Context):
+    async def hiber(self, ctx: Context):
         await ctx.send(':thumbsup:')
         self.bot.hiber = False
 
     @commands.command(
         
         )
-    async def math(self, ctx:Context, *, math=None):
+    async def math(self, ctx: Context, *, math=None):
         if not math:
             return await thebed(ctx, '', "**The current list of available eval operations**", i="https://cdn.disnakeapp.com/attachments/836812307971571762/846334605669826600/unknown.png")
        
@@ -345,7 +345,7 @@ class Utils(commands.Cog):
 
 
     @commands.command()
-    async def charinfo(self, ctx:Context, *, characters: str):
+    async def charinfo(self, ctx: Context, *, characters: str):
         """Shows you information on up to 50 unicode characters."""
         match = re.match(r"<(a?):(\w+):(\d+)>", characters)
         if match:
@@ -379,7 +379,7 @@ class Utils(commands.Cog):
         description="Sends the numbers of the fibinaci upto the number provided"
         )
 
-    async def fibonacci(self, ctx:Context, sequences=10000000000000):
+    async def fibonacci(self, ctx: Context, sequences=10000000000000):
         x = []
         
         if sequences > 1000000000000000:
@@ -399,7 +399,7 @@ class Utils(commands.Cog):
         description="Sends the mentioned users avatar or if none is specified, the usrs avatar"
         )
 
-    async def avatar(self, ctx:Context, user:disnake.Member = ""):
+    async def avatar(self, ctx: Context, user:disnake.Member = ""):
         if user == "":
             user = ctx.author.id
             username = self.bot.get_user(user)
@@ -417,7 +417,7 @@ class Utils(commands.Cog):
             await ctx.send(embed=embed)
     
     @commands.command(aliases=['tz', 'time', 'zone'], description="Sends the current time of the [origin]. To get all of the places recognisable, leave `origin` blank")
-    async def timezone(self, ctx:Context, origin=None):
+    async def timezone(self, ctx: Context, origin=None):
         try:
             if not origin:
                 var = ""
@@ -440,7 +440,7 @@ class Utils(commands.Cog):
             await ctx.send(embed=embed)
     
     @commands.command(aliases=['bin'])
-    async def binary(self, ctx:Context, *, text):
+    async def binary(self, ctx: Context, *, text):
        
         
         response = requests.get(f'https://some-random-api.ml/binary?text={text}')
@@ -451,7 +451,7 @@ class Utils(commands.Cog):
    
 
     @commands.command(aliases=['unbin'])
-    async def unbinary(self, ctx:Context, *, nums:str):
+    async def unbinary(self, ctx: Context, *, nums:str):
       
         
         response = requests.get(f'https://some-random-api.ml/binary?decode={nums}')
@@ -472,7 +472,7 @@ To get the ascii table type j.ascii
 
 Source: [Website](https://en.wikipedia.org/wiki/ASCII)
     """)
-    async def ascii(self, ctx:Context, *, text=None):
+    async def ascii(self, ctx: Context, *, text=None):
         x = []
         p = []
         num = 0
@@ -506,7 +506,7 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
         
 
     @commands.command(aliases=["morse_code", 'mcode'], description="""Encode or decode text/morse code into morse code/plain text, type .morse for help""")
-    async def morse(self, ctx:Context, *, string):
+    async def morse(self, ctx: Context, *, string):
         
         TEXT_TO_MORSE = {'A':'.-', 'B':'-...', 'C':'-.-.', 'D':'-..', 'E':'.', 'F':'..-.', 'G':'--.', 'H':'....',
             'I':'..', 'J':'.---', 'K':'-.-', 'L':'.-..', 'M':'--', 'N':'-.', 'O':'---', 'P':'.--.', 'Q':'--.-',
@@ -555,7 +555,7 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
        
 
     @commands.command(aliases=['eval2', 'e2'], description='run code', hidden=True)
-    async def evaldir(self, ctx:Context, *, code):
+    async def evaldir(self, ctx: Context, *, code):
         x = await run_eval(ctx, code, _eval='dir')
 
         try:
@@ -564,7 +564,7 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
             pass
 
     @commands.command(aliases=['eval1', 'e1'], description='run code', hidden=True)
-    async def evalreturn(self, ctx:Context, *, code):
+    async def evalreturn(self, ctx: Context, *, code):
         x = await run_eval(ctx, code, _eval='return')
 
         try:
@@ -573,7 +573,7 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
             pass
     
     @commands.command(description='run code', hidden=True, aliases=['e'])
-    async def eval(self, ctx:Context, *, code):
+    async def eval(self, ctx: Context, *, code):
         x = await run_eval(ctx, code)
         try:
             await ctx.send(x)

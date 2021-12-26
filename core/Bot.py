@@ -1,3 +1,4 @@
+from ssl import VerifyMode
 import aiohttp
 import disnake, os, asyncio, datetime
 from disnake.ext import commands, tasks
@@ -7,7 +8,7 @@ from core.Context import Context
 from core.Error import error_handler
 from core.main.check import *
 from core.main.prefix import get_prefix
-from core.utils.HIDDEN import TOKEN, weather_key
+from core.utils.HIDDEN import TOKEN, weather_key, police_key, coords_key
 
 class JesterBot(commands.Bot):
     def __init__(self):
@@ -28,7 +29,11 @@ class JesterBot(commands.Bot):
         self.disnakecolor = 0x36393F
         self.hiber = False
         self.data = {}
+
         self.WEATHER_KEY = weather_key
+        self.POLICE_KEY = police_key
+        self.COORDS_KEY = coords_key
+
         self.add_check(self.bot_check)
         self.after_invoke(self.after_command)
         

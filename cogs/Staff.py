@@ -63,25 +63,25 @@ class Staff(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(hidden=True)
-    async def load(self, ctx:Context, extension):
+    async def load(self, ctx: Context, extension):
         embed = disnake.Embed(color=disnake.Color.dark_gold())
         self.bot.load_extension(f'cogs.{extension}')
         embed.add_field(name="Load Extension", value=f"Loaded cog: ``{extension}`` successfully")
         await ctx.send(embed=embed)
 
     @commands.command(hidden=True)
-    async def wcog(self, ctx:Context, n):
+    async def wcog(self, ctx: Context, n):
         cmd = self.bot.get_command(n)
         await ctx.send(cmd.cog.qualified_name)
     @commands.command(hidden=True)
-    async def unload(self, ctx:Context, extension):
+    async def unload(self, ctx: Context, extension):
             self.bot.unload_extension(f'cogs.{extension}')
             embed = disnake.Embed(color=disnake.Color.dark_gold())
             embed.add_field(name="Unload Extension", value=f"Unloaded cog: ``{extension}`` successfully")
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['r'], hidden=True)
-    async def reload(self, ctx:Context, extension=""):
+    async def reload(self, ctx: Context, extension=""):
         if not extension:
     
             for cog in tuple(self.bot.extensions):
@@ -99,7 +99,7 @@ class Staff(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command(hidden=True)
-    async def abort(self, ctx:Context):
+    async def abort(self, ctx: Context):
         
         await thebed(ctx, '', 'Aborting')
         
@@ -109,7 +109,7 @@ class Staff(commands.Cog):
 
 
     @commands.command(hidden=True)
-    async def chelp(self, ctx:Context):
+    async def chelp(self, ctx: Context):
         
           
         with open('./dicts/Cmds.json', 'r+') as e:
@@ -138,7 +138,7 @@ class Staff(commands.Cog):
             await thebed(ctx, 'All done!')
     
     @commands.command(hidden=True)
-    async def close(self, ctx:Context):
+    async def close(self, ctx: Context):
 
         embed = disnake.Embed(title=f"Goodbye", colour=thecolor())
         await ctx.send(embed=embed)
@@ -148,7 +148,7 @@ class Staff(commands.Cog):
     
 
     @commands.command(hidden=True)
-    async def blacklist(self, ctx:Context, user1:int, cmd):
+    async def blacklist(self, ctx: Context, user1:int, cmd):
        
             
         user = self.bot.get_user(user1)
@@ -167,7 +167,7 @@ class Staff(commands.Cog):
     
         await thebed(ctx, 'done')
     @commands.command(hidden=True)
-    async def rblacklist(self, ctx:Context, user1:int, cmd):
+    async def rblacklist(self, ctx: Context, user1:int, cmd):
        
         
         user = self.bot.get_user(user1)
@@ -182,7 +182,7 @@ class Staff(commands.Cog):
     
         await thebed(ctx, 'done')
     @commands.command(hidden=True)
-    async def newup(self, ctx:Context):
+    async def newup(self, ctx: Context):
     
         try:
             embed = disnake.Embed(title="Version?")
@@ -294,7 +294,7 @@ class Staff(commands.Cog):
 
 
     @commands.command(hidden=True)
-    async def newver(self, ctx:Context, *, Destroy=""):
+    async def newver(self, ctx: Context, *, Destroy=""):
         
         if Destroy == "":
             with open('./dicts/Updates.json', 'r+') as k:
@@ -336,7 +336,7 @@ class Staff(commands.Cog):
 
 
     @commands.command(hidden=True)
-    async def balded(self, ctx:Context):
+    async def balded(self, ctx: Context):
         
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
@@ -360,7 +360,7 @@ class Staff(commands.Cog):
         
 
     @commands.command(hidden=True)
-    async def baladd(self, ctx:Context, bal:int):
+    async def baladd(self, ctx: Context, bal:int):
        
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
@@ -383,7 +383,7 @@ class Staff(commands.Cog):
                     pass
     
     @commands.command(hidden=True)
-    async def removefile(self, ctx:Context, filed, dicte:str):
+    async def removefile(self, ctx: Context, filed, dicte:str):
     
         with open(f'./dicts/{filed}', 'r+') as k:
 
@@ -407,7 +407,7 @@ class Staff(commands.Cog):
     
 
     @commands.command(hidden=True)
-    async def data(self, ctx:Context, file1="", data1="", data2="", int1='False', *, add=""):
+    async def data(self, ctx: Context, file1="", data1="", data2="", int1='False', *, add=""):
         if int1 == 'True':
             add = int(add)
             
@@ -488,7 +488,7 @@ class Staff(commands.Cog):
         
 
     @commands.command(hidden=True)
-    async def serversin(self, ctx:Context):
+    async def serversin(self, ctx: Context):
    
         x = []
         num = 0
@@ -501,7 +501,7 @@ class Staff(commands.Cog):
         await ctx.send(", ".join(x[26:len(x)]))
 
     @commands.command(hidden=True)
-    async def showcmds(self, ctx:Context):
+    async def showcmds(self, ctx: Context):
         x = []
         embed = disnake.Embed(color=disnake.Color.green())
         for command in self.bot.commands:
@@ -523,7 +523,7 @@ class Staff(commands.Cog):
         await ctx.send(embed=embed)
     
     @commands.command(hidden=True, aliases=['save', 'backup'])
-    async def savebackup(self, ctx:Context):
+    async def savebackup(self, ctx: Context):
         x = 1
         for f in os.listdir('../backup'):
             if int(f[-3:]) > x:
@@ -549,10 +549,10 @@ class Staff(commands.Cog):
                 shutil.copy(f'./cogs/{t}', dirname)
         await thebed(ctx, 'success', f'you have made a new backup folder called *{dirname}*')
     @commands.command(hidden=True)
-    async def file(self, ctx:Context, file):
+    async def file(self, ctx: Context, file):
         await ctx.send(file=disnake.File(f"./dicts/{file}"))
     @commands.command(hidden=True)
-    async def thecog(self, ctx:Context):
+    async def thecog(self, ctx: Context):
         for thecog in self.bot.cogs:
 
             cog = self.bot.get_cog(thecog)
@@ -560,7 +560,7 @@ class Staff(commands.Cog):
             await ctx.send(thecog)
 
     @commands.command(hidden=True)
-    async def formathelp(self, ctx:Context):
+    async def formathelp(self, ctx: Context):
         
         x = 0 
         xy = []
@@ -586,11 +586,11 @@ class Staff(commands.Cog):
                         Json(K, data)
             await ctx.send('done')
     @commands.command(hidden=True)
-    async def t(self, ctx:Context, d, t=""):
+    async def t(self, ctx: Context, d, t=""):
         await thebed(ctx, d, t)
 
     @commands.command(hidden=True)
-    async def addcmd(self, ctx:Context, name, *, cmd):
+    async def addcmd(self, ctx: Context, name, *, cmd):
         with open('./dicts/Commands.json', 'r+') as k:
             data = json.load(k)
             if name in data:
@@ -606,7 +606,7 @@ class Staff(commands.Cog):
             self.bot.add_command(thecmd)
 
     @commands.command(hidden=True)
-    async def tag(self, ctx:Context, errornum:str=None):
+    async def tag(self, ctx: Context, errornum:str=None):
         k = open('./dicts/Errors.json', 'r+')
         data = json.load(k) 
         if not errornum:
@@ -630,7 +630,7 @@ class Staff(commands.Cog):
         
         ''')
     @commands.command(hidden=True)
-    async def resolve(self, ctx:Context, errornum:str=None):
+    async def resolve(self, ctx: Context, errornum:str=None):
         k = open('./dicts/Errors.json', 'r+')
         data = json.load(k) 
         if not errornum:

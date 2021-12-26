@@ -76,7 +76,7 @@ class Games(commands.Cog):
         self.bot = bot
     
     @commands.command(aliases=['rr'], description="You play russian roulette with yourself - 1 in 6 chance you will die...Be warned!")
-    async def russianroulette(self, ctx:Context):
+    async def russianroulette(self, ctx: Context):
         rand = randint(1, 5)
         if rand == 1:
             embed = disnake.Embed(title="🔫 / You died", colour=thecolor())
@@ -85,7 +85,7 @@ class Games(commands.Cog):
             embed = disnake.Embed(title="🌹 / You lived", colour=thecolor())
             await ctx.send(embed=embed)
     @commands.command(aliases=['bj'], description="Emits a game of blackjack with the user")
-    async def blackjack(self, ctx:Context):
+    async def blackjack(self, ctx: Context):
         one_ace = False
         BotHit = False
 
@@ -288,7 +288,7 @@ class Games(commands.Cog):
     
  
     @commands.command(aliases=['dices', 'die'], description="Rolls a dice and compares the number to `<roll>`, difficulty can be; easiest (1 in 2 chance), easy (1 in 3 chance), normal (1 in 6 chance), hard (1 in 9 chance), impossible (1 in 15 chance)")
-    async def dice(self, ctx:Context, num, difficulty = "normal"):
+    async def dice(self, ctx: Context, num, difficulty = "normal"):
         try:
 
             num = int(num)
@@ -300,7 +300,6 @@ class Games(commands.Cog):
             rollrig = ['1', '2', '3', '4', '5', '6']
             rand = randint(1, 2)
             rollrigy = choice(rollrig)
-            print(rand)
             async def displaycorrect():
                 nonlocal rollrigy
                 
@@ -425,7 +424,6 @@ class Games(commands.Cog):
             
             if int(rollrigy) == num:
                 rollrig.remove(str(num))
-                print(rollrig)
                 rollrigy = choice(rollrig)
             if rand == num: 
                 embed = disnake.Embed(title=f"Good guess! The roll was {rollrig[0]}", colour=thecolor())
@@ -492,7 +490,7 @@ class Games(commands.Cog):
     
 
     @commands.command(aliases=['rock', 'rockpaperscissors'], description="Plays rock paper scissors with the bot `<choice>` must be rock, paper, or scissors")
-    async def rps(self, ctx:Context, roll):
+    async def rps(self, ctx: Context, roll):
 
         random_num = randint(0, 2)
         
@@ -560,7 +558,7 @@ class Games(commands.Cog):
 
         
     @commands.command(aliases=['rpsbait', 'rpsbaits', 'RPSB', 'RockPaperScissorsBait'], description="Emits a fake rock paper scissors game with a bot")
-    async def rpsfail(self, ctx:Context):
+    async def rpsfail(self, ctx: Context):
         embed = disnake.Embed(title=f"Rock paper scissors!", colour=thecolor())
         msg = await ctx.send(embed=embed)
         
@@ -580,7 +578,7 @@ class Games(commands.Cog):
   
    
     @commands.command(aliases=['gussing', 'Guessing', 'Guessing_game','gg'], description="Plays a guessinggame with the bot (bot thinks of a number)")
-    async def guessinggame(self, ctx:Context):
+    async def guessinggame(self, ctx: Context):
         rand = randint(1, 100)
         embed = disnake.Embed(title=f"Give me a number between 1-100, the game has started'", colour=thecolor())
         await ctx.send(embed=embed)
@@ -626,7 +624,7 @@ class Games(commands.Cog):
         aliases=['playuno', 'unos', 'ungogame']
 
     )
-    async def uno(self, ctx:Context):
+    async def uno(self, ctx: Context):
         cards_played = []  
         emoji_list = []
         url_list = []
@@ -774,9 +772,7 @@ class Games(commands.Cog):
             print(interd.author, participants, interd.message.id, msg.id)
             #return interd.message.id == msg.id and interd.author in participants
             return True
-        print(participants)
         new_inter = await msg.wait_for_dropdown(check)
-        print(new_inter.author)
     
         if new_inter.author != participants[0]:
             await new_inter.reply("It isn't your turn!", type=4, ephemeral=True)

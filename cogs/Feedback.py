@@ -13,7 +13,7 @@ class Feedback(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def feedback(self, ctx:Context, *, feedback):
+    async def feedback(self, ctx: Context, *, feedback):
         with open('./dicts/Feedback.json', 'r+') as k:
             data = json.load(k)
             data['feedback']['message'].append(feedback)
@@ -24,11 +24,11 @@ class Feedback(commands.Cog):
         await thebed(ctx, '', 'Sent!')
 
     @commands.command()
-    async def viewfeedback(self, ctx:Context, distance:Union[int, str]=0, author_from:Union[int, str]=None):
+    async def viewfeedback(self, ctx: Context, distance:Union[int, str]=0, author_from:Union[int, str]=None):
         await thebed(ctx, '', '**Error: **distance must be an integer (an index placevalue) if no `author_from` is given!') if hasattr(distance, 'upper') and author_from is None else await thebed(ctx, '', f'*`{distance}`*: "{data["feedback"]["message"][distance]}", submitted by **{data["feedback"]["author"][distance]}**' if distance != 0 else f'**You can index off of the index on the left side. Type `{ctx.prefix}viewfeedback <index>`\n**\n' + "\n".join([f"`{num}:` {data['feedback']['message'][k]}**, said by {data['feedback']['author'][k]}**" for num, k in enumerate(range(len(data['feedback']['message']))) if num <= 9]), a='Feedback', i_u=ctx.author.avatar.url) if author_from is None else await thebed(ctx, '', f'\n'.join([f"`{num}`: {data['feedback']['message'][num]}" for num, k in enumerate(data['feedback']['author']) if k ==author_from]), a=f'Feedback from {author_from}', i_u=ctx.author.avatar.url, f=f'All these messges are from {author_from}') if hasattr(author_from, 'upper') else await thebed(ctx, '', f'\n'.join([f"`{num}`: {data['feedback']['message'][num]}" for num, k in enumerate(data['feedback']['id']) if k ==author_from]), a=f'Feedback from {await self.bot.fetch_user(author_from)}', i_u=ctx.author.avatar.url, f=f'All these messages are from {await self.bot.fetch_user(author_from)}')
 
     @commands.command(aliases=['dial', 'call', 'assistance'])
-    async def support(self, ctx:Context):
+    async def support(self, ctx: Context):
         f = open('./dicts/Dial.json', 'r+')
         data = json.load(f)
         if str(ctx.channel.id) in data:
@@ -41,7 +41,7 @@ class Feedback(commands.Cog):
         await chan.send(f"<@521226389559443461> - <@298043305927639041>")
 
     @commands.command(aliases=['closedial', 'endsupport', 'enddial', 'dialend', 'hangup'])
-    async def closesupport(self, ctx:Context, chan=""):
+    async def closesupport(self, ctx: Context, chan=""):
         c = self.bot.get_channel(866598271991545886)
         f = open('./dicts/Dial.json', 'r+')
         data = json.load(f)

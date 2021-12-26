@@ -35,8 +35,11 @@ Link: {dictionary['permalink']}"""
         async with aiohttp.ClientSession() as client:
             async with client.get(url=self.SPECIFIC_URL+query) as resp:
                 json = await resp.json()
-                output = self.parse_dict(json['list'][0])
-                
+                try:
+                    output = self.parse_dict(json['list'][0]) 
+                except:
+                    output = "That doesnt exist in the urban dictionary"
+
         await ctx.send(output)
 
 

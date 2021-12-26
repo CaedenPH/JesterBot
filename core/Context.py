@@ -5,12 +5,12 @@ from disnake.ext import commands
 from core.utils.utils import thecolor
 
 class Context(commands.Context):
-    async def em(self, message):
-        return await self.send(
+    async def em(self, message, **kwargs):
+        return await super().send(
             embed = disnake.Embed(
                 description=message,
                 color=thecolor() 
-            )
+            ),**kwargs
         )
 
     async def send(self, content: any = None, **kwargs):

@@ -71,7 +71,7 @@ class Misc(commands.Cog):
             return await ctx.send(f"https://github.com/caedenph/jesterbot/tree/main/cogs/{cmd.cog.qualified_name}.py#L{inspect.getsourcelines(inspect.unwrap(cmd.callback).__code__)[1]}")
         await ctx.em("No such command!")
     @commands.command()
-    async def invited(self, ctx:Context, user:disnake.Member=None):
+    async def invited(self, ctx: Context, user:disnake.Member=None):
         if not user:
             user = ctx.author
         totalInvites = 0
@@ -81,7 +81,7 @@ class Misc(commands.Cog):
         await thebed(ctx, "", f"{user.name} has invited **{totalInvites}** member{'' if totalInvites == 1 else 's'} to the server!")
         
     @commands.command(description="Sends information about my account")
-    async def info(self, ctx:Context, member: disnake.Member = ""):
+    async def info(self, ctx: Context, member: disnake.Member = ""):
         embed = disnake.Embed(title="Information", timestamp=ctx.message.created_at, colour=thecolor())
         if not member:
             member = ctx.author
@@ -103,7 +103,7 @@ class Misc(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def channel(self, ctx:Context):
+    async def channel(self, ctx: Context):
 
         channelname = ctx.channel.name
         channelid = ctx.channel.id
@@ -115,7 +115,7 @@ class Misc(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(description="Make a secure password with a length that you can choose")
-    async def password(self, ctx:Context, lengthofpassword:int=12):
+    async def password(self, ctx: Context, lengthofpassword:int=12):
         
         my_list = ['!', '?', '#']
         for c in range(97, 123):
@@ -132,7 +132,7 @@ class Misc(commands.Cog):
         await thebed(ctx, 'Password', f'||{x.jump_url}||')
 
     @commands.command(aliases=['stat'], description="Sends statistics about the server")
-    async def stats(self, ctx:Context):
+    async def stats(self, ctx: Context):
 
         members, bots = [m for m in ctx.guild.members if not m.bot], [m for m in ctx.guild.members if not m.bot]
         embed = disnake.Embed(title="Stats", color = thecolor())
@@ -172,13 +172,13 @@ class Misc(commands.Cog):
 
 
     @commands.command(aliases=['Server_icon', 'Icon_server', 'Guild_icon', 'Server_Avatar', 'avg', 'guildav', 'gc'], description="Sends the avatar of the server (profile pic)")
-    async def avatarguild(self, ctx:Context):
+    async def avatarguild(self, ctx: Context):
         embed = disnake.Embed(title='Guild icon', color=thecolor())
         embed.set_image(url=ctx.guild.icon_url)
 
         await ctx.send(embed=embed)
     @commands.command(aliases=['messages'], description="Says how many messages have been sent since the bot joined")
-    async def servermessages(self, ctx:Context, server=""):
+    async def servermessages(self, ctx: Context, server=""):
         join = ctx.guild.get_member(828363172717133874)
         when = "24th of June 2021"
         joinedat = ""
@@ -199,7 +199,7 @@ class Misc(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['s', 'Sugg', 'Sug', 'Suggester'], description="Follow the instructions and a suggestion will appear")
-    async def suggest(self, ctx:Context):
+    async def suggest(self, ctx: Context):
 
         user = ctx.author.id
         username = self.bot.get_user(user)
@@ -264,7 +264,7 @@ class Misc(commands.Cog):
             await ctx.send(embed=embed)
    
     @commands.command()
-    async def rules(self, ctx:Context):
+    async def rules(self, ctx: Context):
         embed = disnake.Embed(title="Standard Rules", description="", color=0xffd1dc)
         embed.add_field(name="`1` NSFW ", value="All NSFW outside of an nsfw channel is banned and you will be muted and even banned up to the severity of the content.", inline=False)
     
@@ -278,7 +278,7 @@ class Misc(commands.Cog):
         await ctx.send(embed=embed)
     
     @commands.command()
-    async def booster(self, ctx:Context):
+    async def booster(self, ctx: Context):
         embed = disnake.Embed(title="Booster perks", description="Boosting this server can help give us many other perks! Although it's not required we would love for you to boost us!", color=0xffd1dc)
         embed.add_field(name="`1` Free role ", value="When you boost you'll be able to choose a role for you and a friend!", inline=False)
     
@@ -292,7 +292,7 @@ class Misc(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def nitro(self, ctx:Context):
+    async def nitro(self, ctx: Context):
         embed = disnake.Embed(title="Nitro perks", description="Nitro can improve disnake experience and give many fun perks!", color=0xffd1dc)
         embed.add_field(name="`1` Live streams", value="Screen share on PC in `720p 60fps` or `1080p 30fps` - Stream at source", inline=False)
         embed.add_field(name="`2` Gif", value="Upload and use animated avatars and emojis", inline=False)

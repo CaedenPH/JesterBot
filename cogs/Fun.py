@@ -66,7 +66,7 @@ class Fun(commands.Cog):
         await ctx.send(file=disnake.File('./images/glitched.gif'))
 
     @commands.command(aliases=['art'])
-    async def asciiart(self, ctx:Context, *, text: str):
+    async def asciiart(self, ctx: Context, *, text: str):
 
         if len(text) > 10:
             return await thebed(ctx, '', f"{CLOSE} Length of Text cannot be more than 10 Characters!")
@@ -79,7 +79,7 @@ class Fun(commands.Cog):
         await ctx.send(embed=disnake.Embed(description=f"```yaml\n{art}```", color=self.bot.disnakecolor))
 
     @commands.command()
-    async def sudo(self, ctx:Context, member:disnake.Member, *, text):
+    async def sudo(self, ctx: Context, member:disnake.Member, *, text):
         await ctx.message.delete()
         for k in await ctx.channel.webhooks():
             if k.user == ctx.me:
@@ -89,7 +89,7 @@ class Fun(commands.Cog):
         await webhook.send(text, username=member.name, avatar_url=member.avatar.url, allowed_mentions=disnake.AllowedMentions(roles=False, users=False, everyone=False))
     
     @commands.command()
-    async def minecraft(self, ctx:Context, username):
+    async def minecraft(self, ctx: Context, username):
         try:
 
             async with ctx.typing():
@@ -113,7 +113,7 @@ class Fun(commands.Cog):
             await thebed(ctx, '', 'They are not a minecraft player! Enter their in-game username')
         
     @commands.command(aliases=['emojis', 'sentance'])
-    async def name(self, ctx:Context, *, name):
+    async def name(self, ctx: Context, *, name):
         list = []
         for k in name:
             if k == " ":
@@ -125,7 +125,7 @@ class Fun(commands.Cog):
         await thebed(ctx, 'Name in emojis...', "".join(list))
     
     @commands.command(description="Fake hacks the specified member")
-    async def hack(self, ctx:Context, member:disnake.Member=""):
+    async def hack(self, ctx: Context, member:disnake.Member=""):
         
         x = False
         key = ""
@@ -195,7 +195,7 @@ class Fun(commands.Cog):
             await msg.edit(content=f"```py\n{new_msg_list}```")
     
     @commands.command(aliases=['findemoji', 'emojipicker', 'getemojis'])
-    async def pickemoji(self, ctx:Context):
+    async def pickemoji(self, ctx: Context):
         other = open('./dicts/emojsend.json')
         data = json.load(other)
         x = []
@@ -256,7 +256,7 @@ class Fun(commands.Cog):
                 
     
     @commands.command(description="Sends the users pp size")
-    async def pp(self, ctx:Context):
+    async def pp(self, ctx: Context):
 
         with open('./dicts/pp.json', 'r+') as k:
             randomsizeint = randint(1, 12)
@@ -275,7 +275,7 @@ class Fun(commands.Cog):
             await ctx.send(embed=embed)
         
     @commands.command(description="Sends the users new pp size")
-    async def newpp(self, ctx:Context):
+    async def newpp(self, ctx: Context):
         
         with open('./dicts/pp.json', 'r+') as k:
             randomsizeint = randint(1, 12)
@@ -301,7 +301,7 @@ class Fun(commands.Cog):
 
         
     @commands.command(aliases=['echos'], description="Echo's the message the user sends after sending the command")
-    async def echo(self, ctx:Context):
+    async def echo(self, ctx: Context):
 
         user = self.bot.get_user(ctx.author.id)
         try:
@@ -320,13 +320,13 @@ class Fun(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command(name = 'rand', aliases=['randomnum', 'rant', 'randomnumber', 'random_number'], description="Sends a random number between `<first_number>` and `<second_number>`")
-    async def random_num(self, ctx:Context, num1: int, num2: int):
+    async def random_num(self, ctx: Context, num1: int, num2: int):
         
         embed = disnake.Embed(title="randomnum", description=randint(num1, num2))
         await ctx.send(embed=embed)
         
     @commands.command(aliases=['coin', 'ht', 'headsandtails', 'Coinflip', 'coin_flip', 'flip_coin', 'fc'], description="Sends heads or tails, 50% chance")
-    async def flipcoin(self, ctx:Context): 
+    async def flipcoin(self, ctx: Context): 
 
         rand = randint(1, 2)
         if rand == 1:
@@ -339,7 +339,7 @@ class Fun(commands.Cog):
         await ctx.send(embed=embed)
     
     @commands.command(aliases=['rev', 'Reversemessage', 'Message_Reverse', 'Reverse_messgae', 'Reverse_Message'], description="Reverses the `<message>` letters and words (like a mirror)")
-    async def reverse(self, ctx:Context, *, message):
+    async def reverse(self, ctx: Context, *, message):
     
         def reverse(string):
             return string[::-1]
@@ -348,7 +348,7 @@ class Fun(commands.Cog):
         
 
     @commands.command(description="The specified member takes an L")
-    async def l(self, ctx:Context, user:disnake.Member=""):
+    async def l(self, ctx: Context, user:disnake.Member=""):
             if user == "":
                 user = self.bot.get_user(ctx.author.id)
             embed = disnake.Embed(description=f"{user.mention} took an L", colour=thecolor())

@@ -16,7 +16,7 @@ class Config(commands.Cog):
     
     @commands.command(aliases=['Welcomer', 'welcome'], description="Adds a welcome feature into the current channel (everytime someone joins the server it says welcome) - `[message]` is a good welcome message")
     @has_permissions(administrator=True)
-    async def welcomechannel(self, ctx:Context, role:disnake.Role="",*,  message:str = ""):
+    async def welcomechannel(self, ctx: Context, role:disnake.Role="",*,  message:str = ""):
 
         with open('./dicts/Welcome.json', 'r+') as f:
             data = json.load(f)
@@ -45,7 +45,7 @@ class Config(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['channelconfig'])
-    async def config(self, ctx:Context):
+    async def config(self, ctx: Context):
         the_list = ""
         the_list1 = ""
         with open('./dicts/ConfigChannel.json', 'r+') as k:
@@ -107,7 +107,7 @@ class Config(commands.Cog):
 
     @commands.command()
     @has_permissions(manage_channels=True)
-    async def pickuplinechannel(self, ctx:Context, channel:disnake.TextChannel=""):
+    async def pickuplinechannel(self, ctx: Context, channel:disnake.TextChannel=""):
         if not channel: 
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
         with open('./dicts/ConfigChannel.json', 'r+') as k:
@@ -131,7 +131,7 @@ class Config(commands.Cog):
             await thebed(ctx, 'There is already a pickuplinechannel here or something went wrong')
     @commands.command()
     @has_permissions(manage_channels=True)
-    async def jokechannel(self, ctx:Context, channel:disnake.TextChannel=""):
+    async def jokechannel(self, ctx: Context, channel:disnake.TextChannel=""):
         if not channel: 
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
         with open('./dicts/ConfigChannel.json', 'r+') as k:
@@ -156,7 +156,7 @@ class Config(commands.Cog):
         
     @commands.command()
     @has_permissions(manage_channels=True)
-    async def quotechannel(self, ctx:Context, channel:disnake.TextChannel=""):
+    async def quotechannel(self, ctx: Context, channel:disnake.TextChannel=""):
         if not channel: 
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
         with open('./dicts/ConfigChannel.json', 'r+') as k:
@@ -181,7 +181,7 @@ class Config(commands.Cog):
         
     @commands.command()
     @has_permissions(manage_channels=True)
-    async def factchannel(self, ctx:Context, channel:disnake.TextChannel=""):
+    async def factchannel(self, ctx: Context, channel:disnake.TextChannel=""):
         if not channel: 
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
         with open('./dicts/ConfigChannel.json', 'r+') as k:
@@ -212,7 +212,7 @@ class Config(commands.Cog):
             
   
     @commands.command(aliases=['Unwelcome', 'Stop_Welcome'], description="Removes the j.welcome command")
-    async def remove_welcome(self, ctx:Context):
+    async def remove_welcome(self, ctx: Context):
         with open('./dicts/Welcome.json', 'r+') as f:
             data = json.load(f)
             
@@ -223,7 +223,7 @@ class Config(commands.Cog):
                 await ctx.send(embed=embed)
     @has_permissions(manage_channels=True)
     @commands.command(description="Makes the channel specified a suggestion channel - members can only type j.suggest or their message gets deleted. Nice and orderly")
-    async def suggestchannel(self, ctx:Context, channel:disnake.TextChannel):
+    async def suggestchannel(self, ctx: Context, channel:disnake.TextChannel):
 
         with open('./dicts/Suggest.json', 'r+') as k:
             data = json.load(k)
@@ -267,7 +267,7 @@ class Config(commands.Cog):
     2. It will create a channel called `⚘ verify ⚘`
     3. When a new member joins they will only see the channel `⚘ verify ⚘`, and if they write `verify` they can text in and see all other channels""")
     @has_permissions(administrator=True)
-    async def verifychannel(self, ctx:Context, channel:disnake.TextChannel=None, role:disnake.Role=""):
+    async def verifychannel(self, ctx: Context, channel:disnake.TextChannel=None, role:disnake.Role=""):
         embed = disnake.Embed(title="Warning", description="While this command can help your server by adding a verification, it can also add roles and channels you may not like the look of. To get more information type `j.help verifychannel`. To proceed type y", colour=thecolor())
         await ctx.send(embed=embed)
         received_msg = str((await self.bot.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)).content).lower()
@@ -345,7 +345,7 @@ class Config(commands.Cog):
 
     @commands.command(aliases=['remverify'], description="removes the need for a verification")
     @has_permissions(administrator=True)
-    async def removeverify(self, ctx:Context):
+    async def removeverify(self, ctx: Context):
 
         with open('./dicts/VerifyChannel.json', 'r+') as k:
             data = json.load(k)
@@ -360,7 +360,7 @@ class Config(commands.Cog):
             await thebed(ctx, 'There was never a verify!')
 
     @commands.command()
-    async def leavechannel(self, ctx:Context, channel:disnake.TextChannel=""):
+    async def leavechannel(self, ctx: Context, channel:disnake.TextChannel=""):
         
         with open('./dicts/LeaveChannel.json', 'r+') as k:
             data = json.load(k)
@@ -377,7 +377,7 @@ class Config(commands.Cog):
         await thebed(channel, 'This is a leaving channel, everyone who leaves will be announced here...')
 
     @commands.command()
-    async def removeleavechannel(self, ctx:Context, channel:disnake.TextChannel):
+    async def removeleavechannel(self, ctx: Context, channel:disnake.TextChannel):
         with open('./dicts/LeaveChannel.json', 'r+') as k:
 
             data = json.load(k)

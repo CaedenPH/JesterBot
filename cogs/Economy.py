@@ -24,7 +24,7 @@ class Economy(commands.Cog):
     def __init__(self, bot):
 
         self.bot = bot
-    async def cog_after_invoke(self, ctx:Context):
+    async def cog_after_invoke(self, ctx: Context):
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
             if str(ctx.author.id) not in data:
@@ -38,7 +38,7 @@ class Economy(commands.Cog):
             Json(k, data)
     
     @commands.group(aliases=['buy'], description="If `purchase` is empty, sends what can be bought, or if [`purchase`] is a purchasable you buy the item", invoke_without_command=True)
-    async def shop(self, ctx:Context, purchase=""): 
+    async def shop(self, ctx: Context, purchase=""): 
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
             if purchase == "":
@@ -64,7 +64,7 @@ class Economy(commands.Cog):
                 await ctx.send(embed=embed)
     
     @shop.command() 
-    async def role(self, ctx:Context):
+    async def role(self, ctx: Context):
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
             if data[str(ctx.author.id)]['Bal'] > 1000:
@@ -158,7 +158,7 @@ class Economy(commands.Cog):
                 await thebed(ctx, "You don't have enough money!")
        
     @shop.command(alises=['covid', 'cov'])
-    async def corona(self, ctx:Context):
+    async def corona(self, ctx: Context):
         with open('./dicts/Bal.json', 'r+') as k:
             with open('./dicts/Bal.json', 'r+') as k:
                 data = json.load(k)
@@ -176,7 +176,7 @@ class Economy(commands.Cog):
                     await thebed(ctx, "You don't have enough money!")
 
     @commands.command(aliases=['bal', 'money'], description="Sends the JesterCoins `[user] has, if no user specified it sends authors bal")
-    async def balance(self, ctx:Context, user:disnake.Member=""):
+    async def balance(self, ctx: Context, user:disnake.Member=""):
         with open('./dicts/Bal.json') as k:
             data = json.load(k)
         
@@ -199,7 +199,7 @@ class Economy(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['bet', 'g'], description="Gambles the `<ammount>`, 1 in 3 chance to double money, 2 in 3 chance to lose the money you gambled...")
-    async def gamble(self, ctx:Context, money:int):
+    async def gamble(self, ctx: Context, money:int):
         if money <= 25:
             return await thebed(ctx, '', 'You must bet over **25** jestercoins!')
         with open('./dicts/Bal.json', 'r+') as k:
@@ -230,7 +230,7 @@ class Economy(commands.Cog):
 
     @commands.command(description="You get a random ammount of JesterCoins - 60 second cooldown!")
     @commands.cooldown(1, 30, commands.BucketType.user)
-    async def beg(self, ctx:Context):
+    async def beg(self, ctx: Context):
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
             x = randint(50, 200)
@@ -241,7 +241,7 @@ class Economy(commands.Cog):
 
 
     @commands.command(aliases=['balancetop'], description="Sends the richest members")
-    async def baltop(self, ctx:Context):
+    async def baltop(self, ctx: Context):
         score_list = []
         sorted_score_dict = {}
         x1 = 0
@@ -269,7 +269,7 @@ class Economy(commands.Cog):
             await ctx.send(embed=embed)
         
     @commands.command(aliases=['give'], description="Sends the <ammount> from your bank to their bank!")
-    async def gift(self, ctx:Context, user:disnake.Member, ammount:int):
+    async def gift(self, ctx: Context, user:disnake.Member, ammount:int):
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
             if data[str(ctx.author.id)]['Bal'] >= ammount:
@@ -294,7 +294,7 @@ class Economy(commands.Cog):
                 embed = disnake.Embed(description=f"You don't have {ammount}! Type `j.bal` for your balance!", colour=thecolor())
             await ctx.send(embed=embed)
     @commands.command(aliases=['givehide'], description="Sends the <ammount> from your bank to their bank!", hidden=True)
-    async def gifthide(self, ctx:Context, user:int, ammount:int):
+    async def gifthide(self, ctx: Context, user:int, ammount:int):
    
         user = self.bot.get_user(user)
     
@@ -324,11 +324,11 @@ class Economy(commands.Cog):
         else:
             await ctx.send("no")
     @commands.group(aliases=['open', 'use'], description="unlocks your Lucky boxes!", invoke_without_command=True)
-    async def unlock(self, ctx:Context, what=""):
+    async def unlock(self, ctx: Context, what=""):
         await thebed(ctx, '', 'Type what you want to open! Type `j.inv` to see what you have available to unlock! To buy unlockable items type `j.shop`')
 
     @unlock.group()
-    async def box(self, ctx:Context):
+    async def box(self, ctx: Context):
         with open('./dicts/Bal.json', 'r+') as k:
             data = json.load(k)
             if str(ctx.author.id) in data:
@@ -346,7 +346,7 @@ class Economy(commands.Cog):
                 embed = disnake.Embed(title="You dont have a lucky box! Type `j.shop box` to buy one!", colour=thecolor())
                 await ctx.send(embed=embed)
     # @unlock.group(aliases=['cov', 'corona'])
-    # async def covid(self, ctx:Context, user:disnake.Member=""):
+    # async def covid(self, ctx: Context, user:disnake.Member=""):
     #     if not user and user != ctx.author:
     #         return await thebed(ctx, 'You need to mention someone to rob!')
     #     with open('./dicts/Bal.json', 'r+') as k:
@@ -373,7 +373,7 @@ class Economy(commands.Cog):
     #             embed = disnake.Embed(title="You dont have a porta-covid! Type `j.shop covid` to buy one!", colour=thecolor())
     #             await ctx.send(embed=embed)
     @unlock.group()
-    async def bag(self, ctx:Context, user:disnake.Member=""):
+    async def bag(self, ctx: Context, user:disnake.Member=""):
         if not user and user != ctx.author:
             return await thebed(ctx, 'You need to mention someone to rob!')
         with open('./dicts/Bal.json', 'r+') as k:
@@ -408,7 +408,7 @@ class Economy(commands.Cog):
                 embed = disnake.Embed(title="You dont have a bag! Type `j.shop bag` to buy one!", colour=thecolor())
                 await ctx.send(embed=embed)
     @unlock.group()
-    async def gun(self, ctx:Context, user:disnake.Member=""):
+    async def gun(self, ctx: Context, user:disnake.Member=""):
         if not user and user != ctx.author:
             await thebed(ctx, 'You need to mention someone to rob!')
         with open('./dicts/Bal.json', 'r+') as k:
@@ -440,7 +440,7 @@ class Economy(commands.Cog):
                 await ctx.send(embed=embed)
 
     @commands.command(aliases=['inv'], description="Sends your current inventory")
-    async def inventory(self, ctx:Context):
+    async def inventory(self, ctx: Context):
         with open('./dicts/Bal.json') as k:
             embed = disnake.Embed(title="Your inventory is currently:", colour=thecolor())
             
@@ -459,7 +459,7 @@ class Economy(commands.Cog):
  
     @commands.command()
     @commands.cooldown(1, 600, commands.BucketType.user) 
-    async def work(self, ctx:Context):
+    async def work(self, ctx: Context):
         with open('./dicts/Bal.json', 'r+') as k:
             
             data = json.load(k)

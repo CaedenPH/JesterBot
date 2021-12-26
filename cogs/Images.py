@@ -42,9 +42,7 @@ async def pilimg(ctx, member, name):
     url:str = member.avatar.url
 
     if member.avatar.is_animated():
-        
         url:str = str(member.avatar.url).replace('.gif', '.webp')
-        print(url)
 
     path = f'./images/{name}.png'
     async with aiohttp.ClientSession() as s:
@@ -55,6 +53,7 @@ async def pilimg(ctx, member, name):
 
     with PIL.Image.open(path) as im:
         return im, path
+
 class Images(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -92,7 +91,7 @@ class Images(commands.Cog):
         await ctx.send(file=disnake.File(x[1]))
     
     @commands.command(aliases=['change', 'changemind', 'change_my_mind'])
-    async def mindchange(self, ctx:Context, *, text:str=None):
+    async def mindchange(self, ctx: Context, *, text:str=None):
         async with ctx.typing():
             embed = disnake.Embed(title="Change my mind...", colour=thecolor())
             x = await vace_api.change_my_mind(text)
@@ -101,7 +100,7 @@ class Images(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command()
-    async def nasapic(self, ctx:Context):
+    async def nasapic(self, ctx: Context):
         f = requests.get("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=1")
         up = f.json()
         
@@ -116,7 +115,7 @@ class Images(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def rover(self, ctx:Context):
+    async def rover(self, ctx: Context):
         key2 = "dS9ecIIo07Q0gGLYXnCoJW6uCAKwDM9j0UnYbVre"
         async with aiohttp.ClientSession() as sess:
             async with sess.get("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key={}".format(key2)) as resp:
@@ -124,7 +123,7 @@ class Images(commands.Cog):
                 await ctx.send(response)
 
     @commands.command(aliases=['rpic', 'randpic'])
-    async def randompicture(self, ctx:Context):
+    async def randompicture(self, ctx: Context):
         async with ctx.typing():
             response = requests.get(f"https://source.unsplash.com/random")
             my_file = open('./images/random.png', 'wb')
@@ -159,14 +158,14 @@ class Images(commands.Cog):
         await ctx.send(file=disnake.File('./images/code_snippet.png'))
 
     @commands.command()
-    async def meme(self, ctx:Context):
+    async def meme(self, ctx: Context):
         async with aiohttp.ClientSession() as client:
             async with client.get("https://some-random-api.ml/meme") as resp:
                 response = await resp.json()
                 await ctx.send(response['image'])
 
     @commands.command(description="""Sends a wasted filtered avatar""")
-    async def wasted(self, ctx:Context, member: disnake.Member=None):
+    async def wasted(self, ctx: Context, member: disnake.Member=None):
        
         if member is None:
             avatar = ctx.author.avatar.with_format('png')
@@ -182,7 +181,7 @@ class Images(commands.Cog):
         await ctx.send(file=disnake.File('./images/wasted.png'))
 
     @commands.command(description="""Sends a wasted filtered avatar""")
-    async def threshold(self, ctx:Context, member: disnake.Member=None):
+    async def threshold(self, ctx: Context, member: disnake.Member=None):
        
         if member is None:
             avatar = ctx.author.avatar.with_format('png')
@@ -200,7 +199,7 @@ class Images(commands.Cog):
    
         
     @commands.command(description="""Sends a fay filtered avatar""")
-    async def gay(self, ctx:Context, member:disnake.Member=None):
+    async def gay(self, ctx: Context, member:disnake.Member=None):
         
         if member is None:
             avatar = ctx.author.avatar.with_format('png')
@@ -217,7 +216,7 @@ class Images(commands.Cog):
         await ctx.send(file=disnake.File('./images/gay.png')) 
 
     @commands.command(description="""Sends a glass filtered avatar""")
-    async def glass(self, ctx:Context, member:disnake.Member=None):
+    async def glass(self, ctx: Context, member:disnake.Member=None):
         
         if member is None:
             avatar = ctx.author.avatar.with_format('png')
@@ -232,7 +231,7 @@ class Images(commands.Cog):
         await ctx.send(file=disnake.File('./images/glass.png')) 
 
     @commands.command(description="""Sends a triggered filtered avatar""")
-    async def triggered(self, ctx:Context, member:disnake.Member=None):
+    async def triggered(self, ctx: Context, member:disnake.Member=None):
        
         if member is None:
             avatar = ctx.author.avatar.with_format('png')
@@ -247,7 +246,7 @@ class Images(commands.Cog):
         await ctx.send(file=disnake.File('./images/triggered.png')) 
 
     @commands.command(description="""Sends a bloody filtered avatar""")
-    async def bloody(self, ctx:Context, member:disnake.Member=None):
+    async def bloody(self, ctx: Context, member:disnake.Member=None):
        
         if member is None:
             avatar = ctx.author.avatar.with_format('png')
@@ -262,7 +261,7 @@ class Images(commands.Cog):
         await ctx.send(file=disnake.File('./images/bloody.png')) 
         
     @commands.command(description="""Sends a YouTube comment with your custom comment""")
-    async def ytcomment(self, ctx:Context, *, comment):
+    async def ytcomment(self, ctx: Context, *, comment):
        
         async with ctx.typing():
             response = requests.get(f"https://some-random-api.ml/canvas/youtube-comment?avatar={ctx.author.avatar.with_format('png')}&comment={comment}&username={ctx.author.display_name}")
@@ -272,7 +271,7 @@ class Images(commands.Cog):
         await ctx.send(file=disnake.File('./images/yt-comment.png'))
 
     @commands.command(description="""Makes a bright filtered avatar""")
-    async def bright(self, ctx:Context, member:disnake.Member=None):
+    async def bright(self, ctx: Context, member:disnake.Member=None):
         
         if member is None:
             avatar = ctx.author.avatar.with_format('png')
@@ -289,7 +288,7 @@ class Images(commands.Cog):
         await ctx.send(file=disnake.File('./images/brightness.png')) 
             
     @commands.command(description="""Makes a bright filtered avatar""")
-    async def invert(self, ctx:Context, member:disnake.Member=None):
+    async def invert(self, ctx: Context, member:disnake.Member=None):
         
         if member is None:
             avatar = ctx.author.avatar.with_format('png')
@@ -304,7 +303,7 @@ class Images(commands.Cog):
         await ctx.send(file=disnake.File('./images/invert.png')) 
             
     @commands.command(description="""Makes a bright filtered avatar""")
-    async def colorview(self, ctx:Context, hexcolor):
+    async def colorview(self, ctx: Context, hexcolor):
 
         async with ctx.typing():
             response = requests.get(f"https://some-random-api.ml/canvas/colorviewer?hex={hexcolor}")
@@ -314,7 +313,7 @@ class Images(commands.Cog):
         await ctx.send(file=disnake.File('./images/color.png')) 
 
     @commands.command(aliases=['pic', 'imag', 'images', 'image'])
-    async def picture(self, ctx:Context, *, pic):
+    async def picture(self, ctx: Context, *, pic):
         
         async with ctx.typing():
             response = requests.get('https://source.unsplash.com/1600x900/?{}'.format(pic))
@@ -325,7 +324,7 @@ class Images(commands.Cog):
         await ctx.send(file=disnake.File('./images/picture.png')) 
 
     @commands.command(invoke_without_command=True, description="Sends certain images of animals such as `dog`, `fox`, `cat`, to get the full list type `j.image`", aliases=['animalpic', 'animage'])
-    async def animalimage(self, ctx:Context, imag=""):
+    async def animalimage(self, ctx: Context, imag=""):
         
         if imag not in ['cat', 'dog', 'panda', 'koala', 'fox', 'racoon', 'kangaroo']:
             embed = disnake.Embed(title=f"{imag} is not a valid option" if imag else "Options", description="Valid Options are `cat`, `dog`, `panda`, `koala`, `fox`, `racoon`, `kangaroo`", colour=thecolor())
@@ -372,5 +371,15 @@ class Images(commands.Cog):
         image_scaled = cv.resize(image_scaled, (400, 400))
         cv.imwrite('./images/pixel.png', image_scaled)
         await ctx.send(file=disnake.File('./images/pixel.png'))
+
+    @commands.command()
+    async def bill(self, ctx: Context):
+        async with ctx.typing():
+            response = requests.get("https://belikebill.ga/billgen-API.php?default=1", verify=False)
+            file = open('./images/triggered.png', 'wb')
+            file.write(response.content)
+            file.close()
+        await ctx.send(file=disnake.File('./images/triggered.png')) 
+
 def setup(bot):
   bot.add_cog(Images(bot))

@@ -21,7 +21,7 @@ class Mod(commands.Cog):
 
     @has_permissions(administrator=True)
     @commands.command(aliases=['del', 'deletes'], description="Deletes the specified channel, if no channel is specified - the current channel. Sends a warning.")
-    async def delete(self, ctx:Context, channel_id:int=""):
+    async def delete(self, ctx: Context, channel_id:int=""):
         embed = disnake.Embed(title=f"This will delete the current channel, are you sure you want to procede? Type y if you do", colour=thecolor())
         await ctx.send(embed=embed)
         msg = str((await self.bot.wait_for('message', timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)).content).lower()
@@ -42,7 +42,7 @@ class Mod(commands.Cog):
         
     @has_permissions(administrator=True)
     @commands.command(aliases=['nicks'], hidden=True)
-    async def nick(self, ctx:Context, member: disnake.Member, *, nick):
+    async def nick(self, ctx: Context, member: disnake.Member, *, nick):
 
         await member.edit(nick=nick)
         embed = disnake.Embed(description=f'Nickname was changed for {member.mention} ', colour=thecolor())
@@ -50,7 +50,7 @@ class Mod(commands.Cog):
     
     @has_permissions(administrator=True)
     @commands.command(hidden=True, description="Deletes the specified invite", aliases=['deleteinv', 'invdelete', 'revokeinv', 'delinv', 'Invdel', 'Revinv', 'Invrev', 'Revokeinvite', 'Revoke_invite', 'xinv', 'X_inv', 'invitex', 'xinvite', 'Inv_x'])
-    async def delete_invite(self, ctx:Context, invite:str):
+    async def delete_invite(self, ctx: Context, invite:str):
 
         embed = disnake.Embed(title=f"Deleted invite", colour=thecolor())
         await ctx.send(embed=embed)
@@ -58,7 +58,7 @@ class Mod(commands.Cog):
 
     @has_permissions(manage_messages=True)
     @commands.command(name='purge', aliases=['Message_delete', 'Msg_Del'], description="Purges the ammount of messages sent")
-    async def _purge (self, ctx:Context, amount=80):
+    async def _purge (self, ctx: Context, amount=80):
 
         await ctx.channel.purge(limit=amount)
         embed = disnake.Embed(title='Purge Sucsessful', description =f'Purge has been sucsessful.', colour =thecolor())
@@ -67,7 +67,7 @@ class Mod(commands.Cog):
 
     @has_permissions(ban_members=True)
     @commands.command(aliases=['b', 'banhammer', 'bann'], description="Bans the specified member - Reason goes in the audit log")
-    async def ban(self, ctx:Context,member : disnake.Member,*, reason = "No reason provided"):
+    async def ban(self, ctx: Context,member : disnake.Member,*, reason = "No reason provided"):
 
         await member.send("You have been banned: " + reason)
         await member.ban(reason=reason)
@@ -78,7 +78,7 @@ class Mod(commands.Cog):
 
     @has_permissions(ban_members=True)
     @commands.command(aliases=['ub', 'Revoke_Ban'], description="Unbans the specified member - Reason goes in the audit log")
-    async def unban(self, ctx:Context, user_id: int, *, reason = "No reason provided"):
+    async def unban(self, ctx: Context, user_id: int, *, reason = "No reason provided"):
 
         user = await ctx.bot.fetch_user(user_id)
         await ctx.guild.unban(user, reason=reason)
@@ -89,7 +89,7 @@ class Mod(commands.Cog):
     
     @has_permissions(manage_roles=True)
     @commands.command(aliases=['add', '+role', 'add_role'])
-    async def addrole(self, ctx:Context, member: disnake.Member, role: disnake.Role):
+    async def addrole(self, ctx: Context, member: disnake.Member, role: disnake.Role):
 
         await member.add_roles(role)
         embed = disnake.Embed(title="Addrole", description=f"{member.mention} got a role.", colour=thecolor())
@@ -99,14 +99,14 @@ class Mod(commands.Cog):
         
     @has_permissions(move_members=True)
     @commands.command(aliases=['m', 'move'], description="Moves a member from their current vc to the channel specified. If no channel has been specified it will kick the member from the vc.")
-    async def move_to(self, ctx:Context, member: disnake.Member, channel: str): 
+    async def move_to(self, ctx: Context, member: disnake.Member, channel: str): 
 
         await member.move_to(disnake.utils.get(self, ctx.guild.voice_channels, name=channel))
         embed = disnake.Embed(title="Moved", description=f"{member.mention} got moved. to {channel}", colour=thecolor())
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def deletemessages(self, ctx:Context, user:disnake.Member, limit=10):
+    async def deletemessages(self, ctx: Context, user:disnake.Member, limit=10):
 
         embed = disnake.Embed(title="Working....", color=thecolor())
         x = await ctx.send(embed=embed)
@@ -120,12 +120,12 @@ class Mod(commands.Cog):
 
 
     @commands.command(name='purgewithoutmessage', aliases=['purge1'], hidden=True)
-    async def _purge1 (self, ctx:Context, amount=80, member:disnake.Member=""):
+    async def _purge1 (self, ctx: Context, amount=80, member:disnake.Member=""):
         await ctx.channel.purge(limit=amount)
 
     @has_permissions(administrator=True)
     @commands.command(description="Set the prefix for JesterBot for the entire server (personal prefix changes are not affected")
-    async def server_prefix(self, ctx:Context, *, prefix=None):
+    async def server_prefix(self, ctx: Context, *, prefix=None):
         if not prefix:
             async with ctx.typing():
                 embed = await create_embed(ctx.message, self.bot)
@@ -154,7 +154,7 @@ class Mod(commands.Cog):
     
     @commands.command(aliases=['k'], description="Kicks the specified member - Reason goes in the audit log")
     @has_permissions(kick_members=True)
-    async def kick(self, ctx:Context,member : disnake.Member,*, reason = "No reason provided"):
+    async def kick(self, ctx: Context,member : disnake.Member,*, reason = "No reason provided"):
       
         await member.send("You have been kicked: " + reason)
         await member.kick(reason=reason)
@@ -164,7 +164,7 @@ class Mod(commands.Cog):
 
     @commands.command(aliases=['permrmute'], description="Indefinitely permreactmutes the member from adding reactions to messages")
     @has_permissions(manage_messages=True)
-    async def permreactmute(self, ctx:Context, member: disnake.Member, *, reason=None):
+    async def permreactmute(self, ctx: Context, member: disnake.Member, *, reason=None):
 
         guild = ctx.guild
         mutedRole = disnake.utils.get(guild.roles, name="ReactMuted")
@@ -182,7 +182,7 @@ class Mod(commands.Cog):
 
     @commands.command(description="Indefinitely mutes the member from sending messages")
     @has_permissions(manage_messages=True)
-    async def permmute(self, ctx:Context, member: disnake.Member, *, reason=None):
+    async def permmute(self, ctx: Context, member: disnake.Member, *, reason=None):
 
         guild = ctx.guild
         mutedRole = disnake.utils.get(guild.roles, name="Muted")
@@ -200,7 +200,7 @@ class Mod(commands.Cog):
 
     @commands.command(aliases=['unrmute', 'runmute'], description="Unreactmutes `<member>`")
     @has_permissions(manage_messages=True)
-    async def unreactmute(self, ctx:Context, member: disnake.Member, *, reason=None):
+    async def unreactmute(self, ctx: Context, member: disnake.Member, *, reason=None):
 
         guild = ctx.guild
 
@@ -220,7 +220,7 @@ class Mod(commands.Cog):
 
     @commands.command(aliases=['unmut'], description="Unmutes `<member>`")
     @has_permissions(manage_messages=True)
-    async def unmute(self, ctx:Context, member: disnake.Member, *, reason=None):
+    async def unmute(self, ctx: Context, member: disnake.Member, *, reason=None):
 
         guild = ctx.guild
         Reactmuted = disnake.utils.get(guild.roles, name="Muted")
@@ -239,7 +239,7 @@ class Mod(commands.Cog):
 
     @commands.command(aliases=['tempmute'], description="Mutes the member from sending messages for `<time>` Format `time` like `1s` (second), `1m` (minute), `1h`(hour), 1d` (day)")
     @has_permissions(manage_messages=True)
-    async def mute(self, ctx:Context, member: disnake.Member, time, *, reason=None):
+    async def mute(self, ctx: Context, member: disnake.Member, time, *, reason=None):
 
         async with ctx.typing():
         
@@ -295,7 +295,7 @@ class Mod(commands.Cog):
 
     @commands.command(aliases=['rmute'], description="Reactmutes the member from adding reactions to messages for `<time>` Format `time` like `1s` (second), `1m` (minute), `1h`(hour), 1d` (day)")
     @has_permissions(manage_messages=True)
-    async def reactmute(self, ctx:Context, member: disnake.Member, time, *, reason="no reason"):
+    async def reactmute(self, ctx: Context, member: disnake.Member, time, *, reason="no reason"):
 
         #Now timed mute manipulation
         try:
@@ -336,7 +336,7 @@ class Mod(commands.Cog):
 
     @has_permissions(administrator=True)
     @commands.command(aliases=['give_role', 'gv', 'give_rol'], description="Gives every member in the guild the specified role")
-    async def give_roles(self, ctx:Context, role:disnake.Role):
+    async def give_roles(self, ctx: Context, role:disnake.Role):
 
         embed = disnake.Embed(title="Working...", colour=thecolor())
         await ctx.send(embed=embed)
@@ -348,7 +348,7 @@ class Mod(commands.Cog):
 
 
     @commands.command(description="Sends a list of all the server roles and positions (hierachy)")
-    async def showroles(self, ctx:Context):
+    async def showroles(self, ctx: Context):
 
         x = ""
         for role in ctx.guild.roles:
@@ -365,7 +365,7 @@ class Mod(commands.Cog):
             await y.paginate(content=x, name='Roles')
 
     @commands.command(hidden=True)
-    async def showroleperm(self, ctx:Context, roled="member"):
+    async def showroleperm(self, ctx: Context, roled="member"):
 
         role = disnake.utils.get(self, ctx.guild.roles, name=roled)
         
@@ -377,7 +377,7 @@ class Mod(commands.Cog):
         await ctx.send(role.position)
 
     @commands.command()
-    async def showrolepermid(self, ctx:Context, id1:int):
+    async def showrolepermid(self, ctx: Context, id1:int):
         x = []
         for role in ctx.guild.roles:
             x.append(role.position)
@@ -391,7 +391,7 @@ class Mod(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def position(self, ctx:Context, member:disnake.Member):
+    async def position(self, ctx: Context, member:disnake.Member):
 
         x = []
         for role in member.roles:
@@ -403,7 +403,7 @@ class Mod(commands.Cog):
 
     
     @commands.command(hidden=True)
-    async def get_person(self, ctx:Context, id1):
+    async def get_person(self, ctx: Context, id1):
         
         x = self.bot.get_user(id1)
         await ctx.send(x.name)

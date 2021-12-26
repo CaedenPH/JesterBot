@@ -27,7 +27,7 @@
         "score": 104
     },
     "help": {
-        "score": 2161
+        "score": 2168
     },
     "jsonfile": {
         "score": 19
@@ -42,7 +42,7 @@
         "score": 24
     },
     "ping": {
-        "score": 307
+        "score": 308
     },
     "giveaway": {
         "score": 17
@@ -153,7 +153,7 @@
         "score": 3
     },
     "chuck": {
-        "score": 10
+        "score": 11
     },
     "avatarguild": {
         "score": 6
@@ -363,7 +363,7 @@
         "score": 1
     },
     "reload": {
-        "score": 4425
+        "score": 4587
     },
     "pp": {
         "score": 142
@@ -429,7 +429,7 @@
         "score": 12
     },
     "eval": {
-        "score": 2663
+        "score": 2665
     },
     "pager": {
         "score": 12
@@ -504,16 +504,16 @@
         "score": 27
     },
     "hack": {
-        "score": 187
+        "score": 188
     },
     "eval2": {
         "score": 6
     },
     "evalreturn": {
-        "score": 447
+        "score": 448
     },
     "evaldir": {
-        "score": 344
+        "score": 347
     },
     "quote1": {
         "score": 4
@@ -726,7 +726,7 @@
         "score": 3
     },
     "gay": {
-        "score": 29
+        "score": 30
     },
     "lyrics": {
         "score": 14
@@ -1023,7 +1023,7 @@
         "score": 11
     },
     "flip": {
-        "score": 18
+        "score": 19
     },
     "sharp": {
         "score": 6
@@ -1104,13 +1104,13 @@
         "score": 22
     },
     "urban_search": {
-        "score": 2
+        "score": 4
     },
     "channel_status": {
         "score": 10
     },
     "bored": {
-        "score": 2
+        "score": 7
     },
     "kanye_quote": {
         "score": 1
@@ -1119,12 +1119,63 @@
         "score": 1
     },
     "weather": {
-        "score": 5
+        "score": 16
     },
     "spacex": {
-        "score": 1
+        "score": 4
     },
     "covid": {
         "score": 2
+    },
+    "question": {
+        "score": 42
+    },
+    "start": {
+        "score": 10
+    },
+    "most_wanted": {
+        "score": 1
+    },
+    "wanted_criminals": {
+        "score": 17
+    },
+    "jailbase": {
+        "score": 15
+    },
+    "police": {
+        "score": 10
+    },
+    "coordinates": {
+        "score": 13
+    },
+    "stop_and_searches": {
+        "score": 16
+    },
+    "crime": {
+        "score": 2
+    },
+    "trivia_play": {
+        "score": 8
+    },
+    "trivia_question": {
+        "score": 40
+    },
+    "coffee": {
+        "score": 1
+    },
+    "geek": {
+        "score": 8
+    },
+    "blank": {
+        "score": 3
+    },
+    "bs": {
+        "score": 2
+    },
+    "trump": {
+        "score": 2
+    },
+    "bill": {
+        "score": 5
     }
 }

@@ -18,5 +18,7 @@
     "Countries": "Get information about every country in the world!",
     "DiscordTogether": "PLay an amazing game night on a call with all your friends!",
     "UrbanDictionary": "Want to look up that kink you've been wondering about? Do it with urbandictionary!",
-    "Random": "Just a selection of commands that implement randomness - a bunch of random apis"
+    "Random": "Just a selection of commands that implement randomness - a bunch of random apis",
+    "Trivia": "Test your knowledge in specific commands or just general commands",
+    "Crime": "Get information about all the latest criminal activities - all fact-checked through official apis like the fbi"
 }

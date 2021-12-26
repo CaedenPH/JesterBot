@@ -14,20 +14,20 @@ class JesterJokes(commands.Cog):
         self.bot = bot
 
     @commands.command(aliases=['ranfact', 'rf', 'randomfact'], description="""Returns a random fact [ranfact, rf]""")
-    async def fact(self, ctx:Context):
+    async def fact(self, ctx: Context):
         
         embed = fact()
         await ctx.send(embed=embed)
 
     
     @commands.command(description="""Returns a random quote""")
-    async def quote(self, ctx:Context):
+    async def quote(self, ctx: Context):
         
         embed = quote()
         await ctx.send(embed=embed)
    
     @commands.command(description="""Returns a random quote""")
-    async def quote1(self, ctx:Context):
+    async def quote1(self, ctx: Context):
         
         response = requests.get('https://zenquotes.io/api/quotes/[your_key]')
         fox = response.json()
@@ -37,13 +37,13 @@ class JesterJokes(commands.Cog):
    
 
     @commands.command(aliases=['pl', 'pickup', 'pickline'], description="""Returns a random Pickup Line.""")
-    async def pickup_line(self, ctx:Context):
+    async def pickup_line(self, ctx: Context):
         
         embed = await pickup()
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['insultme', 'Mean', 'Insult_Me'], description="The specified member gets insulted")
-    async def insult(self, ctx:Context, user:disnake.Member=""):
+    async def insult(self, ctx: Context, user:disnake.Member=""):
         
         
         m = self.bot.get_user(828363172717133874)
@@ -66,7 +66,7 @@ class JesterJokes(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['dis', 'Diss'], description="The specified member gets dissed")
-    async def disthem(self, ctx:Context, user:disnake.Member=""):
+    async def disthem(self, ctx: Context, user:disnake.Member=""):
         if user == "":
             user = self.bot.get_user(ctx.author.id)
         response = requests.get('https://evilinsult.com/generate_insult.php?lang=en&type=json')
@@ -78,7 +78,7 @@ class JesterJokes(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['Chuck_norris', 'Chucky', 'norris'], description="Sends a random chuck norris joke/fact")
-    async def chuck(self, ctx:Context, user:disnake.Member=""):
+    async def chuck(self, ctx: Context, user:disnake.Member=""):
         if user == "":
             user = self.bot.get_user(ctx.author.id)
         response = requests.get('https://api.chucknorris.io/jokes/random')
@@ -90,7 +90,7 @@ class JesterJokes(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['adj', 'random_adj','randadj', 'Rand_Adj', 'random_adjective'], description="Sends a random adjective")
-    async def adjective(self, ctx:Context):
+    async def adjective(self, ctx: Context):
         
         response = requests.get('https://raw.githubusercontent.com/dariusk/corpora/master/data/words/adjs.json')
         fox = response.json()
@@ -101,7 +101,7 @@ class JesterJokes(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['smck', 'slap', 'BitchSlap', 'Hit', 'Spank'], description="The specified member gets slapped - Sends a random giffy")
-    async def smack(self, ctx:Context, user:disnake.Member=""):
+    async def smack(self, ctx: Context, user:disnake.Member=""):
         if user == "":
             user = self.bot.get_user(ctx.author.id)
         
@@ -112,7 +112,7 @@ class JesterJokes(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['jokes', 'joke'], description="Sends a random joke")
-    async def _joke(self, ctx:Context):
+    async def _joke(self, ctx: Context):
         
         await thebed(ctx, 'Joke', await joke())
 

@@ -19,7 +19,17 @@
                 "@[j.] JesterBot s",
                 "end",
                 "https://discord.gg/PnRehjtdau",
-                "oh"
+                "oh",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was C -- ++ \\nNo one got it right!\\n[Leaderboard]:  - Caeden: [0]\\n                    ```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was D -- ++ \\n[These people got it right:] Caeden\\n[Leaderboard]:  - Caeden: [1]\\n                    ```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was B -- ++ \\nNo one got it right!\\n[Leaderboard]:  - Caeden: [1]\\n                    ```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was D -- ++ \\nNo one got it right!\\n[Leaderboard]:  - Caeden: [1]\\n                    ```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was B -- ++ \\nNo one got it right!\\n[Leaderboard]:  - Caeden: [1]\\n                    ```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was A -- ++ \\n\\nNo one got it right!\\n[Leaderboard:]  - Caeden: [0]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\nNo one responded in time! If no one responds on the next round the game ends```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was A -- ++ \\n\\nNo one got it right!\\n[Leaderboard:]  - Caeden: [0]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\nNo one responded in time! If no one responds on the next round the game ends```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was A -- ++ \\n\\nNo one got it right!\\n[Leaderboard:]  - Caeden: [0]```'}"
             ],
             "author": [
                 "[j.] JesterBot",
@@ -39,7 +49,17 @@
                 "Caeden",
                 "Caeden",
                 "[j.] JesterBot",
-                "Caeden"
+                "Caeden",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot"
             ],
             "id": [
                 828363172717133874,
@@ -59,7 +79,17 @@
                 298043305927639041,
                 298043305927639041,
                 828363172717133874,
-                298043305927639041
+                298043305927639041,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874
             ],
             "time": [
                 "2021-09-15 07:57:43.119000",
@@ -79,7 +109,17 @@
                 "2021-12-11 20:31:33.691000",
                 "2021-12-11 20:31:40.491000",
                 "2021-12-23 03:27:12.847000+00:00",
-                "2021-12-24 20:57:52.043000+00:00"
+                "2021-12-24 20:57:52.043000+00:00",
+                "2021-12-25 19:36:02.215000+00:00",
+                "2021-12-25 19:36:33.140000+00:00",
+                "2021-12-25 19:37:04.153000+00:00",
+                "2021-12-25 19:37:35.233000+00:00",
+                "2021-12-25 19:38:06.563000+00:00",
+                "2021-12-25 19:40:41.948000+00:00",
+                "2021-12-25 19:41:12.604000+00:00",
+                "2021-12-25 19:41:12.794000+00:00",
+                "2021-12-25 19:41:44.062000+00:00",
+                "2021-12-25 19:41:44.372000+00:00"
             ]
         },
         "830177106465783858": {
@@ -158,6 +198,24 @@
             ],
             "time": [
                 "2021-12-24 22:07:25.264000+00:00"
+            ]
+        },
+        "878924003803287572": {
+            "list": [
+                "-h",
+                "{'fields': [{'value': '>  <:Config:863075611169259550> **Config** `(12)`\\n>  <:cryptocurrency:872473402764570624> **Cryptocurrency** `(3)`\\n>  <:Economy:863075610913800233> **Economy** `(17)`\\n>  <:Fun:863075609781075968> **Fun** `(15)`\\n>  <:JesterJokes:873327129016811528> **JesterJokes** `(10)`\\n>  <:Jesterinfo:863075610048987166> **JesterInfo** `(12)`\\n>  <:Love:863075611374125056> **Love** `(6)`\\n>  <:Mod:863075610784301068> **Mod** `(20)`\\n>  <:random:924074967405051965> **Random** `(7)`\\n>  <:urbandictionary:924074967673503796> **UrbanDictionary** `(2)`\\n\\u200b', 'name': '<:menus:870781340746932225> **Categories:**\\n\\u200b', 'inline': True}, {'value': '>  <:the_world:872473402638762025> **Countries** `(4)`\\n>  <:game_night:872473402840076288> **DiscordTogether** `(11)`\\n>  <:Feedback:863075610851147777> **Feedback** `(4)`\\n>  <:Games:863075611329167380> **Games** `(7)`\\n>  <:Images:863075611277656124> **Images** `(25)`\\n>  <:Levels:863075611182628895> **Levels** `(5)`\\n>  <:Misc:863075610979729409> **Misc** `(15)`\\n>  <:Music:863075611320647719> **Music** `(13)`\\n>  <:Snipe:863075611269791794> **Snipe** `(4)`\\n>  <:Utils:863075611161788478> **Utils** `(14)`', 'name': '\\u200b\\n\\u200b', 'inline': True}, {'value': '**> [Official server](https://disnake.gg/2654CuU3ZU) \u2502 [Bot invite](https://disnake.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) \u2502 [Website](https://sites.google.com/view/jesterbot) \u2502 [Vote for me!](https://top.gg/bot/828363172717133874/vote)**', 'name': '<:links:870781340700782612> **Links:**', 'inline': False}], 'timestamp': '2021-12-25T00:02:23.875000+00:00', 'type': 'rich', 'description': '```ml\\n[] - Required Argument | <> - Optional Argument``````diff\\n+ Use the dropbar to navigate through Categories``````diff\\n+ Use -help prefix for info about the prefix```', 'title': '<:J_:863313855286607932><:E_:863313854150606848><:S:863313855061164062><:T:863313855399329812><:E_:863313854150606848><:R_:863313855119360022>'}"
+            ],
+            "author": [
+                "Caeden",
+                "[j.] JesterBot"
+            ],
+            "id": [
+                298043305927639041,
+                828363172717133874
+            ],
+            "time": [
+                "2021-12-25 00:02:23.875000+00:00",
+                "2021-12-25 00:02:24.176000+00:00"
             ]
         }
     },
@@ -2171,7 +2229,13 @@
                 "{'footer': {'text': '22:01 \u2022 Expires in 5 minutes'}, 'fields': [{'value': '> <:Utils:863075611161788478> \\u200b **Utils**\\n> <:Config:863075611169259550> \\u200b **Config**\\n> <:Misc:863075610979729409> \\u200b **Misc**\\n> <:Feedback:863075610851147777> \\u200b **Feedback**\\n> <:cryptocurrency:872473402764570624> \\u200b **Cryptocurrency**\\n> <:Economy:863075610913800233> \\u200b **Economy**\\n> <:Love:863075611374125056> \\u200b **Love**\\n> <:Games:863075611329167380> \\u200b **Games**\\n> <:Mod:863075610784301068> \\u200b **Mod**\\n\\u200b', 'name': '<:menus:870781340746932225> **Categories:**\\n\\u200b', 'inline': True}, {'value': '> <:Images:863075611277656124>  \\u200b **Images**\\n> <:Snipe:863075611269791794>  \\u200b **Snipe**\\n> <:game_night:872473402840076288>  \\u200b **DiscordTogether**\\n> <:Jesterinfo:863075610048987166>  \\u200b **JesterInfo**\\n> <:JesterJokes:873327129016811528>  \\u200b **JesterJokes**\\n> <:Music:863075611320647719>  \\u200b **Music**\\n> <:Fun:863075609781075968>  \\u200b **Fun**\\n> <:Levels:863075611182628895>  \\u200b **Levels**\\n> <:the_world:872473402638762025>  \\u200b **Countries**', 'name': '\\u200b\\n\\u200b', 'inline': True}, {'value': '**> [Official server](https://discord.gg/2654CuU3ZU) \u2502 [Bot invite](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) \u2502 [Website](https://sites.google.com/view/jesterbot) \u2502 [Vote for me!](https://top.gg/bot/828363172717133874/vote)**', 'name': '<:links:870781340700782612> **Links:**', 'inline': False}], 'color': 3553599, 'type': 'rich', 'description': '```ml\\n[] - Required Argument | <> - Optional Argument``````diff\\n+ Use the dropbar to navigate through Categories``````diff\\n+ Use j.help prefix for info about the prefix```', 'title': '<:J_:863313855286607932><:E_:863313854150606848><:S:863313855061164062><:T:863313855399329812><:E_:863313854150606848><:R_:863313855119360022>'}",
                 "j.h",
                 "https://discord.gg/49YnFbvP",
-                "probably 3 steps:\n- `pip uninstall discord.py nextcord dislash.py`"
+                "probably 3 steps:\n- `pip uninstall discord.py nextcord dislash.py`",
+                "{'footer': {'text': '15:46 \u2022 Expires in 5 minutes'}, 'fields': [{'value': '> <:Utils:863075611161788478> \\u200b **Utils**\\n> <:Config:863075611169259550> \\u200b **Config**\\n> <:Misc:863075610979729409> \\u200b **Misc**\\n> <:Feedback:863075610851147777> \\u200b **Feedback**\\n> <:cryptocurrency:872473402764570624> \\u200b **Cryptocurrency**\\n> <:Economy:863075610913800233> \\u200b **Economy**\\n> <:Love:863075611374125056> \\u200b **Love**\\n> <:Games:863075611329167380> \\u200b **Games**\\n> <:Mod:863075610784301068> \\u200b **Mod**\\n\\u200b', 'name': '<:menus:870781340746932225> **Categories:**\\n\\u200b', 'inline': True}, {'value': '> <:Images:863075611277656124>  \\u200b **Images**\\n> <:Snipe:863075611269791794>  \\u200b **Snipe**\\n> <:game_night:872473402840076288>  \\u200b **DiscordTogether**\\n> <:Jesterinfo:863075610048987166>  \\u200b **JesterInfo**\\n> <:JesterJokes:873327129016811528>  \\u200b **JesterJokes**\\n> <:Music:863075611320647719>  \\u200b **Music**\\n> <:Fun:863075609781075968>  \\u200b **Fun**\\n> <:Levels:863075611182628895>  \\u200b **Levels**\\n> <:the_world:872473402638762025>  \\u200b **Countries**', 'name': '\\u200b\\n\\u200b', 'inline': True}, {'value': '**> [Official server](https://discord.gg/2654CuU3ZU) \u2502 [Bot invite](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) \u2502 [Website](https://sites.google.com/view/jesterbot) \u2502 [Vote for me!](https://top.gg/bot/828363172717133874/vote)**', 'name': '<:links:870781340700782612> **Links:**', 'inline': False}], 'color': 3553599, 'type': 'rich', 'description': '```ml\\n[] - Required Argument | <> - Optional Argument``````diff\\n+ Use the dropbar to navigate through Categories``````diff\\n+ Use Jhelp prefix for info about the prefix```', 'title': '<:J_:863313855286607932><:E_:863313854150606848><:S:863313855061164062><:T:863313855399329812><:E_:863313854150606848><:R_:863313855119360022>'}",
+                "{'fields': [{'value': '>  <:Economy:863075610913800233> **Economy** `(17)`\\n>  <:Config:863075611169259550> **Config** `(12)`\\n>  <:criminalemojivectoriconsimple260:924411072729985046> **Crime** `(6)`\\n>  <:game_night:872473402840076288> **DiscordTogether** `(11)`\\n>  <:Fun:863075609781075968> **Fun** `(15)`\\n>  <:JesterJokes:873327129016811528> **JesterJokes** `(10)`\\n>  <:Jesterinfo:863075610048987166> **JesterInfo** `(12)`\\n>  <:Love:863075611374125056> **Love** `(6)`\\n>  <:Music:863075611320647719> **Music** `(13)`\\n>  <:Snipe:863075611269791794> **Snipe** `(4)`\\n>  <:urbandictionary:924074967673503796> **UrbanDictionary** `(2)`\\n\\u200b', 'name': '<:menus:870781340746932225> **Categories:**\\n\\u200b', 'inline': True}, {'value': '>  <:Misc:863075610979729409> **Misc** `(15)`\\n>  <:the_world:872473402638762025> **Countries** `(4)`\\n>  <:cryptocurrency:872473402764570624> **Cryptocurrency** `(3)`\\n>  <:Feedback:863075610851147777> **Feedback** `(4)`\\n>  <:Games:863075611329167380> **Games** `(7)`\\n>  <:Images:863075611277656124> **Images** `(25)`\\n>  <:Levels:863075611182628895> **Levels** `(5)`\\n>  <:Mod:863075610784301068> **Mod** `(20)`\\n>  <:random:924074967405051965> **Random** `(12)`\\n>  <:emojitrivia185:924152372001910834> **Trivia** `(2)`\\n>  <:Utils:863075611161788478> **Utils** `(14)`', 'name': '\\u200b\\n\\u200b', 'inline': True}, {'value': '**> [Official server](https://disnake.gg/2654CuU3ZU) \u2502 [Bot invite](https://disnake.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) \u2502 [Website](https://sites.google.com/view/jesterbot) \u2502 [Vote for me!](https://top.gg/bot/828363172717133874/vote)**', 'name': '<:links:870781340700782612> **Links:**', 'inline': False}], 'timestamp': '2021-12-26T15:46:27.110000+00:00', 'type': 'rich', 'description': '```ml\\n[] - Required Argument | <> - Optional Argument``````diff\\n+ Use the dropbar to navigate through Categories``````diff\\n+ Use Jhelp prefix for info about the prefix```', 'title': '<:J_:863313855286607932><:E_:863313854150606848><:S:863313855061164062><:T:863313855399329812><:E_:863313854150606848><:R_:863313855119360022>'}",
+                "{'footer': {'text': '15:57 \u2022 Page: 0 / 0'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/8semWpXOjf12Kix7IDllX7NX7Qc4ZekewfSNmg59Lec/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/483631842554019841/e40c2ed26ef13b4aa06d4aac4617dd98.png', 'name': 'error', 'icon_url': 'https://cdn.discordapp.com/avatars/483631842554019841/e40c2ed26ef13b4aa06d4aac4617dd98.png?size=1024'}, 'color': 3553599, 'type': 'rich', 'description': '```yaml\\nTraceback (most recent call last):\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/core.py\", line 167, in wrapped\\n    ret = await coro(*args, **kwargs)\\n  File \"/home/pi/jesterbot/cogs/Images.py\", line 326, in flip\\n    await ctx.send(file=discord.File(x))\\n  File \"/home/pi/jesterbot/core/Context.py\", line 61, in send\\n    msg = await super().send(content, **kwargs)\\n  File \"/usr/lib/python3.9/site-packages/dislash/slash_commands/_send_modifications.py\", line 135, in send_with_components\\n    data = await send_files(state.http, channel.id, files=[file], allowed_mentions=allowed_mentions,\\n  File \"/usr/lib/python3.9/site-packages/dislash/slash_commands/_send_modifications.py\", line 64, in send_files\\n    form.append({\\'name\\': \\'payload_json\\', \\'value\\': utils.to_json(payload)})\\nAttributeError: module \\'discord.utils\\' has no attribute \\'to_json\\'\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/bot.py\", line 994, in invoke\\n    await ctx.command.invoke(ctx)\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/core.py\", line 894, in invoke\\n    await injected(*ctx.args, **ctx.kwargs)\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/core.py\", line 176, in wrapped\\n    raise CommandInvokeError(exc) from exc\\ndiscord.ext.commands.errors.CommandInvokeError: Command raised an exception: AttributeError: module \\'discord.utils\\' has no attribute \\'to_json\\'\\n```'}",
+                "{'footer': {'text': '15:57 \u2022 Page: 0 / 0'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/8semWpXOjf12Kix7IDllX7NX7Qc4ZekewfSNmg59Lec/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/483631842554019841/e40c2ed26ef13b4aa06d4aac4617dd98.png', 'name': 'error', 'icon_url': 'https://cdn.discordapp.com/avatars/483631842554019841/e40c2ed26ef13b4aa06d4aac4617dd98.png?size=1024'}, 'color': 3553599, 'type': 'rich', 'description': '```yaml\\nTraceback (most recent call last):\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/core.py\", line 167, in wrapped\\n    ret = await coro(*args, **kwargs)\\n  File \"/home/pi/jesterbot/cogs/Images.py\", line 192, in gay\\n    await ctx.send(file=discord.File(\\'./images/gay.png\\'))\\n  File \"/home/pi/jesterbot/core/Context.py\", line 61, in send\\n    msg = await super().send(content, **kwargs)\\n  File \"/usr/lib/python3.9/site-packages/dislash/slash_commands/_send_modifications.py\", line 135, in send_with_components\\n    data = await send_files(state.http, channel.id, files=[file], allowed_mentions=allowed_mentions,\\n  File \"/usr/lib/python3.9/site-packages/dislash/slash_commands/_send_modifications.py\", line 64, in send_files\\n    form.append({\\'name\\': \\'payload_json\\', \\'value\\': utils.to_json(payload)})\\nAttributeError: module \\'discord.utils\\' has no attribute \\'to_json\\'\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/bot.py\", line 994, in invoke\\n    await ctx.command.invoke(ctx)\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/core.py\", line 894, in invoke\\n    await injected(*ctx.args, **ctx.kwargs)\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/core.py\", line 176, in wrapped\\n    raise CommandInvokeError(exc) from exc\\ndiscord.ext.commands.errors.CommandInvokeError: Command raised an exception: AttributeError: module \\'discord.utils\\' has no attribute \\'to_json\\'\\n```'}",
+                "JGAY",
+                ""
             ],
             "author": [
                 "Assistant",
@@ -2217,7 +2281,13 @@
                 "[j.] JesterBot",
                 "Caeden",
                 "Caeden",
-                "Caeden"
+                "Caeden",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "Ropra",
+                "[j.] JesterBot"
             ],
             "id": [
                 821445736322695179,
@@ -2263,7 +2333,13 @@
                 828363172717133874,
                 298043305927639041,
                 298043305927639041,
-                298043305927639041
+                298043305927639041,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                483631842554019841,
+                828363172717133874
             ],
             "time": [
                 "2021-11-18 11:49:55.975000",
@@ -2309,7 +2385,13 @@
                 "2021-12-23 22:01:37.766000+00:00",
                 "2021-12-23 22:01:37.462000+00:00",
                 "2021-12-24 05:34:15.851000+00:00",
-                "2021-12-24 05:46:23.312000+00:00"
+                "2021-12-24 05:46:23.312000+00:00",
+                "2021-12-26 15:46:27.354000+00:00",
+                "2021-12-26 15:46:27.268000+00:00",
+                "2021-12-26 15:57:34.367000+00:00",
+                "2021-12-26 15:57:51.466000+00:00",
+                "2021-12-26 15:57:49.864000+00:00",
+                "2021-12-26 15:57:51.432000+00:00"
             ]
         },
         "871145725956878356": {
@@ -3246,16 +3328,20 @@
         },
         "854893662773575680": {
             "list": [
-                "{'footer': {'text': 'ID: 712804579867230269'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/xaqAMGgGih4CdzTDosA0tzNPWbA2u7tljAE95hbBlB8/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/712804579867230269/9160ba52832aed363aab956a131040cc.webp', 'name': 'kiers#0727', 'icon_url': 'https://cdn.discordapp.com/avatars/712804579867230269/9160ba52832aed363aab956a131040cc.webp?size=1024'}, 'color': 4359924, 'timestamp': '2021-12-01T12:22:12.751733+00:00', 'type': 'rich', 'description': '**Before:** No I\u2019m fully away\\n**+After:** No I\u2019m fully awake', 'title': 'Message edited in #\ud83d\udcac-\u2022-general'}"
+                "{'footer': {'text': 'ID: 712804579867230269'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/xaqAMGgGih4CdzTDosA0tzNPWbA2u7tljAE95hbBlB8/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/712804579867230269/9160ba52832aed363aab956a131040cc.webp', 'name': 'kiers#0727', 'icon_url': 'https://cdn.discordapp.com/avatars/712804579867230269/9160ba52832aed363aab956a131040cc.webp?size=1024'}, 'color': 4359924, 'timestamp': '2021-12-01T12:22:12.751733+00:00', 'type': 'rich', 'description': '**Before:** No I\u2019m fully away\\n**+After:** No I\u2019m fully awake', 'title': 'Message edited in #\ud83d\udcac-\u2022-general'}",
+                "{'footer': {'text': 'ID: 712804579867230269'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/xaqAMGgGih4CdzTDosA0tzNPWbA2u7tljAE95hbBlB8/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/712804579867230269/9160ba52832aed363aab956a131040cc.webp', 'name': 'kiers#0727', 'icon_url': 'https://cdn.discordapp.com/avatars/712804579867230269/9160ba52832aed363aab956a131040cc.webp?size=1024'}, 'color': 4359924, 'timestamp': '2021-12-25T20:49:35.236034+00:00', 'type': 'rich', 'description': '**Before:** Merry Christmas\\n**+After:** Merry Christmas!', 'title': 'Message edited in #\ud83d\udcac-\u2022-general'}"
             ],
             "author": [
+                "Carl-bot Logging",
                 "Carl-bot Logging"
             ],
             "id": [
+                854894069028880395,
                 854894069028880395
             ],
             "time": [
-                "2021-12-01 12:22:14.007000"
+                "2021-12-01 12:22:14.007000",
+                "2021-12-25 20:49:35.626000+00:00"
             ]
         }
     },
@@ -3501,7 +3587,9 @@
                 "to what?",
                 "<:angry:922854050549084221> ILL FUCK FO-",
                 "0g",
-                "Welcome back @Teacher Lady, I removed your AFK"
+                "Welcome back @Teacher Lady, I removed your AFK",
+                ".",
+                "Welcome back @FireTheFox, I removed your AFK"
             ],
             "author": [
                 "stealthninja",
@@ -3521,6 +3609,8 @@
                 "FireTheFox",
                 "\u041c\u00c2RZ|3",
                 "ASG",
+                "Dyno",
+                "FireTheFox",
                 "Dyno"
             ],
             "id": [
@@ -3541,6 +3631,8 @@
                 795401550875983904,
                 909379604081426463,
                 497311451531182080,
+                155149108183695360,
+                795401550875983904,
                 155149108183695360
             ],
             "time": [
@@ -3561,7 +3653,9 @@
                 "2021-12-23 10:05:26.628000+00:00",
                 "2021-12-23 11:38:01.351000+00:00",
                 "2021-12-23 12:16:47.838000+00:00",
-                "2021-12-24 05:46:28.407000+00:00"
+                "2021-12-24 05:46:28.407000+00:00",
+                "2021-12-25 19:40:37.525000+00:00",
+                "2021-12-25 19:40:37.651000+00:00"
             ]
         },
         "907552229559504916": {
@@ -3592,7 +3686,37 @@
                 "bad",
                 "Connecting to **`\u300e\ud83e\udda5\u300flounge`**",
                 "<hi>",
-                "lmao perfect"
+                "lmao perfect",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was C -- ++ \\n\\nNo one got it right!\\n[Leaderboard:]  - stealthninja: [0]\\n - Caeden: [0]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was A -- ++ \\n\\n[Correct:] stealthninja, Caeden\\n[Leaderboard:]  - stealthninja: [1]\\n - Caeden: [1]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was D -- ++ \\n\\nNo one got it right!\\n[Leaderboard:]  - stealthninja: [1]\\n - Caeden: [1]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was B -- ++ \\n\\n[Correct:] Caeden\\n[Leaderboard:]  - stealthninja: [1]\\n - Caeden: [2]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was A -- ++ \\n\\n[Correct:] stealthninja, Caeden\\n[Leaderboard:]  - Caeden: [3]\\n - stealthninja: [2]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was A -- ++ \\n\\n[Correct:] stealthninja\\n[Leaderboard:]  - Caeden: [3]\\n - stealthninja: [3]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was C -- ++ \\n\\n[Correct:] Caeden\\n[Leaderboard:]  - stealthninja: [3]\\n - Caeden: [4]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was A -- ++ \\n\\n[Correct:] stealthninja, Caeden\\n[Leaderboard:]  - Caeden: [5]\\n - stealthninja: [4]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was A -- ++ \\n\\n[Correct:] stealthninja\\n[Leaderboard:]  - Caeden: [5]\\n - stealthninja: [5]\\n - FireTheFox: [0]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was A -- ++ \\n\\n[Correct:] stealthninja, Caeden\\n[Leaderboard:]  - stealthninja: [6]\\n - Caeden: [6]\\n - FireTheFox: [0]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was A -- ++ \\n\\nNo one got it right!\\n[Leaderboard:]  - stealthninja: [6]\\n - Caeden: [6]\\n - FireTheFox: [0]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was B -- ++ \\n\\nNo one got it right!\\n[Leaderboard:]  - stealthninja: [6]\\n - Caeden: [6]\\n - FireTheFox: [0]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was A -- ++ \\n\\nNo one got it right!\\n[Leaderboard:]  - stealthninja: [6]\\n - Caeden: [6]\\n - FireTheFox: [0]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was B -- ++ \\n\\n[Correct:] stealthninja, Caeden\\n[Leaderboard:]  - stealthninja: [7]\\n - Caeden: [7]\\n - FireTheFox: [0]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was C -- ++ \\n\\nNo one got it right!\\n[Leaderboard:]  - stealthninja: [7]\\n - Caeden: [7]\\n - FireTheFox: [0]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was D -- ++ \\n\\n[Correct:] stealthninja\\n[Leaderboard:]  - stealthninja: [8]\\n - Caeden: [7]\\n - FireTheFox: [0]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was B -- ++ \\n\\nNo one got it right!\\n[Leaderboard:]  - Caeden: [0]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was C -- ++ \\n\\nNo one got it right!\\n[Leaderboard:]  - Caeden: [0]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was B -- ++ \\n\\nNo one got it right!\\n[Leaderboard:]  - Caeden: [0]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\nNo one responded in time! If no one responds on the next round the game ends```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was D -- ++ \\n\\nNo one got it right!\\n[Leaderboard:]  - Caeden: [0]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\nNo one responded in time! If no one responds on the next round the game ends```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was D -- ++ \\n\\nNo one got it right!\\n[Leaderboard:]  - Caeden: [0]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\nNo one responded in time! If no one responds on the next round the game ends```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\nNo one responded in time! If no one responds on the next round the game ends```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\nNo one responded in time! If no one responds on the next round the game ends```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\nNo one responded in time! If no one responds on the next round the game ends```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- Tennis was once known as Racquetball. -- ++\\n\\n                Your choices are:\\n                   a) True, b) False\\n\\n[category]: Sports\\n[difficulty]: medium\\n\\n        [send the letter corresponding to the answer]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- In Star Trek, Klingons are commonly referred to as Black Elves. -- ++\\n\\n                Your choices are:\\n                   a) False, b) True\\n\\n[category]: Entertainment: Television\\n[difficulty]: medium\\n\\n        [send the letter corresponding to the answer]```'}",
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\nNo one responded in time! If no one responds on the next round the game ends```'}"
             ],
             "author": [
                 "StealthyBot",
@@ -3621,7 +3745,37 @@
                 "CheeseLord1",
                 "StealthyBot",
                 "fr\ud83d\udc38g",
-                "buwlo"
+                "buwlo",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot"
             ],
             "id": [
                 889922820317007928,
@@ -3650,7 +3804,37 @@
                 744454973277995019,
                 889922820317007928,
                 910792026717573141,
-                861231456478822421
+                861231456478822421,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874
             ],
             "time": [
                 "2021-11-25 10:30:49.918000",
@@ -3679,7 +3863,37 @@
                 "2021-11-30 23:54:11.859000",
                 "2021-12-04 07:57:48.459000",
                 "2021-12-05 08:59:12.518000",
-                "2021-12-05 09:08:54.171000"
+                "2021-12-05 09:08:54.171000",
+                "2021-12-26 04:59:48.090000+00:00",
+                "2021-12-26 05:00:18.653000+00:00",
+                "2021-12-26 05:00:49.338000+00:00",
+                "2021-12-26 05:01:19.900000+00:00",
+                "2021-12-26 05:01:50.453000+00:00",
+                "2021-12-26 05:02:21.037000+00:00",
+                "2021-12-26 05:02:51.727000+00:00",
+                "2021-12-26 05:03:22.416000+00:00",
+                "2021-12-26 05:03:53.133000+00:00",
+                "2021-12-26 05:04:23.765000+00:00",
+                "2021-12-26 05:04:54.399000+00:00",
+                "2021-12-26 05:05:25.044000+00:00",
+                "2021-12-26 05:05:55.728000+00:00",
+                "2021-12-26 05:06:26.310000+00:00",
+                "2021-12-26 05:06:56.909000+00:00",
+                "2021-12-26 05:07:27.489000+00:00",
+                "2021-12-26 05:20:08.543000+00:00",
+                "2021-12-26 05:20:39.057000+00:00",
+                "2021-12-26 05:21:10.657000+00:00",
+                "2021-12-26 05:21:42.262000+00:00",
+                "2021-12-26 05:21:42.513000+00:00",
+                "2021-12-26 05:22:13.165000+00:00",
+                "2021-12-26 05:22:13.236000+00:00",
+                "2021-12-26 05:23:20.958000+00:00",
+                "2021-12-26 05:25:11.411000+00:00",
+                "2021-12-26 05:25:42.103000+00:00",
+                "2021-12-26 05:29:35.846000+00:00",
+                "2021-12-26 05:32:57.440000+00:00",
+                "2021-12-26 05:33:28.156000+00:00",
+                "2021-12-26 05:33:27.762000+00:00"
             ]
         },
         "901847019348459581": {
