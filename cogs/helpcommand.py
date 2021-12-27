@@ -1,10 +1,11 @@
-import disnake, json
-from disnake.ext import commands
+import disnake
+import json
+import typing
 
+from disnake.ext import commands
 from core.utils.utils import Cmds
 from core.utils.emojis import *
 from core.utils.view import DropdownView
-
 from core.Context import Context
 
 class HelpUtils:
@@ -14,6 +15,14 @@ class HelpUtils:
         self.bot = bot
         with open('./dicts/Emoji.json') as k:
             self.data = json.load(k)
+
+    async def get_cog_from_str(self, cog_name: str) -> typing.Optional[commands.Cog]:
+        cog_name = cog_name.lower()
+
+        for k in self.bot.cogs:
+            if k.lower() == cog_name:
+                return self.bot.get_cog(k)
+        return None
 
     async def main_help_embed(self, ctx: commands.Context) -> disnake.Embed:
         description = f"\n```ml\n[] - Required Argument | <> - Optional Argument``````diff\n+ Use the dropbar to navigate through Categories``````diff\n+ Use {ctx.prefix}help prefix for info about the prefix```"
@@ -117,7 +126,7 @@ class Help(commands.Cog):
             embed = await self.utils.specific_command(cmd, ctx)
             return await ctx.send(embed=embed)
 
-        cog = self.bot.get_cog(command.capitalize())
+        cog = await self.utils.get_cog_from_str(command)
         if cog:
             embed = await self.utils.specific_cog(cog, ctx)
             return await ctx.send(embed=embed)

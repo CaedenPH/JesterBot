@@ -21,8 +21,6 @@ colorama==0.4.4
 cssselect2==0.4.1
 discord==1.7.3
 discord-together==1.2.2
-discord.py @ git+https://github.com/Rapptz/discord.py@45d498c1b76deaf3b394d17ccf56112fa691d160
-dislash.py==1.4.9
 disnake==2.3.0
 disnake-jishaku==2.6.5
 glitch-this==1.0.2
@@ -62,7 +60,7 @@ svglib==1.1.0
 tinycss2==1.1.1
 typing-extensions==4.0.1
 update-checker==0.18.0
-urllib
+urllib3
 vacefron.py==1.6.3
 webencodings==0.5.1
 wikipedia==1.4.0

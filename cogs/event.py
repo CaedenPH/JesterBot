@@ -232,7 +232,11 @@ class Event(commands.Cog):
                 except:
                     pass
 
-        if us in message.mentions:
+        if message.content in [
+            '@[j.] JesterBot#0658',
+            '<@828363172717133874>',
+            '<@!828363172717133874>',
+        ]:
             if message.reference:
                 return
             async with message.channel.typing():

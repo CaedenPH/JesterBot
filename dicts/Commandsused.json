@@ -27,7 +27,7 @@
         "score": 104
     },
     "help": {
-        "score": 2177
+        "score": 2187
     },
     "jsonfile": {
         "score": 19
@@ -42,7 +42,7 @@
         "score": 24
     },
     "ping": {
-        "score": 308
+        "score": 310
     },
     "giveaway": {
         "score": 17
@@ -108,7 +108,7 @@
         "score": 4
     },
     "prefix": {
-        "score": 197
+        "score": 198
     },
     "rpsfail": {
         "score": 4
@@ -363,7 +363,7 @@
         "score": 1
     },
     "reload": {
-        "score": 4606
+        "score": 4617
     },
     "pp": {
         "score": 142
@@ -510,10 +510,10 @@
         "score": 6
     },
     "evalreturn": {
-        "score": 450
+        "score": 457
     },
     "evaldir": {
-        "score": 347
+        "score": 348
     },
     "quote1": {
         "score": 4
@@ -1119,7 +1119,7 @@
         "score": 1
     },
     "weather": {
-        "score": 16
+        "score": 20
     },
     "spacex": {
         "score": 4
@@ -1155,7 +1155,7 @@
         "score": 2
     },
     "trivia_play": {
-        "score": 8
+        "score": 13
     },
     "trivia_question": {
         "score": 40
@@ -1188,6 +1188,6 @@
         "score": 3
     },
     "how_many_commands": {
-        "score": 2
+        "score": 3
     }
 }

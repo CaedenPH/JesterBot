@@ -5,13 +5,9 @@ import asyncio
 import datetime
 
 from disnake.ext import commands
-from disnake.ext.commands.cooldowns import C
-from disnake.mentions import A
 from core.Context import Context
 
-
 class Trivia(commands.Cog):
-
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         self.token = "..."
@@ -123,7 +119,7 @@ class Trivia(commands.Cog):
                     sorted_dict = dict(sorted(input_dict.items(), key=lambda k: k[1]['score'], reverse=True))
                     for k in correct:
                         input_dict[k]['score'] += 1
-                    leaderboard = '\n'.join([f"                   - {k}: {[input_dict[k]['score']]}" for k in sorted_dict])
+                    leaderboard = '\n'.join([f"      - {k}: {[input_dict[k]['score']]}" for k in sorted_dict])
 
                     
                     await ctx.em(

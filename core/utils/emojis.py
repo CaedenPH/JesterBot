@@ -23,7 +23,7 @@ COGemojis= {
     'JesterJokes': 873327129016811528,
     'Cryptocurrency': 872473402764570624,
     "Countries": 872473402638762025,
-    "Chatbot": 872473402693259324,
+    "ChatBot": 872473402693259324,
     "DiscordTogether": 872473402840076288,
     "UrbanDictionary": 924074967673503796,
     'Random': 924074967405051965,
