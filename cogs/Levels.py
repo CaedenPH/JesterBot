@@ -1,35 +1,31 @@
 import disnake
-from disnake.ext import commands
 import aiosqlite
 import math
 import random
 import aiohttp
 import io
+
 from PIL import Image, ImageDraw, ImageFont
+from disnake.ext import commands
 
 
 class Levels(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.db = None
-        self.bot.loop.create_task(self.connect_database())
-
-    async def connect_database(self):
-        self.db = await aiosqlite.connect('./db/database.db')
 
     async def find_or_insert_user(self, member: disnake.Member):
-        cursor = await self.db.cursor()
+        cursor = await self.bot.db.cursor()
         await cursor.execute('Select * from users where user_id = ? and guild_id = ?', (member.id,member.guild.id,))
         result = await cursor.fetchone()
         if result is None:
             result = (member.id, member.guild.id, 0, 0, member.display_name)
             await cursor.execute('Insert into users values(?, ?, ?, ?, ?)', result)
-            await self.db.commit()
+            await self.bot.db.commit()
 
         return result
 
     async def rankup(self, level, member):
-        sendcurs = await self.db.cursor()
+        sendcurs = await self.bot.db.cursor()
         await sendcurs.execute('Select * from config where guild_id = ?', (member.guild.id,))
         sendresult = await sendcurs.fetchone()
 
@@ -70,9 +66,9 @@ class Levels(commands.Cog):
                 channel = self.bot.get_channel(sendmessage[0])
                 await channel.send(sendmessage[1])
 
-        cursor = await self.db.cursor()
+        cursor = await self.bot.db.cursor()
         await cursor.execute('Update users set xp=?, level=? where user_id=? and guild_id=?', (xp, level, user_id, guild_id))
-        await self.db.commit()
+        await self.bot.db.commit()
 
     async def make_rank_image(self, member: disnake.Member, rank, level, xp, final_xp):
         user_avatar_image = str(member.avatar.with_format(format='png', size=512))
@@ -207,7 +203,7 @@ class Levels(commands.Cog):
     @commands.command()
     async def rank(self, ctx: commands.Context, member: disnake.Member=None):
         member = member or ctx.author
-        cursor = await self.db.cursor()
+        cursor = await self.bot.db.cursor()
         user = await self.find_or_insert_user(member)
         user_id, guild_id, xp, level, name = user
         await cursor.execute("Select Count(*) from users where xp > ? and guild_id=?", (xp, guild_id))
@@ -221,7 +217,7 @@ class Levels(commands.Cog):
     @commands.command(aliases=['conf'])
     async def levelsconfig(self, ctx:commands.Context):
         
-        cursor = await self.db.cursor()     
+        cursor = await self.bot.db.cursor()     
         await cursor.execute('Select * from config where guild_id = ?', (ctx.guild.id,))
 
         result = await cursor.fetchone()
@@ -256,7 +252,7 @@ class Levels(commands.Cog):
             embed = disnake.Embed(title=f"Config channel for {ctx.guild.name}").add_field(name="\u200b", value=f"**Channel:** {chan}\n**Ping:** {ping.content}")
 
             await cursor.execute('Insert into config values(?, ?, ?)', result)
-            await self.db.commit()
+            await self.bot.db.commit()
 
             return await ctx.send(embed=embed)
         await ctx.send(embed=disnake.Embed(description="You already have a config!", color=disnake.Color.green()).set_author(name="Config", icon_url=ctx.author.avatar.url))
@@ -264,7 +260,7 @@ class Levels(commands.Cog):
     @commands.command(aliases=['vconf'])
     async def viewconfig(self, ctx:commands.Context):
 
-        cursor = await self.db.cursor()
+        cursor = await self.bot.db.cursor()
         await cursor.execute('Select * from config where guild_id = ?', (ctx.guild.id,))
 
         result1 = await cursor.fetchone()
@@ -283,7 +279,7 @@ class Levels(commands.Cog):
     @commands.command(aliases=['rconf'])
     async def removeconfig(self, ctx:commands.Context):
 
-        cursor = await self.db.cursor()
+        cursor = await self.bot.db.cursor()
         await cursor.execute('Delete from config where guild_id = ?', (ctx.guild.id,))
 
         await ctx.send('Deleted all raknup config messages')
@@ -297,7 +293,7 @@ class Levels(commands.Cog):
             icon_url = ctx.author.avatar.url
         )
         desc = ''
-        cursor = await self.db.cursor()
+        cursor = await self.bot.db.cursor()
         await cursor.execute("SELECT user_id, xp, level, name FROM users WHERE guild_id = ? ORDER BY xp ASC",(ctx.guild.id,))
         result = await cursor.fetchall()
 

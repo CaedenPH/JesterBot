@@ -136,7 +136,7 @@ class Music(commands.Cog):
         await embed2(ctx, f"**Changed volume for:** *{song.name}* **to {volume*100}**%")
 
     @commands.command()
-    async def remove(self, ctx, index):
+    async def remove_song(self, ctx, index):
         player = self.music.get_player(guild_id=ctx.guild.id)
         song = await player.remove_from_queue(int(index))
         await embed2(ctx, f"**Removed:** {song.name} from queue")

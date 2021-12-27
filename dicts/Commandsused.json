@@ -363,7 +363,7 @@
         "score": 1
     },
     "reload": {
-        "score": 4587
+        "score": 4599
     },
     "pp": {
         "score": 142
@@ -1177,5 +1177,14 @@
     },
     "bill": {
         "score": 5
+    },
+    "ai": {
+        "score": 11
+    },
+    "setup_chatbot": {
+        "score": 6
+    },
+    "remove_ai": {
+        "score": 3
     }
 }

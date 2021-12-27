@@ -1,14 +1,17 @@
-from ssl import VerifyMode
 import aiohttp
-import disnake, os, asyncio, datetime
-from disnake.ext import commands, tasks
+import disnake
+import os
+import asyncio
+import datetime
+import aiosqlite
 
+from disnake.ext import commands, tasks
 from core.utils.commands.eval import run_eval
 from core.Context import Context
 from core.Error import error_handler
 from core.main.check import *
 from core.main.prefix import get_prefix
-from core.utils.HIDDEN import TOKEN, weather_key, police_key, coords_key
+from core.utils.HIDDEN import *
 
 class JesterBot(commands.Bot):
     def __init__(self):
@@ -33,9 +36,11 @@ class JesterBot(commands.Bot):
         self.WEATHER_KEY = weather_key
         self.POLICE_KEY = police_key
         self.COORDS_KEY = coords_key
+        self.CHATBOT_KEY = chatbot_key
 
         self.add_check(self.bot_check)
         self.after_invoke(self.after_command)
+        self.loop.create_task(self.connect_database())
         
         for files in os.listdir(f"./cogs/"):
             if not files.startswith('__'):
@@ -83,6 +88,9 @@ class JesterBot(commands.Bot):
         print('Running the bot...')
         print('-----------------------------------')
         super().run(TOKEN, reconnect=True)
+
+    async def connect_database(self):
+        self.db = await aiosqlite.connect('./db/database.db')
 
     async def on_connect(self) -> None:
         print(f"Connected to bot. Latency: {self.latency * 1000:,.0f} ms")
