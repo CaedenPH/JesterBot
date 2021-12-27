@@ -721,5 +721,137 @@
     },
     "_joke": {
         "help": "send a joke"
+    },
+    "trivia_question": {
+        "help": "get a general trivia question"
+    },
+    "trivia_play": {
+        "help": "start a trivia game in the current channel"
+    },
+    "ytsearch": {
+        "help": "search for a video on youtube"
+    },
+    "urban_search": {
+        "help": "search the urban dictionary"
+    },
+    "blank": {
+        "help": "that really <blanks> my <blank>"
+    },
+    "covid": {
+        "help": "get information about covid all around the world"
+    },
+    "endworldhunger": {
+        "help": "end world hunger poster"
+    },
+    "coffee": {
+        "help": "random coffee image"
+    },
+    "timeout": {
+        "help": "timeout a user"
+    },
+    "serversin": {
+        "help": "a list of all the servers the bot is i"
+    },
+    "chatbot": {
+        "help": "the bot talks to you! enter <message> and a human-life bot responds"
+    },
+    "wanted_criminals": {
+        "help": "returns a random wanted criminal"
+    },
+    "spacex": {
+        "help": "latest spacex info"
+    },
+    "age": {
+        "help": "enter <name> and the bot will tell you how old it thinks you are"
+    },
+    "kanye_quote": {
+        "help": "a random quote from kanye west"
+    },
+    "crime": {
+        "help": "information about crime in the uk - post_code can be city, postecode, town, etc"
+    },
+    "stop_and_searches": {
+        "help": "stop and searches in the uk around <poste_code> post_code can be city, postecode, town, etc"
+    },
+    "weather": {
+        "help": "the latest weather information in <city>"
+    },
+    "coordinates": {
+        "help": "coordinates of <poste_code> post_code can be city, postecode, town, etc"
+    },
+    "jailbase": {
+        "help": "random jail information about a criminal with last_name <last_name>. <first_name> is optional"
+    },
+    "remove_ai": {
+        "help": "remove an ai config from certain channel"
+    },
+    "trump": {
+        "help": "get a random trump quote"
+    },
+    "setup_chatbot": {
+        "help": "setup the chatbot in a certain channel"
+    },
+    "police": {
+        "help": "all police forces in the uk"
+    },
+    "bs": {
+        "help": "random bs corporate quote"
+    },
+    "geek": {
+        "help": "random geek quote"
+    },
+    "how_many_commands": {
+        "help": "how many commands the bot have"
+    },
+    "doodle_crew": {
+        "help": "discord doodle_crew game"
+    },
+    "word_snack": {
+        "help": "discord word_snack game"
+    },
+    "awkword": {
+        "help": "discord awkword game"
+    },
+    "delete_invite": {
+        "help": "delete a server invite"
+    },
+    "bill": {
+        "help": "random be like bill image"
+    },
+    "youtube_together": {
+        "help": "discord youtube_together game"
+    },
+    "change_nick": {
+        "help": "change the nickname of a member"
+    },
+    "bored": {
+        "help": "random activity"
+    },
+    "random_urban_search": {
+        "help": "random word from the urban dictionary"
+    },
+    "code_snippet": {
+        "help": "sends a code_snippet of <code>. code must be in a codeblock"
+    },
+    "shorten_url": {
+        "help": "shorten a <url>"
+    },
+    "remove_song": {
+        "help": "removes a song from the current queue"
+    },
+    "src": {
+        "help": "source (in github) of the command"
+    },
+    "channel_status": {
+        "help": "health of a channel"
+    },
+    "letter_tile": {
+        "help": "play discord letter_tile game"
+    },
+    "spellcast": {
+        "help": "play discord spellcast game"
+    },
+    "checkers": {
+        "help": "play discord checkers game"
     }
 }

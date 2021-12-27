@@ -5682,5 +5682,26 @@
         "error": "Command raised an exception: ExtensionFailed: Extension 'cogs.JesterInfo' raised an error: CommandRegistrationError: The command showcmds is already an existing command or alias.",
         "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
         "command": "reload"
+    },
+    "812": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './dicts/chelp.json'",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "data"
+    },
+    "813": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './dicts/Chelp.json'",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "data"
+    },
+    "814": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: AttributeError: 'NoneType' object has no attribute 'walk_commands'",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "help"
     }
 }

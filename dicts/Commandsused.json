@@ -27,7 +27,7 @@
         "score": 104
     },
     "help": {
-        "score": 2168
+        "score": 2177
     },
     "jsonfile": {
         "score": 19
@@ -363,7 +363,7 @@
         "score": 1
     },
     "reload": {
-        "score": 4603
+        "score": 4606
     },
     "pp": {
         "score": 142
@@ -411,7 +411,7 @@
         "score": 4
     },
     "data": {
-        "score": 385
+        "score": 392
     },
     "serversin": {
         "score": 7
@@ -828,7 +828,7 @@
         "score": 24
     },
     "chelp": {
-        "score": 54
+        "score": 56
     },
     "abort": {
         "score": 9
@@ -1167,7 +1167,7 @@
         "score": 8
     },
     "blank": {
-        "score": 3
+        "score": 4
     },
     "bs": {
         "score": 2

@@ -55,7 +55,7 @@ class HelpUtils:
                 inline=False,
             ).add_field(
                 name=" ❯❯ Description", 
-                value=Cmds(command.name).chelp if Cmds(command.name).chelp else "Currently no help!", 
+                value=f"`{Cmds(command.name).chelp}`" if Cmds(command.name).chelp else "`Currently no help!`", 
                 inline=False,
             ).set_author(
                 name="Help", 
@@ -86,10 +86,15 @@ class HelpUtils:
         commands = [f"- `{k.name}`" for k in self.bot.commands if k.name.startswith(message[0]) and not k.hidden]
         
         return disnake.Embed(
-            description="**Did you mean:**\n" + '\n'.join(commands),
             ).set_author(
                 name=f"{message} is not a command!",
                 icon_url=ctx.author.avatar.url,
+            ).add_field(
+                name="\u200b",
+                value="\n".join([commands[i] for i in range(0, len(commands), 2)]),
+            ).add_field(
+                name="\u200b",
+                value="\n".join([commands[i] for i in range(1, len(commands), 2)]),
             )
 
 class Help(commands.Cog):
