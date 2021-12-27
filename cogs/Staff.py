@@ -484,44 +484,6 @@ class Staff(commands.Cog):
                         await ctx.send(embed=embed)
                         
                 
-
-        
-
-    @commands.command(hidden=True)
-    async def serversin(self, ctx: Context):
-   
-        x = []
-        num = 0
-        for g in self.bot.guilds:
-            x.append(g.name)
-            num += 1
-            
-       
-        await ctx.send(", ".join(x[1:25]))
-        await ctx.send(", ".join(x[26:len(x)]))
-
-    @commands.command(hidden=True)
-    async def showcmds(self, ctx: Context):
-        x = []
-        embed = disnake.Embed(color=disnake.Color.green())
-        for command in self.bot.commands:
-            
-            x.append(f"`{command.name}`")
-        xnum = 0
-        for i in range(0, len(x)):
-            xnum += 1
-            if xnum == 25:
-                if i <= 25:
-                    embed.add_field(name=i, value=", ".join(x[0:i]), inline=False)
-                else:
-
-                    r = i - 25
-                    embed.add_field(name=i, value=", ".join(x[r:i]), inline=False)
-                
-                xnum = 0
-            
-        await ctx.send(embed=embed)
-    
     @commands.command(hidden=True, aliases=['save', 'backup'])
     async def savebackup(self, ctx: Context):
         x = 1

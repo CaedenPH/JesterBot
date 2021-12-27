@@ -41,15 +41,15 @@ class Mod(commands.Cog):
             await ctx.send(embed=embed)
         
     @has_permissions(administrator=True)
-    @commands.command(aliases=['nicks'], hidden=True)
-    async def nick(self, ctx: Context, member: disnake.Member, *, nick):
+    @commands.command(aliases=['change_nickname'])
+    async def change_nick(self, ctx: Context, member: disnake.Member, *, nick):
 
         await member.edit(nick=nick)
         embed = disnake.Embed(description=f'Nickname was changed for {member.mention} ', colour=thecolor())
         await ctx.send(embed=embed)
     
     @has_permissions(administrator=True)
-    @commands.command(hidden=True, description="Deletes the specified invite", aliases=['deleteinv', 'invdelete', 'revokeinv', 'delinv', 'Invdel', 'Revinv', 'Invrev', 'Revokeinvite', 'Revoke_invite', 'xinv', 'X_inv', 'invitex', 'xinvite', 'Inv_x'])
+    @commands.command(description="Deletes the specified invite", aliases=['deleteinv', 'invdelete', 'revokeinv', 'delinv', 'Invdel', 'Revinv', 'Invrev', 'Revokeinvite', 'Revoke_invite', 'xinv', 'X_inv', 'invitex', 'xinvite', 'Inv_x'])
     async def delete_invite(self, ctx: Context, invite:str):
 
         embed = disnake.Embed(title=f"Deleted invite", colour=thecolor())
@@ -364,18 +364,6 @@ class Mod(commands.Cog):
 
             await y.paginate(content=x, name='Roles')
 
-    @commands.command(hidden=True)
-    async def showroleperm(self, ctx: Context, roled="member"):
-
-        role = disnake.utils.get(self, ctx.guild.roles, name=roled)
-        
-        for channel in ctx.guild.text_channels:
-           pass
-        embed = disnake.Embed(description=role.permissions.name, colour=thecolor())
-        embed.set_author(icon_url=ctx.author.avatar.url, name=ctx.author.name)
-        await ctx.send(embed=embed)
-        await ctx.send(role.position)
-
     @commands.command()
     async def showrolepermid(self, ctx: Context, id1:int):
         x = []
@@ -400,13 +388,6 @@ class Mod(commands.Cog):
             
         embed = disnake.Embed(description=" │ ".join(x), colour=thecolor())
         await ctx.send(embed=embed)
-
-    
-    @commands.command(hidden=True)
-    async def get_person(self, ctx: Context, id1):
-        
-        x = self.bot.get_user(id1)
-        await ctx.send(x.name)
 
     @commands.command()
     async def timeout(self, ctx: Context, member:disnake.Member, duration:typing.Union[float, datetime.timedelta]=3600, reason:str="No reason provided") -> None:

@@ -240,7 +240,7 @@
         "score": 16
     },
     "topcommands": {
-        "score": 44
+        "score": 46
     },
     "help avatar": {
         "score": 2
@@ -363,7 +363,7 @@
         "score": 1
     },
     "reload": {
-        "score": 4599
+        "score": 4603
     },
     "pp": {
         "score": 142
@@ -420,7 +420,7 @@
         "score": 21
     },
     "showcmds": {
-        "score": 30
+        "score": 31
     },
     "servermessages": {
         "score": 28
@@ -1186,5 +1186,8 @@
     },
     "remove_ai": {
         "score": 3
+    },
+    "how_many_commands": {
+        "score": 2
     }
 }

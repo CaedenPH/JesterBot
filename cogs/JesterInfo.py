@@ -102,12 +102,11 @@ class JesterInfo(commands.Cog):
     @commands.command(aliases=['binv', 'botinv'])
     async def invite(self, ctx: Context):
         embed = disnake.Embed(title=f"I am currently in {len(self.bot.guilds)} servers!", description="[Official server](https://disnake.gg/2654CuU3ZU) │ [Invite me!](https://disnake.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591)", colour = thecolor())
-    
         embed.set_author(icon_url=ctx.author.avatar.url, name="Invite")
 
         await ctx.send(embed=embed)
 
-    @commands.command(hidden=True, aliases=['commandtop', 'cmdtop', 'topcmd'])
+    @commands.command(aliases=['commandtop', 'cmdtop', 'topcmd'])
     async def topcommands(self, ctx: Context):
         score_list = []
         sorted_score_dict = {}
@@ -131,11 +130,8 @@ class JesterInfo(commands.Cog):
 
             await ctx.send(embed=embed)
 
-    @commands.command(hidden=True, aliases=['membtop', 'topmemb', 'memtop'], description="Sends the top members that have used the bot") 
+    @commands.command(aliases=['membtop', 'topmemb', 'memtop'], description="Sends the top members that have used the bot") 
     async def topmembers(self, ctx: Context):
-        score_list = []
-        sorted_score_dict = {}
-        
         x = []
         y = '\n'
         with open('./dicts/Selfscore.json') as k:
@@ -157,18 +153,9 @@ class JesterInfo(commands.Cog):
 
             await ctx.send(embed=embed)
 
-    @commands.command(aliases=['lengthcmd', 'cmdamm'], hidden=True)
-    async def lengthcommand(self, ctx: Context):
-        num = 0
-        for n in self.bot.commands:
-            if not n.hidden:
-                num += 1
-
-        embed = disnake.Embed(description=f"The bot has **{num}** commands", color=thecolor())
-        await ctx.send(embed=embed)
-
-
-    
+    @commands.command(aliases=['ammount_of_commands'])
+    async def how_many_commands(self, ctx: Context):
+        await ctx.em(f"The bot has **{len([k for k in self.bot.commands if not k.hidden])}** commands")
 
     @commands.command(aliases=['pin', 'pingy', 'ms', 'Latency'], description="Sends the ping of the bot")
     async def ping(self, ctx: Context):
@@ -178,6 +165,7 @@ class JesterInfo(commands.Cog):
             y += len(m.members)
         embed.set_footer(text=f"Servers in: {len(self.bot.guilds)} │ Overall users: {y}")
         await ctx.send(embed=embed)
+
     @commands.command(aliases=['pref', 'prefixs', 'pre', 'prefixes'], description="Change the prefix of the bot for you personally")
     async def prefix(self, ctx: Context, *, prefix=None):
         if not prefix:
@@ -187,7 +175,6 @@ class JesterInfo(commands.Cog):
             return await ctx.send(embed=embed)
         prefix = prefix.split(" ")
        
-        print(prefix)
         if prefix:
         
             with open('./dicts/prefixes.json', 'r+') as e:
@@ -240,6 +227,40 @@ class JesterInfo(commands.Cog):
             embed = disnake.Embed(title="Color", description='Put `0x` infront of the six letter/number [color](https://www.color-hex.com/)', colour=thecolor())
             await ctx.send(embed=embed)
     
+    @commands.command()
+    async def showcmds(self, ctx: Context):
+        x = []
+        embed = disnake.Embed(color=disnake.Color.green())
+        for command in self.bot.commands:
+            
+            x.append(f"`{command.name}`")
+        xnum = 0
+        for i in range(0, len(x)):
+            xnum += 1
+            if xnum == 25:
+                if i <= 25:
+                    embed.add_field(name=i, value=", ".join(x[0:i]), inline=False)
+                else:
+
+                    r = i - 25
+                    embed.add_field(name=i, value=", ".join(x[r:i]), inline=False)
+                
+                xnum = 0
+            
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    async def serversin(self, ctx: Context):
+   
+        x = []
+        num = 0
+        for g in self.bot.guilds:
+            x.append(g.name)
+            num += 1
+            
+       
+        await ctx.send(", ".join(x[1:25]))
+        await ctx.send(", ".join(x[26:len(x)]))
 
 def setup(bot):
   bot.add_cog(JesterInfo(bot))
