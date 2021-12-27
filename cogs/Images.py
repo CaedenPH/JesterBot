@@ -376,10 +376,10 @@ class Images(commands.Cog):
     async def bill(self, ctx: Context):
         async with ctx.typing():
             response = requests.get("https://belikebill.ga/billgen-API.php?default=1", verify=False)
-            file = open('./images/triggered.png', 'wb')
+            file = open('./images/bill.png', 'wb')
             file.write(response.content)
             file.close()
-        await ctx.send(file=disnake.File('./images/triggered.png')) 
+        await ctx.send(file=disnake.File('./images/bill.png')) 
 
 def setup(bot):
   bot.add_cog(Images(bot))

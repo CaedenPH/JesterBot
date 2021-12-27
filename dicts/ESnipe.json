@@ -1956,21 +1956,26 @@
         "878924003803287572": {
             "author": [
                 "GitHub",
+                "GitHub",
                 "GitHub"
             ],
             "id": [
+                878976850850889738,
                 878976850850889738,
                 878976850850889738
             ],
             "time": [
                 "2021-12-23 21:42:55.981000+00:00",
-                "2021-12-24 22:14:57.954000+00:00"
+                "2021-12-24 22:14:57.954000+00:00",
+                "2021-12-26 17:22:39.829000+00:00"
             ],
             "after": [
+                "",
                 "",
                 ""
             ],
             "before": [
+                "",
                 "",
                 ""
             ]
@@ -12267,9 +12272,11 @@
                 "Sirona",
                 "Sirona",
                 "Sirona",
+                "Sirona",
                 "Sirona"
             ],
             "id": [
+                748100524246564894,
                 748100524246564894,
                 748100524246564894,
                 748100524246564894,
@@ -12413,9 +12420,11 @@
                 "2021-12-01 22:47:11.690000",
                 "2021-12-01 23:51:35.270000",
                 "2021-12-23 14:57:04.964000+00:00",
-                "2021-12-23 15:00:07.319000+00:00"
+                "2021-12-23 15:00:07.319000+00:00",
+                "2021-12-26 17:52:48.108000+00:00"
             ],
             "after": [
+                "",
                 "",
                 "",
                 "",
@@ -12489,6 +12498,7 @@
                 ""
             ],
             "before": [
+                "",
                 "",
                 "",
                 "",
@@ -16744,19 +16754,29 @@
         },
         "860566749391618080": {
             "author": [
+                "Yeetrika",
+                "Yeetrika",
                 "Yeetrika"
             ],
             "id": [
+                886192287149871135,
+                886192287149871135,
                 886192287149871135
             ],
             "time": [
-                "2021-12-26 17:04:06.410000+00:00"
+                "2021-12-26 17:04:06.410000+00:00",
+                "2021-12-26 17:29:45.198000+00:00",
+                "2021-12-26 17:41:34.489000+00:00"
             ],
             "after": [
-                "If there is anyone who wishes to read, Here is an online version of the Secret Book of John\n\nhttp://gnosis.org/naghamm/apocjn-davies.html"
+                "If there is anyone who wishes to read, Here is an online version of the Secret Book of John\n\nhttp://gnosis.org/naghamm/apocjn-davies.html",
+                "Your words are untruths",
+                "http://gnosis.org/naghamm/hypostas.html"
             ],
             "before": [
-                "If there is anyone who wishes to read, Here is an online version of the Secret Book of John\n\nhttp://gnosis.org/naghamm/apocjn-davies.html"
+                "If there is anyone who wishes to read, Here is an online version of the Secret Book of John\n\nhttp://gnosis.org/naghamm/apocjn-davies.html",
+                "You words are untruths",
+                "http://gnosis.org/naghamm/hypostas.html"
             ]
         }
     },

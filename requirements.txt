@@ -19,6 +19,12 @@ charset-normalizer==2.0.9
 click==8.0.3
 colorama==0.4.4
 cssselect2==0.4.1
+discord==1.7.3
+discord-together==1.2.2
+discord.py @ git+https://github.com/Rapptz/discord.py@45d498c1b76deaf3b394d17ccf56112fa691d160
+dislash.py==1.4.9
+disnake==2.3.0
+disnake-jishaku==2.6.5
 glitch-this==1.0.2
 googletrans==3.0.0
 h11==0.9.0
@@ -30,7 +36,7 @@ httpx==0.13.3
 hyperframe==5.2.0
 idna==2.10
 import-expression==1.1.4
-disnake-jishaku==2.3.2
+jishaku==2.3.2
 jokeapi==1.0.2
 lxml==4.7.1
 multidict==5.2.0
@@ -56,7 +62,7 @@ svglib==1.1.0
 tinycss2==1.1.1
 typing-extensions==4.0.1
 update-checker==0.18.0
-urllib3==1.26.7
+urllib3==1.24.3
 vacefron.py==1.6.3
 webencodings==0.5.1
 wikipedia==1.4.0
