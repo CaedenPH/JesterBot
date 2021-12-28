@@ -2032,9 +2032,11 @@
             "author": [
                 "GitHub",
                 "GitHub",
+                "GitHub",
                 "GitHub"
             ],
             "id": [
+                878976850850889738,
                 878976850850889738,
                 878976850850889738,
                 878976850850889738
@@ -2042,14 +2044,17 @@
             "time": [
                 "2021-12-23 21:42:55.981000+00:00",
                 "2021-12-24 22:14:57.954000+00:00",
-                "2021-12-26 17:22:39.829000+00:00"
+                "2021-12-26 17:22:39.829000+00:00",
+                "2021-12-28 04:08:53.849000+00:00"
             ],
             "after": [
+                "",
                 "",
                 "",
                 ""
             ],
             "before": [
+                "",
                 "",
                 "",
                 ""
@@ -6046,6 +6051,16 @@
                 "Assistant",
                 "[j.] JesterBot",
                 "[j.] JesterBot",
+                "[j.] JesterBot",
+                "Assistant",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "alexandros",
                 "[j.] JesterBot"
             ],
             "id": [
@@ -6368,6 +6383,16 @@
                 821445736322695179,
                 828363172717133874,
                 828363172717133874,
+                828363172717133874,
+                821445736322695179,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                494927280091561984,
                 828363172717133874
             ],
             "time": [
@@ -6690,7 +6715,17 @@
                 "2021-12-27 16:09:03.095000+00:00",
                 "2021-12-28 03:22:23.108000+00:00",
                 "2021-12-28 03:22:37.562000+00:00",
-                "2021-12-28 03:22:44.069000+00:00"
+                "2021-12-28 03:22:44.069000+00:00",
+                "2021-12-28 07:21:43.281000+00:00",
+                "2021-12-28 15:10:08.585000+00:00",
+                "2021-12-28 15:29:09.684000+00:00",
+                "2021-12-28 15:29:51.402000+00:00",
+                "2021-12-28 15:29:32.397000+00:00",
+                "2021-12-28 15:29:41.248000+00:00",
+                "2021-12-28 15:36:07.656000+00:00",
+                "2021-12-28 15:37:21.718000+00:00",
+                "2021-12-28 16:11:26.463000+00:00",
+                "2021-12-28 16:13:53.612000+00:00"
             ],
             "after": [
                 "https://media.tenor.com/images/e4a8f018e6d3258580602985906dfca7/tenor.gif",
@@ -7012,7 +7047,17 @@
                 "Opps! **Invalid Command**\nI guess you used a wrong command! Know about my commands `a!help`",
                 "",
                 "",
-                ""
+                "",
+                "Pong! \nBot latency **36 *ms***\nTyping & Sending speed **383 *ms***",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "+ https://github.com/caedenph/jesterbot/tree/main/cogs/Moderation.py#L392",
+                "https://github.com/caedenph/jesterbot/tree/main/cogs/Misc.py#L65"
             ],
             "before": [
                 "https://media.tenor.com/images/e4a8f018e6d3258580602985906dfca7/tenor.gif",
@@ -7334,7 +7379,17 @@
                 "Trying to run...",
                 "",
                 "",
-                ""
+                "",
+                "Pong! \n**36 *ms***",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "+ https://github.com/caedenph/jesterbot/tree/main/cogs/Moderation.py#L392",
+                "https://github.com/caedenph/jesterbot/tree/main/cogs/Misc.py#L65"
             ]
         },
         "852915414744694824": {
@@ -8094,23 +8149,28 @@
         "794700751028224051": {
             "author": [
                 "\u2746\ud835\udc13\ud835\udc04\ud835\udc0e\u2746",
-                "\u2746\ud835\udc13\ud835\udc04\ud835\udc0e\u2746"
+                "\u2746\ud835\udc13\ud835\udc04\ud835\udc0e\u2746",
+                "r2toretto"
             ],
             "id": [
                 370191573113241601,
-                370191573113241601
+                370191573113241601,
+                444512627947995136
             ],
             "time": [
                 "2021-12-24 20:28:59.634000+00:00",
-                "2021-12-24 20:28:59.634000+00:00"
+                "2021-12-24 20:28:59.634000+00:00",
+                "2021-12-28 14:45:01.993000+00:00"
             ],
             "after": [
                 "```from turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_color=\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()```",
-                "```py\nfrom turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_color=\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()```"
+                "```py\nfrom turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_color=\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()```",
+                "This is the code I used to fix my problem with the hidden characters, in my case it was really hidden so I had to clean it, I just read and wrote it again to another file but I changed the encoding in the process, I bet there are other ways to deal with this but this is what I did just to get rid of \"dirty\" text lol @alexandros @\u2746\ud835\udc13\ud835\udc04\ud835\udc0e\u2746"
             ],
             "before": [
                 "from turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_color=\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()",
-                "```from turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_color=\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()```"
+                "```from turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_color=\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()```",
+                "This is the code I used to fix my problem with the hidden characters, in my case it was really hidden so I had to clean it, I just read and wrote it again to another file but I changed the encoding in the process, I bet there are other ways to deal with this but this is what I did just to get rid of \"dirty\" text lol"
             ]
         },
         "804430992181297213": {
@@ -8166,6 +8226,7 @@
                 "Noumenon",
                 "Carl-bot",
                 "Noumenon",
+                "Carl-bot",
                 "Carl-bot"
             ],
             "id": [
@@ -8191,6 +8252,7 @@
                 634866217764651009,
                 235148962103951360,
                 634866217764651009,
+                235148962103951360,
                 235148962103951360
             ],
             "time": [
@@ -8216,7 +8278,8 @@
                 "2021-12-04 17:59:48.592000",
                 "2021-12-04 17:59:48.469000",
                 "2021-12-05 08:14:25.107000",
-                "2021-12-05 08:14:25.024000"
+                "2021-12-05 08:14:25.024000",
+                "2021-12-28 16:05:19.675000+00:00"
             ],
             "after": [
                 "",
@@ -8241,7 +8304,8 @@
                 "",
                 "@paypal",
                 "",
-                "@babylily"
+                "@babylily",
+                "@AxolotlAppreciater"
             ],
             "before": [
                 "",
@@ -8266,7 +8330,8 @@
                 "",
                 "@paypal",
                 "",
-                "@babylily"
+                "@babylily",
+                "@AxolotlAppreciater"
             ]
         },
         "841309229842825256": {
@@ -8334,7 +8399,8 @@
                 "meseggsy",
                 "k y o",
                 "Free_strider",
-                "Free_strider"
+                "Free_strider",
+                "Kayoris"
             ],
             "id": [
                 442226341631229952,
@@ -8400,7 +8466,8 @@
                 489020170816323584,
                 775894770978914334,
                 484896608505430017,
-                484896608505430017
+                484896608505430017,
+                256420934389334016
             ],
             "time": [
                 "2021-11-17 10:50:06.591000",
@@ -8466,7 +8533,8 @@
                 "2021-12-25 04:50:03.375000+00:00",
                 "2021-12-26 04:54:08.984000+00:00",
                 "2021-12-27 03:54:50.462000+00:00",
-                "2021-12-28 03:32:20.880000+00:00"
+                "2021-12-28 03:32:20.880000+00:00",
+                "2021-12-28 05:16:33.102000+00:00"
             ],
             "after": [
                 "",
@@ -8532,7 +8600,8 @@
                 "<a:RS_sustwerk:798192137718988820>",
                 "i didnt get kills so pouya could get more kills",
                 "does this satisfy you?",
-                "https://cdn.discordapp.com/attachments/853612631156064257/924315106341445683/RPReplay_Final1640444258.mov"
+                "https://cdn.discordapp.com/attachments/853612631156064257/924315106341445683/RPReplay_Final1640444258.mov",
+                "Y'all could've stayed with us"
             ],
             "before": [
                 "",
@@ -8598,7 +8667,8 @@
                 "<a:RS_sustwerk:798192137718988820>",
                 "ibdidnt get kills so pouya could get more kills",
                 "does this satisfy you",
-                "https://cdn.discordapp.com/attachments/853612631156064257/924315106341445683/RPReplay_Final1640444258.mov"
+                "https://cdn.discordapp.com/attachments/853612631156064257/924315106341445683/RPReplay_Final1640444258.mov",
+                "Y'all could've stay with us"
             ]
         },
         "827088097799831605": {
@@ -11433,6 +11503,43 @@
                 "Karuta",
                 "Karuta",
                 "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
                 "Karuta"
             ],
             "id": [
@@ -11479,6 +11586,43 @@
                 646937666251915264,
                 646937666251915264,
                 394331116238274561,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
                 646937666251915264,
                 646937666251915264,
                 646937666251915264,
@@ -11829,7 +11973,44 @@
                 "2021-12-27 16:38:24.172000+00:00",
                 "2021-12-27 16:38:24.172000+00:00",
                 "2021-12-27 16:38:24.172000+00:00",
-                "2021-12-27 16:38:24.172000+00:00"
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-28 08:05:51.970000+00:00",
+                "2021-12-28 08:05:38.580000+00:00",
+                "2021-12-28 08:04:59.664000+00:00",
+                "2021-12-28 08:06:33.508000+00:00",
+                "2021-12-28 08:06:33.508000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 08:06:47.664000+00:00",
+                "2021-12-28 15:30:05.759000+00:00",
+                "2021-12-28 15:30:05.759000+00:00",
+                "2021-12-28 15:30:05.759000+00:00",
+                "2021-12-28 15:30:25.144000+00:00",
+                "2021-12-28 15:30:25.144000+00:00",
+                "2021-12-28 15:30:25.144000+00:00",
+                "2021-12-28 15:30:25.144000+00:00",
+                "2021-12-28 15:30:25.144000+00:00",
+                "2021-12-28 15:30:25.144000+00:00",
+                "2021-12-28 15:30:25.144000+00:00"
             ],
             "after": [
                 "",
@@ -11994,6 +12175,43 @@
                 "",
                 "",
                 "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "@NH-LAWYER is dropping 3 cards!\n*This drop has expired and the cards can no longer be grabbed.*",
                 "",
                 "",
                 "",
@@ -12192,6 +12410,43 @@
                 "",
                 "",
                 "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "@NH-LAWYER is dropping 3 cards!",
                 "",
                 "",
                 "",
@@ -12561,9 +12816,11 @@
                 "Sirona",
                 "Sirona",
                 "Sirona",
+                "Sirona",
                 "Sirona"
             ],
             "id": [
+                748100524246564894,
                 748100524246564894,
                 748100524246564894,
                 748100524246564894,
@@ -12711,9 +12968,11 @@
                 "2021-12-23 14:57:04.964000+00:00",
                 "2021-12-23 15:00:07.319000+00:00",
                 "2021-12-26 17:52:48.108000+00:00",
-                "2021-12-27 03:39:09.498000+00:00"
+                "2021-12-27 03:39:09.498000+00:00",
+                "2021-12-28 11:45:40.601000+00:00"
             ],
             "after": [
+                "",
                 "",
                 "",
                 "",
@@ -12789,6 +13048,7 @@
                 ""
             ],
             "before": [
+                "",
                 "",
                 "",
                 "",
@@ -13271,6 +13531,32 @@
                 "gavncm",
                 "stealthninja",
                 "gavncm",
+                "FireTheFox",
+                "Guacamole",
+                "FireTheFox",
+                "FireTheFox",
+                "FireTheFox",
+                "FireTheFox",
+                "FireTheFox",
+                "FireTheFox",
+                "stealthninja",
+                "stealthninja",
+                "stealthninja",
+                "FireTheFox",
+                "FireTheFox",
+                "stealthninja",
+                "stealthninja",
+                "stealthninja",
+                "stealthninja",
+                "stealthninja",
+                "stealthninja",
+                "Indigu",
+                "FireTheFox",
+                "FireTheFox",
+                "FireTheFox",
+                "FireTheFox",
+                "FireTheFox",
+                "FireTheFox",
                 "FireTheFox"
             ],
             "id": [
@@ -13475,6 +13761,32 @@
                 571335235795550208,
                 521226389559443461,
                 571335235795550208,
+                795401550875983904,
+                705936828225552455,
+                795401550875983904,
+                795401550875983904,
+                795401550875983904,
+                795401550875983904,
+                795401550875983904,
+                795401550875983904,
+                521226389559443461,
+                521226389559443461,
+                521226389559443461,
+                795401550875983904,
+                795401550875983904,
+                521226389559443461,
+                521226389559443461,
+                521226389559443461,
+                521226389559443461,
+                521226389559443461,
+                521226389559443461,
+                862410618094354472,
+                795401550875983904,
+                795401550875983904,
+                795401550875983904,
+                795401550875983904,
+                795401550875983904,
+                795401550875983904,
                 795401550875983904
             ],
             "time": [
@@ -13679,7 +13991,33 @@
                 "2021-12-24 04:45:19.795000+00:00",
                 "2021-12-24 23:11:59.183000+00:00",
                 "2021-12-25 04:15:22.781000+00:00",
-                "2021-12-26 04:48:23.219000+00:00"
+                "2021-12-26 04:48:23.219000+00:00",
+                "2021-12-28 07:35:43.891000+00:00",
+                "2021-12-28 09:49:15.689000+00:00",
+                "2021-12-28 10:10:37.066000+00:00",
+                "2021-12-28 10:10:29.573000+00:00",
+                "2021-12-28 11:26:12.636000+00:00",
+                "2021-12-28 11:30:07.836000+00:00",
+                "2021-12-28 11:41:09.526000+00:00",
+                "2021-12-28 11:41:50.560000+00:00",
+                "2021-12-28 12:27:46.709000+00:00",
+                "2021-12-28 12:28:40.867000+00:00",
+                "2021-12-28 12:31:12.592000+00:00",
+                "2021-12-28 12:31:12.592000+00:00",
+                "2021-12-28 12:31:57.775000+00:00",
+                "2021-12-28 12:32:51.215000+00:00",
+                "2021-12-28 12:37:25.275000+00:00",
+                "2021-12-28 12:59:42.815000+00:00",
+                "2021-12-28 13:00:11.457000+00:00",
+                "2021-12-28 13:00:47.363000+00:00",
+                "2021-12-28 13:06:04.948000+00:00",
+                "2021-12-28 13:09:01.444000+00:00",
+                "2021-12-28 13:09:32.716000+00:00",
+                "2021-12-28 13:11:23.833000+00:00",
+                "2021-12-28 13:12:11.221000+00:00",
+                "2021-12-28 13:12:56.982000+00:00",
+                "2021-12-28 13:14:26.423000+00:00",
+                "2021-12-28 13:17:09.568000+00:00"
             ],
             "after": [
                 "@Caeden",
@@ -13883,7 +14221,33 @@
                 "ZNYAMA SOVETSKOYE, ZNYAMA NARODOYE, PUST OT\u2019 POBEDY, POBED VEDYOT",
                 "Fuck off my android auto updated",
                 "Fr fr",
-                "> Play CS:GO or setup Arch Linux to FoxArch Development + normal usabel system\n> Do some shit in python Ig\n> Optional: Reach for lithium batteries"
+                "> Play CS:GO or setup Arch Linux to FoxArch Development + normal usabel system\n> Do some shit in python Ig\n> Optional: Reach for lithium batteries",
+                "death threat speedrun!",
+                "Do not drink water and exhale by nose at the same time",
+                "I am lazy to take cup",
+                "for some reason I drink directly from the tap",
+                "https://media.discordapp.net/attachments/857332722404950096/925157695051415562/tumblr_494fde2291606ae13e89892ea6d00d96_db7ad062_500.gif",
+                "I saw a fucking void pointer",
+                "I aint using it",
+                "<:KEKW:912697801010470963>",
+                "pistha is the best fight me",
+                "pista for ever",
+                "even how I met",
+                "even how I",
+                "he looks like me <:KEKW:912697801010470963>",
+                "did you have fun?",
+                "@BMP  STOP LIKING YOU ARE KILLING MY PHONE <:KEKW:912697801010470963>",
+                "mars fucked centuari",
+                "https://tenor.com/view/nixbreakdown-ace-attorney-phoenix-wright-objectionlol-gif-23675781",
+                "life is unfair",
+                "Lmao stealth 100% script kiddie",
+                "80% of top steam games can run on linux with proton",
+                "doesnt work on any Desktop Environment",
+                "https://en.m.wikipedia.org/wiki/Desktop_environment",
+                "https://en.m.wikipedia.org/wiki/Window_manager",
+                "my runs only on WMs",
+                "https://en.m.wikipedia.org/wiki/X.Org_Server",
+                "panels, lock-screens, settings apps"
             ],
             "before": [
                 "@Caeden",
@@ -14087,7 +14451,33 @@
                 "ZNYAMA SOVERSKOYE, ZNYAMA NARODOYE, PUST OT\u2019 POBEDY, POBED VEDYOT",
                 "Fuck off my android auto uploaded",
                 "Fr f4",
-                "> Play CS:GO or setup Arch Linux to FoxArch Development + normal usabel system\n> Do some shit in python Ig\n> Reach for lithium batteries"
+                "> Play CS:GO or setup Arch Linux to FoxArch Development + normal usabel system\n> Do some shit in python Ig\n> Reach for lithium batteries",
+                "death threat speedru!",
+                "Do not drink water and exhale by nose",
+                "I am lazy to take glass",
+                "for some reason I drink directly from tap",
+                "https://media.discordapp.net/attachments/857332722404950096/925157695051415562/tumblr_494fde2291606ae13e89892ea6d00d96_db7ad062_500.gif",
+                "I saw fucking void pointer",
+                "I aont using it",
+                ";kekw",
+                "pistha is the best fight mw",
+                "pista fro ever",
+                "even how I met bitch",
+                "even how I met",
+                "he looks like me ;kewk",
+                "did you have fun",
+                "@BMP  STOP LIKING YOU ARE KILLING MY PHONE :kewk",
+                "mars fucked centuari nto",
+                "https://tenor.com/view/nixbreakdown-ace-attorney-phoenix-wright-objectionlol-gif-23675781",
+                "life is unfiar",
+                "Lmao stealth 100% stealth kiddie",
+                "80% of top steam games can run on linux",
+                "doesnt work on DE",
+                "https://en.m.wikipedia.org/wiki/Desktop_environment",
+                "https://en.m.wikipedia.org/wiki/Window_manager",
+                "my runs only on WM",
+                "https://en.m.wikipedia.org/wiki/X.Org_Server",
+                "panels, lock-screens, settings ap"
             ]
         },
         "906554654450667572": {
@@ -16833,19 +17223,247 @@
         },
         "919454749496078366": {
             "author": [
-                "Jade_istheway"
+                "Jade_istheway",
+                "stealthninja",
+                "FireTheFox",
+                "FireTheFox",
+                "FireTheFox",
+                "FireTheFox"
             ],
             "id": [
+                798861743148367883,
+                521226389559443461,
+                795401550875983904,
+                795401550875983904,
+                795401550875983904,
+                795401550875983904
+            ],
+            "time": [
+                "2021-12-23 14:45:20.189000+00:00",
+                "2021-12-28 10:59:39.666000+00:00",
+                "2021-12-28 10:59:48.761000+00:00",
+                "2021-12-28 11:02:34.001000+00:00",
+                "2021-12-28 11:02:34.001000+00:00",
+                "2021-12-28 11:19:46.092000+00:00"
+            ],
+            "after": [
+                "https://youtube.com/shorts/aihlRatJEg4?feature=share",
+                "i",
+                "I DO TOO",
+                "just killed 2 flies by one shot",
+                "just killed 2 flies by one hit",
+                "not only you will get more customers but also will know which bugs to fix"
+            ],
+            "before": [
+                "https://youtube.com/shorts/aihlRatJEg4?feature=share",
+                "you",
+                "I DO TO",
+                "just slapped 2 flies by one shot",
+                "just killed 2 flies by one shot",
+                "not only you will get more customers but also fix your bugs"
+            ]
+        },
+        "920217318674546728": {
+            "author": [
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer"
+            ],
+            "id": [
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976
+            ],
+            "time": [
+                "2021-12-28 08:33:37.810000+00:00",
+                "2021-12-28 08:33:37.810000+00:00",
+                "2021-12-28 08:33:37.810000+00:00",
+                "2021-12-28 08:33:37.810000+00:00",
+                "2021-12-28 08:33:37.810000+00:00",
+                "2021-12-28 08:33:37.810000+00:00",
+                "2021-12-28 08:33:37.810000+00:00",
+                "2021-12-28 08:33:37.810000+00:00",
+                "2021-12-28 08:35:05.328000+00:00",
+                "2021-12-28 08:35:05.328000+00:00",
+                "2021-12-28 08:35:05.328000+00:00",
+                "2021-12-28 08:35:25.956000+00:00",
+                "2021-12-28 11:05:45.888000+00:00",
+                "2021-12-28 15:35:14.374000+00:00",
+                "2021-12-28 15:35:14.374000+00:00"
+            ],
+            "after": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "@stop changing my nickname What color was next to the word `learn`?",
+                "@stop changing my nickname What color was next to the word `learn`?"
+            ],
+            "before": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "**Work for Teacher** - Color Match - Match the color to the selected word.\n<:Black:863886248431190066> `learn`\n<:Yellow:863886248296316940> `learning`\n<:Marine:863886248572878939> `teach`",
+                "@stop changing my nickname What color was next to the word `learn`?"
+            ]
+        },
+        "920231266786349087": {
+            "author": [
+                "stealthninja",
+                "stealthninja",
+                "FireTheFox",
+                "Indigu"
+            ],
+            "id": [
+                521226389559443461,
+                521226389559443461,
+                795401550875983904,
+                862410618094354472
+            ],
+            "time": [
+                "2021-12-28 08:48:56.563000+00:00",
+                "2021-12-28 08:49:01.638000+00:00",
+                "2021-12-28 10:13:14.495000+00:00",
+                "2021-12-28 12:52:32.344000+00:00"
+            ],
+            "after": [
+                "https://www.youtube.com/watch?v=XceIKXeIrD0",
+                "no more programming jobs guys",
+                "https://pypi.org/project/Js2Py/",
+                "And have a simple hello world program executed in a week"
+            ],
+            "before": [
+                "https://www.youtube.com/watch?v=XceIKXeIrD0",
+                "no more programming jobsguys",
+                "https://pypi.org/project/Js2Py/",
+                "And have a simple hello world program executed in a weak"
+            ]
+        },
+        "919987248391397446": {
+            "author": [
+                "stealthninja",
+                "Jennei"
+            ],
+            "id": [
+                521226389559443461,
                 798861743148367883
             ],
             "time": [
-                "2021-12-23 14:45:20.189000+00:00"
+                "2021-12-28 11:16:49.625000+00:00",
+                "2021-12-28 16:20:05.693000+00:00"
             ],
             "after": [
-                "https://youtube.com/shorts/aihlRatJEg4?feature=share"
+                "<:KEKW:912697801010470963>",
+                "I would"
             ],
             "before": [
-                "https://youtube.com/shorts/aihlRatJEg4?feature=share"
+                ":Kkew",
+                "I have ould"
+            ]
+        },
+        "901847027179208744": {
+            "author": [
+                "stealthninja",
+                "stealthninja",
+                "stealthninja",
+                "stealthninja",
+                "stealthninja",
+                "stealthninja",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "Indigu"
+            ],
+            "id": [
+                521226389559443461,
+                521226389559443461,
+                521226389559443461,
+                521226389559443461,
+                521226389559443461,
+                521226389559443461,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                862410618094354472
+            ],
+            "time": [
+                "2021-12-28 11:48:13.010000+00:00",
+                "2021-12-28 11:48:13.010000+00:00",
+                "2021-12-28 11:48:13.010000+00:00",
+                "2021-12-28 11:50:27.096000+00:00",
+                "2021-12-28 11:50:56.750000+00:00",
+                "2021-12-28 11:51:25.284000+00:00",
+                "2021-12-28 11:52:35.596000+00:00",
+                "2021-12-28 11:52:35.596000+00:00",
+                "2021-12-28 11:52:35.596000+00:00",
+                "2021-12-28 11:57:05.813000+00:00"
+            ],
+            "after": [
+                "https://coolors.co/21295c-1b3b6f-065a82-1c7293-9eb3c2",
+                "https://coolors.co/21295c-1b3b6f-065a82-1c7293-9eb3c2",
+                "https://coolors.co/21295c-1b3b6f-065a82-1c7293-9eb3c2",
+                "https://coolors.co/104f55-32746d-9ec5ab-01200f-011502",
+                "that brown \ud83d\ude0b",
+                "https://coolors.co/6cb8a5-0f8a6b-cf661b-99460b-4f270b",
+                "",
+                "",
+                "",
+                "Server Todo List:\n\n-Change PFP\n-Choose a color scheme \n-Add cool buttons and selection to the bot"
+            ],
+            "before": [
+                "https://coolors.co/21295c-1b3b6f-065a82-1c7293-9eb3c2",
+                "https://coolors.co/21295c-1b3b6f-065a82-1c7293-9eb3c2",
+                "https://coolors.co/21295c-1b3b6f-065a82-1c7293-9eb3c2",
+                "https://coolors.co/104f55-32746d-9ec5ab-01200f-011502",
+                "that orange",
+                "https://coolors.co/6cb8a5-0f8a6b-cf661b-99460b-4f270b",
+                "",
+                "",
+                "",
+                "Server Todo List:\n\n-Change PFP\n-Choose a color scheme \n-Add cool buttons and selection to the bot"
             ]
         }
     },
@@ -17364,21 +17982,26 @@
         "864814644846002177": {
             "author": [
                 "Double Counter",
+                "Double Counter",
                 "Double Counter"
             ],
             "id": [
+                703886990948565003,
                 703886990948565003,
                 703886990948565003
             ],
             "time": [
                 "2021-11-19 11:22:35.888000",
-                "2021-11-19 12:43:56.139000"
+                "2021-11-19 12:43:56.139000",
+                "2021-12-28 14:07:20.886000+00:00"
             ],
             "after": [
+                "**:star: Double Counter Pro help - https://pro.dcounter.space/**\n\n- `dcpro.custom <message>`: customizes the message Double Counter sends to joining members (embed description). Use `dcpro.custom default` to reset.\n- `dcpro.design <compact/detailed>`: defines the design Double Counter uses for logs (default is compact)\n- `dcpro.timeout <minutes>`: defines a custom timeout for verification (max. 60 minutes)\n- `dcpro.fingerprinting`: opens the advanced fingerprinting configuration wizard (you must have detailed design enabled)\n- `dcpro.fingerprint @user`: checks the fingerprint of a user that is verified\n\n- `dcpro.embed <title/image/support/footer>`: triggers visibility for elements of the verification embed\n\n- `dcpro.subscription`: displays details about your Double Counter Pro subscription\n\nFor more information, visit https://docs.dcounter.space/pro-version",
                 "**:star: Double Counter Pro help - https://pro.dcounter.space/**\n\n- `dcpro.custom <message>`: customizes the message Double Counter sends to joining members (embed description). Use `dcpro.custom default` to reset.\n- `dcpro.design <compact/detailed>`: defines the design Double Counter uses for logs (default is compact)\n- `dcpro.timeout <minutes>`: defines a custom timeout for verification (max. 60 minutes)\n- `dcpro.fingerprinting`: opens the advanced fingerprinting configuration wizard (you must have detailed design enabled)\n- `dcpro.fingerprint @user`: checks the fingerprint of a user that is verified\n\n- `dcpro.embed <title/image/support/footer>`: triggers visibility for elements of the verification embed\n\n- `dcpro.subscription`: displays details about your Double Counter Pro subscription\n\nFor more information, visit https://docs.dcounter.space/pro-version",
                 "**:star: Double Counter Pro help - https://pro.dcounter.space/**\n\n- `dcpro.custom <message>`: customizes the message Double Counter sends to joining members (embed description). Use `dcpro.custom default` to reset.\n- `dcpro.design <compact/detailed>`: defines the design Double Counter uses for logs (default is compact)\n- `dcpro.timeout <minutes>`: defines a custom timeout for verification (max. 60 minutes)\n- `dcpro.fingerprinting`: opens the advanced fingerprinting configuration wizard (you must have detailed design enabled)\n- `dcpro.fingerprint @user`: checks the fingerprint of a user that is verified\n\n- `dcpro.embed <title/image/support/footer>`: triggers visibility for elements of the verification embed\n\n- `dcpro.subscription`: displays details about your Double Counter Pro subscription\n\nFor more information, visit https://docs.dcounter.space/pro-version"
             ],
             "before": [
+                "**:star: Double Counter Pro help - https://pro.dcounter.space/**\n\n- `dcpro.custom <message>`: customizes the message Double Counter sends to joining members (embed description). Use `dcpro.custom default` to reset.\n- `dcpro.design <compact/detailed>`: defines the design Double Counter uses for logs (default is compact)\n- `dcpro.timeout <minutes>`: defines a custom timeout for verification (max. 60 minutes)\n- `dcpro.fingerprinting`: opens the advanced fingerprinting configuration wizard (you must have detailed design enabled)\n- `dcpro.fingerprint @user`: checks the fingerprint of a user that is verified\n\n- `dcpro.embed <title/image/support/footer>`: triggers visibility for elements of the verification embed\n\n- `dcpro.subscription`: displays details about your Double Counter Pro subscription\n\nFor more information, visit https://docs.dcounter.space/pro-version",
                 "**:star: Double Counter Pro help - https://pro.dcounter.space/**\n\n- `dcpro.custom <message>`: customizes the message Double Counter sends to joining members (embed description). Use `dcpro.custom default` to reset.\n- `dcpro.design <compact/detailed>`: defines the design Double Counter uses for logs (default is compact)\n- `dcpro.timeout <minutes>`: defines a custom timeout for verification (max. 60 minutes)\n- `dcpro.fingerprinting`: opens the advanced fingerprinting configuration wizard (you must have detailed design enabled)\n- `dcpro.fingerprint @user`: checks the fingerprint of a user that is verified\n\n- `dcpro.embed <title/image/support/footer>`: triggers visibility for elements of the verification embed\n\n- `dcpro.subscription`: displays details about your Double Counter Pro subscription\n\nFor more information, visit https://docs.dcounter.space/pro-version",
                 "**:star: Double Counter Pro help - https://pro.dcounter.space/**\n\n- `dcpro.custom <message>`: customizes the message Double Counter sends to joining members (embed description). Use `dcpro.custom default` to reset.\n- `dcpro.design <compact/detailed>`: defines the design Double Counter uses for logs (default is compact)\n- `dcpro.timeout <minutes>`: defines a custom timeout for verification (max. 60 minutes)\n- `dcpro.fingerprinting`: opens the advanced fingerprinting configuration wizard (you must have detailed design enabled)\n- `dcpro.fingerprint @user`: checks the fingerprint of a user that is verified\n\n- `dcpro.embed <title/image/support/footer>`: triggers visibility for elements of the verification embed\n\n- `dcpro.subscription`: displays details about your Double Counter Pro subscription\n\nFor more information, visit https://docs.dcounter.space/pro-version"
             ]
@@ -18319,19 +18942,24 @@
         },
         "838219929236668476": {
             "author": [
-                "OwentheGreat111"
+                "OwentheGreat111",
+                "HumbleLiars"
             ],
             "id": [
-                679579046673514535
+                679579046673514535,
+                349214586064601089
             ],
             "time": [
-                "2021-12-02 16:39:57.670000"
+                "2021-12-02 16:39:57.670000",
+                "2021-12-28 19:59:26.495000+00:00"
             ],
             "after": [
-                "https://tenor.com/view/good-beardstroke-nod-gif-5158425"
+                "https://tenor.com/view/good-beardstroke-nod-gif-5158425",
+                "https://tenor.com/view/table-tennis-ping-pong-bears-bear-black-bear-diner-gif-17935342"
             ],
             "before": [
-                "https://tenor.com/view/good-beardstroke-nod-gif-5158425"
+                "https://tenor.com/view/good-beardstroke-nod-gif-5158425",
+                "https://tenor.com/view/table-tennis-ping-pong-bears-bear-black-bear-diner-gif-17935342"
             ]
         }
     },
@@ -19322,49 +19950,344 @@
             "author": [
                 "Caeden",
                 "shiftinv",
-                "Victorsitou"
+                "Victorsitou",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "arl",
+                "arl",
+                "shiftinv",
+                "Ingenuity",
+                "Culture bot",
+                "Culture bot",
+                "Victorsitou",
+                "Victorsitou",
+                "sadru",
+                "EQUENOS",
+                "shiftinv",
+                "EQUENOS",
+                "Victorsitou",
+                "sadru",
+                "octocobra",
+                "octocobra",
+                "octocobra",
+                "octocobra",
+                "sadru",
+                "octocobra",
+                "octocobra",
+                "octocobra",
+                "Monty Python"
             ],
             "id": [
                 298043305927639041,
                 321581335942529024,
-                184040656761651200
+                184040656761651200,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                717983911824588862,
+                717983911824588862,
+                321581335942529024,
+                925403435615023184,
+                803268588387434536,
+                803268588387434536,
+                184040656761651200,
+                184040656761651200,
+                454513969265115137,
+                301295716066787332,
+                321581335942529024,
+                301295716066787332,
+                184040656761651200,
+                454513969265115137,
+                885547951290744855,
+                885547951290744855,
+                885547951290744855,
+                885547951290744855,
+                454513969265115137,
+                885547951290744855,
+                885547951290744855,
+                885547951290744855,
+                872576125384147005
             ],
             "time": [
                 "2021-12-27 15:37:14.681000+00:00",
                 "2021-12-27 16:21:50.081000+00:00",
-                "2021-12-27 16:23:46.156000+00:00"
+                "2021-12-27 16:23:46.156000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:54.655000+00:00",
+                "2021-12-28 06:43:54.655000+00:00",
+                "2021-12-28 06:43:54.655000+00:00",
+                "2021-12-28 06:43:54.655000+00:00",
+                "2021-12-28 06:43:54.655000+00:00",
+                "2021-12-28 06:43:54.655000+00:00",
+                "2021-12-28 06:43:54.655000+00:00",
+                "2021-12-28 06:43:54.655000+00:00",
+                "2021-12-28 06:43:05.994000+00:00",
+                "2021-12-28 06:43:54.655000+00:00",
+                "2021-12-28 20:50:03.455000+00:00",
+                "2021-12-28 21:22:42.275000+00:00",
+                "2021-12-28 21:35:33.558000+00:00",
+                "2021-12-28 21:38:56.796000+00:00",
+                "2021-12-28 21:51:48.331000+00:00",
+                "2021-12-28 21:52:13.459000+00:00",
+                "2021-12-28 21:53:03.457000+00:00",
+                "2021-12-28 21:53:51.881000+00:00",
+                "2021-12-28 21:58:08.201000+00:00",
+                "2021-12-28 21:59:21.788000+00:00",
+                "2021-12-28 21:59:34.533000+00:00",
+                "2021-12-28 21:59:40.266000+00:00",
+                "2021-12-28 22:00:36.044000+00:00",
+                "2021-12-28 22:01:32.257000+00:00",
+                "2021-12-28 22:03:06.500000+00:00",
+                "2021-12-28 22:03:06.500000+00:00",
+                "2021-12-28 22:03:06.500000+00:00",
+                "2021-12-28 22:03:06.500000+00:00",
+                "2021-12-28 22:01:32.257000+00:00",
+                "2021-12-28 22:03:06.500000+00:00",
+                "2021-12-28 22:03:06.500000+00:00",
+                "2021-12-28 22:03:06.500000+00:00",
+                "2021-12-28 22:10:48.132000+00:00"
             ],
             "after": [
                 "like oldschool yk",
                 "like this, but with `256`\n<https://github.com/DisnakeDev/disnake/blob/master/disnake/flags.py#L320-L327>",
-                "I'll add the new flag later"
+                "I'll add the new flag later",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "I wonder if I can partition my docs command",
+                "I mean",
+                "It's just a selfhosted version of https://github.com/ZeppelinBot/Zeppelin",
+                "",
+                "",
+                "",
+                "admin abuse!1!1!1!1!1!!1!!!1!!!!1!",
+                "<:hikari:922935436563865680>",
+                "\u2800\u2800\u2800\u2800\u2800\u28b0\u287f\u280b\u2801\u2800\u2800\u2808\u2809\u2819\u283b\u28f7\u28c4\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\n\u2800\u2800\u2800\u2800\u2880\u28ff\u2807\u2800\u2880\u28f4\u28f6\u287e\u283f\u283f\u283f\u28bf\u28ff\u28e6\u2840\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\n\u2800\u2800\u28c0\u28c0\u28f8\u287f\u2800\u2800\u28b8\u28ff\u28c7\u2800\u2800\u2800\u2800\u2800\u2800\u2819\u28f7\u2840\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\n\u2800\u28fe\u285f\u281b\u28ff\u2847\u2800\u2800\u28b8\u28ff\u28ff\u28f7\u28e4\u28e4\u28e4\u28e4\u28f6\u28f6\u28ff\u2807\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u28c0\u2800\u2800\n\u2880\u28ff\u2800\u2880\u28ff\u2847\u2800\u2800\u2800\u283b\u28bf\u28ff\u28ff\u28ff\u28ff\u28ff\u283f\u28ff\u284f\u2800\u2800\u2800\u2800\u28b4\u28f6\u28f6\u28ff\u28ff\u28ff\u28c6\n\u28b8\u28ff\u2800\u28b8\u28ff\u2847\u2800\u2800\u2800\u2800\u2800\u2808\u2809\u2801\u2800\u2800\u2800\u28ff\u2847\u28c0\u28e0\u28f4\u28fe\u28ee\u28dd\u283f\u283f\u283f\u28fb\u285f\n\u28b8\u28ff\u2800\u2818\u28ff\u2847\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u28e0\u28f6\u28fe\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u287f\u2801\u2809\u2800\n\u2838\u28ff\u2800\u2800\u28ff\u2847\u2800\u2800\u2800\u2800\u2800\u28e0\u28fe\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u287f\u281f\u2809\u2800\u2800\u2800\u2800\n\u2800\u283b\u28f7\u28f6\u28ff\u28c7\u2800\u2800\u2800\u28a0\u28fc\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28db\u28db\u28fb\u2809\u2801\u2800\u2800\u2800\u2800\u2800\u2800\u2800\n\u2800\u2800\u2800\u2800\u28b8\u28ff\u2800\u2800\u2800\u28b8\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u2847\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\n\u2800\u2800\u2800\u2800\u28b8\u28ff\u28c0\u28c0\u28c0\u28fc\u287f\u28bf\u28ff\u28ff\u28ff\u28ff\u28ff\u287f\u28ff\u28ff\u287f",
+                "Snaked",
+                "new disnake icon? <:pausechamp:922873201946673182>",
+                "<:agree_mark:892770746013724683> <:agree_mark:892770746013724683>",
+                "",
+                "@abh Oh I'm sorry snowflake, did I OFFEND you? Do you want a bandaid? Do you want a hug? Do you want a kiss? I will kiss you. I will do it. Right on the mouth. Come here snowflake.. that's it.. your lips are so soft, snowflake.. mnnhm... ah...... snowflake..........",
+                "Cool, let's make a name. Send the tag name in the next message...",
+                "",
+                "Cool, let's make a content. Send the tag content in the next message...",
+                "",
+                "@abh Oh I'm sorry snowflake, did I OFFEND you? Do you want a bandaid? Do you want a hug? Do you want a kiss? I will kiss you. I will do it. Right on the mouth. Come here snowflake.. that's it.. your lips are so soft, snowflake.. mnnhm... ah...... snowflake..........",
+                "",
+                "",
+                "",
+                "@Average Sphinx Shill :white_check_mark: Your eval job has completed with return code 0.\n\n```\n5\n```"
             ],
             "before": [
                 "like oldschool y",
                 "like this, but with `256`\n<https://github.com/DisnakeDev/disnake/blob/master/disnake/flags.py#L320-L327>",
-                "I'll document the new flag later"
+                "I'll document the new flag later",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "I wonder if I can partition my docs command s",
+                "I men",
+                "It's just a selfhosted version of https://github.com/ZeppelinBot/Zeppelin",
+                "",
+                "",
+                "",
+                "admin abuse!!!!!!!",
+                "<:hikari:922935436563865680> <:rooEww:881521777472327720>",
+                "\u2800\u2800\u2800\u2800\u2800\u28b0\u287f\u280b\u2801\u2800\u2800\u2808\u2809\u2819\u283b\u28f7\u28c4\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\n\n\u2800\u2800\u2800\u2800\u2880\u28ff\u2807\u2800\u2880\u28f4\u28f6\u287e\u283f\u283f\u283f\u28bf\u28ff\u28e6\u2840\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\n\n\u2800\u2800\u28c0\u28c0\u28f8\u287f\u2800\u2800\u28b8\u28ff\u28c7\u2800\u2800\u2800\u2800\u2800\u2800\u2819\u28f7\u2840\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\n\n\u2800\u28fe\u285f\u281b\u28ff\u2847\u2800\u2800\u28b8\u28ff\u28ff\u28f7\u28e4\u28e4\u28e4\u28e4\u28f6\u28f6\u28ff\u2807\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u28c0\u2800\u2800\n\n\u2880\u28ff\u2800\u2880\u28ff\u2847\u2800\u2800\u2800\u283b\u28bf\u28ff\u28ff\u28ff\u28ff\u28ff\u283f\u28ff\u284f\u2800\u2800\u2800\u2800\u28b4\u28f6\u28f6\u28ff\u28ff\u28ff\u28c6\n\n\u28b8\u28ff\u2800\u28b8\u28ff\u2847\u2800\u2800\u2800\u2800\u2800\u2808\u2809\u2801\u2800\u2800\u2800\u28ff\u2847\u28c0\u28e0\u28f4\u28fe\u28ee\u28dd\u283f\u283f\u283f\u28fb\u285f\n\n\u28b8\u28ff\u2800\u2818\u28ff\u2847\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u28e0\u28f6\u28fe\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u287f\u2801\u2809\u2800\n\n\u2838\u28ff\u2800\u2800\u28ff\u2847\u2800\u2800\u2800\u2800\u2800\u28e0\u28fe\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u287f\u281f\u2809\u2800\u2800\u2800\u2800\n\n\u2800\u283b\u28f7\u28f6\u28ff\u28c7\u2800\u2800\u2800\u28a0\u28fc\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28db\u28db\u28fb\u2809\u2801\u2800\u2800\u2800\u2800\u2800\u2800\u2800\n\n\u2800\u2800\u2800\u2800\u28b8\u28ff\u2800\u2800\u2800\u28b8\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u2847\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800\n\n\u2800\u2800\u2800\u2800\u28b8\u28ff\u28c0\u28c0\u28c0\u28fc\u287f\u28bf\u28ff\u28ff\u28ff\u28ff\u28ff\u287f\u28ff\u28ff\u287f",
+                "Snake",
+                "new disnake icon <:pausechamp:922873201946673182>",
+                "<:agree_mark:892770746013724683> <:agree_mark:892770746013724683> <:hikari:922935436563865680>",
+                "",
+                "@abh Oh I'm sorry snowflake, did I OFFEND you? Do you want a bandaid? Do you want a hug? Do you want a kiss? I will kiss you. I will do it. Right on the mouth. Come here snowflake.. that's it.. your lips are so soft, snowflake.. mnnhm... ah...... snowflake..........",
+                "",
+                "Cool, let's make a name. Send the tag name in the next message...",
+                "",
+                "Cool, let's make a content. Send the tag content in the next message...",
+                "@abh Oh I'm sorry snowflake, did I OFFEND you? Do you want a bandaid? Do you want a hug? Do you want a kiss? I will kiss you. I will do it. Right on the mouth. Come here snowflake.. that's it.. your lips are so soft, snowflake.. mnnhm... ah...... snowflake..........",
+                "",
+                "",
+                "",
+                "@Average Sphinx Shill :white_check_mark: Your eval job has completed with return code 0.\n\n```\n5\n```"
             ]
         },
         "808032919632347156": {
             "author": [
                 "myxi",
-                "myxi"
+                "myxi",
+                "myxi",
+                "myxi",
+                "myxi",
+                "KortaPo",
+                "BITTU5134"
             ],
             "id": [
                 598134630104825856,
-                598134630104825856
+                598134630104825856,
+                598134630104825856,
+                598134630104825856,
+                598134630104825856,
+                736820906604888096,
+                818428347151024199
             ],
             "time": [
                 "2021-12-27 15:45:33.214000+00:00",
-                "2021-12-27 15:58:02.729000+00:00"
+                "2021-12-27 15:58:02.729000+00:00",
+                "2021-12-28 05:41:59.054000+00:00",
+                "2021-12-28 05:41:52.038000+00:00",
+                "2021-12-28 05:47:16.201000+00:00",
+                "2021-12-28 06:04:34.528000+00:00",
+                "2021-12-28 06:10:08.883000+00:00"
             ],
             "after": [
                 "https://pypi.org/project/art/",
-                "https://github.com/sepandhaghighi/art/blob/master/FontList.ipynb"
+                "https://github.com/sepandhaghighi/art/blob/master/FontList.ipynb",
+                "make some js vscode extension for it maybe",
+                "typehint it every time you use it",
+                "i found smth, not sure if its gonna work tho\nhttps://github.com/njqdev/vscode-python-typehint",
+                "```py\n @commands.slash_command(guild_ids=[902880080559214632], name='test')\n    async def _test(self, ctx: disnake.ApplicationCommandInteraction):\n        await ctx.response.send_message('hi')\u200a\n```",
+                "i am making a would you rather bot for testing"
             ],
             "before": [
                 "https://pypi.org/project/art/",
-                "https://github.com/sepandhaghighi/art/blob/master/FontList.ipynb"
+                "https://github.com/sepandhaghighi/art/blob/master/FontList.ipynb",
+                "make some js extension for it maybe",
+                "typehint is every time you use it",
+                "i found smth, not sure if its gonna work tho\nhttps://github.com/njqdev/vscode-python-typehint",
+                "```py @commands.slash_command(guild_ids=[902880080559214632], name='test')\n    async def _test(self, ctx: disnake.ApplicationCommandInteraction):\n        await ctx.response.send_message('hi')\u200a\n```",
+                "i am making a would you rather bpt for testing"
             ]
         },
         "883342278280745030": {
@@ -19375,7 +20298,53 @@
                 "Conos",
                 "arl",
                 "Ageudum",
-                "EQUENOS"
+                "EQUENOS",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "EQUENOS",
+                "EQUENOS",
+                "EQUENOS",
+                "EQUENOS",
+                "Timon",
+                "Timon",
+                "Timon",
+                "arl",
+                "HedTB"
             ],
             "id": [
                 298043305927639041,
@@ -19384,7 +20353,53 @@
                 750310441800040478,
                 717983911824588862,
                 136292975167668224,
-                301295716066787332
+                301295716066787332,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                301295716066787332,
+                301295716066787332,
+                301295716066787332,
+                301295716066787332,
+                318115207496859658,
+                318115207496859658,
+                318115207496859658,
+                717983911824588862,
+                638038115277340723
             ],
             "time": [
                 "2021-12-27 16:19:48.930000+00:00",
@@ -19393,7 +20408,53 @@
                 "2021-12-27 16:47:12.019000+00:00",
                 "2021-12-27 18:47:02.982000+00:00",
                 "2021-12-27 19:55:56.398000+00:00",
-                "2021-12-27 20:03:22.125000+00:00"
+                "2021-12-27 20:03:22.125000+00:00",
+                "2021-12-28 05:28:46.980000+00:00",
+                "2021-12-28 05:28:46.980000+00:00",
+                "2021-12-28 05:28:46.980000+00:00",
+                "2021-12-28 05:28:46.980000+00:00",
+                "2021-12-28 05:28:46.980000+00:00",
+                "2021-12-28 05:28:46.980000+00:00",
+                "2021-12-28 05:28:46.980000+00:00",
+                "2021-12-28 05:28:46.980000+00:00",
+                "2021-12-28 05:28:46.980000+00:00",
+                "2021-12-28 05:28:46.980000+00:00",
+                "2021-12-28 05:28:46.980000+00:00",
+                "2021-12-28 05:28:46.980000+00:00",
+                "2021-12-28 05:28:46.980000+00:00",
+                "2021-12-28 05:28:46.980000+00:00",
+                "2021-12-28 05:28:46.980000+00:00",
+                "2021-12-28 05:28:46.980000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 05:28:46.980000+00:00",
+                "2021-12-28 05:29:19.644000+00:00",
+                "2021-12-28 08:40:29.415000+00:00",
+                "2021-12-28 08:40:29.415000+00:00",
+                "2021-12-28 08:53:56.128000+00:00",
+                "2021-12-28 08:58:11.663000+00:00",
+                "2021-12-28 14:06:11.138000+00:00",
+                "2021-12-28 14:08:55.057000+00:00",
+                "2021-12-28 14:12:42.709000+00:00",
+                "2021-12-28 19:29:17.046000+00:00",
+                "2021-12-28 19:31:27.023000+00:00"
             ],
             "after": [
                 "I have `x` choices and I want to add them as buttons to an instance of `disnake.ui.View`. ```py\nfor choice in choices:\n    self.add_item(\n        disnake.ui.Button(\n            style = disnake.ButtonStyle.green,\n            label = choice,\n        )\n    )\n``` Now I have my `view`, how can I send it in such a manner where multiple people can respond for 30 seconds. \nThis is an example of what I had previously without buttons: https://github.com/CaedenPH/JesterBot/blob/main/cogs/Trivia.py#L83",
@@ -19402,7 +20463,53 @@
                 "what should i do to clear it then?",
                 "Additionally, consider disabling chunking altogether",
                 "If they do, that's fine, but I'd then ask:\n\n1. How do they work, and how does that differ with how discord.py handled groups?\n2. If they're fundamentally incompatible, what documentation changes do we need to make to this guide so that others don't run into this same issue in the next few months \ud83d\ude05 https://guide.disnake.dev/migrating-from-dpy/",
-                "We didn't change the code for groups of prefix commands though"
+                "We didn't change the code for groups of prefix commands though",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "The group works fine on my PC, I can invoke each subcommand, are you sure that you're using a valid `disnake `version?",
+                "The group works fine on my PC, I can invoke each subcommand, are you sure that you're using a valid `disnake` version?",
+                "disnake 2.3.0",
+                "No I don't think so",
+                "Mightve confused it with the autocomplete maximum",
+                "Because in that case, I'll still continue being cautious to create many small commands",
+                "would changing the guild/role list, then reloading the cog work?",
+                "there's a method on the MessageInteraction.response object which you can use to both edit the message and respond in the same api request",
+                "heres what my button looks like\n```py\n    @ui.button(emoji='\u23ea', style=disnake.ButtonStyle.gray)\n    async def first_page(self, button, interaction):\n        await self.show_page(0)\n        await interaction.defer()\n```"
             ],
             "before": [
                 "I have `x` choices and I want to add them as buttons to an instance of `disnake.ui.View`. ```py\nfor choice in choices:\n    self.add_item(\n        disnake.ui.Button(\n            style = disnake.ButtonStyle.green,\n            label = choice,\n        )\n    )\n``` Now I have my `view`, how can I send it in such a manner where multiple people can respond for 30 seconds. \nThis is an example of what I had previously without buttons: https://github.com/CaedenPH/JesterBot/blob/main/cogs/Trivia.py#L83",
@@ -19411,63 +20518,327 @@
                 "h",
                 "Additionally, consider disabling chunking altougether",
                 "If they do, that's fine, but I'd then ask:\n\n1. How do they work, and how does that differ with how discord.py handled groups?\n2. If they're fundamentally incompatible, what documentation changes do we need to make to this guide so that others don't run into this same issue in the next few months \ud83d\ude05 https://guide.disnake.dev/migrating-from-dpy/",
-                "We didn't change the group code for prefix commands though"
+                "We didn't change the group code for prefix commands though",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "The group works fine on my PC, I can invoke each subcommand, are you sure that you're using a valid disnake version?",
+                "The group works fine on my PC, I can invoke each subcommand, are you sure that you're using a valid `disnake `version?",
+                "2.3.0",
+                "No I don't think s",
+                "Mightve confused the autocomplete maximum",
+                "Because in that case, I'll still continue being cautious to create many useless commands",
+                "would changing the guild/role list, reloading the cog work?",
+                "there's a method on the MessageInteraction.response object which you can use to both edit and respond in the same api request",
+                "heres what my button looks like\n```py\n    @ui.button(emoji='\u23ea', style=disnake.ButtonStyle.gray)\n    async def first_page(self, button, interaction):\n        await self.show_page(0)\n        print(\"ok\")\n        await interaction.defer()\n```"
             ]
         },
         "883340752191651870": {
             "author": [
-                "x4zx"
+                "x4zx",
+                "EQUENOS"
             ],
             "id": [
-                461219084802195477
+                461219084802195477,
+                301295716066787332
             ],
             "time": [
-                "2021-12-27 16:49:25.680000+00:00"
+                "2021-12-27 16:49:25.680000+00:00",
+                "2021-12-28 08:43:20.753000+00:00"
             ],
             "after": [
-                "\u0412\u043e\u0442 \u0442\u043e \u043f\u0440\u043e \u0447\u0442\u043e \u044f \u0433\u043e\u0432\u043e\u0440\u0438\u043b \u0432\u044b\u0448\u0435"
+                "\u0412\u043e\u0442 \u0442\u043e \u043f\u0440\u043e \u0447\u0442\u043e \u044f \u0433\u043e\u0432\u043e\u0440\u0438\u043b \u0432\u044b\u0448\u0435",
+                "\u0412\u043e\u0442 \u0442\u0430\u043a \u0434\u0435\u043b\u0430\u0442\u044c \u043d\u0435 \u043d\u0443\u0436\u043d\u043e: ```py\n@bot.slash_command(\n    options=[\n        disnake.Option(\n            name=\"channel\",\n            description=\"...\",\n            type=disnake.OptionType.channel,\n            required=True,\n            channel_types=[disnake.ChannelType.text]\n        ),\n    ],\n)\nasync def bad_example(inter, channel):\n    ...\n```"
             ],
             "before": [
-                "@riavad#9591"
+                "@riavad#9591",
+                "\u0412\u043e\u0442 \u0442\u0430\u043a \u0434\u0435\u043b\u0430\u0442\u044c \u043d\u0435 \u043d\u0443\u0436\u043d\u043e: ```py\n@bot.slash_command(\n    options=[disnake.Option(...), ...],\n)\nasync def bad_example(inter, option_1, ...):\n    ...\n```"
             ]
         },
         "808032934371393596": {
             "author": [
-                "\ud83c\udf40 NikStor \ud83c\udf3f"
+                "\ud83c\udf40 NikStor \ud83c\udf3f",
+                "Garrus Valkyrin",
+                "arl"
             ],
             "id": [
-                398538710993600523
+                398538710993600523,
+                224349699061186570,
+                717983911824588862
             ],
             "time": [
-                "2021-12-27 18:28:29.802000+00:00"
+                "2021-12-27 18:28:29.802000+00:00",
+                "2021-12-28 19:21:33.103000+00:00",
+                "2021-12-28 20:00:23.140000+00:00"
             ],
             "after": [
-                "oh, sorry, found...."
+                "oh, sorry, found....",
+                "I've tried the same exact code, but on two separate hosting machines and bots. One returns the ID, other returns the name.",
+                "test_guilds should be a list of ints, not a string"
             ],
             "before": [
-                "oh, sorry, found"
+                "oh, sorry, found",
+                "I've tried the same exact code, but on two seperate hosting machines and bots. One returns the ID, other returns the name.",
+                "test_guilds should be a list of ints, not strings"
             ]
         },
         "847833561691717704": {
             "author": [
                 "LightmanLP",
-                "LightmanLP"
+                "LightmanLP",
+                "hellowfacey"
             ],
             "id": [
                 277014712695128064,
-                277014712695128064
+                277014712695128064,
+                899263129811308555
             ],
             "time": [
                 "2021-12-27 20:39:28.461000+00:00",
-                "2021-12-27 20:44:53.586000+00:00"
+                "2021-12-27 20:44:53.586000+00:00",
+                "2021-12-28 16:53:46.575000+00:00"
             ],
             "after": [
                 "\u0432\u043e\u043e\u0431\u0449\u0435, \u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441 \u0441\u043e\u0437\u0434\u0430\u043d\u0438\u044f \u043a\u043e\u043c\u0430\u043d\u0434 ds.py govno",
-                "https://vkbottle.readthedocs.io/ru/latest/"
+                "https://vkbottle.readthedocs.io/ru/latest/",
+                "\u0438 \u0434\u0430\u0436\u0435 \u0442\u0430\u043a\u043e\u0439 \u0434\u0440\u044f\u0445\u043b\u044b\u0439 \u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u043e\u0440 \u043a\u0430\u043a \u044f \u0432\u0438\u0434\u0438\u0442 \u0435\u0451 \u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u044e \u0432 \u0433\u043e\u043b\u043e\u0432\u0435"
             ],
             "before": [
                 "\u0432\u043e\u043e\u0431\u0449\u0435, \u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441 \u043a\u043e\u043c\u0430\u043d\u0434 ds.py govno",
-                "https://vkbottle.readthedocs.io/ru/latest/"
+                "https://vkbottle.readthedocs.io/ru/latest/",
+                "\u0438 \u0434\u0430\u0436\u0435 \u0442\u0430\u043a\u043e\u0439 \u0434\u0440\u044f\u0445\u043b\u044b\u0439 \u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u043e\u0440 \u043a\u0430\u043a \u044f \u0432\u0438\u0434\u0438\u0442 \u0435\u0451 \u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u044e \u0432 \u0433\u043e\u043b\u0432\u043e\u0435"
+            ]
+        },
+        "808035299094691882": {
+            "author": [
+                "arl",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot",
+                "Slash Bot"
+            ],
+            "id": [
+                717983911824588862,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539,
+                810776599107862539
+            ],
+            "time": [
+                "2021-12-28 07:19:53.985000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00",
+                "2021-12-28 10:25:45.468000+00:00"
+            ],
+            "after": [
+                "https://cdn.discordapp.com/icons/808030843078836254/c3674465d9b106188e26111a4ac70ef3.png?size=1024",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+            ],
+            "before": [
+                "https://cdn.discordapp.com/icons/808030843078836254/c3674465d9b106188e26111a4ac70ef3.png?size=1024",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+            ]
+        },
+        "913779868985090089": {
+            "author": [
+                "arl"
+            ],
+            "id": [
+                717983911824588862
+            ],
+            "time": [
+                "2021-12-28 07:29:45.591000+00:00"
+            ],
+            "after": [
+                "that's not actually true"
+            ],
+            "before": [
+                "that's not actually tue"
+            ]
+        },
+        "854367065661374515": {
+            "author": [
+                "ThatOneCalculator",
+                "ThatOneCalculator"
+            ],
+            "id": [
+                454847501787463680,
+                454847501787463680
+            ],
+            "time": [
+                "2021-12-28 06:45:53.561000+00:00",
+                "2021-12-28 07:30:59.437000+00:00"
+            ],
+            "after": [
+                "so now instead of only being able to show accuracy of 20% it can now show accuracy of 5% in only 5 emojis",
+                "If you wanna follow the project: https://github.com/modernbots"
+            ],
+            "before": [
+                "so now instead of only being able to show accuracy of 20% it can now show accuracy of 5%",
+                "If you wanna follow the project: https://github.com/modernbots"
+            ]
+        },
+        "828758532467195935": {
+            "author": [
+                "GitHub"
+            ],
+            "id": [
+                881977501415538730
+            ],
+            "time": [
+                "2021-12-28 15:50:38.002000+00:00"
+            ],
+            "after": [
+                ""
+            ],
+            "before": [
+                ""
             ]
         }
     }

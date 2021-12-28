@@ -5794,5 +5794,82 @@
         "error": "Command raised an exception: AttributeError: 'JesterBot' object has no attribute 'session'",
         "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
         "command": "rtfm"
+    },
+    "828": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: ClientConnectorCertificateError: Cannot connect to host api.agify.io:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1129)')]",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "age"
+    },
+    "829": {
+        "author": "alexandros",
+        "id": 494927280091561984,
+        "error": "Converting to \"int\" failed for parameter \"lengthofpassword\".",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']",
+        "command": "password"
+    },
+    "830": {
+        "author": "alexandros",
+        "id": 494927280091561984,
+        "error": "Command raised an exception: KeyError: '+'",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "servermessages"
+    },
+    "831": {
+        "author": "alexandros",
+        "id": 494927280091561984,
+        "error": "Command raised an exception: KeyError: '10'",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "servermessages"
+    },
+    "832": {
+        "author": "alexandros",
+        "id": 494927280091561984,
+        "error": "Command raised an exception: KeyError: 'text'",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "servermessages"
+    },
+    "833": {
+        "author": "Krutoy 4el",
+        "id": 420956774502367234,
+        "error": "Command raised an exception: KeyError: 'Python'",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "servermessages"
+    },
+    "834": {
+        "author": "Krutoy 4el",
+        "id": 420956774502367234,
+        "error": "Command raised an exception: KeyError: '794684213697052712'",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "servermessages"
+    },
+    "835": {
+        "author": "Krutoy 4el",
+        "id": 420956774502367234,
+        "error": "Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body\nIn embeds.0.fields.6.value: This field is required",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "info"
+    },
+    "836": {
+        "author": "alexandros",
+        "id": 494927280091561984,
+        "error": "Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body\nIn embeds.0.fields.6.value: This field is required",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "info"
+    },
+    "837": {
+        "author": "alexandros",
+        "id": 494927280091561984,
+        "error": "Converting to \"float\" failed for parameter \"days\".",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']",
+        "command": "check"
+    },
+    "838": {
+        "author": "Krutoy 4el",
+        "id": 420956774502367234,
+        "error": "Command raised an exception: AttributeError: 'Guild' object has no attribute 'icon_url'",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "avatarguild"
     }
 }

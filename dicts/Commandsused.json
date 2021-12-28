@@ -27,7 +27,7 @@
         "score": 104
     },
     "help": {
-        "score": 2188
+        "score": 2199
     },
     "jsonfile": {
         "score": 19
@@ -78,7 +78,7 @@
         "score": 2
     },
     "suggest": {
-        "score": 121
+        "score": 122
     },
     "av": {
         "score": 25
@@ -132,7 +132,7 @@
         "score": 4
     },
     "info": {
-        "score": 26
+        "score": 28
     },
     "l": {
         "score": 30
@@ -156,7 +156,7 @@
         "score": 11
     },
     "avatarguild": {
-        "score": 6
+        "score": 7
     },
     "echo": {
         "score": 72
@@ -402,13 +402,13 @@
         "score": 32
     },
     "nitro": {
-        "score": 17
+        "score": 18
     },
     "rules": {
         "score": 12
     },
     "booster": {
-        "score": 4
+        "score": 5
     },
     "data": {
         "score": 392
@@ -423,7 +423,7 @@
         "score": 31
     },
     "servermessages": {
-        "score": 28
+        "score": 33
     },
     "unload": {
         "score": 12
@@ -699,7 +699,7 @@
         "score": 1
     },
     "password": {
-        "score": 15
+        "score": 16
     },
     "snipe": {
         "score": 299
@@ -750,7 +750,7 @@
         "score": 7
     },
     "bloody": {
-        "score": 12
+        "score": 13
     },
     "hornypass": {
         "score": 31
@@ -1080,7 +1080,7 @@
         "score": 1
     },
     "src": {
-        "score": 13
+        "score": 15
     },
     "youtube_together": {
         "score": 3
@@ -1104,7 +1104,7 @@
         "score": 22
     },
     "urban_search": {
-        "score": 15
+        "score": 65
     },
     "channel_status": {
         "score": 10
@@ -1116,7 +1116,7 @@
         "score": 1
     },
     "age": {
-        "score": 1
+        "score": 2
     },
     "weather": {
         "score": 20
@@ -1197,6 +1197,9 @@
         "score": 7
     },
     "rtfm": {
-        "score": 2
+        "score": 5
+    },
+    "chatbot": {
+        "score": 5
     }
 }
