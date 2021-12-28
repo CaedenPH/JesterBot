@@ -57,7 +57,7 @@ class Trivia(commands.Cog):
 
         msg = await self.bot.wait_for('message', check=lambda m:m.channel==ctx.channel and m.author == ctx.author)
 
-        if msg.content == answer:
+        if msg.content.lower() == answer:
             return await ctx.em("Thats the correct answer!")
         await ctx.em(f"Incorrect answer - the right answer was `{answer}`")
 
@@ -82,27 +82,27 @@ class Trivia(commands.Cog):
             
             try:
                 time = datetime.datetime.utcnow()
-                msg = await self.bot.wait_for('message', check=lambda m:m.channel==ctx.channel  , timeout=30)
+                msg = await self.bot.wait_for('message', check=lambda m:m.channel==ctx.channel and not m.bot, timeout=30)
 
                 while True:
-                    if msg.author == ctx.author and msg.content == "end":
+                    if msg.author == ctx.author and msg.content.lower() == "end":
                         return await ctx.em("Game ending...")
                         
                     if msg.author.name in input_dict:
                         if not input_dict[msg.author.name]['answer']:
-                            input_dict[msg.author.name]['answer'] = msg.content
-                        if msg.content.startswith("change"):
-                            input_dict[msg.author.name]['answer'] = msg.content[7]
+                            input_dict[msg.author.name]['answer'] = msg.content.lower()
+                        if msg.content.lower().startswith("change"):
+                            input_dict[msg.author.name]['answer'] = msg.content[7].lower()
                         
                     else:
                         input_dict[msg.author.name] = {
                             'score': 0,
-                            'answer': msg.content
+                            'answer': msg.content.lower()
                         }
 
                     
                     run = True
-                    msg = await self.bot.wait_for('message', check=lambda m:m.channel==ctx.channel and m.author != self.bot.user, timeout=30+(time-datetime.datetime.utcnow()).total_seconds())
+                    msg = await self.bot.wait_for('message', check=lambda m:m.channel==ctx.channel and not m.author.bot, timeout=30+(time-datetime.datetime.utcnow()).total_seconds())
                 
             except asyncio.TimeoutError:
                 if not run:

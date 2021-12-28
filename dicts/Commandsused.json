@@ -27,7 +27,7 @@
         "score": 104
     },
     "help": {
-        "score": 2187
+        "score": 2188
     },
     "jsonfile": {
         "score": 19
@@ -108,7 +108,7 @@
         "score": 4
     },
     "prefix": {
-        "score": 198
+        "score": 199
     },
     "rpsfail": {
         "score": 4
@@ -363,7 +363,7 @@
         "score": 1
     },
     "reload": {
-        "score": 4617
+        "score": 4620
     },
     "pp": {
         "score": 142
@@ -687,7 +687,7 @@
         "score": 34
     },
     "stop": {
-        "score": 10
+        "score": 11
     },
     "remove": {
         "score": 3
@@ -1104,7 +1104,7 @@
         "score": 22
     },
     "urban_search": {
-        "score": 4
+        "score": 15
     },
     "channel_status": {
         "score": 10
@@ -1155,10 +1155,10 @@
         "score": 2
     },
     "trivia_play": {
-        "score": 13
+        "score": 15
     },
     "trivia_question": {
-        "score": 40
+        "score": 41
     },
     "coffee": {
         "score": 1
@@ -1188,6 +1188,15 @@
         "score": 3
     },
     "how_many_commands": {
-        "score": 3
+        "score": 4
+    },
+    "docs": {
+        "score": 13
+    },
+    "pypi": {
+        "score": 7
+    },
+    "rtfm": {
+        "score": 2
     }
 }

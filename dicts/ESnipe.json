@@ -345,6 +345,18 @@
                 "stealthninja",
                 "[j.] JesterBot",
                 "[j.] JesterBot",
+                "[j.] JesterBot",
+                "stealthninja",
+                "stealthninja",
+                "stealthninja",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
                 "[j.] JesterBot"
             ],
             "id": [
@@ -689,6 +701,18 @@
                 828363172717133874,
                 828363172717133874,
                 521226389559443461,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                521226389559443461,
+                521226389559443461,
+                521226389559443461,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
                 828363172717133874,
                 828363172717133874,
                 828363172717133874
@@ -1037,7 +1061,19 @@
                 "2021-12-26 15:53:21.496000+00:00",
                 "2021-12-27 03:07:33.798000+00:00",
                 "2021-12-27 03:09:59.236000+00:00",
-                "2021-12-27 03:37:08.561000+00:00"
+                "2021-12-27 03:37:08.561000+00:00",
+                "2021-12-28 03:36:18.398000+00:00",
+                "2021-12-28 03:50:40.344000+00:00",
+                "2021-12-28 03:59:04.505000+00:00",
+                "2021-12-28 03:59:12.935000+00:00",
+                "2021-12-28 04:00:11.492000+00:00",
+                "2021-12-28 04:00:11.492000+00:00",
+                "2021-12-28 04:00:11.492000+00:00",
+                "2021-12-28 04:00:11.492000+00:00",
+                "2021-12-28 04:00:11.492000+00:00",
+                "2021-12-28 04:00:11.492000+00:00",
+                "2021-12-28 03:58:04.082000+00:00",
+                "2021-12-28 03:58:16.285000+00:00"
             ],
             "after": [
                 "['[A Color Test That Can Tell Your Mental Age](https://www.youtube.com/watch?v=iVbopWyBR5Y)', '[A Simple Test Will Reveal Your Deepest Fear](https://www.youtube.com/watch?v=pyKmVy2TC2E)', '[10 Hardest Choices Ever (Personality Test)](https://www.youtube.com/watch?v=Kt8RupLIkBQ)', '[National SAT Practice Test Day 2021](https://www.youtube.com/watch?v=_lyyvZFiAjQ)', '[Learner Fails Driving Test In The FIRST 5 MINUTES](https://www.youtube.com/watch?v=QaE4jsE3Emg)', '[SNEAKY SCHOOL HACKS FOR A TEST! || Funny School DIYs And Tricks by 123 Go! Live](https://www.youtube.com/watch?v=h6oRraSOyos)', '[International Breakfast Sandwiches Taste Test](https://www.youtube.com/watch?v=-xofptVHF1A)', '[The Chemical Brothers - The Test (Official Music Video)](https://www.youtube.com/watch?v=yhS9LnDoo_w)', \"[What's Your True Spirit Animal? Personality Test](https://www.youtube.com/watch?v=-KGnRe1f2DA)\", \"[What's Your Hidden Superpower? | Personality Test](https://www.youtube.com/watch?v=BMRlr2DE0Dg)\"]",
@@ -1381,6 +1417,18 @@
                 "",
                 "",
                 "He want Joe bussy",
+                "",
+                "",
+                "",
+                "<:KEKW:912697801010470963>",
+                "its either 1 or 8",
+                "https://www.youtube.com/watch?v=z59-MhfxDIM",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
                 "",
                 "",
                 ""
@@ -1727,6 +1775,18 @@
                 "",
                 "",
                 "He want that Joe bussy",
+                "",
+                "",
+                "",
+                ":kewk",
+                "its either 1 or 7",
+                "https://www.youtube.com/watch?v=z59-MhfxDIM",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
                 "",
                 "",
                 ""
@@ -5983,7 +6043,10 @@
                 "JAK Discord Bot",
                 "xxJonakAdiptaxx",
                 "Assistant",
-                "Assistant"
+                "Assistant",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot"
             ],
             "id": [
                 897896153968947210,
@@ -6302,7 +6365,10 @@
                 756402881913028689,
                 707207079936524330,
                 821445736322695179,
-                821445736322695179
+                821445736322695179,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874
             ],
             "time": [
                 "2021-11-18 06:10:44.155000",
@@ -6621,7 +6687,10 @@
                 "2021-12-27 05:02:03.063000+00:00",
                 "2021-12-27 05:02:47.538000+00:00",
                 "2021-12-27 16:01:00.694000+00:00",
-                "2021-12-27 16:09:03.095000+00:00"
+                "2021-12-27 16:09:03.095000+00:00",
+                "2021-12-28 03:22:23.108000+00:00",
+                "2021-12-28 03:22:37.562000+00:00",
+                "2021-12-28 03:22:44.069000+00:00"
             ],
             "after": [
                 "https://media.tenor.com/images/e4a8f018e6d3258580602985906dfca7/tenor.gif",
@@ -6940,7 +7009,10 @@
                 "",
                 "```py\n    @commands.command(description=\"Show the Details of a Member\")\n    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)\n    async def user_details(self, ctx: commands.Context, member: disnake.Member = None):\n        if not member:\n            member = ctx.author\n            fetched_member = await self.bot.fetch_user(ctx.author.id)\n        else:\n            fetched_member = await self.bot.fetch_user(member.id)\n        await ctx.reply(\n            embed=embeds.user_details_embed(\n                member=member, fetched_member=fetched_member\n            )\n        )\n```",
                 "Opps! Something went wrong!\nI just reported this issue to the Developers about that!",
-                "Opps! **Invalid Command**\nI guess you used a wrong command! Know about my commands `a!help`"
+                "Opps! **Invalid Command**\nI guess you used a wrong command! Know about my commands `a!help`",
+                "",
+                "",
+                ""
             ],
             "before": [
                 "https://media.tenor.com/images/e4a8f018e6d3258580602985906dfca7/tenor.gif",
@@ -7259,7 +7331,10 @@
                 "",
                 "```\n    @commands.command(description=\"Show the Details of a Member\")\n    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)\n    async def user_details(self, ctx: commands.Context, member: disnake.Member = None):\n        if not member:\n            member = ctx.author\n            fetched_member = await self.bot.fetch_user(ctx.author.id)\n        else:\n            fetched_member = await self.bot.fetch_user(member.id)\n        await ctx.reply(\n            embed=embeds.user_details_embed(\n                member=member, fetched_member=fetched_member\n            )\n        )\n```",
                 "Trying to run...",
-                "Trying to run..."
+                "Trying to run...",
+                "",
+                "",
+                ""
             ]
         },
         "852915414744694824": {
@@ -8037,6 +8112,33 @@
                 "from turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_color=\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()",
                 "```from turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_color=\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()```"
             ]
+        },
+        "804430992181297213": {
+            "author": [
+                "Apollo",
+                "Apollo",
+                "Apollo"
+            ],
+            "id": [
+                475744554910351370,
+                475744554910351370,
+                475744554910351370
+            ],
+            "time": [
+                "2021-12-27 20:30:54.786000+00:00",
+                "2021-12-27 20:30:54.786000+00:00",
+                "2021-12-27 20:30:54.786000+00:00"
+            ],
+            "after": [
+                "",
+                "",
+                ""
+            ],
+            "before": [
+                "",
+                "",
+                ""
+            ]
         }
     },
     "827088097799831603": {
@@ -8231,6 +8333,7 @@
                 "seggsy hoe",
                 "meseggsy",
                 "k y o",
+                "Free_strider",
                 "Free_strider"
             ],
             "id": [
@@ -8296,6 +8399,7 @@
                 795787434905960458,
                 489020170816323584,
                 775894770978914334,
+                484896608505430017,
                 484896608505430017
             ],
             "time": [
@@ -8361,7 +8465,8 @@
                 "2021-12-23 14:42:07.113000+00:00",
                 "2021-12-25 04:50:03.375000+00:00",
                 "2021-12-26 04:54:08.984000+00:00",
-                "2021-12-27 03:54:50.462000+00:00"
+                "2021-12-27 03:54:50.462000+00:00",
+                "2021-12-28 03:32:20.880000+00:00"
             ],
             "after": [
                 "",
@@ -8426,7 +8531,8 @@
                 "https://tenor.com/view/quby-shopping-groceries-shopping-bag-qubysani-gif-19935278",
                 "<a:RS_sustwerk:798192137718988820>",
                 "i didnt get kills so pouya could get more kills",
-                "does this satisfy you?"
+                "does this satisfy you?",
+                "https://cdn.discordapp.com/attachments/853612631156064257/924315106341445683/RPReplay_Final1640444258.mov"
             ],
             "before": [
                 "",
@@ -8491,7 +8597,8 @@
                 "https://tenor.com/view/quby-shopping-groceries-shopping-bag-qubysani-gif-19935278",
                 "<a:RS_sustwerk:798192137718988820>",
                 "ibdidnt get kills so pouya could get more kills",
-                "does this satisfy you"
+                "does this satisfy you",
+                "https://cdn.discordapp.com/attachments/853612631156064257/924315106341445683/RPReplay_Final1640444258.mov"
             ]
         },
         "827088097799831605": {
@@ -10887,9 +10994,11 @@
                 "ServerMate",
                 "ServerMate",
                 "ServerMate",
+                "ServerMate",
                 "ServerMate"
             ],
             "id": [
+                481810078031282176,
                 481810078031282176,
                 481810078031282176,
                 481810078031282176,
@@ -10915,9 +11024,11 @@
                 "2021-11-30 13:00:40.208000",
                 "2021-12-03 05:07:20.162000",
                 "2021-12-03 06:24:29.950000",
-                "2021-12-27 04:23:53.935000+00:00"
+                "2021-12-27 04:23:53.935000+00:00",
+                "2021-12-27 20:16:10.632000+00:00"
             ],
             "after": [
+                "",
                 "",
                 "",
                 "",
@@ -10932,6 +11043,7 @@
                 ""
             ],
             "before": [
+                "",
                 "",
                 "",
                 "",
@@ -11295,6 +11407,32 @@
                 "Karuta",
                 "Karuta",
                 "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
+                "Karuta",
                 "Karuta"
             ],
             "id": [
@@ -11341,6 +11479,32 @@
                 646937666251915264,
                 646937666251915264,
                 394331116238274561,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
+                646937666251915264,
                 646937666251915264,
                 646937666251915264,
                 646937666251915264,
@@ -11639,7 +11803,33 @@
                 "2021-12-26 15:55:17.870000+00:00",
                 "2021-12-26 15:55:17.870000+00:00",
                 "2021-12-26 15:55:17.870000+00:00",
-                "2021-12-26 15:55:17.870000+00:00"
+                "2021-12-26 15:55:17.870000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00",
+                "2021-12-27 16:38:24.172000+00:00"
             ],
             "after": [
                 "",
@@ -11725,6 +11915,32 @@
                 "",
                 "",
                 "@NH-LAWYER is dropping 3 cards!\n*This drop has expired and the cards can no longer be grabbed.*",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
                 "",
                 "",
                 "",
@@ -11897,6 +12113,32 @@
                 "",
                 "",
                 "@NH-LAWYER is dropping 3 cards!",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
                 "",
                 "",
                 "",
@@ -19129,27 +19371,103 @@
             "author": [
                 "Caeden",
                 "Caeden",
-                "Caeden"
+                "Caeden",
+                "Conos",
+                "arl",
+                "Ageudum",
+                "EQUENOS"
             ],
             "id": [
                 298043305927639041,
                 298043305927639041,
-                298043305927639041
+                298043305927639041,
+                750310441800040478,
+                717983911824588862,
+                136292975167668224,
+                301295716066787332
             ],
             "time": [
                 "2021-12-27 16:19:48.930000+00:00",
                 "2021-12-27 16:19:48.930000+00:00",
-                "2021-12-27 16:19:48.930000+00:00"
+                "2021-12-27 16:19:48.930000+00:00",
+                "2021-12-27 16:47:12.019000+00:00",
+                "2021-12-27 18:47:02.982000+00:00",
+                "2021-12-27 19:55:56.398000+00:00",
+                "2021-12-27 20:03:22.125000+00:00"
             ],
             "after": [
                 "I have `x` choices and I want to add them as buttons to an instance of `disnake.ui.View`. ```py\nfor choice in choices:\n    self.add_item(\n        disnake.ui.Button(\n            style = disnake.ButtonStyle.green,\n            label = choice,\n        )\n    )\n``` Now I have my `view`, how can I send it in such a manner where multiple people can respond for 30 seconds. \nThis is an example of what I had previously without buttons: https://github.com/CaedenPH/JesterBot/blob/main/cogs/Trivia.py#L83",
                 "I have `x` choices and I want to add them as buttons to an instance of `disnake.ui.View`. ```py\nfor choice in choices:\n    self.add_item(\n        disnake.ui.Button(\n            style = disnake.ButtonStyle.green,\n            label = choice,\n        )\n    )\n``` Now I have my `view`, how can I send it in such a manner where multiple people can respond for 30 seconds. \nThis is an example of what I had previously without buttons: https://github.com/CaedenPH/JesterBot/blob/main/cogs/Trivia.py#L83",
-                "I have `x` choices and I want to add them as buttons to an instance of `disnake.ui.View`. ```py\nfor choice in choices:\n    self.add_item(\n        disnake.ui.Button(\n            style = disnake.ButtonStyle.green,\n            label = choice,\n        )\n    )\n``` Now I have my `view`, how can I send it in such a manner where multiple people can respond for 30 seconds. \nThis is an example of what I had previously without buttons: https://github.com/CaedenPH/JesterBot/blob/main/cogs/Trivia.py#L83"
+                "I have `x` choices and I want to add them as buttons to an instance of `disnake.ui.View`. ```py\nfor choice in choices:\n    self.add_item(\n        disnake.ui.Button(\n            style = disnake.ButtonStyle.green,\n            label = choice,\n        )\n    )\n``` Now I have my `view`, how can I send it in such a manner where multiple people can respond for 30 seconds. \nThis is an example of what I had previously without buttons: https://github.com/CaedenPH/JesterBot/blob/main/cogs/Trivia.py#L83",
+                "what should i do to clear it then?",
+                "Additionally, consider disabling chunking altogether",
+                "If they do, that's fine, but I'd then ask:\n\n1. How do they work, and how does that differ with how discord.py handled groups?\n2. If they're fundamentally incompatible, what documentation changes do we need to make to this guide so that others don't run into this same issue in the next few months \ud83d\ude05 https://guide.disnake.dev/migrating-from-dpy/",
+                "We didn't change the code for groups of prefix commands though"
             ],
             "before": [
                 "I have `x` choices and I want to add them as buttons to an instance of `disnake.ui.View`. ```py\nfor choice in choices:\n    self.add_item(\n        disnake.ui.Button(\n            style = disnake.ButtonStyle.green,\n            label = choice,\n        )\n    )\n``` Now I have my `view`, how can I send it in such a manner where multiple people can respond for 30 seconds. \nThis is an example of what I had previously without buttons: https://github.com/CaedenPH/JesterBot/blob/main/cogs/Trivia.py#L83",
                 "I have `x` choices and I want to add them as buttons to an instance of `disnake.ui.View`. ```py\nfor choice in choices:\n    self.add_item(\n        disnake.ui.Button(\n            style = disnake.ButtonStyle.green,\n            label = choice,\n        )\n    )\n``` Now I have my `view`, how can I send it in such a manner where multiple people can respond for 30 seconds. \nThis is an example of what I had previously without buttons: https://github.com/CaedenPH/JesterBot/blob/main/cogs/Trivia.py#L83",
-                "I have `x` choices and I want to add them as buttons to an instance of `disnake.ui.View`. ```py\nfor choice in choices:\n    self.add_item(\n        disnake.ui.Button(\n            style = disnake.ButtonStyle.green,\n            label = choice,\n        )\n    )\n``` Now I have my `view`, how can I send it in such a manner where multiple people can respond for 30 seconds. \nThis is an example of what I had previously without buttons: https://github.com/CaedenPH/JesterBot/blob/main/cogs/Trivia.py#L83"
+                "I have `x` choices and I want to add them as buttons to an instance of `disnake.ui.View`. ```py\nfor choice in choices:\n    self.add_item(\n        disnake.ui.Button(\n            style = disnake.ButtonStyle.green,\n            label = choice,\n        )\n    )\n``` Now I have my `view`, how can I send it in such a manner where multiple people can respond for 30 seconds. \nThis is an example of what I had previously without buttons: https://github.com/CaedenPH/JesterBot/blob/main/cogs/Trivia.py#L83",
+                "h",
+                "Additionally, consider disabling chunking altougether",
+                "If they do, that's fine, but I'd then ask:\n\n1. How do they work, and how does that differ with how discord.py handled groups?\n2. If they're fundamentally incompatible, what documentation changes do we need to make to this guide so that others don't run into this same issue in the next few months \ud83d\ude05 https://guide.disnake.dev/migrating-from-dpy/",
+                "We didn't change the group code for prefix commands though"
+            ]
+        },
+        "883340752191651870": {
+            "author": [
+                "x4zx"
+            ],
+            "id": [
+                461219084802195477
+            ],
+            "time": [
+                "2021-12-27 16:49:25.680000+00:00"
+            ],
+            "after": [
+                "\u0412\u043e\u0442 \u0442\u043e \u043f\u0440\u043e \u0447\u0442\u043e \u044f \u0433\u043e\u0432\u043e\u0440\u0438\u043b \u0432\u044b\u0448\u0435"
+            ],
+            "before": [
+                "@riavad#9591"
+            ]
+        },
+        "808032934371393596": {
+            "author": [
+                "\ud83c\udf40 NikStor \ud83c\udf3f"
+            ],
+            "id": [
+                398538710993600523
+            ],
+            "time": [
+                "2021-12-27 18:28:29.802000+00:00"
+            ],
+            "after": [
+                "oh, sorry, found...."
+            ],
+            "before": [
+                "oh, sorry, found"
+            ]
+        },
+        "847833561691717704": {
+            "author": [
+                "LightmanLP",
+                "LightmanLP"
+            ],
+            "id": [
+                277014712695128064,
+                277014712695128064
+            ],
+            "time": [
+                "2021-12-27 20:39:28.461000+00:00",
+                "2021-12-27 20:44:53.586000+00:00"
+            ],
+            "after": [
+                "\u0432\u043e\u043e\u0431\u0449\u0435, \u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441 \u0441\u043e\u0437\u0434\u0430\u043d\u0438\u044f \u043a\u043e\u043c\u0430\u043d\u0434 ds.py govno",
+                "https://vkbottle.readthedocs.io/ru/latest/"
+            ],
+            "before": [
+                "\u0432\u043e\u043e\u0431\u0449\u0435, \u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441 \u043a\u043e\u043c\u0430\u043d\u0434 ds.py govno",
+                "https://vkbottle.readthedocs.io/ru/latest/"
             ]
         }
     }

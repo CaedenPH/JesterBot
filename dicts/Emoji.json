@@ -21,5 +21,6 @@
     "Random": "Just a selection of commands that implement randomness - a bunch of random apis",
     "Trivia": "Test your knowledge in specific commands or just general commands",
     "Crime": "Get information about all the latest criminal activities - all fact-checked through official apis like the fbi",
-    "ChatBot": "Are you sad and lonely? Talk to the bot and get a wonderful insight of how a bot thinks!"
+    "ChatBot": "Are you sad and lonely? Talk to the bot and get a wonderful insight of how a bot thinks!",
+    "Docs": "Read up on the latest python documentation and rtfm commands. Great for helping people and quick searches"
 }
