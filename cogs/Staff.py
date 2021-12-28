@@ -568,7 +568,7 @@ class Staff(commands.Cog):
             self.bot.add_command(thecmd)
 
     @commands.command(hidden=True)
-    async def tag(self, ctx: Context, errornum:str=None):
+    async def error_tag(self, ctx: Context, errornum:str=None):
         k = open('./dicts/Errors.json', 'r+')
         data = json.load(k) 
         if not errornum:

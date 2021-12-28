@@ -519,19 +519,27 @@
         "878924003803287572": {
             "list": [
                 "-h",
-                "{'fields': [{'value': '>  <:Config:863075611169259550> **Config** `(12)`\\n>  <:cryptocurrency:872473402764570624> **Cryptocurrency** `(3)`\\n>  <:Economy:863075610913800233> **Economy** `(17)`\\n>  <:Fun:863075609781075968> **Fun** `(15)`\\n>  <:JesterJokes:873327129016811528> **JesterJokes** `(10)`\\n>  <:Jesterinfo:863075610048987166> **JesterInfo** `(12)`\\n>  <:Love:863075611374125056> **Love** `(6)`\\n>  <:Mod:863075610784301068> **Mod** `(20)`\\n>  <:random:924074967405051965> **Random** `(7)`\\n>  <:urbandictionary:924074967673503796> **UrbanDictionary** `(2)`\\n\\u200b', 'name': '<:menus:870781340746932225> **Categories:**\\n\\u200b', 'inline': True}, {'value': '>  <:the_world:872473402638762025> **Countries** `(4)`\\n>  <:game_night:872473402840076288> **DiscordTogether** `(11)`\\n>  <:Feedback:863075610851147777> **Feedback** `(4)`\\n>  <:Games:863075611329167380> **Games** `(7)`\\n>  <:Images:863075611277656124> **Images** `(25)`\\n>  <:Levels:863075611182628895> **Levels** `(5)`\\n>  <:Misc:863075610979729409> **Misc** `(15)`\\n>  <:Music:863075611320647719> **Music** `(13)`\\n>  <:Snipe:863075611269791794> **Snipe** `(4)`\\n>  <:Utils:863075611161788478> **Utils** `(14)`', 'name': '\\u200b\\n\\u200b', 'inline': True}, {'value': '**> [Official server](https://disnake.gg/2654CuU3ZU) \u2502 [Bot invite](https://disnake.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) \u2502 [Website](https://sites.google.com/view/jesterbot) \u2502 [Vote for me!](https://top.gg/bot/828363172717133874/vote)**', 'name': '<:links:870781340700782612> **Links:**', 'inline': False}], 'timestamp': '2021-12-25T00:02:23.875000+00:00', 'type': 'rich', 'description': '```ml\\n[] - Required Argument | <> - Optional Argument``````diff\\n+ Use the dropbar to navigate through Categories``````diff\\n+ Use -help prefix for info about the prefix```', 'title': '<:J_:863313855286607932><:E_:863313854150606848><:S:863313855061164062><:T:863313855399329812><:E_:863313854150606848><:R_:863313855119360022>'}"
+                "{'fields': [{'value': '>  <:Config:863075611169259550> **Config** `(12)`\\n>  <:cryptocurrency:872473402764570624> **Cryptocurrency** `(3)`\\n>  <:Economy:863075610913800233> **Economy** `(17)`\\n>  <:Fun:863075609781075968> **Fun** `(15)`\\n>  <:JesterJokes:873327129016811528> **JesterJokes** `(10)`\\n>  <:Jesterinfo:863075610048987166> **JesterInfo** `(12)`\\n>  <:Love:863075611374125056> **Love** `(6)`\\n>  <:Mod:863075610784301068> **Mod** `(20)`\\n>  <:random:924074967405051965> **Random** `(7)`\\n>  <:urbandictionary:924074967673503796> **UrbanDictionary** `(2)`\\n\\u200b', 'name': '<:menus:870781340746932225> **Categories:**\\n\\u200b', 'inline': True}, {'value': '>  <:the_world:872473402638762025> **Countries** `(4)`\\n>  <:game_night:872473402840076288> **DiscordTogether** `(11)`\\n>  <:Feedback:863075610851147777> **Feedback** `(4)`\\n>  <:Games:863075611329167380> **Games** `(7)`\\n>  <:Images:863075611277656124> **Images** `(25)`\\n>  <:Levels:863075611182628895> **Levels** `(5)`\\n>  <:Misc:863075610979729409> **Misc** `(15)`\\n>  <:Music:863075611320647719> **Music** `(13)`\\n>  <:Snipe:863075611269791794> **Snipe** `(4)`\\n>  <:Utils:863075611161788478> **Utils** `(14)`', 'name': '\\u200b\\n\\u200b', 'inline': True}, {'value': '**> [Official server](https://disnake.gg/2654CuU3ZU) \u2502 [Bot invite](https://disnake.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) \u2502 [Website](https://sites.google.com/view/jesterbot) \u2502 [Vote for me!](https://top.gg/bot/828363172717133874/vote)**', 'name': '<:links:870781340700782612> **Links:**', 'inline': False}], 'timestamp': '2021-12-25T00:02:23.875000+00:00', 'type': 'rich', 'description': '```ml\\n[] - Required Argument | <> - Optional Argument``````diff\\n+ Use the dropbar to navigate through Categories``````diff\\n+ Use -help prefix for info about the prefix```', 'title': '<:J_:863313855286607932><:E_:863313854150606848><:S:863313855061164062><:T:863313855399329812><:E_:863313854150606848><:R_:863313855119360022>'}",
+                "-h",
+                "{'fields': [{'value': '>  <:chatbot:872473402693259324> **ChatBot** `(3)`\\n>  <:the_world:872473402638762025> **Countries** `(4)`\\n>  <:cryptocurrency:872473402764570624> **Cryptocurrency** `(3)`\\n>  <:1181180716_clipboardnotepaperdoc:925222917946605629> **Docs** `(7)`\\n>  <:Feedback:863075610851147777> **Feedback** `(4)`\\n>  <:Games:863075611329167380> **Games** `(7)`\\n>  <:Images:863075611277656124> **Images** `(26)`\\n>  <:Levels:863075611182628895> **Levels** `(5)`\\n>  <:Misc:863075610979729409> **Misc** `(15)`\\n>  <:Music:863075611320647719> **Music** `(13)`\\n>  <:Snipe:863075611269791794> **Snipe** `(4)`\\n>  <:urbandictionary:924074967673503796> **UrbanDictionary** `(2)`\\n\\u200b', 'name': '<:menus:870781340746932225> **Categories:**\\n\\u200b', 'inline': True}, {'value': '>  <:Config:863075611169259550> **Config** `(12)`\\n>  <:criminalemojivectoriconsimple260:924411072729985046> **Crime** `(6)`\\n>  <:game_night:872473402840076288> **DiscordTogether** `(11)`\\n>  <:Economy:863075610913800233> **Economy** `(17)`\\n>  <:Fun:863075609781075968> **Fun** `(15)`\\n>  <:JesterJokes:873327129016811528> **JesterJokes** `(10)`\\n>  <:Jesterinfo:863075610048987166> **JesterInfo** `(17)`\\n>  <:Love:863075611374125056> **Love** `(6)`\\n>  <:Mod:863075610784301068> **Mod** `(22)`\\n>  <:random:924074967405051965> **Random** `(12)`\\n>  <:emojitrivia185:924152372001910834> **Trivia** `(2)`\\n>  <:Utils:863075611161788478> **Utils** `(14)`', 'name': '\\u200b\\n\\u200b', 'inline': True}, {'value': '**> [Official server](https://disnake.gg/2654CuU3ZU) \u2502 [Bot invite](https://disnake.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) \u2502 [Website](https://sites.google.com/view/jesterbot) \u2502 [Vote for me!](https://top.gg/bot/828363172717133874/vote)**', 'name': '<:links:870781340700782612> **Links:**', 'inline': False}], 'timestamp': '2021-12-28T22:38:12.546000+00:00', 'type': 'rich', 'description': '```ml\\n[] - Required Argument | <> - Optional Argument``````diff\\n+ Use the dropbar to navigate through Categories``````diff\\n+ Use -help prefix for info about the prefix```', 'title': '<:J_:863313855286607932><:E_:863313854150606848><:S:863313855061164062><:T:863313855399329812><:E_:863313854150606848><:R_:863313855119360022>'}"
             ],
             "author": [
+                "Caeden",
+                "[j.] JesterBot",
                 "Caeden",
                 "[j.] JesterBot"
             ],
             "id": [
                 298043305927639041,
+                828363172717133874,
+                298043305927639041,
                 828363172717133874
             ],
             "time": [
                 "2021-12-25 00:02:23.875000+00:00",
-                "2021-12-25 00:02:24.176000+00:00"
+                "2021-12-25 00:02:24.176000+00:00",
+                "2021-12-28 22:38:12.546000+00:00",
+                "2021-12-28 22:38:12.848000+00:00"
             ]
         }
     },
@@ -5067,7 +5075,12 @@
                 "Nice dick though",
                 "What",
                 "",
-                "@Average Sphinx Shill :white_check_mark: Your eval job has completed with return code 0.\n\n```\n5\n```"
+                "@Average Sphinx Shill :white_check_mark: Your eval job has completed with return code 0.\n\n```\n5\n```",
+                "@Average Sphinx Shill :white_check_mark: Your eval job has completed with return code 0.\n\n```\nhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\n... (truncated - too long)\n```\nFull output: https://paste.disnake.dev/?id=1640731155867877&language=none",
+                "@Average Sphinx Shill :white_check_mark: Your eval job has completed with return code 0.\n\n```\nhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\n... (truncated - too long)\n```\nFull output: https://paste.disnake.dev/?id=1640731155931310&language=none",
+                "@vic.",
+                "@vic.",
+                "@Average Sphinx Shill :white_check_mark: Your eval job has completed with return code 0.\n\n```\nhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\n```"
             ],
             "author": [
                 "[j.] JesterBot",
@@ -5104,6 +5117,11 @@
                 "EQUENOS",
                 "EQUENOS",
                 "EQUENOS",
+                "Victorsitou",
+                "Monty Python",
+                "Monty Python",
+                "Monty Python",
+                "Victorsitou",
                 "Victorsitou",
                 "Monty Python"
             ],
@@ -5143,6 +5161,11 @@
                 301295716066787332,
                 301295716066787332,
                 184040656761651200,
+                872576125384147005,
+                872576125384147005,
+                872576125384147005,
+                184040656761651200,
+                184040656761651200,
                 872576125384147005
             ],
             "time": [
@@ -5181,7 +5204,12 @@
                 "2021-12-28 22:00:28.616000+00:00",
                 "2021-12-28 22:00:40.606000+00:00",
                 "2021-12-28 22:00:36.044000+00:00",
-                "2021-12-28 22:10:48.132000+00:00"
+                "2021-12-28 22:10:48.132000+00:00",
+                "2021-12-28 22:39:16.098000+00:00",
+                "2021-12-28 22:39:16.143000+00:00",
+                "2021-12-28 22:40:38.769000+00:00",
+                "2021-12-28 22:40:52.711000+00:00",
+                "2021-12-28 22:41:38.535000+00:00"
             ]
         },
         "883340752191651870": {
@@ -5207,25 +5235,33 @@
                 "done \ud83d\udc4e",
                 "whats the new permission called",
                 "moderate members",
-                "I have yet another question..."
+                "I have yet another question...",
+                "nvm",
+                "```py\nawait inter.send(content=None, embed=embed, view=self.PollView(whatever, poll_id))\n\noriginal_message_id = await inter.original_messaage().id\n\npolls.update_one({\"_id\": poll_id}, {\"$set\": {\"message_id\": original_message_id}})```"
             ],
             "author": [
                 "BITTU5134",
                 "Invisible",
                 "Invisible",
-                "Razgriz"
+                "Razgriz",
+                "ThatOneCalculator",
+                "ThatOneCalculator"
             ],
             "id": [
                 818428347151024199,
                 719807591869317201,
                 719807591869317201,
-                250312821647081472
+                250312821647081472,
+                454847501787463680,
+                454847501787463680
             ],
             "time": [
                 "2021-12-28 07:17:08.034000+00:00",
                 "2021-12-28 11:05:23.581000+00:00",
                 "2021-12-28 11:05:26.115000+00:00",
-                "2021-12-28 19:48:09.635000+00:00"
+                "2021-12-28 19:48:09.635000+00:00",
+                "2021-12-28 22:43:19.465000+00:00",
+                "2021-12-28 23:15:05.416000+00:00"
             ]
         },
         "808032919632347156": {

@@ -27,7 +27,7 @@
         "score": 104
     },
     "help": {
-        "score": 2199
+        "score": 2202
     },
     "jsonfile": {
         "score": 19
@@ -363,7 +363,7 @@
         "score": 1
     },
     "reload": {
-        "score": 4620
+        "score": 4647
     },
     "pp": {
         "score": 142
@@ -879,7 +879,7 @@
         "score": 72
     },
     "tag": {
-        "score": 19
+        "score": 32
     },
     "resolve": {
         "score": 33
@@ -1201,5 +1201,11 @@
     },
     "chatbot": {
         "score": 5
+    },
+    "tags": {
+        "score": 19
+    },
+    "tag_list": {
+        "score": 8
     }
 }

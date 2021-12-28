@@ -47,14 +47,6 @@ class JesterBot(commands.Bot):
                 if files.endswith(".py"):
                     self.COGS.append(f"cogs.{files}")
 
-                
-
-    async def process_commands(self, message: disnake.Message) -> None:
-        ctx = await self.get_context(message, cls=Context)
-        if ctx.command is None:
-            return
-        await self.invoke(ctx)
-
     def setup(self) -> None:
         print("Cogs:\n-----------------------------------")
         print(", ".join(self.COGS))
@@ -98,7 +90,6 @@ class JesterBot(commands.Bot):
     async def on_disconnect(self) -> None:
         print("Client Disconnected.")
     
-
     async def on_ready(self) -> None:
         self.update_presence.start()
         print("Client Ready!")
@@ -146,8 +137,7 @@ class JesterBot(commands.Bot):
                     except Exception as e:
                         return print(e)
 
-                await self.data[before]['bot'].delete()
-                await self.process_commands(after)
+            await self.process_commands(after)
 
     async def on_command_error(self, context, exception) -> None:
         await error_handler(self, context, exception)
@@ -169,3 +159,9 @@ class JesterBot(commands.Bot):
     async def close(self) -> None:
         await self.client.close()
         return await super().close()
+
+    async def process_commands(self, message: disnake.Message) -> None:
+        ctx = await self.get_context(message, cls=Context)
+        if ctx.command is None:
+            return
+        await self.invoke(ctx)
