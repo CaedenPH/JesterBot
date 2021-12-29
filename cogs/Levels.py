@@ -72,9 +72,8 @@ class Levels(commands.Cog):
 
     async def make_rank_image(self, member: disnake.Member, rank, level, xp, final_xp):
         user_avatar_image = str(member.avatar.with_format(format='png', size=512))
-        async with aiohttp.ClientSession() as session:
-            async with session.get(user_avatar_image) as resp:
-                avatar_bytes = io.BytesIO(await resp.read())
+        async with self.bot.client.get(user_avatar_image) as resp:
+            avatar_bytes = io.BytesIO(await resp.read())
 
         img = Image.new('RGB', (1000, 240))
         logo = Image.open(avatar_bytes).resize((200, 200))

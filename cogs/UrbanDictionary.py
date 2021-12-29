@@ -32,8 +32,7 @@ Link: {dictionary['permalink']}"""
     async def urban_search(
         self, ctx: Context, *, query: str
     ) -> None:
-        async with aiohttp.ClientSession() as client:
-            async with client.get(url=self.SPECIFIC_URL+query) as resp:
+        async with self.bot.client.get(url=self.SPECIFIC_URL+query) as resp:
                 json = await resp.json()
                 try:
                     output = self.parse_dict(json['list'][0]) 
@@ -47,8 +46,7 @@ Link: {dictionary['permalink']}"""
     async def random_urban_search(
         self, ctx: Context
     ) -> None:
-        async with aiohttp.ClientSession() as client:
-            async with client.get(url=self.RANDOM_URL) as resp:
+        async with self.bot.client.get(url=self.RANDOM_URL) as resp:
                 json = await resp.json()
                 output = self.parse_dict(json['list'][0])
                 

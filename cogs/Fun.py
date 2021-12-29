@@ -20,14 +20,13 @@ glitcher = ImageGlitcher()
 
 async def img(ctx, member, name):
     await ctx.trigger_typing()
-
     if member is None:
         member = ctx.author
-    async with aiohttp.ClientSession() as s:
-        async with s.get(str(member.avatar.url)) as r:
-            f = open(f'./images/{name}.png', 'wb')
-            f.write(await r.read())
-            f.close()
+
+    async with ctx.bot.client.get(str(member.avatar.url)) as r:
+        f = open(f'./images/{name}.png', 'wb')
+        f.write(await r.read())
+        f.close()
 
     return f"./images/{name}.png"
 

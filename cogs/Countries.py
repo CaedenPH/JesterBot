@@ -9,17 +9,14 @@ from reportlab.graphics import renderPM
 from core.utils.utils import thebed
 
 async def makeimg(ctx, url):
- 
     try:
         async with ctx.typing():
-            async with aiohttp.ClientSession() as client:
-                async with client.get(url) as response:
-                    my_file = open('./images/country.svg', 'wb')
-                    my_file.write(await response.read())
-                    my_file.close()
-                    drawing = svg2rlg('./images/country.svg')
-                    renderPM.drawToFile(drawing, './images/country.png', fmt='PNG')
-
+            async with ctx.bot.client.get(url) as response:
+                my_file = open('./images/country.svg', 'wb')
+                my_file.write(await response.read())
+                my_file.close()
+                drawing = svg2rlg('./images/country.svg')
+                renderPM.drawToFile(drawing, './images/country.png', fmt='PNG')
         await ctx.send(file=disnake.File('./images/country.png'))
         
         return True
@@ -35,19 +32,17 @@ class Countries(commands.Cog):
     async def country(self, ctx, *, name):
         name = name.split(' ')
         name = '%20'.join(name)
-        async with aiohttp.ClientSession() as client:
-            async with client.get(f"https://restcountries.com/v3.1/name/{name}") as resp:
-                response = await resp.json()
-                if 'status' in response:
-                    return await ctx.expected_error(error='That is not a valid **country** Try searching for full names, include spaces. Not capital-sensitive')
-                result = pprint.pformat(response[0])
-                result = result.replace("'", "")
-                await thebed(ctx, '', result)
+        async with self.bot.client.get(f"https://restcountries.com/v3.1/name/{name}") as resp:
+            response = await resp.json()
+            if 'status' in response:
+                return await ctx.expected_error(error='That is not a valid **country** Try searching for full names, include spaces. Not capital-sensitive')
+            result = pprint.pformat(response[0])
+            result = result.replace("'", "")
+            await thebed(ctx, '', result)
     @commands.command()
     async def findcountry(self, ctx, *, name):
         y = []
-        async with aiohttp.ClientSession() as client:
-            async with client.get(f"https://restcountries.eu/rest/v2/all") as resp:
+        async with self.bot.client.get(f"https://restcountries.eu/rest/v2/all") as resp:
                 x = await resp.json()
                 for num, k in enumerate(x):
                     if x[num]['name'].lower().startswith(name[:1]):
@@ -59,8 +54,7 @@ class Countries(commands.Cog):
         y = True
         x = await makeimg(ctx, f"https://restcountries.eu/data/{country}.svg")
         if not x:
-            async with aiohttp.ClientSession() as client:
-                async with client.get(f"https://restcountries.eu/rest/v2/name/{country}") as resp:
+            async with self.bot.client.get(f"https://restcountries.eu/rest/v2/name/{country}") as resp:
                     js = await resp.json()
                     y = await makeimg(ctx, f"{js[0]['flag']}")
 

@@ -125,7 +125,6 @@ class JesterBot(commands.Bot):
         if time_difference.seconds > self.time_limit:
             return
         ctx = await self.get_context(after)
-        pref = await self.get_prefix(ctx.message)
         if ctx.command:
             if before in self.data:
                 if ctx.command.name in ['eval', 'evaldir', 'evalreturn']:

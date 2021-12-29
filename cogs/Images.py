@@ -24,9 +24,7 @@ async def img(ctx, member, name):
     if member.avatar.is_animated():
         url = member.avatar.url.replace('.gif', '.png')
         
-
-    async with aiohttp.ClientSession() as s:
-        async with s.get(str(url)) as r:
+    async with ctx.bot.client.get(str(url)) as r:
             f = open(f'./images/{name}.png', 'wb')
             f.write(await r.read())
             f.close()
@@ -45,8 +43,7 @@ async def pilimg(ctx, member, name):
         url:str = str(member.avatar.url).replace('.gif', '.webp')
 
     path = f'./images/{name}.png'
-    async with aiohttp.ClientSession() as s:
-        async with s.get(url) as r:
+    async with ctx.bot.client.get(url) as r:
             f = open(path, 'wb')
             f.write(await r.read())
             f.close()
@@ -117,8 +114,7 @@ class Images(commands.Cog):
     @commands.command()
     async def rover(self, ctx: Context):
         key2 = "dS9ecIIo07Q0gGLYXnCoJW6uCAKwDM9j0UnYbVre"
-        async with aiohttp.ClientSession() as sess:
-            async with sess.get("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key={}".format(key2)) as resp:
+        async with self.bot.client.get("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key={}".format(key2)) as resp:
                 response = await resp.json()
                 await ctx.send(response)
 
@@ -159,10 +155,9 @@ class Images(commands.Cog):
 
     @commands.command()
     async def meme(self, ctx: Context):
-        async with aiohttp.ClientSession() as client:
-            async with client.get("https://some-random-api.ml/meme") as resp:
-                response = await resp.json()
-                await ctx.send(response['image'])
+        async with self.bot.client.get("https://some-random-api.ml/meme") as resp:
+            response = await resp.json()
+            await ctx.send(response['image'])
 
     @commands.command(description="""Sends a wasted filtered avatar""")
     async def wasted(self, ctx: Context, member: disnake.Member=None):
