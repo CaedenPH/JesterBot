@@ -2,7 +2,7 @@
     "298043305927639041": {
         "Name": "Fred123",
         "Guild": "\ud835\ude3f\ud835\ude67\ud835\ude5e\ud835\ude5b\ud835\ude69 // \ud835\ude63\ud835\ude5a\ud835\ude6c \ud835\ude68\ud835\ude5a\ud835\ude67\ud835\ude6b\ud835\ude5a\ud835\ude67",
-        "selfscore": 17838
+        "selfscore": 18041
     },
     "829683806045863968": {
         "Name": "\u02da \u0f18\u2661 \u22c6\u2113or\u0131",
@@ -587,7 +587,7 @@
     "521226389559443461": {
         "Name": "stealthninja",
         "Guild": "JesterBot Official",
-        "selfscore": 656
+        "selfscore": 669
     },
     "374335173938118656": {
         "Name": "Antimatter",
@@ -987,7 +987,7 @@
     "294137889514717185": {
         "Name": "! Nv",
         "Guild": "JesterBot Official",
-        "selfscore": 13
+        "selfscore": 17
     },
     "769071470709047308": {
         "Name": "Gleb Pro",
@@ -1187,7 +1187,7 @@
     "707207079936524330": {
         "Name": "xxJonakAdiptaxx",
         "Guild": "+Build Your Dream Python Project",
-        "selfscore": 16
+        "selfscore": 22
     },
     "801924961727414313": {
         "Name": "Crystal Fur",
@@ -1203,5 +1203,10 @@
         "Name": "Victorsitou",
         "Guild": "disnake & dislash.py",
         "selfscore": 3
+    },
+    "865551884861702165": {
+        "Name": "nathan4690",
+        "Guild": "nothing here",
+        "selfscore": 2
     }
 }

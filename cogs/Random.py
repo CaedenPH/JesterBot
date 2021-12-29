@@ -1,8 +1,15 @@
+import os
 import pprint
 import random
+import json
+import disnake
+from disnake.interactions.application_command import CmdInter
+import yaml
 
 from disnake.ext import commands
 from core.Context import Context
+from pathlib import Path
+
 
 class Random(commands.Cog):
     def __init__(self, bot) -> None:
@@ -80,14 +87,6 @@ class Random(commands.Cog):
         await ctx.send(f"https://image.thum.io/get/https://{url}")
         
     @commands.command()
-    async def covid(self, ctx: Context, country=None):
-        async with self.bot.client.get(url="https://api.spacexdata.com/v4/launches/latest") as resp:
-            json = await resp.json()
-            print(json)
-
-        if country is None:...
-
-    @commands.command()
     async def coffee(self, ctx: Context) -> None:
         async with self.bot.client.get(url="https://coffee.alexflipnote.dev/random.json") as resp:
             json = await resp.json()
@@ -125,6 +124,79 @@ class Random(commands.Cog):
 [Trump quote:] {random.choice(json['messages']['personalized'])}```
         """)
 
+    @commands.command(name="fool")
+    async def april_fools(self, ctx: Context) -> None:
+        video = random.choice(json.loads(Path("./resources/seasonal/april_fools_videos.json").read_text("utf-8")))
+        channel, url = video["channel"], video["url"]
+
+        await ctx.send(f"Check out this April Fools' video by {channel}.\n\n{url}")
+
+    @commands.command()
+    async def topic(self, ctx: Context) -> None:
+        with open("./resources/topic.yaml") as stream:
+            out = yaml.load(stream, Loader=yaml.Loader) 
+        await ctx.em(random.choice(out))
+
+    @commands.command()
+    async def date(self, ctx: Context) -> None:
+        with open("./resources/seasonal/date_ideas.json", encoding="utf-8") as stream:
+            data = json.load(stream)
+
+        choice = random.choice(data['ideas'])
+        embed = disnake.Embed(
+            title=choice['name'],
+            description=choice['description']
+        ).set_author(
+            name=ctx.author.name + "s' date",
+            icon_url=ctx.author.avatar.url,
+        )
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    async def planet(self, ctx: Context) -> None:
+        with open("./resources/save_the_planet.json") as stream:
+            data = json.load(stream)
+        
+        choice = random.choice(data)
+        embed = disnake.Embed.from_dict(
+            choice
+        )
+
+        await ctx.send(embed=embed)
+
+    @commands.command(aliases=['colour'])
+    async def color(self, ctx: Context) -> None:
+        with open("./resources/colors.json") as stream:
+            data = json.load(stream)
+        x = list(data.items())
+        hexcolor = random.choice(x)
+
+        async with ctx.typing():
+            async with self.bot.client.get(f"https://some-random-api.ml/canvas/colorviewer?hex={hexcolor[1]}") as response:
+                file = open('./images/color.png', 'wb')
+                file.write(await response.read())
+                file.close()
+
+        file = disnake.File(
+            "./images/color.png", 
+            filename="color.png"
+        )
+        embed = disnake.Embed(
+            title="Random color",
+            description="`Color name: {0[0]} - Hex color: {0[1]}`".format(hexcolor)
+        ).set_footer(
+            text=f"Out of {len(x)} colors!"
+        ).set_image(
+            url="attachment://color.png"
+        )
+        await ctx.send(embed = embed, file=file) 
+
+    @commands.command()
+    async def palette(self, ctx: Context) -> None:
+        async with self.bot.client.get(url="https://palett.es/API/v1/palette", verify_ssl=False) as resp:
+            json = await resp.json()
+
+        await ctx.em(f"Your palette is `{', '.join(json)}`")
 
 def setup(bot: commands.Bot) -> None:
     bot.add_cog(Random(bot))

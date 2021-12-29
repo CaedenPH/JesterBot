@@ -1,7 +1,9 @@
+from re import L
 import disnake
 import itertools
 
 from disnake.ext import commands
+from disnake.ext.commands.cooldowns import C
 from fuzzywuzzy import fuzz
 from docs import cog 
 
@@ -9,12 +11,35 @@ from core.utils.pagination import Paginator
 from core.Context import Context
 from core.utils.docs import *
 
+ZEN_OF_PYTHON = """\
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+"""
+
 class Docs(cog.Docs, RTFM):
     BASE_PYPI_URL = "https://pypi.org"
     URL = f"{BASE_PYPI_URL}/pypi/{{package}}/json"
     PYPI_ICON = "https://cdn.discordapp.com/emojis/766274397257334814.png"
     PYPI_COLOURS = itertools.cycle((Colours.yellow, Colours.blue, Colours.white))
-    TAGS = [k[:-3] for k in os.listdir('./core/utils/tags')]
+    TAGS = [k[:-3] for k in os.listdir('./resources/tags')]
+
 
     def __init__(self, bot):
         super().__init__(
@@ -32,7 +57,7 @@ class Docs(cog.Docs, RTFM):
         
         return disnake.Embed(
             title=tag.capitalize(),
-            description=open(f"./core/utils/tags/{tag}.md", encoding="utf-8").read()
+            description=open(f"./resources/tags/{tag}.md", encoding="utf-8").read()
         ).set_author(
             name=author.name,
             icon_url=author.avatar.url
@@ -96,6 +121,33 @@ class Docs(cog.Docs, RTFM):
                     title=f'All tags (`{len(lines)}` total)'
                 )
         await paginator.start()
+
+    @commands.command()
+    async def zen(self, ctx: Context, search: int = None) -> None:
+        embed = disnake.Embed(
+            title="The Zen of Python",
+            description=ZEN_OF_PYTHON,
+        )
+
+        if not search:
+            return await ctx.send(
+                embed = embed
+            )
+
+        lines = ZEN_OF_PYTHON.splitlines()
+        if len(lines) > search:
+            return await ctx.send(
+                embed = disnake.Embed(
+                    title=f"The Zen of Python - Line {search}",
+                    description=lines[search],
+                )
+            )
+
+        await ctx.send(
+            embed = embed.set_footer(
+                text=f"lines {search} is not in the zen lines!"
+            )
+        )
 
 
 def setup(bot: commands.Bot) -> None:

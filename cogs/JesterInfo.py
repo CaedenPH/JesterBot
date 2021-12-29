@@ -214,8 +214,8 @@ class JesterInfo(commands.Cog):
         """, color=thecolor())
         await ctx.send(embed=embed)
    
-    @commands.command(aliases=['colour'], description="change the color of the embeds!")
-    async def color(self, ctx: Context, *, args):
+    @commands.command(aliases=['ccolour'], description="change the color of the embeds!", hidden=True)
+    async def ccolor(self, ctx: Context, *, args):
         if args.startswith('0x') and len(args) == 8:
             with open('./dicts/Color.json', 'r+') as k:
                 data = json.load(k)

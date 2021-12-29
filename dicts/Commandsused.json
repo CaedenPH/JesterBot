@@ -27,7 +27,7 @@
         "score": 104
     },
     "help": {
-        "score": 2204
+        "score": 2211
     },
     "jsonfile": {
         "score": 19
@@ -42,7 +42,7 @@
         "score": 24
     },
     "ping": {
-        "score": 310
+        "score": 311
     },
     "giveaway": {
         "score": 17
@@ -78,7 +78,7 @@
         "score": 2
     },
     "suggest": {
-        "score": 122
+        "score": 123
     },
     "av": {
         "score": 25
@@ -363,7 +363,7 @@
         "score": 1
     },
     "reload": {
-        "score": 4648
+        "score": 4733
     },
     "pp": {
         "score": 142
@@ -414,7 +414,7 @@
         "score": 392
     },
     "serversin": {
-        "score": 7
+        "score": 8
     },
     "ban": {
         "score": 21
@@ -429,7 +429,7 @@
         "score": 12
     },
     "eval": {
-        "score": 2665
+        "score": 2668
     },
     "pager": {
         "score": 12
@@ -438,7 +438,7 @@
         "score": 10
     },
     "color": {
-        "score": 52
+        "score": 72
     },
     "fox": {
         "score": 10
@@ -468,7 +468,7 @@
         "score": 10
     },
     "server": {
-        "score": 6
+        "score": 7
     },
     "eval1": {
         "score": 182
@@ -510,10 +510,10 @@
         "score": 6
     },
     "evalreturn": {
-        "score": 457
+        "score": 467
     },
     "evaldir": {
-        "score": 348
+        "score": 356
     },
     "quote1": {
         "score": 4
@@ -738,7 +738,7 @@
         "score": 6
     },
     "colorview": {
-        "score": 15
+        "score": 16
     },
     "set_prefix": {
         "score": 4
@@ -864,7 +864,7 @@
         "score": 39
     },
     "uno": {
-        "score": 159
+        "score": 161
     },
     "wtf": {
         "score": 34
@@ -876,10 +876,10 @@
         "score": 7
     },
     "uptime": {
-        "score": 72
+        "score": 73
     },
     "tag": {
-        "score": 32
+        "score": 41
     },
     "resolve": {
         "score": 33
@@ -957,7 +957,7 @@
         "score": 1
     },
     "jishaku": {
-        "score": 12
+        "score": 13
     },
     "jishaku py": {
         "score": 5
@@ -1071,7 +1071,7 @@
         "score": 1
     },
     "_joke": {
-        "score": 208
+        "score": 209
     },
     "ytsearch": {
         "score": 21
@@ -1080,7 +1080,7 @@
         "score": 1
     },
     "src": {
-        "score": 15
+        "score": 20
     },
     "youtube_together": {
         "score": 3
@@ -1104,7 +1104,7 @@
         "score": 22
     },
     "urban_search": {
-        "score": 65
+        "score": 66
     },
     "channel_status": {
         "score": 10
@@ -1146,7 +1146,7 @@
         "score": 10
     },
     "coordinates": {
-        "score": 13
+        "score": 15
     },
     "stop_and_searches": {
         "score": 16
@@ -1188,16 +1188,16 @@
         "score": 3
     },
     "how_many_commands": {
-        "score": 4
+        "score": 8
     },
     "docs": {
-        "score": 13
+        "score": 17
     },
     "pypi": {
         "score": 7
     },
     "rtfm": {
-        "score": 5
+        "score": 6
     },
     "chatbot": {
         "score": 5
@@ -1207,5 +1207,29 @@
     },
     "tag_list": {
         "score": 8
+    },
+    "zen": {
+        "score": 8
+    },
+    "fool": {
+        "score": 1
+    },
+    "topic": {
+        "score": 5
+    },
+    "date": {
+        "score": 4
+    },
+    "planet": {
+        "score": 2
+    },
+    "palette": {
+        "score": 5
+    },
+    "anagram": {
+        "score": 6
+    },
+    "hangman": {
+        "score": 28
     }
 }

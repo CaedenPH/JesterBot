@@ -1,3 +1,4 @@
+import datetime
 import disnake, os, requests, json, asyncio
 from disnake.ext.commands import has_permissions
 from disnake.ext import commands 
@@ -9,34 +10,7 @@ from core.Context import Context
 
 import random
 
-def card_check(card1):
-    card = ""
-    for k in card1:
-        if k not in [':', '>', '<']:
-            card += k
 
-    visual = ""
-    if card.startswith('Y'):
-        n = 'Yellow'
-        second_part = card[6:8]
-        
-    elif card.startswith('R'):
-        n = 'Red'
-        second_part = card[3:5]
-    elif card.startswith('B'):
-        n = 'Blue'
-        second_part = card[4:6]
-    else:
-        n = 'Green'
-        second_part = card[5:7]
-    if int(second_part) < 10:
-        if int(second_part) == 0:
-            visual = str(second_part[1:])
-        visual = second_part.strip('0')
-    else:
-        visual = "- "
-
-    return n, second_part, visual
 class Card:
         def __init__(self):
             self.suit = choice(['Hearts ðŸŽ”', 'Diamonds â—†', 'Clubs â™§', 'Spades â™¤'])
@@ -84,6 +58,7 @@ class Games(commands.Cog):
         else:
             embed = disnake.Embed(title="🌹 / You lived", colour=thecolor())
             await ctx.send(embed=embed)
+
     @commands.command(aliases=['bj'], description="Emits a game of blackjack with the user")
     async def blackjack(self, ctx: Context):
         one_ace = False
@@ -486,7 +461,6 @@ class Games(commands.Cog):
 
         elif difficulty == "easiest":
             await ea()
-
     
 
     @commands.command(aliases=['rock', 'rockpaperscissors'], description="Plays rock paper scissors with the bot `<choice>` must be rock, paper, or scissors")
@@ -611,180 +585,87 @@ class Games(commands.Cog):
             embed = disnake.Embed(title="I gave up waiting", colour=thecolor())
             await ctx.send(embed=embed)
     
-
-
-
-
-
-
-
-
+    @commands.command()
+    async def uno(self, ctx: Context) -> None:
+        await ctx.em("Broken until discord fixes itself...")
     
-    @commands.command(
-        aliases=['playuno', 'unos', 'ungogame']
-
-    )
-    async def uno(self, ctx: Context):
-        cards_played = []  
-        emoji_list = []
-        url_list = []
-        card_list = []
-        mentions = []
-        msglist = []
-        clicked = []
-        player_cards = {}
-        play = False
-        #EMOJIS
+    @commands.command()
+    async def anagram(self, ctx: Context) -> None:
+        with open('./resources/anagram.json') as stream:
+            data = json.load(stream)
         
-        
-        emojifile = open('./dicts/cards.json')
-        data = json.load(emojifile)
+        choice = random.choice(list(data.keys()))
+        print(data[choice])
+        embed = disnake.Embed(
+            title=f"Your anagram is {choice}",
+            description=f"There are {len(data[choice])} answers. You have 60 seconds to respond with your answers. The answers are all the same length as the word"
+        ).set_author(
+            name=ctx.author.name,
+            icon_url=ctx.author.avatar.url
+        ).set_footer(
+            text=f"Out of {len(list(data.keys()))} options! ps these are all completely real words that are allowed on scrabble"
+        )
+        await ctx.send(embed=embed)
 
-        for key in data:
-            for key_key in data[key]:
-                
-                emoji_list.append(f"{data[key][key_key]['emoj']}")
-                url_list.append(f"{data[key][key_key]['url']}")
-
-                
-                if int(key_key[:2]) < 10:
-                    
-                    card_list.append(f"{data[key][key_key]['url']}")
-        
-        
-        participants = [ctx.author]
-        #MEMBERS
-
-        await thebed(ctx, '', 'Mention who you would like to play against; if you do not want to play against anyone type `bot` to play against the bot. Put a space in between each person you want to ping.', a='Uno', i_u=ctx.author.avatar.url)
-
-
+        responses = []
+        time = datetime.datetime.utcnow()
         try:
-            received_msg = await self.bot.wait_for('message', timeout=120.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)
+            while (msg := await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=60-(datetime.datetime.utcnow()-time).total_seconds())):
+                responses.append(msg.content)
 
-            if received_msg.mentions:
-
-                for k in received_msg.mentions:
-                    if k != ctx.author:
-                        mentions.append(k)
-                        participants.append(k)
-                    if not mentions:
-                        return await buno(ctx, '', 'You need to choose someone other than yourself!')
-
-                    msg = await ctx.send(embed=disnake.Embed(description=f"React with this to play: {', '.join([k.name for k in mentions])}", color=thecolor()))
-                    await msg.add_reaction('🎲')
-                    await self.bot.wait_until_ready()
-                    
-                    try:
-                        emoji, user = await self.bot.wait_for('reaction_add', timeout=120.0, check=lambda e, u: u in mentions) 
-                        msgd = await ctx.channel.fetch_message(msg.id)  
-                        
-                        while msgd.reactions[0].count - 1 != len(received_msg.mentions):
-                            
-                            emoji, user = await self.bot.wait_for('reaction_add', timeout=120.0, check=lambda e, u: u in mentions)  
-                        
-                            
-                    except asyncio.TimeoutError:
-                        await msg.clear_reactions()
-                        await msg.edit(embed=disnake.Embed(description='I received no response!', color=thecolor()))
-                
-                    
-                
-
-
-            else:
-
-
-                if not received_msg.content == "bot":
-                    
-                    return await buno(ctx, 'Restart game', 'You need to ping valid members to play with you.')
-
-
+                if len(responses) == len(data[choice]):
+                    raise asyncio.TimeoutError()
 
         except asyncio.TimeoutError:
-            await thebed(ctx, '', 'You did not mention anyone within 2 minutes.')
+            embed = disnake.Embed(
+                title=f"Anagram for {choice}",
+                description=f"The answers were: `{', '.join(data[choice])}`"
+            ).set_author(
+                name="Nice try!",
+                icon_url=ctx.author.avatar.url
+            )
 
+            if responses != data[choice]:
+                return await ctx.send(embed=embed)
+            await ctx.em("Wow you got all the anagrams!")
 
-        #PLAY
-        
+    @commands.command()
+    async def hangman(self, ctx: Context) -> None:
+        with open('./resources/hangman_words.txt') as txt:
+            words = txt.readlines()
+
+        word = random.choice(words).strip()
+        print(word)
+        guesses = []
+        guesses_left = 8
+
+        await ctx.send(f"Your word: `{' '.join(['_' for k in range(0, len(word))])}`\nYou have {guesses_left} guesses left")
+        try:
+            while (m:=await self.bot.wait_for('message', check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=60)):
+                if guesses_left == 0:
+                    return await ctx.send(f"Uh oh! You ran out of guesses. The word was {word}")
+                if m.content.lower() == "q":
+                    return await ctx.em("Goodbye")
+
+                if len(m.content.lower()) >= 2 and m.content.lower() != word:
+                    guesses_left -= 1
+                    await ctx.send(f"{m.content.lower()} is not the answer! You have {guesses_left} guesses left")
+                    continue
+
+                guesses.append(m.content.lower())
+                if m.content.lower() == word:
+                    return await ctx.em(f"Well done! You got the word. The word was `{word}`")
+
+                if all([w in guesses for w in list(word)]):
+                    return await ctx.em(f"Well done! You got the word. The word was `{word}`")
+
+                if m.content.lower() not in word:
+                    guesses_left -= 1
+                await ctx.send(f"word: `{''.join([k if k in guesses else ' _' for k in word])}`\nYou have {guesses_left} guesses left")
+
+        except asyncio.TimeoutError:
+            await ctx.em("You ran out of time!")
             
-        starting_card1 = choice(emoji_list)
-
-        check = card_check(starting_card1)
-        
-        starting_card_emoji = data[check[0]][f"{check[1]}.png"]['emoj']
-        starting_card_color = check[1]
-        cards_played.append(starting_card_color)
-        starting_card_url = data[check[0]][f"{check[1]}.png"]['url']
-        emoji_list.remove(starting_card_emoji)
-        url_list.remove(starting_card_url)
-
-        random.shuffle(participants)
-        
-        unobed1 = disnake.Embed(description=f"""It is {participants[0].mention}'s go! 
-        {participants[0].name} press  the button and select a card to play. 
-        The order is {', '.join([m.name for m in participants])}""", color=thecolor())
-        unobed1.set_author(name="Uno", icon_url=ctx.author.avatar.url)
-        unobed1.set_footer(text="Press the button to see your cards")
-        unobed1.set_image(url=starting_card_url)
-
-
-        msg = await ctx.send(embed=unobed1, components=[Button(
-                style=ButtonStyle.grey,
-                label="See your cards",
-                custom_id="cards"
-            )])
-        msglist.append(msg.id)
-        game = True
-        
-        for t in participants:
-            player_cards[t] = {'cards': [], 'num':7}
-            clicked.append(t)
-            player_cards[t]['opt'] = SelectMenu(
-                    custom_id="test",
-                    placeholder=f"Your cards",
-                    max_values=1,
-                    options=[]
-                )
-            for i in range(0, 7):
-                card = choice(emoji_list)
-                ncheck = card_check(card)
-                player_cards[t]['opt'].add_option(f'{ncheck[2]} of {ncheck[0]}',f'{ncheck[1]} of {ncheck[0]}', emoji=data[ncheck[0]][f"{ncheck[1]}.png"]['emoj'])
-                emoji_list.remove(data[ncheck[0]][f"{ncheck[1]}.png"]['emoj'])
-                player_cards[t]['cards'].append(card)
-        #HANDS OF PLAYERS
-        
-       
-
-        def check(inter):
-            return inter.message.id == msg.id and inter.author in clicked
-        
-
-            
-        while len(clicked) != 0:
-            
-            inter = await msg.wait_for_button_click(check)
-            clicked.remove(inter.author)
-            
-            
-            await inter.reply("\u200b", type=4, ephemeral=True, components=[player_cards[inter.author]['opt']])
-
-        def check(interd):
-            print(interd.author, participants, interd.message.id, msg.id)
-            #return interd.message.id == msg.id and interd.author in participants
-            return True
-        new_inter = await msg.wait_for_dropdown(check)
-    
-        if new_inter.author != participants[0]:
-            await new_inter.reply("It isn't your turn!", type=4, ephemeral=True)
-        else:
-            chosen_card = new_inter.select_menu.selected_options[0].label.split(' ')
-            card_num = chosen_card[0]
-            card_color = chosen_card[1]
-            if card_color == cards_played -1:
-                await new_inter.reply("worked so far", type=4, ephemeral=True)
-            else:
-                print(card_color, cards_played, card_num, chosen_card)
-                
 
 def setup(bot):
   bot.add_cog(Games(bot))

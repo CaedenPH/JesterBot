@@ -47,6 +47,14 @@ class JesterBot(commands.Bot):
                 if files.endswith(".py"):
                     self.COGS.append(f"cogs.{files}")
 
+                
+
+    async def process_commands(self, message: disnake.Message) -> None:
+        ctx = await self.get_context(message, cls=Context)
+        if ctx.command is None:
+            return
+        await self.invoke(ctx)
+
     def setup(self) -> None:
         print("Cogs:\n-----------------------------------")
         print(", ".join(self.COGS))
@@ -125,6 +133,7 @@ class JesterBot(commands.Bot):
         if time_difference.seconds > self.time_limit:
             return
         ctx = await self.get_context(after)
+        pref = await self.get_prefix(ctx.message)
         if ctx.command:
             if before in self.data:
                 if ctx.command.name in ['eval', 'evaldir', 'evalreturn']:
@@ -158,9 +167,3 @@ class JesterBot(commands.Bot):
     async def close(self) -> None:
         await self.client.close()
         return await super().close()
-
-    async def process_commands(self, message: disnake.Message) -> None:
-        ctx = await self.get_context(message, cls=Context)
-        if ctx.command is None:
-            return
-        await self.invoke(ctx)

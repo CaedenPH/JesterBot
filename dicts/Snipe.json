@@ -108,7 +108,11 @@
                 "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was B -- ++ \\n\\n[Correct:] stealthninja\\n[Leaderboard:] \\n      - stealthninja: [24]\\n      - Caeden: [16]\\n      - [j.] JesterBot: [0]```'}",
                 "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The HBO series Game of Thrones is based on which series of books? -- ++\\n\\n                Your choices are:\\na) The Notebook, b) Harry Potter, c) The Wheel of Time, d) A Song of Ice and Fire\\n\\n[category]: Entertainment: Television\\n[difficulty]: easy\\n\\n        [send the letter corresponding to the answer]```'}",
                 "{'color': 15158332, 'type': 'rich', 'description': 'No documentation found for the requested symbol.', 'title': 'NEGATORY.'}",
-                "-d ifjijeej ierjoi jceuich eic hreuigc rehcg hgc"
+                "-d ifjijeej ierjoi jceuich eic hreuigc rehcg hgc",
+                "{'color': 3553599, 'type': 'rich', 'title': 'What is the title of your suggestion? Type end at any point to stop and type title to remove the description'}",
+                "{'color': 3553599, 'type': 'rich', 'title': 'What is the description of your suggestion? Type end at any point to stop'}",
+                "-s",
+                "q"
             ],
             "author": [
                 "[j.] JesterBot",
@@ -217,6 +221,10 @@
                 "[j.] JesterBot",
                 "[j.] JesterBot",
                 "[j.] JesterBot",
+                "Caeden",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "Caeden",
                 "Caeden"
             ],
             "id": [
@@ -326,6 +334,10 @@
                 828363172717133874,
                 828363172717133874,
                 828363172717133874,
+                298043305927639041,
+                828363172717133874,
+                828363172717133874,
+                298043305927639041,
                 298043305927639041
             ],
             "time": [
@@ -435,7 +447,11 @@
                 "2021-12-28 03:53:19.740000+00:00",
                 "2021-12-28 03:53:20.288000+00:00",
                 "2021-12-28 04:01:32.881000+00:00",
-                "2021-12-28 04:01:32.168000+00:00"
+                "2021-12-28 04:01:32.168000+00:00",
+                "2021-12-29 04:20:22.867000+00:00",
+                "2021-12-29 04:20:24.917000+00:00",
+                "2021-12-29 04:20:22.822000+00:00",
+                "2021-12-29 04:20:27.219000+00:00"
             ]
         },
         "830177106465783858": {
@@ -521,25 +537,33 @@
                 "-h",
                 "{'fields': [{'value': '>  <:Config:863075611169259550> **Config** `(12)`\\n>  <:cryptocurrency:872473402764570624> **Cryptocurrency** `(3)`\\n>  <:Economy:863075610913800233> **Economy** `(17)`\\n>  <:Fun:863075609781075968> **Fun** `(15)`\\n>  <:JesterJokes:873327129016811528> **JesterJokes** `(10)`\\n>  <:Jesterinfo:863075610048987166> **JesterInfo** `(12)`\\n>  <:Love:863075611374125056> **Love** `(6)`\\n>  <:Mod:863075610784301068> **Mod** `(20)`\\n>  <:random:924074967405051965> **Random** `(7)`\\n>  <:urbandictionary:924074967673503796> **UrbanDictionary** `(2)`\\n\\u200b', 'name': '<:menus:870781340746932225> **Categories:**\\n\\u200b', 'inline': True}, {'value': '>  <:the_world:872473402638762025> **Countries** `(4)`\\n>  <:game_night:872473402840076288> **DiscordTogether** `(11)`\\n>  <:Feedback:863075610851147777> **Feedback** `(4)`\\n>  <:Games:863075611329167380> **Games** `(7)`\\n>  <:Images:863075611277656124> **Images** `(25)`\\n>  <:Levels:863075611182628895> **Levels** `(5)`\\n>  <:Misc:863075610979729409> **Misc** `(15)`\\n>  <:Music:863075611320647719> **Music** `(13)`\\n>  <:Snipe:863075611269791794> **Snipe** `(4)`\\n>  <:Utils:863075611161788478> **Utils** `(14)`', 'name': '\\u200b\\n\\u200b', 'inline': True}, {'value': '**> [Official server](https://disnake.gg/2654CuU3ZU) \u2502 [Bot invite](https://disnake.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) \u2502 [Website](https://sites.google.com/view/jesterbot) \u2502 [Vote for me!](https://top.gg/bot/828363172717133874/vote)**', 'name': '<:links:870781340700782612> **Links:**', 'inline': False}], 'timestamp': '2021-12-25T00:02:23.875000+00:00', 'type': 'rich', 'description': '```ml\\n[] - Required Argument | <> - Optional Argument``````diff\\n+ Use the dropbar to navigate through Categories``````diff\\n+ Use -help prefix for info about the prefix```', 'title': '<:J_:863313855286607932><:E_:863313854150606848><:S:863313855061164062><:T:863313855399329812><:E_:863313854150606848><:R_:863313855119360022>'}",
                 "-h",
-                "{'fields': [{'value': '>  <:chatbot:872473402693259324> **ChatBot** `(3)`\\n>  <:the_world:872473402638762025> **Countries** `(4)`\\n>  <:cryptocurrency:872473402764570624> **Cryptocurrency** `(3)`\\n>  <:1181180716_clipboardnotepaperdoc:925222917946605629> **Docs** `(7)`\\n>  <:Feedback:863075610851147777> **Feedback** `(4)`\\n>  <:Games:863075611329167380> **Games** `(7)`\\n>  <:Images:863075611277656124> **Images** `(26)`\\n>  <:Levels:863075611182628895> **Levels** `(5)`\\n>  <:Misc:863075610979729409> **Misc** `(15)`\\n>  <:Music:863075611320647719> **Music** `(13)`\\n>  <:Snipe:863075611269791794> **Snipe** `(4)`\\n>  <:urbandictionary:924074967673503796> **UrbanDictionary** `(2)`\\n\\u200b', 'name': '<:menus:870781340746932225> **Categories:**\\n\\u200b', 'inline': True}, {'value': '>  <:Config:863075611169259550> **Config** `(12)`\\n>  <:criminalemojivectoriconsimple260:924411072729985046> **Crime** `(6)`\\n>  <:game_night:872473402840076288> **DiscordTogether** `(11)`\\n>  <:Economy:863075610913800233> **Economy** `(17)`\\n>  <:Fun:863075609781075968> **Fun** `(15)`\\n>  <:JesterJokes:873327129016811528> **JesterJokes** `(10)`\\n>  <:Jesterinfo:863075610048987166> **JesterInfo** `(17)`\\n>  <:Love:863075611374125056> **Love** `(6)`\\n>  <:Mod:863075610784301068> **Mod** `(22)`\\n>  <:random:924074967405051965> **Random** `(12)`\\n>  <:emojitrivia185:924152372001910834> **Trivia** `(2)`\\n>  <:Utils:863075611161788478> **Utils** `(14)`', 'name': '\\u200b\\n\\u200b', 'inline': True}, {'value': '**> [Official server](https://disnake.gg/2654CuU3ZU) \u2502 [Bot invite](https://disnake.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) \u2502 [Website](https://sites.google.com/view/jesterbot) \u2502 [Vote for me!](https://top.gg/bot/828363172717133874/vote)**', 'name': '<:links:870781340700782612> **Links:**', 'inline': False}], 'timestamp': '2021-12-28T22:38:12.546000+00:00', 'type': 'rich', 'description': '```ml\\n[] - Required Argument | <> - Optional Argument``````diff\\n+ Use the dropbar to navigate through Categories``````diff\\n+ Use -help prefix for info about the prefix```', 'title': '<:J_:863313855286607932><:E_:863313854150606848><:S:863313855061164062><:T:863313855399329812><:E_:863313854150606848><:R_:863313855119360022>'}"
+                "{'fields': [{'value': '>  <:chatbot:872473402693259324> **ChatBot** `(3)`\\n>  <:the_world:872473402638762025> **Countries** `(4)`\\n>  <:cryptocurrency:872473402764570624> **Cryptocurrency** `(3)`\\n>  <:1181180716_clipboardnotepaperdoc:925222917946605629> **Docs** `(7)`\\n>  <:Feedback:863075610851147777> **Feedback** `(4)`\\n>  <:Games:863075611329167380> **Games** `(7)`\\n>  <:Images:863075611277656124> **Images** `(26)`\\n>  <:Levels:863075611182628895> **Levels** `(5)`\\n>  <:Misc:863075610979729409> **Misc** `(15)`\\n>  <:Music:863075611320647719> **Music** `(13)`\\n>  <:Snipe:863075611269791794> **Snipe** `(4)`\\n>  <:urbandictionary:924074967673503796> **UrbanDictionary** `(2)`\\n\\u200b', 'name': '<:menus:870781340746932225> **Categories:**\\n\\u200b', 'inline': True}, {'value': '>  <:Config:863075611169259550> **Config** `(12)`\\n>  <:criminalemojivectoriconsimple260:924411072729985046> **Crime** `(6)`\\n>  <:game_night:872473402840076288> **DiscordTogether** `(11)`\\n>  <:Economy:863075610913800233> **Economy** `(17)`\\n>  <:Fun:863075609781075968> **Fun** `(15)`\\n>  <:JesterJokes:873327129016811528> **JesterJokes** `(10)`\\n>  <:Jesterinfo:863075610048987166> **JesterInfo** `(17)`\\n>  <:Love:863075611374125056> **Love** `(6)`\\n>  <:Mod:863075610784301068> **Mod** `(22)`\\n>  <:random:924074967405051965> **Random** `(12)`\\n>  <:emojitrivia185:924152372001910834> **Trivia** `(2)`\\n>  <:Utils:863075611161788478> **Utils** `(14)`', 'name': '\\u200b\\n\\u200b', 'inline': True}, {'value': '**> [Official server](https://disnake.gg/2654CuU3ZU) \u2502 [Bot invite](https://disnake.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) \u2502 [Website](https://sites.google.com/view/jesterbot) \u2502 [Vote for me!](https://top.gg/bot/828363172717133874/vote)**', 'name': '<:links:870781340700782612> **Links:**', 'inline': False}], 'timestamp': '2021-12-28T22:38:12.546000+00:00', 'type': 'rich', 'description': '```ml\\n[] - Required Argument | <> - Optional Argument``````diff\\n+ Use the dropbar to navigate through Categories``````diff\\n+ Use -help prefix for info about the prefix```', 'title': '<:J_:863313855286607932><:E_:863313854150606848><:S:863313855061164062><:T:863313855399329812><:E_:863313854150606848><:R_:863313855119360022>'}",
+                "{'footer': {'text': '00:17 \u2022 Page: 0 / 1'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/tfFjr-EUXlkAPpFkxcCr31Wl8YjjUfCDidekQ5kt0JE/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/298043305927639041/d43481007d415a84a02119b57245abf0.png', 'name': 'error', 'icon_url': 'https://cdn.discordapp.com/avatars/298043305927639041/d43481007d415a84a02119b57245abf0.png?size=1024'}, 'color': 3553599, 'type': 'rich', 'description': '```yaml\\nTraceback (most recent call last):\\n  File \"C:\\\\Users\\\\caede\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\common_bot_base.py\", line 418, in _load_from_module_spec\\n    spec.loader.exec_module(lib)  # type: ignore\\n  File \"<frozen importlib._bootstrap_external>\", line 846, in exec_module\\n  File \"<frozen importlib._bootstrap_external>\", line 983, in get_code\\n  File \"<frozen importlib._bootstrap_external>\", line 913, in source_to_code\\n  File \"<frozen importlib._bootstrap>\", line 228, in _call_with_frames_removed\\n  File \"c:\\\\Users\\\\caede\\\\Desktop\\\\JesterBot\\\\cogs\\\\Docs.py\", line 131\\n    description=ZEN_OF_PYTHON,\\n    ^\\nSyntaxError: invalid syntax\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \"C:\\\\Users\\\\caede\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\core.py\", line 176, in wrapped\\n    ret = await coro(*args, **kwargs)\\n  File \"c:\\\\Users\\\\caede\\\\Desktop\\\\JesterBot\\\\cogs\\\\Staff.py\", line 89, in reload\\n    self.bot.reload_extension(cog)\\n  File \"C:\\\\Users\\\\caede\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\common_bot_base.py\", line 584, in reload_extension\\n    self.load_extension(name)\\n  File \"C:\\\\Users\\\\caede\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\common_bot_base.py\", line 490, in load_extension\\n    self._load_from_module_spec(spec, name)\\n  File \"C:\\\\Users\\\\caede\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\common_bot_base.py\", line 421, in _load_from_module_spec\\n    raise errors.ExtensionFailed(key, e) from e\\ndisnake.ext.commands.errors.ExtensionFailed: Extension \\'cogs.Docs\\' raised an error: SyntaxError: invalid syntax (Docs.py, line 131)\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \"C:\\\\Users\\\\caede\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\bot_base.py\", line ```'}",
+                "-r"
             ],
             "author": [
                 "Caeden",
                 "[j.] JesterBot",
                 "Caeden",
-                "[j.] JesterBot"
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "Caeden"
             ],
             "id": [
                 298043305927639041,
                 828363172717133874,
                 298043305927639041,
-                828363172717133874
+                828363172717133874,
+                828363172717133874,
+                298043305927639041
             ],
             "time": [
                 "2021-12-25 00:02:23.875000+00:00",
                 "2021-12-25 00:02:24.176000+00:00",
                 "2021-12-28 22:38:12.546000+00:00",
-                "2021-12-28 22:38:12.848000+00:00"
+                "2021-12-28 22:38:12.848000+00:00",
+                "2021-12-29 00:17:18.972000+00:00",
+                "2021-12-29 00:17:17.319000+00:00"
             ]
         }
     },
@@ -2575,7 +2599,19 @@
                 "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was C -- ++ \\n\\nNo one got it right!\\n[Leaderboard:] \\n                   - Caeden: [4]\\n                   - xxJonakAdiptaxx: [0]```'}",
                 "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- The answer was A -- ++ \\n\\nNo one got it right!\\n[Leaderboard:] \\n                   - Caeden: [4]\\n                   - xxJonakAdiptaxx: [0]```'}",
                 "{'color': 3553599, 'type': 'rich', 'title': 'What is the title of your suggestion? Type end at any point to stop and type title to remove the description'}",
-                "{'color': 3553599, 'type': 'rich', 'title': 'What is the description of your suggestion? Type end at any point to stop'}"
+                "{'color': 3553599, 'type': 'rich', 'title': 'What is the description of your suggestion? Type end at any point to stop'}",
+                "",
+                "",
+                "{'color': 15158332, 'type': 'rich', 'description': 'No documentation found for the requested symbol.', 'title': 'NEGATORY.'}",
+                ":arrow-1:",
+                "```py\nIn[3579]: 1 f\"{len(ctx.guild.channels)} {len(ctx.guild.roles)} {ctx.guild.created_at} {len(ctx.guild.members)} {ctx.guild.region} {len([k for k in ctx.guild.members if 'booster' in [e.name for e in k.roles]}\"\nOut[3579]: Traceback (most recent call last):\n  File \"C:\\Users\\caede\\Desktop\\JesterBot\\core\\utils\\commands\\eval.py\", line 82, in run_eval\n    exec(\n  File \"<string>\", line 2\n    return f\"{len(ctx.guild.channels)} {len(ctx.guild.roles)} {ctx.guild.created_at} {len(ctx.guild.members)} {ctx.guild.region} {len([k for k in ctx.guild.members if 'booster' in [e.name for e in k.roles]}\"\n                                                                                                                                                                                                               ^\nSyntaxError: f-string: closing parenthesis '}' does not match opening parenthesis '['\n\n```",
+                "-e1 f\u201c{len(ctx.guild.channels)} {len(ctx.guild.roles)} {ctx.guild.created_at} {len(ctx.guild.members)} {ctx.guild.region} {len([k for k in ctx.guild.members if \u2018booster\u2019 in [e.name for e in k.roles]}\u201d",
+                "```py\nIn[3580]: 1 f\"{len(ctx.guild.channels)} {len(ctx.guild.roles)} {ctx.guild.created_at} {len(ctx.guild.members)} {ctx.guild.region} {len([k for k in ctx.guild.members if 'booster' in [e.name for e in k.roles]]}\"\nOut[3580]: Traceback (most recent call last):\n  File \"C:\\Users\\caede\\Desktop\\JesterBot\\core\\utils\\commands\\eval.py\", line 82, in run_eval\n    exec(\n  File \"<string>\", line 2\n    return f\"{len(ctx.guild.channels)} {len(ctx.guild.roles)} {ctx.guild.created_at} {len(ctx.guild.members)} {ctx.guild.region} {len([k for k in ctx.guild.members if 'booster' in [e.name for e in k.roles]]}\"\n                                                                                                                                                                                                                ^\nSyntaxError: f-string: closing parenthesis '}' does not match opening parenthesis '('\n\n```",
+                "-e1 f\u201c{len(ctx.guild.channels)} {len(ctx.guild.roles)} {ctx.guild.created_at} {len(ctx.guild.members)} {ctx.guild.region} {len([k for k in ctx.guild.members if \u2018booster\u2019 in [e.name for e in k.roles]])}\u201d",
+                "```py\nIn[3581]: 1 f\"{len(ctx.guild.channels)} {len(ctx.guild.roles)} {ctx.guild.created_at} {len(ctx.guild.members)} {ctx.guild.region} {len([k for k in ctx.guild.members if 'Booster' in [e.name for e in k.roles]])}\"\nOut[3581]: 91 64 2021-01-01 21:51:21.064000+00:00 2507 deprecated 0\n\n```",
+                "```py\nIn[3582]: 1 f\"{len(ctx.guild.channels)} {len(ctx.guild.roles)} {ctx.guild.created_at} {len(ctx.guild.members)} {ctx.guild.region} {len([k for k in ctx.guild.members if 'Booster' in [e.name for e in k.roles]]}\"\nOut[3582]: Traceback (most recent call last):\n  File \"C:\\Users\\caede\\Desktop\\JesterBot\\core\\utils\\commands\\eval.py\", line 82, in run_eval\n    exec(\n  File \"<string>\", line 2\n    return f\"{len(ctx.guild.channels)} {len(ctx.guild.roles)} {ctx.guild.created_at} {len(ctx.guild.members)} {ctx.guild.region} {len([k for k in ctx.guild.members if 'Booster' in [e.name for e in k.roles]]}\"\n                                                                                                                                                                                                                ^\nSyntaxError: f-string: closing parenthesis '}' does not match opening parenthesis '('\n\n```",
+                "-e1 f\u201c{len(ctx.guild.channels)} {len(ctx.guild.roles)} {ctx.guild.created_at} {len(ctx.guild.members)} {ctx.guild.region} {len([k for k in ctx.guild.members if \u2018Booster\u2019 in [e.name for e in k.roles]]}\u201d",
+                "```py\nIn[3584]: 1 len([k for k in ctx.guild.channels if isinstance(k, disnake.TextChannel])\nOut[3584]: Traceback (most recent call last):\n  File \"C:\\Users\\caede\\Desktop\\JesterBot\\core\\utils\\commands\\eval.py\", line 82, in run_eval\n    exec(\n  File \"<string>\", line 2\n    return len([k for k in ctx.guild.channels if isinstance(k, disnake.TextChannel])\n                                                                                  ^\nSyntaxError: closing parenthesis ']' does not match opening parenthesis '('\n\n```"
             ],
             "author": [
                 "Assistant",
@@ -2639,6 +2675,18 @@
                 "[j.] JesterBot",
                 "[j.] JesterBot",
                 "[j.] JesterBot",
+                "[j.] JesterBot",
+                "YAGPDB.xyz",
+                "YAGPDB.xyz",
+                "[j.] JesterBot",
+                "xxJonakAdiptaxx",
+                "[j.] JesterBot",
+                "Caeden",
+                "[j.] JesterBot",
+                "Caeden",
+                "Caeden",
+                "[j.] JesterBot",
+                "Caeden",
                 "[j.] JesterBot"
             ],
             "id": [
@@ -2703,6 +2751,18 @@
                 828363172717133874,
                 828363172717133874,
                 828363172717133874,
+                828363172717133874,
+                204255221017214977,
+                204255221017214977,
+                828363172717133874,
+                707207079936524330,
+                828363172717133874,
+                298043305927639041,
+                828363172717133874,
+                298043305927639041,
+                298043305927639041,
+                828363172717133874,
+                298043305927639041,
                 828363172717133874
             ],
             "time": [
@@ -2767,7 +2827,19 @@
                 "2021-12-27 05:17:07.942000+00:00",
                 "2021-12-27 05:17:38.873000+00:00",
                 "2021-12-28 15:32:05.229000+00:00",
-                "2021-12-28 15:32:21.457000+00:00"
+                "2021-12-28 15:32:21.457000+00:00",
+                "2021-12-29 03:15:26.419000+00:00",
+                "2021-12-29 04:03:17.398000+00:00",
+                "2021-12-29 04:06:00.897000+00:00",
+                "2021-12-29 13:28:47.510000+00:00",
+                "2021-12-29 14:35:42.718000+00:00",
+                "2021-12-29 14:35:42.473000+00:00",
+                "2021-12-29 14:36:03.187000+00:00",
+                "2021-12-29 14:36:34.325000+00:00",
+                "2021-12-29 15:15:58.213000+00:00",
+                "2021-12-29 15:16:15.211000+00:00",
+                "2021-12-29 15:16:14.875000+00:00",
+                "2021-12-29 15:22:57.266000+00:00"
             ]
         },
         "871145725956878356": {
@@ -3421,7 +3493,8 @@
                 "{'color': 14687260, 'type': 'rich', 'description': '<:kakachi_error:873906184678158386> No message was deleted in this channel!'}",
                 "()define irdc",
                 "{'footer': {'text': 'Thanks for inviting me! \ud83d\udc9e'}, 'color': 15845609, 'type': 'rich', 'description': \"**Keep adding me in more servers so that I'll be with you everytime. Have a good day! :)**\"}",
-                ""
+                "",
+                "\ud83d\ude0b"
             ],
             "author": [
                 "KakaChi",
@@ -3433,7 +3506,8 @@
                 "KakaChi",
                 "ToXic_ishxnx",
                 "KakaChi",
-                "entity_night"
+                "entity_night",
+                "Mynk"
             ],
             "id": [
                 788799817908092978,
@@ -3445,7 +3519,8 @@
                 788799817908092978,
                 757379755480711248,
                 788799817908092978,
-                728918313211789363
+                728918313211789363,
+                852238794660773959
             ],
             "time": [
                 "2021-11-18 12:57:46.152000",
@@ -3457,7 +3532,8 @@
                 "2021-11-21 13:16:53.259000",
                 "2021-11-21 18:08:40.267000",
                 "2021-11-26 18:04:27.612000",
-                "2021-12-01 04:19:11.977000"
+                "2021-12-01 04:19:11.977000",
+                "2021-12-29 09:32:30.408000+00:00"
             ]
         }
     },
@@ -3972,7 +4048,17 @@
                 "@\u200beveryone",
                 "suck my dick",
                 "even how I",
-                "Welcome back @FireTheFox, I removed your AFK"
+                "Welcome back @FireTheFox, I removed your AFK",
+                "Welcome back @\u20ac|D3RW0|F, I removed your AFK",
+                "<:hmmm:824117402760773642>",
+                "<a:wideputin:912698266276200458>",
+                ":Cookie:",
+                "?",
+                "I am gonna fap I think",
+                "Who is interested?",
+                "Welcome back @\u20ac|D3RW0|F, I removed your AFK",
+                "Welcome back @\u20ac|D3RW0|F, I removed your AFK",
+                "Welcome back @PR3TTY\u1e9e\u2022Y, I removed your AFK"
             ],
             "author": [
                 "stealthninja",
@@ -4001,6 +4087,16 @@
                 "stealthninja",
                 "FireTheFox",
                 "FireTheFox",
+                "Dyno",
+                "Dyno",
+                "FireTheFox",
+                "FireTheFox",
+                "FireTheFox",
+                "FireTheFox",
+                "FireTheFox",
+                "FireTheFox",
+                "Dyno",
+                "Dyno",
                 "Dyno"
             ],
             "id": [
@@ -4030,6 +4126,16 @@
                 521226389559443461,
                 795401550875983904,
                 795401550875983904,
+                155149108183695360,
+                155149108183695360,
+                795401550875983904,
+                795401550875983904,
+                795401550875983904,
+                795401550875983904,
+                795401550875983904,
+                795401550875983904,
+                155149108183695360,
+                155149108183695360,
                 155149108183695360
             ],
             "time": [
@@ -4059,7 +4165,17 @@
                 "2021-12-28 11:25:19.833000+00:00",
                 "2021-12-28 11:28:31.839000+00:00",
                 "2021-12-28 12:31:12.592000+00:00",
-                "2021-12-28 12:34:31.759000+00:00"
+                "2021-12-28 12:34:31.759000+00:00",
+                "2021-12-29 04:45:29.742000+00:00",
+                "2021-12-29 05:12:14.208000+00:00",
+                "2021-12-29 05:13:42.014000+00:00",
+                "2021-12-29 05:16:00.219000+00:00",
+                "2021-12-29 05:30:21.186000+00:00",
+                "2021-12-29 06:02:30.629000+00:00",
+                "2021-12-29 06:57:34.448000+00:00",
+                "2021-12-29 07:45:20.723000+00:00",
+                "2021-12-29 07:59:47.449000+00:00",
+                "2021-12-29 12:11:11.346000+00:00"
             ]
         },
         "907552229559504916": {
@@ -4516,6 +4632,70 @@
                 "2021-12-28 12:08:28.576000+00:00",
                 "2021-12-28 12:08:13.665000+00:00",
                 "2021-12-28 12:09:45.684000+00:00"
+            ]
+        },
+        "919987248391397446": {
+            "list": [
+                "Hi"
+            ],
+            "author": [
+                "Camila \ud83c\udf90"
+            ],
+            "id": [
+                803259156320223293
+            ],
+            "time": [
+                "2021-12-29 05:07:17.893000+00:00"
+            ]
+        },
+        "901847005087801425": {
+            "list": [
+                "-nodm: true",
+                "Done setting up! You can delete all the messages now (except for the menu itself)\n\nFlags:\n`-nodm: false` toggle with `rolemenu update -nodm 901874930826743868`: disables dm messages.\n`-rr: true` toggle with `rolemenu update -rr 901874930826743868`: removing reactions removes the role.\n\n*This message will be updated with new info throughout the setup.*",
+                "-rolemenu update 901874930826743868"
+            ],
+            "author": [
+                "stealthninja",
+                "YAGPDB.xyz",
+                "stealthninja"
+            ],
+            "id": [
+                521226389559443461,
+                204255221017214977,
+                521226389559443461
+            ],
+            "time": [
+                "2021-12-29 08:52:09.968000+00:00",
+                "2021-12-29 08:53:08.206000+00:00",
+                "2021-12-29 08:53:07.786000+00:00"
+            ]
+        },
+        "921721227901538355": {
+            "list": [
+                "Yea"
+            ],
+            "author": [
+                "sharkninja"
+            ],
+            "id": [
+                861910395311882271
+            ],
+            "time": [
+                "2021-12-29 09:56:47.835000+00:00"
+            ]
+        },
+        "920263992348381184": {
+            "list": [
+                "Welcome back @PR3TTY\u1e9e\u2022Y, I removed your AFK"
+            ],
+            "author": [
+                "Dyno"
+            ],
+            "id": [
+                155149108183695360
+            ],
+            "time": [
+                "2021-12-29 11:33:38.759000+00:00"
             ]
         }
     },
@@ -5080,7 +5260,9 @@
                 "@Average Sphinx Shill :white_check_mark: Your eval job has completed with return code 0.\n\n```\nhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\n... (truncated - too long)\n```\nFull output: https://paste.disnake.dev/?id=1640731155931310&language=none",
                 "@vic.",
                 "@vic.",
-                "@Average Sphinx Shill :white_check_mark: Your eval job has completed with return code 0.\n\n```\nhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\n```"
+                "@Average Sphinx Shill :white_check_mark: Your eval job has completed with return code 0.\n\n```\nhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\n```",
+                "{'footer': {'text': 'Page 4 / 4'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/4B0_3GrJrmxsRm1rD25OvhguO9eTNVbsbWwXL4u4DfM/https/cdn.discordapp.com/emojis/512367613339369475.png', 'name': 'Command Help', 'icon_url': 'https://cdn.discordapp.com/emojis/512367613339369475.png'}, 'type': 'rich', 'description': '**TimedCommands**\\n**`-timed <command>`**\\n*Time the command execution of a command.*\\n\\n**WikipediaSearch**\\n**`-wikipedia <search>`**\\n*Sends paginated top 10 results of Wikipedia search..*\\n\\n**Wolfram**\\n**`-wolfram <query>`**\\n*Requests all answers on a single image, sends an image of all related pods.*'}",
+                "-help"
             ],
             "author": [
                 "[j.] JesterBot",
@@ -5123,7 +5305,9 @@
                 "Monty Python",
                 "Victorsitou",
                 "Victorsitou",
-                "Monty Python"
+                "Monty Python",
+                "Monty Python",
+                "why?"
             ],
             "id": [
                 828363172717133874,
@@ -5166,7 +5350,9 @@
                 872576125384147005,
                 184040656761651200,
                 184040656761651200,
-                872576125384147005
+                872576125384147005,
+                872576125384147005,
+                538702509234061325
             ],
             "time": [
                 "2021-12-27 15:30:38.427000+00:00",
@@ -5209,7 +5395,9 @@
                 "2021-12-28 22:39:16.143000+00:00",
                 "2021-12-28 22:40:38.769000+00:00",
                 "2021-12-28 22:40:52.711000+00:00",
-                "2021-12-28 22:41:38.535000+00:00"
+                "2021-12-28 22:41:38.535000+00:00",
+                "2021-12-29 11:49:46.384000+00:00",
+                "2021-12-29 11:49:46.239000+00:00"
             ]
         },
         "883340752191651870": {
@@ -5237,7 +5425,32 @@
                 "moderate members",
                 "I have yet another question...",
                 "nvm",
-                "```py\nawait inter.send(content=None, embed=embed, view=self.PollView(whatever, poll_id))\n\noriginal_message_id = await inter.original_messaage().id\n\npolls.update_one({\"_id\": poll_id}, {\"$set\": {\"message_id\": original_message_id}})```"
+                "```py\nawait inter.send(content=None, embed=embed, view=self.PollView(whatever, poll_id))\n\noriginal_message_id = await inter.original_messaage().id\n\npolls.update_one({\"_id\": poll_id}, {\"$set\": {\"message_id\": original_message_id}})```",
+                "{'footer': {'text': 'Requested at:'}, 'color': 16381318, 'timestamp': '2021-12-29T01:42:52.884053+00:00', 'type': 'rich', 'description': '[**1. motor**](https://pypi.org/project/motor/) (2.5.1)\\nNon-blocking MongoDB driver for Tornado or asyncio\\n\\n[**2. motor-orm**](https://pypi.org/project/motor-orm/) (0.5)\\nNone\\n\\n[**3. motor-bundle**](https://pypi.org/project/motor-bundle/) (2.0.0)\\nNone\\n\\n[**4. turbo_motor**](https://pypi.org/project/turbo-motor/) (0.0.3)\\nTurbo motor plugin\\n\\n[**5. Motor-ODM**](https://pypi.org/project/motor-odm/) (0.1.dev0)\\nA MongoDB ODM based on Motor and Pydantic.\\n\\n[**6. Quart-Motor**](https://pypi.org/project/quart-motor/) (2.4.4)\\nMotor support for Quart applications\\n\\n[**7. mongomock-motor**](https://pypi.org/project/mongomock-motor/) (0.0.2)\\nLibrary for mocking AsyncIOMotorClient built on top of mongomock.\\n\\n[**8. mPython-motor**](https://pypi.org/project/mpython-motor/) (0.0.3)\\nMotor control by i2c communication for mPython library\\n\\n[**9. muffin-motor**](https://pypi.org/project/muffin-motor/) (0.3.0)\\nNone\\n\\n[**10. plico-motor**](https://pypi.org/project/plico-motor/) (0.0.3)\\nmotor controller with PLICO\\n\\n[**11. sanic-motor**](https://pypi.org/project/sanic-motor/) (0.6.0)\\nSimple Motor wrapper for sanic\\n\\n[**12. ex-motor**](https://pypi.org/project/ex-motor/) (0.5)\\nNon-blocking MongoDB driver for Tornado or asyncio\\n\\n[**13. pytest-motor**](https://pypi.org/project/pytest-motor/) (0.3.0)\\nA pytest plugin for motor, the non-blocking MongoDB driver.\\n\\n[**14. ruia-motor**](https://pypi.org/project/ruia-motor/) (0.0.4)\\nruia_motor - a Ruia plugin that uses the motor to store data\\n\\n[**15. pykeigan-motor**](https://pypi.org/project/pykeigan-motor/) (2.3.1)\\nPython Library for Keigan Motors (v2)\\n\\n*Only showing the top 15 results.*', 'url': 'https://pypi.org/search/?q=motor', 'title': 'PYPI Package Search: motor'}",
+                "is there a way to make views based",
+                "Hey @Average Sphinx Shill!",
+                "import disnake\n\nfor i in range(4):\n  do_thing('but no quotes')\n'lol'\nprint('h.')",
+                "im broken",
+                "@Average Sphinx Shill :white_check_mark: Your eval job has completed with return code 0.\n\n```\nhuh\n```",
+                "> fuck me \nno.",
+                "oof",
+                "oh wrong quote again",
+                "Hey @Jaymart!",
+                "Hey @Average Sphinx Shill!",
+                "Hey @Average Sphinx Shill!",
+                "ctx.channel",
+                "@slash_command()\n    @has_permissions(administrator=True, manage_messages=True, manage_roles=True)\n    @cooldown(1, 0, BucketType.guild)\n    async def clear(self, ctx, amount=100):\n        await ctx.channel.purge(limit=amount)",
+                "@slash_command()\n    @has_permissions(administrator=True, manage_messages=True, manage_roles=True)\n    @cooldown(1, 0, BucketType.guild)\n    async def clear(self, ctx, amount=100):\n        await ctx.channel.purge(limit=amount)",
+                "Hey @Average Headache Provider!",
+                "HRIH?",
+                "-ieval exit()",
+                "<:dsharpplus:379389994097180675>  \ud83d\udc40",
+                "{'type': 'rich', 'description': 'The websocket gateway the client is currently connected to. Could be `None`.', 'url': 'https://docs.disnake.dev/en/latest/api.html#disnake.Client.ws', 'title': 'disnake.Client.ws'}",
+                "is it possible to get guild icon url?",
+                "Hey @Jaymart!",
+                "",
+                "what is error ? \n Callback for help2 command is missing \"ctx\" parameter.",
+                "Suppose I have three buttons:\nTest 1\nTest 2\nTest 3\n\nI want to disable test 1 button and change its color when clicking on test 2"
             ],
             "author": [
                 "BITTU5134",
@@ -5245,7 +5458,32 @@
                 "Invisible",
                 "Razgriz",
                 "ThatOneCalculator",
-                "ThatOneCalculator"
+                "ThatOneCalculator",
+                "Monty Python",
+                "4310V343k",
+                "Monty Python",
+                "arl",
+                "4310V343k",
+                "Monty Python",
+                "arl",
+                "Sharp Eyes",
+                "Sharp Eyes",
+                "Monty Python",
+                "Monty Python",
+                "Monty Python",
+                "ThatOneCalculator",
+                "arl",
+                "arl",
+                "Monty Python",
+                "KortaPo",
+                "arl",
+                "KortaPo",
+                "Monty Python",
+                "Jaymart",
+                "Monty Python",
+                "Jaymart",
+                "Master X",
+                "Master X"
             ],
             "id": [
                 818428347151024199,
@@ -5253,7 +5491,32 @@
                 719807591869317201,
                 250312821647081472,
                 454847501787463680,
-                454847501787463680
+                454847501787463680,
+                872576125384147005,
+                252065843888914432,
+                872576125384147005,
+                717983911824588862,
+                252065843888914432,
+                872576125384147005,
+                717983911824588862,
+                256133489454350345,
+                256133489454350345,
+                872576125384147005,
+                872576125384147005,
+                872576125384147005,
+                454847501787463680,
+                717983911824588862,
+                717983911824588862,
+                872576125384147005,
+                736820906604888096,
+                717983911824588862,
+                736820906604888096,
+                872576125384147005,
+                485183782328991745,
+                872576125384147005,
+                485183782328991745,
+                785604125458432050,
+                785604125458432050
             ],
             "time": [
                 "2021-12-28 07:17:08.034000+00:00",
@@ -5261,21 +5524,82 @@
                 "2021-12-28 11:05:26.115000+00:00",
                 "2021-12-28 19:48:09.635000+00:00",
                 "2021-12-28 22:43:19.465000+00:00",
-                "2021-12-28 23:15:05.416000+00:00"
+                "2021-12-28 23:15:05.416000+00:00",
+                "2021-12-29 01:42:52.699000+00:00",
+                "2021-12-29 02:27:22.234000+00:00",
+                "2021-12-29 03:44:49.776000+00:00",
+                "2021-12-29 03:44:49.673000+00:00",
+                "2021-12-29 03:57:45.610000+00:00",
+                "2021-12-29 04:24:57.131000+00:00",
+                "2021-12-29 04:34:07.092000+00:00",
+                "2021-12-29 04:37:19.603000+00:00",
+                "2021-12-29 04:37:27.600000+00:00",
+                "2021-12-29 04:47:32.955000+00:00",
+                "2021-12-29 04:51:25.585000+00:00",
+                "2021-12-29 04:51:26.241000+00:00",
+                "2021-12-29 04:49:32.114000+00:00",
+                "2021-12-29 04:51:25.859000+00:00",
+                "2021-12-29 04:51:25.418000+00:00",
+                "2021-12-29 04:55:10.515000+00:00",
+                "2021-12-29 05:00:02.287000+00:00",
+                "2021-12-29 05:01:43.720000+00:00",
+                "2021-12-29 05:15:28.544000+00:00",
+                "2021-12-29 06:28:00.280000+00:00",
+                "2021-12-29 07:47:11.439000+00:00",
+                "2021-12-29 08:17:15.665000+00:00",
+                "2021-12-29 08:18:04.767000+00:00",
+                "2021-12-29 12:09:23.205000+00:00",
+                "2021-12-29 12:56:45.001000+00:00"
             ]
         },
         "808032919632347156": {
             "list": [
-                "whats the new permission called"
+                "whats the new permission called",
+                "{'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/4B0_3GrJrmxsRm1rD25OvhguO9eTNVbsbWwXL4u4DfM/https/cdn.discordapp.com/emojis/512367613339369475.png', 'name': 'Command Help', 'icon_url': 'https://cdn.discordapp.com/emojis/512367613339369475.png'}, 'type': 'rich', 'description': '**```-github issue <numbers> [repository] [user]```**\\n**Can also use:** `github  pr`, `github  pull`\\n\\n*Command to retrieve issue(s) from a GitHub repository.*\\n\\n**Subcommands:**\\n**`list <query>`**\\n*List issues on the default repo matching the provided query.*'}",
+                "-gh pr",
+                "-gb pr 234",
+                "TBH I think that voice recorder should be an extension/plugin",
+                "nah i just wanted to ping myself lol",
+                "by default, cmds should be able to be used by everyone right? unless a permission is set for that cmd",
+                "@Average Soccer Fanatic",
+                "@Average Soccer Fanatic",
+                "{'type': 'rich', 'description': '```py\\n\\nclass disnake.Embed(*, colour=Embed.Empty, color=Embed.Empty, title=Embed.Empty, type=\\'rich\\', url=Embed.Empty, description=Embed.Empty, timestamp=None)```\\nRepresents a Discord embed.\\n\\nlen(x) Returns the total size of the embed. Useful for checking if it\u2019s within the 6000 character limit.\\n\\nbool(b) Returns whether the embed has any data set.\\n\\nNew in version 2.0.\\n\\nCertain properties return an `EmbedProxy`, a type that acts similar to a regular [`dict`](https://docs.python.org/3/library/stdtypes.html#dict \"(in Python v3.10)\") except using dotted access, e.g. `embed.author.icon_url`. If the attribute is invalid or empty, then a special sentinel value is returned, [`Embed.Empty`](https://docs.disnake.dev/en/latest/api.html#disnake.Embed.Empty \"disnake.Embed.Empty\").\\n\\nFor ease of use, all parameters that expect a [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") are implicitly casted to [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") for you.', 'url': 'https://docs.disnake.dev/en/latest/api.html#disnake.Embed', 'title': 'disnake.embeds.Embed'}"
             ],
             "author": [
-                "Invisible"
+                "Invisible",
+                "Monty Python",
+                "arl",
+                "Victorsitou",
+                "arl",
+                "arl",
+                "Jaymart",
+                "arl",
+                "arl",
+                "Monty Python"
             ],
             "id": [
-                719807591869317201
+                719807591869317201,
+                872576125384147005,
+                717983911824588862,
+                184040656761651200,
+                717983911824588862,
+                717983911824588862,
+                485183782328991745,
+                717983911824588862,
+                717983911824588862,
+                872576125384147005
             ],
             "time": [
-                "2021-12-28 11:05:11.468000+00:00"
+                "2021-12-28 11:05:11.468000+00:00",
+                "2021-12-29 04:21:35.465000+00:00",
+                "2021-12-29 04:21:35.295000+00:00",
+                "2021-12-29 04:21:54.629000+00:00",
+                "2021-12-29 04:28:57.805000+00:00",
+                "2021-12-29 06:12:27.155000+00:00",
+                "2021-12-29 07:05:40.008000+00:00",
+                "2021-12-29 07:41:11.234000+00:00",
+                "2021-12-29 07:41:15.190000+00:00",
+                "2021-12-29 08:31:23.813000+00:00"
             ]
         },
         "847833561691717704": {
@@ -5302,6 +5626,90 @@
                 "2021-12-28 21:45:30.065000+00:00",
                 "2021-12-28 21:45:30.900000+00:00",
                 "2021-12-28 21:45:33.634000+00:00"
+            ]
+        },
+        "808035299094691882": {
+            "list": [
+                "try:\n    if not instructions:\n        log.info(\"User's incorrect code block was fixed. Removing instructions message.\")\n        await bot_message.delete()\n        del self.codeblock_message_ids[payload.message_id]\n    else:\n        log.info(\"Message edited but still has invalid code blocks; editing instructions.\")\n        await bot_message.edit(embed=self.create_embed(instructions))",
+                "{'type': 'rich', 'description': '[`disnake.ApplicationCommandPermissions`](https://docs.disnake.dev/en/latest/api.html)\\n[`disnake.ApplicationCommandPermissions.id`](https://docs.disnake.dev/en/latest/api.html)\\n[`disnake.ApplicationCommandPermissions.permission`](https://docs.disnake.dev/en/latest/api.html)\\n[`disnake.ApplicationCommandPermissions.type`](https://docs.disnake.dev/en/latest/api.html)', 'title': 'Results for disnake.ApplicationCommandPermissions'}"
+            ],
+            "author": [
+                "arl",
+                "Monty Python"
+            ],
+            "id": [
+                717983911824588862,
+                872576125384147005
+            ],
+            "time": [
+                "2021-12-29 03:15:27.452000+00:00",
+                "2021-12-29 11:47:32.155000+00:00"
+            ]
+        },
+        "828758532467195935": {
+            "list": [
+                "{'author': {'url': 'https://github.com/EQUENOS', 'proxy_icon_url': 'https://images-ext-2.discordapp.net/external/CW0P3DlyqXP8zcDaRFrAC4IvLI1c0fPPhAAinYJ5F3k/%3Fv%3D4/https/avatars.githubusercontent.com/u/50338932', 'name': 'EQUENOS', 'icon_url': 'https://avatars.githubusercontent.com/u/50338932?v=4'}, 'color': 12576191, 'type': 'rich', 'description': 'Oh wait you mentioned it in the description', 'url': 'https://github.com/DisnakeDev/disnake/pull/238#issuecomment-1002638406', 'title': '[DisnakeDev/disnake] New comment on pull request #238: feat\\\\(MessageFlags\\\\): Add \\\\`failed\\\\_to\\\\_mention\\\\_roles\\\\` flag \\\\(1 << 8\\\\)\\\\.'}",
+                "{'author': {'url': 'https://github.com/EQUENOS', 'proxy_icon_url': 'https://images-ext-2.discordapp.net/external/CW0P3DlyqXP8zcDaRFrAC4IvLI1c0fPPhAAinYJ5F3k/%3Fv%3D4/https/avatars.githubusercontent.com/u/50338932', 'name': 'EQUENOS', 'icon_url': 'https://avatars.githubusercontent.com/u/50338932?v=4'}, 'color': 12576191, 'type': 'rich', 'description': \"As far as I know, the original name is `FAILED_TO_MENTION_SOME_ROLES_IN_THREAD` which is kind of ridiculous but I don't think we can shorten it without making it misleading\", 'url': 'https://github.com/DisnakeDev/disnake/pull/238#issuecomment-1002637960', 'title': '[DisnakeDev/disnake] New comment on pull request #238: feat\\\\(MessageFlags\\\\): Add \\\\`failed\\\\_to\\\\_mention\\\\_roles\\\\` flag \\\\(1 << 8\\\\)\\\\.'}"
+            ],
+            "author": [
+                "GitHub",
+                "GitHub"
+            ],
+            "id": [
+                881977501415538730,
+                881977501415538730
+            ],
+            "time": [
+                "2021-12-29 15:05:33.983000+00:00",
+                "2021-12-29 15:04:36.021000+00:00"
+            ]
+        }
+    },
+    "874559276666998805": {
+        "892657819545903124": {
+            "list": [
+                "{'author': {'proxy_icon_url': 'https://images-ext-2.discordapp.net/external/IHeRwHz4QOhnYtmMEMFi1oqKL2aMEu0PfskW3uCs2w0/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/865551884861702165/69101c8fa746a66dd968cc22b57fddce.png', 'name': 'Mod', 'icon_url': 'https://cdn.discordapp.com/avatars/865551884861702165/69101c8fa746a66dd968cc22b57fddce.png?size=1024'}, 'fields': [{'value': '- `delete`\\n- `delete_invite`\\n- `ban`\\n- `addrole`\\n- `deletemessages`\\n- `kick`\\n- `permmute`\\n- `unmute`\\n- `reactmute`\\n- `showroles`\\n- `position`', 'name': '\\u200b', 'inline': True}, {'value': '- `change_nick`\\n- `purge`\\n- `unban`\\n- `move_to`\\n- `server_prefix`\\n- `permreactmute`\\n- `unreactmute`\\n- `mute`\\n- `give_roles`\\n- `showrolepermid`\\n- `timeout`', 'name': '\\u200b', 'inline': True}], 'type': 'rich', 'description': 'A moderators dream, useful commands that no other bots offer - God in the palm of your hand'}",
+                "The chatting from <@\u200b865551884861702165> triggers Menace in the Blizzard event!",
+                "{'color': 3553599, 'type': 'rich', 'description': 'I have a joke about trickle down economics, but 99% of you will never get it.', 'title': 'Joke'}",
+                "The chatting from <@\u200b865551884861702165> triggers Menace in the Blizzard event!",
+                "{'image': {'width': 800, 'url': 'https://cdn.discordapp.com/attachments/900080953412685884/903229176528658482/greenchScene3.gif', 'proxy_url': 'https://media.discordapp.net/attachments/900080953412685884/903229176528658482/greenchScene3.gif', 'height': 600}, 'thumbnail': {'width': 160, 'url': 'https://cdn.discordapp.com/attachments/736163626934861845/782126693032263680/greench_eager_flipped.gif', 'proxy_url': 'https://media.discordapp.net/attachments/736163626934861845/782126693032263680/greench_eager_flipped.gif', 'height': 240}, 'color': 14869218, 'type': 'rich', 'description': 'The greench seems to have lost its way, and set down its stolen goodies as it tries to orientate itself.\\n\\n        Grab some goodies before it leaves!', 'title': 'Bonus! Greench Appearance'}"
+            ],
+            "author": [
+                "[j.] JesterBot",
+                "Tatsu",
+                "[j.] JesterBot",
+                "Tatsu",
+                "Tatsu"
+            ],
+            "id": [
+                828363172717133874,
+                172002275412279296,
+                828363172717133874,
+                172002275412279296,
+                172002275412279296
+            ],
+            "time": [
+                "2021-12-29 03:51:18.145000+00:00",
+                "2021-12-29 03:51:18.116000+00:00",
+                "2021-12-29 07:30:20.229000+00:00",
+                "2021-12-29 07:30:00.524000+00:00",
+                "2021-12-29 07:45:00.989000+00:00"
+            ]
+        }
+    },
+    "922594426696659024": {
+        "922594426696659027": {
+            "list": [
+                ":nqn-nqn:"
+            ],
+            "author": [
+                "Code00"
+            ],
+            "id": [
+                907725739544162305
+            ],
+            "time": [
+                "2021-12-29 14:05:11.429000+00:00"
             ]
         }
     }

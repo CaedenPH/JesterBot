@@ -298,8 +298,7 @@ class Images(commands.Cog):
         await ctx.send(file=disnake.File('./images/invert.png')) 
             
     @commands.command(description="""Makes a bright filtered avatar""")
-    async def colorview(self, ctx: Context, hexcolor):
-
+    async def viewcolor(self, ctx: Context, hexcolor):
         async with ctx.typing():
             response = requests.get(f"https://some-random-api.ml/canvas/colorviewer?hex={hexcolor}")
             file = open('./images/color.png', 'wb')
