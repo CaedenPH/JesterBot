@@ -288,7 +288,7 @@ class Misc(commands.Cog):
     
         embed.add_field(name="`4` Hugs", value="You'll get free hugs <3", inline=False)
     
-        embed.set_image(url = "https://support.disnake.com/hc/article_attachments/360029033111/nitro_tank_gif.gif")
+        embed.set_image(url = "https://support.discord.com/hc/article_attachments/360029033111/nitro_tank_gif.gif")
         await ctx.send(embed=embed)
 
     @commands.command()

@@ -15,7 +15,7 @@ class JesterInfo(commands.Cog):
         self.bot = bot
     @commands.command()
     async def links(self, ctx: Context):
-        links = "[Official server](https://disnake.gg/2654CuU3ZU) │ [Bot invite](https://disnake.com/oauth2/authorize?self.bot_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot) │ [Vote for me!](https://top.gg/bot/828363172717133874/vote)"
+        links = "[Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.bot_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot) │ [Vote for me!](https://top.gg/bot/828363172717133874/vote)"
         await thebed(ctx, '', links)
     @commands.command()
     async def uptime(self, ctx: Context):
@@ -101,7 +101,7 @@ class JesterInfo(commands.Cog):
 
     @commands.command(aliases=['binv', 'botinv'])
     async def invite(self, ctx: Context):
-        embed = disnake.Embed(title=f"I am currently in {len(self.bot.guilds)} servers!", description="[Official server](https://disnake.gg/2654CuU3ZU) │ [Invite me!](https://disnake.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591)", colour = thecolor())
+        embed = disnake.Embed(title=f"I am currently in {len(self.bot.guilds)} servers!", description="[Official server](https://discord.gg/2654CuU3ZU) │ [Invite me!](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591)", colour = thecolor())
         embed.set_author(icon_url=ctx.author.avatar.url, name="Invite")
 
         await ctx.send(embed=embed)

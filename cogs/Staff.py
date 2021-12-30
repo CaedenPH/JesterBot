@@ -1,5 +1,6 @@
 import disnake, os, requests, json, asyncio
 from disnake.ext import commands 
+
 import shutil   
 
 from core.utils.utils import thecolor, Json, thebed
@@ -110,8 +111,6 @@ class Staff(commands.Cog):
 
     @commands.command(hidden=True)
     async def chelp(self, ctx: Context):
-        
-          
         with open('./dicts/Cmds.json', 'r+') as e:
             j = 0
             data = json.load(e)

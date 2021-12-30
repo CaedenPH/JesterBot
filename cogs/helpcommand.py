@@ -9,7 +9,7 @@ from core.utils.view import DropdownView
 from core.Context import Context
 
 class HelpUtils:
-    links = "> [Official server](https://disnake.gg/2654CuU3ZU) │ [Bot invite](https://disnake.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot) │ [Vote for me!](https://top.gg/bot/828363172717133874/vote)"
+    links = "> [Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot) │ [Vote for me!](https://top.gg/bot/828363172717133874/vote)"
 
     def __init__(self, bot):
         self.bot = bot
