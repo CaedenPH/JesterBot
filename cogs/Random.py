@@ -198,5 +198,42 @@ class Random(commands.Cog):
 
         await ctx.em(f"Your palette is `{', '.join(json)}`")
 
+    @commands.command()
+    async def snake(self, ctx: Context) -> None:
+        with open('./resources/snake/snake_facts.json', encoding='utf-8') as stream:
+            data = json.load(stream)
+
+        choice = random.choice(data)
+        await ctx.em(f"Snake fact: {choice['fact']}")
+    
+    @commands.command()
+    async def snake_name(self, ctx: Context):
+        with open('./resources/snake/snake_names.json', encoding='utf-8') as stream:
+            data = json.load(stream)
+
+        choice = random.choice(data)
+        await ctx.em(f"Snake name: `{choice['name']}` || Scientific: `{choice['scientific']}`") 
+
+    @commands.command(aliases=['star'])
+    async def celebrity(self, ctx: Context):
+        with open('./resources/celebrities.json', encoding='utf-8') as stream:
+            data = json.load(stream)
+
+        choice = random.choice(data)
+        await ctx.em(f"Random celebrity: `{choice}`")
+    
+    @commands.command()
+    async def food(self, ctx: Context):
+        with open('./resources/foods.json', encoding='utf-8') as stream:
+            data = json.load(stream)
+
+        choice = random.choice(data)
+        await ctx.em(f"Random food: `{choice}`")
+
+
+
+
+
+
 def setup(bot: commands.Bot) -> None:
     bot.add_cog(Random(bot))

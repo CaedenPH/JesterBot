@@ -501,6 +501,10 @@
                 "[j.] JesterBot",
                 "[j.] JesterBot",
                 "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
                 "[j.] JesterBot"
             ],
             "id": [
@@ -886,6 +890,10 @@
                 828363172717133874,
                 828363172717133874,
                 876946576038301736,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
+                828363172717133874,
                 828363172717133874,
                 828363172717133874,
                 828363172717133874,
@@ -1505,7 +1513,11 @@
                 "2021-12-30 00:16:57.600000+00:00",
                 "2021-12-30 00:16:57.600000+00:00",
                 "2021-12-30 00:16:57.600000+00:00",
-                "2021-12-30 00:16:57.600000+00:00"
+                "2021-12-30 00:16:57.600000+00:00",
+                "2021-12-30 00:40:42.801000+00:00",
+                "2021-12-30 00:41:58.799000+00:00",
+                "2021-12-30 00:43:05.968000+00:00",
+                "2021-12-30 00:44:16.870000+00:00"
             ],
             "after": [
                 "['[A Color Test That Can Tell Your Mental Age](https://www.youtube.com/watch?v=iVbopWyBR5Y)', '[A Simple Test Will Reveal Your Deepest Fear](https://www.youtube.com/watch?v=pyKmVy2TC2E)', '[10 Hardest Choices Ever (Personality Test)](https://www.youtube.com/watch?v=Kt8RupLIkBQ)', '[National SAT Practice Test Day 2021](https://www.youtube.com/watch?v=_lyyvZFiAjQ)', '[Learner Fails Driving Test In The FIRST 5 MINUTES](https://www.youtube.com/watch?v=QaE4jsE3Emg)', '[SNEAKY SCHOOL HACKS FOR A TEST! || Funny School DIYs And Tricks by 123 Go! Live](https://www.youtube.com/watch?v=h6oRraSOyos)', '[International Breakfast Sandwiches Taste Test](https://www.youtube.com/watch?v=-xofptVHF1A)', '[The Chemical Brothers - The Test (Official Music Video)](https://www.youtube.com/watch?v=yhS9LnDoo_w)', \"[What's Your True Spirit Animal? Personality Test](https://www.youtube.com/watch?v=-KGnRe1f2DA)\", \"[What's Your Hidden Superpower? | Personality Test](https://www.youtube.com/watch?v=BMRlr2DE0Dg)\"]",
@@ -2007,7 +2019,11 @@
                 "```yaml\n\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========````_ a _ _ _ n e`\nYou have 3 guesses left",
                 "```yaml\n\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========````_ a _ _ i n e`\nYou have 3 guesses left",
                 "```yaml\n\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========````_ a c _ i n e`\nYou have 3 guesses left",
-                "```yaml\n\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========````_ a c h i n e`\nYou have 3 guesses left"
+                "```yaml\n\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========````_ a c h i n e`\nYou have 3 guesses left",
+                "",
+                "",
+                "",
+                ""
             ],
             "before": [
                 "['[A Color Test That Can Tell Your Mental Age](https://www.youtube.com/watch?v=iVbopWyBR5Y)', '[A Simple Test Will Reveal Your Deepest Fear](https://www.youtube.com/watch?v=pyKmVy2TC2E)', '[10 Hardest Choices Ever (Personality Test)](https://www.youtube.com/watch?v=Kt8RupLIkBQ)', '[National SAT Practice Test Day 2021](https://www.youtube.com/watch?v=_lyyvZFiAjQ)', '[Learner Fails Driving Test In The FIRST 5 MINUTES](https://www.youtube.com/watch?v=QaE4jsE3Emg)', '[SNEAKY SCHOOL HACKS FOR A TEST! || Funny School DIYs And Tricks by 123 Go! Live](https://www.youtube.com/watch?v=h6oRraSOyos)', '[International Breakfast Sandwiches Taste Test](https://www.youtube.com/watch?v=-xofptVHF1A)', '[The Chemical Brothers - The Test (Official Music Video)](https://www.youtube.com/watch?v=yhS9LnDoo_w)', \"[What's Your True Spirit Animal? Personality Test](https://www.youtube.com/watch?v=-KGnRe1f2DA)\", \"[What's Your Hidden Superpower? | Personality Test](https://www.youtube.com/watch?v=BMRlr2DE0Dg)\"]",
@@ -2509,7 +2525,11 @@
                 "```yaml\n\n  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n=========````_ a _ _ _ n e`\nYou have 4 guesses left",
                 "```yaml\n\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========````_ a _ _ _ n e`\nYou have 3 guesses left",
                 "```yaml\n\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========````_ a _ _ i n e`\nYou have 3 guesses left",
-                "```yaml\n\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========````_ a c _ i n e`\nYou have 3 guesses left"
+                "```yaml\n\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========````_ a c _ i n e`\nYou have 3 guesses left",
+                "",
+                "",
+                "",
+                ""
             ]
         },
         "910925145160441856": {
@@ -9793,9 +9813,11 @@
                 "Dank Memer",
                 "Dank Memer",
                 "Dank Memer",
+                "Dank Memer",
                 "Dank Memer"
             ],
             "id": [
+                270904126974590976,
                 270904126974590976,
                 270904126974590976,
                 270904126974590976,
@@ -10077,7 +10099,8 @@
                 "2021-12-29 04:31:33.402000+00:00",
                 "2021-12-29 07:45:03.398000+00:00",
                 "2021-12-29 07:45:06.337000+00:00",
-                "2021-12-29 10:31:44.954000+00:00"
+                "2021-12-29 10:31:44.954000+00:00",
+                "2021-12-30 00:32:01.350000+00:00"
             ],
             "after": [
                 "",
@@ -10219,6 +10242,7 @@
                 "",
                 "",
                 "Guess you didn't want to search anywhere?",
+                "",
                 ""
             ],
             "before": [
@@ -10361,6 +10385,7 @@
                 "**Where do you want to search?**\n*Pick an option below to start searching that location!*",
                 "**What crime do you want to commit?**\n*Pick an option below to commit one!*",
                 "**Where do you want to search?**\n*Pick an option below to start searching that location!*",
+                "**What crime do you want to commit?**\n*Pick an option below to commit one!*",
                 "**What crime do you want to commit?**\n*Pick an option below to commit one!*"
             ]
         },
@@ -20321,7 +20346,8 @@
                 "HumbleLiars",
                 "HumbleLiars",
                 "HumbleLiars",
-                "\u2326\ud835\uddd4\ud835\ude02\ud835\uddf4\ud835\ude02\ud835\ude00\ud835\ude01\u275e"
+                "\u2326\ud835\uddd4\ud835\ude02\ud835\uddf4\ud835\ude02\ud835\ude00\ud835\ude01\u275e",
+                "OwentheGreat111"
             ],
             "id": [
                 809539149349650444,
@@ -20338,7 +20364,8 @@
                 349214586064601089,
                 349214586064601089,
                 349214586064601089,
-                699252934625591326
+                699252934625591326,
+                679579046673514535
             ],
             "time": [
                 "2021-11-20 11:02:04.119000",
@@ -20355,7 +20382,8 @@
                 "2021-12-02 23:17:14.621000",
                 "2021-12-25 19:20:05.880000+00:00",
                 "2021-12-25 19:21:07.661000+00:00",
-                "2021-12-25 19:22:42.052000+00:00"
+                "2021-12-25 19:22:42.052000+00:00",
+                "2021-12-30 00:26:28.456000+00:00"
             ],
             "after": [
                 "You got shining pearl?!?!!",
@@ -20372,7 +20400,8 @@
                 "https://youtu.be/E3uB1V5QZ9c",
                 "https://tenor.com/view/shivika-wedding-ishqbaaz-mangalsutra-marriage-gif-14640376",
                 "https://tenor.com/view/%E0%A4%B6%E0%A4%BE%E0%A4%A6%E0%A5%80-neel-keya-forbidden-love-arranged-marriage-gif-18646363",
-                "https://tenor.com/view/ren%C3%A9e-slater-phoebe-wedding-bride-gif-19865016"
+                "https://tenor.com/view/ren%C3%A9e-slater-phoebe-wedding-bride-gif-19865016",
+                "https://music.apple.com/us/album/smokin-in-the-boys-room/1242688849?i=1242688867"
             ],
             "before": [
                 "You got brilliant pearl?!?!!",
@@ -20389,7 +20418,8 @@
                 "https://youtu.be/E3uB1V5QZ9c",
                 "https://tenor.com/view/shivika-wedding-ishqbaaz-mangalsutra-marriage-gif-14640376",
                 "https://tenor.com/view/%E0%A4%B6%E0%A4%BE%E0%A4%A6%E0%A5%80-neel-keya-forbidden-love-arranged-marriage-gif-18646363",
-                "https://tenor.com/view/ren%C3%A9e-slater-phoebe-wedding-bride-gif-19865016"
+                "https://tenor.com/view/ren%C3%A9e-slater-phoebe-wedding-bride-gif-19865016",
+                "https://music.apple.com/us/album/smokin-in-the-boys-room/1242688849?i=1242688867"
             ]
         },
         "838036490968760340": {

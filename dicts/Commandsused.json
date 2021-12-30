@@ -27,7 +27,7 @@
         "score": 104
     },
     "help": {
-        "score": 2216
+        "score": 2219
     },
     "jsonfile": {
         "score": 19
@@ -363,7 +363,7 @@
         "score": 1
     },
     "reload": {
-        "score": 4768
+        "score": 4781
     },
     "pp": {
         "score": 142
@@ -501,7 +501,7 @@
         "score": 2
     },
     "fact": {
-        "score": 27
+        "score": 28
     },
     "hack": {
         "score": 188
@@ -1188,7 +1188,7 @@
         "score": 3
     },
     "how_many_commands": {
-        "score": 8
+        "score": 11
     },
     "docs": {
         "score": 21
@@ -1231,5 +1231,17 @@
     },
     "hangman": {
         "score": 66
+    },
+    "snake": {
+        "score": 3
+    },
+    "snake_name": {
+        "score": 1
+    },
+    "celebrity": {
+        "score": 2
+    },
+    "food": {
+        "score": 1
     }
 }

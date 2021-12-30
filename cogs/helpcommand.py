@@ -64,7 +64,7 @@ class HelpUtils:
                 inline=False,
             ).add_field(
                 name=" ❯❯ Description", 
-                value=f"`{Cmds(command.name).chelp}`" if Cmds(command.name).chelp else "`Currently no help!`", 
+                value=f"{Cmds(command.name).chelp}" if Cmds(command.name).chelp else "Currently no help!", 
                 inline=False,
             ).set_author(
                 name="Help", 

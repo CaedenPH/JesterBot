@@ -153,9 +153,9 @@ class JesterInfo(commands.Cog):
 
             await ctx.send(embed=embed)
 
-    @commands.command(aliases=['ammount_of_commands'])
+    @commands.command(aliases=['ammount_of_commands', 'hmc'])
     async def how_many_commands(self, ctx: Context):
-        await ctx.em(f"The bot has **{len([k for k in self.bot.commands if not k.hidden])}** commands")
+        await ctx.em(f"The bot has **{len([k for k in self.bot.commands if not k.hidden])}** available commands and **{len([k for k in self.bot.commands if k.hidden])}** hidden commands")
 
     @commands.command(aliases=['pin', 'pingy', 'ms', 'Latency'], description="Sends the ping of the bot")
     async def ping(self, ctx: Context):
