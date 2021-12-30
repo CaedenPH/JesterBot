@@ -2611,7 +2611,12 @@
                 "```py\nIn[3581]: 1 f\"{len(ctx.guild.channels)} {len(ctx.guild.roles)} {ctx.guild.created_at} {len(ctx.guild.members)} {ctx.guild.region} {len([k for k in ctx.guild.members if 'Booster' in [e.name for e in k.roles]])}\"\nOut[3581]: 91 64 2021-01-01 21:51:21.064000+00:00 2507 deprecated 0\n\n```",
                 "```py\nIn[3582]: 1 f\"{len(ctx.guild.channels)} {len(ctx.guild.roles)} {ctx.guild.created_at} {len(ctx.guild.members)} {ctx.guild.region} {len([k for k in ctx.guild.members if 'Booster' in [e.name for e in k.roles]]}\"\nOut[3582]: Traceback (most recent call last):\n  File \"C:\\Users\\caede\\Desktop\\JesterBot\\core\\utils\\commands\\eval.py\", line 82, in run_eval\n    exec(\n  File \"<string>\", line 2\n    return f\"{len(ctx.guild.channels)} {len(ctx.guild.roles)} {ctx.guild.created_at} {len(ctx.guild.members)} {ctx.guild.region} {len([k for k in ctx.guild.members if 'Booster' in [e.name for e in k.roles]]}\"\n                                                                                                                                                                                                                ^\nSyntaxError: f-string: closing parenthesis '}' does not match opening parenthesis '('\n\n```",
                 "-e1 f\u201c{len(ctx.guild.channels)} {len(ctx.guild.roles)} {ctx.guild.created_at} {len(ctx.guild.members)} {ctx.guild.region} {len([k for k in ctx.guild.members if \u2018Booster\u2019 in [e.name for e in k.roles]]}\u201d",
-                "```py\nIn[3584]: 1 len([k for k in ctx.guild.channels if isinstance(k, disnake.TextChannel])\nOut[3584]: Traceback (most recent call last):\n  File \"C:\\Users\\caede\\Desktop\\JesterBot\\core\\utils\\commands\\eval.py\", line 82, in run_eval\n    exec(\n  File \"<string>\", line 2\n    return len([k for k in ctx.guild.channels if isinstance(k, disnake.TextChannel])\n                                                                                  ^\nSyntaxError: closing parenthesis ']' does not match opening parenthesis '('\n\n```"
+                "```py\nIn[3584]: 1 len([k for k in ctx.guild.channels if isinstance(k, disnake.TextChannel])\nOut[3584]: Traceback (most recent call last):\n  File \"C:\\Users\\caede\\Desktop\\JesterBot\\core\\utils\\commands\\eval.py\", line 82, in run_eval\n    exec(\n  File \"<string>\", line 2\n    return len([k for k in ctx.guild.channels if isinstance(k, disnake.TextChannel])\n                                                                                  ^\nSyntaxError: closing parenthesis ']' does not match opening parenthesis '('\n\n```",
+                "wtf",
+                "```py\n\"\"\"\n                5 Conditions in order;\n                    a) content == q; exit\n                    b) content == word; win\n                    c) all letters guessed are in word; win\n                    d) guesses_left == 1; loss \n                    e) content > 1 letter; punt\n                then; \n                    if content not in guesses;\n                        if content not in word;\n                            guesses_left -= 1\n\n                    then;\n                        -> msg.edit(new_word)\n                \"\"\"\n```",
+                "stupid bot",
+                "-r",
+                "{'fields': [{'value': 'Reloaded cogs successfully', 'name': 'Reload Extension', 'inline': True}], 'color': 12745742, 'type': 'rich'}"
             ],
             "author": [
                 "Assistant",
@@ -2686,6 +2691,11 @@
                 "Caeden",
                 "Caeden",
                 "[j.] JesterBot",
+                "Caeden",
+                "[j.] JesterBot",
+                "Caeden",
+                "Caeden",
+                "Caeden",
                 "Caeden",
                 "[j.] JesterBot"
             ],
@@ -2763,6 +2773,11 @@
                 298043305927639041,
                 828363172717133874,
                 298043305927639041,
+                828363172717133874,
+                298043305927639041,
+                298043305927639041,
+                298043305927639041,
+                298043305927639041,
                 828363172717133874
             ],
             "time": [
@@ -2839,7 +2854,12 @@
                 "2021-12-29 15:15:58.213000+00:00",
                 "2021-12-29 15:16:15.211000+00:00",
                 "2021-12-29 15:16:14.875000+00:00",
-                "2021-12-29 15:22:57.266000+00:00"
+                "2021-12-29 15:22:57.266000+00:00",
+                "2021-12-29 16:16:34.267000+00:00",
+                "2021-12-29 23:31:41.570000+00:00",
+                "2021-12-29 23:32:15.018000+00:00",
+                "2021-12-29 23:35:29.275000+00:00",
+                "2021-12-29 23:35:29.723000+00:00"
             ]
         },
         "871145725956878356": {
@@ -3494,7 +3514,8 @@
                 "()define irdc",
                 "{'footer': {'text': 'Thanks for inviting me! \ud83d\udc9e'}, 'color': 15845609, 'type': 'rich', 'description': \"**Keep adding me in more servers so that I'll be with you everytime. Have a good day! :)**\"}",
                 "",
-                "\ud83d\ude0b"
+                "\ud83d\ude0b",
+                "<:kakachi_error:873906184678158386> **@ToXic_ishxnx, due to the high activity of the bot, a cooldown prevents you from using that command for another `3 seconds`.**"
             ],
             "author": [
                 "KakaChi",
@@ -3507,7 +3528,8 @@
                 "ToXic_ishxnx",
                 "KakaChi",
                 "entity_night",
-                "Mynk"
+                "Mynk",
+                "KakaChi"
             ],
             "id": [
                 788799817908092978,
@@ -3520,7 +3542,8 @@
                 757379755480711248,
                 788799817908092978,
                 728918313211789363,
-                852238794660773959
+                852238794660773959,
+                788799817908092978
             ],
             "time": [
                 "2021-11-18 12:57:46.152000",
@@ -3533,7 +3556,8 @@
                 "2021-11-21 18:08:40.267000",
                 "2021-11-26 18:04:27.612000",
                 "2021-12-01 04:19:11.977000",
-                "2021-12-29 09:32:30.408000+00:00"
+                "2021-12-29 09:32:30.408000+00:00",
+                "2021-12-29 17:01:41.813000+00:00"
             ]
         }
     },
@@ -4961,6 +4985,20 @@
             "time": [
                 "2021-12-28 19:46:32.960000+00:00"
             ]
+        },
+        "838046108612689930": {
+            "list": [
+                ""
+            ],
+            "author": [
+                "xlMelancholy"
+            ],
+            "id": [
+                670664243753779211
+            ],
+            "time": [
+                "2021-12-30 00:12:02.122000+00:00"
+            ]
         }
     },
     "782966978918744105": {
@@ -5450,7 +5488,9 @@
                 "Hey @Jaymart!",
                 "",
                 "what is error ? \n Callback for help2 command is missing \"ctx\" parameter.",
-                "Suppose I have three buttons:\nTest 1\nTest 2\nTest 3\n\nI want to disable test 1 button and change its color when clicking on test 2"
+                "Suppose I have three buttons:\nTest 1\nTest 2\nTest 3\n\nI want to disable test 1 button and change its color when clicking on test 2",
+                "Hey @joee!",
+                "{'type': 'rich', 'description': '```py\\n\\nclass disnake.Embed(*, colour=Embed.Empty, color=Embed.Empty, title=Embed.Empty, type=\\'rich\\', url=Embed.Empty, description=Embed.Empty, timestamp=None)```\\nRepresents a Discord embed.\\n\\nlen(x) Returns the total size of the embed. Useful for checking if it\u2019s within the 6000 character limit.\\n\\nbool(b) Returns whether the embed has any data set.\\n\\nNew in version 2.0.\\n\\nCertain properties return an `EmbedProxy`, a type that acts similar to a regular [`dict`](https://docs.python.org/3/library/stdtypes.html#dict \"(in Python v3.10)\") except using dotted access, e.g. `embed.author.icon_url`. If the attribute is invalid or empty, then a special sentinel value is returned, [`Embed.Empty`](https://docs.disnake.dev/en/latest/api.html#disnake.Embed.Empty \"disnake.Embed.Empty\").\\n\\nFor ease of use, all parameters that expect a [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") are implicitly casted to [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") for you.', 'url': 'https://docs.disnake.dev/en/latest/api.html#disnake.Embed', 'title': 'disnake.embeds.Embed'}"
             ],
             "author": [
                 "BITTU5134",
@@ -5483,7 +5523,9 @@
                 "Monty Python",
                 "Jaymart",
                 "Master X",
-                "Master X"
+                "Master X",
+                "Monty Python",
+                "Monty Python"
             ],
             "id": [
                 818428347151024199,
@@ -5516,7 +5558,9 @@
                 872576125384147005,
                 485183782328991745,
                 785604125458432050,
-                785604125458432050
+                785604125458432050,
+                872576125384147005,
+                872576125384147005
             ],
             "time": [
                 "2021-12-28 07:17:08.034000+00:00",
@@ -5549,7 +5593,9 @@
                 "2021-12-29 08:17:15.665000+00:00",
                 "2021-12-29 08:18:04.767000+00:00",
                 "2021-12-29 12:09:23.205000+00:00",
-                "2021-12-29 12:56:45.001000+00:00"
+                "2021-12-29 12:56:45.001000+00:00",
+                "2021-12-29 23:23:23.667000+00:00",
+                "2021-12-29 23:34:10.485000+00:00"
             ]
         },
         "808032919632347156": {
@@ -5563,7 +5609,27 @@
                 "by default, cmds should be able to be used by everyone right? unless a permission is set for that cmd",
                 "@Average Soccer Fanatic",
                 "@Average Soccer Fanatic",
-                "{'type': 'rich', 'description': '```py\\n\\nclass disnake.Embed(*, colour=Embed.Empty, color=Embed.Empty, title=Embed.Empty, type=\\'rich\\', url=Embed.Empty, description=Embed.Empty, timestamp=None)```\\nRepresents a Discord embed.\\n\\nlen(x) Returns the total size of the embed. Useful for checking if it\u2019s within the 6000 character limit.\\n\\nbool(b) Returns whether the embed has any data set.\\n\\nNew in version 2.0.\\n\\nCertain properties return an `EmbedProxy`, a type that acts similar to a regular [`dict`](https://docs.python.org/3/library/stdtypes.html#dict \"(in Python v3.10)\") except using dotted access, e.g. `embed.author.icon_url`. If the attribute is invalid or empty, then a special sentinel value is returned, [`Embed.Empty`](https://docs.disnake.dev/en/latest/api.html#disnake.Embed.Empty \"disnake.Embed.Empty\").\\n\\nFor ease of use, all parameters that expect a [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") are implicitly casted to [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") for you.', 'url': 'https://docs.disnake.dev/en/latest/api.html#disnake.Embed', 'title': 'disnake.embeds.Embed'}"
+                "{'type': 'rich', 'description': '```py\\n\\nclass disnake.Embed(*, colour=Embed.Empty, color=Embed.Empty, title=Embed.Empty, type=\\'rich\\', url=Embed.Empty, description=Embed.Empty, timestamp=None)```\\nRepresents a Discord embed.\\n\\nlen(x) Returns the total size of the embed. Useful for checking if it\u2019s within the 6000 character limit.\\n\\nbool(b) Returns whether the embed has any data set.\\n\\nNew in version 2.0.\\n\\nCertain properties return an `EmbedProxy`, a type that acts similar to a regular [`dict`](https://docs.python.org/3/library/stdtypes.html#dict \"(in Python v3.10)\") except using dotted access, e.g. `embed.author.icon_url`. If the attribute is invalid or empty, then a special sentinel value is returned, [`Embed.Empty`](https://docs.disnake.dev/en/latest/api.html#disnake.Embed.Empty \"disnake.Embed.Empty\").\\n\\nFor ease of use, all parameters that expect a [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") are implicitly casted to [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") for you.', 'url': 'https://docs.disnake.dev/en/latest/api.html#disnake.Embed', 'title': 'disnake.embeds.Embed'}",
+                "Probably some of the nextcord contributors are going to collaborate with us",
+                "Well one of them has already done that",
+                "vco",
+                "Vincent?",
+                "He's our greatest sponsor",
+                "Especially if we talk about web things",
+                "Oh yeah vco",
+                "Oh yeah true",
+                "Man's owning all the domains XD",
+                "nextcord and pycord are going to merge soon btw",
+                "You aren't aware bruh fr?",
+                "understandable",
+                "It's all cancelled",
+                "bruh have you listened to a single word epic said?",
+                "it's been cancelled",
+                "completely",
+                "please don't spread misinformation \ud83e\udd70",
+                "I know",
+                "I forgot to delete this message",
+                "But deleted the rest of the discussion"
             ],
             "author": [
                 "Invisible",
@@ -5575,7 +5641,27 @@
                 "Jaymart",
                 "arl",
                 "arl",
-                "Monty Python"
+                "Monty Python",
+                "EQUENOS",
+                "EQUENOS",
+                "EQUENOS",
+                "ag_hogwartsalumni",
+                "EQUENOS",
+                "EQUENOS",
+                "ag_hogwartsalumni",
+                "ag_hogwartsalumni",
+                "ag_hogwartsalumni",
+                "EQUENOS",
+                "ag_hogwartsalumni",
+                "EQUENOS",
+                "ag_hogwartsalumni",
+                "sadru",
+                "sadru",
+                "sadru",
+                "sadru",
+                "EQUENOS",
+                "EQUENOS",
+                "EQUENOS"
             ],
             "id": [
                 719807591869317201,
@@ -5587,7 +5673,27 @@
                 485183782328991745,
                 717983911824588862,
                 717983911824588862,
-                872576125384147005
+                872576125384147005,
+                301295716066787332,
+                301295716066787332,
+                301295716066787332,
+                760426797418151937,
+                301295716066787332,
+                301295716066787332,
+                760426797418151937,
+                760426797418151937,
+                760426797418151937,
+                301295716066787332,
+                760426797418151937,
+                301295716066787332,
+                760426797418151937,
+                454513969265115137,
+                454513969265115137,
+                454513969265115137,
+                454513969265115137,
+                301295716066787332,
+                301295716066787332,
+                301295716066787332
             ],
             "time": [
                 "2021-12-28 11:05:11.468000+00:00",
@@ -5599,7 +5705,27 @@
                 "2021-12-29 07:05:40.008000+00:00",
                 "2021-12-29 07:41:11.234000+00:00",
                 "2021-12-29 07:41:15.190000+00:00",
-                "2021-12-29 08:31:23.813000+00:00"
+                "2021-12-29 08:31:23.813000+00:00",
+                "2021-12-29 15:55:26.703000+00:00",
+                "2021-12-29 15:55:43.256000+00:00",
+                "2021-12-29 15:55:54.955000+00:00",
+                "2021-12-29 15:55:51.791000+00:00",
+                "2021-12-29 15:56:12.912000+00:00",
+                "2021-12-29 15:56:27.284000+00:00",
+                "2021-12-29 15:56:01.288000+00:00",
+                "2021-12-29 15:56:34.195000+00:00",
+                "2021-12-29 15:56:44.134000+00:00",
+                "2021-12-29 15:53:50.250000+00:00",
+                "2021-12-29 15:54:47.291000+00:00",
+                "2021-12-29 15:55:07.727000+00:00",
+                "2021-12-29 15:54:53.463000+00:00",
+                "2021-12-29 16:32:17.141000+00:00",
+                "2021-12-29 16:32:23.090000+00:00",
+                "2021-12-29 16:32:24.518000+00:00",
+                "2021-12-29 16:32:40.838000+00:00",
+                "2021-12-29 16:33:18.153000+00:00",
+                "2021-12-29 16:33:27.438000+00:00",
+                "2021-12-29 16:33:43.933000+00:00"
             ]
         },
         "847833561691717704": {

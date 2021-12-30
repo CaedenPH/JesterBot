@@ -27,7 +27,7 @@
         "score": 104
     },
     "help": {
-        "score": 2211
+        "score": 2216
     },
     "jsonfile": {
         "score": 19
@@ -42,7 +42,7 @@
         "score": 24
     },
     "ping": {
-        "score": 311
+        "score": 312
     },
     "giveaway": {
         "score": 17
@@ -363,7 +363,7 @@
         "score": 1
     },
     "reload": {
-        "score": 4733
+        "score": 4768
     },
     "pp": {
         "score": 142
@@ -429,7 +429,7 @@
         "score": 12
     },
     "eval": {
-        "score": 2668
+        "score": 2670
     },
     "pager": {
         "score": 12
@@ -510,7 +510,7 @@
         "score": 6
     },
     "evalreturn": {
-        "score": 467
+        "score": 472
     },
     "evaldir": {
         "score": 356
@@ -888,7 +888,7 @@
         "score": 1
     },
     "asciiart": {
-        "score": 54
+        "score": 55
     },
     "calc": {
         "score": 17
@@ -1080,7 +1080,7 @@
         "score": 1
     },
     "src": {
-        "score": 20
+        "score": 21
     },
     "youtube_together": {
         "score": 3
@@ -1191,7 +1191,7 @@
         "score": 8
     },
     "docs": {
-        "score": 17
+        "score": 21
     },
     "pypi": {
         "score": 7
@@ -1230,6 +1230,6 @@
         "score": 6
     },
     "hangman": {
-        "score": 28
+        "score": 66
     }
 }
