@@ -27,7 +27,6 @@ disnake-jishaku==2.6.5
 frozenlist==1.2.0
 fuzzywuzzy==0.18.0
 glitch-this==1.0.2
-googletrans==3.0.0
 h11==0.9.0
 h2==3.2.0
 hpack==3.0.0

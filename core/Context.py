@@ -4,13 +4,11 @@ from disnake.ext import commands
 
 from core.utils.utils import thecolor
 
+
 class Context(commands.Context):
     async def em(self, message, **kwargs):
         return await super().send(
-            embed = disnake.Embed(
-                description=message,
-                color=thecolor() 
-            ),**kwargs
+            embed=disnake.Embed(description=message, color=thecolor()), **kwargs
         )
 
     async def send(self, content: any = None, **kwargs):
@@ -37,23 +35,26 @@ class Context(commands.Context):
         if isinstance(content, disnake.File):
             kwargs["file"] = content
             content = None
-        
+
         msg = await super().send(content, **kwargs)
-        self.bot.data[self.message] = {'bot':msg}
+        self.bot.data[self.message] = {"bot": msg}
         try:
+
             async def reaction_task(msg, arg, kwargs):
                 def check(r, u):
                     return r.message == msg and u == arg.author
-                    
+
                 await asyncio.sleep(3)
                 try:
-                    
+
                     await msg.add_reaction(TRASHCAN)
                 except Exception as a:
                     return
 
                 try:
-                    r, u = await arg.bot.wait_for('reaction_add', check=check, timeout=250)
+                    r, u = await arg.bot.wait_for(
+                        "reaction_add", check=check, timeout=250
+                    )
                     if str(r.emoji.id) == TRASHCAN[11:-1]:
                         await msg.delete()
                 except Exception as b:
@@ -61,16 +62,9 @@ class Context(commands.Context):
                         await msg.clear_reactions()
                     except Exception as c:
                         pass
-         
 
-            loop = asyncio.get_running_loop()   
+            loop = asyncio.get_running_loop()
             loop.create_task(reaction_task(msg, self, kwargs))
         except:
             pass
         return msg
-
-
-    
-       
-
-        

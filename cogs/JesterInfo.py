@@ -1,5 +1,5 @@
 import disnake, os, requests, json, asyncio
-from disnake.ext import commands 
+from disnake.ext import commands
 from asyncio import sleep
 from random import choice, randint
 from datetime import datetime
@@ -9,14 +9,17 @@ from core.utils.utils import thecolor, Json, thebed
 from core.Context import Context
 from core.utils.comedy import joke
 
+
 class JesterInfo(commands.Cog):
     def __init__(self, bot):
 
         self.bot = bot
+
     @commands.command()
     async def links(self, ctx: Context):
         links = "[Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.bot_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot) │ [Vote for me!](https://top.gg/bot/828363172717133874/vote)"
-        await thebed(ctx, '', links)
+        await thebed(ctx, "", links)
+
     @commands.command()
     async def uptime(self, ctx: Context):
 
@@ -24,29 +27,38 @@ class JesterInfo(commands.Cog):
         hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
         minutes, seconds = divmod(remainder, 60)
         days, hours = divmod(hours, 24)
-        return await thebed(ctx, '', f"I've been Up since **{days}** Days, **{hours}** Hours, **{minutes}** Minutes, and **{seconds}** Seconds!")
-        
-    @commands.command(aliases=['Ver', 'versions'], description="Sends the version that the disnake bot is currently on - Changes frequently as updates occur")
+        return await thebed(
+            ctx,
+            "",
+            f"I've been Up since **{days}** Days, **{hours}** Hours, **{minutes}** Minutes, and **{seconds}** Seconds!",
+        )
+
+    @commands.command(
+        aliases=["Ver", "versions"],
+        description="Sends the version that the disnake bot is currently on - Changes frequently as updates occur",
+    )
     async def version(self, ctx: Context):
 
-        with open('./dicts/Updates.json', 'r') as x:
+        with open("./dicts/Updates.json", "r") as x:
             data = json.load(x)
             for m in data:
 
                 embed = disnake.Embed(title=f"{data[m]['Version']}", colour=thecolor())
                 await ctx.send(embed=embed)
-        
-    @commands.command(aliases=['scoreover', 'Overallscore', 'Overall_score'], description="Sends the total number of commands used")
+
+    @commands.command(
+        aliases=["scoreover", "Overallscore", "Overall_score"],
+        description="Sends the total number of commands used",
+    )
     async def score(self, ctx: Context):
-        with open('./dicts/Scoreoverall.json', 'r') as x:
+        with open("./dicts/Scoreoverall.json", "r") as x:
             data = json.load(x)
             embed = disnake.Embed(title=f"{data['Score']['Score1']}", colour=thecolor())
             await ctx.send(embed=embed)
-    
-    
-    @commands.command(aliases=['Servers', 'ServerInfo', 'Server_Info'])
+
+    @commands.command(aliases=["Servers", "ServerInfo", "Server_Info"])
     async def server(self, ctx: Context):
-        channel= ctx.channel
+        channel = ctx.channel
         serverinvite = await channel.create_invite()
         serverid = ctx.guild.id
         servername = ctx.guild.name
@@ -57,182 +69,252 @@ class JesterInfo(commands.Cog):
 
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['notes', 'patchnotes', 'Updates', 'Patch_Notes', 'PT', 'up'], description="Sends the most recent update to the bot")
+    @commands.command(
+        aliases=["notes", "patchnotes", "Updates", "Patch_Notes", "PT", "up"],
+        description="Sends the most recent update to the bot",
+    )
     async def update(self, ctx: Context):
-        
-        with open('./dicts/Updates.json', 'r') as x:
+
+        with open("./dicts/Updates.json", "r") as x:
             data = json.load(x)
 
             for m in data:
-            
-                if data[m]['Version'] == "":
-                    embed = disnake.Embed(description="Updates is currently being updated, no data to send", colour=thecolor())
+
+                if data[m]["Version"] == "":
+                    embed = disnake.Embed(
+                        description="Updates is currently being updated, no data to send",
+                        colour=thecolor(),
+                    )
                     return await ctx.send(embed=embed)
-                if data[m]['Bug fixes'] == "":
-                    embed = disnake.Embed(description="Updates is currently being updated, no data to send", colour=thecolor())
+                if data[m]["Bug fixes"] == "":
+                    embed = disnake.Embed(
+                        description="Updates is currently being updated, no data to send",
+                        colour=thecolor(),
+                    )
                     await ctx.send(embed=embed)
-                if data[m]['New commands'] == "":
-                    embed = disnake.Embed(description="Updates is currently being updated, no data to send", colour=thecolor())
+                if data[m]["New commands"] == "":
+                    embed = disnake.Embed(
+                        description="Updates is currently being updated, no data to send",
+                        colour=thecolor(),
+                    )
                     await ctx.send(embed=embed)
-                if data[m]['Other'] == "":
-                    embed = disnake.Embed(description="Updates is currently being updated, no data to send", colour=thecolor())
+                if data[m]["Other"] == "":
+                    embed = disnake.Embed(
+                        description="Updates is currently being updated, no data to send",
+                        colour=thecolor(),
+                    )
                     await ctx.send(embed=embed)
                 else:
                     username = self.bot.get_user(828363172717133874)
-                    embed = disnake.Embed(title=f"**Updates**  \u200b <:Jesterinfo:863075610048987166>", description="*Everytime there is a new update it will be \nposted here along with a version update!*", colour=thecolor())
-                    embed.add_field(value=f"{data[m]['Version']}",name = "**Version**", inline=True)
-                    
-                    embed.add_field(value=f"{data[str(m)]['Bug fixes']}",name = "**Bug fixes**", inline=False)
-                    embed.add_field(value=f"{data[str(m)]['New commands']}",name = "**New commands**", inline=True)
-                    embed.add_field(value=f"{data[str(m)]['Other']}", name= "**Other**", inline=False)
-                    
+                    embed = disnake.Embed(
+                        title=f"**Updates**  \u200b <:Jesterinfo:863075610048987166>",
+                        description="*Everytime there is a new update it will be \nposted here along with a version update!*",
+                        colour=thecolor(),
+                    )
+                    embed.add_field(
+                        value=f"{data[m]['Version']}", name="**Version**", inline=True
+                    )
+
+                    embed.add_field(
+                        value=f"{data[str(m)]['Bug fixes']}",
+                        name="**Bug fixes**",
+                        inline=False,
+                    )
+                    embed.add_field(
+                        value=f"{data[str(m)]['New commands']}",
+                        name="**New commands**",
+                        inline=True,
+                    )
+                    embed.add_field(
+                        value=f"{data[str(m)]['Other']}", name="**Other**", inline=False
+                    )
+
                     embed.set_footer(text=ctx.author.name, icon_url=username.avatar.url)
-                    embed.set_thumbnail(url='https://media.giphy.com/media/xT5LMHxhOfscxPfIfm/giphy.gif')
-                    
+                    embed.set_thumbnail(
+                        url="https://media.giphy.com/media/xT5LMHxhOfscxPfIfm/giphy.gif"
+                    )
+
                     await ctx.send(embed=embed)
-       
-    @commands.command(aliases=['selfruns', 'commandsused', 'Selfrun', 'Self_Score'], description="Sends the ammount of commands that you personally have ran")
+
+    @commands.command(
+        aliases=["selfruns", "commandsused", "Selfrun", "Self_Score"],
+        description="Sends the ammount of commands that you personally have ran",
+    )
     async def selfscore(self, ctx: Context):
-        with open('./dicts/Selfscore.json') as f:
+        with open("./dicts/Selfscore.json") as f:
             data = json.load(f)
             if str(ctx.author.id) in data:
-                embed = disnake.Embed(title=f"The ammount of commands you have ran are {data[str(ctx.author.id)]['selfscore']}", colour=thecolor())
+                embed = disnake.Embed(
+                    title=f"The ammount of commands you have ran are {data[str(ctx.author.id)]['selfscore']}",
+                    colour=thecolor(),
+                )
                 await ctx.send(embed=embed)
 
-    @commands.command(aliases=['binv', 'botinv'])
+    @commands.command(aliases=["binv", "botinv"])
     async def invite(self, ctx: Context):
-        embed = disnake.Embed(title=f"I am currently in {len(self.bot.guilds)} servers!", description="[Official server](https://discord.gg/2654CuU3ZU) │ [Invite me!](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591)", colour = thecolor())
+        embed = disnake.Embed(
+            title=f"I am currently in {len(self.bot.guilds)} servers!",
+            description="[Official server](https://discord.gg/2654CuU3ZU) │ [Invite me!](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591)",
+            colour=thecolor(),
+        )
         embed.set_author(icon_url=ctx.author.avatar.url, name="Invite")
 
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['commandtop', 'cmdtop', 'topcmd'])
+    @commands.command(aliases=["commandtop", "cmdtop", "topcmd"])
     async def topcommands(self, ctx: Context):
         score_list = []
         sorted_score_dict = {}
-        
+
         x = []
-        y = '\n'
-        with open('./dicts/Commandsused.json') as k:
+        y = "\n"
+        with open("./dicts/Commandsused.json") as k:
             embed = disnake.Embed(colour=thecolor())
             embed.set_author(name="Top commands", icon_url=ctx.author.avatar.url)
 
             data = json.load(k)
+
             def get_key(item):
-                return item[1]['score']
+                return item[1]["score"]
+
             sorted_scores = sorted(data.items(), key=get_key, reverse=True)[:11]
-        
+
             for item in sorted_scores:
-                
+
                 x.append(f"{item[0]}: {item[1]['score']}")
-               
+
             embed.add_field(name=f"\u200b", value=f"**{y.join(x)}**", inline=False)
 
             await ctx.send(embed=embed)
 
-    @commands.command(aliases=['membtop', 'topmemb', 'memtop'], description="Sends the top members that have used the bot") 
+    @commands.command(
+        aliases=["membtop", "topmemb", "memtop"],
+        description="Sends the top members that have used the bot",
+    )
     async def topmembers(self, ctx: Context):
         x = []
-        y = '\n'
-        with open('./dicts/Selfscore.json') as k:
+        y = "\n"
+        with open("./dicts/Selfscore.json") as k:
             embed = disnake.Embed(colour=thecolor())
             embed.set_author(name="Top members", icon_url=ctx.author.avatar.url)
             data = json.load(k)
+
             def get_key(item):
-                return item[1]['selfscore']
+                return item[1]["selfscore"]
+
             sorted_scores = sorted(data.items(), key=get_key, reverse=True)[:11]
-            
+
             for item in sorted_scores:
                 for datas in data:
                     if item[0] in datas:
-                        
-                        name = data[datas]['Name']
+
+                        name = data[datas]["Name"]
                 x.append(f"{name}: {item[1]['selfscore']}")
-                
+
             embed.add_field(name=f"\u200b", value=f"**{y.join(x)}**", inline=False)
 
             await ctx.send(embed=embed)
 
-    @commands.command(aliases=['ammount_of_commands', 'hmc'])
+    @commands.command(aliases=["ammount_of_commands", "hmc"])
     async def how_many_commands(self, ctx: Context):
-        await ctx.em(f"The bot has **{len([k for k in self.bot.commands if not k.hidden])}** available commands and **{len([k for k in self.bot.commands if k.hidden])}** hidden commands")
+        await ctx.em(
+            f"The bot has **{len([k for k in self.bot.commands if not k.hidden])}** available commands and **{len([k for k in self.bot.commands if k.hidden])}** hidden commands"
+        )
 
-    @commands.command(aliases=['pin', 'pingy', 'ms', 'Latency'], description="Sends the ping of the bot")
+    @commands.command(
+        aliases=["pin", "pingy", "ms", "Latency"],
+        description="Sends the ping of the bot",
+    )
     async def ping(self, ctx: Context):
-        embed = disnake.Embed(description=f"My current ping is **{round(self.bot.latency * 1000)}** ms", colour=thecolor())
-        y = 0
-        for m in self.bot.guilds:
-            y += len(m.members)
-        embed.set_footer(text=f"Servers in: {len(self.bot.guilds)} │ Overall users: {y}")
+        embed = disnake.Embed(
+            description=f"My current ping is **{round(self.bot.latency * 1000)}** ms",
+            colour=thecolor(),
+        )
+        embed.set_footer(
+            text=f"Servers in: {len(self.bot.guilds)} │ Overall users: {len(self.bot.users)}"
+        )
+
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['pref', 'prefixs', 'pre', 'prefixes'], description="Change the prefix of the bot for you personally")
+    @commands.command(
+        aliases=["pref", "prefixs", "pre", "prefixes"],
+        description="Change the prefix of the bot for you personally",
+    )
     async def prefix(self, ctx: Context, *, prefix=None):
         if not prefix:
             async with ctx.typing():
-               embed = await create_embed(ctx.message, self.bot)
-                
+                embed = await create_embed(ctx.message, self.bot)
+
             return await ctx.send(embed=embed)
         prefix = prefix.split(" ")
-       
+
         if prefix:
-        
-            with open('./dicts/prefixes.json', 'r+') as e:
+
+            with open("./dicts/prefixes.json", "r+") as e:
                 data = json.load(e)
                 if ctx.guild.id in data:
-                    data[str(ctx.author.id)]['prefix'] = prefix
+                    data[str(ctx.author.id)]["prefix"] = prefix
 
                 else:
-                    data[str(ctx.author.id)]= {
-                        "prefix": prefix
-
-
-                    }
+                    data[str(ctx.author.id)] = {"prefix": prefix}
                 Json(e, data)
             prefix1 = []
             for num in prefix:
                 prefix1.append(f"`{num}`")
-            embed = disnake.Embed(description=f"New prefix is {', '.join(prefix1) if prefix else f'{prefix1}'}!, ping me for my prefixes if you forget!", colour=thecolor())
+            embed = disnake.Embed(
+                description=f"New prefix is {', '.join(prefix1) if prefix else f'{prefix1}'}!, ping me for my prefixes if you forget!",
+                colour=thecolor(),
+            )
             embed.set_author(icon_url=ctx.author.avatar.url, name="Prefix")
             await ctx.send(embed=embed)
 
-    @commands.command(aliases=['devs', 'helpers', 'coder', 'coders'])
+    @commands.command(aliases=["devs", "helpers", "coder", "coders"])
     async def credits(self, ctx: Context):
         coder = self.bot.get_user(298043305927639041)
         ideas_designer = self.bot.get_user(780555299106586634)
         helper = self.bot.get_user(483631842554019841)
         helper2 = self.bot.get_user(652407551849267200)
         sales = self.bot.get_user(521226389559443461)
-        designer = self.bot.get_user(427120167361708032) 
-        embed = disnake.Embed(title="Credits", description=f"""
+        designer = self.bot.get_user(427120167361708032)
+        embed = disnake.Embed(
+            title="Credits",
+            description=f"""
         **Coder:** *{coder.name}*
         **Designer:** *{designer.name}*
         **Helpers:** *{helper.name}*, *{helper2.name}*
         **Sales/Promoter:** *{sales.name}*
         **Ideas/layout designer:** *{ideas_designer.name}*
         
-        """, color=thecolor())
+        """,
+            color=thecolor(),
+        )
         await ctx.send(embed=embed)
-   
-    @commands.command(aliases=['ccolour'], description="change the color of the embeds!", hidden=True)
+
+    @commands.command(
+        aliases=["ccolour"], description="change the color of the embeds!", hidden=True
+    )
     async def ccolor(self, ctx: Context, *, args):
-        if args.startswith('0x') and len(args) == 8:
-            with open('./dicts/Color.json', 'r+') as k:
+        if args.startswith("0x") and len(args) == 8:
+            with open("./dicts/Color.json", "r+") as k:
                 data = json.load(k)
-                data['Color']['color'] = args
+                data["Color"]["color"] = args
                 Json(k, data)
-                embed = disnake.Embed(title='changed', color=int(args, 16))
+                embed = disnake.Embed(title="changed", color=int(args, 16))
                 await ctx.send(embed=embed)
         else:
-            embed = disnake.Embed(title="Color", description='Put `0x` infront of the six letter/number [color](https://www.color-hex.com/)', colour=thecolor())
+            embed = disnake.Embed(
+                title="Color",
+                description="Put `0x` infront of the six letter/number [color](https://www.color-hex.com/)",
+                colour=thecolor(),
+            )
             await ctx.send(embed=embed)
-    
+
     @commands.command()
     async def showcmds(self, ctx: Context):
         x = []
         embed = disnake.Embed(color=disnake.Color.green())
         for command in self.bot.commands:
-            
+
             x.append(f"`{command.name}`")
         xnum = 0
         for i in range(0, len(x)):
@@ -244,23 +326,23 @@ class JesterInfo(commands.Cog):
 
                     r = i - 25
                     embed.add_field(name=i, value=", ".join(x[r:i]), inline=False)
-                
+
                 xnum = 0
-            
+
         await ctx.send(embed=embed)
 
     @commands.command()
     async def serversin(self, ctx: Context):
-   
+
         x = []
         num = 0
         for g in self.bot.guilds:
             x.append(g.name)
             num += 1
-            
-       
+
         await ctx.send(", ".join(x[1:25]))
-        await ctx.send(", ".join(x[26:len(x)]))
+        await ctx.send(", ".join(x[26 : len(x)]))
+
 
 def setup(bot):
-  bot.add_cog(JesterInfo(bot))
+    bot.add_cog(JesterInfo(bot))

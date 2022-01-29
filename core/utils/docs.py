@@ -6,6 +6,7 @@ import zlib
 
 from core.utils import fuzzy
 
+
 class Colours:
     white = 0xFFFFFF
     blue = 0x0279FD
@@ -22,7 +23,8 @@ class Colours:
     python_yellow = 0xFFD43B
     grass_green = 0x66FF00
     gold = 0xE6C200
-    
+
+
 class SphinxObjectFileReader:
     BUFSIZE = 16 * 1024
 
@@ -30,7 +32,7 @@ class SphinxObjectFileReader:
         self.stream = io.BytesIO(buffer)
 
     def readline(self):
-        return self.stream.readline().decode('utf-8')
+        return self.stream.readline().decode("utf-8")
 
     def skipline(self):
         self.stream.readline()
@@ -45,55 +47,56 @@ class SphinxObjectFileReader:
         yield decompressor.flush()
 
     def read_compressed_lines(self):
-        buf = b''
+        buf = b""
         for chunk in self.read_compressed_chunks():
             buf += chunk
-            pos = buf.find(b'\n')
+            pos = buf.find(b"\n")
             while pos != -1:
-                yield buf[:pos].decode('utf-8')
-                buf = buf[pos + 1:]
-                pos = buf.find(b'\n')
+                yield buf[:pos].decode("utf-8")
+                buf = buf[pos + 1 :]
+                pos = buf.find(b"\n")
+
 
 class RTFM:
     def parse_object_inv(self, stream, url):
         result = {}
         inv_version = stream.readline().rstrip()
 
-        if inv_version != '# Sphinx inventory version 2':
-            raise RuntimeError('Invalid objects.inv file version.')
+        if inv_version != "# Sphinx inventory version 2":
+            raise RuntimeError("Invalid objects.inv file version.")
 
         projname = stream.readline().rstrip()[11:]
         version = stream.readline().rstrip()[11:]  # noqa
 
         line = stream.readline()
-        if 'zlib' not in line:
-            raise RuntimeError('Invalid objects.inv file, not z-lib compatible.')
+        if "zlib" not in line:
+            raise RuntimeError("Invalid objects.inv file, not z-lib compatible.")
 
-        entry_regex = re.compile(r'(?x)(.+?)\s+(\S*:\S*)\s+(-?\d+)\s+(\S+)\s+(.*)')
+        entry_regex = re.compile(r"(?x)(.+?)\s+(\S*:\S*)\s+(-?\d+)\s+(\S+)\s+(.*)")
         for line in stream.read_compressed_lines():
             match = entry_regex.match(line.rstrip())
             if not match:
                 continue
 
             name, directive, prio, location, dispname = match.groups()
-            domain, _, subdirective = directive.partition(':')
-            if directive == 'py:module' and name in result:
+            domain, _, subdirective = directive.partition(":")
+            if directive == "py:module" and name in result:
                 continue
 
             # Most documentation pages have a label
-            if directive == 'std:doc':
-                subdirective = 'label'
+            if directive == "std:doc":
+                subdirective = "label"
 
-            if location.endswith('$'):
+            if location.endswith("$"):
                 location = location[:-1] + name
 
-            key = name if dispname == '-' else dispname
-            prefix = f'{subdirective}:' if domain == 'std' else ''
+            key = name if dispname == "-" else dispname
+            prefix = f"{subdirective}:" if domain == "std" else ""
 
-            if projname == 'disnake':
-                key = key.replace('disnake.ext.commands.', '').replace('disnake.', '')
+            if projname == "disnake":
+                key = key.replace("disnake.ext.commands.", "").replace("disnake.", "")
 
-            result[f'{prefix}{key}'] = os.path.join(url, location)
+            result[f"{prefix}{key}"] = os.path.join(url, location)
 
         return result
 
@@ -101,9 +104,11 @@ class RTFM:
         cache = {}
         for key, page in page_types.items():
             cache[key] = {}
-            async with self.bot.client.get(page + '/objects.inv') as resp:
+            async with self.bot.client.get(page + "/objects.inv") as resp:
                 if resp.status != 200:
-                    raise RuntimeError('Cannot build rtfm lookup table, try again later.')
+                    raise RuntimeError(
+                        "Cannot build rtfm lookup table, try again later."
+                    )
 
                 stream = SphinxObjectFileReader(await resp.read())
                 cache[key] = self.parse_object_inv(stream, page)
@@ -112,22 +117,22 @@ class RTFM:
 
     async def do_rtfm(self, ctx, key, obj):
         page_types = {
-            'latest': 'https://disnake.readthedocs.io/en/latest',
-            'python': 'https://docs.python.org/3'
+            "latest": "https://disnake.readthedocs.io/en/latest",
+            "python": "https://docs.python.org/3",
         }
 
-        if not hasattr(self, '_rtfm_cache'):
+        if not hasattr(self, "_rtfm_cache"):
             await self.build_rtfm_lookup_table(page_types)
 
-        obj = re.sub(r'^(?:disnake\.(?:ext\.)?)?(?:commands\.)?(.+)', r'\1', obj)
+        obj = re.sub(r"^(?:disnake\.(?:ext\.)?)?(?:commands\.)?(.+)", r"\1", obj)
 
-        if key.startswith('latest'):
+        if key.startswith("latest"):
             q = obj.lower()
             for name in dir(disnake.abc.Messageable):
-                if name[0] == '_':
+                if name[0] == "_":
                     continue
                 if q == name:
-                    obj = f'abc.Messageable.{name}'
+                    obj = f"abc.Messageable.{name}"
                     break
 
         cache = list(self._rtfm_cache[key].items())
@@ -135,7 +140,7 @@ class RTFM:
 
         e = disnake.Embed(colour=disnake.Colour.blurple())
         if len(matches) == 0:
-            return await ctx.em('Could not find anything. Sorry.')
+            return await ctx.em("Could not find anything. Sorry.")
 
-        e.description = '\n'.join(f'[`{key}`]({url})' for key, url in matches)
+        e.description = "\n".join(f"[`{key}`]({url})" for key, url in matches)
         await ctx.send(embed=e)

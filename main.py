@@ -22,9 +22,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from core import JesterBot  
+from core import JesterBot
 
 if __name__ == "__main__":
     JesterBot().run()
-
-

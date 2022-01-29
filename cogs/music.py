@@ -6,10 +6,11 @@ from core.utils.utils import thecolor, Json, thebed
 import re
 import requests
 
+
 async def embed2(ctx, description):
 
     embed = disnake.Embed(description=description, color=thecolor())
-    embed.set_footer(text='Type j.help Music to get all the music commands!')
+    embed.set_footer(text="Type j.help Music to get all the music commands!")
     embed.set_author(name="Music", icon_url=ctx.author.avatar.url)
     await ctx.send(embed=embed)
 
@@ -24,20 +25,20 @@ class Music(commands.Cog):
 
         response = requests.get(f"https://some-random-api.ml/lyrics?title={song}")
         fox = response.json()
-        await thebed(ctx, f'Lyrics of {fox["title"]}', fox['lyrics'])
+        await thebed(ctx, f'Lyrics of {fox["title"]}', fox["lyrics"])
 
     @commands.command()
     async def join(self, ctx):
 
         if not ctx.author.voice:
-            return await embed2(ctx, 'You are not in a music channel!')
+            return await embed2(ctx, "You are not in a music channel!")
         voice_channel = ctx.author.voice.channel
         if ctx.voice_client is None:
             await voice_channel.connect()
-            return await embed2(ctx, 'Joined')
+            return await embed2(ctx, "Joined")
         else:
             if ctx.voice_client.channel == voice_channel:
-                return await embed2(ctx, 'Already here!')
+                return await embed2(ctx, "Already here!")
             await ctx.voice_client.move_to(voice_channel)
 
     @commands.command()
@@ -45,24 +46,27 @@ class Music(commands.Cog):
         if ctx.voice_client:
 
             await ctx.voice_client.disconnect()
-            return await ctx.message.add_reaction('🎵')
-        await embed2(ctx, 'I am not in a music channel!')
+            return await ctx.message.add_reaction("🎵")
+        await embed2(ctx, "I am not in a music channel!")
 
     @commands.command()
     async def play(self, ctx, *, url):
         if not ctx.author.voice:
-            return await embed2(ctx, 'You are not in a music channel!')
+            return await embed2(ctx, "You are not in a music channel!")
         voice_channel = ctx.author.voice.channel
         if ctx.voice_client is None:
             await voice_channel.connect()
-            
+
         player = self.music.get_player(guild_id=ctx.guild.id)
         if not player:
             player = self.music.create_player(ctx, ffmpeg_error_betterfix=True)
         if not ctx.voice_client.is_playing():
             await player.queue(url, search=True)
             song = await player.play()
-            await embed2(ctx, f"**Playing:** {song.name} \n**Duration**: {round(song.duration / 60)} minutes")
+            await embed2(
+                ctx,
+                f"**Playing:** {song.name} \n**Duration**: {round(song.duration / 60)} minutes",
+            )
         else:
             song = await player.queue(url, search=True)
             await embed2(ctx, f"**Queued:** {song.name}")
@@ -99,14 +103,14 @@ class Music(commands.Cog):
         x = []
         z = 0
         player = self.music.get_player(guild_id=ctx.guild.id)
-        
+
         for song in player.current_queue():
             if z == 0:
                 x.append(f"**{z}**: {song.name} - {round(song.duration / 60)}m")
             else:
                 x.append(f"\n**{z}**: {song.name}- {round(song.duration / 60)}m")
             z += 1
-        
+
         await embed2(ctx, f"{', '.join(x)}")
 
     @commands.command()
@@ -132,7 +136,9 @@ class Music(commands.Cog):
     @commands.command()
     async def volume(self, ctx, vol):
         player = self.music.get_player(guild_id=ctx.guild.id)
-        song, volume = await player.change_volume(float(vol) / 100) # volume should be a float between 0 to 1
+        song, volume = await player.change_volume(
+            float(vol) / 100
+        )  # volume should be a float between 0 to 1
         await embed2(ctx, f"**Changed volume for:** *{song.name}* **to {volume*100}**%")
 
     @commands.command()
@@ -140,6 +146,7 @@ class Music(commands.Cog):
         player = self.music.get_player(guild_id=ctx.guild.id)
         song = await player.remove_from_queue(int(index))
         await embed2(ctx, f"**Removed:** {song.name} from queue")
-             
+
+
 def setup(client):
     client.add_cog(Music(client))

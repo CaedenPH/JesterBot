@@ -3,11 +3,12 @@ import discord_together, disnake
 from disnake.ext import commands
 from core.utils.HIDDEN import TOKEN
 
+
 class DiscordTogether(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         self.together_control = None
-    
+
     @commands.Cog.listener()
     async def on_ready(self):
         self.together_control = await discord_together.DiscordTogether(TOKEN)
@@ -21,7 +22,7 @@ class DiscordTogether(commands.Cog):
             ctx.author.voice.channel.id, "youtube"
         )
         await ctx.reply(f"Click the blue link\n{link}", delete_after=60)
-        
+
     @commands.command()
     @commands.cooldown(1, 60, commands.BucketType.guild)
     async def poker_together(self, ctx: commands.Context):
@@ -121,7 +122,6 @@ class DiscordTogether(commands.Cog):
             ctx.author.voice.channel.id, "checkers"
         )
         await ctx.reply(f"Click the blue link\n{link}", delete_after=60)
-
 
 
 def setup(bot):

@@ -5,7 +5,8 @@ from disnake.ext import commands
 
 from core.Context import Context
 
-class UrbanDictionary(commands.Cog): 
+
+class UrbanDictionary(commands.Cog):
     RANDOM_URL = "http://api.urbandictionary.com/v0/random"
     SPECIFIC_URL = "http://api.urbandictionary.com/v0/define?term={}"
 
@@ -27,31 +28,24 @@ Link: {dictionary['permalink']}"""
 
         return f"""```yaml\n{content}```"""
 
-
-    @commands.command(aliases=['search', 'usearch'])
-    async def urban_search(
-        self, ctx: Context, *, query: str
-    ) -> None:
-        async with self.bot.client.get(url=self.SPECIFIC_URL+query) as resp:
-                json = await resp.json()
-                try:
-                    output = self.parse_dict(json['list'][0]) 
-                except:
-                    output = "That doesnt exist in the urban dictionary"
+    @commands.command(aliases=["search", "usearch"])
+    async def urban_search(self, ctx: Context, *, query: str) -> None:
+        async with self.bot.client.get(url=self.SPECIFIC_URL + query) as resp:
+            json = await resp.json()
+            try:
+                output = self.parse_dict(json["list"][0])
+            except:
+                output = "That doesnt exist in the urban dictionary"
 
         await ctx.send(output)
 
-
-    @commands.command(aliases=['randomsearch', 'rsearch'])
-    async def random_urban_search(
-        self, ctx: Context
-    ) -> None:
+    @commands.command(aliases=["randomsearch", "rsearch"])
+    async def random_urban_search(self, ctx: Context) -> None:
         async with self.bot.client.get(url=self.RANDOM_URL) as resp:
-                json = await resp.json()
-                output = self.parse_dict(json['list'][0])
-                
+            json = await resp.json()
+            output = self.parse_dict(json["list"][0])
+
         await ctx.send(output)
-    
 
 
 def setup(bot: commands.Bot) -> None:
