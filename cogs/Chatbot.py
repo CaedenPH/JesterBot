@@ -37,19 +37,17 @@ class ChatBot(commands.Cog):
         async with self.bot.client.get(
             url=f"https://random-stuff-api.p.rapidapi.com/ai",
             headers={
-                "Authorization": "yFsjaMkrpsKg",
+                "authorization": "yFsjaMkrpsKg",
                 "x-rapidapi-host": "random-stuff-api.p.rapidapi.com",
                 "x-rapidapi-key": "b8fcbb11c4msh3c4a33b7ab7d576p161a2cjsn2eb0bc12f30b",
             },
             params={"msg": message},
         ) as resp:
-            print(resp)
-            print(await resp.text())
             json = await resp.json()
 
-        if "error" in json[0]:
+        if "error" in json:
             return None
-        return json[0]["response"]
+        return json["AIResponse"]
 
     async def send_ai(self, channel: Context, message: str, avatar_url=None) -> None:
         response = await self.get_response(message)
