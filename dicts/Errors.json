@@ -6214,5 +6214,61 @@
         "error": "Command raised an exception: ClientException: ffmpeg was not found.",
         "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
         "command": "play"
+    },
+    "888": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: ContentTypeError: 0, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url=URL('https://api.pgamerx.com/v5/ai?message=e&server=main')",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "chatbot"
+    },
+    "889": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: KeyError: 0",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "chatbot"
+    },
+    "890": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: KeyError: 0",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "chatbot"
+    },
+    "891": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: KeyError: 0",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "chatbot"
+    },
+    "892": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: KeyError: 0",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "chatbot"
+    },
+    "893": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: KeyError: 0",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "chatbot"
+    },
+    "894": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: AttributeError: 'JesterBot' object has no attribute 'client'",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "chatbot"
+    },
+    "895": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: KeyError: 0",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "chatbot"
     }
 }

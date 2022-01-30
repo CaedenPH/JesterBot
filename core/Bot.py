@@ -127,7 +127,7 @@ class JesterBot(commands.Bot):
         for k in role.members:
             print(k)
             self.owner_ids.append(k.id)
-        self.client = aiohttp.ClientSession()
+        self.client: aiohttp.ClientSession = aiohttp.ClientSession()
 
     async def process_commands(self, message: disnake.Message) -> None:
         ctx = await self.get_context(message, cls=Context)

@@ -1,14 +1,14 @@
 import typing
 import disnake
-import aiosqlite
 
 from disnake.ext import commands
 from core.Context import Context
+from core.Bot import JesterBot
 
 
 class ChatBot(commands.Cog):
     def __init__(self, bot: commands.Bot):
-        self.bot = bot
+        self.bot: JesterBot = bot
 
     async def find_or_insert_channel(self, channel_id: int, **kwargs):
         insert = kwargs.get("insert", False)
@@ -35,10 +35,16 @@ class ChatBot(commands.Cog):
 
     async def get_response(self, message: str) -> typing.Optional[str]:
         async with self.bot.client.get(
-            url=f"https://api.pgamerx.com/v5/ai",
-            headers={"Authorization": "yFsjaMkrpsKg"},
-            params={"message": message, "server": "main"},
+            url=f"https://random-stuff-api.p.rapidapi.com/ai",
+            headers={
+                "Authorization": "yFsjaMkrpsKg",
+                "x-rapidapi-host": "random-stuff-api.p.rapidapi.com",
+                "x-rapidapi-key": "b8fcbb11c4msh3c4a33b7ab7d576p161a2cjsn2eb0bc12f30b",
+            },
+            params={"msg": message},
         ) as resp:
+            print(resp)
+            print(await resp.text())
             json = await resp.json()
 
         if "error" in json[0]:
