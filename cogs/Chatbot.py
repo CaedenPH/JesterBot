@@ -4,6 +4,7 @@ import disnake
 from disnake.ext import commands
 from core.Context import Context
 from core.Bot import JesterBot
+from core.utils.HIDDEN import ai_key, rapid_key
 
 
 class ChatBot(commands.Cog):
@@ -37,9 +38,9 @@ class ChatBot(commands.Cog):
         async with self.bot.client.get(
             url=f"https://random-stuff-api.p.rapidapi.com/ai",
             headers={
-                "authorization": "yFsjaMkrpsKg",
+                "authorization": ai_key,
                 "x-rapidapi-host": "random-stuff-api.p.rapidapi.com",
-                "x-rapidapi-key": "b8fcbb11c4msh3c4a33b7ab7d576p161a2cjsn2eb0bc12f30b",
+                "x-rapidapi-key": rapid_key,
             },
             params={"msg": message},
         ) as resp:
