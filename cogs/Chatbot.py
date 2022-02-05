@@ -34,7 +34,7 @@ class ChatBot(commands.Cog):
 
         return True
 
-    async def get_response(self, message: str) -> typing.Optional[str]:
+    async def get_response(self, message: str, ctx: Context) -> typing.Optional[str]:
         async with self.bot.client.get(
             url=f"https://random-stuff-api.p.rapidapi.com/ai",
             headers={
@@ -42,7 +42,7 @@ class ChatBot(commands.Cog):
                 "x-rapidapi-host": "random-stuff-api.p.rapidapi.com",
                 "x-rapidapi-key": rapid_key,
             },
-            params={"msg": message},
+            params={"msg": message, "id": ctx.author.id},
         ) as resp:
             json = await resp.json()
 
@@ -51,7 +51,7 @@ class ChatBot(commands.Cog):
         return json["AIResponse"]
 
     async def send_ai(self, channel: Context, message: str, avatar_url=None) -> None:
-        response = await self.get_response(message)
+        response = await self.get_response(message, channel)
 
         embed = disnake.Embed(description="").set_author(
             icon_url=avatar_url or disnake.Embed.Empty, name="Chatbot"
