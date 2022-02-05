@@ -5945,6 +5945,40 @@
             "time": [
                 "2022-01-30 18:04:35.227000+00:00"
             ]
+        },
+        "848586716507537419": {
+            "list": [
+                "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@830965673588555797>** <:fedora:830478997858025513>'}"
+            ],
+            "author": [
+                "AFK Bot"
+            ],
+            "id": [
+                755588579262201886
+            ],
+            "time": [
+                "2022-02-05 22:07:48.038000+00:00"
+            ]
+        }
+    },
+    "926115595307614249": {
+        "926115595307614252": {
+            "list": [
+                "Readable file found\nTo disable this type `jarvide removeconfig file`!",
+                "Readable file found\nTo disable this type `jarvide removeconfig file`!"
+            ],
+            "author": [
+                "Jarvide",
+                "Jarvide"
+            ],
+            "id": [
+                926122065973616690,
+                926122065973616690
+            ],
+            "time": [
+                "2022-02-05 22:08:26.070000+00:00",
+                "2022-02-05 22:08:43.353000+00:00"
+            ]
         }
     }
 }

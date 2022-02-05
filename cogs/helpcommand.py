@@ -7,6 +7,7 @@ from core.utils.utils import Cmds
 from core.utils.emojis import *
 from core.utils.view import DropdownView
 from core.Context import Context
+from core.Bot import JesterBot
 
 
 class HelpUtils:
@@ -128,7 +129,7 @@ class HelpUtils:
         commands = [
             f"- `{k.name}`"
             for k in self.bot.commands
-            if k.name.startswith(message[0]) and not k.hidden
+            if k.name.startswith(message[0].lower()) and not k.hidden
         ]
 
         return (
@@ -149,9 +150,10 @@ class HelpUtils:
 
 
 class Help(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: JesterBot):
         self.bot = bot
         self.utils = HelpUtils(bot)
+
         with open("./dicts/Emoji.json") as k:
             self.data = json.load(k)
 

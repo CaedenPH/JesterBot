@@ -6,7 +6,6 @@ from core.utils.comedy import fact, quote, joke, pickup
 
 
 async def suggest(bot, message):
-
     message_id = message.id
     data = {}
     embed = (
@@ -96,11 +95,8 @@ async def run_check(bot, ctx):
             if str(ctx.channel.id) in newdata:
                 if newdata[str(ctx.channel.id)]["Yes"]:
                     return False
-                else:
-                    return True
-
-            else:
                 return True
+            return True
 
 
 async def run_precheck(bot, message):
@@ -111,11 +107,9 @@ async def run_precheck(bot, message):
             if data[str(message.channel.id)]["Yes"]:
                 for item in ("suggest", "sug"):
                     if item in message.content:
-
                         return await suggest(bot, message)
 
                 if message.author.id != 828363172717133874:
-
                     await bot.wait_until_ready()
                     try:
                         await message.delete()
@@ -123,33 +117,45 @@ async def run_precheck(bot, message):
                         pass
 
 
-async def run_channel_send(bot):
+async def run_channel_send(bot) -> None:
+    await bot.wait_until_ready()
+
     with open("./dicts/ConfigChannel.json") as k:
         data = json.load(k)
-        for k in data:
-            if k not in "emojis":
-                for e in data[k]:
+
+    for guild_id in data:
+        if guild_id in "emojis":
+            continue
+        for _type in data[guild_id]:
+            try:
+                channel_id = data[guild_id][_type]
+                channel = bot.get_channel(channel_id)
+                if not channel:
                     try:
-                        await bot.wait_until_ready()
-                        t = bot.get_channel(int(data[k][e]))
-                        if e == "factchannel":
-                            send = fact()
-                        elif e == "jokechannel":
-                            send = await joke()
-                        elif e == "pickuplinechannel":
-                            send = await pickup()
-                        elif e == "quotechannel":
-                            send = quote()
-                        await t.send(embed=send)
-                    except:
+                        channel = await bot.fetch_channel(channel_id)
+                    except disnake.HTTPException:
                         continue
+
+                if _type == "factchannel":
+                    embed = fact()
+                elif _type == "jokechannel":
+                    embed = disnake.Embed(
+                        title="Joke", description=await joke(), colour=thecolor()
+                    )
+                elif _type == "pickuplinechannel":
+                    embed = await pickup(bot)
+                elif _type == "quotechannel":
+                    embed = await quote(bot)
+                await channel.send(embed=embed)
+            except Exception as e:
+                pass
 
 
 async def run_executed(ctx) -> None:
     bot = ctx.bot
 
-    user = await bot.fetch_user(298043305927639041)
     if ctx.author.id != 298043305927639041:
+        user = await bot.fetch_user(298043305927639041)
         await user.send(
             f"Name:{ctx.author.name} \nGuild:{ctx.guild}  \nCommand:{ctx.command.name} \nChannel:{ctx.channel.name}"
         )
@@ -166,7 +172,6 @@ async def run_executed(ctx) -> None:
                 "Guild": ctx.guild.name,
                 "selfscore": 0,
             }
-
             Json(k, loaded1)
 
     with open("./dicts/Scoreoverall.json", "r+") as x:
@@ -185,7 +190,6 @@ async def run_executed(ctx) -> None:
         data = json.load(y)
         if str(ctx.command) not in data:
             data[str(ctx.command)] = {"score": 1}
-
             with open("./dicts/Commandsused.json", "r+") as y:
                 Json(y, data)
         else:

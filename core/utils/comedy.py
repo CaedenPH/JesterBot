@@ -1,7 +1,10 @@
-import vacefron, randfacts, asyncpraw, datetime, json, requests
+import vacefron
+import randfacts
+import asyncpraw
+import json
 import disnake
-from jokeapi import Jokes
 
+from jokeapi import Jokes
 from .utils import thecolor
 from core.utils.HIDDEN import *
 
@@ -15,38 +18,43 @@ reddit = asyncpraw.Reddit(
 vace_api = vacefron.Client()
 
 
-def fact():
+def fact() -> disnake.Embed:
     fact = randfacts.get_fact()
+
     embed = disnake.Embed(color=thecolor())
     embed.add_field(name="Fact", value=fact)
     return embed
 
 
-def quote():
+async def quote(bot) -> disnake.Embed:
+    async with bot.client.get(
+        url="http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en"
+    ) as response:
+        embed = disnake.Embed(color=thecolor())
+        embed.add_field(
+            name="Quote",
+            value='*"{quoteText}"*\n{quoteAuthor}'.format(
+                **json.loads(await response.read())
+            ),
+        )
+        return embed
 
-    response = requests.get(
-        "http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en"
-    )
-    embed = disnake.Embed(color=thecolor())
-    embed.add_field(
-        name="Quote",
-        value='*"{quoteText}"*\n{quoteAuthor}'.format(**json.loads(response.text)),
-    )
-    return embed
 
-
-async def joke():
+async def joke() -> str:
     j = await Jokes()
     joke = await j.get_joke()
+
     if joke["type"] == "single":
         return joke["joke"]
     return f"**{joke['setup']}** - {joke['delivery']}"
 
 
-async def pickup():
-    subreddit = await reddit.subreddit("pickuplines")
-    pickupline = await subreddit.random()
+async def pickup(bot) -> disnake.Embed:
+    async with bot.client.get(
+        url="http://getpickuplines.herokuapp.com/lines/random"
+    ) as response:
+        json = await response.json()
 
     embed = disnake.Embed(color=thecolor())
-    embed.add_field(name=pickupline.title, value=pickupline.selftext)
+    embed.add_field(name="Pickup line", value=json["line"])
     return embed

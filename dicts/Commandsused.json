@@ -27,7 +27,7 @@
         "score": 105
     },
     "help": {
-        "score": 2219
+        "score": 2225
     },
     "jsonfile": {
         "score": 19
@@ -1182,7 +1182,7 @@
         "score": 11
     },
     "setup_chatbot": {
-        "score": 7
+        "score": 8
     },
     "remove_ai": {
         "score": 3
@@ -1200,7 +1200,7 @@
         "score": 6
     },
     "chatbot": {
-        "score": 18
+        "score": 20
     },
     "tags": {
         "score": 19

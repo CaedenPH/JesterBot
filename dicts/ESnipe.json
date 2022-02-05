@@ -14201,7 +14201,8 @@
                 "KakaChi",
                 "KakaChi",
                 "KakaChi",
-                "KakaChi"
+                "KakaChi",
+                "Who-Iam"
             ],
             "id": [
                 887044862485086258,
@@ -14244,7 +14245,8 @@
                 788799817908092978,
                 788799817908092978,
                 788799817908092978,
-                788799817908092978
+                788799817908092978,
+                852831270409076746
             ],
             "time": [
                 "2021-11-17 20:52:36.154000",
@@ -14287,7 +14289,8 @@
                 "2021-12-26 15:48:22.344000+00:00",
                 "2021-12-29 17:01:34.776000+00:00",
                 "2021-12-29 17:01:56.238000+00:00",
-                "2021-12-29 17:06:59.717000+00:00"
+                "2021-12-29 17:06:59.717000+00:00",
+                "2022-02-05 22:26:52.308000+00:00"
             ],
             "after": [
                 "https://tenor.com/view/peepo-exit-door-gif-15229894",
@@ -14330,7 +14333,8 @@
                 "",
                 "",
                 "",
-                ""
+                "",
+                "https://media.discordapp.net/attachments/929257850772017202/933060667492167780/c7a04a031ed8341798792dde36ff47e2.jpg"
             ],
             "before": [
                 "https://tenor.com/view/peepo-exit-door-gif-15229894",
@@ -14373,7 +14377,8 @@
                 "",
                 "",
                 "",
-                ""
+                "",
+                "https://media.discordapp.net/attachments/929257850772017202/933060667492167780/c7a04a031ed8341798792dde36ff47e2.jpg"
             ]
         }
     },
@@ -23116,6 +23121,23 @@
                 "",
                 ""
             ]
+        },
+        "931380367884185681": {
+            "author": [
+                "Alento Ghostflame"
+            ],
+            "id": [
+                931381557455892540
+            ],
+            "time": [
+                "2022-02-05 22:48:52.128000+00:00"
+            ],
+            "after": [
+                "yes"
+            ],
+            "before": [
+                "yes"
+            ]
         }
     },
     "874559276666998805": {
@@ -23284,7 +23306,10 @@
                 "[j.] JesterBot",
                 "[j.] JesterBot",
                 "[j.] JesterBot",
-                "[j.] JesterBot"
+                "[j.] JesterBot",
+                "Robin J",
+                "Jarvide",
+                "Jarvide"
             ],
             "id": [
                 828363172717133874,
@@ -23293,7 +23318,10 @@
                 828363172717133874,
                 828363172717133874,
                 828363172717133874,
-                828363172717133874
+                828363172717133874,
+                432643355634171905,
+                926122065973616690,
+                926122065973616690
             ],
             "time": [
                 "2022-01-29 22:58:26.039000+00:00",
@@ -23302,7 +23330,10 @@
                 "2022-01-29 22:58:26.039000+00:00",
                 "2022-01-29 22:58:26.039000+00:00",
                 "2022-01-29 22:58:26.039000+00:00",
-                "2022-01-29 22:58:26.039000+00:00"
+                "2022-01-29 22:58:26.039000+00:00",
+                "2022-02-05 22:07:00.227000+00:00",
+                "2022-02-05 22:08:26.070000+00:00",
+                "2022-02-05 22:08:43.353000+00:00"
             ],
             "after": [
                 "```yaml\n\n  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========````_ _ a _`\nYou have 7 guesses left",
@@ -23311,7 +23342,10 @@
                 "```yaml\n\n  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n=========````_ _ a _`\nYou have 4 guesses left",
                 "```yaml\n\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========````_ _ a _`\nYou have 3 guesses left",
                 "```yaml\n\n  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========````_ _ a _`\nYou have 2 guesses left",
-                "```yaml\n\n  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n=========````_ _ a _`\nYou have 1 guesses left"
+                "```yaml\n\n  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n=========````_ _ a _`\nYou have 1 guesses left",
+                "https://discord.com/developers/docs/topics/oauth2",
+                "Readable file found\nTo disable this type `jarvide removeconfig file`!",
+                "Readable file found\nTo disable this type `jarvide removeconfig file`!"
             ],
             "before": [
                 "```yaml\n\n  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========````_ _ _ _`\nYou have 7 guesses left",
@@ -23320,7 +23354,10 @@
                 "```yaml\n\n  +---+\n  |   |\n  O   |\n  |   |\n      |\n      |\n=========````_ _ a _`\nYou have 5 guesses left",
                 "```yaml\n\n  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n=========````_ _ a _`\nYou have 4 guesses left",
                 "```yaml\n\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========````_ _ a _`\nYou have 3 guesses left",
-                "```yaml\n\n  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========````_ _ a _`\nYou have 2 guesses left"
+                "```yaml\n\n  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========````_ _ a _`\nYou have 2 guesses left",
+                "https://discord.com/developers/docs/topics/oauth2",
+                "Resolving file integrity...",
+                "Resolving file integrity..."
             ]
         }
     },
@@ -23376,35 +23413,187 @@
         },
         "866447931388198962": {
             "author": [
-                "plant"
+                "plant",
+                "plant",
+                "northface",
+                "MemantineVendingMachine",
+                "brother tyler",
+                "brother tyler",
+                "brother tyler",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer"
             ],
             "id": [
-                529820159355912202
+                529820159355912202,
+                529820159355912202,
+                922886313328398407,
+                511267894139551759,
+                205107569839046658,
+                205107569839046658,
+                205107569839046658,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976
             ],
             "time": [
-                "2022-01-30 17:49:08.237000+00:00"
+                "2022-01-30 17:49:08.237000+00:00",
+                "2022-02-05 22:04:35.720000+00:00",
+                "2022-02-05 22:05:14.861000+00:00",
+                "2022-02-05 22:08:04.539000+00:00",
+                "2022-02-05 22:35:48.162000+00:00",
+                "2022-02-05 22:45:11.628000+00:00",
+                "2022-02-05 22:45:26.329000+00:00",
+                "2022-02-05 22:45:40.776000+00:00",
+                "2022-02-05 22:45:40.776000+00:00",
+                "2022-02-05 22:44:33.843000+00:00",
+                "2022-02-05 22:48:32.359000+00:00"
             ],
             "after": [
-                "https://youtu.be/KRogDxQzHEI"
+                "https://youtu.be/KRogDxQzHEI",
+                "https://tenor.com/view/kangaroo-scratch-gif-18029359",
+                "https://tenor.com/view/brrr-turnup-gucci-guccimane-trill-gif-8308164",
+                "who's metabolizing who?",
+                "https://tenor.com/view/scorey-rock-n-roll-gif-22286256",
+                "https://tenor.com/view/hide-yo-kids-jordan-jay-warning-hide-yo-wife-meme-gif-5346855",
+                "https://tenor.com/view/antoine-dodson-hide-yo-kids-hide-yo-wife-hide-yo-husband-classic-gif-16631547",
+                "**`On the phone with the Police`**\n**NUGSXXXXX** hello?? yes hello there is currently a robbery taking place, somebody is planning to rob my bank, pls help!!!!",
+                "**`On the phone with the Police`**\n**NUGSXXXXX** hello?? yes hello there is currently a robbery taking place, somebody is planning to rob my bank, pls help!!!!\n**POLICE OFFICER** We'll be right there sir, or ma'am.\n\n**`Call disconnected.`**",
+                "",
+                "You put your wishlist away after using it, time to rob!"
             ],
             "before": [
-                "https://youtu.be/KRogDxQzHEI"
+                "https://youtu.be/KRogDxQzHEI",
+                "https://tenor.com/view/kangaroo-scratch-gif-18029359",
+                "https://tenor.com/view/brrr-turnup-gucci-guccimane-trill-gif-8308164",
+                "who's metabolising who?",
+                "https://tenor.com/view/scorey-rock-n-roll-gif-22286256",
+                "https://tenor.com/view/hide-yo-kids-jordan-jay-warning-hide-yo-wife-meme-gif-5346855",
+                "https://tenor.com/view/antoine-dodson-hide-yo-kids-hide-yo-wife-hide-yo-husband-classic-gif-16631547",
+                "`Dialing the emergency services...`",
+                "**`On the phone with the Police`**\n**NUGSXXXXX** hello?? yes hello there is currently a robbery taking place, somebody is planning to rob my bank, pls help!!!!",
+                "",
+                "You pulled out your handy dandy wishlist. Press that cute lil button and get some rob & bankrob info!"
             ]
         },
         "872943302046019584": {
             "author": [
+                "MEE6",
                 "MEE6"
             ],
             "id": [
+                914340079537885204,
                 914340079537885204
             ],
             "time": [
-                "2022-01-30 18:05:58.523000+00:00"
+                "2022-01-30 18:05:58.523000+00:00",
+                "2022-02-05 22:08:27.299000+00:00"
             ],
             "after": [
+                "",
                 ""
             ],
             "before": [
+                "",
+                ""
+            ]
+        },
+        "861095679518703676": {
+            "author": [
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer"
+            ],
+            "id": [
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976
+            ],
+            "time": [
+                "2022-02-05 22:46:53.148000+00:00",
+                "2022-02-05 22:46:47.168000+00:00",
+                "2022-02-05 22:46:53.148000+00:00",
+                "2022-02-05 22:46:47.168000+00:00",
+                "2022-02-05 22:46:53.148000+00:00",
+                "2022-02-05 22:46:47.168000+00:00",
+                "2022-02-05 22:46:47.168000+00:00",
+                "2022-02-05 22:46:53.148000+00:00",
+                "2022-02-05 22:46:47.168000+00:00",
+                "2022-02-05 22:47:51.376000+00:00",
+                "2022-02-05 22:48:03.646000+00:00",
+                "2022-02-05 22:48:17.249000+00:00",
+                "2022-02-05 22:48:39.976000+00:00",
+                "2022-02-05 22:49:21.262000+00:00",
+                "2022-02-05 22:49:21.262000+00:00",
+                "2022-02-05 22:50:22.430000+00:00",
+                "2022-02-05 22:51:13.742000+00:00"
+            ],
+            "after": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "You put your wishlist away after using it, time to rob!",
+                ""
+            ],
+            "before": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "You pulled out your handy dandy wishlist. Press that cute lil button and get some rob & bankrob info!",
                 ""
             ]
         }
