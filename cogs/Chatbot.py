@@ -65,7 +65,7 @@ class ChatBot(commands.Cog):
 
     @commands.command(aliases=["ai"])
     async def chatbot(self, ctx: Context, *, message: str) -> None:
-        await self.send_ai(ctx.channel, message)
+        await self.send_ai(ctx, message)
 
     @commands.command(aliases=["setup", "setup_ai"])
     async def setup_chatbot(self, ctx: Context, channel: disnake.TextChannel) -> None:
@@ -89,7 +89,7 @@ class ChatBot(commands.Cog):
             return
         if message.author.bot:
             return
-        await self.send_ai(message.channel, message.content)
+        await self.send_ai(message, message.content)
 
 
 def setup(bot: commands.Bot) -> None:
