@@ -3,6 +3,7 @@ import disnake
 
 from disnake.ext import commands
 from core.Context import Context
+from disnake import Message
 from core.Bot import JesterBot
 from core.utils.HIDDEN import ai_key, rapid_key
 
@@ -34,7 +35,7 @@ class ChatBot(commands.Cog):
 
         return True
 
-    async def get_response(self, message: str) -> typing.Optional[str]:
+    async def get_response(self, message: str, user) -> typing.Optional[str]:
         async with self.bot.client.get(
             url=f"https://random-stuff-api.p.rapidapi.com/ai",
             headers={
@@ -42,7 +43,7 @@ class ChatBot(commands.Cog):
                 "x-rapidapi-host": "random-stuff-api.p.rapidapi.com",
                 "x-rapidapi-key": rapid_key,
             },
-            params={"msg": message},
+            params={"msg": message, "id": user.id},
         ) as resp:
             json = await resp.json()
 
@@ -50,9 +51,9 @@ class ChatBot(commands.Cog):
             return None
         return json["AIResponse"]
 
-    async def send_ai(self, channel: Context, message: str, avatar_url=None) -> None:
-        response = await self.get_response(message)
-
+    async def send_ai(self, msg: Message, message: str, avatar_url=None) -> None:
+        response = await self.get_response(message, user = msg.author)
+        channel = msg.channel
         embed = disnake.Embed(description="").set_author(
             icon_url=avatar_url or disnake.Embed.Empty, name="Chatbot"
         )
@@ -65,7 +66,7 @@ class ChatBot(commands.Cog):
 
     @commands.command(aliases=["ai"])
     async def chatbot(self, ctx: Context, *, message: str) -> None:
-        await self.send_ai(ctx.channel, message)
+        await self.send_ai(ctx.message, message)
 
     @commands.command(aliases=["setup", "setup_ai"])
     async def setup_chatbot(self, ctx: Context, channel: disnake.TextChannel) -> None:
@@ -89,7 +90,7 @@ class ChatBot(commands.Cog):
             return
         if message.author.bot:
             return
-        await self.send_ai(message.channel, message.content)
+        await self.send_ai(message, message.content)
 
 
 def setup(bot: commands.Bot) -> None:
