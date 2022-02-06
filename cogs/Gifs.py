@@ -4,7 +4,7 @@ from random import choice, randint
 
 from core.utils.utils import thecolor, Json, thebed
 from core.utils.comedy import fact, quote, joke, pickup
-from core.Context import Context
+from core import Context
 from core.utils.comedy import joke
 
 

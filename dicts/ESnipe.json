@@ -13852,9 +13852,11 @@
                 "Sirona",
                 "Sirona",
                 "Sirona",
+                "Sirona",
                 "Sirona"
             ],
             "id": [
+                748100524246564894,
                 748100524246564894,
                 748100524246564894,
                 748100524246564894,
@@ -14004,9 +14006,11 @@
                 "2021-12-23 15:00:07.319000+00:00",
                 "2021-12-26 17:52:48.108000+00:00",
                 "2021-12-27 03:39:09.498000+00:00",
-                "2021-12-28 11:45:40.601000+00:00"
+                "2021-12-28 11:45:40.601000+00:00",
+                "2022-02-06 13:27:42.942000+00:00"
             ],
             "after": [
+                "",
                 "",
                 "",
                 "",
@@ -14083,6 +14087,7 @@
                 ""
             ],
             "before": [
+                "",
                 "",
                 "",
                 "",
@@ -18382,18 +18387,23 @@
         },
         "901847019348459581": {
             "author": [
-                "StealthyBot"
+                "StealthyBot",
+                "Vexera"
             ],
             "id": [
-                889922820317007928
+                889922820317007928,
+                228537642583588864
             ],
             "time": [
-                "2021-11-30 07:34:33.745000"
+                "2021-11-30 07:34:33.745000",
+                "2022-02-06 12:16:18.117000+00:00"
             ],
             "after": [
+                "",
                 ""
             ],
             "before": [
+                "",
                 ""
             ]
         },
@@ -23309,7 +23319,9 @@
                 "[j.] JesterBot",
                 "Robin J",
                 "Jarvide",
-                "Jarvide"
+                "Jarvide",
+                "Caeden",
+                "stealthninja"
             ],
             "id": [
                 828363172717133874,
@@ -23321,7 +23333,9 @@
                 828363172717133874,
                 432643355634171905,
                 926122065973616690,
-                926122065973616690
+                926122065973616690,
+                298043305927639041,
+                521226389559443461
             ],
             "time": [
                 "2022-01-29 22:58:26.039000+00:00",
@@ -23333,7 +23347,9 @@
                 "2022-01-29 22:58:26.039000+00:00",
                 "2022-02-05 22:07:00.227000+00:00",
                 "2022-02-05 22:08:26.070000+00:00",
-                "2022-02-05 22:08:43.353000+00:00"
+                "2022-02-05 22:08:43.353000+00:00",
+                "2022-02-06 12:33:25.270000+00:00",
+                "2022-02-06 13:27:49.433000+00:00"
             ],
             "after": [
                 "```yaml\n\n  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========````_ _ a _`\nYou have 7 guesses left",
@@ -23345,7 +23361,9 @@
                 "```yaml\n\n  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n=========````_ _ a _`\nYou have 1 guesses left",
                 "https://discord.com/developers/docs/topics/oauth2",
                 "Readable file found\nTo disable this type `jarvide removeconfig file`!",
-                "Readable file found\nTo disable this type `jarvide removeconfig file`!"
+                "Readable file found\nTo disable this type `jarvide removeconfig file`!",
+                "hello",
+                "https://media.discordapp.net/attachments/921721227901538355/939872894589218826/unknown.png"
             ],
             "before": [
                 "```yaml\n\n  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========````_ _ _ _`\nYou have 7 guesses left",
@@ -23357,7 +23375,9 @@
                 "```yaml\n\n  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========````_ _ a _`\nYou have 2 guesses left",
                 "https://discord.com/developers/docs/topics/oauth2",
                 "Resolving file integrity...",
-                "Resolving file integrity..."
+                "Resolving file integrity...",
+                "helloi",
+                "https://media.discordapp.net/attachments/921721227901538355/939872894589218826/unknown.png"
             ]
         }
     },
@@ -23423,7 +23443,10 @@
                 "Dank Memer",
                 "Dank Memer",
                 "Dank Memer",
-                "Dank Memer"
+                "Dank Memer",
+                "castlefreak",
+                "Axiatinc",
+                "castlefreak"
             ],
             "id": [
                 529820159355912202,
@@ -23436,7 +23459,10 @@
                 270904126974590976,
                 270904126974590976,
                 270904126974590976,
-                270904126974590976
+                270904126974590976,
+                654824024421171203,
+                192357135290597376,
+                654824024421171203
             ],
             "time": [
                 "2022-01-30 17:49:08.237000+00:00",
@@ -23449,7 +23475,10 @@
                 "2022-02-05 22:45:40.776000+00:00",
                 "2022-02-05 22:45:40.776000+00:00",
                 "2022-02-05 22:44:33.843000+00:00",
-                "2022-02-05 22:48:32.359000+00:00"
+                "2022-02-05 22:48:32.359000+00:00",
+                "2022-02-06 12:14:30.736000+00:00",
+                "2022-02-06 12:33:22.079000+00:00",
+                "2022-02-06 12:35:27.889000+00:00"
             ],
             "after": [
                 "https://youtu.be/KRogDxQzHEI",
@@ -23462,7 +23491,10 @@
                 "**`On the phone with the Police`**\n**NUGSXXXXX** hello?? yes hello there is currently a robbery taking place, somebody is planning to rob my bank, pls help!!!!",
                 "**`On the phone with the Police`**\n**NUGSXXXXX** hello?? yes hello there is currently a robbery taking place, somebody is planning to rob my bank, pls help!!!!\n**POLICE OFFICER** We'll be right there sir, or ma'am.\n\n**`Call disconnected.`**",
                 "",
-                "You put your wishlist away after using it, time to rob!"
+                "You put your wishlist away after using it, time to rob!",
+                "https://open.spotify.com/track/6kJb4WaCuc4wLBIkSJUY3n?si=yI63sbklT0imdxqv_tx_hg",
+                "i know that one of high and drys staff members is sourcing <3",
+                "https://open.spotify.com/track/2SpGXD7EbexndFmmThrnsy?si=RztBDcsgSneTeQXtONzzrw"
             ],
             "before": [
                 "https://youtu.be/KRogDxQzHEI",
@@ -23475,7 +23507,10 @@
                 "`Dialing the emergency services...`",
                 "**`On the phone with the Police`**\n**NUGSXXXXX** hello?? yes hello there is currently a robbery taking place, somebody is planning to rob my bank, pls help!!!!",
                 "",
-                "You pulled out your handy dandy wishlist. Press that cute lil button and get some rob & bankrob info!"
+                "You pulled out your handy dandy wishlist. Press that cute lil button and get some rob & bankrob info!",
+                "https://open.spotify.com/track/6kJb4WaCuc4wLBIkSJUY3n?si=yI63sbklT0imdxqv_tx_hg",
+                "i know that one of high and drys staff members is sourcing <34",
+                "https://open.spotify.com/track/2SpGXD7EbexndFmmThrnsy?si=RztBDcsgSneTeQXtONzzrw"
             ]
         },
         "872943302046019584": {

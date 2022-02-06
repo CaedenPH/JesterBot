@@ -1,7 +1,7 @@
 import discord_together, disnake
 
 from disnake.ext import commands
-from core.utils.HIDDEN import TOKEN
+from core.constants import BOT_TOKEN
 
 
 class DiscordTogether(commands.Cog):
@@ -11,7 +11,7 @@ class DiscordTogether(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        self.together_control = await discord_together.DiscordTogether(TOKEN)
+        self.together_control = await discord_together.DiscordTogether(BOT_TOKEN)
 
     @commands.command(aliases=["yt_together"])
     @commands.cooldown(1, 60, commands.BucketType.guild)

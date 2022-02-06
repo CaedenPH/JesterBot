@@ -1,13 +1,12 @@
-import disnake, os, requests, json, asyncio
+import disnake
+import json
+
 from disnake.ext import commands
-from asyncio import sleep
-from random import choice, randint
 from datetime import datetime
 from core.utils import create_embed
 
 from core.utils.utils import thecolor, Json, thebed
-from core.Context import Context
-from core.utils.comedy import joke
+from core import Context
 
 
 class JesterInfo(commands.Cog):
@@ -244,29 +243,17 @@ class JesterInfo(commands.Cog):
         if not prefix:
             async with ctx.typing():
                 embed = await create_embed(ctx.message, self.bot)
-
             return await ctx.send(embed=embed)
-        prefix = prefix.split(" ")
 
-        if prefix:
+        prefixes = prefix.split(" ")
+        await self.bot.insert_prefix(ctx.author.id, prefixes)
 
-            with open("./dicts/prefixes.json", "r+") as e:
-                data = json.load(e)
-                if ctx.guild.id in data:
-                    data[str(ctx.author.id)]["prefix"] = prefix
-
-                else:
-                    data[str(ctx.author.id)] = {"prefix": prefix}
-                Json(e, data)
-            prefix1 = []
-            for num in prefix:
-                prefix1.append(f"`{num}`")
-            embed = disnake.Embed(
-                description=f"New prefix is {', '.join(prefix1) if prefix else f'{prefix1}'}!, ping me for my prefixes if you forget!",
-                colour=thecolor(),
-            )
-            embed.set_author(icon_url=ctx.author.avatar.url, name="Prefix")
-            await ctx.send(embed=embed)
+        embed = disnake.Embed(
+            description=f"New prefixes are: {', '.join([f'`{prefix}`' for prefix in prefixes])}\nPing me for my prefixes if you forget!",
+            colour=thecolor(),
+        )
+        embed.set_author(icon_url=ctx.author.avatar.url, name="Prefix")
+        await ctx.send(embed=embed)
 
     @commands.command(aliases=["devs", "helpers", "coder", "coders"])
     async def credits(self, ctx: Context):

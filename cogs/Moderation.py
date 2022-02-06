@@ -1,5 +1,5 @@
 import typing, difflib
-from core.Paginator import Paginator
+from core.paginator import Paginator
 import disnake, os, requests, json, asyncio
 from disnake.ext.commands import has_permissions
 from disnake.ext import commands
@@ -9,7 +9,7 @@ import datetime
 from core.utils import create_embed
 
 from core.utils.utils import thecolor, Json, thebed
-from core.Context import Context
+from core import Context
 from core.utils.comedy import joke
 
 

@@ -7,7 +7,7 @@ from disnake.interactions.application_command import CmdInter
 import yaml
 
 from disnake.ext import commands
-from core.Context import Context
+from core import Context
 from pathlib import Path
 
 

@@ -1,7 +1,7 @@
 import disnake
 
 from core.utils.utils import thecolor
-from core.utils.emojis import LOCATIONemojis as l
+from core.constants import LOCATION_EMOJIS as l
 
 
 async def message_edit(embed, **kwargs):

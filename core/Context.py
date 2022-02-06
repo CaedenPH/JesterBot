@@ -1,4 +1,4 @@
-from core.utils.emojis import CLOSE, HOME, TRASHCAN
+from core.constants import TRASHCAN
 import disnake, asyncio
 from disnake.ext import commands
 

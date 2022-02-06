@@ -3,8 +3,8 @@ import random
 import pprint
 
 from disnake.ext import commands
-from core.Context import Context
-from core.Paginator import Paginator
+from core import Context
+from core.paginator import Paginator
 
 
 class Crime(commands.Cog):

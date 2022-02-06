@@ -1,6 +1,6 @@
-from disnake.errors import HTTPException
-import requests
-import disnake, aiohttp, pprint, json
+import disnake
+import pprint
+
 from disnake.ext import commands
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM

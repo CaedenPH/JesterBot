@@ -9,7 +9,7 @@ import contextlib
 from traceback import format_exception
 
 from core.utils.utils import Json, thecolor
-from core.Paginator import Paginator
+from core.paginator import Paginator
 
 
 def clean_code(content: str):

@@ -2,16 +2,16 @@ import typing
 import disnake
 
 from disnake.ext import commands
-from core.Context import Context
-from core.Bot import JesterBot
-from core.utils.HIDDEN import ai_key, rapid_key
+from core import Context
+from core import JesterBot
+from core.constants import CHATBOT_KEY, RAPID_API_KEY
 
 
 class ChatBot(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot: JesterBot = bot
 
-    async def find_or_insert_channel(self, channel_id: int, **kwargs):
+    async def find_or_insert_channel(self, channel_id: int, **kwargs) -> bool:
         insert = kwargs.get("insert", False)
         remove = kwargs.get("remove", False)
 
@@ -35,8 +35,8 @@ class ChatBot(commands.Cog):
         async with self.bot.client.get(
             url=f"https://random-stuff-api.p.rapidapi.com/ai",
             headers={
-                "authorization": ai_key,
-                "x-rapidapi-key": rapid_key,
+                "authorization": CHATBOT_KEY,
+                "x-rapidapi-key": RAPID_API_KEY,
                 "x-rapidapi-host": "random-stuff-api.p.rapidapi.com",
             },
             params={"msg": message, "id": user_id},

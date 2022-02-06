@@ -1,11 +1,16 @@
-LOCATIONemojis = {
+from os import environ
+from dotenv import load_dotenv
+
+load_dotenv()
+
+LOCATION_EMOJIS = {
     "fastbackwards": "<:fast_forward_left:870781340692402226>",
     "backwards": "<:left_arrow:870781340990197860>",
     "close": "<:Cross:863313854069997578>",
     "forwards": "<:right_arrow:870781340314898473>",
     "fastforwards": "<:fast_forward_right:870781340839202837>",
 }
-COGemojis = {
+COG_EMOJIS = {
     "JesterInfo": 863075610048987166,
     "Feedback": 863075610851147777,
     "Music": 863075611320647719,
@@ -39,8 +44,15 @@ LINK = "<:links:870781340700782612>"
 CATEGORIES = "<:menus:870781340746932225>"
 TRASHCAN = "<:trashbin:873564727006089287>"
 
-j = "<:J_:863313855286607932>"
-e = "<:E_:863313854150606848>"
-s = "<:S:863313855061164062>"
-t = "<:T:863313855399329812>"
-r = "<:R_:863313855119360022>"
+_J = "<:J_:863313855286607932>"
+_E = "<:E_:863313854150606848>"
+_S = "<:S:863313855061164062>"
+_T = "<:T:863313855399329812>"
+_R = "<:R_:863313855119360022>"
+
+BOT_TOKEN = environ["BOT_TOKEN"]
+WEATHER_KEY = environ["WEATHER_KEY"]
+POLICE_KEY = environ["POLICE_KEY"]
+COORDS_KEY = environ["COORDS_KEY"]
+CHATBOT_KEY = environ["CHATBOT_KEY"]
+RAPID_API_KEY = environ["RAPID_API_KEY"]

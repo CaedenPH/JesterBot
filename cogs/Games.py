@@ -6,7 +6,7 @@ from disnake.utils import get
 from asyncio import sleep
 from random import choice, randint
 from core.utils.utils import thecolor, thebed
-from core.Context import Context
+from core import Context
 
 import random
 

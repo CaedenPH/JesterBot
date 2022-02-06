@@ -3,7 +3,7 @@ import disnake
 import aiohttp
 from disnake.ext import commands
 
-from core.Context import Context
+from core import Context
 
 
 class UrbanDictionary(commands.Cog):

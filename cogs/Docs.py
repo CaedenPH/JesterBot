@@ -8,7 +8,7 @@ from fuzzywuzzy import fuzz
 from docs import cog
 
 from core.utils.pagination import Paginator
-from core.Context import Context
+from core import Context
 from core.utils.docs import *
 
 ZEN_OF_PYTHON = """\

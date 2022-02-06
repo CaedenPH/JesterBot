@@ -1,6 +1,6 @@
 from urllib.request import urlopen
 from disnake.utils import _get_description
-from core.utils.emojis import CLOSE
+from core.constants import CLOSE
 import disnake, requests
 from disnake.ext import commands
 
@@ -10,8 +10,8 @@ from datetime import datetime
 
 from core.utils.utils import thecolor, Json, thebed
 from core.utils.commands.eval import run_eval
-from core.Paginator import Paginator
-from core.Context import Context
+from core.paginator import Paginator
+from core import Context
 
 import simpleeval
 import re
@@ -191,7 +191,6 @@ class buttons(disnake.ui.View):
         display = f"```yaml\n{self.get_description()[:-1] if self.get_description() != '0' else '0'}```"
 
         if content[-1] == " " and content[-2] in operations:
-            print(".")
             display = f"```yaml\n{content[:-3]}```"
 
         self.embed.description = display
@@ -223,7 +222,6 @@ class buttons(disnake.ui.View):
         try:
             result = simpleeval.simple_eval(equation)
         except Exception as e:
-            print(e)
             result = "Error! Something went wrong"
 
         self.embed.description = f"```yaml\nIn ❯❯ {display} \nOut ❯❯ {result}```"

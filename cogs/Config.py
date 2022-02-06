@@ -6,7 +6,7 @@ from disnake.utils import get
 from async_timeout import timeout
 import asyncio
 from core.utils.utils import thecolor, Json, thebed, Cmds
-from core.Context import Context
+from core import Context
 
 
 class Config(commands.Cog):

@@ -5,7 +5,7 @@ import asyncio
 import datetime
 
 from disnake.ext import commands
-from core.Context import Context
+from core import Context
 
 
 class Trivia(commands.Cog):

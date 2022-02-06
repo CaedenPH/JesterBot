@@ -10,8 +10,8 @@ import zipfile
 import inspect
 
 from core.utils.utils import thecolor, Json, thebed
-from core.Context import Context
-from core.Paginator import Paginator
+from core import Context
+from core.paginator import Paginator
 
 
 class Misc(commands.Cog):

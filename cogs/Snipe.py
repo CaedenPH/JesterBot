@@ -1,7 +1,8 @@
-import disnake, os, requests, json, asyncio
+import disnake
+import json
+
 from core.utils.utils import thecolor, Json, thebed
 from disnake.ext import commands
-
 from datetime import datetime
 
 

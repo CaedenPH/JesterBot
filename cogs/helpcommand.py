@@ -4,10 +4,19 @@ import typing
 
 from disnake.ext import commands
 from core.utils.utils import Cmds
-from core.utils.emojis import *
+from core.constants import (
+    COG_EMOJIS,
+    CATEGORIES,
+    _J,
+    _E,
+    _S,
+    _T,
+    _R,
+    LINK,
+)
 from core.utils.view import DropdownView
-from core.Context import Context
-from core.Bot import JesterBot
+from core import Context
+from core import JesterBot
 
 
 class HelpUtils:
@@ -29,14 +38,14 @@ class HelpUtils:
     async def main_help_embed(self, ctx: commands.Context) -> disnake.Embed:
         description = f"\n```ml\n[] - Required Argument | <> - Optional Argument``````diff\n+ Use the dropbar to navigate through Categories``````diff\n+ Use {ctx.prefix}help prefix for info about the prefix```"
         cogs = [
-            f">  {self.bot.get_emoji(COGemojis[k])} **{k}** `({len([e for e in self.bot.get_cog(k).walk_commands() if not e.hidden])})`"
+            f">  {self.bot.get_emoji(COG_EMOJIS[k])} **{k}** `({len([e for e in self.bot.get_cog(k).walk_commands() if not e.hidden])})`"
             for k in self.bot.cogs
             if k in self.data
         ]
 
         return (
             disnake.Embed(
-                title=f"{j}{e}{s}{t}{e}{r}",
+                title=f"{_J}{_E}{_S}{_T}{_E}{_R}",
                 description=description,
                 timestamp=ctx.message.created_at,
             )

@@ -1,13 +1,13 @@
-import disnake
+from disnake import Embed, Message
 from .utils import thecolor
 from core.utils.comedy import joke
 
 
-async def create_embed(message, bot) -> disnake.Embed:
+async def create_embed(message: Message, bot) -> Embed:
     avatar = message.guild.get_member(bot.user.id).avatar.url
     prefix = await bot.get_prefix(message)
 
-    embed = disnake.Embed(
+    embed = Embed(
         title=f"Hello {message.author.name}",
         description=f"""
     │ My default prefix is: `j.` │
@@ -21,5 +21,4 @@ async def create_embed(message, bot) -> disnake.Embed:
         name="Also here is a joke for you:", value=f"│ {await joke()} │", inline=False
     )
     embed.set_footer(text="You can get more of these jokes with j.joke!")
-
     return embed

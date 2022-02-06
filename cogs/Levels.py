@@ -1,8 +1,6 @@
 import disnake
-import aiosqlite
 import math
 import random
-import aiohttp
 import io
 
 from PIL import Image, ImageDraw, ImageFont

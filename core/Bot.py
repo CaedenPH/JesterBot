@@ -1,24 +1,26 @@
+from __future__ import annotations
+
 import aiohttp
-import disnake
 import os
 import asyncio
 import datetime
 import aiosqlite
 
-from disnake.ext import commands, tasks
-from core.utils.commands.eval import run_eval
-from core.Context import Context
-from core.Error import error_handler
-from core.main.check import *
-from core.main.prefix import get_prefix
-from core.utils.HIDDEN import *
+from typing import List
+from disnake import Activity, ActivityType, Intents, Message
+from disnake.ext.commands import Bot, when_mentioned_or
+from disnake.ext.tasks import loop
+
+from .utils.commands.eval import run_eval
+from .utils import run_channel_send, run_check, run_executed, run_precheck
+from .constants import BOT_TOKEN, WEATHER_KEY, POLICE_KEY, COORDS_KEY, CHATBOT_KEY
 
 
-class JesterBot(commands.Bot):
+class JesterBot(Bot):
     def __init__(self):
         super().__init__(
-            command_prefix=get_prefix,
-            intents=disnake.Intents.all(),
+            command_prefix=self.get_prefix,
+            intents=Intents.all(),
             case_insensitive=True,
             strip_after_prefix=True,
             owner_ids=[298043305927639041],
@@ -32,10 +34,10 @@ class JesterBot(commands.Bot):
         self.hiber = False
         self.data = {}
 
-        self.WEATHER_KEY = weather_key
-        self.POLICE_KEY = police_key
-        self.COORDS_KEY = coords_key
-        self.CHATBOT_KEY = chatbot_key
+        self.WEATHER_KEY = WEATHER_KEY
+        self.POLICE_KEY = POLICE_KEY
+        self.COORDS_KEY = COORDS_KEY
+        self.CHATBOT_KEY = CHATBOT_KEY
 
         self.add_check(self.bot_check)
         self.after_invoke(self.after_command)
@@ -46,7 +48,42 @@ class JesterBot(commands.Bot):
                 if files.endswith(".py"):
                     self.COGS.append(f"cogs.{files}")
 
-    async def process_commands(self, message: disnake.Message) -> None:
+    async def find_prefix(self, user_id: int) -> List[str]:
+        cursor = await self.db.cursor()
+        await cursor.execute(
+            "SELECT prefixes FROM prefix WHERE user_id = ?", (user_id,)
+        )
+        result = await cursor.fetchone()
+
+        if not result:
+            return ["j."]
+        return result[0].split(" | ")
+
+    async def insert_prefix(self, user_id: int, prefixes: List[str]) -> None:
+        prefixes = " | ".join(prefixes)
+
+        cursor = await self.db.cursor()
+        await cursor.execute(
+            "SELECT prefixes FROM prefix WHERE user_id = ?", (user_id,)
+        )
+        result = await cursor.fetchone()
+        if not result:
+            await cursor.execute(
+                "INSERT INTO prefix VALUES (?, ?)", (user_id, prefixes)
+            )
+            return await self.db.commit()
+        await cursor.execute(
+            "UPDATE prefix SET prefixes = ? where user_id = ?", (prefixes, user_id)
+        )
+        await self.db.commit()
+
+    async def get_prefix(self, message: Message) -> List[str]:
+        prefixes = await self.find_prefix(message.author.id)
+        return when_mentioned_or(*prefixes)(self, message)
+
+    async def process_commands(self, message: Message) -> None:
+        from . import Context
+
         ctx = await self.get_context(message, cls=Context)
         if ctx.command is None:
             return
@@ -63,28 +100,28 @@ class JesterBot(commands.Bot):
             f"Loaded Cogs Successfully! Total Cogs: {len(self.COGS)}\n-----------------------------------"
         )
 
-    @tasks.loop(seconds=3600.0)
+    @loop(seconds=3600.0)
     async def chansend(self) -> None:
         await run_channel_send(self)
 
-    @tasks.loop(seconds=540)
+    @loop(seconds=540)
     async def update_presence(self) -> None:
         await self.change_presence(
-            activity=disnake.Activity(
-                type=disnake.ActivityType.listening, name="ping me for prefix // j.help"
+            activity=Activity(
+                type=ActivityType.listening, name="ping me for prefix // j.help"
             )
         )
         await asyncio.sleep(180)
         await self.change_presence(
-            activity=disnake.Activity(
-                type=disnake.ActivityType.watching,
+            activity=Activity(
+                type=ActivityType.watching,
                 name=f"ping me for prefix // {len(self.users)} Members in {len(self.guilds)} Servers!",
             )
         )
         await asyncio.sleep(180)
         await self.change_presence(
-            activity=disnake.Activity(
-                type=disnake.ActivityType.playing,
+            activity=Activity(
+                type=ActivityType.playing,
                 name=f"ping me for prefix // {len([e for e in self.commands if not e.hidden])} commands",
             )
         )
@@ -97,7 +134,7 @@ class JesterBot(commands.Bot):
         self.setup()
         print("Running the bot...")
         print("-----------------------------------")
-        super().run(TOKEN, reconnect=True)
+        super().run(BOT_TOKEN, reconnect=True)
 
     async def connect_database(self):
         self.db = await aiosqlite.connect("./db/database.db")
@@ -129,13 +166,7 @@ class JesterBot(commands.Bot):
             self.owner_ids.append(k.id)
         self.client: aiohttp.ClientSession = aiohttp.ClientSession()
 
-    async def process_commands(self, message: disnake.Message) -> None:
-        ctx = await self.get_context(message, cls=Context)
-        await self.invoke(ctx)
-
-    async def on_message_edit(
-        self, before: disnake.Message, after: disnake.Message
-    ) -> None:
+    async def on_message_edit(self, before: Message, after: Message) -> None:
         if before.author.bot:
             return
         if before.content == after.content:
@@ -157,7 +188,9 @@ class JesterBot(commands.Bot):
             await self.process_commands(after)
 
     async def on_command_error(self, context, exception) -> None:
-        await error_handler(self, context, exception)
+        from . import error_handler
+
+        await error_handler(context, exception)
 
     async def on_guild_remove(self, guild) -> None:
         selected_channel1 = self.get_guild(830161446523371540).get_channel(

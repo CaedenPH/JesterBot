@@ -4,7 +4,7 @@ from disnake.ext import commands
 import shutil
 
 from core.utils.utils import thecolor, Json, thebed
-from core.Context import Context
+from core import Context
 
 
 class Staff(commands.Cog):

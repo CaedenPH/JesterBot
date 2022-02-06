@@ -4,7 +4,7 @@ import json
 import yfinance as yf
 
 from core.utils.utils import Color, thecolor, thebed
-from core.Context import Context
+from core import Context
 
 from disnake.ext import commands
 

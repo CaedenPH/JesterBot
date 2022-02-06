@@ -8,9 +8,9 @@ import cv2 as cv
 import numpy as np
 
 from core.utils.utils import thecolor, Json, thebed
-from core.Context import Context
-from core.utils.emojis import CLOSE
-from core.Paginator import Paginator
+from core import Context
+from core.constants import CLOSE
+from core.paginator import Paginator
 
 from youtubesearchpython.__future__ import VideosSearch
 
@@ -94,7 +94,7 @@ class Fun(commands.Cog):
 
         await ctx.send(
             embed=disnake.Embed(
-                description=f"```yaml\n{art}```", color=self.bot.disnakecolor
+                description=f"```yaml\n{art}```", color=self.bot.discord_colour
             )
         )
 

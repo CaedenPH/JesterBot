@@ -15,7 +15,7 @@ from functools import partial
 from youtube_dl import YoutubeDL
 from random import choice, randint
 from core.utils.utils import thecolor, Json, thebed
-from core.Context import Context
+from core import Context
 
 
 FALSCH = False

@@ -1,7 +1,7 @@
 import disnake
 from disnake.ext import commands
 
-from core.utils.emojis import COGemojis, HOME
+from core.constants import COG_EMOJIS, HOME
 
 
 class Dropdown(disnake.ui.Select):
@@ -20,7 +20,7 @@ class Dropdown(disnake.ui.Select):
                 disnake.SelectOption(
                     label=key,
                     description=f"{len([k for k in ctx.bot.get_cog(key).walk_commands() if not k.hidden])} commands",
-                    emoji=ctx.bot.get_emoji(COGemojis[key]),
+                    emoji=ctx.bot.get_emoji(COG_EMOJIS[key]),
                 )
             )
 
