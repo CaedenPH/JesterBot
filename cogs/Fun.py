@@ -7,7 +7,7 @@ from glitch_this import ImageGlitcher
 import cv2 as cv
 import numpy as np
 
-from core.utils.utils import thecolor, Json, thebed
+from core.utils import get_colour, update_json, send_embed
 from core import Context
 from core.constants import CLOSE
 from core.paginator import Paginator
@@ -48,7 +48,7 @@ class Fun(commands.Cog):
         embed = disnake.Embed(
             timestamp=ctx.message.created_at,
             description="\n".join(formatted),
-            color=thecolor(),
+            colour=get_colour(),
         )
 
         embed.set_author(
@@ -78,7 +78,7 @@ class Fun(commands.Cog):
     async def asciiart(self, ctx: Context, *, text: str):
 
         if len(text) > 10:
-            return await thebed(
+            return await send_embed(
                 ctx, "", f"{CLOSE} Length of Text cannot be more than 10 Characters!"
             )
 
@@ -88,13 +88,13 @@ class Fun(commands.Cog):
             return await ctx.send(
                 embed=disnake.Embed(
                     description=f"Oops! ASCII Art crossed more than 2000 Words. Please try a smaller Text.",
-                    color=thecolor(),
+                    colour=get_colour(),
                 )
             )
 
         await ctx.send(
             embed=disnake.Embed(
-                description=f"```yaml\n{art}```", color=self.bot.discord_colour
+                description=f"```yaml\n{art}```", colour=self.bot.discord_colour
             )
         )
 
@@ -135,7 +135,7 @@ class Fun(commands.Cog):
                     )
                     t += 1
                 l = "\n - ".join(my_list)
-            return await thebed(
+            return await send_embed(
                 ctx,
                 f"{username}",
                 f"""
@@ -145,7 +145,7 @@ class Fun(commands.Cog):
                 """,
             )
         except:
-            await thebed(
+            await send_embed(
                 ctx, "", "They are not a minecraft player! Enter their in-game username"
             )
 
@@ -159,7 +159,7 @@ class Fun(commands.Cog):
 
                 list.append(f":regional_indicator_{k}:")
 
-        await thebed(ctx, "Name in emojis...", "".join(list))
+        await send_embed(ctx, "Name in emojis...", "".join(list))
 
     @commands.command(description="Fake hacks the specified member")
     async def hack(self, ctx: Context, member: disnake.Member = ""):
@@ -248,7 +248,7 @@ class Fun(commands.Cog):
         embed = disnake.Embed(
             title=n[slide],
             description="Choose emojis for this server! \nIf you press the green tick it \nautomatically adds the emoji to \nthe server by the **name**!",
-            color=thecolor(),
+            colour=get_colour(),
         )
         embed.set_image(url=x[slide])
         embed.set_footer(text=f"{slide} / 709")
@@ -265,7 +265,7 @@ class Fun(commands.Cog):
         while emoji.emoji != "❌":
             if emoji.emoji == "➡":
                 slide += 1
-                newembed = disnake.Embed(title=n[slide], color=thecolor())
+                newembed = disnake.Embed(title=n[slide], colour=get_colour())
                 newembed.set_footer(text=f"{slide} / 709")
                 newembed.set_image(url=x[slide])
                 await msg.edit(embed=newembed)
@@ -273,7 +273,7 @@ class Fun(commands.Cog):
 
             elif emoji.emoji == "⬅":
                 slide -= 1
-                newembed = disnake.Embed(title=n[slide], color=thecolor())
+                newembed = disnake.Embed(title=n[slide], colour=get_colour())
                 newembed.set_footer(text=f"{slide} / 709")
                 newembed.set_image(url=x[slide])
                 await msg.edit(embed=newembed)
@@ -315,14 +315,14 @@ class Fun(commands.Cog):
             if str(ctx.author.id) in data:
                 embed = disnake.Embed(
                     title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
             else:
                 data[str(ctx.author.id)] = {"inches": f"{randomsizeint}.{randomsizef}"}
-                Json(k, data)
+                update_json(k, data)
                 embed = disnake.Embed(
                     title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
             await ctx.send(embed=embed)
 
@@ -335,17 +335,17 @@ class Fun(commands.Cog):
             data = json.load(k)
             if str(ctx.author.id) not in data:
                 data[str(ctx.author.id)] = {"inches": f"{randomsizeint}.{randomsizef}"}
-                Json(k, data)
+                update_json(k, data)
                 embed = disnake.Embed(
                     title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
             else:
                 data[str(ctx.author.id)] = {"inches": f"{randomsizeint}.{randomsizef}"}
-                Json(k, data)
+                update_json(k, data)
                 embed = disnake.Embed(
                     title=f"Your new pp is {data[str(ctx.author.id)]['inches']} inches",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
             await ctx.send(embed=embed)
 
@@ -358,7 +358,7 @@ class Fun(commands.Cog):
         user = self.bot.get_user(ctx.author.id)
         try:
             embed = disnake.Embed(
-                title="What would you like to echo?", colour=thecolor()
+                title="What would you like to echo?", colour=get_colour()
             )
             x = await ctx.send(embed=embed)
             msg = await self.bot.wait_for(
@@ -370,12 +370,12 @@ class Fun(commands.Cog):
             await ctx.message.delete()
             await x.delete()
 
-            embed1 = disnake.Embed(title=f"{msg.content}", colour=thecolor())
+            embed1 = disnake.Embed(title=f"{msg.content}", colour=get_colour())
             embed1.set_author(name=ctx.author.name, icon_url=user.avatar.url)
             await ctx.send(embed=embed1)
         except asyncio.TimeoutError:
             embed = disnake.Embed(
-                title="Time ran out, restart the echo", colour=thecolor()
+                title="Time ran out, restart the echo", colour=get_colour()
             )
             await ctx.send(embed=embed)
 
@@ -410,7 +410,7 @@ class Fun(commands.Cog):
         elif rand != 1:
             coin = "Tails"
 
-        embed = disnake.Embed(title=coin, colour=thecolor())
+        embed = disnake.Embed(title=coin, colour=get_colour())
         await ctx.send(embed=embed)
 
     @commands.command(
@@ -427,7 +427,7 @@ class Fun(commands.Cog):
         def reverse(string):
             return string[::-1]
 
-        embed = disnake.Embed(description=f"{reverse(message)}", colour=thecolor())
+        embed = disnake.Embed(description=f"{reverse(message)}", colour=get_colour())
         await ctx.send(embed=embed)
 
     @commands.command(description="The specified member takes an L")
@@ -435,7 +435,7 @@ class Fun(commands.Cog):
         if user == "":
             user = self.bot.get_user(ctx.author.id)
         embed = disnake.Embed(
-            description=f"{user.mention} took an L", colour=thecolor()
+            description=f"{user.mention} took an L", colour=get_colour()
         )
         msg = await ctx.send(f"{user.mention}")
         await msg.delete()

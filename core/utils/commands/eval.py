@@ -1,18 +1,18 @@
 import disnake
 from disnake.ext import commands
 
-# import InfixParser
 import json
 import io
 import textwrap
 import contextlib
-from traceback import format_exception
 
-from core.utils.utils import Json, thecolor
+from traceback import format_exception
+from core.context import Context
+from core.utils import update_json
 from core.paginator import Paginator
 
 
-def clean_code(content: str):
+def clean_code(content: str) -> str:
     if content.startswith("```py"):
         content = content[5:-3]
     content = content.strip("`")
@@ -22,7 +22,7 @@ def clean_code(content: str):
     return content
 
 
-async def run_eval(ctx, code, **kwargs):
+async def run_eval(ctx: Context, code, **kwargs) -> None:
     _eval = kwargs.get("_eval")
 
     local_variables = {
@@ -38,7 +38,6 @@ async def run_eval(ctx, code, **kwargs):
     }
 
     if code == "reset":
-
         with open("./dicts/Num.json", "r+") as k:
             data = json.load(k)
             if str(ctx.author.id) in data:
@@ -46,7 +45,7 @@ async def run_eval(ctx, code, **kwargs):
                 z = data[str(ctx.author.id)]["Score"]
             else:
                 data[str(ctx.author.id)] = {"Name": ctx.author.name, "Score": 0}
-            Json(k, data)
+            update_json(k, data)
             return await ctx.send("reset")
     else:
 
@@ -57,7 +56,7 @@ async def run_eval(ctx, code, **kwargs):
                 z = data[str(ctx.author.id)]["Score"]
             else:
                 data[str(ctx.author.id)] = {"Name": ctx.author.name, "Score": 1}
-            Json(k, data)
+            update_json(k, data)
 
     code = clean_code(code)
     stdout = io.StringIO()

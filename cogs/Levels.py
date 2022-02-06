@@ -6,6 +6,8 @@ import io
 from PIL import Image, ImageDraw, ImageFont
 from disnake.ext import commands
 
+from core.utils.utils import get_colour
+
 
 class Levels(commands.Cog):
     def __init__(self, bot):
@@ -79,7 +81,7 @@ class Levels(commands.Cog):
         await self.bot.db.commit()
 
     async def make_rank_image(self, member: disnake.Member, rank, level, xp, final_xp):
-        user_avatar_image = str(member.avatar.with_format("png", size=512))
+        user_avatar_image = str(member.avatar.with_format("png").with_size(512))
         async with self.bot.client.get(user_avatar_image) as resp:
             avatar_bytes = io.BytesIO(await resp.read())
 
@@ -322,7 +324,7 @@ class Levels(commands.Cog):
             return await ctx.send(embed=embed)
         await ctx.send(
             embed=disnake.Embed(
-                description="You already have a config!", color=disnake.Color.green()
+                description="You already have a config!", colour=get_colour()
             ).set_author(name="Config", icon_url=ctx.author.avatar.url)
         )
 
@@ -356,7 +358,7 @@ class Levels(commands.Cog):
     @commands.command(aliases=["lb"])
     async def leaderboard(self, ctx: commands.Context):
 
-        embed = disnake.Embed(color=disnake.Color.green())
+        embed = disnake.Embed(colour=get_colour())
         embed.set_author(name="Leaderboard", icon_url=ctx.author.avatar.url)
         desc = ""
         cursor = await self.bot.db.cursor()

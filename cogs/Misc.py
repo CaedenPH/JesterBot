@@ -1,15 +1,15 @@
-import disnake, json, asyncio, datetime
-
-from disnake.ext import commands
-from async_timeout import timeout
-from random import choice
-from disnake import Webhook
-from io import BytesIO
+import disnake
+import json
+import asyncio
+import datetime
 import zipfile
-
 import inspect
 
-from core.utils.utils import thecolor, Json, thebed
+from disnake.ext import commands
+from random import choice
+from io import BytesIO
+
+from core.utils import get_colour, update_json, send_embed
 from core import Context
 from core.paginator import Paginator
 
@@ -94,7 +94,7 @@ class Misc(commands.Cog):
         for i in await ctx.guild.invites():
             if i.inviter == user:
                 totalInvites += i.uses
-        await thebed(
+        await send_embed(
             ctx,
             "",
             f"{user.name} has invited **{totalInvites}** member{'' if totalInvites == 1 else 's'} to the server!",
@@ -103,7 +103,7 @@ class Misc(commands.Cog):
     @commands.command(description="Sends information about my account")
     async def info(self, ctx: Context, member: disnake.Member = ""):
         embed = disnake.Embed(
-            title="Information", timestamp=ctx.message.created_at, colour=thecolor()
+            title="Information", timestamp=ctx.message.created_at, colour=get_colour()
         )
         if not member:
             member = ctx.author
@@ -131,7 +131,7 @@ class Misc(commands.Cog):
         channelid = ctx.channel.id
 
         servername = ctx.guild.name
-        embed = disnake.Embed(title="Your info", colour=thecolor())
+        embed = disnake.Embed(title="Your info", colour=get_colour())
         embed.add_field(name="Name", value=f"{channelname}", inline=False)
         embed.add_field(name="Id", value=f"{channelid}", inline=False)
         await ctx.send(embed=embed)
@@ -153,7 +153,7 @@ class Misc(commands.Cog):
         while len(password) != lengthofpassword:
             password += str(choice(my_list))
         x = await ctx.author.send(password)
-        await thebed(ctx, "Password", f"||{x.jump_url}||")
+        await send_embed(ctx, "Password", f"||{x.jump_url}||")
 
     @commands.command(aliases=["stat"], description="Sends statistics about the server")
     async def stats(self, ctx: Context):
@@ -161,7 +161,7 @@ class Misc(commands.Cog):
         members, bots = [m for m in ctx.guild.members if not m.bot], [
             m for m in ctx.guild.members if not m.bot
         ]
-        embed = disnake.Embed(title="Stats", color=thecolor())
+        embed = disnake.Embed(title="Stats", colour=get_colour())
         embed.add_field(
             name="Server statistics",
             value=f"""
@@ -195,7 +195,7 @@ class Misc(commands.Cog):
             days = 7
         embed = disnake.Embed(
             description=f"**Thinking**... **processing...**\n**Calculated time it wil take:** {days * 14.6}\n**From:** {member.name}\n**In channel:** {channel}\nIt roughly takes 12 seconds per extra day, hence why you can only loop through 7 days",
-            color=thecolor(),
+            colour=get_colour(),
         ).set_footer(
             text="This process may take a while because it is gathering all data from the past week while getting ratelimited"
         )
@@ -228,7 +228,7 @@ class Misc(commands.Cog):
         description="Sends the avatar of the server (profile pic)",
     )
     async def avatarguild(self, ctx: Context):
-        embed = disnake.Embed(title="Guild icon", color=thecolor())
+        embed = disnake.Embed(title="Guild icon", colour=get_colour())
         embed.set_image(url=ctx.guild.icon_url)
 
         await ctx.send(embed=embed)
@@ -254,12 +254,12 @@ class Misc(commands.Cog):
 
                 embed = disnake.Embed(
                     description=f"**{data[str(ctx.guild.id)]['Score']}** messages since the {when}",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
             else:
                 embed = disnake.Embed(
                     description=f"**{data[server]['Score']}** messages since {when}",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
             await ctx.send(embed=embed)
 
@@ -274,10 +274,10 @@ class Misc(commands.Cog):
 
         try:
 
-            embed = disnake.Embed(title="Suggestion", colour=thecolor())
+            embed = disnake.Embed(title="Suggestion", colour=get_colour())
             embed1 = disnake.Embed(
                 title=f"What is the title of your suggestion? Type end at any point to stop and type title to remove the description",
-                colour=thecolor(),
+                colour=get_colour(),
             )
             x = await ctx.send(embed=embed1)
             received_msg = str(
@@ -294,7 +294,7 @@ class Misc(commands.Cog):
                 msg1 = received_msg
                 embed2 = disnake.Embed(
                     title=f"What is the description of your suggestion? Type end at any point to stop",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 y = await ctx.send(embed=embed2)
                 received_msg1 = str(
@@ -326,7 +326,7 @@ class Misc(commands.Cog):
                     await msg.add_reaction("👎")
 
                 else:
-                    embed3 = disnake.Embed(title="Goodbye", colour=thecolor())
+                    embed3 = disnake.Embed(title="Goodbye", colour=get_colour())
                     await x.delete()
                     await y.delete()
                     await ctx.message.delete()
@@ -343,12 +343,12 @@ class Misc(commands.Cog):
                     limit=2,
                     check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
                 )
-                embed3 = disnake.Embed(title="Goodbye", colour=thecolor())
+                embed3 = disnake.Embed(title="Goodbye", colour=get_colour())
                 await ctx.send(embed=embed3)
             else:
                 embed2 = disnake.Embed(
                     title=f"What is the Title of your suggestion? Type end at any point to stop",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 y = await ctx.send(embed=embed2)
                 received_msg1 = str(
@@ -380,13 +380,13 @@ class Misc(commands.Cog):
                     await msg.add_reaction("👎")
         except asyncio.TimeoutError:
             embed = disnake.Embed(
-                title="Time ran out, restart the ticket", colour=thecolor()
+                title="Time ran out, restart the ticket", colour=get_colour()
             )
             await ctx.send(embed=embed)
 
     @commands.command()
     async def rules(self, ctx: Context):
-        embed = disnake.Embed(title="Standard Rules", description="", color=0xFFD1DC)
+        embed = disnake.Embed(title="Standard Rules", description="", colour=get_colour)
         embed.add_field(
             name="`1` NSFW ",
             value="All NSFW outside of an nsfw channel is banned and you will be muted and even banned up to the severity of the content.",
@@ -421,7 +421,7 @@ class Misc(commands.Cog):
         embed = disnake.Embed(
             title="Booster perks",
             description="Boosting this server can help give us many other perks! Although it's not required we would love for you to boost us!",
-            color=0xFFD1DC,
+            colour=get_colour,
         )
         embed.add_field(
             name="`1` Free role ",
@@ -453,7 +453,7 @@ class Misc(commands.Cog):
         embed = disnake.Embed(
             title="Nitro perks",
             description="Nitro can improve disnake experience and give many fun perks!",
-            color=0xFFD1DC,
+            colour=get_colour,
         )
         embed.add_field(
             name="`1` Live streams",

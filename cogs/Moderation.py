@@ -8,7 +8,7 @@ from random import choice, randint
 import datetime
 from core.utils import create_embed
 
-from core.utils.utils import thecolor, Json, thebed
+from core.utils import get_colour, update_json, send_embed
 from core import Context
 from core.utils.comedy import joke
 
@@ -26,7 +26,7 @@ class Mod(commands.Cog):
     async def delete(self, ctx: Context, channel_id: int = ""):
         embed = disnake.Embed(
             title=f"This will delete the current channel, are you sure you want to procede? Type y if you do",
-            colour=thecolor(),
+            colour=get_colour(),
         )
         await ctx.send(embed=embed)
         msg = str(
@@ -47,10 +47,10 @@ class Mod(commands.Cog):
             else:
 
                 x = await self.bot.get_channel(channel_id).delete()
-                embed = disnake.Embed(title=f"{x} got deleted", colour=thecolor())
+                embed = disnake.Embed(title=f"{x} got deleted", colour=get_colour())
                 await ctx.send(embed=embed)
         else:
-            embed = disnake.Embed(title=f"Goodbye", colour=thecolor())
+            embed = disnake.Embed(title=f"Goodbye", colour=get_colour())
             await ctx.send(embed=embed)
 
     @has_permissions(administrator=True)
@@ -59,7 +59,8 @@ class Mod(commands.Cog):
 
         await member.edit(nick=nick)
         embed = disnake.Embed(
-            description=f"Nickname was changed for {member.mention} ", colour=thecolor()
+            description=f"Nickname was changed for {member.mention} ",
+            colour=get_colour(),
         )
         await ctx.send(embed=embed)
 
@@ -85,7 +86,7 @@ class Mod(commands.Cog):
     )
     async def delete_invite(self, ctx: Context, invite: str):
 
-        embed = disnake.Embed(title=f"Deleted invite", colour=thecolor())
+        embed = disnake.Embed(title=f"Deleted invite", colour=get_colour())
         await ctx.send(embed=embed)
         await self.bot.delete_invite(invite)
 
@@ -101,7 +102,7 @@ class Mod(commands.Cog):
         embed = disnake.Embed(
             title="Purge Sucsessful",
             description=f"Purge has been sucsessful.",
-            colour=thecolor(),
+            colour=get_colour(),
         )
         embed.add_field(name="Congrats!", value="Your purge has been sucsessful")
         await ctx.send(embed=embed)
@@ -120,7 +121,7 @@ class Mod(commands.Cog):
         embed = disnake.Embed(
             title="Banned",
             description=f"{member.mention}  got banned.",
-            colour=thecolor(),
+            colour=get_colour(),
         )
         embed.add_field(name="Reason:", value=reason)
         user = ctx.author
@@ -136,7 +137,7 @@ class Mod(commands.Cog):
         user = await ctx.bot.fetch_user(user_id)
         await ctx.guild.unban(user, reason=reason)
         embed = disnake.Embed(
-            title="Unbanned", description=f"{user}  got unbanned.", colour=thecolor()
+            title="Unbanned", description=f"{user}  got unbanned.", colour=get_colour()
         )
         embed.add_field(name="Reason:", value=reason)
         await ctx.send(embed=embed)
@@ -150,7 +151,7 @@ class Mod(commands.Cog):
         embed = disnake.Embed(
             title="Addrole",
             description=f"{member.mention} got a role.",
-            colour=thecolor(),
+            colour=get_colour(),
         )
         embed.add_field(name="Member:", value=member.mention, inline=False)
         embed.add_field(name="Role:", value=role.mention, inline=False)
@@ -169,14 +170,14 @@ class Mod(commands.Cog):
         embed = disnake.Embed(
             title="Moved",
             description=f"{member.mention} got moved. to {channel}",
-            colour=thecolor(),
+            colour=get_colour(),
         )
         await ctx.send(embed=embed)
 
     @commands.command()
     async def deletemessages(self, ctx: Context, user: disnake.Member, limit=10):
 
-        embed = disnake.Embed(title="Working....", color=thecolor())
+        embed = disnake.Embed(title="Working....", colour=get_colour())
         x = await ctx.send(embed=embed)
         for channel in ctx.guild.text_channels:
 
@@ -186,7 +187,7 @@ class Mod(commands.Cog):
         embed = disnake.Embed(
             title="Completed",
             description=f"{limit} messages from {user} are deleted in every channel",
-            color=thecolor(),
+            colour=get_colour(),
         )
         await x.edit(embed=embed)
 
@@ -215,13 +216,13 @@ class Mod(commands.Cog):
 
                 else:
                     data[str(ctx.guild.id)] = {"prefix": prefix}
-                Json(e, data)
+                update_json(e, data)
             prefix1 = []
             for num in prefix:
                 prefix1.append(f"`{num}`")
             embed = disnake.Embed(
                 description=f"New prefix for this server is {', '.join(prefix1) if prefix else f'{prefix1}'}!, ping me for my prefixes if you forget!",
-                colour=thecolor(),
+                colour=get_colour(),
             )
             embed.set_author(icon_url=ctx.author.avatar.url, name="Prefix")
             await ctx.send(embed=embed)
@@ -240,7 +241,7 @@ class Mod(commands.Cog):
         embed = disnake.Embed(
             title="Kicked",
             description=f"{member.mention}  got kicked.",
-            colour=thecolor(),
+            colour=get_colour(),
         )
         embed.add_field(name="Reason:", value=reason)
         await ctx.send(embed=embed)
@@ -270,7 +271,7 @@ class Mod(commands.Cog):
         embed = disnake.Embed(
             title="Muted",
             description=f"{member.mention} was react muted ",
-            colour=thecolor(),
+            colour=get_colour(),
         )
         embed.add_field(name="Reason:", value=reason, inline=False)
         await ctx.send(embed=embed)
@@ -298,7 +299,9 @@ class Mod(commands.Cog):
                     read_messages=True,
                 )
         embed = disnake.Embed(
-            title="Muted", description=f"{member.mention} was muted ", colour=thecolor()
+            title="Muted",
+            description=f"{member.mention} was muted ",
+            colour=get_colour(),
         )
         embed.add_field(name="Reason:", value=reason, inline=False)
         await ctx.send(embed=embed)
@@ -319,7 +322,7 @@ class Mod(commands.Cog):
             embed = disnake.Embed(
                 title="Member is not muted",
                 description=f"{member.mention} is not react muted",
-                colour=thecolor(),
+                colour=get_colour(),
             )
             await ctx.send(embed=embed)
 
@@ -328,7 +331,7 @@ class Mod(commands.Cog):
             embed = disnake.Embed(
                 title="Unmuted",
                 description=f"{member.mention} was unmuted",
-                colour=thecolor(),
+                colour=get_colour(),
             )
             embed.add_field(name="Reason:", value=reason, inline=False)
             await ctx.send(embed=embed)
@@ -348,7 +351,7 @@ class Mod(commands.Cog):
             embed = disnake.Embed(
                 title="Member is not muted",
                 description=f"{member.mention} is not muted",
-                colour=thecolor(),
+                colour=get_colour(),
             )
             await ctx.send(embed=embed)
 
@@ -357,7 +360,7 @@ class Mod(commands.Cog):
             embed = disnake.Embed(
                 title="Unmuted",
                 description=f"{member.mention} was unmuted",
-                colour=thecolor(),
+                colour=get_colour(),
             )
             embed.add_field(name="Reason:", value=reason, inline=False)
             await ctx.send(embed=embed)
@@ -395,7 +398,7 @@ class Mod(commands.Cog):
                     new_seconds = int(seconds) * 86400
                 else:
                     embed = disnake.Embed(
-                        title="Invalid duration input", colour=thecolor()
+                        title="Invalid duration input", colour=get_colour()
                     )
                     await ctx.send(embed=embed)
                     return
@@ -427,7 +430,7 @@ class Mod(commands.Cog):
             muted_embed = disnake.Embed(
                 title="Muted a user",
                 description=f"{member.mention} Was muted by {ctx.author.mention} for {reason} to {time}",
-                colour=thecolor(),
+                colour=get_colour(),
             )
         await ctx.send(embed=muted_embed)
 
@@ -436,7 +439,7 @@ class Mod(commands.Cog):
         unmute_embed = disnake.Embed(
             title="Mute over!",
             description=f"{ctx.author.mention} muted to {member.mention} for {reason} is over after {time}",
-            colour=thecolor(),
+            colour=get_colour(),
         )
         await ctx.send(embed=unmute_embed)
         for role in role_list:
@@ -464,7 +467,9 @@ class Mod(commands.Cog):
             elif duration == "d":
                 seconds = seconds * 86400
             else:
-                embed = disnake.Embed(title="Invalid duration input", colour=thecolor())
+                embed = disnake.Embed(
+                    title="Invalid duration input", colour=get_colour()
+                )
                 await ctx.send(embed=embed)
                 return
         except Exception as e:
@@ -487,7 +492,7 @@ class Mod(commands.Cog):
         muted_embed = disnake.Embed(
             title="Muted a user",
             description=f"{member.mention} Was muted by {ctx.author.mention} for {reason} for {time}",
-            colour=thecolor(),
+            colour=get_colour(),
         )
         await ctx.send(embed=muted_embed)
 
@@ -496,7 +501,7 @@ class Mod(commands.Cog):
         unmute_embed = disnake.Embed(
             title="Mute over!",
             description=f"{ctx.author.mention} reactmuted {member.mention} for {reason} is over after {time}",
-            colour=thecolor(),
+            colour=get_colour(),
         )
         await ctx.send(embed=unmute_embed)
 
@@ -507,12 +512,12 @@ class Mod(commands.Cog):
     )
     async def give_roles(self, ctx: Context, role: disnake.Role):
 
-        embed = disnake.Embed(title="Working...", colour=thecolor())
+        embed = disnake.Embed(title="Working...", colour=get_colour())
         await ctx.send(embed=embed)
         role = disnake.utils.get(ctx.guild.roles, id=role.id)
         for member in ctx.guild.members:
             await member.add_roles(role)
-        embed = disnake.Embed(title="Done", colour=thecolor())
+        embed = disnake.Embed(title="Done", colour=get_colour())
         await ctx.send(embed=embed)
 
     @commands.command(
@@ -544,7 +549,7 @@ class Mod(commands.Cog):
         for channel in ctx.guild.text_channels:
             pass
 
-        embed = disnake.Embed(description=role.name, colour=thecolor())
+        embed = disnake.Embed(description=role.name, colour=get_colour())
         embed.set_author(name=f"{role.position} / {max(x)}")
         await ctx.send(embed=embed)
 
@@ -556,7 +561,7 @@ class Mod(commands.Cog):
             if role.position != 0:
                 x.append(f"**{role.name}** ---> {role.position}")
 
-        embed = disnake.Embed(description=" │ ".join(x), colour=thecolor())
+        embed = disnake.Embed(description=" │ ".join(x), colour=get_colour())
         await ctx.send(embed=embed)
 
     @commands.command()

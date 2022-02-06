@@ -14,6 +14,8 @@ from disnake.ext.tasks import loop
 from .utils.commands.eval import run_eval
 from .utils import run_channel_send, run_check, run_executed, run_precheck
 from .constants import BOT_TOKEN, WEATHER_KEY, POLICE_KEY, COORDS_KEY, CHATBOT_KEY
+from .errors import error_handler
+from .context import Context
 
 
 class JesterBot(Bot):
@@ -43,10 +45,9 @@ class JesterBot(Bot):
         self.after_invoke(self.after_command)
         self.loop.create_task(self.connect_database())
 
-        for files in os.listdir(f"./cogs/"):
-            if not files.startswith("__"):
-                if files.endswith(".py"):
-                    self.COGS.append(f"cogs.{files}")
+        for file in os.listdir(f"./cogs/"):
+            if not file.startswith("_"):
+                self.COGS.append(f"cogs.{file}")
 
     async def find_prefix(self, user_id: int) -> List[str]:
         cursor = await self.db.cursor()
@@ -82,18 +83,17 @@ class JesterBot(Bot):
         return when_mentioned_or(*prefixes)(self, message)
 
     async def process_commands(self, message: Message) -> None:
-        from . import Context
-
         ctx = await self.get_context(message, cls=Context)
-        if ctx.command is None:
-            return
         await self.invoke(ctx)
 
     def setup(self) -> None:
         print("Cogs:\n-----------------------------------")
         print(", ".join(self.COGS))
         for filename in self.COGS:
-            self.load_extension(f"{filename[:-3]}")
+            if filename.endswith("py"):
+                self.load_extension(f"{filename[:-3]}")
+            else:
+                self.load_extension(filename)
         self.load_extension("jishaku")
         self.load_extension("disnake-debug")
         print(
@@ -188,8 +188,6 @@ class JesterBot(Bot):
             await self.process_commands(after)
 
     async def on_command_error(self, context, exception) -> None:
-        from . import error_handler
-
         await error_handler(context, exception)
 
     async def on_guild_remove(self, guild) -> None:

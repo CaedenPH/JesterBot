@@ -3,7 +3,7 @@ from disnake.ext import commands
 
 from random import choice
 
-from core.utils.utils import thecolor
+from core.utils import get_colour
 from core.utils.comedy import joke
 from core.utils import create_embed
 
@@ -36,7 +36,7 @@ class Event(commands.Cog):
         to change the prefix for the server │
         
         """,
-            colour=thecolor(),
+            colour=get_colour(),
         )
 
         embed.add_field(
@@ -107,7 +107,7 @@ class Event(commands.Cog):
                                 embed = disnake.Embed(
                                     title=f"Welcome!",
                                     description=f"{member.mention} don't forget to type `j.rules` to see the rules for the server, but most of all dont forget to have fun at {member.guild}!",
-                                    colour=thecolor(),
+                                    colour=get_colour(),
                                 )
 
                                 embed.set_image(url=f"{member.guild.icon_url}")
@@ -140,7 +140,7 @@ class Event(commands.Cog):
                                 await msg.delete()
                                 embed = disnake.Embed(
                                     description=f"Welcome to {member.guild}! {member.mention}, enjoy your stay!",
-                                    colour=thecolor(),
+                                    colour=get_colour(),
                                 )
 
                                 embed.set_image(url=f"{member.guild.icon_url}")
@@ -245,7 +245,7 @@ class Event(commands.Cog):
                                             embed = disnake.Embed(
                                                 title=f"Welcome!",
                                                 description=f"{message.author.mention} don't forget to type `j.rules` to see the rules for the server, but most of all dont forget to have fun at {message.guild}!",
-                                                colour=thecolor(),
+                                                colour=get_colour(),
                                             )
 
                                             embed.set_thumbnail(

@@ -1,7 +1,7 @@
 import disnake
 import json
 
-from core.utils.utils import thebed, thecolor, Json
+from core.utils.utils import send_embed, get_colour, update_json
 from core.utils.comedy import fact, quote, joke, pickup
 
 
@@ -9,7 +9,7 @@ async def suggest(bot, message):
     message_id = message.id
     data = {}
     embed = (
-        disnake.Embed(color=thecolor())
+        disnake.Embed(colour=get_colour())
         .set_author(name=message.author.name, icon_url=message.author.avatar.url)
         .set_footer(
             text=str(message.created_at)[11:16]
@@ -26,7 +26,7 @@ async def suggest(bot, message):
         "What would you like the title to be? Type q at any point to end",
         "What would you like the description to be? Type q at any point to end",
     ]:
-        await thebed(message.author, "", a)
+        await send_embed(message.author, "", a)
 
         received_msg = await bot.wait_for("message", check=check)
 
@@ -140,7 +140,7 @@ async def run_channel_send(bot) -> None:
                     embed = fact()
                 elif _type == "jokechannel":
                     embed = disnake.Embed(
-                        title="Joke", description=await joke(), colour=thecolor()
+                        title="Joke", description=await joke(), colour=get_colour()
                     )
                 elif _type == "pickuplinechannel":
                     embed = await pickup(bot)
@@ -172,28 +172,28 @@ async def run_executed(ctx) -> None:
                 "Guild": ctx.guild.name,
                 "selfscore": 0,
             }
-            Json(k, loaded1)
+            update_json(k, loaded1)
 
     with open("./dicts/Scoreoverall.json", "r+") as x:
         data = json.load(x)
         data["Score"]["Score1"] += 1
-        Json(x, data)
+        update_json(x, data)
 
     with open("./dicts/Selfscore.json", "r+") as f:
         data = json.load(f)
 
         if str(ctx.author.id) in data:
             data[str(ctx.author.id)]["selfscore"] += 1
-            Json(f, data)
+            update_json(f, data)
 
     with open("./dicts/Commandsused.json") as y:
         data = json.load(y)
         if str(ctx.command) not in data:
             data[str(ctx.command)] = {"score": 1}
             with open("./dicts/Commandsused.json", "r+") as y:
-                Json(y, data)
+                update_json(y, data)
         else:
 
             with open("./dicts/Commandsused.json", "r+") as y:
                 data[str(ctx.command)]["score"] += 1
-                Json(y, data)
+                update_json(y, data)

@@ -1,9 +1,8 @@
 import disnake
 import requests
-import json
 import yfinance as yf
 
-from core.utils.utils import Color, thecolor, thebed
+from core.utils import get_colour, send_embed
 from core import Context
 
 from disnake.ext import commands
@@ -38,7 +37,7 @@ class Cryptocurrency(commands.Cog):
         }
 
         response2 = requests.request("GET", url2, headers=headers2)
-        embed = disnake.Embed(title=f"Crypto exchange rate", color=thecolor())
+        embed = disnake.Embed(title=f"Crypto exchange rate", colour=get_colour())
         embed.add_field(
             name=f"exchanged from {exchangefrom} to {exchangeto}",
             value=response.json()["result"],
@@ -85,7 +84,7 @@ class Cryptocurrency(commands.Cog):
             embed = disnake.Embed(
                 title="Type the stock symbol (e.g AAPL = apple)",
                 description="[Stocks](https://swingtradebot.com/equities)",
-                colour=thecolor(),
+                colour=get_colour(),
             )
             return await ctx.send(embed=embed)
 
@@ -93,11 +92,11 @@ class Cryptocurrency(commands.Cog):
         inf = tickerData.info
 
         if "longName" not in inf:
-            return await thebed(ctx, "", "Not enough information")
+            return await send_embed(ctx, "", "Not enough information")
         async with ctx.typing():
             embed = disnake.Embed(
                 title=f"{inf['longName'] if inf['longName'] else 'No name data'}",
-                colour=thecolor(),
+                colour=get_colour(),
             )
             embed.set_author(icon_url=ctx.author.avatar.url, name="Stock market")
             if "fullTimeEmployees" in inf:

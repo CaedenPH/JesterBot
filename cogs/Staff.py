@@ -3,7 +3,7 @@ from disnake.ext import commands
 
 import shutil
 
-from core.utils.utils import thecolor, Json, thebed
+from core.utils import get_colour, update_json, send_embed
 from core import Context
 
 
@@ -62,7 +62,7 @@ class Staff(commands.Cog):
 
     @commands.command(hidden=True)
     async def load(self, ctx: Context, extension):
-        embed = disnake.Embed(color=disnake.Color.dark_gold())
+        embed = disnake.Embed(colour=get_colour())
         self.bot.load_extension(f"cogs.{extension}")
         embed.add_field(
             name="Load Extension", value=f"Loaded cog: ``{extension}`` successfully"
@@ -77,7 +77,7 @@ class Staff(commands.Cog):
     @commands.command(hidden=True)
     async def unload(self, ctx: Context, extension):
         self.bot.unload_extension(f"cogs.{extension}")
-        embed = disnake.Embed(color=disnake.Color.dark_gold())
+        embed = disnake.Embed(colour=get_colour())
         embed.add_field(
             name="Unload Extension", value=f"Unloaded cog: ``{extension}`` successfully"
         )
@@ -90,7 +90,7 @@ class Staff(commands.Cog):
             for cog in tuple(self.bot.extensions):
                 if cog[5:] not in ["Misc", "Economy", "Mod"]:
                     self.bot.reload_extension(cog)
-            embed = disnake.Embed(color=disnake.Color.dark_gold())
+            embed = disnake.Embed(colour=get_colour())
             embed.add_field(
                 name="Reload Extension", value=f"Reloaded cogs successfully"
             )
@@ -99,7 +99,7 @@ class Staff(commands.Cog):
         else:
 
             self.bot.reload_extension(f"cogs.{extension}")
-            embed = disnake.Embed(color=disnake.Color.dark_gold())
+            embed = disnake.Embed(colour=get_colour())
             embed.add_field(
                 name="Reload Extension",
                 value=f"Reloaded cog: ``{extension}`` successfully",
@@ -109,7 +109,7 @@ class Staff(commands.Cog):
     @commands.command(hidden=True)
     async def abort(self, ctx: Context):
 
-        await thebed(ctx, "", "Aborting")
+        await send_embed(ctx, "", "Aborting")
 
         await self.bot.close()
         os.system("python3 main.py")
@@ -127,7 +127,7 @@ class Staff(commands.Cog):
                 if not k.hidden:
                     if k.name not in data:
 
-                        await thebed(
+                        await send_embed(
                             ctx,
                             f"{k}",
                             f'**{k.signature if k.signature else "no"}**  │  help cmd?',
@@ -150,13 +150,13 @@ class Staff(commands.Cog):
                             return
                         else:
                             data[k.name] = {"help": received_msg}
-                            Json(e, data)
-            await thebed(ctx, "All done!")
+                            update_json(e, data)
+            await send_embed(ctx, "All done!")
 
     @commands.command(hidden=True)
     async def close(self, ctx: Context):
 
-        embed = disnake.Embed(title=f"Goodbye", colour=thecolor())
+        embed = disnake.Embed(title=f"Goodbye", colour=get_colour())
         await ctx.send(embed=embed)
 
         await self.bot.close()
@@ -174,9 +174,9 @@ class Staff(commands.Cog):
                     data[str(user.id)]["commands"].append(command.name)
             else:
                 data[str(user.id)] = {"commands": [command.name]}
-            Json(k, data)
+            update_json(k, data)
 
-        await thebed(ctx, "done")
+        await send_embed(ctx, "done")
 
     @commands.command(hidden=True)
     async def rblacklist(self, ctx: Context, user1: int, cmd):
@@ -188,9 +188,9 @@ class Staff(commands.Cog):
             if str(user.id) in data:
                 data[str(user.id)]["commands"].remove(command.name)
 
-                Json(k, data)
+                update_json(k, data)
 
-        await thebed(ctx, "done")
+        await send_embed(ctx, "done")
 
     @commands.command(hidden=True)
     async def newup(self, ctx: Context):
@@ -336,7 +336,7 @@ class Staff(commands.Cog):
 
         except asyncio.TimeoutError:
             embed = disnake.Embed(
-                title="Time ran out, restart the ticket", colour=thecolor()
+                title="Time ran out, restart the ticket", colour=get_colour()
             )
             await ctx.send(embed=embed)
 
@@ -395,7 +395,7 @@ class Staff(commands.Cog):
 
                         data[key]["Name"] = x.name
 
-                        Json(k, data)
+                        update_json(k, data)
                         await ctx.send(data[key]["Name"])
                 else:
                     pass
@@ -418,7 +418,7 @@ class Staff(commands.Cog):
 
                         data[key]["Bal"] += bal
 
-                        Json(k, data)
+                        update_json(k, data)
                         await ctx.send(data[key]["Bal"])
                 else:
                     pass
@@ -438,7 +438,7 @@ class Staff(commands.Cog):
                 await ctx.send(dicte)
                 if dicte == key:
                     del data[dicte]
-                    Json(k, data)
+                    update_json(k, data)
 
     @commands.command(hidden=True)
     async def data(
@@ -459,7 +459,7 @@ class Staff(commands.Cog):
 
                     x.append(f"`{file1[:-5]}`")
             embed = disnake.Embed(
-                title="Files", description=", ".join(x), colour=thecolor()
+                title="Files", description=", ".join(x), colour=get_colour()
             )
             await ctx.send(embed=embed)
 
@@ -498,7 +498,7 @@ class Staff(commands.Cog):
                         else:
                             data[data1][data2] = add
                             await ctx.send("yessir")
-                            Json(k, data)
+                            update_json(k, data)
 
                     else:
 
@@ -531,7 +531,7 @@ class Staff(commands.Cog):
         for t in os.listdir("./cogs/"):
             if t != "__pycache__":
                 shutil.copy(f"./cogs/{t}", dirname)
-        await thebed(
+        await send_embed(
             ctx, "success", f"you have made a new backup folder called *{dirname}*"
         )
 
@@ -570,26 +570,26 @@ class Staff(commands.Cog):
                         x = 0
                         xy = []
 
-                        Json(K, data)
+                        update_json(K, data)
             await ctx.send("done")
 
     @commands.command(hidden=True)
     async def t(self, ctx: Context, d, t=""):
-        await thebed(ctx, d, t)
+        await send_embed(ctx, d, t)
 
     @commands.command(hidden=True)
     async def addcmd(self, ctx: Context, name, *, cmd):
         with open("./dicts/Commands.json", "r+") as k:
             data = json.load(k)
             if name in data:
-                return await thebed(ctx, "Already there mate")
+                return await send_embed(ctx, "Already there mate")
             data[name] = {
                 "code": cmd,
                 "makecmd": f"@bot.command()\nasync def {name}(ctx):",
             }
-            Json(k, data)
+            update_json(k, data)
             thecmd = f"{data[name]['makecmd']}\n    {data[name]['code']}"
-            await thebed(ctx, thecmd)
+            await send_embed(ctx, thecmd)
             self.bot.add_command(thecmd)
 
     @commands.command(hidden=True)
@@ -599,14 +599,14 @@ class Staff(commands.Cog):
         if not errornum:
             try:
 
-                return await thebed(ctx, "", ", ".join([e for e in data]))
+                return await send_embed(ctx, "", ", ".join([e for e in data]))
             except:
-                return await thebed(ctx, "", "All clear!")
+                return await send_embed(ctx, "", "All clear!")
         try:
             data[errornum]
         except:
-            return await thebed(ctx, "", "Out of range")
-        await thebed(
+            return await send_embed(ctx, "", "Out of range")
+        await send_embed(
             ctx,
             "Error",
             f"""
@@ -628,17 +628,17 @@ class Staff(commands.Cog):
         if not errornum:
             try:
 
-                return await thebed(ctx, "", ", ".join([e for e in data]))
+                return await send_embed(ctx, "", ", ".join([e for e in data]))
             except:
-                return await thebed(ctx, "", "All clear!")
+                return await send_embed(ctx, "", "All clear!")
         if errornum == "all":
             with open("./dicts/Errors.json", "w") as e:
                 json.dump({}, e)
-                return await thebed(ctx, "", "Done")
+                return await send_embed(ctx, "", "Done")
         try:
             data[errornum]
         except:
-            return await thebed(ctx, "", "Out of range")
+            return await send_embed(ctx, "", "Out of range")
         m = await ctx.send(
             embed=disnake.Embed(
                 title="Error",
@@ -648,16 +648,16 @@ class Staff(commands.Cog):
     **error** : `{data[errornum]["error"]}`
     **cmd** : `{data[errornum]["command"]}`
     """,
-                color=thecolor(),
+                colour=get_colour(),
             )
         )
         await m.add_reaction("👍")
         reaction, user = await self.bot.wait_for(
             "reaction_add", check=lambda r, u: u == ctx.author
         )
-        await thebed(ctx, "", "Done")
+        await send_embed(ctx, "", "Done")
         del data[errornum]
-        Json(k, data)
+        update_json(k, data)
 
     @commands.command(hidden=True)
     async def forceError(self, ctx):

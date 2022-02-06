@@ -5,7 +5,7 @@ from disnake.ext import commands
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM
 
-from core.utils.utils import thebed
+from core.utils import send_embed
 
 
 async def makeimg(ctx, url):
@@ -42,7 +42,7 @@ class Countries(commands.Cog):
                 )
             result = pprint.pformat(response[0])
             result = result.replace("'", "")
-            await thebed(ctx, "", result)
+            await send_embed(ctx, "", result)
 
     @commands.command()
     async def findcountry(self, ctx, *, name):
@@ -52,7 +52,7 @@ class Countries(commands.Cog):
             for num, k in enumerate(x):
                 if x[num]["name"].lower().startswith(name[:1]):
                     y.append(x[num]["name"])
-        await thebed(ctx, "Countries relating to " + name, ", ".join(y))
+        await send_embed(ctx, "Countries relating to " + name, ", ".join(y))
 
     @commands.command()
     async def flag(self, ctx, *, country):
@@ -70,7 +70,7 @@ class Countries(commands.Cog):
         embed = disnake.Embed(
             title="How to end world hunger",
             description="What are the ways to stop world hunger? Work tirelessly for an international organization? [Donate](https://borgenproject.org/donate/) old clothes and toys to our local Salvation Army? Or is it even possible? There are hundreds of theories on how we can end world hunger and activists debate many of them. Some have been effective and others not. One thing is certain, and that is that we must do something. Discussed below are 10 effective world hunger solutions.",
-            color=0xFF0000,
+            colour=0xFF0000,
         )
         embed.add_field(
             name="1. Sustainable Food",

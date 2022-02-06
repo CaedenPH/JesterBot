@@ -1,6 +1,6 @@
 import disnake
 
-from core.utils.utils import thecolor
+from core.utils import get_colour
 from core.constants import LOCATION_EMOJIS as l
 
 
@@ -36,7 +36,7 @@ class Paginator:
         self._top = len(result) - 1
 
         embed = (
-            disnake.Embed(color=thecolor())
+            disnake.Embed(colour=get_colour())
             .set_author(
                 name=name, icon_url=icon_url if icon_url else self.ctx.author.avatar.url
             )

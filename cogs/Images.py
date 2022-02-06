@@ -6,7 +6,7 @@ from animals import Animals
 import cv2 as cv
 from PIL import ImageEnhance
 
-from core.utils.utils import thecolor, Json, thebed
+from core.utils import get_colour, update_json, send_embed
 from core import Context
 
 
@@ -92,7 +92,7 @@ class Images(commands.Cog):
     @commands.command(aliases=["change", "changemind", "change_my_mind"])
     async def mindchange(self, ctx: Context, *, text: str = None):
         async with ctx.typing():
-            embed = disnake.Embed(title="Change my mind...", colour=thecolor())
+            embed = disnake.Embed(title="Change my mind...", colour=get_colour())
             x = await vace_api.change_my_mind(text)
             embed.set_image(url=x.url)
 
@@ -111,7 +111,7 @@ class Images(commands.Cog):
 
 
         """,
-            color=thecolor(),
+            colour=get_colour(),
         )
         embed.set_image(url=up[0]["hdurl"])
         await ctx.send(embed=embed)
@@ -355,7 +355,7 @@ class Images(commands.Cog):
             embed = disnake.Embed(
                 title=f"{imag} is not a valid option" if imag else "Options",
                 description="Valid Options are `cat`, `dog`, `panda`, `koala`, `fox`, `racoon`, `kangaroo`",
-                colour=thecolor(),
+                colour=get_colour(),
             )
             return await ctx.send(embed=embed)
 
@@ -366,7 +366,7 @@ class Images(commands.Cog):
             embed = disnake.Embed(
                 title=f"Here is your {imag}",
                 description=f"**Fact:**\n{animal.fact()}",
-                colour=thecolor(),
+                colour=get_colour(),
             )
             embed.set_image(url=animal.image())
         await ctx.send(embed=embed)

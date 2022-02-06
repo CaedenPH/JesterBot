@@ -1,7 +1,7 @@
 import disnake
 import json
 
-from core.utils.utils import thecolor, Json, thebed
+from core.utils import get_colour, update_json, send_embed
 from disnake.ext import commands
 from datetime import datetime
 
@@ -46,7 +46,7 @@ class Snipe(commands.Cog):
                         "time": [str(message.created_at)],
                     }
                 }
-            Json(k, data)
+            update_json(k, data)
 
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
@@ -95,7 +95,7 @@ class Snipe(commands.Cog):
                         "before": [bmessage],
                     }
                 }
-            Json(k, data)
+            update_json(k, data)
 
     @commands.command(aliases=["esnipe"])
     async def editsnipe(self, ctx, ammount: int = 1):
@@ -123,7 +123,7 @@ class Snipe(commands.Cog):
                         embed = disnake.Embed(
                             timestamp=time,
                             description=f"**{data[g][c]['author'][len(data[g][c]['before'])-ammount]} said:** {data[g][c]['before'][len(data[g][c]['before'])-ammount]} \n**Then edited it to:** {data[g][c]['after'][len(data[g][c]['after'])-ammount]}",
-                            color=thecolor(),
+                            colour=get_colour(),
                         )
                         embed.set_author(
                             icon_url=us.avatar.url, name="Most recent message:"
@@ -131,11 +131,11 @@ class Snipe(commands.Cog):
                         return await ctx.send(embed=embed)
                     else:
                         await ctx.message.add_reaction("❌")
-                        return await thebed(
+                        return await send_embed(
                             ctx, "", "The sniped messages dont go back that far!"
                         )
 
-            await thebed(ctx, "", "No deleted messages were ever here!")
+            await send_embed(ctx, "", "No deleted messages were ever here!")
 
     @commands.command(aliases=["eaim"])
     async def editaim(self, ctx, user: disnake.Member):
@@ -160,7 +160,7 @@ class Snipe(commands.Cog):
                             embed = disnake.Embed(
                                 timestamp=time,
                                 description=f"**{data[g][c]['author'][t-1]} said:** {data[g][c]['before'][t-1]}\n**Then changed it to: **{data[g][c]['after'][t-1]}",
-                                color=thecolor(),
+                                colour=get_colour(),
                             )
                             embed.set_author(
                                 icon_url=us.avatar.url, name="Most recent message:"
@@ -168,7 +168,7 @@ class Snipe(commands.Cog):
                             return await ctx.send(embed=embed)
                         t -= 1
 
-            await thebed(ctx, "", "No deleted messages were ever here!")
+            await send_embed(ctx, "", "No deleted messages were ever here!")
 
     @commands.command()
     async def snipe(self, ctx, ammount: int = 1):
@@ -196,7 +196,7 @@ class Snipe(commands.Cog):
                         embed = disnake.Embed(
                             timestamp=time,
                             description=f"**{data[g][c]['author'][len(data[g][c]['list'])-ammount]} said:** {data[g][c]['list'][len(data[g][c]['list'])-ammount]}",
-                            color=thecolor(),
+                            colour=get_colour(),
                         )
                         embed.set_author(
                             icon_url=us.avatar.url, name="Most recent message:"
@@ -204,11 +204,11 @@ class Snipe(commands.Cog):
                         return await ctx.send(embed=embed)
                     else:
                         await ctx.message.add_reaction("❌")
-                        return await thebed(
+                        return await send_embed(
                             ctx, "", "The sniped messages dont go back that far!"
                         )
 
-            await thebed(ctx, "", "No deleted messages were ever here!")
+            await send_embed(ctx, "", "No deleted messages were ever here!")
 
     @commands.command()
     async def aim(self, ctx, user: disnake.Member):
@@ -226,7 +226,7 @@ class Snipe(commands.Cog):
                             us = self.client.get_user(data[g][c]["id"][t - 1])
                             embed = disnake.Embed(
                                 description=f"**{data[g][c]['author'][t-1]} said:** {data[g][c]['list'][t-1]}",
-                                color=thecolor(),
+                                colour=get_colour(),
                             )
                             embed.set_footer(
                                 text="At: " + str(data[g][c]["time"][t - 1][:-7])
@@ -238,7 +238,7 @@ class Snipe(commands.Cog):
 
                         t -= 1
 
-            await thebed(ctx, "", "No deleted messages were ever here!")
+            await send_embed(ctx, "", "No deleted messages were ever here!")
 
 
 def setup(client):

@@ -4,7 +4,7 @@ import os
 import io
 import zlib
 
-from core.utils import fuzzy
+from . import fuzzy
 
 
 class Colours:

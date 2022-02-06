@@ -2,13 +2,13 @@ from core.constants import TRASHCAN
 import disnake, asyncio
 from disnake.ext import commands
 
-from core.utils.utils import thecolor
+from core.utils import get_colour
 
 
 class Context(commands.Context):
     async def em(self, message, **kwargs):
         return await super().send(
-            embed=disnake.Embed(description=message, color=thecolor()), **kwargs
+            embed=disnake.Embed(description=message, colour=get_colour()), **kwargs
         )
 
     async def send(self, content: any = None, **kwargs):

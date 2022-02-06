@@ -2,7 +2,7 @@ import disnake, os, requests, json, asyncio
 from disnake.ext import commands
 from random import choice, randint
 
-from core.utils.utils import thecolor, Json, thebed
+from core.utils import get_colour, update_json, send_embed
 from core.utils.comedy import fact, quote, joke, pickup
 from core import Context
 from core.utils.comedy import joke
@@ -33,7 +33,7 @@ class JesterJokes(commands.Cog):
 
         response = requests.get("https://zenquotes.io/api/quotes/[your_key]")
         fox = response.json()
-        embed = disnake.Embed(color=thecolor())
+        embed = disnake.Embed(colour=get_colour())
         embed.add_field(name="Quote", value=f"{fox[1]['q']}")
         await ctx.send(embed=embed)
 
@@ -57,7 +57,7 @@ class JesterJokes(commands.Cog):
             user = self.bot.get_user(ctx.author.id)
 
         if user == m:
-            embed = disnake.Embed(colour=thecolor())
+            embed = disnake.Embed(colour=get_colour())
             user = self.bot.get_user(ctx.author.id)
             embed = disnake.Embed(title="You shmuck...I am god")
             await ctx.send(embed=embed)
@@ -67,7 +67,7 @@ class JesterJokes(commands.Cog):
             fox = response.json()
             foxupdate = fox["insult"]
             embed = disnake.Embed(
-                description=f"{user.mention} {foxupdate}", colour=thecolor()
+                description=f"{user.mention} {foxupdate}", colour=get_colour()
             )
 
             await ctx.send(embed=embed)
@@ -85,7 +85,7 @@ class JesterJokes(commands.Cog):
         foxupdate = fox["insult"]
 
         embed = disnake.Embed(
-            description=f"{user.mention} {foxupdate}", colour=thecolor()
+            description=f"{user.mention} {foxupdate}", colour=get_colour()
         )
 
         await ctx.send(embed=embed)
@@ -101,7 +101,7 @@ class JesterJokes(commands.Cog):
         fox = response.json()
         foxupdate = fox["value"]
 
-        embed = disnake.Embed(description=f"{foxupdate}", colour=thecolor())
+        embed = disnake.Embed(description=f"{foxupdate}", colour=get_colour())
 
         await ctx.send(embed=embed)
 
@@ -117,7 +117,9 @@ class JesterJokes(commands.Cog):
         fox = response.json()
         foxupdate = fox["adjs"]
 
-        embed = disnake.Embed(title=f"{foxupdate[randint(1, 950)]}", colour=thecolor())
+        embed = disnake.Embed(
+            title=f"{foxupdate[randint(1, 950)]}", colour=get_colour()
+        )
 
         await ctx.send(embed=embed)
 
@@ -146,7 +148,7 @@ class JesterJokes(commands.Cog):
         ]
 
         embed = disnake.Embed(
-            description=f"{user.mention} got smacked", colour=thecolor()
+            description=f"{user.mention} got smacked", colour=get_colour()
         )
         embed.set_image(url=choice(url))
         await ctx.send(embed=embed)
@@ -154,7 +156,7 @@ class JesterJokes(commands.Cog):
     @commands.command(aliases=["jokes", "joke"], description="Sends a random joke")
     async def _joke(self, ctx: Context):
 
-        await thebed(ctx, "Joke", await joke())
+        await send_embed(ctx, "Joke", await joke())
 
 
 def setup(bot):

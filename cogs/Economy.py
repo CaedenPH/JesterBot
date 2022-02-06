@@ -14,7 +14,7 @@ from async_timeout import timeout
 from functools import partial
 from youtube_dl import YoutubeDL
 from random import choice, randint
-from core.utils.utils import thecolor, Json, thebed
+from core.utils import get_colour, update_json, send_embed
 from core import Context
 
 
@@ -34,7 +34,7 @@ class Economy(commands.Cog):
             else:
                 x = randint(1, 10)
                 data[str(ctx.author.id)]["Bal"] += x
-            Json(k, data)
+            update_json(k, data)
 
     @commands.group(
         aliases=["buy"],
@@ -45,7 +45,7 @@ class Economy(commands.Cog):
         with open("./dicts/Bal.json", "r+") as k:
             data = json.load(k)
             if purchase == "":
-                embed = disnake.Embed(colour=thecolor())
+                embed = disnake.Embed(colour=get_colour())
                 embed.set_author(icon_url=ctx.author.avatar.url, name="Shop")
                 embed.add_field(
                     name="\u200b",
@@ -78,7 +78,7 @@ class Economy(commands.Cog):
 
                     embed1 = disnake.Embed(
                         description=f"What would you like the name of your role to be",
-                        colour=thecolor(),
+                        colour=get_colour(),
                     )
                     embed1.set_author(
                         name=ctx.author.name, icon_url=ctx.author.avatar.url
@@ -96,7 +96,7 @@ class Economy(commands.Cog):
                     ).lower()
                     embed1 = disnake.Embed(
                         description=f"What would you like the colour of your role to be? [Refer to this](https://www.color-hex.com/) \nAdd 0x infront of the color, e.g 0x4b46cd",
-                        colour=thecolor(),
+                        colour=get_colour(),
                     )
                     embed1.set_author(
                         name=ctx.author.name, icon_url=ctx.author.avatar.url
@@ -117,19 +117,21 @@ class Economy(commands.Cog):
 
                     await ctx.author.add_roles(role)
 
-                    embed1 = disnake.Embed(title=f"Created!", colour=thecolor())
+                    embed1 = disnake.Embed(title=f"Created!", colour=get_colour())
                     embed1.set_author(
                         name=ctx.author.name, icon_url=ctx.author.avatar.url
                     )
                     await ctx.send(embed=embed1)
                     data[str(ctx.author.id)]["Bal"] -= 1000
-                    Json(k, data)
+                    update_json(k, data)
                 except asyncio.TimeoutError:
-                    embed = disnake.Embed(title="I gave up waiting", colour=thecolor())
+                    embed = disnake.Embed(
+                        title="I gave up waiting", colour=get_colour()
+                    )
                     await ctx.send(embed=embed)
             else:
                 embed = disnake.Embed(
-                    title="You dont have enough money!", colour=thecolor()
+                    title="You dont have enough money!", colour=get_colour()
                 )
                 await ctx.send(embed=embed)
 
@@ -148,21 +150,21 @@ class Economy(commands.Cog):
                     else:
                         data[str(ctx.author.id)]["Box"] = 1
 
-                    Json(k, data)
+                    update_json(k, data)
                     embed = disnake.Embed(
                         description=f"You bought a **lucky box**, to use it write `j.open box`",
-                        colour=thecolor(),
+                        colour=get_colour(),
                     )
                     await ctx.send(embed=embed)
                 else:
                     embed = disnake.Embed(
-                        title="You dont have enough money!", colour=thecolor()
+                        title="You dont have enough money!", colour=get_colour()
                     )
                     await ctx.send(embed=embed)
 
             else:
                 embed = disnake.Embed(
-                    title="You dont have enough money!", colour=thecolor()
+                    title="You dont have enough money!", colour=get_colour()
                 )
                 await ctx.send(embed=embed)
 
@@ -178,14 +180,14 @@ class Economy(commands.Cog):
                     data[i]["Gun"] += 1
                 else:
                     data[i]["Gun"] = 1
-                await thebed(
+                await send_embed(
                     ctx,
                     "Success",
                     "you have purchased your **gun**, but be careful! To use it type `j.use gun`",
                 )
-                Json(k, data)
+                update_json(k, data)
             else:
-                await thebed(ctx, "You don't have enough money!")
+                await send_embed(ctx, "You don't have enough money!")
 
     @shop.command()
     async def bag(ctx):
@@ -199,14 +201,14 @@ class Economy(commands.Cog):
                     data[i]["Bag"] += 1
                 else:
                     data[i]["Bag"] = 1
-                await thebed(
+                await send_embed(
                     ctx,
                     "Success",
                     "you have purchased your **bag**, to use it type `j.use bag`",
                 )
-                Json(k, data)
+                update_json(k, data)
             else:
-                await thebed(ctx, "You don't have enough money!")
+                await send_embed(ctx, "You don't have enough money!")
 
     @shop.command(alises=["covid", "cov"])
     async def corona(self, ctx: Context):
@@ -221,14 +223,14 @@ class Economy(commands.Cog):
                         data[i]["covid"] += 1
                     else:
                         data[i]["covid"] = 1
-                    await thebed(
+                    await send_embed(
                         ctx,
                         "Success",
                         "you have purchased your portable covid, to use it type `j.use corona`",
                     )
-                    Json(k, data)
+                    update_json(k, data)
                 else:
-                    await thebed(ctx, "You don't have enough money!")
+                    await send_embed(ctx, "You don't have enough money!")
 
     @commands.command(
         aliases=["bal", "money"],
@@ -242,24 +244,26 @@ class Economy(commands.Cog):
                 if str(ctx.author.id) in data:
                     embed = disnake.Embed(
                         description=f"**{data[str(ctx.author.id)]['Bal']}** JesterCoins",
-                        colour=thecolor(),
+                        colour=get_colour(),
                     )
                     embed.set_footer(
                         text="Every time you run an economy command you get money!"
                     )
                     embed.set_author(icon_url=ctx.author.avatar.url, name="Balance")
                 else:
-                    embed = disnake.Embed(description=f"You have 0$", colour=thecolor())
+                    embed = disnake.Embed(
+                        description=f"You have 0$", colour=get_colour()
+                    )
                     embed.set_author(icon_url=ctx.author.avatar.url, name="Balance")
 
             else:
                 if str(user.id) in data:
                     embed = disnake.Embed(
-                        description=f"{data[str(user.id)]['Bal']}$", colour=thecolor()
+                        description=f"{data[str(user.id)]['Bal']}$", colour=get_colour()
                     )
                 else:
                     embed = disnake.Embed(
-                        description=f"They have 0$", colour=thecolor()
+                        description=f"They have 0$", colour=get_colour()
                     )
 
         await ctx.send(embed=embed)
@@ -270,7 +274,7 @@ class Economy(commands.Cog):
     )
     async def gamble(self, ctx: Context, money: int):
         if money <= 25:
-            return await thebed(ctx, "", "You must bet over **25** jestercoins!")
+            return await send_embed(ctx, "", "You must bet over **25** jestercoins!")
         with open("./dicts/Bal.json", "r+") as k:
             data = json.load(k)
             if str(ctx.author.id) in data:
@@ -281,32 +285,32 @@ class Economy(commands.Cog):
 
                         embed = disnake.Embed(
                             description=f"you gambled **{money}$** and got **{money * 2}$**",
-                            colour=thecolor(),
+                            colour=get_colour(),
                         )
                         embed.set_author(
                             icon_url=ctx.author.avatar.url, name="You won!"
                         )
                         data[str(ctx.author.id)]["Bal"] += money * 2
-                        Json(k, data)
+                        update_json(k, data)
                     else:
                         embed = disnake.Embed(
                             description=f"you gambled **{money}$** and lost **{money}$**",
-                            colour=thecolor(),
+                            colour=get_colour(),
                         )
                         embed.set_author(
                             icon_url=ctx.author.avatar.url, name="You lost!"
                         )
                         data[str(ctx.author.id)]["Bal"] -= money
-                        Json(k, data)
+                        update_json(k, data)
                 else:
                     embed = disnake.Embed(
                         description="You do not have enough money! type `j.bal` to see your balance",
-                        colour=thecolor(),
+                        colour=get_colour(),
                     )
             else:
                 embed = disnake.Embed(
                     title="You do not have enough money! type `j.bal` to see your balance",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
 
             await ctx.send(embed=embed)
@@ -322,10 +326,10 @@ class Economy(commands.Cog):
             data[str(ctx.author.id)]["Bal"] += x
             embed = disnake.Embed(
                 description=f"You begged and got **{x}** jestercoins!",
-                colour=thecolor(),
+                colour=get_colour(),
             )
             await ctx.send(embed=embed)
-            Json(k, data)
+            update_json(k, data)
 
     @commands.command(aliases=["balancetop"], description="Sends the richest members")
     async def baltop(self, ctx: Context):
@@ -335,7 +339,7 @@ class Economy(commands.Cog):
         x = []
         y = "\n"
         with open("./dicts/Bal.json") as k:
-            embed = disnake.Embed(colour=thecolor())
+            embed = disnake.Embed(colour=get_colour())
             embed.set_author(name="Baltop", icon_url=ctx.author.avatar.url)
             data = json.load(k)
 
@@ -370,23 +374,23 @@ class Economy(commands.Cog):
                     data[str(user.id)]["Bal"] += ammount
 
                     data[str(ctx.author.id)]["Bal"] -= ammount
-                    Json(k, data)
+                    update_json(k, data)
                     embed = disnake.Embed(
                         description=f"You sent to **{ammount}$** to {user.name}!",
-                        colour=thecolor(),
+                        colour=get_colour(),
                     )
                 else:
                     data[str(user.id)] = {"Bal": ammount, "Name": user.name}
                     data[str(ctx.author.id)]["Bal"] -= ammount
-                    Json(k, data)
+                    update_json(k, data)
                     embed = disnake.Embed(
                         description=f"You sent to **{ammount}$** to {user.name}!",
-                        colour=thecolor(),
+                        colour=get_colour(),
                     )
             else:
                 embed = disnake.Embed(
                     description=f"You don't have {ammount}! Type `j.bal` for your balance!",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
             await ctx.send(embed=embed)
 
@@ -406,24 +410,24 @@ class Economy(commands.Cog):
 
                     if str(user.id) in data:
                         data[str(user.id)]["Bal"] += ammount
-                        Json(k, data)
+                        update_json(k, data)
 
                         embed = disnake.Embed(
                             description=f"You sent to {ammount}$ to {user.name}!",
-                            colour=thecolor(),
+                            colour=get_colour(),
                         )
                     else:
                         data[str(user.id)] = {"Bal": ammount, "Name": user.name}
 
-                        Json(k, data)
+                        update_json(k, data)
                         embed = disnake.Embed(
                             description=f"You sent to {ammount}$ to {user.name}!",
-                            colour=thecolor(),
+                            colour=get_colour(),
                         )
                 else:
                     embed = disnake.Embed(
                         description=f"You don't have {ammount}! Type `j.bal` for your balance!",
-                        colour=thecolor(),
+                        colour=get_colour(),
                     )
                 await ctx.send(embed=embed)
         else:
@@ -435,7 +439,7 @@ class Economy(commands.Cog):
         invoke_without_command=True,
     )
     async def unlock(self, ctx: Context, what=""):
-        await thebed(
+        await send_embed(
             ctx,
             "",
             "Type what you want to open! Type `j.inv` to see what you have available to unlock! To buy unlockable items type `j.shop`",
@@ -450,51 +454,51 @@ class Economy(commands.Cog):
                     rand_prize = randint(200, 300)
                     data[str(ctx.author.id)]["Box"] -= 1
                     data[str(ctx.author.id)]["Bal"] += rand_prize
-                    Json(k, data)
+                    update_json(k, data)
                     embed = disnake.Embed(
-                        description=f"You got **{rand_prize}**$!", colour=thecolor()
+                        description=f"You got **{rand_prize}**$!", colour=get_colour()
                     )
                     await ctx.send(embed=embed)
                 else:
                     embed = disnake.Embed(
                         title="You dont have a lucky box! Type `j.shop box` to buy one!",
-                        colour=thecolor(),
+                        colour=get_colour(),
                     )
                     await ctx.send(embed=embed)
             else:
                 embed = disnake.Embed(
                     title="You dont have a lucky box! Type `j.shop box` to buy one!",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 await ctx.send(embed=embed)
 
     # @unlock.group(aliases=['cov', 'corona'])
     # async def covid(self, ctx: Context, user:disnake.Member=""):
     #     if not user and user != ctx.author:
-    #         return await thebed(ctx, 'You need to mention someone to rob!')
+    #         return await send_embed(ctx, 'You need to mention someone to rob!')
     #     with open('./dicts/Bal.json', 'r+') as k:
     #         data = json.load(k)
     #         if str(ctx.author.id) in data:
     #             if 'covid' in data[str(ctx.author.id)]:
 
     #                 data[str(ctx.author.id)]['covid'] -= 1
-    #                 Json(k, data)
-    #                 embed = disnake.Embed(description=f"Success!", colour=thecolor())
+    #                 update_json(k, data)
+    #                 embed = disnake.Embed(description=f"Success!", colour=get_colour())
     #                 await ctx.send(embed = embed)
     #                 await asyncio.sleep(3600)
 
-    #                 Json(k, data)
+    #                 update_json(k, data)
 
     #             else:
-    #                 embed = disnake.Embed(title="You dont have a porta-covid! Type `j.shop covid` to buy one!", colour=thecolor())
+    #                 embed = disnake.Embed(title="You dont have a porta-covid! Type `j.shop covid` to buy one!", colour=get_colour())
     #                 await ctx.send(embed=embed)
     #         else:s
-    #             embed = disnake.Embed(title="You dont have a porta-covid! Type `j.shop covid` to buy one!", colour=thecolor())
+    #             embed = disnake.Embed(title="You dont have a porta-covid! Type `j.shop covid` to buy one!", colour=get_colour())
     #             await ctx.send(embed=embed)
     @unlock.group()
     async def bag(self, ctx: Context, user: disnake.Member = ""):
         if not user and user != ctx.author:
-            return await thebed(ctx, "You need to mention someone to rob!")
+            return await send_embed(ctx, "You need to mention someone to rob!")
         with open("./dicts/Bal.json", "r+") as k:
             data = json.load(k)
             if str(ctx.author.id) in data:
@@ -507,39 +511,42 @@ class Economy(commands.Cog):
 
                             data[str(ctx.author.id)]["Bal"] += ran
                             data[str(user.id)]["Bal"] -= ran
-                            Json(k, data)
+                            update_json(k, data)
                             embed = disnake.Embed(
-                                description=f"You robbed **{ran}**$!", colour=thecolor()
+                                description=f"You robbed **{ran}**$!",
+                                colour=get_colour(),
                             )
                             await ctx.send(embed=embed)
 
                         else:
-                            await thebed(ctx, "They dont have enough in their bank!")
+                            await send_embed(
+                                ctx, "They dont have enough in their bank!"
+                            )
 
                     else:
                         embed = disnake.Embed(
                             title="You dont have a bag! Type `j.shop bag` to buy one!",
-                            colour=thecolor(),
+                            colour=get_colour(),
                         )
                         await ctx.send(embed=embed)
 
                 else:
                     embed = disnake.Embed(
                         title="You dont have a bag! Type `j.shop bag` to buy one!",
-                        colour=thecolor(),
+                        colour=get_colour(),
                     )
                     await ctx.send(embed=embed)
             else:
                 embed = disnake.Embed(
                     title="You dont have a bag! Type `j.shop bag` to buy one!",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 await ctx.send(embed=embed)
 
     @unlock.group()
     async def gun(self, ctx: Context, user: disnake.Member = ""):
         if not user and user != ctx.author:
-            await thebed(ctx, "You need to mention someone to rob!")
+            await send_embed(ctx, "You need to mention someone to rob!")
         with open("./dicts/Bal.json", "r+") as k:
             data = json.load(k)
             if str(ctx.author.id) in data:
@@ -551,25 +558,25 @@ class Economy(commands.Cog):
 
                         data[str(ctx.author.id)]["Bal"] += ran
                         data[str(user.id)]["Bal"] -= ran
-                        Json(k, data)
+                        update_json(k, data)
                         embed = disnake.Embed(
-                            description=f"You robbed **{ran}**$!", colour=thecolor()
+                            description=f"You robbed **{ran}**$!", colour=get_colour()
                         )
                         await ctx.send(embed=embed)
 
                     else:
-                        await thebed(ctx, "They dont have enough in their bank!")
+                        await send_embed(ctx, "They dont have enough in their bank!")
 
                 else:
                     embed = disnake.Embed(
                         title="You dont have a gun! Type `j.shop gun` to buy one!",
-                        colour=thecolor(),
+                        colour=get_colour(),
                     )
                     await ctx.send(embed=embed)
             else:
                 embed = disnake.Embed(
                     title="You dont have a gun! Type `j.shop gun` to buy one!",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 await ctx.send(embed=embed)
 
@@ -577,7 +584,7 @@ class Economy(commands.Cog):
     async def inventory(self, ctx: Context):
         with open("./dicts/Bal.json") as k:
             embed = disnake.Embed(
-                title="Your inventory is currently:", colour=thecolor()
+                title="Your inventory is currently:", colour=get_colour()
             )
 
             data = json.load(k)
@@ -594,7 +601,7 @@ class Economy(commands.Cog):
                 await ctx.send(embed=embed)
             else:
                 embed = disnake.Embed(
-                    title="Your inv is empty currently!", colour=thecolor()
+                    title="Your inv is empty currently!", colour=get_colour()
                 )
                 await ctx.send(embed=embed)
 
@@ -605,7 +612,7 @@ class Economy(commands.Cog):
 
             data = json.load(k)
             if FALSCH == True:
-                return await thebed(ctx, "", "You cannot work! You have got covid")
+                return await send_embed(ctx, "", "You cannot work! You have got covid")
             mon = data[str(ctx.author.id)]["Bal"]
             x = randint(250, 750)
             mon += x
@@ -668,8 +675,8 @@ class Economy(commands.Cog):
             else:
                 v = f"a {e}"
 
-            Json(k, data)
-            await thebed(
+            update_json(k, data)
+            await send_embed(
                 ctx,
                 "Work",
                 f"""

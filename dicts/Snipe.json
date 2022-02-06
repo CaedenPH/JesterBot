@@ -3451,7 +3451,7 @@
         "794684213697052719": {
             "list": [
                 "```\nhfds\n```",
-                "runfile('C:/Users/amala/Desktop/3rd part project grades now adam.py', wdir='C:/Users/amala/Desktop')\n  File \"C:\\Users\\amala\\Desktop\\3rd part project grades now adam.py\", line 108\n    plt.plot(x, y, label = \"Mean\",color=\"black\")\n                                                    ^\nIndentationError: unindent does not match any outer indentation level"
+                "runfile('C:/Users/amala/Desktop/3rd part project grades now adam.py', wdir='C:/Users/amala/Desktop')\n  File \"C:\\Users\\amala\\Desktop\\3rd part project grades now adam.py\", line 108\n    plt.plot(x, y, label = \"Mean\",colour\"black\")\n                                                    ^\nIndentationError: unindent does not match any outer indentation level"
             ],
             "author": [
                 "Port22",
@@ -5490,7 +5490,7 @@
                 "what is error ? \n Callback for help2 command is missing \"ctx\" parameter.",
                 "Suppose I have three buttons:\nTest 1\nTest 2\nTest 3\n\nI want to disable test 1 button and change its color when clicking on test 2",
                 "Hey @joee!",
-                "{'type': 'rich', 'description': '```py\\n\\nclass disnake.Embed(*, colour=Embed.Empty, color=Embed.Empty, title=Embed.Empty, type=\\'rich\\', url=Embed.Empty, description=Embed.Empty, timestamp=None)```\\nRepresents a Discord embed.\\n\\nlen(x) Returns the total size of the embed. Useful for checking if it\u2019s within the 6000 character limit.\\n\\nbool(b) Returns whether the embed has any data set.\\n\\nNew in version 2.0.\\n\\nCertain properties return an `EmbedProxy`, a type that acts similar to a regular [`dict`](https://docs.python.org/3/library/stdtypes.html#dict \"(in Python v3.10)\") except using dotted access, e.g. `embed.author.icon_url`. If the attribute is invalid or empty, then a special sentinel value is returned, [`Embed.Empty`](https://docs.disnake.dev/en/latest/api.html#disnake.Embed.Empty \"disnake.Embed.Empty\").\\n\\nFor ease of use, all parameters that expect a [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") are implicitly casted to [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") for you.', 'url': 'https://docs.disnake.dev/en/latest/api.html#disnake.Embed', 'title': 'disnake.embeds.Embed'}"
+                "{'type': 'rich', 'description': '```py\\n\\nclass disnake.Embed(*, colour=Embed.Empty, colourEmbed.Empty, title=Embed.Empty, type=\\'rich\\', url=Embed.Empty, description=Embed.Empty, timestamp=None)```\\nRepresents a Discord embed.\\n\\nlen(x) Returns the total size of the embed. Useful for checking if it\u2019s within the 6000 character limit.\\n\\nbool(b) Returns whether the embed has any data set.\\n\\nNew in version 2.0.\\n\\nCertain properties return an `EmbedProxy`, a type that acts similar to a regular [`dict`](https://docs.python.org/3/library/stdtypes.html#dict \"(in Python v3.10)\") except using dotted access, e.g. `embed.author.icon_url`. If the attribute is invalid or empty, then a special sentinel value is returned, [`Embed.Empty`](https://docs.disnake.dev/en/latest/api.html#disnake.Embed.Empty \"disnake.Embed.Empty\").\\n\\nFor ease of use, all parameters that expect a [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") are implicitly casted to [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") for you.', 'url': 'https://docs.disnake.dev/en/latest/api.html#disnake.Embed', 'title': 'disnake.embeds.Embed'}"
             ],
             "author": [
                 "BITTU5134",
@@ -5609,7 +5609,7 @@
                 "by default, cmds should be able to be used by everyone right? unless a permission is set for that cmd",
                 "@Average Soccer Fanatic",
                 "@Average Soccer Fanatic",
-                "{'type': 'rich', 'description': '```py\\n\\nclass disnake.Embed(*, colour=Embed.Empty, color=Embed.Empty, title=Embed.Empty, type=\\'rich\\', url=Embed.Empty, description=Embed.Empty, timestamp=None)```\\nRepresents a Discord embed.\\n\\nlen(x) Returns the total size of the embed. Useful for checking if it\u2019s within the 6000 character limit.\\n\\nbool(b) Returns whether the embed has any data set.\\n\\nNew in version 2.0.\\n\\nCertain properties return an `EmbedProxy`, a type that acts similar to a regular [`dict`](https://docs.python.org/3/library/stdtypes.html#dict \"(in Python v3.10)\") except using dotted access, e.g. `embed.author.icon_url`. If the attribute is invalid or empty, then a special sentinel value is returned, [`Embed.Empty`](https://docs.disnake.dev/en/latest/api.html#disnake.Embed.Empty \"disnake.Embed.Empty\").\\n\\nFor ease of use, all parameters that expect a [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") are implicitly casted to [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") for you.', 'url': 'https://docs.disnake.dev/en/latest/api.html#disnake.Embed', 'title': 'disnake.embeds.Embed'}",
+                "{'type': 'rich', 'description': '```py\\n\\nclass disnake.Embed(*, colour=Embed.Empty, colourEmbed.Empty, title=Embed.Empty, type=\\'rich\\', url=Embed.Empty, description=Embed.Empty, timestamp=None)```\\nRepresents a Discord embed.\\n\\nlen(x) Returns the total size of the embed. Useful for checking if it\u2019s within the 6000 character limit.\\n\\nbool(b) Returns whether the embed has any data set.\\n\\nNew in version 2.0.\\n\\nCertain properties return an `EmbedProxy`, a type that acts similar to a regular [`dict`](https://docs.python.org/3/library/stdtypes.html#dict \"(in Python v3.10)\") except using dotted access, e.g. `embed.author.icon_url`. If the attribute is invalid or empty, then a special sentinel value is returned, [`Embed.Empty`](https://docs.disnake.dev/en/latest/api.html#disnake.Embed.Empty \"disnake.Embed.Empty\").\\n\\nFor ease of use, all parameters that expect a [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") are implicitly casted to [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") for you.', 'url': 'https://docs.disnake.dev/en/latest/api.html#disnake.Embed', 'title': 'disnake.embeds.Embed'}",
                 "Probably some of the nextcord contributors are going to collaborate with us",
                 "Well one of them has already done that",
                 "vco",
@@ -5972,6 +5972,24 @@
             ],
             "time": [
                 "2022-02-06 12:08:55.756000+00:00"
+            ]
+        },
+        "829874873999949867": {
+            "list": [
+                "@joeill has leveled up! **(0 \u279c 1)**",
+                "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@823834534675087371>** <:fedora:830478997858025513>'}"
+            ],
+            "author": [
+                "Tatsu",
+                "AFK Bot"
+            ],
+            "id": [
+                172002275412279296,
+                755588579262201886
+            ],
+            "time": [
+                "2022-02-06 21:32:49.527000+00:00",
+                "2022-02-06 21:32:49.327000+00:00"
             ]
         }
     },

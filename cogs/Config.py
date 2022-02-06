@@ -2,10 +2,9 @@ import disnake
 import json
 from disnake.ext.commands import has_permissions
 from disnake.ext import commands
-from disnake.utils import get
-from async_timeout import timeout
 import asyncio
-from core.utils.utils import thecolor, Json, thebed, Cmds
+from cogs.help.cog import get_help
+from core.utils import get_colour, update_json, send_embed
 from core import Context
 
 
@@ -32,8 +31,8 @@ class Config(commands.Cog):
                     "channel_id": ctx.channel.id,
                     "Welcome": True,
                 }
-                Json(f, data)
-                embed = disnake.Embed(title="Added!", colour=thecolor())
+                update_json(f, data)
+                embed = disnake.Embed(title="Added!", colour=get_colour())
                 return await ctx.send(embed=embed)
 
             data[str(ctx.guild.id)] = {
@@ -44,13 +43,12 @@ class Config(commands.Cog):
                 "Welcome": True,
             }
 
-            Json(f, data)
-            embed = disnake.Embed(title="Added!", colour=thecolor())
+            update_json(f, data)
+            embed = disnake.Embed(title="Added!", colour=get_colour())
             await ctx.send(embed=embed)
 
     @commands.command(aliases=["channelconfig"])
     async def config(self, ctx: Context):
-        the_list = ""
         the_list1 = ""
         with open("./dicts/ConfigChannel.json", "r+") as k:
             data = json.load(k)
@@ -58,7 +56,7 @@ class Config(commands.Cog):
             for z in data["emojis"]:
                 a += f"\n{z} │ {data['emojis'][z]['em']}"
             embed = disnake.Embed(
-                title="Config channels", description=a, color=thecolor()
+                title="Config channels", description=a, colour=get_colour()
             )
             msg = await ctx.send(embed=embed)
 
@@ -90,7 +88,7 @@ class Config(commands.Cog):
                                     alx.append(f"`{al}`")
                             bot_av = self.bot.get_user(828363172717133874)
                             em = disnake.Embed(
-                                description=Cmds(command1.name).chelp, colour=thecolor()
+                                description=get_help(command1.name), colour=get_colour()
                             )
                             name = f"{command1.name.capitalize()}"
 
@@ -115,7 +113,7 @@ class Config(commands.Cog):
                             embed = disnake.Embed(
                                 title=f"{data['emojis'][e]} │ {emoji}",
                                 description=f"{the_list1}",
-                                color=thecolor(),
+                                colour=get_colour(),
                             )
 
                             await msg.edit(embed=em)
@@ -141,14 +139,14 @@ class Config(commands.Cog):
 
                 if "pickuplinechannel" not in data[x]:
                     data[x]["pickuplinechannel"] = i
-                    Json(k, data)
-                    return await thebed(ctx, "Success")
+                    update_json(k, data)
+                    return await send_embed(ctx, "Success")
             else:
                 data[x] = {"pickuplinechannel": i}
-                Json(k, data)
-                return await thebed(ctx, "Success")
+                update_json(k, data)
+                return await send_embed(ctx, "Success")
 
-            await thebed(
+            await send_embed(
                 ctx, "There is already a pickuplinechannel here or something went wrong"
             )
 
@@ -165,14 +163,14 @@ class Config(commands.Cog):
 
                 if "jokechannel" not in data[x]:
                     data[x]["jokechannel"] = i
-                    Json(k, data)
-                    return await thebed(ctx, "Success")
+                    update_json(k, data)
+                    return await send_embed(ctx, "Success")
             else:
                 data[x] = {"jokechannel": i}
-                Json(k, data)
-                return await thebed(ctx, "Success")
+                update_json(k, data)
+                return await send_embed(ctx, "Success")
 
-            await thebed(
+            await send_embed(
                 ctx, "There is already a jokechannel here or something went wrong"
             )
 
@@ -189,14 +187,14 @@ class Config(commands.Cog):
 
                 if "quotechannel" not in data[x]:
                     data[x]["quotechannel"] = i
-                    Json(k, data)
-                    return await thebed(ctx, "Success")
+                    update_json(k, data)
+                    return await send_embed(ctx, "Success")
             else:
                 data[x] = {"quotechannel": i}
-                Json(k, data)
-                return await thebed(ctx, "Success")
+                update_json(k, data)
+                return await send_embed(ctx, "Success")
 
-            await thebed(
+            await send_embed(
                 ctx, "There is already a quotechannel here or something went wrong"
             )
 
@@ -213,14 +211,14 @@ class Config(commands.Cog):
 
                 if "factchannel" not in data[x]:
                     data[x]["factchannel"] = i
-                    Json(k, data)
-                    return await thebed(ctx, "Success")
+                    update_json(k, data)
+                    return await send_embed(ctx, "Success")
             else:
                 data[x] = {"factchannel": i}
-                Json(k, data)
-                return await thebed(ctx, "Success")
+                update_json(k, data)
+                return await send_embed(ctx, "Success")
 
-            await thebed(
+            await send_embed(
                 ctx, "There is already a factchannel here or something went wrong"
             )
 
@@ -234,8 +232,8 @@ class Config(commands.Cog):
 
             if str(ctx.guild.id) in data:
                 data[str(ctx.guild.id)]["Welcome"] = False
-                Json(f, data)
-                embed = disnake.Embed(title="Re`moved!", colour=thecolor())
+                update_json(f, data)
+                embed = disnake.Embed(title="Re`moved!", colour=get_colour())
                 await ctx.send(embed=embed)
 
     @has_permissions(manage_channels=True)
@@ -251,11 +249,11 @@ class Config(commands.Cog):
                 data[str(channel.id)] = {
                     "Yes": True,
                 }
-                Json(k, data)
+                update_json(k, data)
                 if channel.id == ctx.channel.id:
                     pass
                 else:
-                    embed = disnake.Embed(title="Applied", colour=thecolor())
+                    embed = disnake.Embed(title="Applied", colour=get_colour())
                     await ctx.send(embed=embed)
                 await channel.purge(limit=10000)
                 embed1 = disnake.Embed(
@@ -265,7 +263,7 @@ class Config(commands.Cog):
                 This means that you can only type `suggest`, which will formally create a ticket that only you can reply to. After giving a title and a description, your suggestion will be sent.
                 Any messages that aren't `suggest` are automatically deleted
                 """,
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 x = await channel.send(embed=embed1)
                 await x.pin()
@@ -273,11 +271,11 @@ class Config(commands.Cog):
             else:
                 if data[str(channel.id)]["Yes"] == False:
                     data[str(channel.id)]["Yes"] = True
-                    Json(k, data)
-                    embed = disnake.Embed(title="Applied", colour=thecolor())
+                    update_json(k, data)
+                    embed = disnake.Embed(title="Applied", colour=get_colour())
                     await ctx.send(embed=embed)
                 else:
-                    embed = disnake.Embed(title="Already applied", colour=thecolor())
+                    embed = disnake.Embed(title="Already applied", colour=get_colour())
                 await ctx.send(embed=embed)
 
     @commands.command(
@@ -295,7 +293,7 @@ class Config(commands.Cog):
         embed = disnake.Embed(
             title="Warning",
             description="While this command can help your server by adding a verification, it can also add roles and channels you may not like the look of. To get more information type `j.help verifychannel`. To proceed type y",
-            colour=thecolor(),
+            colour=get_colour(),
         )
         await ctx.send(embed=embed)
         received_msg = str(
@@ -309,7 +307,7 @@ class Config(commands.Cog):
         ).lower()
         if received_msg != "y":
 
-            embed = disnake.Embed(title="Goodbye!", colour=thecolor())
+            embed = disnake.Embed(title="Goodbye!", colour=get_colour())
             return await ctx.send(embed=embed)
 
         with open("./dicts/VerifyChannel.json") as k:
@@ -412,7 +410,7 @@ class Config(commands.Cog):
                     "Guild": ctx.guild.id,
                 }
 
-            Json(k, data)
+            update_json(k, data)
 
             await channel.purge(limit=10000)
             embed1 = disnake.Embed(
@@ -422,7 +420,7 @@ class Config(commands.Cog):
             Type `verify` to get acess to the server!
             Have fun and make sure to follow the rules.
             """,
-                colour=thecolor(),
+                colour=get_colour(),
             )
             x = await channel.send(embed=embed1)
             await x.pin()
@@ -441,11 +439,11 @@ class Config(commands.Cog):
             for key in data:
                 if data[key]["Guild"] == ctx.guild.id:
                     del data[key]
-                    Json(k, data)
-                    embed = disnake.Embed(title=f"Removed!", color=thecolor())
+                    update_json(k, data)
+                    embed = disnake.Embed(title=f"Removed!", colour=get_colour())
                     return await ctx.send(embed=embed)
 
-            await thebed(ctx, "There was never a verify!")
+            await send_embed(ctx, "There was never a verify!")
 
     @commands.command()
     async def leavechannel(self, ctx: Context, channel: disnake.TextChannel = ""):
@@ -453,7 +451,7 @@ class Config(commands.Cog):
         with open("./dicts/LeaveChannel.json", "r+") as k:
             data = json.load(k)
             if str(ctx.guild.id) in data:
-                return await thebed(
+                return await send_embed(
                     ctx, "Leaving", "This server is already registered!"
                 )
             else:
@@ -463,8 +461,8 @@ class Config(commands.Cog):
                         name="Leaving Channel"
                     )
                 data[str(ctx.guild.id)] = {"id": channel.id}
-                Json(k, data)
-        await thebed(
+                update_json(k, data)
+        await send_embed(
             channel,
             "This is a leaving channel, everyone who leaves will be announced here...",
         )
@@ -475,11 +473,11 @@ class Config(commands.Cog):
 
             data = json.load(k)
             if str(ctx.guild.id) not in data:
-                return await thebed(
+                return await send_embed(
                     ctx, "Leaving", "There was never a leaving channel here!"
                 )
             del data[str(ctx.guild.id)]
-            await thebed(ctx, "Done!")
+            await send_embed(ctx, "Done!")
 
     @commands.Cog.listener()
     async def on_member_remove(self, memb):
@@ -488,7 +486,9 @@ class Config(commands.Cog):
 
             if str(memb.guild.id) in data:
                 channel = self.bot.get_channel(data[str(memb.guild.id)]["id"])
-                await thebed(channel, "Goodbye", f"You wil be missed *{memb.name}*...")
+                await send_embed(
+                    channel, "Goodbye", f"You wil be missed *{memb.name}*..."
+                )
 
 
 def setup(bot):

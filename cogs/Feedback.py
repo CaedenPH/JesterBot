@@ -1,6 +1,6 @@
 import disnake, os, requests, json, asyncio
 from disnake.ext import commands
-from core.utils.utils import thecolor, Json, thebed
+from core.utils import get_colour, update_json, send_embed
 from core import Context
 from typing import Union
 
@@ -20,9 +20,9 @@ class Feedback(commands.Cog):
             data["feedback"]["message"].append(feedback)
             data["feedback"]["author"].append(ctx.author.name)
             data["feedback"]["id"].append(ctx.author.id)
-            Json(k, data)
+            update_json(k, data)
 
-        await thebed(ctx, "", "Sent!")
+        await send_embed(ctx, "", "Sent!")
 
     @commands.command()
     async def viewfeedback(
@@ -31,11 +31,11 @@ class Feedback(commands.Cog):
         distance: Union[int, str] = 0,
         author_from: Union[int, str] = None,
     ):
-        await thebed(
+        await send_embed(
             ctx,
             "",
             "**Error: **distance must be an integer (an index placevalue) if no `author_from` is given!",
-        ) if hasattr(distance, "upper") and author_from is None else await thebed(
+        ) if hasattr(distance, "upper") and author_from is None else await send_embed(
             ctx,
             "",
             f'*`{distance}`*: "{data["feedback"]["message"][distance]}", submitted by **{data["feedback"]["author"][distance]}**'
@@ -50,7 +50,7 @@ class Feedback(commands.Cog):
             ),
             a="Feedback",
             i_u=ctx.author.avatar.url,
-        ) if author_from is None else await thebed(
+        ) if author_from is None else await send_embed(
             ctx,
             "",
             f"\n".join(
@@ -65,7 +65,7 @@ class Feedback(commands.Cog):
             f=f"All these messges are from {author_from}",
         ) if hasattr(
             author_from, "upper"
-        ) else await thebed(
+        ) else await send_embed(
             ctx,
             "",
             f"\n".join(
@@ -85,16 +85,18 @@ class Feedback(commands.Cog):
         f = open("./dicts/Dial.json", "r+")
         data = json.load(f)
         if str(ctx.channel.id) in data:
-            return await thebed(ctx, "", "This is already engaged in a support dial!")
+            return await send_embed(
+                ctx, "", "This is already engaged in a support dial!"
+            )
         data[str(ctx.channel.id)] = True
-        Json(f, data)
+        update_json(f, data)
         chan = self.bot.get_channel(866598271991545886)
-        await thebed(
+        await send_embed(
             ctx,
             "",
             "You are now connected to **JesterBot offical Support Dial**. Type `j.closesupport` to end your ticket",
         )
-        await thebed(
+        await send_embed(
             chan,
             "",
             f"You are now connected to **{ctx.author}** in **{ctx.guild}** with channel id of **{ctx.channel.id}**",
@@ -113,16 +115,16 @@ class Feedback(commands.Cog):
 
                 if chan in data:
                     del data[chan]
-                    Json(f, data)
+                    update_json(f, data)
                     return await ctx.send("**Ended**")
         if str(ctx.channel.id) not in data:
-            return await thebed(ctx, "", "You are not engaged in a support dial!")
+            return await send_embed(ctx, "", "You are not engaged in a support dial!")
         del data[str(ctx.channel.id)]
-        Json(f, data)
-        await thebed(
+        update_json(f, data)
+        await send_embed(
             ctx, "", "The ticket has been closed! We hope your problem got solved!"
         )
-        await thebed(c, "", f"{ctx.author} ended a call at {ctx.channel.id}")
+        await send_embed(c, "", f"{ctx.author} ended a call at {ctx.channel.id}")
 
     @commands.Cog.listener("on_message")
     async def dial(self, message):

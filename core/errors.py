@@ -13,7 +13,7 @@ from disnake.ext.commands import (
     CommandInvokeError,
 )
 
-from core.utils.utils import thecolor, thebed, Json
+from core.utils import get_colour, send_embed, update_json
 from core.constants import LOCATION_EMOJIS
 from core.paginator import Paginator
 
@@ -31,22 +31,23 @@ async def unexpected(ctx, error):
         "error_dir": str(dir(error)),
         "command": ctx.command.name,
     }
-    Json(k, data)
-    await thebed(bot.chan, f"{ctx.guild}; {ctx.author}; {ctx.command.name}", error)
+    update_json(k, data)
+    await send_embed(bot.chan, f"{ctx.guild}; {ctx.author}; {ctx.command.name}", error)
     e = "".join(traceback.format_exception(error, error, error.__traceback__))
     y = Paginator(ctx)
     await y.paginate(content=f"{e}", name="error")
 
 
-async def error_handler(bot, ctx, error):
+async def error_handler(ctx, error) -> None:
+    bot = ctx.bot
+
     if isinstance(error, MissingPermissions):
         embed = disnake.Embed(
-            description="You do not have permissions to do that!", colour=thecolor()
+            description="You do not have permissions to do that!", colour=get_colour()
         )
         await ctx.send(embed=embed)
     elif isinstance(error, CheckFailure):
         pass
-
     elif isinstance(error, MissingRequiredArgument):
         com = str(ctx.command.signature)
         x = com.split(f"{error.param.name}")
@@ -60,7 +61,7 @@ async def error_handler(bot, ctx, error):
         for k in range(0, len(x[0])):
             z += " "
 
-        await thebed(
+        await send_embed(
             ctx,
             f"<{error.param.name}> is missing:",
             f"```j.{ctx.command} {ctx.command.signature}\n{z}{y}```",
@@ -102,7 +103,7 @@ async def error_handler(bot, ctx, error):
 
             failed_cmd = ctx.message.content.split(" ")
             failed_cmd = failed_cmd[0]
-            embed = disnake.Embed(title="Error!", colour=thecolor())
+            embed = disnake.Embed(title="Error!", colour=get_colour())
             embed.set_author(
                 icon_url=ctx.author.avatar.url, name=f"{failed_cmd} is not a command!"
             )
@@ -133,7 +134,9 @@ async def error_handler(bot, ctx, error):
                         while str(emoji.emoji) != close:
                             if str(emoji.emoji) == right and num == 1:
 
-                                embed = disnake.Embed(title="Error!", colour=thecolor())
+                                embed = disnake.Embed(
+                                    title="Error!", colour=get_colour()
+                                )
                                 embed.set_author(
                                     icon_url=ctx.author.avatar.url,
                                     name=f"{failed_cmd} is not a command!",
@@ -149,7 +152,9 @@ async def error_handler(bot, ctx, error):
                                 num = 2
 
                             elif str(emoji.emoji) == left and num == 2:
-                                embed = disnake.Embed(title="Error!", colour=thecolor())
+                                embed = disnake.Embed(
+                                    title="Error!", colour=get_colour()
+                                )
                                 embed.set_author(
                                     icon_url=ctx.author.avatar.url,
                                     name=f"{failed_cmd} is not a command!",
@@ -174,7 +179,9 @@ async def error_handler(bot, ctx, error):
                             )
                         else:
                             embed = disnake.Embed(
-                                title="Error!", description="Goodbye", colour=thecolor()
+                                title="Error!",
+                                description="Goodbye",
+                                colour=get_colour(),
                             )
                             embed.set_author(
                                 icon_url=ctx.author.avatar.url,
@@ -187,7 +194,7 @@ async def error_handler(bot, ctx, error):
                         embed = disnake.Embed(
                             title="Error!",
                             description="Session timed out",
-                            colour=thecolor(),
+                            colour=get_colour(),
                         )
                         embed.set_author(
                             icon_url=ctx.author.avatar.url,
@@ -200,17 +207,19 @@ async def error_handler(bot, ctx, error):
             pass
     elif isinstance(error, MemberNotFound):
         embed = disnake.Embed(
-            description=f"They are not a **member!**", colour=thecolor()
+            description=f"They are not a **member!**", colour=get_colour()
         )
         await ctx.send(embed=embed)
     elif isinstance(error, RoleNotFound):
-        embed = disnake.Embed(description=f"That is not a **role!**", colour=thecolor())
+        embed = disnake.Embed(
+            description=f"That is not a **role!**", colour=get_colour()
+        )
         await ctx.send(embed=embed)
 
     elif isinstance(error, CommandOnCooldown):
         embed = disnake.Embed(
             description=f"This command is on cooldown for **{error.retry_after:.2f}** seconds",
-            colour=thecolor(),
+            colour=get_colour(),
         )
         await ctx.send(embed=embed)
 
@@ -223,6 +232,6 @@ async def error_handler(bot, ctx, error):
                 "You unfortunately did not invite my bot with enough permissions for me to complete this action!"
             )
         else:
-            await unexpected(bot, ctx, error)
+            await unexpected(ctx, error)
     else:
-        await unexpected(bot, ctx, error)
+        await unexpected(ctx, error)

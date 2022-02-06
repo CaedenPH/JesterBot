@@ -1,6 +1,6 @@
 import disnake, os, requests, json, asyncio
 from disnake.ext import commands
-from core.utils.utils import thecolor, Json, thebed
+from core.utils import get_colour, update_json, send_embed
 from core import Context
 
 
@@ -20,7 +20,7 @@ class GetUser:
         self.data = thedata
         self.theuser = theuser
         self.family = thefamily
-        self.append = Json(thefile, thedata)
+        self.append = update_json(thefile, thedata)
 
     def user(self, user=""):
 
@@ -43,22 +43,24 @@ class Love(commands.Cog):
 
         if member == "":
             embed = disnake.Embed(
-                description=f"**{ctx.author.name}** has poked you 😗", colour=thecolor()
+                description=f"**{ctx.author.name}** has poked you 😗",
+                colour=get_colour(),
             )
             await ctx.author.send(embed=embed)
             embed = disnake.Embed(
                 description=f"The **poke** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}**ms",
-                colour=thecolor(),
+                colour=get_colour(),
             )
             await ctx.send(embed=embed)
         else:
             embed = disnake.Embed(
-                description=f"**{ctx.author.name}** has poked you 😗", colour=thecolor()
+                description=f"**{ctx.author.name}** has poked you 😗",
+                colour=get_colour(),
             )
             await member.send(embed=embed)
             embed = disnake.Embed(
                 description=f"The **poke** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}** ms",
-                colour=thecolor(),
+                colour=get_colour(),
             )
             await ctx.send(embed=embed)
 
@@ -68,30 +70,30 @@ class Love(commands.Cog):
 
             embed = disnake.Embed(
                 description=f"**{ctx.author.name}** has given you the gift of a hug 🌷",
-                colour=thecolor(),
+                colour=get_colour(),
             )
             await ctx.author.send(embed=embed)
             embed = disnake.Embed(
                 description=f"The **hug** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}**ms",
-                colour=thecolor(),
+                colour=get_colour(),
             )
             await ctx.send(embed=embed)
         else:
 
             embed = disnake.Embed(
                 description=f"**{ctx.author.name}** has given you the gift of a hug 🌷",
-                colour=thecolor(),
+                colour=get_colour(),
             )
             await member.send(embed=embed)
             embed = disnake.Embed(
                 description=f"The **hug** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}**ms",
-                colour=thecolor(),
+                colour=get_colour(),
             )
             await ctx.send(embed=embed)
 
     @commands.command()
     async def love(self, ctx: Context):
-        await thebed(ctx, "Name 1")
+        await send_embed(ctx, "Name 1")
         received_msg = str(
             (
                 await self.bot.wait_for(
@@ -101,7 +103,7 @@ class Love(commands.Cog):
                 )
             ).content
         ).lower()
-        await thebed(ctx, "Name 2?")
+        await send_embed(ctx, "Name 2?")
         received_msg1 = str(
             (
                 await self.bot.wait_for(
@@ -114,7 +116,7 @@ class Love(commands.Cog):
         try:
             x = int(received_msg)
             z = int(received_msg1)
-            await thebed(ctx, "That isnt a name...")
+            await send_embed(ctx, "That isnt a name...")
         except:
             first_letter1 = received_msg[:1]
             last_letter1 = received_msg[-1:]
@@ -139,7 +141,7 @@ class Love(commands.Cog):
             if over2 > 100:
                 over2 -= 71
 
-            await thebed(
+            await send_embed(
                 ctx,
                 f"Compatabiliy between {received_msg} and {received_msg1}",
                 f"**Percentage:** {over2}%",
@@ -153,21 +155,21 @@ class Love(commands.Cog):
             embed = disnake.Embed(
                 title="👨 Family 👩",
                 description=f"**{ctx.author.name}** x **{File.family}** \n They have been married since {File.data[str(ctx.author.id)]['since']}",
-                color=thecolor(),
+                colour=get_colour(),
             )
             embed.set_footer(text="\nMay ever hapiness bless them")
             await ctx.send(embed=embed)
         else:
-            await thebed(ctx, "Marriage", "You are single bro...")
+            await send_embed(ctx, "Marriage", "You are single bro...")
 
     @commands.command()
     async def marry(self, ctx: Context, member: disnake.Member):
         if member == ctx.author:
-            return await thebed(ctx, "You cannot marry yourself...")
+            return await send_embed(ctx, "You cannot marry yourself...")
         embed = disnake.Embed(
             title="🎉 Marriage 🎉",
             description=f"**{member.name}** do you accept **{ctx.author.name}** to be your partner? React with this message if you want to get married",
-            colour=thecolor(),
+            colour=get_colour(),
         )
         msg = await ctx.send(embed=embed)
         await msg.add_reaction("💖")
@@ -211,16 +213,16 @@ class Love(commands.Cog):
                     "id": str(ctx.author.id),
                 }
 
-            Json(File.file, File.data)
+            update_json(File.file, File.data)
             em = disnake.Embed(
                 title="Success!",
                 description="Ah, the wonders of life, congratulations on getting married!",
-                color=thecolor(),
+                colour=get_colour(),
             )
             em.set_image(url="https://giphy.com/clips/livingsingle-7GN899Bf6g98SdFpra")
             await ctx.send(embed=em)
         except asyncio.TimeoutError:
-            await thebed(
+            await send_embed(
                 ctx,
                 "Marriage",
                 f"Oh no! {member} did not respond in time! Try again at a time that {member.name} is available...",
@@ -235,10 +237,10 @@ class Love(commands.Cog):
             del File.data[str(marr)]
             del File.data[str(ctx.author.id)]
 
-            Json(File.file, File.data)
-            await thebed(ctx, "Divorce...", "They were such a good couple :(")
+            update_json(File.file, File.data)
+            await send_embed(ctx, "Divorce...", "They were such a good couple :(")
         else:
-            await thebed(ctx, "Marriage", "You are single bro...")
+            await send_embed(ctx, "Marriage", "You are single bro...")
 
 
 def setup(bot):

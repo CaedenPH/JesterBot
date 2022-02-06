@@ -5,7 +5,7 @@ from disnake.ext import commands
 from disnake.utils import get
 from asyncio import sleep
 from random import choice, randint
-from core.utils.utils import thecolor, thebed
+from core.utils import get_colour, send_embed
 from core import Context
 
 import random
@@ -97,7 +97,7 @@ class Card:
 
 
 async def buno(ctx, title, description="", **kwargs):
-    theembed = disnake.Embed(title=title, description=description, color=thecolor())
+    theembed = disnake.Embed(title=title, description=description, colour=get_colour())
     theembed.set_author(icon_url=ctx.author.avatar.url, name="Uno")
     author = kwargs.get("a")
     icon_url = kwargs.get("i_u")
@@ -131,10 +131,10 @@ class Games(commands.Cog):
     async def russianroulette(self, ctx: Context):
         rand = randint(1, 5)
         if rand == 1:
-            embed = disnake.Embed(title="🔫 / You died", colour=thecolor())
+            embed = disnake.Embed(title="🔫 / You died", colour=get_colour())
             await ctx.send(embed=embed)
         else:
-            embed = disnake.Embed(title="🌹 / You lived", colour=thecolor())
+            embed = disnake.Embed(title="🌹 / You lived", colour=get_colour())
             await ctx.send(embed=embed)
 
     @commands.command(
@@ -155,7 +155,7 @@ class Games(commands.Cog):
 
         embed = disnake.Embed(
             description=f"**Your cards:** \n{Player_Card_1.card} \n {Player_Card_2.card}\n\n**Type h to hit or s to stand**",
-            colour=thecolor(),
+            colour=get_colour(),
         )
         embed.set_author(
             name=f"Blackjack - Score: {Player_Total}", icon_url=ctx.author.avatar.url
@@ -201,7 +201,7 @@ class Games(commands.Cog):
                         Player_Total += Player_Card_3.num
                         embed = disnake.Embed(
                             description=f"**Your card:** \n {Player_Card_3.card}",
-                            colour=thecolor(),
+                            colour=get_colour(),
                         )
                         embed.set_footer(text="Type s to stand or h to hit")
                         embed.set_author(
@@ -212,7 +212,7 @@ class Games(commands.Cog):
                         if Player_Total > 21:
                             embed = disnake.Embed(
                                 title="You lose because you went over! Restart the game",
-                                colour=thecolor(),
+                                colour=get_colour(),
                             )
                             embed.set_author(
                                 name=f"Blackjack - Score: {Player_Total}",
@@ -223,7 +223,7 @@ class Games(commands.Cog):
                     else:
                         embed = disnake.Embed(
                             description="You drew an ace, choose 1 or 11 for its value",
-                            colour=thecolor(),
+                            colour=get_colour(),
                         )
                         embed.set_author(
                             name=f"Blackjack - Score: {Player_Total}",
@@ -245,7 +245,7 @@ class Games(commands.Cog):
                                 Player_Total += 1
                                 embed = disnake.Embed(
                                     description=f"Type h to hit or s to stand",
-                                    colour=thecolor(),
+                                    colour=get_colour(),
                                 )
                                 embed.set_author(
                                     name=f"Blackjack - Score: {Player_Total}",
@@ -255,7 +255,7 @@ class Games(commands.Cog):
                                 Player_Total += 11
                                 embed = disnake.Embed(
                                     description=f"Type h to hit or s to stand",
-                                    colour=thecolor(),
+                                    colour=get_colour(),
                                 )
                                 embed.set_author(
                                     name=f"Blackjack - Score: {Player_Total}",
@@ -264,11 +264,11 @@ class Games(commands.Cog):
                             else:
                                 embed = disnake.Embed(
                                     title="Choose 1 or 11, restart the game",
-                                    colour=thecolor(),
+                                    colour=get_colour(),
                                 )
                             embed = disnake.Embed(
                                 description=f"Type h to hit or s to stand",
-                                colour=thecolor(),
+                                colour=get_colour(),
                             )
                             embed.set_author(
                                 name=f"Blackjack - Score: {Player_Total}",
@@ -276,13 +276,13 @@ class Games(commands.Cog):
                             )
                         except asyncio.TimeoutError:
                             embed = disnake.Embed(
-                                title="I gave up waiting", colour=thecolor()
+                                title="I gave up waiting", colour=get_colour()
                             )
                             return await ctx.send(embed=embed)
 
                 else:
                     embed = disnake.Embed(
-                        title="Incorrect answer, restart the game", colour=thecolor()
+                        title="Incorrect answer, restart the game", colour=get_colour()
                     )
                     return await ctx.send(embed=embed)
 
@@ -300,7 +300,7 @@ class Games(commands.Cog):
                 if Player_Card_1.num == 0:
                     embed = disnake.Embed(
                         description="You have an ace, choose 1 or 11 for its value",
-                        colour=thecolor(),
+                        colour=get_colour(),
                     )
                     embed.set_author(name="Blackjack", icon_url=ctx.author.avatar.url)
                     await ctx.send(embed=embed)
@@ -326,7 +326,7 @@ class Games(commands.Cog):
                             else:
                                 embed = disnake.Embed(
                                     title="Choose 1 or 11, restart the game",
-                                    colour=thecolor(),
+                                    colour=get_colour(),
                                 )
                                 return await ctx.send(embed=embed)
                         else:
@@ -337,14 +337,14 @@ class Games(commands.Cog):
                             else:
                                 embed = disnake.Embed(
                                     title="Choose 1 or 11, restart the game",
-                                    colour=thecolor(),
+                                    colour=get_colour(),
                                 )
                                 return await ctx.send(embed=embed)
 
                         await ctx.send(embed=embed)
                     except asyncio.TimeoutError:
                         embed = disnake.Embed(
-                            title="I gave up waiting", colour=thecolor()
+                            title="I gave up waiting", colour=get_colour()
                         )
                         await ctx.send(embed=embed)
                         return await ctx.send(embed=embed)
@@ -354,7 +354,7 @@ class Games(commands.Cog):
 
                         embed = disnake.Embed(
                             description="You have an ace, choose 1 or 11 for its value",
-                            colour=thecolor(),
+                            colour=get_colour(),
                         )
                         embed.set_author(
                             name=f"Blackjack - Score: {Player_Total}",
@@ -381,20 +381,20 @@ class Games(commands.Cog):
                             else:
                                 embed = disnake.Embed(
                                     title="Choose 1 or 11, restart the game",
-                                    colour=thecolor(),
+                                    colour=get_colour(),
                                 )
                                 return await ctx.send(embed=embed)
                             await ctx.send(embed=embed)
                         except asyncio.TimeoutError:
                             embed = disnake.Embed(
-                                title="I gave up waiting", colour=thecolor()
+                                title="I gave up waiting", colour=get_colour()
                             )
                             return await ctx.send(embed=embed)
 
                     else:
                         embed = disnake.Embed(
                             description="You have an ace, choose 1 or 11 for its value",
-                            colour=thecolor(),
+                            colour=get_colour(),
                         )
                         embed.set_author(
                             name=f"Blackjack - Score: {Player_Total}",
@@ -421,26 +421,28 @@ class Games(commands.Cog):
                             else:
                                 embed = disnake.Embed(
                                     title="Choose 1 or 11, restart the game",
-                                    colour=thecolor(),
+                                    colour=get_colour(),
                                 )
                                 return await ctx.send(embed=embed)
                             await ctx.send(embed=embed)
 
                         except asyncio.TimeoutError:
                             embed = disnake.Embed(
-                                title="I gave up waiting", colour=thecolor()
+                                title="I gave up waiting", colour=get_colour()
                             )
                             return await ctx.send(embed=embed)
 
                 if Player_Total > 21:
-                    embed = disnake.Embed(title="You went over 21!", colour=thecolor())
+                    embed = disnake.Embed(
+                        title="You went over 21!", colour=get_colour()
+                    )
                     return await ctx.send(embed=embed)
                 if BotHit:
                     if Player_Total > Oposition_Total:
                         embed = disnake.Embed(
                             title="You won against the opposition!",
                             description=f"**The opponents cards were:** \n{Oposition_Card_1.card}\n{Oposition_Card_2.card}\n{Oposition_Card_3.card}\n**Opponent scored {Oposition_Total}**",
-                            colour=thecolor(),
+                            colour=get_colour(),
                         )
                         embed.set_author(
                             name=f"Blackjack - Score: {Player_Total}",
@@ -452,7 +454,7 @@ class Games(commands.Cog):
                         embed = disnake.Embed(
                             title="You lost to the opposition!",
                             description=f"**The opponents cards were:** \n{Oposition_Card_1.card}\n{Oposition_Card_2.card}\n{Oposition_Card_3.card}\n**Opponent scored {Oposition_Total}**",
-                            colour=thecolor(),
+                            colour=get_colour(),
                         )
                         embed.set_author(
                             name=f"Blackjack - Score: {Player_Total}",
@@ -463,7 +465,7 @@ class Games(commands.Cog):
                         embed = disnake.Embed(
                             titlen="You drew with the opposition!",
                             description=f"**The opponents cards were:** \n{Oposition_Card_1.card}\n{Oposition_Card_2.card}\n{Oposition_Card_3.card}\n**Opponent scored {Oposition_Total}**",
-                            colour=thecolor(),
+                            colour=get_colour(),
                         )
                         embed.set_author(
                             name=f"Blackjack - Score: {Player_Total}",
@@ -477,7 +479,7 @@ class Games(commands.Cog):
                         embed = disnake.Embed(
                             title="You won against the opposition!",
                             description=f"**The opponents cards were:** \n{Oposition_Card_1.card}\n{Oposition_Card_2.card}\n**Opponent scored {Oposition_Total}**",
-                            colour=thecolor(),
+                            colour=get_colour(),
                         )
                         embed.set_author(
                             name=f"Blackjack - Score: {Player_Total}",
@@ -489,7 +491,7 @@ class Games(commands.Cog):
                         embed = disnake.Embed(
                             title="You lost to the opposition!",
                             description=f"**The opponents cards were:** \n{Oposition_Card_1.card}\n{Oposition_Card_2.card}\n**Opponent scored {Oposition_Total}**",
-                            colour=thecolor(),
+                            colour=get_colour(),
                         )
                         embed.set_author(
                             name=f"Blackjack - Score: {Player_Total}",
@@ -500,7 +502,7 @@ class Games(commands.Cog):
                         embed = disnake.Embed(
                             titlen="You drew with the opposition!",
                             description=f"**The opponents cards were:** \n{Oposition_Card_1.card}\n{Oposition_Card_2.card}\n**Opponent scored {Oposition_Total}**",
-                            colour=thecolor(),
+                            colour=get_colour(),
                         )
                         embed.set_author(
                             name=f"Blackjack - Score: {Player_Total}",
@@ -509,7 +511,7 @@ class Games(commands.Cog):
                         return await ctx.send(embed=embed)
 
         except asyncio.TimeoutError:
-            embed = disnake.Embed(title="I gave up waiting", colour=thecolor())
+            embed = disnake.Embed(title="I gave up waiting", colour=get_colour())
             return await ctx.send(embed=embed)
 
     @commands.command(
@@ -521,7 +523,7 @@ class Games(commands.Cog):
 
             num = int(num)
         except Exception as e:
-            return await thebed(ctx, "That is not an integer!")
+            return await send_embed(ctx, "That is not an integer!")
 
         async def ea():
 
@@ -535,7 +537,7 @@ class Games(commands.Cog):
                 if num != int(rollrigy):
                     rollrig = [str(num)]
                 embed = disnake.Embed(
-                    title=f"Good guess! The roll was {rollrig[0]}", colour=thecolor()
+                    title=f"Good guess! The roll was {rollrig[0]}", colour=get_colour()
                 )
                 await ctx.send(embed=embed)
 
@@ -548,7 +550,7 @@ class Games(commands.Cog):
                     rollrigy = choice(rollrig)
                     embed = disnake.Embed(
                         title=f"Your guess was incorrect, the roll was {rollrigy}",
-                        colour=thecolor(),
+                        colour=get_colour(),
                     )
                     await ctx.send(embed=embed)
 
@@ -599,7 +601,7 @@ class Games(commands.Cog):
                 if num != int(rollrigy):
                     rollrig = [str(num)]
                 embed = disnake.Embed(
-                    title=f"Good guess! The roll was {rollrig[0]}", colour=thecolor()
+                    title=f"Good guess! The roll was {rollrig[0]}", colour=get_colour()
                 )
                 await ctx.send(embed=embed)
 
@@ -612,7 +614,7 @@ class Games(commands.Cog):
                     rollrigy = choice(rollrig)
                 embed = disnake.Embed(
                     title=f"Your guess was incorrect, the roll was {rollrigy}",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 await ctx.send(embed=embed)
 
@@ -661,14 +663,14 @@ class Games(commands.Cog):
                 rollrigy = choice(rollrig)
             if rand == num:
                 embed = disnake.Embed(
-                    title=f"Good guess! The roll was {rollrig[0]}", colour=thecolor()
+                    title=f"Good guess! The roll was {rollrig[0]}", colour=get_colour()
                 )
                 await ctx.send(embed=embed)
 
             elif rand != num:
                 embed = disnake.Embed(
                     title=f"Your guess was incorrect, the roll was {rollrigy}",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 await ctx.send(embed=embed)
 
@@ -682,14 +684,14 @@ class Games(commands.Cog):
                 print(rollrig)
             if rand == num:
                 embed = disnake.Embed(
-                    title=f"Good guess! The roll was {rollrig[0]}", colour=thecolor()
+                    title=f"Good guess! The roll was {rollrig[0]}", colour=get_colour()
                 )
                 await ctx.send(embed=embed)
 
             elif rand != num:
                 embed = disnake.Embed(
                     title=f"Your guess was incorrect, the roll was {rollrigy}",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 await ctx.send(embed=embed)
 
@@ -703,14 +705,14 @@ class Games(commands.Cog):
                 print(rollrig)
             if rand == num:
                 embed = disnake.Embed(
-                    title=f"Good guess! The roll was {rollrig[0]}", colour=thecolor()
+                    title=f"Good guess! The roll was {rollrig[0]}", colour=get_colour()
                 )
                 await ctx.send(embed=embed)
 
             elif rand != num:
                 embed = disnake.Embed(
                     title=f"Your guess was incorrect, the roll was {rollrigy}",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 await ctx.send(embed=embed)
 
@@ -740,7 +742,7 @@ class Games(commands.Cog):
         if roll not in ["rock", "paper", "scissors"]:
             embed = disnake.Embed(
                 title="Thats not an option. Choose rock, paper, or scissors...",
-                colour=thecolor(),
+                colour=get_colour(),
             )
             await ctx.send(embed=embed)
 
@@ -757,7 +759,7 @@ class Games(commands.Cog):
                 embed = disnake.Embed(
                     title="You drew",
                     description=f"You picked {roll}, bot picked {cpu_choice}, therefore you drew",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 embed.set_author(name="Rock paper scissors")
 
@@ -766,7 +768,7 @@ class Games(commands.Cog):
                 embed = disnake.Embed(
                     title="You lost",
                     description=f"You picked {roll}, bot picked {cpu_choice}, therefore you lost",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 embed.set_author(name="Rock paper scissors")
                 await ctx.send(embed=embed)
@@ -775,7 +777,7 @@ class Games(commands.Cog):
                 embed = disnake.Embed(
                     title="You won",
                     description=f"You picked {roll}, bot picked {cpu_choice}, therefore you won",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 embed.set_author(name="Rock paper scissors")
                 await ctx.send(embed=embed)
@@ -785,7 +787,7 @@ class Games(commands.Cog):
                 embed = disnake.Embed(
                     title="Drew",
                     description=f"You picked {roll}, bot picked {cpu_choice}, therefore you drew",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 embed.set_author(name="Rock paper scissors")
 
@@ -795,7 +797,7 @@ class Games(commands.Cog):
                 embed = disnake.Embed(
                     title="You lost",
                     description=f"You picked {roll}, bot picked {cpu_choice}, therefore you lost",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 embed.set_author(name="Rock paper scissors")
 
@@ -805,7 +807,7 @@ class Games(commands.Cog):
                 embed = disnake.Embed(
                     title="You won",
                     description=f"You picked {roll}, bot picked {cpu_choice}, therefore you won",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 embed.set_author(name="Rock paper scissors")
                 await ctx.send(embed=embed)
@@ -815,7 +817,7 @@ class Games(commands.Cog):
                 embed = disnake.Embed(
                     title="You drew",
                     description=f"You picked {roll}, bot picked {cpu_choice}, therefore you drew",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 embed.set_author(name="Rock paper scissors")
                 await ctx.send(embed=embed)
@@ -823,7 +825,7 @@ class Games(commands.Cog):
                 embed = disnake.Embed(
                     title="You lost",
                     description=f"You picked {roll}, bot picked {cpu_choice}, therefore you lost",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 embed.set_author(name="Rock paper scissors")
 
@@ -833,7 +835,7 @@ class Games(commands.Cog):
                 embed = disnake.Embed(
                     title="You won",
                     description=f"You picked {roll}, bot picked {cpu_choice}, therefore you won",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 embed.set_author(name="Rock paper scissors")
                 await ctx.send(embed=embed)
@@ -843,7 +845,7 @@ class Games(commands.Cog):
         description="Emits a fake rock paper scissors game with a bot",
     )
     async def rpsfail(self, ctx: Context):
-        embed = disnake.Embed(title=f"Rock paper scissors!", colour=thecolor())
+        embed = disnake.Embed(title=f"Rock paper scissors!", colour=get_colour())
         msg = await ctx.send(embed=embed)
 
         await msg.add_reaction("\U0001f4bf")
@@ -855,7 +857,7 @@ class Games(commands.Cog):
 
         reaction, user = await self.bot.wait_for("reaction_add", check=check)
         await msg.delete()
-        embed = disnake.Embed(title=f"Baited", colour=thecolor())
+        embed = disnake.Embed(title=f"Baited", colour=get_colour())
         await ctx.send(embed=embed)
 
     @commands.command(
@@ -866,7 +868,7 @@ class Games(commands.Cog):
         rand = randint(1, 100)
         embed = disnake.Embed(
             title=f"Give me a number between 1-100, the game has started'",
-            colour=thecolor(),
+            colour=get_colour(),
         )
         await ctx.send(embed=embed)
 
@@ -884,14 +886,14 @@ class Games(commands.Cog):
             while received_msg != rand:
 
                 if received_msg > rand:
-                    embed = disnake.Embed(title="Lower", colour=thecolor())
+                    embed = disnake.Embed(title="Lower", colour=get_colour())
                     await ctx.send(embed=embed)
 
                 elif received_msg < rand:
-                    embed = disnake.Embed(title="Higher", colour=thecolor())
+                    embed = disnake.Embed(title="Higher", colour=get_colour())
                     await ctx.send(embed=embed)
                 elif str(received_msg) == "q":
-                    embed = disnake.Embed(title="Goodbye", colour=thecolor())
+                    embed = disnake.Embed(title="Goodbye", colour=get_colour())
                     return await ctx.send(embed=embed)
                 received_msg = int(
                     (
@@ -905,12 +907,12 @@ class Games(commands.Cog):
                 )
             else:
                 embed = disnake.Embed(
-                    title=f"Correct! The answer was {rand}", colour=thecolor()
+                    title=f"Correct! The answer was {rand}", colour=get_colour()
                 )
                 return await ctx.send(embed=embed)
 
         except asyncio.TimeoutError:
-            embed = disnake.Embed(title="I gave up waiting", colour=thecolor())
+            embed = disnake.Embed(title="I gave up waiting", colour=get_colour())
             await ctx.send(embed=embed)
 
     @commands.command()

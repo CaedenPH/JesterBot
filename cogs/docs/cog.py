@@ -1,15 +1,13 @@
-from re import L
 import disnake
 import itertools
+import os
 
 from disnake.ext import commands
-from disnake.ext.commands.cooldowns import C
 from fuzzywuzzy import fuzz
 from docs import cog
 
-from core.utils.pagination import Paginator
 from core import Context
-from core.utils.docs import *
+from . import Paginator, RTFM, Colours
 
 ZEN_OF_PYTHON = """\
 Beautiful is better than ugly.

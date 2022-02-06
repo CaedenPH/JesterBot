@@ -3,13 +3,13 @@ import json
 import disnake
 
 from jokeapi import Jokes
-from .utils import thecolor
+from .utils import get_colour
 
 
 def fact() -> disnake.Embed:
     fact = randfacts.get_fact()
 
-    embed = disnake.Embed(color=thecolor())
+    embed = disnake.Embed(colour=get_colour())
     embed.add_field(name="Fact", value=fact)
     return embed
 
@@ -18,7 +18,7 @@ async def quote(bot) -> disnake.Embed:
     async with bot.client.get(
         url="http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en"
     ) as response:
-        embed = disnake.Embed(color=thecolor())
+        embed = disnake.Embed(colour=get_colour())
         embed.add_field(
             name="Quote",
             value='*"{quoteText}"*\n{quoteAuthor}'.format(
@@ -43,6 +43,6 @@ async def pickup(bot) -> disnake.Embed:
     ) as response:
         json = await response.json()
 
-    embed = disnake.Embed(color=thecolor())
+    embed = disnake.Embed(colour=get_colour())
     embed.add_field(name="Pickup line", value=json["line"])
     return embed

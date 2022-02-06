@@ -9003,13 +9003,13 @@
                 "2021-12-28 14:45:01.993000+00:00"
             ],
             "after": [
-                "```from turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_color=\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()```",
-                "```py\nfrom turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_color=\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()```",
+                "```from turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_colour\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()```",
+                "```py\nfrom turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_colour\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()```",
                 "This is the code I used to fix my problem with the hidden characters, in my case it was really hidden so I had to clean it, I just read and wrote it again to another file but I changed the encoding in the process, I bet there are other ways to deal with this but this is what I did just to get rid of \"dirty\" text lol @alexandros @\u2746\ud835\udc13\ud835\udc04\ud835\udc0e\u2746"
             ],
             "before": [
-                "from turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_color=\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()",
-                "```from turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_color=\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()```",
+                "from turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_colour\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()",
+                "```from turtle import *\nfrom matplotlib import image\nfrom wordcloud import WordCloud, STOPWORDS, ImageColorGenerator, color_from_image\nimport matplotlib.pyplot as plt \nfrom PIL import Image\nimport numpy as np\n\n####### word cloud for text one\ntext = open(\"test.txt\", \"r\").read()\nsw = set(STOPWORDS)\n\n\nwc = WordCloud(background_colour\"white\", stopwords=sw, height=1000, width=1000)\nwc.generate(text)\n\n\n#########################################\n\n\n\nplt.imshow(wc, interpolation=\"bilinear\")\nplt.axis(\"off\")\nplt.show()```",
                 "This is the code I used to fix my problem with the hidden characters, in my case it was really hidden so I had to clean it, I just read and wrote it again to another file but I changed the encoding in the process, I bet there are other ways to deal with this but this is what I did just to get rid of \"dirty\" text lol"
             ]
         },
@@ -22290,7 +22290,8 @@
                 "Monty Python",
                 "joee",
                 "Monty Python",
-                "joee"
+                "joee",
+                "kinn"
             ],
             "id": [
                 298043305927639041,
@@ -22430,7 +22431,8 @@
                 872576125384147005,
                 222866542881275905,
                 872576125384147005,
-                222866542881275905
+                222866542881275905,
+                602459845534416896
             ],
             "time": [
                 "2021-12-27 16:19:48.930000+00:00",
@@ -22570,7 +22572,8 @@
                 "2021-12-29 23:23:23.667000+00:00",
                 "2021-12-29 23:23:23.479000+00:00",
                 "2021-12-29 23:23:23.667000+00:00",
-                "2021-12-29 23:23:23.479000+00:00"
+                "2021-12-29 23:23:23.479000+00:00",
+                "2022-02-06 21:34:35.427000+00:00"
             ],
             "after": [
                 "I have `x` choices and I want to add them as buttons to an instance of `disnake.ui.View`. ```py\nfor choice in choices:\n    self.add_item(\n        disnake.ui.Button(\n            style = disnake.ButtonStyle.green,\n            label = choice,\n        )\n    )\n``` Now I have my `view`, how can I send it in such a manner where multiple people can respond for 30 seconds. \nThis is an example of what I had previously without buttons: https://github.com/CaedenPH/JesterBot/blob/main/cogs/Trivia.py#L83",
@@ -22710,7 +22713,8 @@
                 "Hey @joee!",
                 "'''py\ndef __init__(self, bot):\n        self.bot = bot\n        self.cg = CoinGecko()\n        self.counter = 0\n\n        self.update_prices.start()\n        self.update_status.start()\n'''",
                 "Hey @joee!",
-                "```py\ndef __init__(self, bot):\n        self.bot = bot\n        self.cg = CoinGecko()\n        self.counter = 0\n\n        self.update_prices.start()\n        self.update_status.start()\n```"
+                "```py\ndef __init__(self, bot):\n        self.bot = bot\n        self.cg = CoinGecko()\n        self.counter = 0\n\n        self.update_prices.start()\n        self.update_status.start()\n```",
+                "Thank you so much!! \u2764\ufe0f"
             ],
             "before": [
                 "I have `x` choices and I want to add them as buttons to an instance of `disnake.ui.View`. ```py\nfor choice in choices:\n    self.add_item(\n        disnake.ui.Button(\n            style = disnake.ButtonStyle.green,\n            label = choice,\n        )\n    )\n``` Now I have my `view`, how can I send it in such a manner where multiple people can respond for 30 seconds. \nThis is an example of what I had previously without buttons: https://github.com/CaedenPH/JesterBot/blob/main/cogs/Trivia.py#L83",
@@ -22850,7 +22854,8 @@
                 "Hey @joee!",
                 "def __init__(self, bot):\n        self.bot = bot\n        self.cg = CoinGecko()\n        self.counter = 0\n\n        self.update_prices.start()\n        self.update_status.start()",
                 "Hey @joee!",
-                "'''py\ndef __init__(self, bot):\n        self.bot = bot\n        self.cg = CoinGecko()\n        self.counter = 0\n\n        self.update_prices.start()\n        self.update_status.start()\n'''"
+                "'''py\ndef __init__(self, bot):\n        self.bot = bot\n        self.cg = CoinGecko()\n        self.counter = 0\n\n        self.update_prices.start()\n        self.update_status.start()\n'''",
+                "Thank you so much!!"
             ]
         },
         "883340752191651870": {
@@ -23416,19 +23421,59 @@
         },
         "833514788687839252": {
             "author": [
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
                 "Dank Memer"
             ],
             "id": [
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
                 270904126974590976
             ],
             "time": [
-                "2022-01-30 17:47:12.405000+00:00"
+                "2022-01-30 17:47:12.405000+00:00",
+                "2022-02-06 21:50:00.562000+00:00",
+                "2022-02-06 21:50:09.248000+00:00",
+                "2022-02-06 21:50:26.839000+00:00",
+                "2022-02-06 21:50:26.839000+00:00",
+                "2022-02-06 21:50:37.866000+00:00",
+                "2022-02-06 21:50:26.839000+00:00",
+                "2022-02-06 21:52:39.240000+00:00",
+                "2022-02-06 21:52:39.240000+00:00"
             ],
             "after": [
-                ""
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "@GeorgeTSpicy What color was next to the word `arrow`?",
+                "@GeorgeTSpicy What color was next to the word `arrow`?"
             ],
             "before": [
-                "**Where do you want to search?**\n*Pick an option below to start searching that location!*"
+                "**Where do you want to search?**\n*Pick an option below to start searching that location!*",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "**Work for Professional Hunter** - Color Match - Match the color to the selected word.\n<:Marine:863886248572878939> `tracks`\n<:Cyan:863886248670265392> `antelope`\n<:Black:863886248431190066> `arrow`",
+                "@GeorgeTSpicy What color was next to the word `arrow`?"
             ]
         },
         "866447931388198962": {
@@ -23446,7 +23491,12 @@
                 "Dank Memer",
                 "castlefreak",
                 "Axiatinc",
-                "castlefreak"
+                "castlefreak",
+                "brother tyler",
+                "northface",
+                "Dank Memer",
+                "Dank Memer",
+                "brother tyler"
             ],
             "id": [
                 529820159355912202,
@@ -23462,7 +23512,12 @@
                 270904126974590976,
                 654824024421171203,
                 192357135290597376,
-                654824024421171203
+                654824024421171203,
+                205107569839046658,
+                922886313328398407,
+                270904126974590976,
+                270904126974590976,
+                205107569839046658
             ],
             "time": [
                 "2022-01-30 17:49:08.237000+00:00",
@@ -23478,7 +23533,12 @@
                 "2022-02-05 22:48:32.359000+00:00",
                 "2022-02-06 12:14:30.736000+00:00",
                 "2022-02-06 12:33:22.079000+00:00",
-                "2022-02-06 12:35:27.889000+00:00"
+                "2022-02-06 12:35:27.889000+00:00",
+                "2022-02-06 21:40:28.408000+00:00",
+                "2022-02-06 21:41:29.739000+00:00",
+                "2022-02-06 21:41:41.710000+00:00",
+                "2022-02-06 21:41:41.710000+00:00",
+                "2022-02-06 21:54:27.374000+00:00"
             ],
             "after": [
                 "https://youtu.be/KRogDxQzHEI",
@@ -23494,7 +23554,12 @@
                 "You put your wishlist away after using it, time to rob!",
                 "https://open.spotify.com/track/6kJb4WaCuc4wLBIkSJUY3n?si=yI63sbklT0imdxqv_tx_hg",
                 "i know that one of high and drys staff members is sourcing <3",
-                "https://open.spotify.com/track/2SpGXD7EbexndFmmThrnsy?si=RztBDcsgSneTeQXtONzzrw"
+                "https://open.spotify.com/track/2SpGXD7EbexndFmmThrnsy?si=RztBDcsgSneTeQXtONzzrw",
+                "https://tenor.com/view/no-i-am-the-one-who-knocks-gif-15444401",
+                "a coockbook u say",
+                "@sobk What color was next to the word `chores`?",
+                "@sobk What color was next to the word `chores`?",
+                "https://tenor.com/view/demonte-gd-gdk-king-von-rapper-gif-21220363"
             ],
             "before": [
                 "https://youtu.be/KRogDxQzHEI",
@@ -23510,7 +23575,12 @@
                 "You pulled out your handy dandy wishlist. Press that cute lil button and get some rob & bankrob info!",
                 "https://open.spotify.com/track/6kJb4WaCuc4wLBIkSJUY3n?si=yI63sbklT0imdxqv_tx_hg",
                 "i know that one of high and drys staff members is sourcing <34",
-                "https://open.spotify.com/track/2SpGXD7EbexndFmmThrnsy?si=RztBDcsgSneTeQXtONzzrw"
+                "https://open.spotify.com/track/2SpGXD7EbexndFmmThrnsy?si=RztBDcsgSneTeQXtONzzrw",
+                "https://tenor.com/view/no-i-am-the-one-who-knocks-gif-15444401",
+                "a coockbook un say",
+                "**Work for House Wife** - Color Match - Match the color to the selected word.\n<:Yellow:863886248296316940> `dwelling`\n<:Black:863886248431190066> `mom`\n<:Cyan:863886248670265392> `chores`",
+                "@sobk What color was next to the word `chores`?",
+                "https://tenor.com/view/demonte-gd-gdk-king-von-rapper-gif-21220363"
             ]
         },
         "872943302046019584": {
@@ -23629,6 +23699,91 @@
                 "",
                 "",
                 "You pulled out your handy dandy wishlist. Press that cute lil button and get some rob & bankrob info!",
+                ""
+            ]
+        },
+        "919936316945334312": {
+            "author": [
+                "r/SpunHornyFun \u2022 YAGPDB"
+            ],
+            "id": [
+                919974201069281320
+            ],
+            "time": [
+                "2022-02-06 21:33:51.092000+00:00"
+            ],
+            "after": [
+                ""
+            ],
+            "before": [
+                ""
+            ]
+        },
+        "929521097123196939": {
+            "author": [
+                "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0"
+            ],
+            "id": [
+                925872337801322578
+            ],
+            "time": [
+                "2022-02-06 21:55:04.341000+00:00"
+            ],
+            "after": [
+                ""
+            ],
+            "before": [
+                ""
+            ]
+        },
+        "924351319580508180": {
+            "author": [
+                "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0"
+            ],
+            "id": [
+                925872337801322578
+            ],
+            "time": [
+                "2022-02-06 21:55:04.259000+00:00"
+            ],
+            "after": [
+                ""
+            ],
+            "before": [
+                ""
+            ]
+        },
+        "875372983210901555": {
+            "author": [
+                "Dyno"
+            ],
+            "id": [
+                875388483722686566
+            ],
+            "time": [
+                "2022-02-06 21:55:04.401000+00:00"
+            ],
+            "after": [
+                ""
+            ],
+            "before": [
+                ""
+            ]
+        },
+        "904782964141989908": {
+            "author": [
+                "Chewey Bot"
+            ],
+            "id": [
+                358463108433575937
+            ],
+            "time": [
+                "2022-02-06 21:55:04.896000+00:00"
+            ],
+            "after": [
+                ""
+            ],
+            "before": [
                 ""
             ]
         }

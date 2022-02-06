@@ -5,7 +5,7 @@ from disnake.ext import commands
 from datetime import datetime
 from core.utils import create_embed
 
-from core.utils.utils import thecolor, Json, thebed
+from core.utils import get_colour, update_json, send_embed
 from core import Context
 
 
@@ -17,7 +17,7 @@ class JesterInfo(commands.Cog):
     @commands.command()
     async def links(self, ctx: Context):
         links = "[Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?self.bot_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot) │ [Vote for me!](https://top.gg/bot/828363172717133874/vote)"
-        await thebed(ctx, "", links)
+        await send_embed(ctx, "", links)
 
     @commands.command()
     async def uptime(self, ctx: Context):
@@ -26,7 +26,7 @@ class JesterInfo(commands.Cog):
         hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
         minutes, seconds = divmod(remainder, 60)
         days, hours = divmod(hours, 24)
-        return await thebed(
+        return await send_embed(
             ctx,
             "",
             f"I've been Up since **{days}** Days, **{hours}** Hours, **{minutes}** Minutes, and **{seconds}** Seconds!",
@@ -42,7 +42,9 @@ class JesterInfo(commands.Cog):
             data = json.load(x)
             for m in data:
 
-                embed = disnake.Embed(title=f"{data[m]['Version']}", colour=thecolor())
+                embed = disnake.Embed(
+                    title=f"{data[m]['Version']}", colour=get_colour()
+                )
                 await ctx.send(embed=embed)
 
     @commands.command(
@@ -52,7 +54,9 @@ class JesterInfo(commands.Cog):
     async def score(self, ctx: Context):
         with open("./dicts/Scoreoverall.json", "r") as x:
             data = json.load(x)
-            embed = disnake.Embed(title=f"{data['Score']['Score1']}", colour=thecolor())
+            embed = disnake.Embed(
+                title=f"{data['Score']['Score1']}", colour=get_colour()
+            )
             await ctx.send(embed=embed)
 
     @commands.command(aliases=["Servers", "ServerInfo", "Server_Info"])
@@ -61,7 +65,7 @@ class JesterInfo(commands.Cog):
         serverinvite = await channel.create_invite()
         serverid = ctx.guild.id
         servername = ctx.guild.name
-        embed = disnake.Embed(title="Your info", colour=thecolor())
+        embed = disnake.Embed(title="Your info", colour=get_colour())
         embed.add_field(name="Name", value=f"{servername}", inline=False)
         embed.add_field(name="Id", value=f"{serverid}", inline=False)
         embed.add_field(name="Invite", value=f"{serverinvite}", inline=False)
@@ -82,25 +86,25 @@ class JesterInfo(commands.Cog):
                 if data[m]["Version"] == "":
                     embed = disnake.Embed(
                         description="Updates is currently being updated, no data to send",
-                        colour=thecolor(),
+                        colour=get_colour(),
                     )
                     return await ctx.send(embed=embed)
                 if data[m]["Bug fixes"] == "":
                     embed = disnake.Embed(
                         description="Updates is currently being updated, no data to send",
-                        colour=thecolor(),
+                        colour=get_colour(),
                     )
                     await ctx.send(embed=embed)
                 if data[m]["New commands"] == "":
                     embed = disnake.Embed(
                         description="Updates is currently being updated, no data to send",
-                        colour=thecolor(),
+                        colour=get_colour(),
                     )
                     await ctx.send(embed=embed)
                 if data[m]["Other"] == "":
                     embed = disnake.Embed(
                         description="Updates is currently being updated, no data to send",
-                        colour=thecolor(),
+                        colour=get_colour(),
                     )
                     await ctx.send(embed=embed)
                 else:
@@ -108,7 +112,7 @@ class JesterInfo(commands.Cog):
                     embed = disnake.Embed(
                         title=f"**Updates**  \u200b <:Jesterinfo:863075610048987166>",
                         description="*Everytime there is a new update it will be \nposted here along with a version update!*",
-                        colour=thecolor(),
+                        colour=get_colour(),
                     )
                     embed.add_field(
                         value=f"{data[m]['Version']}", name="**Version**", inline=True
@@ -145,7 +149,7 @@ class JesterInfo(commands.Cog):
             if str(ctx.author.id) in data:
                 embed = disnake.Embed(
                     title=f"The ammount of commands you have ran are {data[str(ctx.author.id)]['selfscore']}",
-                    colour=thecolor(),
+                    colour=get_colour(),
                 )
                 await ctx.send(embed=embed)
 
@@ -154,7 +158,7 @@ class JesterInfo(commands.Cog):
         embed = disnake.Embed(
             title=f"I am currently in {len(self.bot.guilds)} servers!",
             description="[Official server](https://discord.gg/2654CuU3ZU) │ [Invite me!](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591)",
-            colour=thecolor(),
+            colour=get_colour(),
         )
         embed.set_author(icon_url=ctx.author.avatar.url, name="Invite")
 
@@ -168,7 +172,7 @@ class JesterInfo(commands.Cog):
         x = []
         y = "\n"
         with open("./dicts/Commandsused.json") as k:
-            embed = disnake.Embed(colour=thecolor())
+            embed = disnake.Embed(colour=get_colour())
             embed.set_author(name="Top commands", icon_url=ctx.author.avatar.url)
 
             data = json.load(k)
@@ -194,7 +198,7 @@ class JesterInfo(commands.Cog):
         x = []
         y = "\n"
         with open("./dicts/Selfscore.json") as k:
-            embed = disnake.Embed(colour=thecolor())
+            embed = disnake.Embed(colour=get_colour())
             embed.set_author(name="Top members", icon_url=ctx.author.avatar.url)
             data = json.load(k)
 
@@ -227,7 +231,7 @@ class JesterInfo(commands.Cog):
     async def ping(self, ctx: Context):
         embed = disnake.Embed(
             description=f"My current ping is **{round(self.bot.latency * 1000)}** ms",
-            colour=thecolor(),
+            colour=get_colour(),
         )
         embed.set_footer(
             text=f"Servers in: {len(self.bot.guilds)} │ Overall users: {len(self.bot.users)}"
@@ -250,7 +254,7 @@ class JesterInfo(commands.Cog):
 
         embed = disnake.Embed(
             description=f"New prefixes are: {', '.join([f'`{prefix}`' for prefix in prefixes])}\nPing me for my prefixes if you forget!",
-            colour=thecolor(),
+            colour=get_colour(),
         )
         embed.set_author(icon_url=ctx.author.avatar.url, name="Prefix")
         await ctx.send(embed=embed)
@@ -273,33 +277,34 @@ class JesterInfo(commands.Cog):
         **Ideas/layout designer:** *{ideas_designer.name}*
         
         """,
-            color=thecolor(),
+            colour=get_colour(),
         )
         await ctx.send(embed=embed)
 
     @commands.command(
         aliases=["ccolour"], description="change the color of the embeds!", hidden=True
     )
-    async def ccolor(self, ctx: Context, *, args):
-        if args.startswith("0x") and len(args) == 8:
-            with open("./dicts/Color.json", "r+") as k:
-                data = json.load(k)
-                data["Color"]["color"] = args
-                Json(k, data)
-                embed = disnake.Embed(title="changed", color=int(args, 16))
-                await ctx.send(embed=embed)
-        else:
+    async def ccolor(self, ctx: Context, *, colour: int):
+        if colour.startswith("0x") and len(colour) != 8:
             embed = disnake.Embed(
-                title="Color",
+                title="Colour",
                 description="Put `0x` infront of the six letter/number [color](https://www.color-hex.com/)",
-                colour=thecolor(),
+                colour=get_colour(),
             )
+            return await ctx.send(embed=embed)
+
+        with open("./dicts/Color.json", "r+") as k:
+            data = json.load(k)
+            data["colour"] = colour
+            update_json(k, data)
+
+            embed = disnake.Embed(title="changed", colour=int(colour, 16))
             await ctx.send(embed=embed)
 
     @commands.command()
     async def showcmds(self, ctx: Context):
         x = []
-        embed = disnake.Embed(color=disnake.Color.green())
+        embed = disnake.Embed(colour=get_colour())
         for command in self.bot.commands:
 
             x.append(f"`{command.name}`")

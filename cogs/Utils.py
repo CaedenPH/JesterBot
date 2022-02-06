@@ -8,7 +8,7 @@ from pyMorseTranslator import translator
 import pytz, typing
 from datetime import datetime
 
-from core.utils.utils import thecolor, Json, thebed
+from core.utils import get_colour, update_json, send_embed
 from core.utils.commands.eval import run_eval
 from core.paginator import Paginator
 from core import Context
@@ -303,7 +303,7 @@ class Utils(commands.Cog):
                 f"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={text}"
             )
 
-        await thebed(ctx, f"Qr code for {text}", i=response.url)
+        await send_embed(ctx, f"Qr code for {text}", i=response.url)
         await m.delete()
 
     @commands.command(hidden=True)
@@ -319,7 +319,7 @@ class Utils(commands.Cog):
     @commands.command()
     async def math(self, ctx: Context, *, math=None):
         if not math:
-            return await thebed(
+            return await send_embed(
                 ctx,
                 "",
                 "**The current list of available eval operations**",
@@ -327,7 +327,7 @@ class Utils(commands.Cog):
             )
 
         result = simpleeval.simple_eval(math)
-        embed = disnake.Embed(color=thecolor())
+        embed = disnake.Embed(colour=get_colour())
         embed.set_footer(
             text=str(ctx.author) + " | Evaluation", icon_url=ctx.author.avatar.url
         )
@@ -346,10 +346,12 @@ class Utils(commands.Cog):
         """Shows you information on up to 50 unicode characters."""
         match = re.match(r"<(a?):(\w+):(\d+)>", characters)
         if match:
-            return await thebed(ctx, "", "Custom emojis are not allowed")
+            return await send_embed(ctx, "", "Custom emojis are not allowed")
 
         if len(characters) > 50:
-            return await thebed(ctx, "", f"Too many characters ({len(characters)}/50)")
+            return await send_embed(
+                ctx, "", f"Too many characters ({len(characters)}/50)"
+            )
 
         def get_info(char: str) -> Tuple[str, str]:
             digit = f"{ord(char):x}"
@@ -365,7 +367,7 @@ class Utils(commands.Cog):
             return info, u_code
 
         char_list, raw_list = zip(*(get_info(c) for c in characters))
-        embed = disnake.Embed(color=thecolor())
+        embed = disnake.Embed(colour=get_colour())
         embed.add_field(name="Character info", value="\n".join(char_list))
         if len(characters) > 1:
             embed.add_field(
@@ -391,7 +393,7 @@ class Utils(commands.Cog):
             a, b = b, a + b
 
         embed = disnake.Embed(
-            title="Fibinaci", description=f"{', '.join(x)}", colour=thecolor()
+            title="Fibinaci", description=f"{', '.join(x)}", colour=get_colour()
         )
         await ctx.send(embed=embed)
 
@@ -403,7 +405,7 @@ class Utils(commands.Cog):
         if user == "":
             user = ctx.author.id
             username = self.bot.get_user(user)
-            embed = disnake.Embed(title=f"Avatar", colour=thecolor())
+            embed = disnake.Embed(title=f"Avatar", colour=get_colour())
             embed.set_author(name=username.name, icon_url=username.avatar.url)
             embed.set_image(url=username.avatar.url)
             await ctx.send(embed=embed)
@@ -411,7 +413,7 @@ class Utils(commands.Cog):
         else:
 
             username = self.bot.get_user(user.id)
-            embed = disnake.Embed(title=f"Avatar", colour=thecolor())
+            embed = disnake.Embed(title=f"Avatar", colour=get_colour())
             embed.set_author(name=username.name, icon_url=username.avatar.url)
             embed.set_image(url=username.avatar.url)
             await ctx.send(embed=embed)
@@ -435,14 +437,16 @@ class Utils(commands.Cog):
             _date = x[:10]
             _time = x[11:19]
             embed = disnake.Embed(
-                title=f"**Time:** {_time} │ **Date:** {_date}", colour=thecolor()
+                title=f"**Time:** {_time} │ **Date:** {_date}", colour=get_colour()
             )
             embed.set_author(name="Datetime", icon_url=ctx.author.avatar.url)
 
             await ctx.send(embed=embed)
         except Exception as e:
             embed = disnake.Embed(
-                title="Error", description=f"**TimeZoneError: {e}**", colour=thecolor()
+                title="Error",
+                description=f"**TimeZoneError: {e}**",
+                colour=get_colour(),
             )
             await ctx.send(embed=embed)
 
@@ -451,7 +455,7 @@ class Utils(commands.Cog):
 
         response = requests.get(f"https://some-random-api.ml/binary?text={text}")
         fox = response.json()
-        embed = disnake.Embed(color=thecolor())
+        embed = disnake.Embed(colour=get_colour())
         embed.add_field(name="Binary", value=f"{fox['binary']}")
         await ctx.send(embed=embed)
 
@@ -460,7 +464,7 @@ class Utils(commands.Cog):
 
         response = requests.get(f"https://some-random-api.ml/binary?decode={nums}")
         fox = response.json()
-        embed = disnake.Embed(color=thecolor())
+        embed = disnake.Embed(colour=get_colour())
         embed.add_field(name="Decoded from binary", value=f"{fox['text']}")
         await ctx.send(embed=embed)
 
@@ -494,7 +498,7 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
                 title="Ascii:",
                 description="\n*starting from 32 because characters prior to that number are not used, therefore sending blanks* \n"
                 + f'```py\n{", ".join(x)}```',
-                colour=thecolor(),
+                colour=get_colour(),
             )
             embed.set_footer(
                 text="Type j.help ascii to get information about what the ascii table is. | `,` signifies a new character."
@@ -510,7 +514,7 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
             x.append(f"\n`{c}: {'-'.join(p)}`")
             p = []
         embed = disnake.Embed(
-            title="Ascii:", description=", ".join(x), colour=thecolor()
+            title="Ascii:", description=", ".join(x), colour=get_colour()
         )
         embed.set_footer(
             text="Type j.help ascii to get information about what the ascii table is. | '-' signifies a new character."
@@ -650,7 +654,7 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
             _templist = str(string).split(" ")
             converted = "".join(MORSE_TO_TEXT[str(i)] for i in _templist)
 
-            await thebed(ctx, "Morse ---> Text", f"```yaml\n{converted}```")
+            await send_embed(ctx, "Morse ---> Text", f"```yaml\n{converted}```")
         else:
             _templist = []
             for char in str(string):
@@ -658,7 +662,7 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
             try:
                 converted = " ".join(TEXT_TO_MORSE[str(i).upper()] for i in _templist)
                 if len(converted) <= 1998:
-                    await thebed(ctx, "Text ---> Morse", f"```yaml\n{converted}```")
+                    await send_embed(ctx, "Text ---> Morse", f"```yaml\n{converted}```")
                 else:
 
                     y = await Paginator(ctx)

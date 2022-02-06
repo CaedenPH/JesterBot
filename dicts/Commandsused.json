@@ -27,7 +27,7 @@
         "score": 105
     },
     "help": {
-        "score": 2225
+        "score": 2228
     },
     "jsonfile": {
         "score": 19
@@ -42,7 +42,7 @@
         "score": 24
     },
     "ping": {
-        "score": 323
+        "score": 331
     },
     "giveaway": {
         "score": 17
@@ -630,10 +630,10 @@
         "score": 13
     },
     "join": {
-        "score": 98
+        "score": 100
     },
     "play": {
-        "score": 216
+        "score": 218
     },
     "disconnect": {
         "score": 9
@@ -942,7 +942,7 @@
         "score": 4
     },
     "rank": {
-        "score": 17
+        "score": 19
     },
     "sendroleid": {
         "score": 1
@@ -1191,7 +1191,7 @@
         "score": 11
     },
     "docs": {
-        "score": 21
+        "score": 22
     },
     "pypi": {
         "score": 7
@@ -1243,5 +1243,8 @@
     },
     "food": {
         "score": 1
+    },
+    "ccolor": {
+        "score": 3
     }
 }
