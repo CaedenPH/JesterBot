@@ -23,7 +23,7 @@ async def send_embed(
     title: str,
     description: str = disnake.Embed.Empty,
     **kwargs
-) -> None:
+) -> disnake.Message:
     author = kwargs.get("a")
     icon_url = kwargs.get("i_u")
     footer = kwargs.get("f")
@@ -41,4 +41,6 @@ async def send_embed(
         embed.set_thumbnail(url=thumbnail)
     if image:
         embed.set_image(url=image)
-    await channel.send(embed=embed)
+        
+    msg = await channel.send(embed=embed)
+    return msg
