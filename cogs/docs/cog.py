@@ -81,7 +81,7 @@ class Docs(cog.Docs, RTFM):
         async with self.bot.client.get(self.URL.format(package=package)) as response:
             if response.status == 404:
                 embed.description = "Package could not be found."
-            elif response.status == 200 and response.content_type == "application/json":
+            elif response.status == 200 and response._type == "application/json":
                 response_json = await response.json()
 
                 info = response_json["info"]

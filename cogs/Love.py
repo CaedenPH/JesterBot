@@ -1,4 +1,7 @@
-import disnake, os, requests, json, asyncio
+import disnake
+import json
+import asyncio
+
 from disnake.ext import commands
 from core.utils import get_colour, update_json, send_embed
 from core import Context

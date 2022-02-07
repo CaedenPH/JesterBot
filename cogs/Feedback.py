@@ -1,8 +1,10 @@
-import disnake, os, requests, json, asyncio
+import json
+
 from disnake.ext import commands
-from core.utils import get_colour, update_json, send_embed
-from core import Context
 from typing import Union
+
+from core.utils import update_json, send_embed
+from core import Context
 
 with open("./dicts/Feedback.json", "r") as k:
     data = json.load(k)

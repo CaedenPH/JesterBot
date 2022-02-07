@@ -9,7 +9,7 @@ from disnake.ext import commands
 from random import choice
 from io import BytesIO
 
-from core.utils import get_colour, update_json, send_embed
+from core.utils import get_colour, send_embed
 from core import Context
 from core.paginator import Paginator
 

@@ -1,14 +1,12 @@
-import os
 import pprint
 import random
 import json
 import disnake
-from disnake.interactions.application_command import CmdInter
 import yaml
 
 from disnake.ext import commands
-from core import Context
 from pathlib import Path
+from core import Context
 
 
 class Random(commands.Cog):
@@ -193,7 +191,7 @@ class Random(commands.Cog):
 
         async with ctx.typing():
             async with self.bot.client.get(
-                f"https://some-random-api.ml/canvas/colorviewer?hex={hexcolor[1]}"
+                url=f"https://some-random-api.ml/canvas/colorviewer?hex={hexcolor[1]}"
             ) as response:
                 file = open("./images/color.png", "wb")
                 file.write(await response.read())

@@ -1,16 +1,17 @@
-import typing, difflib
-from core.paginator import Paginator
-import disnake, os, requests, json, asyncio
+import typing
+import difflib
+import disnake
+import json
+import asyncio
+import datetime
+
 from disnake.ext.commands import has_permissions
 from disnake.ext import commands
-from async_timeout import timeout
-from random import choice, randint
-import datetime
 from core.utils import create_embed
 
-from core.utils import get_colour, update_json, send_embed
+from core.utils import get_colour, update_json
 from core import Context
-from core.utils.comedy import joke
+from core.paginator import Paginator
 
 
 class Mod(commands.Cog):

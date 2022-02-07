@@ -14668,7 +14668,10 @@
                 "sharkninja",
                 "Jennei",
                 "stealthninja",
-                "sharkninja"
+                "sharkninja",
+                "stealthninja",
+                "stealthninja",
+                "xRekteD"
             ],
             "id": [
                 339254240012664832,
@@ -14949,7 +14952,10 @@
                 861910395311882271,
                 798861743148367883,
                 521226389559443461,
-                861910395311882271
+                861910395311882271,
+                521226389559443461,
+                521226389559443461,
+                717423535030796299
             ],
             "time": [
                 "2021-11-17 16:14:00.061000",
@@ -15230,7 +15236,10 @@
                 "2021-12-29 15:29:01.337000+00:00",
                 "2021-12-29 15:34:46.127000+00:00",
                 "2021-12-29 15:46:46.040000+00:00",
-                "2021-12-29 15:48:39.581000+00:00"
+                "2021-12-29 15:48:39.581000+00:00",
+                "2022-02-07 16:36:39.092000+00:00",
+                "2022-02-07 16:36:52.234000+00:00",
+                "2022-02-07 16:37:14.092000+00:00"
             ],
             "after": [
                 "@Caeden",
@@ -15511,7 +15520,10 @@
                 "You don't even have one",
                 "@stealthybot is still dumb for how much tho",
                 "https://tenor.com/view/farcry3-vaas-island-insanity-49685-gif-13374786",
-                "No don't"
+                "No don't",
+                "wait you have coc?",
+                "oh air support",
+                "idh coc"
             ],
             "before": [
                 "@Caeden",
@@ -15792,7 +15804,10 @@
                 "You don't evem have one",
                 "@stealthybot is still dumb for how much thp",
                 "https://tenor.com/view/farcry3-vaas-island-insanity-49685-gif-13374786",
-                "Ye"
+                "Ye",
+                "wait you have cock?",
+                "oh air supported",
+                "idh a coc"
             ]
         },
         "906554654450667572": {
@@ -16213,7 +16228,8 @@
                 "StealthyBot",
                 "StealthyBot",
                 "StealthyBot",
-                "StealthyBot"
+                "StealthyBot",
+                "stealthybot-test"
             ],
             "id": [
                 889922820317007928,
@@ -16615,7 +16631,8 @@
                 889922820317007928,
                 889922820317007928,
                 889922820317007928,
-                889922820317007928
+                889922820317007928,
+                921678243935961118
             ],
             "time": [
                 "2021-11-23 12:48:23.785000",
@@ -17017,7 +17034,8 @@
                 "2021-12-29 13:26:21.421000+00:00",
                 "2021-12-29 13:26:21.421000+00:00",
                 "2021-12-29 13:26:21.421000+00:00",
-                "2021-12-29 13:26:21.421000+00:00"
+                "2021-12-29 13:26:21.421000+00:00",
+                "2022-02-07 16:25:12+00:00"
             ],
             "after": [
                 "",
@@ -17419,7 +17437,8 @@
                 "```sh\n$ /usr/bin/python3.10 -m pip install --upgrade pip\n\nDefaulting to user installation because normal site-packages is not writeable\nRequirement already satisfied: pip in /home/pi/.local/lib/python3.10/site-packages (21.2.3)\nCollecting pip\n  Downloading pip-21.3.1-py3-none-any.whl (1.7 MB)\nInstalling collected packages: pip\n  Attempting uninstall: pip\n    Found existing installation: pip 21.2.3\n```\nPage 1/1",
                 "```sh\n$ /usr/bin/python3.10 -m pip install --upgrade pip\n\nDefaulting to user installation because normal site-packages is not writeable\nRequirement already satisfied: pip in /home/pi/.local/lib/python3.10/site-packages (21.2.3)\nCollecting pip\n  Downloading pip-21.3.1-py3-none-any.whl (1.7 MB)\nInstalling collected packages: pip\n  Attempting uninstall: pip\n    Found existing installation: pip 21.2.3\n    Uninstalling pip-21.2.3:\n      Successfully uninstalled pip-21.2.3\n```\nPage 1/1",
                 "```sh\n$ /usr/bin/python3.10 -m pip install --upgrade pip\n\nDefaulting to user installation because normal site-packages is not writeable\nRequirement already satisfied: pip in /home/pi/.local/lib/python3.10/site-packages (21.2.3)\nCollecting pip\n  Downloading pip-21.3.1-py3-none-any.whl (1.7 MB)\nInstalling collected packages: pip\n  Attempting uninstall: pip\n    Found existing installation: pip 21.2.3\n    Uninstalling pip-21.2.3:\n      Successfully uninstalled pip-21.2.3\n[stderr]   WARNING: The scripts pip, pip3 and pip3.10 are installed in '/home/pi/.local/bin' which is not on PATH.\n[stderr]   Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.\nSuccessfully installed pip-21.3.1\n```\nPage 1/1",
-                "```sh\n$ /usr/bin/python3.10 -m pip install --upgrade pip\n\nDefaulting to user installation because normal site-packages is not writeable\nRequirement already satisfied: pip in /home/pi/.local/lib/python3.10/site-packages (21.2.3)\nCollecting pip\n  Downloading pip-21.3.1-py3-none-any.whl (1.7 MB)\nInstalling collected packages: pip\n  Attempting uninstall: pip\n    Found existing installation: pip 21.2.3\n    Uninstalling pip-21.2.3:\n      Successfully uninstalled pip-21.2.3\n[stderr]   WARNING: The scripts pip, pip3 and pip3.10 are installed in '/home/pi/.local/bin' which is not on PATH.\n[stderr]   Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.\nSuccessfully installed pip-21.3.1\n\n[status] Return code 0\n```\nPage 1/1"
+                "```sh\n$ /usr/bin/python3.10 -m pip install --upgrade pip\n\nDefaulting to user installation because normal site-packages is not writeable\nRequirement already satisfied: pip in /home/pi/.local/lib/python3.10/site-packages (21.2.3)\nCollecting pip\n  Downloading pip-21.3.1-py3-none-any.whl (1.7 MB)\nInstalling collected packages: pip\n  Attempting uninstall: pip\n    Found existing installation: pip 21.2.3\n    Uninstalling pip-21.2.3:\n      Successfully uninstalled pip-21.2.3\n[stderr]   WARNING: The scripts pip, pip3 and pip3.10 are installed in '/home/pi/.local/bin' which is not on PATH.\n[stderr]   Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.\nSuccessfully installed pip-21.3.1\n\n[status] Return code 0\n```\nPage 1/1",
+                ""
             ],
             "before": [
                 "",
@@ -17821,7 +17840,8 @@
                 "```sh\n$ /usr/bin/python3.10 -m pip install --upgrade pip\n\nDefaulting to user installation because normal site-packages is not writeable\nRequirement already satisfied: pip in /home/pi/.local/lib/python3.10/site-packages (21.2.3)\nCollecting pip\n```\nPage 1/1",
                 "```sh\n$ /usr/bin/python3.10 -m pip install --upgrade pip\n\nDefaulting to user installation because normal site-packages is not writeable\nRequirement already satisfied: pip in /home/pi/.local/lib/python3.10/site-packages (21.2.3)\nCollecting pip\n  Downloading pip-21.3.1-py3-none-any.whl (1.7 MB)\nInstalling collected packages: pip\n  Attempting uninstall: pip\n    Found existing installation: pip 21.2.3\n```\nPage 1/1",
                 "```sh\n$ /usr/bin/python3.10 -m pip install --upgrade pip\n\nDefaulting to user installation because normal site-packages is not writeable\nRequirement already satisfied: pip in /home/pi/.local/lib/python3.10/site-packages (21.2.3)\nCollecting pip\n  Downloading pip-21.3.1-py3-none-any.whl (1.7 MB)\nInstalling collected packages: pip\n  Attempting uninstall: pip\n    Found existing installation: pip 21.2.3\n    Uninstalling pip-21.2.3:\n      Successfully uninstalled pip-21.2.3\n```\nPage 1/1",
-                "```sh\n$ /usr/bin/python3.10 -m pip install --upgrade pip\n\nDefaulting to user installation because normal site-packages is not writeable\nRequirement already satisfied: pip in /home/pi/.local/lib/python3.10/site-packages (21.2.3)\nCollecting pip\n  Downloading pip-21.3.1-py3-none-any.whl (1.7 MB)\nInstalling collected packages: pip\n  Attempting uninstall: pip\n    Found existing installation: pip 21.2.3\n    Uninstalling pip-21.2.3:\n      Successfully uninstalled pip-21.2.3\n[stderr]   WARNING: The scripts pip, pip3 and pip3.10 are installed in '/home/pi/.local/bin' which is not on PATH.\n[stderr]   Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.\nSuccessfully installed pip-21.3.1\n```\nPage 1/1"
+                "```sh\n$ /usr/bin/python3.10 -m pip install --upgrade pip\n\nDefaulting to user installation because normal site-packages is not writeable\nRequirement already satisfied: pip in /home/pi/.local/lib/python3.10/site-packages (21.2.3)\nCollecting pip\n  Downloading pip-21.3.1-py3-none-any.whl (1.7 MB)\nInstalling collected packages: pip\n  Attempting uninstall: pip\n    Found existing installation: pip 21.2.3\n    Uninstalling pip-21.2.3:\n      Successfully uninstalled pip-21.2.3\n[stderr]   WARNING: The scripts pip, pip3 and pip3.10 are installed in '/home/pi/.local/bin' which is not on PATH.\n[stderr]   Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.\nSuccessfully installed pip-21.3.1\n```\nPage 1/1",
+                ""
             ]
         },
         "901847011232460841": {
@@ -23139,19 +23159,24 @@
         },
         "931380367884185681": {
             "author": [
-                "Alento Ghostflame"
+                "Alento Ghostflame",
+                "koala"
             ],
             "id": [
+                931381557455892540,
                 931381557455892540
             ],
             "time": [
-                "2022-02-05 22:48:52.128000+00:00"
+                "2022-02-05 22:48:52.128000+00:00",
+                "2022-02-07 16:46:47.050000+00:00"
             ],
             "after": [
-                "yes"
+                "yes",
+                "h"
             ],
             "before": [
-                "yes"
+                "yes",
+                "h"
             ]
         }
     },
@@ -23326,7 +23351,10 @@
                 "Jarvide",
                 "Jarvide",
                 "Caeden",
-                "stealthninja"
+                "stealthninja",
+                "stealthninja",
+                "Jarvide",
+                "Jarvide"
             ],
             "id": [
                 828363172717133874,
@@ -23340,7 +23368,10 @@
                 926122065973616690,
                 926122065973616690,
                 298043305927639041,
-                521226389559443461
+                521226389559443461,
+                521226389559443461,
+                926122065973616690,
+                926122065973616690
             ],
             "time": [
                 "2022-01-29 22:58:26.039000+00:00",
@@ -23354,7 +23385,10 @@
                 "2022-02-05 22:08:26.070000+00:00",
                 "2022-02-05 22:08:43.353000+00:00",
                 "2022-02-06 12:33:25.270000+00:00",
-                "2022-02-06 13:27:49.433000+00:00"
+                "2022-02-06 13:27:49.433000+00:00",
+                "2022-02-07 16:16:47.424000+00:00",
+                "2022-02-07 16:46:16.114000+00:00",
+                "2022-02-07 16:53:44.284000+00:00"
             ],
             "after": [
                 "```yaml\n\n  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========````_ _ a _`\nYou have 7 guesses left",
@@ -23368,7 +23402,10 @@
                 "Readable file found\nTo disable this type `jarvide removeconfig file`!",
                 "Readable file found\nTo disable this type `jarvide removeconfig file`!",
                 "hello",
-                "https://media.discordapp.net/attachments/921721227901538355/939872894589218826/unknown.png"
+                "https://media.discordapp.net/attachments/921721227901538355/939872894589218826/unknown.png",
+                "@Caeden \n```py\nawait message.guild.get_channel(res[3]).send(mes)\n```\nif res[3] is not a vaild channel what error will it raise",
+                "Valid codeblock found!\nTo disable this type `jarvide removeconfig codeblock`",
+                "Valid codeblock found!\nTo disable this type `jarvide removeconfig codeblock`"
             ],
             "before": [
                 "```yaml\n\n  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========````_ _ _ _`\nYou have 7 guesses left",
@@ -23382,7 +23419,10 @@
                 "Resolving file integrity...",
                 "Resolving file integrity...",
                 "helloi",
-                "https://media.discordapp.net/attachments/921721227901538355/939872894589218826/unknown.png"
+                "https://media.discordapp.net/attachments/921721227901538355/939872894589218826/unknown.png",
+                "@Caeden \n```py\nawait message.guild.get_channel(res[3]).send(mes)\n```\nif res[3] is not a vaild channel what error will it rase",
+                "Resolving code block integrity...",
+                "Resolving code block integrity..."
             ]
         }
     },
@@ -23429,9 +23469,31 @@
                 "Dank Memer",
                 "Dank Memer",
                 "Dank Memer",
+                "Dank Memer",
+                "TacoShack",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
+                "Dank Memer",
                 "Dank Memer"
             ],
             "id": [
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                270904126974590976,
+                490707751832649738,
+                270904126974590976,
                 270904126974590976,
                 270904126974590976,
                 270904126974590976,
@@ -23451,7 +23513,18 @@
                 "2022-02-06 21:50:37.866000+00:00",
                 "2022-02-06 21:50:26.839000+00:00",
                 "2022-02-06 21:52:39.240000+00:00",
-                "2022-02-06 21:52:39.240000+00:00"
+                "2022-02-06 21:52:39.240000+00:00",
+                "2022-02-07 16:16:07.220000+00:00",
+                "2022-02-07 16:25:59.317000+00:00",
+                "2022-02-07 16:34:56.967000+00:00",
+                "2022-02-07 16:37:57.777000+00:00",
+                "2022-02-07 16:37:57.777000+00:00",
+                "2022-02-07 16:38:10.950000+00:00",
+                "2022-02-07 16:38:10.950000+00:00",
+                "2022-02-07 16:38:10.950000+00:00",
+                "2022-02-07 16:38:10.950000+00:00",
+                "2022-02-07 16:38:10.950000+00:00",
+                "2022-02-07 16:40:16.068000+00:00"
             ],
             "after": [
                 "",
@@ -23462,7 +23535,18 @@
                 "",
                 "",
                 "@GeorgeTSpicy What color was next to the word `arrow`?",
-                "@GeorgeTSpicy What color was next to the word `arrow`?"
+                "@GeorgeTSpicy What color was next to the word `arrow`?",
+                "",
+                "",
+                "",
+                "@Glaciers step \ud83c\udd71rother tyler Click the buttons in correct order!",
+                "@Glaciers step \ud83c\udd71rother tyler Click the buttons in correct order!",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
             ],
             "before": [
                 "**Where do you want to search?**\n*Pick an option below to start searching that location!*",
@@ -23473,7 +23557,18 @@
                 "",
                 "",
                 "**Work for Professional Hunter** - Color Match - Match the color to the selected word.\n<:Marine:863886248572878939> `tracks`\n<:Cyan:863886248670265392> `antelope`\n<:Black:863886248431190066> `arrow`",
-                "@GeorgeTSpicy What color was next to the word `arrow`?"
+                "@GeorgeTSpicy What color was next to the word `arrow`?",
+                "",
+                "",
+                "",
+                "**Work for Police Officer** - Repeat Order - Remember words order!\n`crime`\n`cop`\n`criminal`\n`arrest`\n`jail`",
+                "@Glaciers step \ud83c\udd71rother tyler Click the buttons in correct order!",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
             ]
         },
         "866447931388198962": {
@@ -23496,7 +23591,10 @@
                 "northface",
                 "Dank Memer",
                 "Dank Memer",
-                "brother tyler"
+                "brother tyler",
+                "brother tyler",
+                "Ace Ventura Cuck Detective",
+                "Ace Ventura Cuck Detective"
             ],
             "id": [
                 529820159355912202,
@@ -23517,7 +23615,10 @@
                 922886313328398407,
                 270904126974590976,
                 270904126974590976,
-                205107569839046658
+                205107569839046658,
+                205107569839046658,
+                582609655788732416,
+                582609655788732416
             ],
             "time": [
                 "2022-01-30 17:49:08.237000+00:00",
@@ -23538,7 +23639,10 @@
                 "2022-02-06 21:41:29.739000+00:00",
                 "2022-02-06 21:41:41.710000+00:00",
                 "2022-02-06 21:41:41.710000+00:00",
-                "2022-02-06 21:54:27.374000+00:00"
+                "2022-02-06 21:54:27.374000+00:00",
+                "2022-02-07 16:27:36.301000+00:00",
+                "2022-02-07 16:33:48.996000+00:00",
+                "2022-02-07 16:47:37.239000+00:00"
             ],
             "after": [
                 "https://youtu.be/KRogDxQzHEI",
@@ -23559,7 +23663,10 @@
                 "a coockbook u say",
                 "@sobk What color was next to the word `chores`?",
                 "@sobk What color was next to the word `chores`?",
-                "https://tenor.com/view/demonte-gd-gdk-king-von-rapper-gif-21220363"
+                "https://tenor.com/view/demonte-gd-gdk-king-von-rapper-gif-21220363",
+                "https://open.spotify.com/track/0RgClWZ50CVGxKCNRYooBD?si=298918b7dd2c4c1b",
+                "https://www.youtube.com/watch?v=PBQhoPTKWc4",
+                "https://www.youtube.com/watch?v=cUOLqhlOAjc"
             ],
             "before": [
                 "https://youtu.be/KRogDxQzHEI",
@@ -23580,27 +23687,45 @@
                 "a coockbook un say",
                 "**Work for House Wife** - Color Match - Match the color to the selected word.\n<:Yellow:863886248296316940> `dwelling`\n<:Black:863886248431190066> `mom`\n<:Cyan:863886248670265392> `chores`",
                 "@sobk What color was next to the word `chores`?",
-                "https://tenor.com/view/demonte-gd-gdk-king-von-rapper-gif-21220363"
+                "https://tenor.com/view/demonte-gd-gdk-king-von-rapper-gif-21220363",
+                "https://open.spotify.com/track/0RgClWZ50CVGxKCNRYooBD?si=298918b7dd2c4c1b",
+                "https://www.youtube.com/watch?v=PBQhoPTKWc4",
+                "https://www.youtube.com/watch?v=cUOLqhlOAjc"
             ]
         },
         "872943302046019584": {
             "author": [
                 "MEE6",
+                "MEE6",
+                "MEE6",
+                "MEE6",
                 "MEE6"
             ],
             "id": [
+                914340079537885204,
+                914340079537885204,
+                914340079537885204,
                 914340079537885204,
                 914340079537885204
             ],
             "time": [
                 "2022-01-30 18:05:58.523000+00:00",
-                "2022-02-05 22:08:27.299000+00:00"
+                "2022-02-05 22:08:27.299000+00:00",
+                "2022-02-07 16:16:03.417000+00:00",
+                "2022-02-07 16:26:07.116000+00:00",
+                "2022-02-07 16:36:12.974000+00:00"
             ],
             "after": [
+                "",
+                "",
+                "",
                 "",
                 ""
             ],
             "before": [
+                "",
+                "",
+                "",
                 "",
                 ""
             ]
@@ -23704,18 +23829,23 @@
         },
         "919936316945334312": {
             "author": [
+                "r/SpunHornyFun \u2022 YAGPDB",
                 "r/SpunHornyFun \u2022 YAGPDB"
             ],
             "id": [
+                919974201069281320,
                 919974201069281320
             ],
             "time": [
-                "2022-02-06 21:33:51.092000+00:00"
+                "2022-02-06 21:33:51.092000+00:00",
+                "2022-02-07 16:33:10.750000+00:00"
             ],
             "after": [
+                "",
                 ""
             ],
             "before": [
+                "",
                 ""
             ]
         },
@@ -23738,18 +23868,23 @@
         },
         "924351319580508180": {
             "author": [
+                "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0",
                 "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0"
             ],
             "id": [
+                925872337801322578,
                 925872337801322578
             ],
             "time": [
-                "2022-02-06 21:55:04.259000+00:00"
+                "2022-02-06 21:55:04.259000+00:00",
+                "2022-02-07 16:44:57.907000+00:00"
             ],
             "after": [
+                "",
                 ""
             ],
             "before": [
+                "",
                 ""
             ]
         },
@@ -23779,6 +23914,69 @@
             ],
             "time": [
                 "2022-02-06 21:55:04.896000+00:00"
+            ],
+            "after": [
+                ""
+            ],
+            "before": [
+                ""
+            ]
+        },
+        "919936196900179988": {
+            "author": [
+                "r/BlowingClouds \u2022 YAGPDB"
+            ],
+            "id": [
+                920174227884216330
+            ],
+            "time": [
+                "2022-02-07 16:16:51.353000+00:00"
+            ],
+            "after": [
+                ""
+            ],
+            "before": [
+                ""
+            ]
+        },
+        "934365614603132998": {
+            "author": [
+                "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0",
+                "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0",
+                "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0"
+            ],
+            "id": [
+                925872337801322578,
+                925872337801322578,
+                925872337801322578
+            ],
+            "time": [
+                "2022-02-07 16:35:13.883000+00:00",
+                "2022-02-07 16:36:16.562000+00:00",
+                "2022-02-07 16:36:16.562000+00:00"
+            ],
+            "after": [
+                "You found 198 \ud83c\udf6c!",
+                "..........",
+                "You toss your candies on the ground in disgust.\n*7981 candies are left behind*"
+            ],
+            "before": [
+                "You start searching the area for candy...",
+                "...",
+                ".........."
+            ]
+        }
+    },
+    "900458404953333808": {
+        "900458968588120154": {
+            "author": [
+                "Bobert"
+            ],
+            "id": [
+                836109275016462396
+            ],
+            "time": [
+                "2022-02-07 16:33:15.115000+00:00"
             ],
             "after": [
                 ""

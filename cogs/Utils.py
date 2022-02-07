@@ -1,24 +1,23 @@
-from urllib.request import urlopen
-from disnake.utils import _get_description
-from core.constants import CLOSE
-import disnake, requests
-from disnake.ext import commands
-
-from pyMorseTranslator import translator
-import pytz, typing
-from datetime import datetime
-
-from core.utils import get_colour, update_json, send_embed
-from core.utils.commands.eval import run_eval
-from core.paginator import Paginator
-from core import Context
-
 import simpleeval
 import re
-from typing import Tuple
-import unicodedata
+import disnake
 
+import pytz
+import unicodedata
 import wikipedia
+
+from urllib.request import urlopen
+from typing import Tuple
+from pyMorseTranslator import translator
+from datetime import datetime
+
+from disnake.ext import commands
+
+from core.utils import get_colour, send_embed
+from core.utils.commands.eval import run_eval
+from core.paginator import Paginator
+from core.constants import CLOSE
+from core import Context
 
 
 sup = {
@@ -299,12 +298,12 @@ class Utils(commands.Cog):
     async def qr(self, ctx: Context, *, text):
         m = await ctx.send("**Creating...**")
         async with ctx.typing():
-            response = requests.get(
+            async with self.bot.client.get(
                 f"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={text}"
-            )
+            ) as response:
 
-        await send_embed(ctx, f"Qr code for {text}", i=response.url)
-        await m.delete()
+                await send_embed(ctx, f"Qr code for {text}", i=response.url)
+                await m.delete()
 
     @commands.command(hidden=True)
     async def hibernate(self, ctx: Context):
@@ -452,21 +451,25 @@ class Utils(commands.Cog):
 
     @commands.command(aliases=["bin"])
     async def binary(self, ctx: Context, *, text):
+        async with self.bot.client.get(
+            url=f"https://some-random-api.ml/binary?text={text}"
+        ) as response:
+            fox = await response.json()
 
-        response = requests.get(f"https://some-random-api.ml/binary?text={text}")
-        fox = response.json()
-        embed = disnake.Embed(colour=get_colour())
-        embed.add_field(name="Binary", value=f"{fox['binary']}")
-        await ctx.send(embed=embed)
+            embed = disnake.Embed(colour=get_colour())
+            embed.add_field(name="Binary", value=f"{fox['binary']}")
+            await ctx.send(embed=embed)
 
     @commands.command(aliases=["unbin"])
     async def unbinary(self, ctx: Context, *, nums: str):
+        async with self.bot.client.get(
+            url=f"https://some-random-api.ml/binary?decode={nums}"
+        ) as response:
+            fox = await response.json()
 
-        response = requests.get(f"https://some-random-api.ml/binary?decode={nums}")
-        fox = response.json()
-        embed = disnake.Embed(colour=get_colour())
-        embed.add_field(name="Decoded from binary", value=f"{fox['text']}")
-        await ctx.send(embed=embed)
+            embed = disnake.Embed(colour=get_colour())
+            embed.add_field(name="Decoded from binary", value=f"{fox['text']}")
+            await ctx.send(embed=embed)
 
     @commands.command(
         description="""ASCII was developed from telegraph code. Work on the ASCII standard began in May 1961. The first edition of the standard was published in 1963. Compared to earlier telegraph codes, the proposed Bell code and ASCII were both ordered for more convenient sorting (i.e., alphabetization) of lists.

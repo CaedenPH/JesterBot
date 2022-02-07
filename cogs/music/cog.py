@@ -1,16 +1,16 @@
 import disnake
 from disnake.ext import commands
+
 from . import dcutils
-from core.utils import get_colour, update_json, send_embed
-import requests
+from core.utils import get_colour, send_embed
 
 
-async def embed2(ctx, description):
-
+async def embed2(ctx, description) -> disnake.Message:
     embed = disnake.Embed(description=description, colour=get_colour())
     embed.set_footer(text="Type j.help Music to get all the music commands!")
     embed.set_author(name="Music", icon_url=ctx.author.avatar.url)
-    await ctx.send(embed=embed)
+
+    return await ctx.send(embed=embed)
 
 
 class Music(commands.Cog):
@@ -20,14 +20,14 @@ class Music(commands.Cog):
 
     @commands.command()
     async def lyrics(self, ctx, *, song):
-
-        response = requests.get(f"https://some-random-api.ml/lyrics?title={song}")
-        fox = response.json()
-        await send_embed(ctx, f'Lyrics of {fox["title"]}', fox["lyrics"])
+        async with self.bot.client.get(
+            url=f"https://some-random-api.ml/lyrics?title={song}"
+        ) as response:
+            fox = await response.json()
+            await send_embed(ctx, f'Lyrics of {fox["title"]}', fox["lyrics"])
 
     @commands.command()
     async def join(self, ctx):
-
         if not ctx.author.voice:
             return await embed2(ctx, "You are not in a music channel!")
         voice_channel = ctx.author.voice.channel
@@ -42,7 +42,6 @@ class Music(commands.Cog):
     @commands.command()
     async def leave(self, ctx):
         if ctx.voice_client:
-
             await ctx.voice_client.disconnect()
             return await ctx.message.add_reaction("🎵")
         await embed2(ctx, "I am not in a music channel!")

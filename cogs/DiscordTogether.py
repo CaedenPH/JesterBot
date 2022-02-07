@@ -1,4 +1,4 @@
-import discord_together, disnake
+import discord_together
 
 from disnake.ext import commands
 from core.constants import BOT_TOKEN

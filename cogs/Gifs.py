@@ -1,8 +1,9 @@
-import disnake, os, requests, json, asyncio
+import disnake
+
 from disnake.ext import commands
 from random import choice, randint
 
-from core.utils import get_colour, update_json, send_embed
+from core.utils import get_colour, send_embed
 from core.utils.comedy import fact, quote, joke, pickup
 from core import Context
 from core.utils.comedy import joke
@@ -24,17 +25,7 @@ class JesterJokes(commands.Cog):
 
     @commands.command(description="""Returns a random quote""")
     async def quote(self, ctx: Context):
-
         embed = quote()
-        await ctx.send(embed=embed)
-
-    @commands.command(description="""Returns a random quote""")
-    async def quote1(self, ctx: Context):
-
-        response = requests.get("https://zenquotes.io/api/quotes/[your_key]")
-        fox = response.json()
-        embed = disnake.Embed(colour=get_colour())
-        embed.add_field(name="Quote", value=f"{fox[1]['q']}")
         await ctx.send(embed=embed)
 
     @commands.command(
@@ -42,7 +33,6 @@ class JesterJokes(commands.Cog):
         description="""Returns a random Pickup Line.""",
     )
     async def pickup_line(self, ctx: Context):
-
         embed = await pickup()
         await ctx.send(embed=embed)
 
@@ -62,14 +52,14 @@ class JesterJokes(commands.Cog):
             embed = disnake.Embed(title="You shmuck...I am god")
             await ctx.send(embed=embed)
         else:
-
-            response = requests.get("https://insult.mattbas.org/api/insult.json")
-            fox = response.json()
+            async with self.bot.client.get(
+                url="https://insult.mattbas.org/api/insult.json"
+            ) as response:
+                fox = await response.json()
             foxupdate = fox["insult"]
             embed = disnake.Embed(
                 description=f"{user.mention} {foxupdate}", colour=get_colour()
             )
-
             await ctx.send(embed=embed)
 
     @commands.command(
@@ -78,16 +68,15 @@ class JesterJokes(commands.Cog):
     async def disthem(self, ctx: Context, user: disnake.Member = ""):
         if user == "":
             user = self.bot.get_user(ctx.author.id)
-        response = requests.get(
-            "https://evilinsult.com/generate_insult.php?lang=en&type=json"
-        )
-        fox = response.json()
+        async with self.bot.client.get(
+            url="https://evilinsult.com/generate_insult.php?lang=en&type=json"
+        ) as response:
+            fox = await response.json()
         foxupdate = fox["insult"]
 
         embed = disnake.Embed(
             description=f"{user.mention} {foxupdate}", colour=get_colour()
         )
-
         await ctx.send(embed=embed)
 
     @commands.command(
@@ -97,12 +86,13 @@ class JesterJokes(commands.Cog):
     async def chuck(self, ctx: Context, user: disnake.Member = ""):
         if user == "":
             user = self.bot.get_user(ctx.author.id)
-        response = requests.get("https://api.chucknorris.io/jokes/random")
-        fox = response.json()
+        async with self.bot.client.get(
+            url="https://api.chucknorris.io/jokes/random"
+        ) as response:
+            fox = await response.json()
         foxupdate = fox["value"]
 
         embed = disnake.Embed(description=f"{foxupdate}", colour=get_colour())
-
         await ctx.send(embed=embed)
 
     @commands.command(
@@ -111,10 +101,10 @@ class JesterJokes(commands.Cog):
     )
     async def adjective(self, ctx: Context):
 
-        response = requests.get(
-            "https://raw.githubusercontent.com/dariusk/corpora/master/data/words/adjs.json"
-        )
-        fox = response.json()
+        async with self.bot.client.get(
+            url="https://raw.githubusercontent.com/dariusk/corpora/master/data/words/adjs.json"
+        ) as response:
+            fox = await response.json()
         foxupdate = fox["adjs"]
 
         embed = disnake.Embed(

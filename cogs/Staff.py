@@ -1,15 +1,16 @@
-import disnake, os, requests, json, asyncio
-from disnake.ext import commands
-
+import disnake
+import os
+import json
+import asyncio
 import shutil
 
+from disnake.ext import commands
 from core.utils import get_colour, update_json, send_embed
 from core import Context
 
 
 class Staff(commands.Cog):
     def __init__(self, bot):
-
         self.bot = bot
 
     @commands.command(hidden=True)

@@ -1,19 +1,10 @@
-import disnake, os, requests, json, asyncio
-from disnake.ext.commands import has_permissions
+import disnake
+import json
+import asyncio
+
 from disnake.ext import commands
-from disnake.utils import get
-from disnake.ext import tasks
-from disnake import Intents
-from asyncio import sleep
-import yfinance as yf
-from traceback import print_exc
-import itertools
-import sys
-import traceback
-from async_timeout import timeout
-from functools import partial
-from youtube_dl import YoutubeDL
 from random import choice, randint
+
 from core.utils import get_colour, update_json, send_embed
 from core import Context
 

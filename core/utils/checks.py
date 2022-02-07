@@ -1,11 +1,14 @@
 import disnake
 import json
 
+from disnake import Message
+from disnake.ext.commands import Bot, Context
+
 from core.utils.utils import send_embed, get_colour, update_json
 from core.utils.comedy import fact, quote, joke, pickup
 
 
-async def suggest(bot, message):
+async def suggest(bot: Bot, message: Message) -> None:
     message_id = message.id
     data = {}
     embed = (
@@ -29,12 +32,10 @@ async def suggest(bot, message):
         await send_embed(message.author, "", a)
 
         received_msg = await bot.wait_for("message", check=check)
-
         if received_msg.content.lower() == "q":
             return await received_msg.add_reaction("\u274c")
 
         await received_msg.add_reaction("\u2705")
-
         data[a] = received_msg.content
 
     for b in data:
@@ -47,59 +48,49 @@ async def suggest(bot, message):
     await msg.add_reaction("\U0001f44e")
 
     newmsg = await message.channel.fetch_message(message_id)
-
     return await newmsg.delete()
 
 
-async def run_check(bot, ctx):
-
+async def run_check(bot: Bot, ctx: Context) -> bool:
     if bot.hiber and ctx.command.name not in ["hiber", "close"]:
         return False
-    try:
-        ra = ctx.guild.id
-    except:
+
+    if not ctx.guild:
         await ctx.em(
-            "Commands dont work in DMs! My prefix is `j.`, or you can ping me in a guild!"
+            "Commands don't work in DMs! My prefix is `j.`, or you can ping me in a guild!"
         )
         return False
 
     if ctx.command.hidden:
-        y = await bot.is_owner(ctx.author)
-        if not y:
+        if not await bot.is_owner(ctx.author):
             await ctx.em(
                 "You cannot run this command, it is a `hidden` command which only bot admins can run."
             )
             return False
         return True
-    x = False
+
     with open("./dicts/Check.json") as k:
         data = json.load(k)
 
         if str(ctx.author.id) in data:
-
             if ctx.command.name in data[str(ctx.author.id)]["commands"]:
                 await ctx.em(
                     "you cant run this command for some reason, possibly blacklisted"
                 )
                 return False
-            else:
-                x = True
-        else:
-            x = True
 
-    if x:
+    with open("./dicts/Suggest.json") as k:
+        data = json.load(k)
 
-        with open("./dicts/Suggest.json") as k:
-            newdata = json.load(k)
-
-            if str(ctx.channel.id) in newdata:
-                if newdata[str(ctx.channel.id)]["Yes"]:
-                    return False
-                return True
-            return True
+        if str(ctx.channel.id) in data:
+            if data[str(ctx.channel.id)]["Yes"]:
+                return False
+    return True
 
 
-async def run_precheck(bot, message):
+async def run_precheck(bot: Bot, message: Message) -> None:
+    await bot.wait_until_ready()
+
     with open("./dicts/Suggest.json") as k:
         data = json.load(k)
 
@@ -110,14 +101,13 @@ async def run_precheck(bot, message):
                         return await suggest(bot, message)
 
                 if message.author.id != 828363172717133874:
-                    await bot.wait_until_ready()
                     try:
                         await message.delete()
                     except:
                         pass
 
 
-async def run_channel_send(bot) -> None:
+async def run_channel_send(bot: Bot) -> None:
     await bot.wait_until_ready()
 
     with open("./dicts/ConfigChannel.json") as k:
@@ -147,11 +137,11 @@ async def run_channel_send(bot) -> None:
                 elif _type == "quotechannel":
                     embed = await quote(bot)
                 await channel.send(embed=embed)
-            except Exception as e:
+            except:
                 pass
 
 
-async def run_executed(ctx) -> None:
+async def run_executed(ctx: Bot) -> None:
     bot = ctx.bot
 
     if ctx.author.id != 298043305927639041:

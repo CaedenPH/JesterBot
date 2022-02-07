@@ -1,18 +1,18 @@
-import disnake, os, requests, json, asyncio, aiohttp
-from disnake.ext import commands
-from random import choice, randint
+import disnake
+import requests
+import json
+import asyncio
+
+from random import randint
 from pyMorseTranslator import translator
 from art import text2art
 from glitch_this import ImageGlitcher
-import cv2 as cv
-import numpy as np
+from disnake.ext import commands
+from youtubesearchpython.__future__ import VideosSearch
 
 from core.utils import get_colour, update_json, send_embed
 from core import Context
 from core.constants import CLOSE
-from core.paginator import Paginator
-
-from youtubesearchpython.__future__ import VideosSearch
 
 encoder = translator.Encoder()
 decoder = translator.Decoder()
@@ -118,18 +118,15 @@ class Fun(commands.Cog):
     @commands.command()
     async def minecraft(self, ctx: Context, username):
         try:
-
             async with ctx.typing():
-                response = requests.get(
-                    f"https://some-random-api.ml/mc?username={username}"
-                )
-                fox = response.json()
+                async with self.bot.client.get(
+                    url=f"https://some-random-api.ml/mc?username={username}"
+                ) as response:
+                    fox = await response.json()
                 my_list = []
                 t = 0
 
                 for k in fox["name_history"]:
-
-                    # print(fox["name_history"][0][k])
                     my_list.append(
                         f"**{fox['name_history'][t]['name']}** - {fox['name_history'][t]['changedToAt']}"
                     )

@@ -41,6 +41,6 @@ async def send_embed(
         embed.set_thumbnail(url=thumbnail)
     if image:
         embed.set_image(url=image)
-        
+
     msg = await channel.send(embed=embed)
     return msg

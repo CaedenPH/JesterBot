@@ -4260,7 +4260,8 @@
                 "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\nNo one responded in time! If no one responds on the next round the game ends```'}",
                 "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- Tennis was once known as Racquetball. -- ++\\n\\n                Your choices are:\\n                   a) True, b) False\\n\\n[category]: Sports\\n[difficulty]: medium\\n\\n        [send the letter corresponding to the answer]```'}",
                 "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\n    ++ -- In Star Trek, Klingons are commonly referred to as Black Elves. -- ++\\n\\n                Your choices are:\\n                   a) False, b) True\\n\\n[category]: Entertainment: Television\\n[difficulty]: medium\\n\\n        [send the letter corresponding to the answer]```'}",
-                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\nNo one responded in time! If no one responds on the next round the game ends```'}"
+                "{'color': 3553599, 'type': 'rich', 'description': '```yaml\\nNo one responded in time! If no one responds on the next round the game ends```'}",
+                "{'type': 'rich', 'description': '```py\\nntext\\'\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \"C:\\\\Users\\\\reals\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python310\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\bot_base.py\", line 561, in invoke\\n    await ctx.command.invoke(ctx)\\n  File \"C:\\\\Users\\\\reals\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python310\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\core.py\", line 930, in invoke\\n    await injected(*ctx.args, **ctx.kwargs)\\n  File \"C:\\\\Users\\\\reals\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python310\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\core.py\", line 185, in wrapped\\n    raise CommandInvokeError(exc) from exc\\ndisnake.ext.commands.errors.CommandInvokeError: Command raised an exception: ExtensionFailed: Extension \\'cogs.activity\\' raised an error: AttributeError: module \\'disnake\\' has no attribute \\'Context\\'\\n```'}"
             ],
             "author": [
                 "StealthyBot",
@@ -4319,7 +4320,8 @@
                 "[j.] JesterBot",
                 "[j.] JesterBot",
                 "[j.] JesterBot",
-                "[j.] JesterBot"
+                "[j.] JesterBot",
+                "stealthybot-test"
             ],
             "id": [
                 889922820317007928,
@@ -4378,7 +4380,8 @@
                 828363172717133874,
                 828363172717133874,
                 828363172717133874,
-                828363172717133874
+                828363172717133874,
+                921678243935961118
             ],
             "time": [
                 "2021-11-25 10:30:49.918000",
@@ -4437,7 +4440,8 @@
                 "2021-12-26 05:29:35.846000+00:00",
                 "2021-12-26 05:32:57.440000+00:00",
                 "2021-12-26 05:33:28.156000+00:00",
-                "2021-12-26 05:33:27.762000+00:00"
+                "2021-12-26 05:33:27.762000+00:00",
+                "2022-02-07 16:25:12+00:00"
             ]
         },
         "901847019348459581": {
@@ -5991,25 +5995,65 @@
                 "2022-02-06 21:32:49.527000+00:00",
                 "2022-02-06 21:32:49.327000+00:00"
             ]
+        },
+        "829874874242957339": {
+            "list": [
+                "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@642624517457575936>** <:fedora:830478997858025513>'}"
+            ],
+            "author": [
+                "AFK Bot"
+            ],
+            "id": [
+                755588579262201886
+            ],
+            "time": [
+                "2022-02-07 16:23:11.073000+00:00"
+            ]
+        },
+        "866447931388198962": {
+            "list": [
+                "@Ace Ventura Cuck Detective has leveled up! **(21 \u279c 22)**",
+                "++suggest shower VC room"
+            ],
+            "author": [
+                "Tatsu",
+                "Thursday"
+            ],
+            "id": [
+                172002275412279296,
+                265196979410173963
+            ],
+            "time": [
+                "2022-02-07 16:46:29.713000+00:00",
+                "2022-02-07 16:47:47.170000+00:00"
+            ]
         }
     },
     "926115595307614249": {
         "926115595307614252": {
             "list": [
                 "Readable file found\nTo disable this type `jarvide removeconfig file`!",
-                "Readable file found\nTo disable this type `jarvide removeconfig file`!"
+                "Readable file found\nTo disable this type `jarvide removeconfig file`!",
+                "Valid codeblock found!\nTo disable this type `jarvide removeconfig codeblock`",
+                "Valid codeblock found!\nTo disable this type `jarvide removeconfig codeblock`"
             ],
             "author": [
+                "Jarvide",
+                "Jarvide",
                 "Jarvide",
                 "Jarvide"
             ],
             "id": [
                 926122065973616690,
+                926122065973616690,
+                926122065973616690,
                 926122065973616690
             ],
             "time": [
                 "2022-02-05 22:08:26.070000+00:00",
-                "2022-02-05 22:08:43.353000+00:00"
+                "2022-02-05 22:08:43.353000+00:00",
+                "2022-02-07 16:46:16.114000+00:00",
+                "2022-02-07 16:53:44.284000+00:00"
             ]
         }
     }

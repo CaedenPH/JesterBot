@@ -1,8 +1,4 @@
-import re
-import disnake
-import aiohttp
 from disnake.ext import commands
-
 from core import Context
 
 
