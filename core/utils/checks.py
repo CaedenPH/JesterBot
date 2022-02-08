@@ -1,3 +1,4 @@
+from time import time
 import disnake
 import json
 
@@ -9,7 +10,6 @@ from core.utils.comedy import fact, quote, joke, pickup
 
 
 async def suggest(bot: Bot, message: Message) -> None:
-    message_id = message.id
     data = {}
     embed = (
         disnake.Embed(colour=get_colour())
@@ -31,8 +31,13 @@ async def suggest(bot: Bot, message: Message) -> None:
     ]:
         await send_embed(message.author, "", a)
 
-        received_msg = await bot.wait_for("message", check=check)
+        try:
+            received_msg = await bot.wait_for("message", check=check, timeout=360)
+        except TimeoutError:
+            return await message.delete()
+
         if received_msg.content.lower() == "q":
+            await message.delete()
             return await received_msg.add_reaction("\u274c")
 
         await received_msg.add_reaction("\u2705")
@@ -40,16 +45,12 @@ async def suggest(bot: Bot, message: Message) -> None:
 
     for b in data:
         name = b.split(" ")
-
         embed.add_field(name=f"**{name[5]}**", value=data[b], inline=False)
-    msg = await message.channel.send(embed=embed)
 
+    msg = await message.channel.send(embed=embed)
     await msg.add_reaction("\U0001f44d")
     await msg.add_reaction("\U0001f44e")
-
-    newmsg = await message.channel.fetch_message(message_id)
-    return await newmsg.delete()
-
+    await message.delete()
 
 async def run_check(bot: Bot, ctx: Context) -> bool:
     if bot.hiber and ctx.command.name not in ["hiber", "close"]:
@@ -99,7 +100,6 @@ async def run_precheck(bot: Bot, message: Message) -> None:
                 for item in ("suggest", "sug"):
                     if item in message.content:
                         return await suggest(bot, message)
-
                 if message.author.id != 828363172717133874:
                     try:
                         await message.delete()

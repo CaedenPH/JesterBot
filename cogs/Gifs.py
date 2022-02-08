@@ -1,5 +1,4 @@
 import disnake
-
 from disnake.ext import commands
 from random import choice, randint
 

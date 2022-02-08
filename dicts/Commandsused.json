@@ -27,7 +27,7 @@
         "score": 105
     },
     "help": {
-        "score": 2229
+        "score": 2232
     },
     "jsonfile": {
         "score": 19
@@ -42,7 +42,7 @@
         "score": 24
     },
     "ping": {
-        "score": 332
+        "score": 333
     },
     "giveaway": {
         "score": 17
@@ -1246,5 +1246,8 @@
     },
     "ccolor": {
         "score": 3
+    },
+    "debug": {
+        "score": 1
     }
 }

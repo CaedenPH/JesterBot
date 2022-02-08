@@ -1,5 +1,4 @@
 import disnake
-import requests
 import json
 import asyncio
 

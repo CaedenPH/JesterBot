@@ -26,7 +26,6 @@ COG_EMOJIS = {
     "Config": 863075611169259550,
     "Love": 863075611374125056,
     "JesterJokes": 873327129016811528,
-    "Cryptocurrency": 872473402764570624,
     "Countries": 872473402638762025,
     "ChatBot": 872473402693259324,
     "DiscordTogether": 872473402840076288,

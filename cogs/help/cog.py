@@ -27,7 +27,6 @@ def get_help(command: str) -> str:
     except KeyError:
         return "No help"
 
-
 class HelpUtils:
     links = "> [Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot) │ [Vote for me!](https://top.gg/bot/828363172717133874/vote)"
 
@@ -105,7 +104,7 @@ class HelpUtils:
             .add_field(
                 name=" ❯❯ Description",
                 value=f"{get_help(command.name)}"
-                if get_help(command.name).chelp
+                if get_help(command.name)
                 else "Currently no help!",
                 inline=False,
             )
@@ -195,14 +194,14 @@ class Help(commands.Cog):
                 embed=embed, view=DropdownView(self.data, ctx, self.utils)
             )
 
-        cmd = self.bot.get_command(command)
-        if cmd:
-            embed = await self.utils.specific_command(cmd, ctx)
-            return await ctx.send(embed=embed)
-
         cog = await self.utils.get_cog_from_str(command)
         if cog:
             embed = await self.utils.specific_cog(cog, ctx)
+            return await ctx.send(embed=embed)
+
+        cmd = self.bot.get_command(command)
+        if cmd:
+            embed = await self.utils.specific_command(cmd, ctx)
             return await ctx.send(embed=embed)
 
         embed = await self.utils.no_command(ctx)
