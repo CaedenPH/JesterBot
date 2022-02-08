@@ -3,9 +3,6 @@ animals.py
 art
 discord-together
 disnake
-disnake-docs
-disnake-jishaku
-disnake-debug
 fuzzywuzzy
 glitch-this
 jishaku

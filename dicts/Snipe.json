@@ -6067,6 +6067,20 @@
                 "2022-02-08 16:46:32.567000+00:00",
                 "2022-02-08 16:46:57.118000+00:00"
             ]
+        },
+        "926135748451774464": {
+            "list": [
+                "{'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/tfFjr-EUXlkAPpFkxcCr31Wl8YjjUfCDidekQ5kt0JE/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/298043305927639041/d43481007d415a84a02119b57245abf0.png', 'name': 'Games', 'icon_url': 'https://cdn.discordapp.com/avatars/298043305927639041/d43481007d415a84a02119b57245abf0.png?size=1024'}, 'fields': [{'value': '- `russianroulette`\\n- `dice`\\n- `rpsfail`\\n- `anagram`', 'name': '\\u200b', 'inline': True}, {'value': '- `blackjack`\\n- `rps`\\n- `guessinggame`\\n- `hangman`', 'name': '\\u200b', 'inline': True}], 'color': 13369344, 'type': 'rich', 'description': 'Play fun games with the bot or with other members, who doesnt love a game of blackjack against an ai?'}"
+            ],
+            "author": [
+                "[j.] JesterBot"
+            ],
+            "id": [
+                828363172717133874
+            ],
+            "time": [
+                "2022-02-08 17:03:40.789000+00:00"
+            ]
         }
     }
 }
