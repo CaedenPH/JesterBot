@@ -9,6 +9,7 @@ jishaku
 jokeapi
 opencv-python
 pyMorseTranslator
+python-dotenv
 python-Levenshtein
 simpleeval
 svglib
