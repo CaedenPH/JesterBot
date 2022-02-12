@@ -4,18 +4,19 @@ import asyncio
 import datetime
 import zipfile
 import inspect
+import os
 
 from disnake.ext import commands
 from random import choice
 from io import BytesIO
 
 from core.utils import get_colour, send_embed
-from core import Context
+from core import JesterBot, Context
 from core.paginator import Paginator
 
 
 class Misc(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: JesterBot):
         self.bot = bot
 
     @commands.command(
@@ -75,14 +76,14 @@ class Misc(commands.Cog):
             await msg.delete()
             await ctx.send(embed=embed)
 
-    @commands.command()
-    async def src(self, ctx, command=None):
+    @commands.command(aliases=['src'])
+    async def source(self, ctx, command=None):
         if not command:
             return await ctx.send("https://github.com/caedenph/jesterbot")
         cmd = self.bot.get_command(command)
         if cmd:
             return await ctx.send(
-                f"https://github.com/caedenph/jesterbot/tree/main/cogs/{cmd.cog.qualified_name}.py#L{inspect.getsourcelines(inspect.unwrap(cmd.callback).__code__)[1]}"
+                f"https://github.com/caedenph/jesterbot/tree/main/{directory}.py#L{inspect.getsourcelines(inspect.unwrap(cmd.callback).__code__)[1]}"
             )
         await ctx.em("No such command!")
 
@@ -511,5 +512,5 @@ class Misc(commands.Cog):
             )
 
 
-def setup(bot):
+def setup(bot: JesterBot):
     bot.add_cog(Misc(bot))

@@ -164,7 +164,6 @@ class Mod(commands.Cog):
         description="Moves a member from their current vc to the channel specified. If no channel has been specified it will kick the member from the vc.",
     )
     async def move_to(self, ctx: Context, member: disnake.Member, channel: str):
-
         await member.move_to(
             disnake.utils.get(self, ctx.guild.voice_channels, name=channel)
         )
@@ -177,7 +176,6 @@ class Mod(commands.Cog):
 
     @commands.command()
     async def deletemessages(self, ctx: Context, user: disnake.Member, limit=10):
-
         embed = disnake.Embed(title="Working....", colour=get_colour())
         x = await ctx.send(embed=embed)
         for channel in ctx.guild.text_channels:

@@ -54,7 +54,7 @@
         "score": 26
     },
     "blackjack": {
-        "score": 183
+        "score": 191
     },
     "ping_jesus": {
         "score": 10
@@ -84,7 +84,7 @@
         "score": 25
     },
     "rps": {
-        "score": 17
+        "score": 25
     },
     "Purge1": {
         "score": 3
@@ -510,10 +510,10 @@
         "score": 6
     },
     "evalreturn": {
-        "score": 472
+        "score": 473
     },
     "evaldir": {
-        "score": 356
+        "score": 358
     },
     "quote1": {
         "score": 4
@@ -1230,7 +1230,7 @@
         "score": 6
     },
     "hangman": {
-        "score": 67
+        "score": 72
     },
     "snake": {
         "score": 3
@@ -1249,5 +1249,8 @@
     },
     "debug": {
         "score": 1
+    },
+    "source": {
+        "score": 4
     }
 }

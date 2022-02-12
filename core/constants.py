@@ -49,13 +49,6 @@ _S = "<:S:863313855061164062>"
 _T = "<:T:863313855399329812>"
 _R = "<:R_:863313855119360022>"
 
-BOT_TOKEN = environ["BOT_TOKEN"]
-WEATHER_KEY = environ["WEATHER_KEY"]
-POLICE_KEY = environ["POLICE_KEY"]
-COORDS_KEY = environ["COORDS_KEY"]
-CHATBOT_KEY = environ["CHATBOT_KEY"]
-RAPID_API_KEY = environ["RAPID_API_KEY"]
-
 HANGMAN = [
     "",
     """
@@ -124,3 +117,24 @@ HANGMAN = [
       |
 =========""",
 ][::-1]
+
+BOT_TOKEN = environ["BOT_TOKEN"]
+WEATHER_KEY = environ["WEATHER_KEY"]
+POLICE_KEY = environ["POLICE_KEY"]
+COORDS_KEY = environ["COORDS_KEY"]
+CHATBOT_KEY = environ["CHATBOT_KEY"]
+RAPID_API_KEY = environ["RAPID_API_KEY"]
+
+CARD_SUITS = {
+  'hearts': '♥️',
+  'diamonds': '♦️',
+  'clubs': '♣️',
+  'spades': '♠️',
+}
+BLACKJACK_WELCOME = """```yaml
+Welcome to the blackjack game. 
+==============================
+
+It is recommended that you research the rules to familiarize yourself how the game is played. 
+Stay safe and happy betting!```
+""",
