@@ -83,9 +83,23 @@ BLACKJACK_WELCOME = """```yaml
 Welcome to the blackjack game. 
 ==============================
 
-It is recommended that you research the rules to familiarize yourself how the game is played. ```
+It is recommended that you research the rules to familiarize yourself how the game is played.```
 """
+BLACKJACK_HOW_TO = """```yaml
+How to play blackjack
+=====================
 
+Start
+-----
+• When you play you will get a hand with 2 cards.
+• If you get an ace you can choose it's value to be 1 or 11. 
+• All face cards are equal to 10 this includes; King, Queen and Jack.
+
+Game over
+---------
+• The player who's card's overall score is closer to 21 wins.
+• The game ends when you stand.```
+"""
 HANGMAN = [
     "",
     """

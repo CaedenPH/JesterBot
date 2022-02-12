@@ -6,7 +6,7 @@ from disnake.ui import View, Button, button
 
 from core import Context
 from core.utils import get_colour
-from core.constants import CARD_SUITS, CLOSED_LOCK, BOOM, CONFETTI, HANDSHAKE
+from core.constants import BLACKJACK_HOW_TO, CARD_SUITS, CLOSED_LOCK, BOOM, CONFETTI, HANDSHAKE
 
 special_cards = {1: "Ace", 10: "Jack", 11: "Queen", 12: "King"}
 blackjack_visual = """\
@@ -120,7 +120,7 @@ class BlackJack(View):
             )
             .set_author(name=self.ctx.author, icon_url=self.ctx.author.display_avatar)
             .set_footer(
-                text=f"{'Hand value: ' + str(self.generate_card_values(cards or self.user_cards)) + ' • ' if self.status == 'in progress' else ''} K, Q, J = 10  |  A = 1 or 11"
+                text=f"{'Hand value: ' + str(self.generate_card_values(cards or self.user_cards)) + ' • ' if getattr(self, 'status', None) == 'in progress' else ''} K, Q, J = 10  |  A = 1 or 11"
             )
         )
 
@@ -229,7 +229,16 @@ class BlackJack(View):
 
     @button(label="How to play", style=ButtonStyle.blurple)
     async def how_to_play(self, button: Button, interaction: MessageInteraction):
-        ...
+        await interaction.response.defer()
+
+        embed = Embed(
+            title="Blackjack",
+            description=BLACKJACK_HOW_TO,
+            timestamp=self.ctx.message.created_at,
+            colour=get_colour(),
+        ).set_author(name=self.ctx.author.name, icon_url=self.ctx.author.avatar.url)
+
+        await self.bot_message.edit(embed=embed)
 
     @button(label="Play", style=ButtonStyle.green, row=1)
     async def play_button(self, button: Button, interaction: MessageInteraction):
