@@ -4082,7 +4082,11 @@
                 "Who is interested?",
                 "Welcome back @\u20ac|D3RW0|F, I removed your AFK",
                 "Welcome back @\u20ac|D3RW0|F, I removed your AFK",
-                "Welcome back @PR3TTY\u1e9e\u2022Y, I removed your AFK"
+                "Welcome back @PR3TTY\u1e9e\u2022Y, I removed your AFK",
+                "NO THE ENDING IS SO GOOD",
+                "JUST MY STYLE",
+                "you thouhgt it was going to be good",
+                "go test falldamage irl"
             ],
             "author": [
                 "stealthninja",
@@ -4121,7 +4125,11 @@
                 "FireTheFox",
                 "Dyno",
                 "Dyno",
-                "Dyno"
+                "Dyno",
+                "xRekteD",
+                "xRekteD",
+                "stealthninja",
+                "xRekteD"
             ],
             "id": [
                 521226389559443461,
@@ -4160,7 +4168,11 @@
                 795401550875983904,
                 155149108183695360,
                 155149108183695360,
-                155149108183695360
+                155149108183695360,
+                717423535030796299,
+                717423535030796299,
+                521226389559443461,
+                717423535030796299
             ],
             "time": [
                 "2021-11-23 13:42:48.813000",
@@ -4199,7 +4211,11 @@
                 "2021-12-29 06:57:34.448000+00:00",
                 "2021-12-29 07:45:20.723000+00:00",
                 "2021-12-29 07:59:47.449000+00:00",
-                "2021-12-29 12:11:11.346000+00:00"
+                "2021-12-29 12:11:11.346000+00:00",
+                "2022-02-12 11:03:08.586000+00:00",
+                "2022-02-12 11:03:04.715000+00:00",
+                "2022-02-12 11:03:01.492000+00:00",
+                "2022-02-12 17:26:01.768000+00:00"
             ]
         },
         "907552229559504916": {
@@ -5445,19 +5461,23 @@
         "883340752191651870": {
             "list": [
                 "+",
-                "\u041d\u0435 \u0441\u043e\u0432\u0441\u0435\u043c \u043f\u043e\u043d\u044f\u043b, \u043a\u0430\u043a \u0438\u043c\u0435\u043d\u043d\u043e \u0447\u0435\u0440\u0435\u0437 view?"
+                "\u041d\u0435 \u0441\u043e\u0432\u0441\u0435\u043c \u043f\u043e\u043d\u044f\u043b, \u043a\u0430\u043a \u0438\u043c\u0435\u043d\u043d\u043e \u0447\u0435\u0440\u0435\u0437 view?",
+                "."
             ],
             "author": [
                 "EQUENOS",
-                "Bumbazzz"
+                "Bumbazzz",
+                "helish_88\ud83d\ude08"
             ],
             "id": [
                 301295716066787332,
-                470985309996187669
+                470985309996187669,
+                177494227918389249
             ],
             "time": [
                 "2021-12-27 16:04:03.411000+00:00",
-                "2021-12-28 14:19:52.917000+00:00"
+                "2021-12-28 14:19:52.917000+00:00",
+                "2022-02-12 17:18:20.530000+00:00"
             ]
         },
         "883342278280745030": {
@@ -5494,7 +5514,13 @@
                 "what is error ? \n Callback for help2 command is missing \"ctx\" parameter.",
                 "Suppose I have three buttons:\nTest 1\nTest 2\nTest 3\n\nI want to disable test 1 button and change its color when clicking on test 2",
                 "Hey @joee!",
-                "{'type': 'rich', 'description': '```py\\n\\nclass disnake.Embed(*, colour=Embed.Empty, colourEmbed.Empty, title=Embed.Empty, type=\\'rich\\', url=Embed.Empty, description=Embed.Empty, timestamp=None)```\\nRepresents a Discord embed.\\n\\nlen(x) Returns the total size of the embed. Useful for checking if it\u2019s within the 6000 character limit.\\n\\nbool(b) Returns whether the embed has any data set.\\n\\nNew in version 2.0.\\n\\nCertain properties return an `EmbedProxy`, a type that acts similar to a regular [`dict`](https://docs.python.org/3/library/stdtypes.html#dict \"(in Python v3.10)\") except using dotted access, e.g. `embed.author.icon_url`. If the attribute is invalid or empty, then a special sentinel value is returned, [`Embed.Empty`](https://docs.disnake.dev/en/latest/api.html#disnake.Embed.Empty \"disnake.Embed.Empty\").\\n\\nFor ease of use, all parameters that expect a [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") are implicitly casted to [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") for you.', 'url': 'https://docs.disnake.dev/en/latest/api.html#disnake.Embed', 'title': 'disnake.embeds.Embed'}"
+                "{'type': 'rich', 'description': '```py\\n\\nclass disnake.Embed(*, colour=Embed.Empty, colourEmbed.Empty, title=Embed.Empty, type=\\'rich\\', url=Embed.Empty, description=Embed.Empty, timestamp=None)```\\nRepresents a Discord embed.\\n\\nlen(x) Returns the total size of the embed. Useful for checking if it\u2019s within the 6000 character limit.\\n\\nbool(b) Returns whether the embed has any data set.\\n\\nNew in version 2.0.\\n\\nCertain properties return an `EmbedProxy`, a type that acts similar to a regular [`dict`](https://docs.python.org/3/library/stdtypes.html#dict \"(in Python v3.10)\") except using dotted access, e.g. `embed.author.icon_url`. If the attribute is invalid or empty, then a special sentinel value is returned, [`Embed.Empty`](https://docs.disnake.dev/en/latest/api.html#disnake.Embed.Empty \"disnake.Embed.Empty\").\\n\\nFor ease of use, all parameters that expect a [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") are implicitly casted to [`str`](https://docs.python.org/3/library/stdtypes.html#str \"(in Python v3.10)\") for you.', 'url': 'https://docs.disnake.dev/en/latest/api.html#disnake.Embed', 'title': 'disnake.embeds.Embed'}",
+                "```py\nloop = asyncio.get_event_loop()\nloop.create_task(client.start(TOKEN1, bot=True))\nloop.create_task(client2.start(TOKEN2, bot=True))\nloop.run_forever()\n```",
+                "```py\nclass suggestmenu(disnake.ui.Modal):\n    def __init__(self):\n        components = [\n            disnake.ui.TextInput(\n                label=\"Rating\",\n                placeholder = \"Please enter a number from 1 to 5.\",\n                style = disnake.TextInputStyle.single_line,\n                max_length=1,\n                custom_id=\"rating\"\n            ),\n            disnake.ui.TextInput(\n                label=\"Feedback\",\n                placeholder = \"Please enter your honest opinion about the bot, as well as the disadvantages of it.\",\n                style = disnake.TextInputStyle.long,\n                max_length = 1000,\n                custom_id = \"feedback\"\n            ),\n            disnake.ui.TextInput(\n                label=\"Suggestoins\",\n                placeholder=\"If you want to suggest anything, just put it here.\",\n                style=disnake.TextInputStyle.long,\n                max_length=1000,\n                custom_id= \"suggestion\"\n            )\n        ]\n        super().__init__(title=\"Feedback\", components=components, timeout=300.0)\n    \n    #async def on_error(self, error: Exception, inter: disnake.ModalInteraction) -> None:\n        #print(error)\n        #await inter.response.send_message(\"You have made it past 30 minutes, which is the allowed time for this form to be summited.\", ephemeral=True)\n\n    async def callback(self, inter: disnake.ModalInteraction, /) -> None:\n        #channel = self.bot.get_channel(id_lmao)\n        valuelmao = {'example':'examplexd'}\n        for key, value in inter.text_values.items():\n            valuelmao[key] = value\n        embed = disnake.Embed(title=\"Feedbacks\")\n        embed.description = f\"**Rating:** {valuelmao['rating']}/5\\n\\n**Feedback:**\\n```{valuelmao['feedback']}```\\n\\n**Suggestion:**\\n```{valuelmao['suggestion']}```\\n\"\n        await inter.response.send_message(embed=embed)\n        #await channel.send(embed=embed)        \n```",
+                "@commands.slash_command(guild_ids=[GUILD ID HERE])",
+                "```\n@info.sub_command(\n    description=\"get information about a specified active player\"\n)\nasync def user(\n    inter,\n    user: disnake.User = None\n):\n    \"\"\"\n        get information about a specified active player\n\n        Parameters\n        ----------\n        user (optional): user to search for active player\n        tag (optional): tag to search\n    \"\"\"\n```",
+                "Hey @Razgriz!",
+                "Hey @4310V343k | ping reply!"
             ],
             "author": [
                 "BITTU5134",
@@ -5528,6 +5554,12 @@
                 "Jaymart",
                 "Master X",
                 "Master X",
+                "Monty Python",
+                "Monty Python",
+                "Ben.",
+                "\u0430ustin",
+                "Jaymart",
+                "Razgriz",
                 "Monty Python",
                 "Monty Python"
             ],
@@ -5564,6 +5596,12 @@
                 785604125458432050,
                 785604125458432050,
                 872576125384147005,
+                872576125384147005,
+                452787505624776704,
+                935789325570949140,
+                485183782328991745,
+                250312821647081472,
+                872576125384147005,
                 872576125384147005
             ],
             "time": [
@@ -5599,7 +5637,13 @@
                 "2021-12-29 12:09:23.205000+00:00",
                 "2021-12-29 12:56:45.001000+00:00",
                 "2021-12-29 23:23:23.667000+00:00",
-                "2021-12-29 23:34:10.485000+00:00"
+                "2021-12-29 23:34:10.485000+00:00",
+                "2022-02-12 16:38:57.663000+00:00",
+                "2022-02-12 17:06:49.371000+00:00",
+                "2022-02-12 18:04:04.433000+00:00",
+                "2022-02-12 19:11:07.175000+00:00",
+                "2022-02-12 19:11:07.352000+00:00",
+                "2022-02-12 19:29:01.137000+00:00"
             ]
         },
         "808032919632347156": {
@@ -5762,22 +5806,26 @@
             "list": [
                 "try:\n    if not instructions:\n        log.info(\"User's incorrect code block was fixed. Removing instructions message.\")\n        await bot_message.delete()\n        del self.codeblock_message_ids[payload.message_id]\n    else:\n        log.info(\"Message edited but still has invalid code blocks; editing instructions.\")\n        await bot_message.edit(embed=self.create_embed(instructions))",
                 "{'type': 'rich', 'description': '[`disnake.ApplicationCommandPermissions`](https://docs.disnake.dev/en/latest/api.html)\\n[`disnake.ApplicationCommandPermissions.id`](https://docs.disnake.dev/en/latest/api.html)\\n[`disnake.ApplicationCommandPermissions.permission`](https://docs.disnake.dev/en/latest/api.html)\\n[`disnake.ApplicationCommandPermissions.type`](https://docs.disnake.dev/en/latest/api.html)', 'title': 'Results for disnake.ApplicationCommandPermissions'}",
-                "Trying Ping ... 3/3"
+                "Trying Ping ... 3/3",
+                ".uwu great hbu"
             ],
             "author": [
                 "arl",
                 "Monty Python",
-                "Moosik"
+                "Moosik",
+                "SlumberDemon"
             ],
             "id": [
                 717983911824588862,
                 872576125384147005,
-                805064584432058398
+                805064584432058398,
+                549563196579774465
             ],
             "time": [
                 "2021-12-29 03:15:27.452000+00:00",
                 "2021-12-29 11:47:32.155000+00:00",
-                "2022-02-08 16:38:48.760000+00:00"
+                "2022-02-08 16:38:48.760000+00:00",
+                "2022-02-12 19:46:11.264000+00:00"
             ]
         },
         "828758532467195935": {
@@ -5796,6 +5844,20 @@
             "time": [
                 "2021-12-29 15:05:33.983000+00:00",
                 "2021-12-29 15:04:36.021000+00:00"
+            ]
+        },
+        "854367065661374515": {
+            "list": [
+                "**Usage**\nFor newbies, really.\n```py\nif await is_higher(SomeRole, SomeSecondRole) or await is_higher(SomeRole, SomeSecondRole) == \"equal\": # if it returns True or if it's returning \"equal\"\n    embedObj = disnake.Embed(title=f\"SomeSecondRole is higher than SomeRole\")\n    await ctx.send(idea...*\", embed=embedObj)\n    return```"
+            ],
+            "author": [
+                "KarmaHitsHardDEV"
+            ],
+            "id": [
+                492019506562990080
+            ],
+            "time": [
+                "2022-02-12 20:41:18.458000+00:00"
             ]
         }
     },
@@ -5942,30 +6004,46 @@
         },
         "855278109674831892": {
             "list": [
-                "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@824048747456626698>** <:fedora:830478997858025513>'}"
+                "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@824048747456626698>** <:fedora:830478997858025513>'}",
+                "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@854817923759734805>** <:fedora:830478997858025513>'}"
             ],
             "author": [
+                "AFK Bot",
                 "AFK Bot"
             ],
             "id": [
+                755588579262201886,
                 755588579262201886
             ],
             "time": [
-                "2022-01-30 18:04:35.227000+00:00"
+                "2022-01-30 18:04:35.227000+00:00",
+                "2022-02-12 19:03:28.973000+00:00"
             ]
         },
         "848586716507537419": {
             "list": [
-                "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@830965673588555797>** <:fedora:830478997858025513>'}"
+                "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@830965673588555797>** <:fedora:830478997858025513>'}",
+                "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@924687957481377892>** <:fedora:830478997858025513>'}",
+                "{'color': 0, 'type': 'rich', 'description': '<@!724410177737982052> is currently having a life... - 16 hours ago'}",
+                "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@724410177737982052>** <:fedora:830478997858025513>'}"
             ],
             "author": [
+                "AFK Bot",
+                "AFK Bot",
+                "AFK Bot",
                 "AFK Bot"
             ],
             "id": [
+                755588579262201886,
+                755588579262201886,
+                755588579262201886,
                 755588579262201886
             ],
             "time": [
-                "2022-02-05 22:07:48.038000+00:00"
+                "2022-02-05 22:07:48.038000+00:00",
+                "2022-02-12 20:04:00.364000+00:00",
+                "2022-02-12 20:04:00.459000+00:00",
+                "2022-02-12 20:12:19.676000+00:00"
             ]
         },
         "834583122590695464": {
@@ -6022,7 +6100,27 @@
                 "@txrz has leveled up! **(12 \u279c 13)**",
                 "Welcome, @Neeece, to \ud835\ude71\ud835\ude9b\ud835\ude98\ud835\ude8a\ud835\ude8d \ud835\ude82\ud835\ude9d\ud835\ude9b\ud835\ude8e\ud835\ude8e\ud835\ude9d!\n\n60 users joined today!",
                 "Okay tiger legs relax",
-                "Welcome, @The Malzahar, to \ud835\ude71\ud835\ude9b\ud835\ude98\ud835\ude8a\ud835\ude8d \ud835\ude82\ud835\ude9d\ud835\ude9b\ud835\ude8e\ud835\ude8e\ud835\ude9d!\n\n61 users joined today!"
+                "Welcome, @The Malzahar, to \ud835\ude71\ud835\ude9b\ud835\ude98\ud835\ude8a\ud835\ude8d \ud835\ude82\ud835\ude9d\ud835\ude9b\ud835\ude8e\ud835\ude8e\ud835\ude9d!\n\n61 users joined today!",
+                "@lakers3peat has leveled up! **(4 \u279c 5)**",
+                "sup fags",
+                "@The Malzahar has leveled up! **(20 \u279c 21)**",
+                "Welcome, @Gameswithlandon, to \ud835\ude71\ud835\ude9b\ud835\ude98\ud835\ude8a\ud835\ude8d \ud835\ude82\ud835\ude9d\ud835\ude9b\ud835\ude8e\ud835\ude8e\ud835\ude9d!\n\n37 users joined today!",
+                "Welcome, @fluerte;;, to \ud835\ude71\ud835\ude9b\ud835\ude98\ud835\ude8a\ud835\ude8d \ud835\ude82\ud835\ude9d\ud835\ude9b\ud835\ude8e\ud835\ude8e\ud835\ude9d!\n\n38 users joined today!",
+                "check this thing our",
+                "Welcome, @J!H\u0335\u034c\u034c\u039b\u22a5, to \ud835\ude71\ud835\ude9b\ud835\ude98\ud835\ude8a\ud835\ude8d \ud835\ude82\ud835\ude9d\ud835\ude9b\ud835\ude8e\ud835\ude8e\ud835\ude9d!\n\n41 users joined today!",
+                "++suggest a channel for people in psychosis to talk to each other",
+                ">weave <a:celebrationegp:869576927646740480>  <a:good_vibes:829876819971801098>",
+                "Just shoving  it in anyone who doesn\u2019t smell",
+                "Welcome, @Pink Fluff, to \ud835\ude71\ud835\ude9b\ud835\ude98\ud835\ude8a\ud835\ude8d \ud835\ude82\ud835\ude9d\ud835\ude9b\ud835\ude8e\ud835\ude8e\ud835\ude9d!\n\n45 users joined today!",
+                "Welcome, @Kxng_kah, to \ud835\ude71\ud835\ude9b\ud835\ude98\ud835\ude8a\ud835\ude8d \ud835\ude82\ud835\ude9d\ud835\ude9b\ud835\ude8e\ud835\ude8e\ud835\ude9d!\n\n46 users joined today!",
+                "@Bearded_stroker_Cums_Agaim has leveled up! **(3 \u279c 4)**",
+                "Welcome, @Girlssendnudes, to \ud835\ude71\ud835\ude9b\ud835\ude98\ud835\ude8a\ud835\ude8d \ud835\ude82\ud835\ude9d\ud835\ude9b\ud835\ude8e\ud835\ude8e\ud835\ude9d!\n\n47 users joined today!",
+                "",
+                "Welcome, @Nerf Herder, to \ud835\ude71\ud835\ude9b\ud835\ude98\ud835\ude8a\ud835\ude8d \ud835\ude82\ud835\ude9d\ud835\ude9b\ud835\ude8e\ud835\ude8e\ud835\ude9d!\n\n48 users joined today!",
+                "spreggin",
+                ">wc @catScat",
+                "{'color': 3447003, 'type': 'rich', 'description': 'This might take a while...\\n5000/5000 messages gathered', 'title': 'Fetching messages from #\ud835\udd4b\ud835\udd59\ud835\udd56-\ud835\udd38\ud835\udd66\ud835\udd65\ud835\udd60\ud83c\udd71\ud835\udd52\ud835\udd59\ud835\udd5f-\ud83c\udfc1'}",
+                "@elzzid-h has leveled up! **(48 \u279c 49)**"
             ],
             "author": [
                 "Tatsu",
@@ -6031,7 +6129,27 @@
                 "Tatsu",
                 "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0",
                 "Xan Cakes",
-                "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0"
+                "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0",
+                "Tatsu",
+                "Ace Ventura Cuck Detective",
+                "Tatsu",
+                "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0",
+                "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0",
+                "mezzothelioma",
+                "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0",
+                "nugSxxxxx",
+                "mezzothelioma",
+                "Xan Cakes",
+                "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0",
+                "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0",
+                "Tatsu",
+                "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0",
+                "skitsy",
+                "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0",
+                "nuit",
+                "nugSxxxxx",
+                "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0",
+                "Tatsu"
             ],
             "id": [
                 172002275412279296,
@@ -6040,7 +6158,27 @@
                 172002275412279296,
                 925872337801322578,
                 561523299138535425,
-                925872337801322578
+                925872337801322578,
+                172002275412279296,
+                582609655788732416,
+                172002275412279296,
+                925872337801322578,
+                925872337801322578,
+                900823931693457428,
+                925872337801322578,
+                170968325872943105,
+                900823931693457428,
+                561523299138535425,
+                925872337801322578,
+                925872337801322578,
+                172002275412279296,
+                925872337801322578,
+                925861970601730129,
+                925872337801322578,
+                711005178286964809,
+                170968325872943105,
+                925872337801322578,
+                172002275412279296
             ],
             "time": [
                 "2022-02-07 16:46:29.713000+00:00",
@@ -6049,7 +6187,27 @@
                 "2022-02-11 23:52:16.949000+00:00",
                 "2022-02-12 00:12:04.534000+00:00",
                 "2022-02-12 00:27:10.617000+00:00",
-                "2022-02-12 00:22:58.391000+00:00"
+                "2022-02-12 00:22:58.391000+00:00",
+                "2022-02-12 11:02:28.550000+00:00",
+                "2022-02-12 16:55:01.451000+00:00",
+                "2022-02-12 17:17:17.003000+00:00",
+                "2022-02-12 17:43:01.406000+00:00",
+                "2022-02-12 17:46:09.126000+00:00",
+                "2022-02-12 18:00:40.363000+00:00",
+                "2022-02-12 18:12:20.051000+00:00",
+                "2022-02-12 18:21:56.426000+00:00",
+                "2022-02-12 19:37:51.905000+00:00",
+                "2022-02-12 19:41:09.117000+00:00",
+                "2022-02-12 20:04:11.356000+00:00",
+                "2022-02-12 20:06:35.309000+00:00",
+                "2022-02-12 20:10:51.649000+00:00",
+                "2022-02-12 20:08:08.130000+00:00",
+                "2022-02-12 20:22:56.953000+00:00",
+                "2022-02-12 20:20:27.839000+00:00",
+                "2022-02-12 20:48:06.728000+00:00",
+                "2022-02-12 20:53:02.349000+00:00",
+                "2022-02-12 20:52:05.775000+00:00",
+                "2022-02-12 21:01:26.276000+00:00"
             ]
         },
         "830588701264183306": {
@@ -6069,6 +6227,118 @@
                 "2022-02-12 00:48:44.495000+00:00",
                 "2022-02-12 00:48:43.999000+00:00"
             ]
+        },
+        "833514788687839252": {
+            "list": [
+                "@catScat I am tired, let me rest. This command will work in (26) secs.",
+                "++suggest Dank memer premium?",
+                "@RequiemOfaFiend has leveled up! **(8 \u279c 9)**",
+                "pls gas jews",
+                "**nugSxxxxx**, please cool down! (**5** seconds left)"
+            ],
+            "author": [
+                "piggy",
+                "Toxicated Psycho Cis",
+                "Tatsu",
+                "Kgb Minister Retart",
+                "Tatsu"
+            ],
+            "id": [
+                681770687614156811,
+                913946676442591232,
+                172002275412279296,
+                933025519690190918,
+                172002275412279296
+            ],
+            "time": [
+                "2022-02-12 16:18:24.725000+00:00",
+                "2022-02-12 17:26:16.094000+00:00",
+                "2022-02-12 20:10:10.041000+00:00",
+                "2022-02-12 20:19:36.649000+00:00",
+                "2022-02-12 20:40:02.586000+00:00"
+            ]
+        },
+        "850433124528816178": {
+            "list": [
+                "@\u2cce\u2c81\u2c9b\u2ca5\u2c81\u2c95\u2c89 \u2c98\u2cd5\u2c95\u2c89 has leveled up! **(40 \u279c 41)**"
+            ],
+            "author": [
+                "Tatsu"
+            ],
+            "id": [
+                172002275412279296
+            ],
+            "time": [
+                "2022-02-12 17:10:34.869000+00:00"
+            ]
+        },
+        "934365614603132998": {
+            "list": [
+                "++suggest A \"Twacked Out\" role and a \"Zooming\" role"
+            ],
+            "author": [
+                "Marack"
+            ],
+            "id": [
+                523319660112773122
+            ],
+            "time": [
+                "2022-02-12 17:34:14.436000+00:00"
+            ]
+        },
+        "831826635509989377": {
+            "list": [
+                "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@372201226085072896>** <:fedora:830478997858025513>'}"
+            ],
+            "author": [
+                "AFK Bot"
+            ],
+            "id": [
+                755588579262201886
+            ],
+            "time": [
+                "2022-02-12 18:41:46.746000+00:00"
+            ]
+        },
+        "829874874242957332": {
+            "list": [
+                "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@900823931693457428>** <:fedora:830478997858025513>'}"
+            ],
+            "author": [
+                "AFK Bot"
+            ],
+            "id": [
+                755588579262201886
+            ],
+            "time": [
+                "2022-02-12 20:06:24.015000+00:00"
+            ]
+        },
+        "927335497272033331": {
+            "list": [
+                "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@691846651282849863>** <:fedora:830478997858025513>'}",
+                "{'color': 0, 'type': 'rich', 'description': '<@!738104141515063358> is currently having a life... - 9 months ago'}",
+                "{'color': 0, 'type': 'rich', 'description': '<@!523319660112773122> is currently having a life... - 9 months ago'}",
+                "{'color': 0, 'type': 'rich', 'description': '<@!170968325872943105> is currently having a life... - 9 months ago'}"
+            ],
+            "author": [
+                "AFK Bot",
+                "AFK Bot",
+                "AFK Bot",
+                "AFK Bot"
+            ],
+            "id": [
+                755588579262201886,
+                755588579262201886,
+                755588579262201886,
+                755588579262201886
+            ],
+            "time": [
+                "2022-02-12 20:18:56.160000+00:00",
+                "2022-02-12 20:21:34.200000+00:00",
+                "2022-02-12 20:22:14.258000+00:00",
+                "2022-02-12 20:59:37.990000+00:00"
+            ]
         }
     },
     "926115595307614249": {
@@ -6080,7 +6350,13 @@
                 "Valid codeblock found!\nTo disable this type `jarvide removeconfig codeblock`",
                 "wait",
                 "Valid codeblock found!\nTo disable this type `jarvide removeconfig codeblock`",
-                "\u00f0\u0178\u017d"
+                "\u00f0\u0178\u017d",
+                "Valid codeblock found!\nTo disable this type `jarvide removeconfig codeblock`",
+                "##aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "{'footer': {'text': 'You can get more of these jokes with j.joke!'}, 'author': {'proxy_icon_url': 'https://images-ext-2.discordapp.net/external/G3uME5OwAFJ0A6ZJcawGGpQYAi0XIAKNWh6b97jT9kA/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/828363172717133874/d7994eda8d7dc99bae2ccd995b5b682d.png', 'name': 'JesterBot', 'icon_url': 'https://cdn.discordapp.com/avatars/828363172717133874/d7994eda8d7dc99bae2ccd995b5b682d.png?size=1024'}, 'fields': [{'value': '\u2502 Your momma is so fat, you need to switch to NTFS to store a picture of her. \u2502', 'name': 'Also here is a joke for you:', 'inline': False}], 'color': 13369344, 'type': 'rich', 'description': '\u2502 My default prefix is: `j.` \u2502\\n    \u2502 My prefix for you is: `j.` \u2502 \\n    \u2502 Type `j.prefix <prefix> [prefix], [prefix], etc` to change the prefix for you! \u2502', 'title': 'Hello dF Ropra'}",
+                "{'footer': {'text': 'Hand value: 7'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/tfFjr-EUXlkAPpFkxcCr31Wl8YjjUfCDidekQ5kt0JE/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/298043305927639041/d43481007d415a84a02119b57245abf0.png', 'name': 'Caeden#7205', 'icon_url': 'https://cdn.discordapp.com/avatars/298043305927639041/d43481007d415a84a02119b57245abf0.png?size=1024'}, 'color': 13369344, 'timestamp': '2022-02-12T17:37:38.057000+00:00', 'type': 'rich', 'description': \"```yaml\\nCaeden's BlackJack\\ngame status: playing======================\\n\\nCaedens hand:\\n-------------\\n4 of diamonds \u2666\ufe0f\\n3 of hearts \u2665\ufe0f\\nHand value: 7\\n\\nBots hand:\\n----------\\nAce of spades \u2660\ufe0f\\n? of spades \u2660\ufe0f\\nHand value: 1 + ?\\n```\", 'title': 'Blackjack'}",
+                "Valid codeblock found!\nTo disable this type `jarvide removeconfig codeblock`",
+                "jew"
             ],
             "author": [
                 "Jarvide",
@@ -6089,7 +6365,13 @@
                 "Jarvide",
                 "Caeden",
                 "Jarvide",
-                "Caeden"
+                "Caeden",
+                "Jarvide",
+                "unmoo",
+                "[j.] JesterBot",
+                "[j.] JesterBot",
+                "Jarvide",
+                "dF Ropra"
             ],
             "id": [
                 926122065973616690,
@@ -6098,7 +6380,13 @@
                 926122065973616690,
                 298043305927639041,
                 926122065973616690,
-                298043305927639041
+                298043305927639041,
+                926122065973616690,
+                749917031502970910,
+                828363172717133874,
+                828363172717133874,
+                926122065973616690,
+                483631842554019841
             ],
             "time": [
                 "2022-02-05 22:08:26.070000+00:00",
@@ -6107,21 +6395,107 @@
                 "2022-02-07 16:53:44.284000+00:00",
                 "2022-02-08 16:46:32.567000+00:00",
                 "2022-02-08 16:46:57.118000+00:00",
-                "2022-02-12 00:34:35.823000+00:00"
+                "2022-02-12 00:34:35.823000+00:00",
+                "2022-02-12 11:10:30.053000+00:00",
+                "2022-02-12 11:12:41.553000+00:00",
+                "2022-02-12 11:26:59.191000+00:00",
+                "2022-02-12 17:37:38.241000+00:00",
+                "2022-02-12 19:55:51.472000+00:00",
+                "2022-02-12 20:55:23.569000+00:00"
             ]
         },
         "926135748451774464": {
             "list": [
-                "{'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/tfFjr-EUXlkAPpFkxcCr31Wl8YjjUfCDidekQ5kt0JE/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/298043305927639041/d43481007d415a84a02119b57245abf0.png', 'name': 'Games', 'icon_url': 'https://cdn.discordapp.com/avatars/298043305927639041/d43481007d415a84a02119b57245abf0.png?size=1024'}, 'fields': [{'value': '- `russianroulette`\\n- `dice`\\n- `rpsfail`\\n- `anagram`', 'name': '\\u200b', 'inline': True}, {'value': '- `blackjack`\\n- `rps`\\n- `guessinggame`\\n- `hangman`', 'name': '\\u200b', 'inline': True}], 'color': 13369344, 'type': 'rich', 'description': 'Play fun games with the bot or with other members, who doesnt love a game of blackjack against an ai?'}"
+                "{'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/tfFjr-EUXlkAPpFkxcCr31Wl8YjjUfCDidekQ5kt0JE/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/298043305927639041/d43481007d415a84a02119b57245abf0.png', 'name': 'Games', 'icon_url': 'https://cdn.discordapp.com/avatars/298043305927639041/d43481007d415a84a02119b57245abf0.png?size=1024'}, 'fields': [{'value': '- `russianroulette`\\n- `dice`\\n- `rpsfail`\\n- `anagram`', 'name': '\\u200b', 'inline': True}, {'value': '- `blackjack`\\n- `rps`\\n- `guessinggame`\\n- `hangman`', 'name': '\\u200b', 'inline': True}], 'color': 13369344, 'type': 'rich', 'description': 'Play fun games with the bot or with other members, who doesnt love a game of blackjack against an ai?'}",
+                "discord.gg/badminton",
+                "discord.gg/bmnton",
+                "discord.gg/dmb"
             ],
             "author": [
-                "[j.] JesterBot"
+                "[j.] JesterBot",
+                "Caeden",
+                "Caeden",
+                "Caeden"
             ],
             "id": [
-                828363172717133874
+                828363172717133874,
+                298043305927639041,
+                298043305927639041,
+                298043305927639041
             ],
             "time": [
-                "2022-02-08 17:03:40.789000+00:00"
+                "2022-02-08 17:03:40.789000+00:00",
+                "2022-02-12 20:16:15.406000+00:00",
+                "2022-02-12 20:16:20.736000+00:00",
+                "2022-02-12 20:16:34.976000+00:00"
+            ]
+        }
+    },
+    "900458404953333808": {
+        "932032146397351967": {
+            "list": [
+                ";clear 100",
+                "{'color': 5763719, 'type': 'rich', 'title': 'Purged 25 messages'}",
+                "*purge 10",
+                "{'color': 5763719, 'type': 'rich', 'title': 'Purged 10 messages'}",
+                "{'color': 5763719, 'type': 'rich', 'title': 'Purged 24 messages'}",
+                "*purge 10",
+                "{'color': 5763719, 'type': 'rich', 'title': 'Purged 10 messages'}",
+                "*purge 10",
+                "{'color': 5763719, 'type': 'rich', 'title': 'Purged 10 messages'}",
+                "*purge 10",
+                "{'color': 5763719, 'type': 'rich', 'title': 'Purged 10 messages'}",
+                "*purge 10",
+                "{'color': 5763719, 'type': 'rich', 'title': 'Purged 10 messages'}",
+                "+clear"
+            ],
+            "author": [
+                "6274",
+                "Tippy",
+                "6274",
+                "Tippy",
+                "Tippy",
+                "6274",
+                "Tippy",
+                "6274",
+                "Tippy",
+                "6274",
+                "Tippy",
+                "6274",
+                "Tippy",
+                "6274"
+            ],
+            "id": [
+                836815485445603369,
+                739936819721797642,
+                836815485445603369,
+                739936819721797642,
+                739936819721797642,
+                836815485445603369,
+                739936819721797642,
+                836815485445603369,
+                739936819721797642,
+                836815485445603369,
+                739936819721797642,
+                836815485445603369,
+                739936819721797642,
+                836815485445603369
+            ],
+            "time": [
+                "2022-02-12 20:27:06.773000+00:00",
+                "2022-02-12 20:27:15.094000+00:00",
+                "2022-02-12 20:27:25.284000+00:00",
+                "2022-02-12 20:27:25.814000+00:00",
+                "2022-02-12 20:27:49.358000+00:00",
+                "2022-02-12 20:27:57.319000+00:00",
+                "2022-02-12 20:27:57.905000+00:00",
+                "2022-02-12 20:28:04.447000+00:00",
+                "2022-02-12 20:28:05.179000+00:00",
+                "2022-02-12 20:28:14.597000+00:00",
+                "2022-02-12 20:28:15.178000+00:00",
+                "2022-02-12 20:28:20.349000+00:00",
+                "2022-02-12 20:28:21.078000+00:00",
+                "2022-02-12 20:28:49.249000+00:00"
             ]
         }
     }

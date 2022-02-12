@@ -27,7 +27,7 @@
         "score": 105
     },
     "help": {
-        "score": 2233
+        "score": 2235
     },
     "jsonfile": {
         "score": 19
@@ -54,7 +54,7 @@
         "score": 26
     },
     "blackjack": {
-        "score": 191
+        "score": 324
     },
     "ping_jesus": {
         "score": 10
@@ -108,7 +108,7 @@
         "score": 4
     },
     "prefix": {
-        "score": 212
+        "score": 214
     },
     "rpsfail": {
         "score": 4
@@ -429,7 +429,7 @@
         "score": 12
     },
     "eval": {
-        "score": 2671
+        "score": 2676
     },
     "pager": {
         "score": 12
@@ -510,7 +510,7 @@
         "score": 6
     },
     "evalreturn": {
-        "score": 473
+        "score": 477
     },
     "evaldir": {
         "score": 358
@@ -927,7 +927,7 @@
         "score": 3
     },
     "charinfo": {
-        "score": 19
+        "score": 21
     },
     "minecraftstats": {
         "score": 6

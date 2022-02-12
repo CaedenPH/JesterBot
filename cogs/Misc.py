@@ -4,11 +4,11 @@ import asyncio
 import datetime
 import zipfile
 import inspect
-import os
 
 from disnake.ext import commands
 from random import choice
 from io import BytesIO
+from core.constants import THUMBS_DOWN, THUMBS_UP
 
 from core.utils import get_colour, send_embed
 from core import JesterBot, Context
@@ -76,12 +76,13 @@ class Misc(commands.Cog):
             await msg.delete()
             await ctx.send(embed=embed)
 
-    @commands.command(aliases=['src'])
+    @commands.command(aliases=["src"])
     async def source(self, ctx, command=None):
         if not command:
             return await ctx.send("https://github.com/caedenph/jesterbot")
         cmd = self.bot.get_command(command)
         if cmd:
+            directory = "doesnt work rn...in progress"
             return await ctx.send(
                 f"https://github.com/caedenph/jesterbot/tree/main/{directory}.py#L{inspect.getsourcelines(inspect.unwrap(cmd.callback).__code__)[1]}"
             )
@@ -102,46 +103,43 @@ class Misc(commands.Cog):
         )
 
     @commands.command(description="Sends information about my account")
-    async def info(self, ctx: Context, member: disnake.Member = ""):
-        embed = disnake.Embed(
-            title="Information", timestamp=ctx.message.created_at, colour=get_colour()
-        )
+    async def info(self, ctx: Context, member: disnake.Member = None):
         if not member:
             member = ctx.author
-        x = []
 
-        username = member.name
-        userip = member.id
-        embed.set_thumbnail(url=member.avatar.url)
-        embed.add_field(name="Name", value=f"{username}")
-        embed.add_field(name="Id", value=f"{userip}")
-        embed.add_field(name="Joined server at", value=f"{member.joined_at}")
-        embed.add_field(name="Joined disnake at", value=f"{member.created_at}")
-        embed.add_field(name="Nitro", value=f"{member.premium_since}")
-        embed.add_field(name="Mobile", value=f"{member.is_on_mobile()}")
-        for k in member.public_flags.all():
-            x.append(f"`{k.name}`")
-        embed.add_field(name="Flags", value=f"{', '.join(x)}")
+        embed = (
+            disnake.Embed(
+                title="Information",
+                timestamp=ctx.message.created_at,
+                colour=get_colour(),
+            )
+            .set_thumbnail(url=member.avatar.url)
+            .add_field(name="Name", value=f"{member.name}")
+            .add_field(name="Id", value=f"{member.id}")
+            .add_field(name="Joined server at", value=f"{member.joined_at}")
+            .add_field(name="Joined disnake at", value=f"{member.created_at}")
+            .add_field(name="Nitro", value=f"{member.premium_since}")
+            .add_field(name="Mobile", value=f"{member.is_on_mobile()}")
+            .add_field(
+                name="Flags",
+                value=f"{', '.join(f'`{k.name}`' for k in member.public_flags.all())}",
+            )
+        )
 
         await ctx.send(embed=embed)
 
     @commands.command()
     async def channel(self, ctx: Context):
+        embed = disnake.Embed(title="Channel info", colour=get_colour())
+        embed.add_field(name="Name", value=f"{ctx.channel.name}", inline=False)
+        embed.add_field(name="Id", value=f"{ctx.channel.id}", inline=False)
 
-        channelname = ctx.channel.name
-        channelid = ctx.channel.id
-
-        servername = ctx.guild.name
-        embed = disnake.Embed(title="Your info", colour=get_colour())
-        embed.add_field(name="Name", value=f"{channelname}", inline=False)
-        embed.add_field(name="Id", value=f"{channelid}", inline=False)
         await ctx.send(embed=embed)
 
     @commands.command(
         description="Make a secure password with a length that you can choose"
     )
     async def password(self, ctx: Context, lengthofpassword: int = 12):
-
         my_list = ["!", "?", "#"]
         for c in range(97, 123):
             my_list.append(chr(c))
@@ -160,7 +158,7 @@ class Misc(commands.Cog):
     async def stats(self, ctx: Context):
 
         members, bots = [m for m in ctx.guild.members if not m.bot], [
-            m for m in ctx.guild.members if not m.bot
+            m for m in ctx.guild.members if m.bot
         ]
         embed = disnake.Embed(title="Stats", colour=get_colour())
         embed.add_field(
@@ -170,7 +168,7 @@ class Misc(commands.Cog):
     Voice Channels: {len(ctx.guild.voice_channels)}
     Total Channels: {len(ctx.guild.text_channels) + len(ctx.guild.voice_channels)}
     Members (bots excluded): {len(members)}
-    Bots: {len([m for m in ctx.guild.members if m.bot])}
+    Bots: {len(bots)}
     Roles in the server: {len(ctx.guild.roles)}
         """,
         )
@@ -252,7 +250,6 @@ class Misc(commands.Cog):
             data = json.load(k)
 
             if not server:
-
                 embed = disnake.Embed(
                     description=f"**{data[str(ctx.guild.id)]['Score']}** messages since the {when}",
                     colour=get_colour(),
@@ -323,8 +320,8 @@ class Misc(commands.Cog):
                         and m.channel == ctx.channel,
                     )
                     msg = await ctx.send(embed=embed)
-                    await msg.add_reaction("👍")
-                    await msg.add_reaction("👎")
+                    await msg.add_reaction(THUMBS_UP)
+                    await msg.add_reaction(THUMBS_DOWN)
 
                 else:
                     embed3 = disnake.Embed(title="Goodbye", colour=get_colour())
@@ -377,8 +374,8 @@ class Misc(commands.Cog):
                         and m.channel == ctx.channel,
                     )
                     msg = await ctx.send(embed=embed)
-                    await msg.add_reaction("👍")
-                    await msg.add_reaction("👎")
+                    await msg.add_reaction(THUMBS_UP)
+                    await msg.add_reaction(THUMBS_DOWN)
         except asyncio.TimeoutError:
             embed = disnake.Embed(
                 title="Time ran out, restart the ticket", colour=get_colour()

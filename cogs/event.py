@@ -4,6 +4,7 @@ import asyncio
 
 from disnake.ext import commands
 from random import choice
+from core.constants import THUMBS_DOWN, THUMBS_UP
 
 from core.utils import get_colour
 from core.utils.comedy import joke
@@ -301,8 +302,8 @@ class Event(commands.Cog):
             msg12 = ""
             num = 1
 
-            await message.add_reaction("👍")
-            await message.add_reaction("👎")
+            await message.add_reaction(THUMBS_UP)
+            await message.add_reaction(THUMBS_DOWN)
 
             def check(e, u):
                 return u == message.author and e.message.id == message.id
@@ -312,13 +313,15 @@ class Event(commands.Cog):
                 emoji, user = await self.bot.wait_for(
                     "reaction_add", timeout=30.0, check=check
                 )
-                while emoji.emoji not in ["👎"]:
+                while emoji.emoji not in [THUMBS_DOWN]:
                     async with message.channel.typing():
                         embed = await create_embed(message, self.bot)
 
                     msg12 = await message.channel.send(embed=embed)
                     num = 2
-                    await message.remove_reaction(member=message.author, emoji="👍")
+                    await message.remove_reaction(
+                        member=message.author, emoji=THUMBS_UP
+                    )
                     emoji, user = await self.bot.wait_for(
                         "reaction_add", timeout=30.0, check=check
                     )

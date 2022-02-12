@@ -5,6 +5,7 @@ import asyncio
 import shutil
 
 from disnake.ext import commands
+from core.constants import THUMBS_UP
 from core.utils import get_colour, update_json, send_embed
 from core import Context
 
@@ -652,7 +653,7 @@ class Staff(commands.Cog):
                 colour=get_colour(),
             )
         )
-        await m.add_reaction("👍")
+        await m.add_reaction(THUMBS_UP)
         reaction, user = await self.bot.wait_for(
             "reaction_add", check=lambda r, u: u == ctx.author
         )

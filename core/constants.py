@@ -1,7 +1,14 @@
-from os import environ
-from dotenv import load_dotenv
+# emojis
 
-load_dotenv()
+THUMBS_UP = "👍"
+THUMBS_DOWN = "👎"
+CONFETTI = "🎊"
+CLOSED_LOCK = "🔐"
+BOOM = "💥"
+HANDSHAKE = "🤝"
+
+
+# custom emojis
 
 LOCATION_EMOJIS = {
     "fastbackwards": "<:fast_forward_left:870781340692402226>",
@@ -36,7 +43,6 @@ COG_EMOJIS = {
     "Docs": 925222917946605629,
 }
 
-
 CLOSE = "<:Cross:863313854069997578>"
 HOME = "<:Arrow:863313854040506379>"
 LINK = "<:links:870781340700782612>"
@@ -48,6 +54,37 @@ _E = "<:E_:863313854150606848>"
 _S = "<:S:863313855061164062>"
 _T = "<:T:863313855399329812>"
 _R = "<:R_:863313855119360022>"
+
+
+# environ
+
+from os import environ
+from dotenv import load_dotenv
+
+load_dotenv()
+
+BOT_TOKEN = environ["BOT_TOKEN"]
+WEATHER_KEY = environ["WEATHER_KEY"]
+POLICE_KEY = environ["POLICE_KEY"]
+COORDS_KEY = environ["COORDS_KEY"]
+CHATBOT_KEY = environ["CHATBOT_KEY"]
+RAPID_API_KEY = environ["RAPID_API_KEY"]
+
+
+# game
+
+CARD_SUITS = {
+    "hearts": "♥️",
+    "diamonds": "♦️",
+    "clubs": "♣️",
+    "spades": "♠️",
+}
+BLACKJACK_WELCOME = """```yaml
+Welcome to the blackjack game. 
+==============================
+
+It is recommended that you research the rules to familiarize yourself how the game is played. ```
+"""
 
 HANGMAN = [
     "",
@@ -117,24 +154,3 @@ HANGMAN = [
       |
 =========""",
 ][::-1]
-
-BOT_TOKEN = environ["BOT_TOKEN"]
-WEATHER_KEY = environ["WEATHER_KEY"]
-POLICE_KEY = environ["POLICE_KEY"]
-COORDS_KEY = environ["COORDS_KEY"]
-CHATBOT_KEY = environ["CHATBOT_KEY"]
-RAPID_API_KEY = environ["RAPID_API_KEY"]
-
-CARD_SUITS = {
-  'hearts': '♥️',
-  'diamonds': '♦️',
-  'clubs': '♣️',
-  'spades': '♠️',
-}
-BLACKJACK_WELCOME = """```yaml
-Welcome to the blackjack game. 
-==============================
-
-It is recommended that you research the rules to familiarize yourself how the game is played. 
-Stay safe and happy betting!```
-""",

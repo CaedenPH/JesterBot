@@ -12,14 +12,13 @@ from core.constants import HANGMAN, BLACKJACK_WELCOME
 from .blackjack import BlackJack
 
 
-
 class Games(Cog):
     def __init__(self, bot):
         self.bot = bot
 
     def message_content(self, guesses_left, guesses, word):
         return f"```yaml\n{HANGMAN[guesses_left]}````{' '.join([k if k in guesses else '_' for k in word])}`\nYou have {guesses_left} guesses left"
-    
+
     @command(
         aliases=["rr"],
         description="You play russian roulette with yourself - 1 in 6 chance you will die...Be warned!",
@@ -34,16 +33,14 @@ class Games(Cog):
     async def blackjack(self, ctx: Context):
         embed = disnake.Embed(
             title="Blackjack",
-            description=BLACKJACK_WELCOME, 
-            timestamp=ctx.message.created_at
-        ).set_author(
-            name=ctx.author.name,
-            icon_url=ctx.author.avatar.url
-        )
+            description=BLACKJACK_WELCOME,
+            timestamp=ctx.message.created_at,
+            colour=get_colour(),
+        ).set_author(name=ctx.author.name, icon_url=ctx.author.avatar.url)
         view = BlackJack(ctx)
-        view.bot_message = await ctx.send(
+        view.bot_message = await ctx.reply(
             embed=embed,
-            view=view
+            view=view,
         )
 
     @command(
@@ -59,16 +56,9 @@ class Games(Cog):
     )
     async def rps(self, ctx: Context, roll: str):
         moves = {
-            'rock': {
-                'scissors': 'won', 'paper': 'lost'
-                },
-            'scissors': {
-                'paper': 'won', 'rock': 'lost'
-                }
-            ,
-            'paper': {
-                'rock': 'won', 'scissors': 'lost'
-                }
+            "rock": {"scissors": "won", "paper": "lost"},
+            "scissors": {"paper": "won", "rock": "lost"},
+            "paper": {"rock": "won", "scissors": "lost"},
         }
 
         if roll not in moves:
@@ -78,9 +68,11 @@ class Games(Cog):
 
         computer_choice = choice(list(moves.keys()))
         await send_embed(
-            ctx, "Rock paper scissors", f"You **{moves[roll][computer_choice] if roll != computer_choice else 'drew'}** against the bot! You chose {roll} and the bot chose {computer_choice}"
+            ctx,
+            "Rock paper scissors",
+            f"You **{moves[roll][computer_choice] if roll != computer_choice else 'drew'}** against the bot! You chose {roll} and the bot chose {computer_choice}",
         )
-        
+
     @command(
         aliases=["rpsbait", "rpsbaits", "RPSB", "RockPaperScissorsBait"],
         description="Emits a fake rock paper scissors game with a bot",

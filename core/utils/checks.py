@@ -4,6 +4,7 @@ import json
 
 from disnake import Message
 from disnake.ext.commands import Bot, Context
+from core.constants import THUMBS_DOWN, THUMBS_UP
 
 from core.utils.utils import send_embed, get_colour, update_json
 from core.utils.comedy import fact, quote, joke, pickup
@@ -48,9 +49,10 @@ async def suggest(bot: Bot, message: Message) -> None:
         embed.add_field(name=f"**{name[5]}**", value=data[b], inline=False)
 
     msg = await message.channel.send(embed=embed)
-    await msg.add_reaction("\U0001f44d")
-    await msg.add_reaction("\U0001f44e")
+    await msg.add_reaction(THUMBS_UP)
+    await msg.add_reaction(THUMBS_DOWN)
     await message.delete()
+
 
 async def run_check(bot: Bot, ctx: Context) -> bool:
     if bot.hiber and ctx.command.name not in ["hiber", "close"]:

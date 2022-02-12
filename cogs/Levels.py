@@ -5,6 +5,7 @@ import io
 
 from PIL import Image, ImageDraw, ImageFont
 from disnake.ext import commands
+from core.constants import THUMBS_UP
 
 from core.utils.utils import get_colour
 
@@ -263,7 +264,6 @@ class Levels(commands.Cog):
 
     @commands.command(aliases=["conf"])
     async def levelsconfig(self, ctx: commands.Context):
-
         cursor = await self.bot.db.cursor()
         await cursor.execute("Select * from config where guild_id = ?", (ctx.guild.id,))
 
@@ -290,7 +290,7 @@ class Levels(commands.Cog):
                     "message", check=lambda m: m.author == ctx.author
                 )
 
-            await channel_msg.add_reaction("\U0001f44d")
+            await channel_msg.add_reaction(THUMBS_UP)
             await ctx.send(
                 "Would you like the bot to ping after every rankup message? Type No to not ping on rankup, and Yes to ping."
             )
@@ -306,7 +306,7 @@ class Levels(commands.Cog):
                     "message", check=lambda m: m.author == ctx.author
                 )
 
-            await ping.add_reaction("\U0001f44d")
+            await ping.add_reaction(THUMBS_UP)
 
             result = (ctx.guild.id, channel_msg.raw_channel_mentions[0], ping.content)
 
