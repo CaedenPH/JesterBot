@@ -75,16 +75,16 @@ class Misc(commands.Cog):
             )
             embed.description += f"**Channel health**: `{healthiness}`\n"
             await msg.delete()
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
     @commands.command(aliases=["src"])
     async def source(self, ctx, command=None):
         if not command:
-            return await ctx.send("https://github.com/caedenph/jesterbot")
+            return await ctx.reply("https://github.com/caedenph/jesterbot")
         cmd = self.bot.get_command(command)
         if cmd:
             source = inspect.unwrap(cmd.callback).__code__
-            return await ctx.send(
+            return await ctx.reply(
                 f"https://github.com/caedenph/jesterbot/tree/main/{''.join(inspect.getfile(source).split('jesterbot/')[1])}#L{inspect.getsourcelines(source)[1]}"
             )
         await ctx.em("No such command!")
@@ -127,7 +127,7 @@ class Misc(commands.Cog):
             )
         )
 
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command()
     async def channel(self, ctx: Context):
@@ -135,7 +135,7 @@ class Misc(commands.Cog):
         embed.add_field(name="Name", value=f"{ctx.channel.name}", inline=False)
         embed.add_field(name="Id", value=f"{ctx.channel.id}", inline=False)
 
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(
         description="Make a secure password with a length that you can choose"
@@ -173,7 +173,7 @@ class Misc(commands.Cog):
     Roles in the server: {len(ctx.guild.roles)}
         """,
         )
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command()
     @commands.cooldown(1, 180, commands.BucketType.user)
@@ -199,7 +199,7 @@ class Misc(commands.Cog):
         ).set_footer(
             text="This process may take a while because it is gathering all data from the past week while getting ratelimited"
         )
-        m = await ctx.send(embed=embed)
+        m = await ctx.reply(embed=embed)
         async with ctx.typing():
             x = datetime.datetime.utcnow() - datetime.timedelta(days=days)
             k = await channel.history(after=x, limit=None).flatten()
@@ -231,7 +231,7 @@ class Misc(commands.Cog):
         embed = disnake.Embed(title="Guild icon", colour=get_colour())
         embed.set_image(url=ctx.guild.icon_url)
 
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(
         aliases=["messages"],
@@ -260,7 +260,7 @@ class Misc(commands.Cog):
                     description=f"**{data[server]['Score']}** messages since {when}",
                     colour=get_colour(),
                 )
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
     @commands.command(
         aliases=["s", "Sugg", "Sug", "Suggester"],
@@ -278,7 +278,7 @@ class Misc(commands.Cog):
                 title=f"What is the title of your suggestion? Type end at any point to stop and type title to remove the description",
                 colour=get_colour(),
             )
-            x = await ctx.send(embed=embed1)
+            x = await ctx.reply(embed=embed1)
             received_msg = str(
                 (
                     await self.bot.wait_for(
@@ -295,7 +295,7 @@ class Misc(commands.Cog):
                     title=f"What is the description of your suggestion? Type end at any point to stop",
                     colour=get_colour(),
                 )
-                y = await ctx.send(embed=embed2)
+                y = await ctx.reply(embed=embed2)
                 received_msg1 = str(
                     (
                         await self.bot.wait_for(
@@ -320,7 +320,7 @@ class Misc(commands.Cog):
                         check=lambda m: m.author == ctx.author
                         and m.channel == ctx.channel,
                     )
-                    msg = await ctx.send(embed=embed)
+                    msg = await ctx.reply(embed=embed)
                     await msg.add_reaction(THUMBS_UP)
                     await msg.add_reaction(THUMBS_DOWN)
 
@@ -334,7 +334,7 @@ class Misc(commands.Cog):
                         check=lambda m: m.author == ctx.author
                         and m.channel == ctx.channel,
                     )
-                    msg = await ctx.send(embed=embed3)
+                    msg = await ctx.reply(embed=embed3)
 
             elif received_msg == "end":
                 await x.delete()
@@ -343,13 +343,13 @@ class Misc(commands.Cog):
                     check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
                 )
                 embed3 = disnake.Embed(title="Goodbye", colour=get_colour())
-                await ctx.send(embed=embed3)
+                await ctx.reply(embed=embed3)
             else:
                 embed2 = disnake.Embed(
                     title=f"What is the Title of your suggestion? Type end at any point to stop",
                     colour=get_colour(),
                 )
-                y = await ctx.send(embed=embed2)
+                y = await ctx.reply(embed=embed2)
                 received_msg1 = str(
                     (
                         await self.bot.wait_for(
@@ -374,14 +374,14 @@ class Misc(commands.Cog):
                         check=lambda m: m.author == ctx.author
                         and m.channel == ctx.channel,
                     )
-                    msg = await ctx.send(embed=embed)
+                    msg = await ctx.reply(embed=embed)
                     await msg.add_reaction(THUMBS_UP)
                     await msg.add_reaction(THUMBS_DOWN)
         except asyncio.TimeoutError:
             embed = disnake.Embed(
                 title="Time ran out, restart the ticket", colour=get_colour()
             )
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
     @commands.command()
     async def rules(self, ctx: Context):
@@ -413,7 +413,7 @@ class Misc(commands.Cog):
         embed.set_image(
             url="https://i.pinimg.com/originals/09/9a/57/099a57d2fe430ea56cdc5ed4979ff909.gif"
         )
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command()
     async def booster(self, ctx: Context):
@@ -445,7 +445,7 @@ class Misc(commands.Cog):
         embed.set_image(
             url="https://support.discord.com/hc/article_attachments/360029033111/nitro_tank_gif.gif"
         )
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command()
     async def nitro(self, ctx: Context):
@@ -477,7 +477,7 @@ class Misc(commands.Cog):
         embed.set_thumbnail(
             url="https://cdn.disnakeapp.com/attachments/803430815714902060/852926789981437982/image0.png"
         )
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command()
     async def zipemojis(self, ctx):
@@ -504,7 +504,7 @@ class Misc(commands.Cog):
         except:
             pass
         finally:
-            await ctx.send(
+            await ctx.reply(
                 f"{ctx.author.mention} Sorry to keep you waiting, here you go:",
                 file=disnake.File(fp=buf, filename="emojis.zip"),
             )

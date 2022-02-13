@@ -10,6 +10,7 @@ from core import Context
 from core.constants import ZEN_OF_PYTHON
 from . import Paginator, RTFM, Colours
 
+
 class Docs(cog.Docs, RTFM):
     BASE_PYPI_URL = "https://pypi.org"
     URL = f"{BASE_PYPI_URL}/pypi/{{package}}/json"
@@ -78,7 +79,7 @@ class Docs(cog.Docs, RTFM):
                 embed.description = (
                     "There was an error when fetching your PyPi package."
                 )
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(name="tag", aliases=["tags"])
     async def _tag(self, ctx: Context, tag: str = None) -> None:
@@ -90,7 +91,7 @@ class Docs(cog.Docs, RTFM):
             return await self.tag_list(ctx)
 
         embed = self.get_tag_embed(ctx.author, tag)
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(aliases=["tags_list"])
     async def tag_list(self, ctx: Context) -> None:
@@ -108,18 +109,18 @@ class Docs(cog.Docs, RTFM):
         )
 
         if not search:
-            return await ctx.send(embed=embed)
+            return await ctx.reply(embed=embed)
 
         lines = ZEN_OF_PYTHON.splitlines()
         if len(lines) > search:
-            return await ctx.send(
+            return await ctx.reply(
                 embed=disnake.Embed(
                     title=f"The Zen of Python - Line {search}",
                     description=lines[search],
                 )
             )
 
-        await ctx.send(
+        await ctx.reply(
             embed=embed.set_footer(text=f"lines {search} is not in the zen lines!")
         )
 

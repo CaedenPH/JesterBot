@@ -38,7 +38,7 @@ class Staff(commands.Cog):
                 embed.description += f"**[stdout]**\n{output.decode()}\n"
             if error:
                 embed.description += f"**[stderr]**\n{error.decode()}\n"
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(hidden=True)
     async def pull(self, ctx):
@@ -60,7 +60,7 @@ class Staff(commands.Cog):
                 embed.description += f"**[stdout]**\n{output.decode()}\n"
             if error:
                 embed.description += f"**[stderr]**\n{error.decode()}\n"
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(hidden=True)
     async def load(self, ctx: Context, extension):
@@ -69,12 +69,12 @@ class Staff(commands.Cog):
         embed.add_field(
             name="Load Extension", value=f"Loaded cog: ``{extension}`` successfully"
         )
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(hidden=True)
     async def wcog(self, ctx: Context, n):
         cmd = self.bot.get_command(n)
-        await ctx.send(cmd.cog.qualified_name)
+        await ctx.reply(cmd.cog.qualified_name)
 
     @commands.command(hidden=True)
     async def unload(self, ctx: Context, extension):
@@ -83,7 +83,7 @@ class Staff(commands.Cog):
         embed.add_field(
             name="Unload Extension", value=f"Unloaded cog: ``{extension}`` successfully"
         )
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(aliases=["r"], hidden=True)
     async def reload(self, ctx: Context, extension=""):
@@ -97,7 +97,7 @@ class Staff(commands.Cog):
                 name="Reload Extension", value=f"Reloaded cogs successfully"
             )
             print("\n\n\n\nReloaded\n--------------------------------")
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
         else:
 
             self.bot.reload_extension(f"cogs.{extension}")
@@ -106,7 +106,7 @@ class Staff(commands.Cog):
                 name="Reload Extension",
                 value=f"Reloaded cog: ``{extension}`` successfully",
             )
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
     @commands.command(hidden=True)
     async def abort(self, ctx: Context):
@@ -159,7 +159,7 @@ class Staff(commands.Cog):
     async def close(self, ctx: Context):
 
         embed = disnake.Embed(title=f"Goodbye", colour=get_colour())
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
         await self.bot.close()
 
@@ -199,7 +199,7 @@ class Staff(commands.Cog):
 
         try:
             embed = disnake.Embed(title="Version?")
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
             ver = await self.bot.wait_for(
                 "message",
                 timeout=60.0,
@@ -217,7 +217,7 @@ class Staff(commands.Cog):
                         k.truncate(0)  # clear previous content
                         k.write(json.dumps(loaded1, indent=4))  # write to file
             embed = disnake.Embed(title="Bug fixes")
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
             y = str(
                 (
                     await self.bot.wait_for(
@@ -230,7 +230,7 @@ class Staff(commands.Cog):
             ).lower()
             while y not in ["apply", "q"]:
                 embed1 = disnake.Embed(title="Bug fixes")
-                await ctx.send(embed=embed1)
+                await ctx.reply(embed=embed1)
 
                 with open("./dicts/Updates.json", "r+") as k:
                     loaded1 = json.load(k)
@@ -255,7 +255,7 @@ class Staff(commands.Cog):
                 ).lower()
             else:
                 embed2 = disnake.Embed(title="New commands")
-                await ctx.send(embed=embed2)
+                await ctx.reply(embed=embed2)
                 z = str(
                     (
                         await self.bot.wait_for(
@@ -268,7 +268,7 @@ class Staff(commands.Cog):
                 ).lower()
                 while z not in ["apply", "q"]:
                     embed3 = disnake.Embed(title="New commands")
-                    await ctx.send(embed=embed3)
+                    await ctx.reply(embed=embed3)
 
                     with open("./dicts/Updates.json", "r+") as k:
                         loaded1 = json.load(k)
@@ -294,7 +294,7 @@ class Staff(commands.Cog):
                     ).lower()
                 else:
                     embed = disnake.Embed(title="Other")
-                    await ctx.send(embed=embed)
+                    await ctx.reply(embed=embed)
                     a = str(
                         (
                             await self.bot.wait_for(
@@ -307,7 +307,7 @@ class Staff(commands.Cog):
                     ).lower()
                     while a not in ["apply", "q"]:
                         embed3 = disnake.Embed(title="Other")
-                        await ctx.send(embed=embed3)
+                        await ctx.reply(embed=embed3)
 
                         with open("./dicts/Updates.json", "r+") as k:
                             loaded1 = json.load(k)
@@ -334,13 +334,13 @@ class Staff(commands.Cog):
                         ).lower()
                     else:
                         embed4 = disnake.Embed(title="Applied")
-                        await ctx.send(embed=embed4)
+                        await ctx.reply(embed=embed4)
 
         except asyncio.TimeoutError:
             embed = disnake.Embed(
                 title="Time ran out, restart the ticket", colour=get_colour()
             )
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
     @commands.command(hidden=True)
     async def newver(self, ctx: Context, *, Destroy=""):
@@ -363,7 +363,7 @@ class Staff(commands.Cog):
                         k.truncate(0)  # clear previous content
                         k.write(json.dumps(loaded1, indent=4))  # write to file
                         embed4 = disnake.Embed(title="Applied")
-                        await ctx.send(embed=embed4)
+                        await ctx.reply(embed=embed4)
         else:
             with open("./dicts/Updates.json", "r+") as k:
                 loaded1 = json.load(k)
@@ -377,18 +377,18 @@ class Staff(commands.Cog):
                         k.truncate(0)  # clear previous content
                         k.write(json.dumps(loaded1, indent=4))  # write to file
                         embed3 = disnake.Embed(title="Applied")
-                        await ctx.send(embed=embed3)
+                        await ctx.reply(embed=embed3)
 
     @commands.command(hidden=True)
     async def balded(self, ctx: Context):
 
         with open("./dicts/Bal.json", "r+") as k:
             data = json.load(k)
-            await ctx.send(data)
+            await ctx.reply(data)
             for key in data:
 
                 if "Bal" in data[key]:
-                    await ctx.send(key)
+                    await ctx.reply(key)
 
                     x = self.bot.get_user(int(key))
                     if not x:
@@ -398,7 +398,7 @@ class Staff(commands.Cog):
                         data[key]["Name"] = x.name
 
                         update_json(k, data)
-                        await ctx.send(data[key]["Name"])
+                        await ctx.reply(data[key]["Name"])
                 else:
                     pass
 
@@ -407,11 +407,11 @@ class Staff(commands.Cog):
 
         with open("./dicts/Bal.json", "r+") as k:
             data = json.load(k)
-            await ctx.send(data)
+            await ctx.reply(data)
             for key in data:
 
                 if "Bal" in data[key]:
-                    await ctx.send(key)
+                    await ctx.reply(key)
 
                     x = self.bot.get_user(int(key))
                     if not x:
@@ -421,7 +421,7 @@ class Staff(commands.Cog):
                         data[key]["Bal"] += bal
 
                         update_json(k, data)
-                        await ctx.send(data[key]["Bal"])
+                        await ctx.reply(data[key]["Bal"])
                 else:
                     pass
 
@@ -432,12 +432,12 @@ class Staff(commands.Cog):
 
             data = json.load(k)
 
-            await ctx.send(data)
+            await ctx.reply(data)
 
             for key in data:
-                await ctx.send(key)
-                await ctx.send(data[dicte])
-                await ctx.send(dicte)
+                await ctx.reply(key)
+                await ctx.reply(data[dicte])
+                await ctx.reply(dicte)
                 if dicte == key:
                     del data[dicte]
                     update_json(k, data)
@@ -463,7 +463,7 @@ class Staff(commands.Cog):
             embed = disnake.Embed(
                 title="Files", description=", ".join(x), colour=get_colour()
             )
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
         else:
             if not data1:
@@ -487,7 +487,7 @@ class Staff(commands.Cog):
                         else:
                             y.append(f"`{key}`")
                     embed = disnake.Embed(description=", ".join(y))
-                    await ctx.send(embed=embed)
+                    await ctx.reply(embed=embed)
 
             else:
                 with open(f"./dicts/{file1}.json", "r+") as k:
@@ -495,11 +495,11 @@ class Staff(commands.Cog):
                     if data1 in data:
                         if not data2:
                             embed = disnake.Embed(description=data[data1])
-                            await ctx.send(embed=embed)
+                            await ctx.reply(embed=embed)
 
                         else:
                             data[data1][data2] = add
-                            await ctx.send("yessir")
+                            await ctx.reply("yessir")
                             update_json(k, data)
 
                     else:
@@ -507,7 +507,7 @@ class Staff(commands.Cog):
                         for key in data:
                             y.append(f"`{key}`")
                         embed = disnake.Embed(description=", ".join(y))
-                        await ctx.send(embed=embed)
+                        await ctx.reply(embed=embed)
 
     @commands.command(hidden=True, aliases=["save", "backup"])
     async def savebackup(self, ctx: Context):
@@ -539,7 +539,7 @@ class Staff(commands.Cog):
 
     @commands.command(hidden=True)
     async def file(self, ctx: Context, file):
-        await ctx.send(file=disnake.File(f"./dicts/{file}"))
+        await ctx.reply(file=disnake.File(f"./dicts/{file}"))
 
     @commands.command(hidden=True)
     async def thecog(self, ctx: Context):
@@ -547,7 +547,7 @@ class Staff(commands.Cog):
 
             cog = self.bot.get_cog(thecog)
 
-            await ctx.send(thecog)
+            await ctx.reply(thecog)
 
     @commands.command(hidden=True)
     async def formathelp(self, ctx: Context):
@@ -557,10 +557,10 @@ class Staff(commands.Cog):
         with open("./dicts/Help.json", "r+") as K:
             data = json.load(K)
             for key in data:
-                await ctx.send(key)
+                await ctx.reply(key)
 
                 y = data[key]["Cmds"].split(", ")
-                await ctx.send(y)
+                await ctx.reply(y)
 
                 for t in y:
                     xy.append(f"`{t}`")
@@ -568,12 +568,12 @@ class Staff(commands.Cog):
                     x += 1
                     if x == len(y):
                         data[key]["Cmds"] = ", ".join(xy)
-                        await ctx.send(xy)
+                        await ctx.reply(xy)
                         x = 0
                         xy = []
 
                         update_json(K, data)
-            await ctx.send("done")
+            await ctx.reply("done")
 
     @commands.command(hidden=True)
     async def t(self, ctx: Context, d, t=""):
@@ -641,7 +641,7 @@ class Staff(commands.Cog):
             data[errornum]
         except:
             return await send_embed(ctx, "", "Out of range")
-        m = await ctx.send(
+        m = await ctx.reply(
             embed=disnake.Embed(
                 title="Error",
                 description=f"""

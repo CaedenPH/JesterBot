@@ -35,7 +35,7 @@ class Config(commands.Cog):
                 }
                 update_json(f, data)
                 embed = disnake.Embed(title="Added!", colour=get_colour())
-                return await ctx.send(embed=embed)
+                return await ctx.reply(embed=embed)
 
             data[str(ctx.guild.id)] = {
                 "message": message,
@@ -47,7 +47,7 @@ class Config(commands.Cog):
 
             update_json(f, data)
             embed = disnake.Embed(title="Added!", colour=get_colour())
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
     @commands.command(aliases=["channelconfig"])
     async def config(self, ctx: Context):
@@ -60,7 +60,7 @@ class Config(commands.Cog):
             embed = disnake.Embed(
                 title="Config channels", description=a, colour=get_colour()
             )
-            msg = await ctx.send(embed=embed)
+            msg = await ctx.reply(embed=embed)
 
             for e in data["emojis"]:
 
@@ -236,7 +236,7 @@ class Config(commands.Cog):
                 data[str(ctx.guild.id)]["Welcome"] = False
                 update_json(f, data)
                 embed = disnake.Embed(title="Re`moved!", colour=get_colour())
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed)
 
     @has_permissions(manage_channels=True)
     @commands.command(
@@ -256,7 +256,7 @@ class Config(commands.Cog):
                     pass
                 else:
                     embed = disnake.Embed(title="Applied", colour=get_colour())
-                    await ctx.send(embed=embed)
+                    await ctx.reply(embed=embed)
                 await channel.purge(limit=10000)
                 embed1 = disnake.Embed(
                     title="Suggest",
@@ -275,10 +275,10 @@ class Config(commands.Cog):
                     data[str(channel.id)]["Yes"] = True
                     update_json(k, data)
                     embed = disnake.Embed(title="Applied", colour=get_colour())
-                    await ctx.send(embed=embed)
+                    await ctx.reply(embed=embed)
                 else:
                     embed = disnake.Embed(title="Already applied", colour=get_colour())
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed)
 
     @commands.command(
         aliases=["verify"],
@@ -297,7 +297,7 @@ class Config(commands.Cog):
             description="While this command can help your server by adding a verification, it can also add roles and channels you may not like the look of. To get more information type `j.help verifychannel`. To proceed type y",
             colour=get_colour(),
         )
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
         received_msg = str(
             (
                 await self.bot.wait_for(
@@ -310,7 +310,7 @@ class Config(commands.Cog):
         if received_msg != "y":
 
             embed = disnake.Embed(title="Goodbye!", colour=get_colour())
-            return await ctx.send(embed=embed)
+            return await ctx.reply(embed=embed)
 
         with open("./dicts/VerifyChannel.json") as k:
             data = json.load(k)
@@ -320,7 +320,7 @@ class Config(commands.Cog):
                     if data[key]["Yes"]:
                         if data[key]["Guild"] == ctx.guild.id:
 
-                            return await ctx.send("There is already a verify here!")
+                            return await ctx.reply("There is already a verify here!")
         if not channel:
             channel = await ctx.guild.create_text_channel(name="⚘ verify ⚘")
         with open("./dicts/VerifyChannel.json", "r+") as k:
@@ -427,7 +427,7 @@ class Config(commands.Cog):
             x = await channel.send(embed=embed1)
             await x.pin()
             embed = disnake.Embed(title=f"Applied!")
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
             await channel.purge(limit=1)
 
     @commands.command(
@@ -443,7 +443,7 @@ class Config(commands.Cog):
                     del data[key]
                     update_json(k, data)
                     embed = disnake.Embed(title=f"Removed!", colour=get_colour())
-                    return await ctx.send(embed=embed)
+                    return await ctx.reply(embed=embed)
 
             await send_embed(ctx, "There was never a verify!")
 

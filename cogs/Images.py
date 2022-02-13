@@ -65,7 +65,7 @@ class Images(commands.Cog):
         enhancer = PIL.ImageEnhance.Sharpness(x[0])
         enhancer.enhance(sharpness)
         enhancer.image.save(x[1])
-        await ctx.send(file=disnake.File(x[1]))
+        await ctx.reply(file=disnake.File(x[1]))
 
     @commands.command()
     async def enhance(self, ctx, factor: float, member: disnake.Member = None):
@@ -73,7 +73,7 @@ class Images(commands.Cog):
         enhancer = PIL.ImageEnhance._Enhance()
         enhancer.enhance(factor)
         enhancer.image.save(x[1])
-        await ctx.send(file=disnake.File(x[1]))
+        await ctx.reply(file=disnake.File(x[1]))
 
     @commands.command()
     async def contrast(self, ctx, factor: float, member: disnake.Member = None):
@@ -81,7 +81,7 @@ class Images(commands.Cog):
         enhancer = PIL.ImageEnhance.Contrast(x[0])
         enhancer.enhance(factor)
         enhancer.image.save(x[1])
-        await ctx.send(file=disnake.File(x[1]))
+        await ctx.reply(file=disnake.File(x[1]))
 
     @commands.command()
     async def brightness(self, ctx, factor: float, member: disnake.Member = None):
@@ -89,7 +89,7 @@ class Images(commands.Cog):
         enhancer = PIL.ImageEnhance.factor(x[0])
         enhancer.enhance(factor)
         enhancer.image.save(x[1])
-        await ctx.send(file=disnake.File(x[1]))
+        await ctx.reply(file=disnake.File(x[1]))
 
     @commands.command(aliases=["change", "changemind", "change_my_mind"])
     async def mindchange(self, ctx: Context, *, text: str = None):
@@ -98,7 +98,7 @@ class Images(commands.Cog):
             x = await vace_api.change_my_mind(text)
             embed.set_image(url=x.url)
 
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
     @commands.command()
     async def nasapic(self, ctx: Context):
@@ -116,7 +116,7 @@ class Images(commands.Cog):
             colour=get_colour(),
         )
         embed.set_image(url=up[0]["hdurl"])
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command()
     async def rover(self, ctx: Context):
@@ -127,7 +127,7 @@ class Images(commands.Cog):
             )
         ) as resp:
             response = await resp.json()
-            await ctx.send(response)
+            await ctx.reply(response)
 
     @commands.command(aliases=["rpic", "randpic"])
     async def randompicture(self, ctx: Context):
@@ -139,7 +139,7 @@ class Images(commands.Cog):
                 my_file.write(await response.read())
                 my_file.close()
 
-        await ctx.send(file=disnake.File("./images/random.png"))
+        await ctx.reply(file=disnake.File("./images/random.png"))
 
     @commands.command(description="Covert Code Block to Snippet")
     async def code_snippet(self, ctx: commands.Context, *, code: str):
@@ -164,7 +164,7 @@ class Images(commands.Cog):
         with open("images/code_snippet.png", "wb") as f:
             f.write(resp)
 
-        await ctx.send(file=disnake.File("./images/code_snippet.png"))
+        await ctx.reply(file=disnake.File("./images/code_snippet.png"))
 
     @commands.command(description="""Sends a wasted filtered avatar""")
     async def wasted(self, ctx: Context, member: disnake.Member = None):
@@ -183,7 +183,7 @@ class Images(commands.Cog):
                 file.write(await response.read())
                 file.close()
 
-        await ctx.send(file=disnake.File("./images/wasted.png"))
+        await ctx.reply(file=disnake.File("./images/wasted.png"))
 
     @commands.command(description="""Sends a wasted filtered avatar""")
     async def threshold(self, ctx: Context, member: disnake.Member = None):
@@ -202,7 +202,7 @@ class Images(commands.Cog):
                 file.write(await response.read())
                 file.close()
 
-        await ctx.send(file=disnake.File("./images/threshold.png"))
+        await ctx.reply(file=disnake.File("./images/threshold.png"))
 
     @commands.command(description="""Sends a fay filtered avatar""")
     async def gay(self, ctx: Context, member: disnake.Member = None):
@@ -220,7 +220,7 @@ class Images(commands.Cog):
                 file.write(await response.read())
                 file.close()
 
-        await ctx.send(file=disnake.File("./images/gay.png"))
+        await ctx.reply(file=disnake.File("./images/gay.png"))
 
     @commands.command(description="""Sends a glass filtered avatar""")
     async def glass(self, ctx: Context, member: disnake.Member = None):
@@ -238,7 +238,7 @@ class Images(commands.Cog):
                 file.write(await response.read())
                 file.close()
 
-        await ctx.send(file=disnake.File("./images/glass.png"))
+        await ctx.reply(file=disnake.File("./images/glass.png"))
 
     @commands.command(description="""Sends a triggered filtered avatar""")
     async def triggered(self, ctx: Context, member: disnake.Member = None):
@@ -256,7 +256,7 @@ class Images(commands.Cog):
                 file.write(await response.read())
                 file.close()
 
-        await ctx.send(file=disnake.File("./images/triggered.png"))
+        await ctx.reply(file=disnake.File("./images/triggered.png"))
 
     @commands.command(description="""Sends a bloody filtered avatar""")
     async def bloody(self, ctx: Context, member: disnake.Member = None):
@@ -274,7 +274,7 @@ class Images(commands.Cog):
                 file.write(await response.read())
                 file.close()
 
-        await ctx.send(file=disnake.File("./images/bloody.png"))
+        await ctx.reply(file=disnake.File("./images/bloody.png"))
 
     @commands.command(
         description="""Sends a YouTube comment with your custom comment"""
@@ -289,7 +289,7 @@ class Images(commands.Cog):
                 file.write(await response.read())
                 file.close()
 
-        await ctx.send(file=disnake.File("./images/yt-comment.png"))
+        await ctx.reply(file=disnake.File("./images/yt-comment.png"))
 
     @commands.command(description="""Makes a bright filtered avatar""")
     async def bright(self, ctx: Context, member: disnake.Member = None):
@@ -307,7 +307,7 @@ class Images(commands.Cog):
                 file.write(await response.read())
                 file.close()
 
-        await ctx.send(file=disnake.File("./images/brightness.png"))
+        await ctx.reply(file=disnake.File("./images/brightness.png"))
 
     @commands.command(description="""Makes a bright filtered avatar""")
     async def invert(self, ctx: Context, member: disnake.Member = None):
@@ -325,7 +325,7 @@ class Images(commands.Cog):
                 file.write(await response.read())
                 file.close()
 
-        await ctx.send(file=disnake.File("./images/invert.png"))
+        await ctx.reply(file=disnake.File("./images/invert.png"))
 
     @commands.command(description="""Makes a bright filtered avatar""")
     async def viewcolor(self, ctx: Context, hexcolor):
@@ -338,7 +338,7 @@ class Images(commands.Cog):
                 file.write(await response.read())
                 file.close()
 
-        await ctx.send(file=disnake.File("./images/color.png"))
+        await ctx.reply(file=disnake.File("./images/color.png"))
 
     @commands.command(aliases=["pic", "imag", "images", "image"])
     async def picture(self, ctx: Context, *, pic):
@@ -351,7 +351,7 @@ class Images(commands.Cog):
                 my_file.write(await response.read())
                 my_file.close()
 
-        await ctx.send(file=disnake.File("./images/picture.png"))
+        await ctx.reply(file=disnake.File("./images/picture.png"))
 
     @commands.command(
         invoke_without_command=True,
@@ -366,7 +366,7 @@ class Images(commands.Cog):
                 description="Valid Options are `cat`, `dog`, `panda`, `koala`, `fox`, `racoon`, `kangaroo`",
                 colour=get_colour(),
             )
-            return await ctx.send(embed=embed)
+            return await ctx.reply(embed=embed)
 
         async with ctx.typing():
 
@@ -378,7 +378,7 @@ class Images(commands.Cog):
                 colour=get_colour(),
             )
             embed.set_image(url=animal.image())
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command()
     async def flip(self, ctx, member: disnake.Member = None):
@@ -388,7 +388,7 @@ class Images(commands.Cog):
 
         flip = cv.flip(image, 1)
         cv.imwrite(x, flip)
-        await ctx.send(file=disnake.File(x))
+        await ctx.reply(file=disnake.File(x))
 
     @commands.command()
     async def rotate(self, ctx, degrees: float = -180, member: disnake.Member = None):
@@ -401,7 +401,7 @@ class Images(commands.Cog):
 
         rotated_image = cv.warpAffine(image, rotation_matrix, (w, h))
         cv.imwrite("./images/rotate.png", rotated_image)
-        await ctx.send(file=disnake.File("./images/rotate.png"))
+        await ctx.reply(file=disnake.File("./images/rotate.png"))
 
     @commands.command(aliases=["pixel"])
     async def pixelate(self, ctx, member: disnake.Member = None):
@@ -411,7 +411,7 @@ class Images(commands.Cog):
         image_scaled = cv.resize(image, None, fx=0.15, fy=0.15)
         image_scaled = cv.resize(image_scaled, (400, 400))
         cv.imwrite("./images/pixel.png", image_scaled)
-        await ctx.send(file=disnake.File("./images/pixel.png"))
+        await ctx.reply(file=disnake.File("./images/pixel.png"))
 
     @commands.command()
     async def bill(self, ctx: Context):
@@ -424,7 +424,7 @@ class Images(commands.Cog):
                 file.write(await response.read())
                 file.close()
 
-        await ctx.send(file=disnake.File("./images/bill.png"))
+        await ctx.reply(file=disnake.File("./images/bill.png"))
 
 
 def setup(bot):

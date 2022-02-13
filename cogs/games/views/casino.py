@@ -8,7 +8,10 @@ from disnake.ui import View, Button, button
 class Casino(View):
     def __init__(self, author: Member) -> None:
         self.author = author
-        self.defualtstring = ["Casino Machine $", "Get Three numbers in a row for a PRIZE"]
+        self.defualtstring = [
+            "Casino Machine $",
+            "Get Three numbers in a row for a PRIZE",
+        ]
         super().__init__(timeout=60.0)
         self.retry.disabled = True
 
@@ -30,9 +33,9 @@ class Casino(View):
     async def play(self, button: Button, interaction: MessageInteraction) -> None:
         self.exit.disabled = True
         self.play.disabled = True
-        intsthink = Embed(title=self.defualtstring[0], description="```...```").set_footer(
-            text=self.defualtstring[1]
-        )
+        intsthink = Embed(
+            title=self.defualtstring[0], description="```...```"
+        ).set_footer(text=self.defualtstring[1])
 
         await interaction.response.edit_message(embed=intsthink, view=self)
 

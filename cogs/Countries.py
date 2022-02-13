@@ -17,7 +17,7 @@ async def makeimg(ctx, url):
                 my_file.close()
                 drawing = svg2rlg("./images/country.svg")
                 renderPM.drawToFile(drawing, "./images/country.png", fmt="PNG")
-        await ctx.send(file=disnake.File("./images/country.png"))
+        await ctx.reply(file=disnake.File("./images/country.png"))
 
         return True
     except Exception as e:
@@ -139,7 +139,7 @@ class Countries(commands.Cog):
             url="https://w7.pngwing.com/pngs/667/592/png-transparent-world-health-organization-united-nations-global-health-world-health-organization-logo-world-world-map.png"
         )
 
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
 
 def setup(bot):

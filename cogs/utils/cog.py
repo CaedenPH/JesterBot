@@ -24,6 +24,7 @@ from .calculator import CalculatorView
 encoder = translator.Encoder()
 decoder = translator.Decoder()
 
+
 class Utils(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -41,20 +42,22 @@ class Utils(commands.Cog):
             )
         )
 
-        await ctx.send(embed=embed, view=CalculatorView(embed, ctx))
+        await ctx.reply(embed=embed, view=CalculatorView(embed, ctx))
 
     @commands.command()
     async def google(self, ctx: Context, *, query: str):
         """Search stuff up on google!"""
 
         try:
-            results = await self.google.search(query, safesearch=True, image_search=False)
+            results = await self.google.search(
+                query, safesearch=True, image_search=False
+            )
         except async_cse.NoResults:
-            return await ctx.send(f"No **Results** found for search **{query}**")
+            return await ctx.reply(f"No **Results** found for search **{query}**")
         if not results:
-            return await ctx.send(f"No **Results** found for search **{query}**")
+            return await ctx.reply(f"No **Results** found for search **{query}**")
 
-        await ctx.send(
+        await ctx.reply(
             embed=disnake.Embed(
                 title=f"Query: {query}",
                 description="\n".join(
@@ -77,7 +80,7 @@ class Utils(commands.Cog):
 
     @commands.command()
     async def qr(self, ctx: Context, *, text):
-        m = await ctx.send("**Creating...**")
+        m = await ctx.reply("**Creating...**")
         async with ctx.typing():
             async with self.bot.client.get(
                 f"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={text}"
@@ -88,12 +91,12 @@ class Utils(commands.Cog):
 
     @commands.command(hidden=True)
     async def hibernate(self, ctx: Context):
-        await ctx.send(":thumbsup:")
+        await ctx.reply(":thumbsup:")
         self.bot.hiber = True
 
     @commands.command(hidden=True)
     async def hiber(self, ctx: Context):
-        await ctx.send(":thumbsup:")
+        await ctx.reply(":thumbsup:")
         self.bot.hiber = False
 
     @commands.command()
@@ -115,7 +118,7 @@ class Utils(commands.Cog):
             name="Your expression: ", value=f'```yaml\n"{math}"\n```', inline=False
         )
         embed.add_field(name="Result: ", value=f"```\n{result}\n```")
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(aliases=["wiki"])
     async def wikipedia(self, ctx, *, query):
@@ -154,7 +157,7 @@ class Utils(commands.Cog):
                 name="Full Raw Text", value=f"`{''.join(raw_list)}`", inline=False
             )
 
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(
         aliases=["fib"],
@@ -175,7 +178,7 @@ class Utils(commands.Cog):
         embed = disnake.Embed(
             title="Fibinaci", description=f"{', '.join(x)}", colour=get_colour()
         )
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(
         aliases=["av", "avatars"],
@@ -188,7 +191,7 @@ class Utils(commands.Cog):
             embed = disnake.Embed(title=f"Avatar", colour=get_colour())
             embed.set_author(name=username.name, icon_url=username.avatar.url)
             embed.set_image(url=username.avatar.url)
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
         else:
 
@@ -196,7 +199,7 @@ class Utils(commands.Cog):
             embed = disnake.Embed(title=f"Avatar", colour=get_colour())
             embed.set_author(name=username.name, icon_url=username.avatar.url)
             embed.set_image(url=username.avatar.url)
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
     @commands.command(
         aliases=["tz", "time", "zone"],
@@ -221,14 +224,14 @@ class Utils(commands.Cog):
             )
             embed.set_author(name="Datetime", icon_url=ctx.author.avatar.url)
 
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
         except Exception as e:
             embed = disnake.Embed(
                 title="Error",
                 description=f"**TimeZoneError: {e}**",
                 colour=get_colour(),
             )
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
     @commands.command(aliases=["bin"])
     async def binary(self, ctx: Context, *, text):
@@ -239,7 +242,7 @@ class Utils(commands.Cog):
 
             embed = disnake.Embed(colour=get_colour())
             embed.add_field(name="Binary", value=f"{fox['binary']}")
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
     @commands.command(aliases=["unbin"])
     async def unbinary(self, ctx: Context, *, nums: str):
@@ -250,11 +253,9 @@ class Utils(commands.Cog):
 
             embed = disnake.Embed(colour=get_colour())
             embed.add_field(name="Decoded from binary", value=f"{fox['text']}")
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
-    @commands.command(
-        description=ASCII_DESCRIPTION
-    )
+    @commands.command(description=ASCII_DESCRIPTION)
     async def ascii(self, ctx: Context, *, text=None):
         x = []
         p = []
@@ -277,7 +278,7 @@ class Utils(commands.Cog):
             embed.set_footer(
                 text="Type j.help ascii to get information about what the ascii table is. | `,` signifies a new character."
             )
-            return await ctx.send(embed=embed)
+            return await ctx.reply(embed=embed)
 
         z = text.split(" ")
         for c in z:
@@ -293,7 +294,7 @@ class Utils(commands.Cog):
         embed.set_footer(
             text="Type j.help ascii to get information about what the ascii table is. | '-' signifies a new character."
         )
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(
         aliases=["morse_code", "mcode"],
@@ -333,7 +334,7 @@ class Utils(commands.Cog):
         x = await run_eval(ctx, code, _eval="dir")
 
         try:
-            await ctx.send(x)
+            await ctx.reply(x)
         except:
             pass
 
@@ -342,7 +343,7 @@ class Utils(commands.Cog):
         x = await run_eval(ctx, code, _eval="return")
 
         try:
-            await ctx.send(x)
+            await ctx.reply(x)
         except:
             pass
 
@@ -350,7 +351,7 @@ class Utils(commands.Cog):
     async def eval(self, ctx: Context, *, code):
         x = await run_eval(ctx, code)
         try:
-            await ctx.send(x)
+            await ctx.reply(x)
         except:
             pass
 
@@ -365,6 +366,7 @@ class Utils(commands.Cog):
 
         await ctx.message.delete()
         return await ctx.em(f"**Your tinyurl:** {tinyurl}")
+
 
 def setup(bot):
     bot.add_cog(Utils(bot))

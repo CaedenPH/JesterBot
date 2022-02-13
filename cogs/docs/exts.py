@@ -143,4 +143,4 @@ class RTFM:
             return await ctx.em("Could not find anything. Sorry.")
 
         e.description = "\n".join(f"[`{key}`]({url})" for key, url in matches)
-        await ctx.send(embed=e)
+        await ctx.reply(embed=e)

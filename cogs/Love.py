@@ -54,7 +54,7 @@ class Love(commands.Cog):
                 description=f"The **poke** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}**ms",
                 colour=get_colour(),
             )
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
         else:
             embed = disnake.Embed(
                 description=f"**{ctx.author.name}** has poked you 😗",
@@ -65,7 +65,7 @@ class Love(commands.Cog):
                 description=f"The **poke** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}** ms",
                 colour=get_colour(),
             )
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
     @commands.command(help="Sends a hug to the `<member>` specified")
     async def hug(self, ctx: Context, member: disnake.Member = ""):
@@ -80,7 +80,7 @@ class Love(commands.Cog):
                 description=f"The **hug** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}**ms",
                 colour=get_colour(),
             )
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
         else:
 
             embed = disnake.Embed(
@@ -92,7 +92,7 @@ class Love(commands.Cog):
                 description=f"The **hug** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}**ms",
                 colour=get_colour(),
             )
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
     @commands.command()
     async def love(self, ctx: Context):
@@ -161,7 +161,7 @@ class Love(commands.Cog):
                 colour=get_colour(),
             )
             embed.set_footer(text="\nMay ever hapiness bless them")
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
         else:
             await send_embed(ctx, "Marriage", "You are single bro...")
 
@@ -174,7 +174,7 @@ class Love(commands.Cog):
             description=f"**{member.name}** do you accept **{ctx.author.name}** to be your partner? React with this message if you want to get married",
             colour=get_colour(),
         )
-        msg = await ctx.send(embed=embed)
+        msg = await ctx.reply(embed=embed)
         await msg.add_reaction("💖")
         partner = member
         try:
@@ -223,7 +223,7 @@ class Love(commands.Cog):
                 colour=get_colour(),
             )
             em.set_image(url="https://giphy.com/clips/livingsingle-7GN899Bf6g98SdFpra")
-            await ctx.send(embed=em)
+            await ctx.reply(embed=em)
         except asyncio.TimeoutError:
             await send_embed(
                 ctx,

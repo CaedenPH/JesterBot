@@ -68,7 +68,7 @@ class ChatBot(commands.Cog):
     @commands.command(aliases=["ai"])
     async def chatbot(self, ctx: Context, *, message: str) -> None:
         response = await self.get_response(message, ctx.author.id)
-        await ctx.send(response)
+        await ctx.reply(response)
 
     @commands.Cog.listener("on_message")
     async def chatbot_on_message(self, message: disnake.Message) -> None:

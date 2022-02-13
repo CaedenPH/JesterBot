@@ -1,12 +1,12 @@
 import random
 
-#from redditSettings import reddit
-
 from disnake import MessageInteraction, Embed, ButtonStyle
 from disnake.ui import View, Button, button
+from core import Context
+from core.utils.utils import get_colour
 
 class Meme(View):
-    def __init__(self, ctx):
+    def __init__(self, ctx: Context):
         super().__init__(timeout=180)
 
         self.ctx = ctx
@@ -24,18 +24,14 @@ class Meme(View):
 
     @button(label="Next", style=ButtonStyle.green, emoji="⏭️")
     async def meme(self, button: Button, interaction: MessageInteraction) -> None:
-        subreddit = reddit.subreddit("memes")
-        hot = [post for post in subreddit.hot(limit=50)]
-        
-        post = random.choice(hot)
-        embed = Embed(
-            title = post.title,
-            color = 0x8b008b
-        ).set_image(
-            url = post.url
-        ).set_footer(
-            text = f"Requested by {interaction.author.name} *Note: there are only 50 memes within one meme command, for more do `jarvide meme` again*",
-            icon_url=interaction.author.display_avatar.url
+        post = random.choice(self.ctx.bot.meme_list)
+        embed = (
+            Embed(title=post.title, color=get_colour())
+            .set_image(url=post.url)
+            .set_footer(
+                text=f"Requested by {interaction.author.name}",
+                icon_url=interaction.author.display_avatar.url,
+            )
         )
         await interaction.response.defer()
         await interaction.edit_original_message(embed=embed, view=self)

@@ -9,7 +9,7 @@ from random import randint, choice
 from core.utils import get_colour, send_embed
 from core import Context
 from core.constants import HANGMAN, BLACKJACK_WELCOME
-from . import BlackJack, Casino, RussianRoulette, Dice, Meme
+from . import BlackJack, Casino, RussianRoulette, Dice
 
 
 class Games(Cog):
@@ -22,31 +22,28 @@ class Games(Cog):
     @command()
     async def casino(self, ctx: Context) -> None:
         embed = Embed(
-            title="Casino Machine $", 
-            description="```000```",
-            color=get_colour()
+            title="Casino Machine $", description="```000```", color=get_colour()
         ).set_footer(text="Get Three numbers in a row for a PRIZE")
 
-        await ctx.send(embed=embed, view=Casino(ctx.author))
+        await ctx.reply(embed=embed, view=Casino(ctx.author))
 
     @command(aliases=["rr", "gun_game", "russianroulette", "gungame"])
     async def russian_roulette(self, ctx: Context):
-        embed = Embed(
-            title="Russian Roulette",
-            color=get_colour()
-        ).set_footer(text="Dont die!")
+        embed = Embed(title="Russian Roulette", color=get_colour()).set_footer(
+            text="Dont die!"
+        )
 
-        await ctx.send(embed=embed, view=RussianRoulette(ctx))
+        await ctx.reply(embed=embed, view=RussianRoulette(ctx))
 
     @command(aliases=["die"])
     async def dice(self, ctx: Context):
         embed = Embed(
             title="<:dicetitle:932727881069641858> Play now <:dicetitle:932727881069641858>",
             description="Your random roll awaits",
-            color=get_colour()
+            color=get_colour(),
         )
 
-        await ctx.send(embed=embed, view=Dice(ctx))
+        await ctx.reply(embed=embed, view=Dice(ctx))
 
     @command(aliases=["bj"])
     async def blackjack(self, ctx: Context):
@@ -61,20 +58,7 @@ class Games(Cog):
         view.bot_message = await ctx.reply(
             embed=embed,
             view=view,
-        )    
-
-    @command(aliases=["m", "memes"])
-    async def meme(self, ctx: Context):
-        embed = Embed(
-            title = "<:reddit:933846462087987292> Memes <:reddit:933846462087987292>",
-            description = "Get your daily dose of reddit memes!",
-            color = 0x8b008b
-        ).set_footer(
-            text = f"Requested by {ctx.author.name} *Note: there are only 50 memes within one meme command, for more do `jarvide meme` again*",
-            icon_url = ctx.author.display_avatar.url
         )
-        
-        await ctx.send(embed=embed, view=Meme(ctx))
 
     @command(
         aliases=["rock", "rockpaperscissors"],
@@ -161,7 +145,7 @@ class Games(Cog):
                 text=f"Out of {len(list(data.keys()))} options! ps these are all completely real words that are allowed on scrabble"
             )
         )
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
         responses = []
         time = datetime.datetime.utcnow()
@@ -183,7 +167,7 @@ class Games(Cog):
             ).set_author(name="Nice try!", icon_url=ctx.author.avatar.url)
 
             if responses != data[anagram]:
-                return await ctx.send(embed=embed)
+                return await ctx.reply(embed=embed)
             await ctx.em("Wow you got all the anagrams!")
 
     @command()
@@ -196,7 +180,7 @@ class Games(Cog):
         guesses = []
         guesses_left = 7
 
-        msg = await ctx.send(self.message_content(guesses_left, guesses, word))
+        msg = await ctx.reply(self.message_content(guesses_left, guesses, word))
         try:
             while m := await self.bot.wait_for(
                 "message",

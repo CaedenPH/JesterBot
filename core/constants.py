@@ -1,5 +1,6 @@
 ## environ
 
+from asyncpraw import Reddit
 from os import environ
 from dotenv import load_dotenv
 
@@ -7,10 +8,27 @@ load_dotenv()
 
 BOT_TOKEN = environ["BOT_TOKEN"]
 WEATHER_KEY = environ["WEATHER_KEY"]
-POLICE_KEY = environ["POLICE_KEY"]
 COORDS_KEY = environ["COORDS_KEY"]
 CHATBOT_KEY = environ["CHATBOT_KEY"]
 RAPID_API_KEY = environ["RAPID_API_KEY"]
+
+CLIENT_ID = environ["CLIENT_ID"]
+CLIENT_SECRET = environ["CLIENT_SECRET"]
+USERNAME = environ["REDDIT_USERNAME"]
+PASSWORD = environ["PASSWORD"]
+USER_AGENT = environ["USER_AGENT"]
+
+
+## reddit 
+
+REDDIT = Reddit(
+    client_id = CLIENT_ID,
+    client_secret = CLIENT_SECRET,
+    user_agent = USER_AGENT,
+    username = USERNAME,
+    password = PASSWORD
+)
+
 
 ## emojis
 
@@ -20,6 +38,7 @@ CONFETTI = "🎊"
 CLOSED_LOCK = "🔐"
 BOOM = "💥"
 HANDSHAKE = "🤝"
+
 
 ## custom emojis
 
@@ -68,6 +87,7 @@ _E = "<:E_:863313854150606848>"
 _S = "<:S:863313855061164062>"
 _T = "<:T:863313855399329812>"
 _R = "<:R_:863313855119360022>"
+
 
 ## game
 
@@ -167,7 +187,8 @@ HANGMAN = [
 =========""",
 ][::-1]
 
-## utils 
+
+## utils
 
 TEXT_TO_MORSE = {
     "A": ".-",
@@ -296,6 +317,7 @@ To get the ascii table type j.ascii
 
 Source: [Website](https://en.wikipedia.org/wiki/ASCII)
     """
+
 
 ## docs
 

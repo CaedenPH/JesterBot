@@ -74,7 +74,7 @@ class HelpUtils:
 
     async def main_help(self, ctx: commands.Context) -> None:
         embed = await self.main_help_embed(ctx)
-        await ctx.send(
+        await ctx.reply(
             embed=embed, view=DropdownView(self.data, ctx, HelpUtils(self.bot))
         )
 
@@ -191,22 +191,22 @@ class Help(commands.Cog):
     async def help(self, ctx: Context, command=None) -> None:
         if not command:
             embed = await self.utils.main_help_embed(ctx)
-            return await ctx.send(
+            return await ctx.reply(
                 embed=embed, view=DropdownView(self.data, ctx, self.utils)
             )
 
         cog = await self.utils.get_cog_from_str(command)
         if cog:
             embed = await self.utils.specific_cog(cog, ctx)
-            return await ctx.send(embed=embed)
+            return await ctx.reply(embed=embed)
 
         cmd = self.bot.get_command(command)
         if cmd:
             embed = await self.utils.specific_command(cmd, ctx)
-            return await ctx.send(embed=embed)
+            return await ctx.reply(embed=embed)
 
         embed = await self.utils.no_command(ctx)
-        return await ctx.send(embed=embed)
+        return await ctx.reply(embed=embed)
 
 
 def setup(bot):

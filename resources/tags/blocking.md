@@ -10,7 +10,7 @@ import discord
 # Bunch of bot code
 
 async def ping(ctx):
-    await ctx.send("Pong!")
+    await ctx.reply("Pong!")
 ```
 **What does the term "blocking" mean?**
 A blocking operation is wherever you do something without `await`ing it. This tells Python that this step must be completed before it can do anything else. Common examples of blocking operations, as simple as they may seem, include: outputting text, adding two numbers and appending an item onto a list. Most common Python libraries have an asynchronous version available to use in asynchronous contexts.

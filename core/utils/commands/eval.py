@@ -46,7 +46,7 @@ async def run_eval(ctx: Context, code, **kwargs) -> None:
             else:
                 data[str(ctx.author.id)] = {"Name": ctx.author.name, "Score": 0}
             update_json(k, data)
-            return await ctx.send("reset")
+            return await ctx.reply("reset")
     else:
 
         with open("./dicts/Num.json", "r+") as k:

@@ -87,7 +87,7 @@ class EmbedPaginator(disnake.ui.View):
 
         embed = self.embeds[0]
         embed.set_footer(text=f"Page 1/{len(self.embeds)}")
-        self.message = await self.ctx.send(embed=embed, view=self)
+        self.message = await self.ctx.reply(embed=embed, view=self)
 
 
 class RoboPages(disnake.ui.View):
@@ -231,7 +231,7 @@ class RoboPages(disnake.ui.View):
             self.check_embeds
             and not self.ctx.channel.permissions_for(self.ctx.me).embed_links
         ):
-            await self.ctx.send(
+            await self.ctx.reply(
                 "Bot does not have embed links permission in this channel."
             )
             return
@@ -240,7 +240,7 @@ class RoboPages(disnake.ui.View):
         page = await self.source.get_page(0)
         kwargs = await self._get_kwargs_from_page(page)
         self._update_labels(0)
-        self.message = await self.ctx.send(**kwargs, view=self)
+        self.message = await self.ctx.reply(**kwargs, view=self)
 
     @disnake.ui.button(label="≪", style=disnake.ButtonStyle.grey)
     async def go_to_first_page(

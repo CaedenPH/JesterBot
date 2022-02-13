@@ -45,7 +45,7 @@ async def error_handler(ctx, error) -> None:
         embed = disnake.Embed(
             description="You do not have permissions to do that!", colour=get_colour()
         )
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
     elif isinstance(error, CheckFailure):
         pass
     elif isinstance(error, MissingRequiredArgument):
@@ -112,7 +112,7 @@ async def error_handler(ctx, error) -> None:
 
                 embed.add_field(name="Did you mean:", value=f"{my_string[0]}")
 
-            msg = await ctx.send(embed=embed)
+            msg = await ctx.reply(embed=embed)
 
             def check(e, u):
                 return u == ctx.author and e.message.id == msg.id
@@ -209,19 +209,19 @@ async def error_handler(ctx, error) -> None:
         embed = disnake.Embed(
             description=f"They are not a **member!**", colour=get_colour()
         )
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
     elif isinstance(error, RoleNotFound):
         embed = disnake.Embed(
             description=f"That is not a **role!**", colour=get_colour()
         )
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     elif isinstance(error, CommandOnCooldown):
         embed = disnake.Embed(
             description=f"This command is on cooldown for **{error.retry_after:.2f}** seconds",
             colour=get_colour(),
         )
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     elif isinstance(error, CommandInvokeError):
         if (

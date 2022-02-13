@@ -128,7 +128,7 @@ class Snipe(commands.Cog):
                         embed.set_author(
                             icon_url=us.avatar.url, name="Most recent message:"
                         )
-                        return await ctx.send(embed=embed)
+                        return await ctx.reply(embed=embed)
                     else:
                         await ctx.message.add_reaction("❌")
                         return await send_embed(
@@ -165,7 +165,7 @@ class Snipe(commands.Cog):
                             embed.set_author(
                                 icon_url=us.avatar.url, name="Most recent message:"
                             )
-                            return await ctx.send(embed=embed)
+                            return await ctx.reply(embed=embed)
                         t -= 1
 
             await send_embed(ctx, "", "No deleted messages were ever here!")
@@ -201,7 +201,7 @@ class Snipe(commands.Cog):
                         embed.set_author(
                             icon_url=us.avatar.url, name="Most recent message:"
                         )
-                        return await ctx.send(embed=embed)
+                        return await ctx.reply(embed=embed)
                     else:
                         await ctx.message.add_reaction("❌")
                         return await send_embed(
@@ -234,7 +234,7 @@ class Snipe(commands.Cog):
                             embed.set_author(
                                 icon_url=us.avatar.url, name="Most recent message:"
                             )
-                            return await ctx.send(embed=embed)
+                            return await ctx.reply(embed=embed)
 
                         t -= 1
 

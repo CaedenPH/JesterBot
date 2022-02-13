@@ -118,7 +118,7 @@ class Feedback(commands.Cog):
                 if chan in data:
                     del data[chan]
                     update_json(f, data)
-                    return await ctx.send("**Ended**")
+                    return await ctx.reply("**Ended**")
         if str(ctx.channel.id) not in data:
             return await send_embed(ctx, "", "You are not engaged in a support dial!")
         del data[str(ctx.channel.id)]

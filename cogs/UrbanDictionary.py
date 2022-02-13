@@ -33,7 +33,7 @@ Link: {dictionary['permalink']}"""
             except:
                 output = "That doesnt exist in the urban dictionary"
 
-        await ctx.send(output)
+        await ctx.reply(output)
 
     @commands.command(aliases=["randomsearch", "rsearch"])
     async def random_urban_search(self, ctx: Context) -> None:
@@ -41,7 +41,7 @@ Link: {dictionary['permalink']}"""
             json = await resp.json()
             output = self.parse_dict(json["list"][0])
 
-        await ctx.send(output)
+        await ctx.reply(output)
 
 
 def setup(bot: commands.Bot) -> None:

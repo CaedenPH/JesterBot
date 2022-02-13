@@ -47,7 +47,7 @@ class Paginator:
         embed.description = "```yaml\n{}```".format(
             self._pages[str(self._current)]["content"]
         )
-        msg = await self.ctx.send(embed=embed)
+        msg = await self.ctx.reply(embed=embed)
         if len(result) == 1:
             return
 

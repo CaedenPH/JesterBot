@@ -20,12 +20,12 @@ class JesterJokes(commands.Cog):
     async def fact(self, ctx: Context):
 
         embed = fact()
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(description="""Returns a random quote""")
     async def quote(self, ctx: Context):
         embed = quote()
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(
         aliases=["pl", "pickup", "pickline"],
@@ -33,7 +33,7 @@ class JesterJokes(commands.Cog):
     )
     async def pickup_line(self, ctx: Context):
         embed = await pickup()
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(
         aliases=["insultme", "Mean", "Insult_Me"],
@@ -49,7 +49,7 @@ class JesterJokes(commands.Cog):
             embed = disnake.Embed(colour=get_colour())
             user = self.bot.get_user(ctx.author.id)
             embed = disnake.Embed(title="You shmuck...I am god")
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
         else:
             async with self.bot.client.get(
                 url="https://insult.mattbas.org/api/insult.json"
@@ -59,7 +59,7 @@ class JesterJokes(commands.Cog):
             embed = disnake.Embed(
                 description=f"{user.mention} {foxupdate}", colour=get_colour()
             )
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
     @commands.command(
         aliases=["dis", "Diss"], description="The specified member gets dissed"
@@ -76,7 +76,7 @@ class JesterJokes(commands.Cog):
         embed = disnake.Embed(
             description=f"{user.mention} {foxupdate}", colour=get_colour()
         )
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(
         aliases=["Chuck_norris", "Chucky", "norris"],
@@ -92,7 +92,7 @@ class JesterJokes(commands.Cog):
         foxupdate = fox["value"]
 
         embed = disnake.Embed(description=f"{foxupdate}", colour=get_colour())
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(
         aliases=["adj", "random_adj", "randadj", "Rand_Adj", "random_adjective"],
@@ -110,7 +110,7 @@ class JesterJokes(commands.Cog):
             title=f"{foxupdate[randint(1, 950)]}", colour=get_colour()
         )
 
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(
         aliases=["smck", "slap", "BitchSlap", "Hit", "Spank"],
@@ -140,7 +140,7 @@ class JesterJokes(commands.Cog):
             description=f"{user.mention} got smacked", colour=get_colour()
         )
         embed.set_image(url=choice(url))
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(aliases=["jokes"], description="Sends a random joke")
     async def joke(self, ctx: Context):

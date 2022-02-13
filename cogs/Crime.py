@@ -89,7 +89,7 @@ class Crime(commands.Cog):
             url="https://ukpolicedata.p.rapidapi.com/forces",
             headers={
                 "x-rapidapi-host": "ukpolicedata.p.rapidapi.com",
-                "x-rapidapi-key": self.bot.POLICE_KEY,
+                "x-rapidapi-key": self.bot.RAPID_API_KEY,
             },
         ) as resp:
             json = await resp.json()
@@ -143,7 +143,7 @@ class Crime(commands.Cog):
             url="https://ukpolicedata.p.rapidapi.com/stops-street",
             headers={
                 "x-rapidapi-host": "ukpolicedata.p.rapidapi.com",
-                "x-rapidapi-key": self.bot.POLICE_KEY,
+                "x-rapidapi-key": self.bot.RAPID_API_KEY,
             },
             params=querystring,
         ) as resp:
@@ -185,7 +185,7 @@ class Crime(commands.Cog):
             url="https://ukpolicedata.p.rapidapi.com/crimes-street/all-crime",
             headers={
                 "x-rapidapi-host": "ukpolicedata.p.rapidapi.com",
-                "x-rapidapi-key": self.bot.POLICE_KEY,
+                "x-rapidapi-key": self.bot.RAPID_API_KEY,
             },
             params=querystring,
         ) as resp:

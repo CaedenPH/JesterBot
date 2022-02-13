@@ -58,7 +58,7 @@ class Economy(commands.Cog):
                 
                 Your balance is: **{data[str(ctx.author.id)]['Bal']}$**""",
                 )
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed)
 
     @shop.command()
     async def role(self, ctx: Context):
@@ -74,7 +74,7 @@ class Economy(commands.Cog):
                     embed1.set_author(
                         name=ctx.author.name, icon_url=ctx.author.avatar.url
                     )
-                    await ctx.send(embed=embed1)
+                    await ctx.reply(embed=embed1)
                     msg = str(
                         (
                             await self.bot.wait_for(
@@ -92,7 +92,7 @@ class Economy(commands.Cog):
                     embed1.set_author(
                         name=ctx.author.name, icon_url=ctx.author.avatar.url
                     )
-                    await ctx.send(embed=embed1)
+                    await ctx.reply(embed=embed1)
                     msg1 = str(
                         (
                             await self.bot.wait_for(
@@ -112,19 +112,19 @@ class Economy(commands.Cog):
                     embed1.set_author(
                         name=ctx.author.name, icon_url=ctx.author.avatar.url
                     )
-                    await ctx.send(embed=embed1)
+                    await ctx.reply(embed=embed1)
                     data[str(ctx.author.id)]["Bal"] -= 1000
                     update_json(k, data)
                 except asyncio.TimeoutError:
                     embed = disnake.Embed(
                         title="I gave up waiting", colour=get_colour()
                     )
-                    await ctx.send(embed=embed)
+                    await ctx.reply(embed=embed)
             else:
                 embed = disnake.Embed(
                     title="You dont have enough money!", colour=get_colour()
                 )
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed)
 
     @shop.command()
     async def box(ctx):
@@ -146,18 +146,18 @@ class Economy(commands.Cog):
                         description=f"You bought a **lucky box**, to use it write `j.open box`",
                         colour=get_colour(),
                     )
-                    await ctx.send(embed=embed)
+                    await ctx.reply(embed=embed)
                 else:
                     embed = disnake.Embed(
                         title="You dont have enough money!", colour=get_colour()
                     )
-                    await ctx.send(embed=embed)
+                    await ctx.reply(embed=embed)
 
             else:
                 embed = disnake.Embed(
                     title="You dont have enough money!", colour=get_colour()
                 )
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed)
 
     @shop.command()
     async def gun(ctx):
@@ -257,7 +257,7 @@ class Economy(commands.Cog):
                         description=f"They have 0$", colour=get_colour()
                     )
 
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(
         aliases=["bet", "g"],
@@ -304,7 +304,7 @@ class Economy(commands.Cog):
                     colour=get_colour(),
                 )
 
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
     @commands.command(
         description="You get a random ammount of JesterCoins - 60 second cooldown!"
@@ -319,7 +319,7 @@ class Economy(commands.Cog):
                 description=f"You begged and got **{x}** jestercoins!",
                 colour=get_colour(),
             )
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
             update_json(k, data)
 
     @commands.command(aliases=["balancetop"], description="Sends the richest members")
@@ -350,7 +350,7 @@ class Economy(commands.Cog):
                 # embed.add_field(name=f"\u200b", value=f"**{item[0]}**: {item[1]['score']}", inline=False)
             embed.add_field(name=f"\u200b", value=f"{y.join(x)}", inline=False)
 
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
     @commands.command(
         aliases=["give"],
@@ -383,7 +383,7 @@ class Economy(commands.Cog):
                     description=f"You don't have {ammount}! Type `j.bal` for your balance!",
                     colour=get_colour(),
                 )
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
     @commands.command(
         aliases=["givehide"],
@@ -420,9 +420,9 @@ class Economy(commands.Cog):
                         description=f"You don't have {ammount}! Type `j.bal` for your balance!",
                         colour=get_colour(),
                     )
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed)
         else:
-            await ctx.send("no")
+            await ctx.reply("no")
 
     @commands.group(
         aliases=["open", "use"],
@@ -449,19 +449,19 @@ class Economy(commands.Cog):
                     embed = disnake.Embed(
                         description=f"You got **{rand_prize}**$!", colour=get_colour()
                     )
-                    await ctx.send(embed=embed)
+                    await ctx.reply(embed=embed)
                 else:
                     embed = disnake.Embed(
                         title="You dont have a lucky box! Type `j.shop box` to buy one!",
                         colour=get_colour(),
                     )
-                    await ctx.send(embed=embed)
+                    await ctx.reply(embed=embed)
             else:
                 embed = disnake.Embed(
                     title="You dont have a lucky box! Type `j.shop box` to buy one!",
                     colour=get_colour(),
                 )
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed)
 
     # @unlock.group(aliases=['cov', 'corona'])
     # async def covid(self, ctx: Context, user:disnake.Member=""):
@@ -475,17 +475,17 @@ class Economy(commands.Cog):
     #                 data[str(ctx.author.id)]['covid'] -= 1
     #                 update_json(k, data)
     #                 embed = disnake.Embed(description=f"Success!", colour=get_colour())
-    #                 await ctx.send(embed = embed)
+    #                 await ctx.reply(embed = embed)
     #                 await asyncio.sleep(3600)
 
     #                 update_json(k, data)
 
     #             else:
     #                 embed = disnake.Embed(title="You dont have a porta-covid! Type `j.shop covid` to buy one!", colour=get_colour())
-    #                 await ctx.send(embed=embed)
+    #                 await ctx.reply(embed=embed)
     #         else:s
     #             embed = disnake.Embed(title="You dont have a porta-covid! Type `j.shop covid` to buy one!", colour=get_colour())
-    #             await ctx.send(embed=embed)
+    #             await ctx.reply(embed=embed)
     @unlock.group()
     async def bag(self, ctx: Context, user: disnake.Member = ""):
         if not user and user != ctx.author:
@@ -507,7 +507,7 @@ class Economy(commands.Cog):
                                 description=f"You robbed **{ran}**$!",
                                 colour=get_colour(),
                             )
-                            await ctx.send(embed=embed)
+                            await ctx.reply(embed=embed)
 
                         else:
                             await send_embed(
@@ -519,20 +519,20 @@ class Economy(commands.Cog):
                             title="You dont have a bag! Type `j.shop bag` to buy one!",
                             colour=get_colour(),
                         )
-                        await ctx.send(embed=embed)
+                        await ctx.reply(embed=embed)
 
                 else:
                     embed = disnake.Embed(
                         title="You dont have a bag! Type `j.shop bag` to buy one!",
                         colour=get_colour(),
                     )
-                    await ctx.send(embed=embed)
+                    await ctx.reply(embed=embed)
             else:
                 embed = disnake.Embed(
                     title="You dont have a bag! Type `j.shop bag` to buy one!",
                     colour=get_colour(),
                 )
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed)
 
     @unlock.group()
     async def gun(self, ctx: Context, user: disnake.Member = ""):
@@ -553,7 +553,7 @@ class Economy(commands.Cog):
                         embed = disnake.Embed(
                             description=f"You robbed **{ran}**$!", colour=get_colour()
                         )
-                        await ctx.send(embed=embed)
+                        await ctx.reply(embed=embed)
 
                     else:
                         await send_embed(ctx, "They dont have enough in their bank!")
@@ -563,13 +563,13 @@ class Economy(commands.Cog):
                         title="You dont have a gun! Type `j.shop gun` to buy one!",
                         colour=get_colour(),
                     )
-                    await ctx.send(embed=embed)
+                    await ctx.reply(embed=embed)
             else:
                 embed = disnake.Embed(
                     title="You dont have a gun! Type `j.shop gun` to buy one!",
                     colour=get_colour(),
                 )
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed)
 
     @commands.command(aliases=["inv"], description="Sends your current inventory")
     async def inventory(self, ctx: Context):
@@ -589,12 +589,12 @@ class Economy(commands.Cog):
                             inline=False,
                         )
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed)
             else:
                 embed = disnake.Embed(
                     title="Your inv is empty currently!", colour=get_colour()
                 )
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed)
 
     @commands.command()
     @commands.cooldown(1, 600, commands.BucketType.user)

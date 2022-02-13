@@ -277,7 +277,4 @@ class BlackJack(View):
         await self.bot_message.clear_reactions()
         await self.bot_message.add_reaction(CLOSED_LOCK)
 
-        return await self.bot_message.edit(
-            content="Game over",
-            embed=embed, view=None
-        )
+        return await self.bot_message.edit(content="Game over", embed=embed, view=None)

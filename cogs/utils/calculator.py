@@ -32,6 +32,7 @@ norm = {
 }
 operations = ["/", "*", "+", "-"]
 
+
 class CalculatorView(View):
     def __init__(self, embed: Embed, ctx: Context):
         super().__init__()
@@ -67,38 +68,28 @@ class CalculatorView(View):
         return f"```yaml\n{content}{label}```"
 
     @button(label="1", style=ButtonStyle.grey, row=0)
-    async def first_button(
-        self, button: Button, interaction: MessageInteraction
-    ):
+    async def first_button(self, button: Button, interaction: MessageInteraction):
         self.embed.description = self.edit_embed(button.label)
         await interaction.response.edit_message(embed=self.embed)
 
     @button(label="2", style=ButtonStyle.grey, row=0)
-    async def second_button(
-        self, button: Button, interaction: MessageInteraction
-    ):
+    async def second_button(self, button: Button, interaction: MessageInteraction):
         self.embed.description = self.edit_embed(button.label)
         await interaction.response.edit_message(embed=self.embed)
 
     @button(label="3", style=ButtonStyle.grey, row=0)
-    async def third_button(
-        self, button: Button, interaction: MessageInteraction
-    ):
+    async def third_button(self, button: Button, interaction: MessageInteraction):
         self.embed.description = self.edit_embed(button.label)
         await interaction.response.edit_message(embed=self.embed)
 
     @button(label="*", style=ButtonStyle.green, row=0)
-    async def fourth_button(
-        self, button: Button, interaction: MessageInteraction
-    ):
+    async def fourth_button(self, button: Button, interaction: MessageInteraction):
 
         self.embed.description = self.edit_embed(" * ")
         await interaction.response.edit_message(embed=self.embed)
 
     @button(label="√", style=ButtonStyle.green, row=0)
-    async def fifth_button(
-        self, button: Button, interaction: MessageInteraction
-    ):
+    async def fifth_button(self, button: Button, interaction: MessageInteraction):
         self.embed.description = self.edit_embed(button.label)
         await interaction.response.edit_message(embed=self.embed)
 

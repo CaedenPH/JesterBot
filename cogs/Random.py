@@ -89,7 +89,7 @@ class Random(commands.Cog):
 
     @commands.command()
     async def screenshot(self, ctx: Context, *, url):
-        await ctx.send(f"https://image.thum.io/get/https://{url}")
+        await ctx.reply(f"https://image.thum.io/get/https://{url}")
 
     @commands.command()
     async def coffee(self, ctx: Context) -> None:
@@ -98,7 +98,7 @@ class Random(commands.Cog):
         ) as resp:
             json = await resp.json()
 
-        await ctx.send(json["file"])
+        await ctx.reply(json["file"])
 
     @commands.command()
     async def geek(self, ctx: Context) -> None:
@@ -150,7 +150,7 @@ class Random(commands.Cog):
         )
         channel, url = video["channel"], video["url"]
 
-        await ctx.send(f"Check out this April Fools' video by {channel}.\n\n{url}")
+        await ctx.reply(f"Check out this April Fools' video by {channel}.\n\n{url}")
 
     @commands.command()
     async def topic(self, ctx: Context) -> None:
@@ -170,7 +170,7 @@ class Random(commands.Cog):
             name=ctx.author.name + "s' date",
             icon_url=ctx.author.avatar.url,
         )
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command()
     async def planet(self, ctx: Context) -> None:
@@ -180,7 +180,7 @@ class Random(commands.Cog):
         choice = random.choice(data)
         embed = disnake.Embed.from_dict(choice)
 
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(aliases=["colour"])
     async def color(self, ctx: Context) -> None:
@@ -206,7 +206,7 @@ class Random(commands.Cog):
             .set_footer(text=f"Out of {len(x)} colors!")
             .set_image(url="attachment://color.png")
         )
-        await ctx.send(embed=embed, file=file)
+        await ctx.reply(embed=embed, file=file)
 
     @commands.command()
     async def palette(self, ctx: Context) -> None:

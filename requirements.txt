@@ -1,6 +1,7 @@
 aiosqlite
 animals.py
 art
+asyncpraw
 async_cse
 discord-together
 disnake

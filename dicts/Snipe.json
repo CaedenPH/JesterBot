@@ -2569,7 +2569,7 @@
                 "https://discord.gg/bqjZ67HKsW",
                 "https://discord.gg/Z3RrEy6Umx",
                 "{'footer': {'text': 'To interact with your virtual calculator, click the shown buttons.'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/8hRn46ZdIin2p9sfXYUMpRoZUMN1fxo6aI4HMwjlEYk/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/801924961727414313/fd51d78bb6d37c4332e244bb50c55b64.png', 'name': 'Calculator', 'icon_url': 'https://cdn.discordapp.com/avatars/801924961727414313/fd51d78bb6d37c4332e244bb50c55b64.png?size=1024'}, 'color': 3553599, 'type': 'rich', 'description': '```yaml\\n0```'}",
-                "{'footer': {'text': '13:21 \u2022 Page: 0 / 0'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/8hRn46ZdIin2p9sfXYUMpRoZUMN1fxo6aI4HMwjlEYk/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/801924961727414313/fd51d78bb6d37c4332e244bb50c55b64.png', 'name': 'error', 'icon_url': 'https://cdn.discordapp.com/avatars/801924961727414313/fd51d78bb6d37c4332e244bb50c55b64.png?size=1024'}, 'color': 3553599, 'type': 'rich', 'description': '```yaml\\nTraceback (most recent call last):\\n  File \"C:\\\\Users\\\\caede\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\core.py\", line 176, in wrapped\\n    ret = await coro(*args, **kwargs)\\n  File \"c:\\\\Users\\\\caede\\\\Desktop\\\\JesterBot\\\\cogs\\\\Utils.py\", line 197, in calculator\\n    msg = await ctx.send(embed=embed, components=[k for k in but(\\'comp\\')])\\n  File \"c:\\\\Users\\\\caede\\\\Desktop\\\\JesterBot\\\\core\\\\Context.py\", line 61, in send\\n    msg = await super().send(content, **kwargs)\\nTypeError: send() got an unexpected keyword argument \\'components\\'\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \"C:\\\\Users\\\\caede\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\bot_base.py\", line 561, in invoke\\n    await ctx.command.invoke(ctx)\\n  File \"C:\\\\Users\\\\caede\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\core.py\", line 930, in invoke\\n    await injected(*ctx.args, **ctx.kwargs)\\n  File \"C:\\\\Users\\\\caede\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\core.py\", line 185, in wrapped\\n    raise CommandInvokeError(exc) from exc\\ndisnake.ext.commands.errors.CommandInvokeError: Command raised an exception: TypeError: send() got an unexpected keyword argument \\'components\\'\\n```'}",
+                "{'footer': {'text': '13:21 \u2022 Page: 0 / 0'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/8hRn46ZdIin2p9sfXYUMpRoZUMN1fxo6aI4HMwjlEYk/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/801924961727414313/fd51d78bb6d37c4332e244bb50c55b64.png', 'name': 'error', 'icon_url': 'https://cdn.discordapp.com/avatars/801924961727414313/fd51d78bb6d37c4332e244bb50c55b64.png?size=1024'}, 'color': 3553599, 'type': 'rich', 'description': '```yaml\\nTraceback (most recent call last):\\n  File \"C:\\\\Users\\\\caede\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\core.py\", line 176, in wrapped\\n    ret = await coro(*args, **kwargs)\\n  File \"c:\\\\Users\\\\caede\\\\Desktop\\\\JesterBot\\\\cogs\\\\Utils.py\", line 197, in calculator\\n    msg = await ctx.reply(embed=embed, components=[k for k in but(\\'comp\\')])\\n  File \"c:\\\\Users\\\\caede\\\\Desktop\\\\JesterBot\\\\core\\\\Context.py\", line 61, in send\\n    msg = await super().send(content, **kwargs)\\nTypeError: send() got an unexpected keyword argument \\'components\\'\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \"C:\\\\Users\\\\caede\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\bot_base.py\", line 561, in invoke\\n    await ctx.command.invoke(ctx)\\n  File \"C:\\\\Users\\\\caede\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\core.py\", line 930, in invoke\\n    await injected(*ctx.args, **ctx.kwargs)\\n  File \"C:\\\\Users\\\\caede\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39\\\\lib\\\\site-packages\\\\disnake\\\\ext\\\\commands\\\\core.py\", line 185, in wrapped\\n    raise CommandInvokeError(exc) from exc\\ndisnake.ext.commands.errors.CommandInvokeError: Command raised an exception: TypeError: send() got an unexpected keyword argument \\'components\\'\\n```'}",
                 "https://discord.gg/EBJ8uGnzuB",
                 "https://discord.gg/E45VABpufJ",
                 "its exactly same.. @Caeden...",
@@ -2584,8 +2584,8 @@
                 "probably 3 steps:\n- `pip uninstall discord.py nextcord dislash.py`",
                 "{'footer': {'text': '15:46 \u2022 Expires in 5 minutes'}, 'fields': [{'value': '> <:Utils:863075611161788478> \\u200b **Utils**\\n> <:Config:863075611169259550> \\u200b **Config**\\n> <:Misc:863075610979729409> \\u200b **Misc**\\n> <:Feedback:863075610851147777> \\u200b **Feedback**\\n> <:cryptocurrency:872473402764570624> \\u200b **Cryptocurrency**\\n> <:Economy:863075610913800233> \\u200b **Economy**\\n> <:Love:863075611374125056> \\u200b **Love**\\n> <:Games:863075611329167380> \\u200b **Games**\\n> <:Mod:863075610784301068> \\u200b **Mod**\\n\\u200b', 'name': '<:menus:870781340746932225> **Categories:**\\n\\u200b', 'inline': True}, {'value': '> <:Images:863075611277656124>  \\u200b **Images**\\n> <:Snipe:863075611269791794>  \\u200b **Snipe**\\n> <:game_night:872473402840076288>  \\u200b **DiscordTogether**\\n> <:Jesterinfo:863075610048987166>  \\u200b **JesterInfo**\\n> <:JesterJokes:873327129016811528>  \\u200b **JesterJokes**\\n> <:Music:863075611320647719>  \\u200b **Music**\\n> <:Fun:863075609781075968>  \\u200b **Fun**\\n> <:Levels:863075611182628895>  \\u200b **Levels**\\n> <:the_world:872473402638762025>  \\u200b **Countries**', 'name': '\\u200b\\n\\u200b', 'inline': True}, {'value': '**> [Official server](https://discord.gg/2654CuU3ZU) \u2502 [Bot invite](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) \u2502 [Website](https://sites.google.com/view/jesterbot) \u2502 [Vote for me!](https://top.gg/bot/828363172717133874/vote)**', 'name': '<:links:870781340700782612> **Links:**', 'inline': False}], 'color': 3553599, 'type': 'rich', 'description': '```ml\\n[] - Required Argument | <> - Optional Argument``````diff\\n+ Use the dropbar to navigate through Categories``````diff\\n+ Use Jhelp prefix for info about the prefix```', 'title': '<:J_:863313855286607932><:E_:863313854150606848><:S:863313855061164062><:T:863313855399329812><:E_:863313854150606848><:R_:863313855119360022>'}",
                 "{'fields': [{'value': '>  <:Economy:863075610913800233> **Economy** `(17)`\\n>  <:Config:863075611169259550> **Config** `(12)`\\n>  <:criminalemojivectoriconsimple260:924411072729985046> **Crime** `(6)`\\n>  <:game_night:872473402840076288> **DiscordTogether** `(11)`\\n>  <:Fun:863075609781075968> **Fun** `(15)`\\n>  <:JesterJokes:873327129016811528> **JesterJokes** `(10)`\\n>  <:Jesterinfo:863075610048987166> **JesterInfo** `(12)`\\n>  <:Love:863075611374125056> **Love** `(6)`\\n>  <:Music:863075611320647719> **Music** `(13)`\\n>  <:Snipe:863075611269791794> **Snipe** `(4)`\\n>  <:urbandictionary:924074967673503796> **UrbanDictionary** `(2)`\\n\\u200b', 'name': '<:menus:870781340746932225> **Categories:**\\n\\u200b', 'inline': True}, {'value': '>  <:Misc:863075610979729409> **Misc** `(15)`\\n>  <:the_world:872473402638762025> **Countries** `(4)`\\n>  <:cryptocurrency:872473402764570624> **Cryptocurrency** `(3)`\\n>  <:Feedback:863075610851147777> **Feedback** `(4)`\\n>  <:Games:863075611329167380> **Games** `(7)`\\n>  <:Images:863075611277656124> **Images** `(25)`\\n>  <:Levels:863075611182628895> **Levels** `(5)`\\n>  <:Mod:863075610784301068> **Mod** `(20)`\\n>  <:random:924074967405051965> **Random** `(12)`\\n>  <:emojitrivia185:924152372001910834> **Trivia** `(2)`\\n>  <:Utils:863075611161788478> **Utils** `(14)`', 'name': '\\u200b\\n\\u200b', 'inline': True}, {'value': '**> [Official server](https://discord.gg/2654CuU3ZU) \u2502 [Bot invite](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) \u2502 [Website](https://sites.google.com/view/jesterbot) \u2502 [Vote for me!](https://top.gg/bot/828363172717133874/vote)**', 'name': '<:links:870781340700782612> **Links:**', 'inline': False}], 'timestamp': '2021-12-26T15:46:27.110000+00:00', 'type': 'rich', 'description': '```ml\\n[] - Required Argument | <> - Optional Argument``````diff\\n+ Use the dropbar to navigate through Categories``````diff\\n+ Use Jhelp prefix for info about the prefix```', 'title': '<:J_:863313855286607932><:E_:863313854150606848><:S:863313855061164062><:T:863313855399329812><:E_:863313854150606848><:R_:863313855119360022>'}",
-                "{'footer': {'text': '15:57 \u2022 Page: 0 / 0'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/8semWpXOjf12Kix7IDllX7NX7Qc4ZekewfSNmg59Lec/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/483631842554019841/e40c2ed26ef13b4aa06d4aac4617dd98.png', 'name': 'error', 'icon_url': 'https://cdn.discordapp.com/avatars/483631842554019841/e40c2ed26ef13b4aa06d4aac4617dd98.png?size=1024'}, 'color': 3553599, 'type': 'rich', 'description': '```yaml\\nTraceback (most recent call last):\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/core.py\", line 167, in wrapped\\n    ret = await coro(*args, **kwargs)\\n  File \"/home/pi/jesterbot/cogs/Images.py\", line 326, in flip\\n    await ctx.send(file=discord.File(x))\\n  File \"/home/pi/jesterbot/core/Context.py\", line 61, in send\\n    msg = await super().send(content, **kwargs)\\n  File \"/usr/lib/python3.9/site-packages/dislash/slash_commands/_send_modifications.py\", line 135, in send_with_components\\n    data = await send_files(state.http, channel.id, files=[file], allowed_mentions=allowed_mentions,\\n  File \"/usr/lib/python3.9/site-packages/dislash/slash_commands/_send_modifications.py\", line 64, in send_files\\n    form.append({\\'name\\': \\'payload_json\\', \\'value\\': utils.to_json(payload)})\\nAttributeError: module \\'discord.utils\\' has no attribute \\'to_json\\'\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/bot.py\", line 994, in invoke\\n    await ctx.command.invoke(ctx)\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/core.py\", line 894, in invoke\\n    await injected(*ctx.args, **ctx.kwargs)\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/core.py\", line 176, in wrapped\\n    raise CommandInvokeError(exc) from exc\\ndiscord.ext.commands.errors.CommandInvokeError: Command raised an exception: AttributeError: module \\'discord.utils\\' has no attribute \\'to_json\\'\\n```'}",
-                "{'footer': {'text': '15:57 \u2022 Page: 0 / 0'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/8semWpXOjf12Kix7IDllX7NX7Qc4ZekewfSNmg59Lec/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/483631842554019841/e40c2ed26ef13b4aa06d4aac4617dd98.png', 'name': 'error', 'icon_url': 'https://cdn.discordapp.com/avatars/483631842554019841/e40c2ed26ef13b4aa06d4aac4617dd98.png?size=1024'}, 'color': 3553599, 'type': 'rich', 'description': '```yaml\\nTraceback (most recent call last):\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/core.py\", line 167, in wrapped\\n    ret = await coro(*args, **kwargs)\\n  File \"/home/pi/jesterbot/cogs/Images.py\", line 192, in gay\\n    await ctx.send(file=discord.File(\\'./images/gay.png\\'))\\n  File \"/home/pi/jesterbot/core/Context.py\", line 61, in send\\n    msg = await super().send(content, **kwargs)\\n  File \"/usr/lib/python3.9/site-packages/dislash/slash_commands/_send_modifications.py\", line 135, in send_with_components\\n    data = await send_files(state.http, channel.id, files=[file], allowed_mentions=allowed_mentions,\\n  File \"/usr/lib/python3.9/site-packages/dislash/slash_commands/_send_modifications.py\", line 64, in send_files\\n    form.append({\\'name\\': \\'payload_json\\', \\'value\\': utils.to_json(payload)})\\nAttributeError: module \\'discord.utils\\' has no attribute \\'to_json\\'\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/bot.py\", line 994, in invoke\\n    await ctx.command.invoke(ctx)\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/core.py\", line 894, in invoke\\n    await injected(*ctx.args, **ctx.kwargs)\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/core.py\", line 176, in wrapped\\n    raise CommandInvokeError(exc) from exc\\ndiscord.ext.commands.errors.CommandInvokeError: Command raised an exception: AttributeError: module \\'discord.utils\\' has no attribute \\'to_json\\'\\n```'}",
+                "{'footer': {'text': '15:57 \u2022 Page: 0 / 0'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/8semWpXOjf12Kix7IDllX7NX7Qc4ZekewfSNmg59Lec/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/483631842554019841/e40c2ed26ef13b4aa06d4aac4617dd98.png', 'name': 'error', 'icon_url': 'https://cdn.discordapp.com/avatars/483631842554019841/e40c2ed26ef13b4aa06d4aac4617dd98.png?size=1024'}, 'color': 3553599, 'type': 'rich', 'description': '```yaml\\nTraceback (most recent call last):\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/core.py\", line 167, in wrapped\\n    ret = await coro(*args, **kwargs)\\n  File \"/home/pi/jesterbot/cogs/Images.py\", line 326, in flip\\n    await ctx.reply(file=discord.File(x))\\n  File \"/home/pi/jesterbot/core/Context.py\", line 61, in send\\n    msg = await super().send(content, **kwargs)\\n  File \"/usr/lib/python3.9/site-packages/dislash/slash_commands/_send_modifications.py\", line 135, in send_with_components\\n    data = await send_files(state.http, channel.id, files=[file], allowed_mentions=allowed_mentions,\\n  File \"/usr/lib/python3.9/site-packages/dislash/slash_commands/_send_modifications.py\", line 64, in send_files\\n    form.append({\\'name\\': \\'payload_json\\', \\'value\\': utils.to_json(payload)})\\nAttributeError: module \\'discord.utils\\' has no attribute \\'to_json\\'\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/bot.py\", line 994, in invoke\\n    await ctx.command.invoke(ctx)\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/core.py\", line 894, in invoke\\n    await injected(*ctx.args, **ctx.kwargs)\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/core.py\", line 176, in wrapped\\n    raise CommandInvokeError(exc) from exc\\ndiscord.ext.commands.errors.CommandInvokeError: Command raised an exception: AttributeError: module \\'discord.utils\\' has no attribute \\'to_json\\'\\n```'}",
+                "{'footer': {'text': '15:57 \u2022 Page: 0 / 0'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/8semWpXOjf12Kix7IDllX7NX7Qc4ZekewfSNmg59Lec/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/483631842554019841/e40c2ed26ef13b4aa06d4aac4617dd98.png', 'name': 'error', 'icon_url': 'https://cdn.discordapp.com/avatars/483631842554019841/e40c2ed26ef13b4aa06d4aac4617dd98.png?size=1024'}, 'color': 3553599, 'type': 'rich', 'description': '```yaml\\nTraceback (most recent call last):\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/core.py\", line 167, in wrapped\\n    ret = await coro(*args, **kwargs)\\n  File \"/home/pi/jesterbot/cogs/Images.py\", line 192, in gay\\n    await ctx.reply(file=discord.File(\\'./images/gay.png\\'))\\n  File \"/home/pi/jesterbot/core/Context.py\", line 61, in send\\n    msg = await super().send(content, **kwargs)\\n  File \"/usr/lib/python3.9/site-packages/dislash/slash_commands/_send_modifications.py\", line 135, in send_with_components\\n    data = await send_files(state.http, channel.id, files=[file], allowed_mentions=allowed_mentions,\\n  File \"/usr/lib/python3.9/site-packages/dislash/slash_commands/_send_modifications.py\", line 64, in send_files\\n    form.append({\\'name\\': \\'payload_json\\', \\'value\\': utils.to_json(payload)})\\nAttributeError: module \\'discord.utils\\' has no attribute \\'to_json\\'\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/bot.py\", line 994, in invoke\\n    await ctx.command.invoke(ctx)\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/core.py\", line 894, in invoke\\n    await injected(*ctx.args, **ctx.kwargs)\\n  File \"/home/pi/.local/lib/python3.9/site-packages/discord/ext/commands/core.py\", line 176, in wrapped\\n    raise CommandInvokeError(exc) from exc\\ndiscord.ext.commands.errors.CommandInvokeError: Command raised an exception: AttributeError: module \\'discord.utils\\' has no attribute \\'to_json\\'\\n```'}",
                 "JGAY",
                 "",
                 "wtf",
@@ -5848,7 +5848,7 @@
         },
         "854367065661374515": {
             "list": [
-                "**Usage**\nFor newbies, really.\n```py\nif await is_higher(SomeRole, SomeSecondRole) or await is_higher(SomeRole, SomeSecondRole) == \"equal\": # if it returns True or if it's returning \"equal\"\n    embedObj = disnake.Embed(title=f\"SomeSecondRole is higher than SomeRole\")\n    await ctx.send(idea...*\", embed=embedObj)\n    return```"
+                "**Usage**\nFor newbies, really.\n```py\nif await is_higher(SomeRole, SomeSecondRole) or await is_higher(SomeRole, SomeSecondRole) == \"equal\": # if it returns True or if it's returning \"equal\"\n    embedObj = disnake.Embed(title=f\"SomeSecondRole is higher than SomeRole\")\n    await ctx.reply(idea...*\", embed=embedObj)\n    return```"
             ],
             "author": [
                 "KarmaHitsHardDEV"
@@ -6125,7 +6125,8 @@
                 ">wc @catScat",
                 "{'color': 3447003, 'type': 'rich', 'description': 'This might take a while...\\n5000/5000 messages gathered', 'title': 'Fetching messages from #\ud835\udd4b\ud835\udd59\ud835\udd56-\ud835\udd38\ud835\udd66\ud835\udd65\ud835\udd60\ud83c\udd71\ud835\udd52\ud835\udd59\ud835\udd5f-\ud83c\udfc1'}",
                 "@elzzid-h has leveled up! **(48 \u279c 49)**",
-                "80 year old Jewish grandma bbw has birthday sex"
+                "80 year old Jewish grandma bbw has birthday sex",
+                "@M_Schumacher has leveled up! **(8 \u279c 9)**"
             ],
             "author": [
                 "Tatsu",
@@ -6155,7 +6156,8 @@
                 "nugSxxxxx",
                 "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0",
                 "Tatsu",
-                "imsavingmyselfformarriage"
+                "imsavingmyselfformarriage",
+                "Tatsu"
             ],
             "id": [
                 172002275412279296,
@@ -6185,7 +6187,8 @@
                 170968325872943105,
                 925872337801322578,
                 172002275412279296,
-                936813464750522438
+                936813464750522438,
+                172002275412279296
             ],
             "time": [
                 "2022-02-07 16:46:29.713000+00:00",
@@ -6215,7 +6218,8 @@
                 "2022-02-12 20:53:02.349000+00:00",
                 "2022-02-12 20:52:05.775000+00:00",
                 "2022-02-12 21:01:26.276000+00:00",
-                "2022-02-13 11:56:48.014000+00:00"
+                "2022-02-13 11:56:48.014000+00:00",
+                "2022-02-13 14:19:59.283000+00:00"
             ]
         },
         "830588701264183306": {
@@ -6361,6 +6365,24 @@
             "time": [
                 "2022-02-13 11:27:21.781000+00:00"
             ]
+        },
+        "871133066985373786": {
+            "list": [
+                "Why I\u2019m staring at all your dicks",
+                "Cause you're hornyy"
+            ],
+            "author": [
+                "Tam Tam",
+                "Marack"
+            ],
+            "id": [
+                815623908463345676,
+                523319660112773122
+            ],
+            "time": [
+                "2022-02-13 14:15:48.913000+00:00",
+                "2022-02-13 14:15:58.219000+00:00"
+            ]
         }
     },
     "926115595307614249": {
@@ -6431,25 +6453,33 @@
                 "{'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/tfFjr-EUXlkAPpFkxcCr31Wl8YjjUfCDidekQ5kt0JE/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/298043305927639041/d43481007d415a84a02119b57245abf0.png', 'name': 'Games', 'icon_url': 'https://cdn.discordapp.com/avatars/298043305927639041/d43481007d415a84a02119b57245abf0.png?size=1024'}, 'fields': [{'value': '- `russianroulette`\\n- `dice`\\n- `rpsfail`\\n- `anagram`', 'name': '\\u200b', 'inline': True}, {'value': '- `blackjack`\\n- `rps`\\n- `guessinggame`\\n- `hangman`', 'name': '\\u200b', 'inline': True}], 'color': 13369344, 'type': 'rich', 'description': 'Play fun games with the bot or with other members, who doesnt love a game of blackjack against an ai?'}",
                 "discord.gg/badminton",
                 "discord.gg/bmnton",
-                "discord.gg/dmb"
+                "discord.gg/dmb",
+                "-galactic I speak the language of gods!",
+                "{'footer': {'text': 'Servers in: 48 \u2502 Overall users: 18477'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/tfFjr-EUXlkAPpFkxcCr31Wl8YjjUfCDidekQ5kt0JE/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/298043305927639041/d43481007d415a84a02119b57245abf0.png', 'name': 'Caeden', 'icon_url': 'https://cdn.discordapp.com/avatars/298043305927639041/d43481007d415a84a02119b57245abf0.png?size=1024'}, 'type': 'rich', 'description': '```yaml\\nAPI      : 104ms\\nBot      : 251ms\\nDatabase : 0ms\\n```', 'title': '\ud83c\udfd3  Pong!'}"
             ],
             "author": [
                 "[j.] JesterBot",
                 "Caeden",
                 "Caeden",
-                "Caeden"
+                "Caeden",
+                "unmoo",
+                "[j.] JesterBot"
             ],
             "id": [
                 828363172717133874,
                 298043305927639041,
                 298043305927639041,
-                298043305927639041
+                298043305927639041,
+                749917031502970910,
+                828363172717133874
             ],
             "time": [
                 "2022-02-08 17:03:40.789000+00:00",
                 "2022-02-12 20:16:15.406000+00:00",
                 "2022-02-12 20:16:20.736000+00:00",
-                "2022-02-12 20:16:34.976000+00:00"
+                "2022-02-12 20:16:34.976000+00:00",
+                "2022-02-13 13:51:59.516000+00:00",
+                "2022-02-13 13:52:18.210000+00:00"
             ]
         }
     },

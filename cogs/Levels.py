@@ -260,7 +260,7 @@ class Levels(commands.Cog):
         final_xp = self.calculate_xp(level + 1)
         bytes = await self.make_rank_image(member, rank, level, xp, final_xp)
         file = disnake.File(bytes, "rank.png")
-        await ctx.send(file=file)
+        await ctx.reply(file=file)
 
     @commands.command(aliases=["conf"])
     async def levelsconfig(self, ctx: commands.Context):
@@ -270,7 +270,7 @@ class Levels(commands.Cog):
         result = await cursor.fetchone()
 
         if result is None:
-            await ctx.send(
+            await ctx.reply(
                 "What channel would you like the rankup messages to be in? Type No to not have a rankup message channel"
             )
 
@@ -280,7 +280,7 @@ class Levels(commands.Cog):
 
             while not channel_msg.raw_channel_mentions and channel_msg.content != "No":
 
-                await ctx.send(
+                await ctx.reply(
                     "Please ping the channel you would like to send the message in. An example is <#{}>".format(
                         ctx.channel.id
                     )
@@ -291,7 +291,7 @@ class Levels(commands.Cog):
                 )
 
             await channel_msg.add_reaction(THUMBS_UP)
-            await ctx.send(
+            await ctx.reply(
                 "Would you like the bot to ping after every rankup message? Type No to not ping on rankup, and Yes to ping."
             )
 
@@ -301,7 +301,7 @@ class Levels(commands.Cog):
 
             while ping.content not in ["No", "Yes"]:
 
-                await ctx.send("Type No to not ping on rankup, and Yes to ping.")
+                await ctx.reply("Type No to not ping on rankup, and Yes to ping.")
                 ping = await self.bot.wait_for(
                     "message", check=lambda m: m.author == ctx.author
                 )
@@ -321,8 +321,8 @@ class Levels(commands.Cog):
             await cursor.execute("Insert into config values(?, ?, ?)", result)
             await self.bot.db.commit()
 
-            return await ctx.send(embed=embed)
-        await ctx.send(
+            return await ctx.reply(embed=embed)
+        await ctx.reply(
             embed=disnake.Embed(
                 description="You already have a config!", colour=get_colour()
             ).set_author(name="Config", icon_url=ctx.author.avatar.url)
@@ -345,7 +345,7 @@ class Levels(commands.Cog):
 **Ping:**`{result1[2]}`
             
             """
-        await ctx.send(result if result1 is not None else "no config")
+        await ctx.reply(result if result1 is not None else "no config")
 
     @commands.command(aliases=["rconf"])
     async def removeconfig(self, ctx: commands.Context):
@@ -353,7 +353,7 @@ class Levels(commands.Cog):
         cursor = await self.bot.db.cursor()
         await cursor.execute("Delete from config where guild_id = ?", (ctx.guild.id,))
 
-        await ctx.send("Deleted all raknup config messages")
+        await ctx.reply("Deleted all raknup config messages")
 
     @commands.command(aliases=["lb"])
     async def leaderboard(self, ctx: commands.Context):
@@ -376,7 +376,7 @@ class Levels(commands.Cog):
                 break
 
         embed.description = desc
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
 
 def setup(bot):
