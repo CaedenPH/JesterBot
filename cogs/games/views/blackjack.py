@@ -6,7 +6,14 @@ from disnake.ui import View, Button, button
 
 from core import Context
 from core.utils import get_colour
-from core.constants import BLACKJACK_HOW_TO, CARD_SUITS, CLOSED_LOCK, BOOM, CONFETTI, HANDSHAKE
+from core.constants import (
+    BLACKJACK_HOW_TO,
+    CARD_SUITS,
+    CLOSED_LOCK,
+    BOOM,
+    CONFETTI,
+    HANDSHAKE,
+)
 
 special_cards = {1: "Ace", 10: "Jack", 11: "Queen", 12: "King"}
 blackjack_visual = """\
@@ -265,11 +272,12 @@ class BlackJack(View):
     @button(label="Exit", style=ButtonStyle.danger, row=1)
     async def exit_button(self, button: Button, interaction: MessageInteraction):
         self.status = "game over"
-        embed = self.create_embed(
-            f"Game exited.\n{self.display_cards_embed(hide_card=False)}"
-        )
+        embed = self.display_cards_embed(hide_card=False)
 
         await self.bot_message.clear_reactions()
         await self.bot_message.add_reaction(CLOSED_LOCK)
 
-        return await self.bot_message.edit(embed=embed, view=None)
+        return await self.bot_message.edit(
+            content="Game over",
+            embed=embed, view=None
+        )

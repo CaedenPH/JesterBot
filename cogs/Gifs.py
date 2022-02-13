@@ -142,9 +142,8 @@ class JesterJokes(commands.Cog):
         embed.set_image(url=choice(url))
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=["jokes", "joke"], description="Sends a random joke")
-    async def _joke(self, ctx: Context):
-
+    @commands.command(aliases=["jokes"], description="Sends a random joke")
+    async def joke(self, ctx: Context):
         await send_embed(ctx, "Joke", await joke())
 
 

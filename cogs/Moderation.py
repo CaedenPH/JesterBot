@@ -160,7 +160,7 @@ class Mod(commands.Cog):
 
     @has_permissions(move_members=True)
     @commands.command(
-        aliases=["m", "move"],
+        aliases=["move"],
         description="Moves a member from their current vc to the channel specified. If no channel has been specified it will kick the member from the vc.",
     )
     async def move_to(self, ctx: Context, member: disnake.Member, channel: str):

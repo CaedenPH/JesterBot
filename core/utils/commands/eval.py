@@ -92,5 +92,4 @@ async def run_eval(ctx: Context, code, **kwargs) -> None:
     else:
         y = Paginator(ctx)
         return await y.paginate(content=result, name="Eval")
-
     return msg

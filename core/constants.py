@@ -1,4 +1,18 @@
-# emojis
+## environ
+
+from os import environ
+from dotenv import load_dotenv
+
+load_dotenv()
+
+BOT_TOKEN = environ["BOT_TOKEN"]
+WEATHER_KEY = environ["WEATHER_KEY"]
+POLICE_KEY = environ["POLICE_KEY"]
+COORDS_KEY = environ["COORDS_KEY"]
+CHATBOT_KEY = environ["CHATBOT_KEY"]
+RAPID_API_KEY = environ["RAPID_API_KEY"]
+
+## emojis
 
 THUMBS_UP = "👍"
 THUMBS_DOWN = "👎"
@@ -7,8 +21,7 @@ CLOSED_LOCK = "🔐"
 BOOM = "💥"
 HANDSHAKE = "🤝"
 
-
-# custom emojis
+## custom emojis
 
 LOCATION_EMOJIS = {
     "fastbackwards": "<:fast_forward_left:870781340692402226>",
@@ -48,6 +61,7 @@ HOME = "<:Arrow:863313854040506379>"
 LINK = "<:links:870781340700782612>"
 CATEGORIES = "<:menus:870781340746932225>"
 TRASHCAN = "<:trashbin:873564727006089287>"
+LOADING = "<a:loading_grey:942386360877219881>"
 
 _J = "<:J_:863313855286607932>"
 _E = "<:E_:863313854150606848>"
@@ -55,23 +69,7 @@ _S = "<:S:863313855061164062>"
 _T = "<:T:863313855399329812>"
 _R = "<:R_:863313855119360022>"
 
-
-# environ
-
-from os import environ
-from dotenv import load_dotenv
-
-load_dotenv()
-
-BOT_TOKEN = environ["BOT_TOKEN"]
-WEATHER_KEY = environ["WEATHER_KEY"]
-POLICE_KEY = environ["POLICE_KEY"]
-COORDS_KEY = environ["COORDS_KEY"]
-CHATBOT_KEY = environ["CHATBOT_KEY"]
-RAPID_API_KEY = environ["RAPID_API_KEY"]
-
-
-# game
+## game
 
 CARD_SUITS = {
     "hearts": "♥️",
@@ -87,7 +85,7 @@ It is recommended that you research the rules to familiarize yourself how the ga
 """
 BLACKJACK_HOW_TO = """```yaml
 How to play blackjack
-=====================
+=====================x
 
 Start
 -----
@@ -168,3 +166,157 @@ HANGMAN = [
       |
 =========""",
 ][::-1]
+
+## utils 
+
+TEXT_TO_MORSE = {
+    "A": ".-",
+    "B": "-...",
+    "C": "-.-.",
+    "D": "-..",
+    "E": ".",
+    "F": "..-.",
+    "G": "--.",
+    "H": "....",
+    "I": "..",
+    "J": ".---",
+    "K": "-.-",
+    "L": ".-..",
+    "M": "--",
+    "N": "-.",
+    "O": "---",
+    "P": ".--.",
+    "Q": "--.-",
+    "R": ".-.",
+    "S": "...",
+    "T": "-",
+    "U": "..-",
+    "V": "...-",
+    "W": ".--",
+    "X": "-..-",
+    "Y": "-.--",
+    "Z": "--..",
+    "1": ".----",
+    "2": "..---",
+    "3": "...--",
+    "4": "....-",
+    "5": ".....",
+    "6": "-....",
+    "7": "--...",
+    "8": "---..",
+    "9": "----.",
+    "0": "-----",
+    ",": "--..--",
+    ".": ".-.-.-",
+    "?": "..--..",
+    "/": "-..-.",
+    "-": "-....-",
+    "(": "-.--.",
+    ")": "-.--.-",
+    ":": "---...",
+    "'": ".----.",
+    "’": ".----.",
+    '"': ".-..-.",
+    " ": ".......",
+    "!": "-.-.--",
+    "@": ".--.-.",
+    "$": "...-..-",
+    "&": ".-...",
+    ";": "-.-.-.",
+    "=": "-...-",
+    "+": ".-.-.",
+    "_": "..--.-",
+}
+
+MORSE_TO_TEXT = {
+    ".-": "A",
+    "-...": "B",
+    "-.-.": "C",
+    "-..": "D",
+    ".": "E",
+    "..-.": "F",
+    "--.": "G",
+    "....": "H",
+    "..": "I",
+    ".---": "J",
+    "-.-": "K",
+    ".-..": "L",
+    "--": "M",
+    "-.": "N",
+    "---": "O",
+    ".--.": "P",
+    "--.-": "Q",
+    ".-.": "R",
+    "...": "S",
+    "-": "T",
+    "..-": "U",
+    "...-": "V",
+    ".--": "W",
+    "-..-": "X",
+    "-.--": "Y",
+    "--..": "Z",
+    ".----": "1",
+    "..---": "2",
+    "...--": "3",
+    "....-": "4",
+    ".....": "5",
+    "-....": "6",
+    "--...": "7",
+    "---..": "8",
+    "----.": "9",
+    "-----": "0",
+    "--..--": ",",
+    ".-.-.-": ".",
+    "..--..": "?",
+    "-..-.": "/",
+    "-....-": "-",
+    "-.--.": "(",
+    "-.--.-": ")",
+    "---...": ":",
+    ".----.": "'",
+    ".-..-.": '"',
+    ".......": " ",
+    "-.-.--": "!",
+    ".--.-.": "@",
+    "...-..-": "$",
+    ".-...": "&",
+    "-.-.-.": ";",
+    "-...-": "=",
+    ".-.-.": "+",
+    "..--.-": "_",
+}
+ASCII_DESCRIPTION = """ASCII was developed from telegraph code. Work on the ASCII standard began in May 1961. The first edition of the standard was published in 1963. Compared to earlier telegraph codes, the proposed Bell code and ASCII were both ordered for more convenient sorting (i.e., alphabetization) of lists.
+
+The use of ASCII format for Network Interchange was described in 1969. That document was formally elevated to an Internet Standard in 2015.
+
+Originally based on the English alphabet, ASCII encodes 128 specified characters into seven-bit integers as shown by the ASCII chart above. Ninety-five of the encoded characters are printable: these include the digits 0 to 9, lowercase letters a to z, uppercase letters A to Z, and punctuation symbols. 
+
+For example, lowercase i would be represented in the ASCII encoding by binary 1101001 = hexadecimal 69 (i is the ninth letter) = decimal 105.
+To get the ascii table type j.ascii
+
+Source: [Website](https://en.wikipedia.org/wiki/ASCII)
+    """
+
+## docs
+
+ZEN_OF_PYTHON = """\
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+"""

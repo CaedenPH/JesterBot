@@ -27,7 +27,7 @@
         "score": 105
     },
     "help": {
-        "score": 2235
+        "score": 2236
     },
     "jsonfile": {
         "score": 19
@@ -42,7 +42,7 @@
         "score": 24
     },
     "ping": {
-        "score": 334
+        "score": 340
     },
     "giveaway": {
         "score": 17
@@ -54,7 +54,7 @@
         "score": 26
     },
     "blackjack": {
-        "score": 331
+        "score": 333
     },
     "ping_jesus": {
         "score": 10
@@ -90,7 +90,7 @@
         "score": 3
     },
     "calculator": {
-        "score": 278
+        "score": 284
     },
     "calc*": {
         "score": 1
@@ -306,7 +306,7 @@
         "score": 36
     },
     "dice": {
-        "score": 18
+        "score": 21
     },
     "delsuggestchannel": {
         "score": 4
@@ -429,7 +429,7 @@
         "score": 12
     },
     "eval": {
-        "score": 2676
+        "score": 2678
     },
     "pager": {
         "score": 12
@@ -513,7 +513,7 @@
         "score": 477
     },
     "evaldir": {
-        "score": 358
+        "score": 363
     },
     "quote1": {
         "score": 4
@@ -1188,7 +1188,7 @@
         "score": 3
     },
     "how_many_commands": {
-        "score": 11
+        "score": 14
     },
     "docs": {
         "score": 22
@@ -1251,6 +1251,12 @@
         "score": 1
     },
     "source": {
-        "score": 4
+        "score": 15
+    },
+    "russian_roulette": {
+        "score": 1
+    },
+    "casino": {
+        "score": 1
     }
 }

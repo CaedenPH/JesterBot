@@ -166,12 +166,6 @@ class Images(commands.Cog):
 
         await ctx.send(file=disnake.File("./images/code_snippet.png"))
 
-    @commands.command()
-    async def meme(self, ctx: Context):
-        async with self.bot.client.get("https://some-random-api.ml/meme") as resp:
-            response = await resp.json()
-            await ctx.send(response["image"])
-
     @commands.command(description="""Sends a wasted filtered avatar""")
     async def wasted(self, ctx: Context, member: disnake.Member = None):
 

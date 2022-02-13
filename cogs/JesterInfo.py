@@ -1,17 +1,19 @@
+from webbrowser import get
 import disnake
 import json
+import time
 
 from disnake.ext import commands
 from datetime import datetime
-from core.utils import create_embed
 
+from core.utils import create_embed
 from core.utils import get_colour, update_json, send_embed
-from core import Context
+from core.constants import LOADING
+from core import Context, JesterBot
 
 
 class JesterInfo(commands.Cog):
-    def __init__(self, bot):
-
+    def __init__(self, bot: JesterBot):
         self.bot = bot
 
     @commands.command()
@@ -21,7 +23,6 @@ class JesterInfo(commands.Cog):
 
     @commands.command()
     async def uptime(self, ctx: Context):
-
         delta_uptime = datetime.utcnow() - self.bot.launch_time
         hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
         minutes, seconds = divmod(remainder, 60)
@@ -37,7 +38,6 @@ class JesterInfo(commands.Cog):
         description="Sends the version that the disnake bot is currently on - Changes frequently as updates occur",
     )
     async def version(self, ctx: Context):
-
         with open("./dicts/Updates.json", "r") as x:
             data = json.load(x)
             for m in data:
@@ -77,7 +77,6 @@ class JesterInfo(commands.Cog):
         description="Sends the most recent update to the bot",
     )
     async def update(self, ctx: Context):
-
         with open("./dicts/Updates.json", "r") as x:
             data = json.load(x)
 
@@ -229,15 +228,31 @@ class JesterInfo(commands.Cog):
         description="Sends the ping of the bot",
     )
     async def ping(self, ctx: Context):
+        time1 = time.perf_counter()
+        msg = await ctx.reply(embed=disnake.Embed(title=f"Pinging... {LOADING}", color=get_colour()))
+        time2 = time.perf_counter()
+
+        db_time1 = time.perf_counter()
+        cursor = await self.bot.db.cursor()
+        await cursor.execute("SELECT prefixes FROM prefix WHERE user_id = ?", (ctx.author.id,))
+        db_time2 = time.perf_counter()
+
         embed = disnake.Embed(
-            description=f"My current ping is **{round(self.bot.latency * 1000)}** ms",
-            colour=get_colour(),
-        )
-        embed.set_footer(
+            title="🏓  Pong!",
+            description=f"""\
+```yaml
+API      : {round(self.bot.latency*1000)}ms
+Bot      : {round((time2-time1)*1000)}ms
+Database : {round((db_time2-db_time1)*1000)}ms
+```
+            """
+        ).set_author(
+            name=ctx.author.name,
+            icon_url=ctx.author.display_avatar.url
+        ).set_footer(
             text=f"Servers in: {len(self.bot.guilds)} │ Overall users: {len(self.bot.users)}"
         )
-
-        await ctx.send(embed=embed)
+        await msg.edit(embed=embed)
 
     @commands.command(
         aliases=["pref", "prefixs", "pre", "prefixes"],

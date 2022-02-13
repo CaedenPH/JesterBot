@@ -1,15 +1,15 @@
 import datetime
-import disnake
 import json
 import asyncio
 
+from disnake import Embed
 from disnake.ext.commands import command, Cog
 from random import randint, choice
 
 from core.utils import get_colour, send_embed
 from core import Context
 from core.constants import HANGMAN, BLACKJACK_WELCOME
-from .blackjack import BlackJack
+from . import BlackJack, Casino, RussianRoulette, Dice, Meme
 
 
 class Games(Cog):
@@ -19,36 +19,62 @@ class Games(Cog):
     def message_content(self, guesses_left, guesses, word):
         return f"```yaml\n{HANGMAN[guesses_left]}````{' '.join([k if k in guesses else '_' for k in word])}`\nYou have {guesses_left} guesses left"
 
-    @command(
-        aliases=["rr"],
-        description="You play russian roulette with yourself - 1 in 6 chance you will die...Be warned!",
-    )
-    async def russianroulette(self, ctx: Context):
-        rand = randint(1, 6)
-        if rand == 1:
-            return await send_embed(ctx, "🔫 / You died")
-        await send_embed(ctx, "🌹 / You lived")
+    @command()
+    async def casino(self, ctx: Context) -> None:
+        embed = Embed(
+            title="Casino Machine $", 
+            description="```000```",
+            color=get_colour()
+        ).set_footer(text="Get Three numbers in a row for a PRIZE")
 
-    @command(aliases=["bj"], description="Emits a game of blackjack with the user")
+        await ctx.send(embed=embed, view=Casino(ctx.author))
+
+    @command(aliases=["rr", "gun_game", "russianroulette", "gungame"])
+    async def russian_roulette(self, ctx: Context):
+        embed = Embed(
+            title="Russian Roulette",
+            color=get_colour()
+        ).set_footer(text="Dont die!")
+
+        await ctx.send(embed=embed, view=RussianRoulette(ctx))
+
+    @command(aliases=["die"])
+    async def dice(self, ctx: Context):
+        embed = Embed(
+            title="<:dicetitle:932727881069641858> Play now <:dicetitle:932727881069641858>",
+            description="Your random roll awaits",
+            color=get_colour()
+        )
+
+        await ctx.send(embed=embed, view=Dice(ctx))
+
+    @command(aliases=["bj"])
     async def blackjack(self, ctx: Context):
-        embed = disnake.Embed(
+        embed = Embed(
             title="Blackjack",
             description=BLACKJACK_WELCOME,
             timestamp=ctx.message.created_at,
             colour=get_colour(),
         ).set_author(name=ctx.author.name, icon_url=ctx.author.avatar.url)
+
         view = BlackJack(ctx)
         view.bot_message = await ctx.reply(
             embed=embed,
             view=view,
-        )
+        )    
 
-    @command(
-        aliases=["dices", "die"],
-        description="Rolls a dice and compares the number to `<roll>`, difficulty can be; easiest (1 in 2 chance), easy (1 in 3 chance), normal (1 in 6 chance), hard (1 in 9 chance), impossible (1 in 15 chance)",
-    )
-    async def dice(self, ctx: Context, num: str, difficulty: str = "normal"):
-        await send_embed(ctx, "Working...")
+    @command(aliases=["m", "memes"])
+    async def meme(self, ctx: Context):
+        embed = Embed(
+            title = "<:reddit:933846462087987292> Memes <:reddit:933846462087987292>",
+            description = "Get your daily dose of reddit memes!",
+            color = 0x8b008b
+        ).set_footer(
+            text = f"Requested by {ctx.author.name} *Note: there are only 50 memes within one meme command, for more do `jarvide meme` again*",
+            icon_url = ctx.author.display_avatar.url
+        )
+        
+        await ctx.send(embed=embed, view=Meme(ctx))
 
     @command(
         aliases=["rock", "rockpaperscissors"],
@@ -88,7 +114,7 @@ class Games(Cog):
 
         reaction, user = await self.bot.wait_for("reaction_add", check=check)
 
-        embed = disnake.Embed(title=f"Baited", colour=get_colour())
+        embed = Embed(title=f"Baited", colour=get_colour())
         await msg.edit(embed=embed)
 
     @command(
@@ -126,7 +152,7 @@ class Games(Cog):
 
         anagram = choice(list(data.keys()))
         embed = (
-            disnake.Embed(
+            Embed(
                 title=f"Your anagram is {anagram}",
                 description=f"There are {len(data[anagram])} answers. You have 60 seconds to respond with your answers. The answers are all the same length as the word",
             )
@@ -151,7 +177,7 @@ class Games(Cog):
                     raise asyncio.TimeoutError()
 
         except asyncio.TimeoutError:
-            embed = disnake.Embed(
+            embed = Embed(
                 title=f"Anagram for {anagram}",
                 description=f"The answers were: `{', '.join(data[anagram])}`",
             ).set_author(name="Nice try!", icon_url=ctx.author.avatar.url)

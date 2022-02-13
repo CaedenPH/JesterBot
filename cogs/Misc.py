@@ -1,3 +1,4 @@
+import os
 import disnake
 import json
 import asyncio
@@ -82,9 +83,9 @@ class Misc(commands.Cog):
             return await ctx.send("https://github.com/caedenph/jesterbot")
         cmd = self.bot.get_command(command)
         if cmd:
-            directory = "doesnt work rn...in progress"
+            source = inspect.unwrap(cmd.callback).__code__
             return await ctx.send(
-                f"https://github.com/caedenph/jesterbot/tree/main/{directory}.py#L{inspect.getsourcelines(inspect.unwrap(cmd.callback).__code__)[1]}"
+                f"https://github.com/caedenph/jesterbot/tree/main/{''.join(inspect.getfile(source).split('jesterbot/')[1])}#L{inspect.getsourcelines(source)[1]}"
             )
         await ctx.em("No such command!")
 
