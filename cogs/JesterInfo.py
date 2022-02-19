@@ -235,8 +235,7 @@ class JesterInfo(commands.Cog):
         time2 = time.perf_counter()
 
         db_time1 = time.perf_counter()
-        cursor = await self.bot.db.cursor()
-        await cursor.execute(
+        await self.bot.db.execute(
             "SELECT prefixes FROM prefix WHERE user_id = ?", (ctx.author.id,)
         )
         db_time2 = time.perf_counter()

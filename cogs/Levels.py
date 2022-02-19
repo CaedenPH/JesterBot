@@ -5,56 +5,47 @@ import io
 
 from PIL import Image, ImageDraw, ImageFont
 from disnake.ext import commands
-from core.constants import THUMBS_UP
 
+from core.bot import JesterBot
+from core.constants import THUMBS_UP
 from core.utils.utils import get_colour
 
 
 class Levels(commands.Cog):
     def __init__(self, bot):
-        self.bot = bot
+        self.bot: JesterBot = bot
 
     async def find_or_insert_user(self, member: disnake.Member):
-        cursor = await self.bot.db.cursor()
-        await cursor.execute(
+        result = await self.bot.db.fetchone(
             "Select * from users where user_id = ? and guild_id = ?",
             (
                 member.id,
                 member.guild.id,
             ),
         )
-        result = await cursor.fetchone()
         if result is None:
             result = (member.id, member.guild.id, 0, 0, member.display_name)
-            await cursor.execute("Insert into users values(?, ?, ?, ?, ?)", result)
-            await self.bot.db.commit()
-
+            await self.bot.update("Insert into users values(?, ?, ?, ?, ?)", result)
         return result
 
     async def rankup(self, level, member):
-        sendcurs = await self.bot.db.cursor()
-        await sendcurs.execute(
-            "Select * from config where guild_id = ?", (member.guild.id,)
+        result = await self.bot.db.fetchone(
+            "Select * from levels_config where guild_id = ?", (member.guild.id,)
         )
-        sendresult = await sendcurs.fetchone()
 
-        chan, message = "kek", "kekw"
-
-        if sendresult is not None:
-            guild, chan, ping = sendresult
-
+        chan, message = None, None
+        if result is not None:
+            guild, chan, ping = result
             if ping == "Yes":
                 message = f"Well done {member.mention}! You ranked up to {level}"
             else:
                 message = f"Well done {member}! You ranked up to {level}"
-
         return chan, message
 
     def calculate_xp(self, level):
         return 100 * (level ** 2)
 
     def calculate_level(self, xp):
-        # Sqrt => value ** 0.5
         return round(0.1 * math.sqrt(xp))
 
     @commands.Cog.listener()
@@ -70,16 +61,14 @@ class Levels(commands.Cog):
         if self.calculate_level(xp) > level:
             level += 1
             sendmessage = await self.rankup(level, message.author)
-            if sendmessage[1] != "kekw":
+            if sendmessage[1] is not None:
                 channel = self.bot.get_channel(sendmessage[0])
                 await channel.send(sendmessage[1])
 
-        cursor = await self.bot.db.cursor()
-        await cursor.execute(
+        await self.bot.db.update(
             "Update users set xp=?, level=? where user_id=? and guild_id=?",
             (xp, level, user_id, guild_id),
         )
-        await self.bot.db.commit()
 
     async def make_rank_image(self, member: disnake.Member, rank, level, xp, final_xp):
         user_avatar_image = str(member.avatar.with_format("png").with_size(512))
@@ -249,25 +238,21 @@ class Levels(commands.Cog):
     @commands.command()
     async def rank(self, ctx: commands.Context, member: disnake.Member = None):
         member = member or ctx.author
-        cursor = await self.bot.db.cursor()
         user = await self.find_or_insert_user(member)
         user_id, guild_id, xp, level, name = user
-        await cursor.execute(
+
+        result = await self.bot.db.fetchone(
             "Select Count(*) from users where xp > ? and guild_id=?", (xp, guild_id)
         )
-        result = await cursor.fetchone()
         rank = result[0] + 1
         final_xp = self.calculate_xp(level + 1)
+
         bytes = await self.make_rank_image(member, rank, level, xp, final_xp)
-        file = disnake.File(bytes, "rank.png")
-        await ctx.reply(file=file)
+        await ctx.reply(file=disnake.File(bytes, "rank.png"))
 
     @commands.command(aliases=["conf"])
     async def levelsconfig(self, ctx: commands.Context):
-        cursor = await self.bot.db.cursor()
-        await cursor.execute("Select * from config where guild_id = ?", (ctx.guild.id,))
-
-        result = await cursor.fetchone()
+        result = await self.bot.db.fetchone("Select * from levels_config where guild_id = ?", (ctx.guild.id,))
 
         if result is None:
             await ctx.reply(
@@ -309,7 +294,6 @@ class Levels(commands.Cog):
             await ping.add_reaction(THUMBS_UP)
 
             result = (ctx.guild.id, channel_msg.raw_channel_mentions[0], ping.content)
-
             chan = self.bot.get_channel(channel_msg.raw_channel_mentions[0])
 
             embed = disnake.Embed(
@@ -318,10 +302,9 @@ class Levels(commands.Cog):
                 name="\u200b", value=f"**Channel:** {chan}\n**Ping:** {ping.content}"
             )
 
-            await cursor.execute("Insert into config values(?, ?, ?)", result)
-            await self.bot.db.commit()
-
+            await self.bot.db.update("Insert into levels_config values(?, ?, ?)", result)
             return await ctx.reply(embed=embed)
+
         await ctx.reply(
             embed=disnake.Embed(
                 description="You already have a config!", colour=get_colour()
@@ -330,47 +313,33 @@ class Levels(commands.Cog):
 
     @commands.command(aliases=["vconf"])
     async def viewconfig(self, ctx: commands.Context):
+        result = await self.bot.db.fetchone("Select * from levels_config where guild_id = ?", (ctx.guild.id,))
 
-        cursor = await self.bot.db.cursor()
-        await cursor.execute("Select * from config where guild_id = ?", (ctx.guild.id,))
-
-        result1 = await cursor.fetchone()
-
-        if result1 is not None:
-
-            result = f"""
-            
-**Server id:** `{result1[0]}`,
-**RankupChannel id:** `{result1[1]}`,
-**Ping:**`{result1[2]}`
-            
+        if result is not None:
+            config = f"""
+**Server id:** `{result[0]}`,
+**RankupChannel id:** `{result[1]}`,
+**Ping:**`{result[2]}`
             """
-        await ctx.reply(result if result1 is not None else "no config")
+        await ctx.reply(config if result is not None else "no config")
 
     @commands.command(aliases=["rconf"])
     async def removeconfig(self, ctx: commands.Context):
-
-        cursor = await self.bot.db.cursor()
-        await cursor.execute("Delete from config where guild_id = ?", (ctx.guild.id,))
-
-        await ctx.reply("Deleted all raknup config messages")
+        await self.bot.db.execute("Delete from levels_config where guild_id = ?", (ctx.guild.id,))
+        await ctx.reply("Deleted all rankup config messages")
 
     @commands.command(aliases=["lb"])
     async def leaderboard(self, ctx: commands.Context):
-
         embed = disnake.Embed(colour=get_colour())
         embed.set_author(name="Leaderboard", icon_url=ctx.author.avatar.url)
-        desc = ""
-        cursor = await self.bot.db.cursor()
-        await cursor.execute(
+
+        result = await self.bot.db.fetchall(
             "SELECT user_id, xp, level, name FROM users WHERE guild_id = ? ORDER BY xp ASC",
             (ctx.guild.id,),
         )
-        result = await cursor.fetchall()
 
+        desc = ""
         for k, value in enumerate(result[::-1], start=1):
-
-            print(k)
             desc += f"\n**{k}.** {value[3]}: level **{value[2]}**"
             if k == 10:
                 break

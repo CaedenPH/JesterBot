@@ -1,5 +1,5 @@
 # JesterBot
-![discord.py Version](https://img.shields.io/badge/lib-discord.py%202.0-blue)
+![disnake Version](https://img.shields.io/badge/lib-disnake%202.4-blue)
 ![Language](https://img.shields.io/badge/lang-Python%203.9-green)
 
 <br />

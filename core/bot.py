@@ -4,7 +4,6 @@ import aiohttp
 import os
 import asyncio
 import datetime
-import aiosqlite
 import disnake
 
 from typing import List
@@ -14,6 +13,9 @@ from disnake.ext.tasks import loop
 
 from .utils.commands.eval import run_eval
 from .utils import run_channel_send, run_check, run_executed, run_precheck
+from .errors import error_handler
+from .context import Context
+from .database import Database
 from .constants import (
     BOT_TOKEN,
     REDDIT,
@@ -22,8 +24,6 @@ from .constants import (
     CHATBOT_KEY,
     RAPID_API_KEY,
 )
-from .errors import error_handler
-from .context import Context
 
 
 class JesterBot(Bot):
@@ -58,12 +58,13 @@ class JesterBot(Bot):
             if not file.startswith("_"):
                 self.COGS.append(f"cogs.{file}")
 
+    async def connect_database(self):
+        self.db = await Database.create()
+
     async def find_prefix(self, user_id: int) -> List[str]:
-        cursor = await self.db.cursor()
-        await cursor.execute(
+        result = await self.db.fetchone(
             "SELECT prefixes FROM prefix WHERE user_id = ?", (user_id,)
         )
-        result = await cursor.fetchone()
 
         if not result:
             return ["j."]
@@ -71,21 +72,17 @@ class JesterBot(Bot):
 
     async def insert_prefix(self, user_id: int, prefixes: List[str]) -> None:
         prefixes = " | ".join(prefixes)
-
-        cursor = await self.db.cursor()
-        await cursor.execute(
+        
+        result = await self.db.fetchone(
             "SELECT prefixes FROM prefix WHERE user_id = ?", (user_id,)
         )
-        result = await cursor.fetchone()
         if not result:
-            await cursor.execute(
+            return await self.db.update(
                 "INSERT INTO prefix VALUES (?, ?)", (user_id, prefixes)
             )
-            return await self.db.commit()
-        await cursor.execute(
+        await self.db.update(
             "UPDATE prefix SET prefixes = ? where user_id = ?", (prefixes, user_id)
         )
-        await self.db.commit()
 
     async def get_prefix(self, message: Message) -> List[str]:
         prefixes = await self.find_prefix(message.author.id)
@@ -149,9 +146,6 @@ class JesterBot(Bot):
         print("Running the bot...")
         print("-----------------------------------")
         super().run(BOT_TOKEN, reconnect=True)
-
-    async def connect_database(self):
-        self.db = await aiosqlite.connect("./db/database.db")
 
     async def on_connect(self) -> None:
         print(f"Connected to bot. Latency: {self.latency * 1000:,.0f} ms")
