@@ -17,3 +17,7 @@ CREATE TABLE IF NOT EXISTS users (
     level INT,
     name TEXT
 );
+CREATE TABLE IF NOT EXISTS channel_config (
+    channel_id BIGINT PRIMARY KEY,
+    channel_types TEXT
+)

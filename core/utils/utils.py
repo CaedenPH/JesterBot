@@ -16,8 +16,7 @@ def get_colour() -> int:
 
     colour = data["colour"]
     return int(colour, 16)
-
-
+    
 async def send_embed(
     channel: disnake.abc.Messageable,
     title: str,

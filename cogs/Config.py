@@ -1,21 +1,72 @@
 import disnake
 import json
-import asyncio
 
-from disnake.ext.commands import has_permissions
-from disnake.ext import commands
+from disnake.ext.commands import Cog, has_permissions, command
 
-from cogs.help.cog import get_help
 from core.utils import get_colour, update_json, send_embed
-from core import Context
+from core import Context, JesterBot
 
 
-class Config(commands.Cog):
+class Config(Cog):
     def __init__(self, bot):
+        self.bot: JesterBot = bot
 
-        self.bot = bot
+    async def insert_values(self, channel_id: int, channel_type: str) -> None:
+        result = await self.db.fetchone(
+            "SELECT channel_types FROM channels_config WHERE channel_id = ?", (channel_id,)
+        )
 
-    @commands.command(
+        if not result:
+            return await self.db.update(
+                "INSERT INTO channels_config VALUES (?, ?)", (channel_id, channel_type)
+            ) 
+        
+        channel_types = result[0].split(" | ")
+        if channel_type in channel_types:
+            return
+
+        await self.db.update(
+            "UPDATE channels_config SET channel_types = ? where channel_id = ?", (result[0] + " | " + channel_type, channel_id)
+        )
+
+    @command()
+    @has_permissions(manage_channels=True)
+    async def pickuplinechannel(self, ctx: Context, channel: disnake.TextChannel = ""):
+        if not channel:
+            channel = await ctx.guild.create_text_channel(name="Joke Channel")
+
+        await self.insert_values("pickup")
+        await send_embed(channel.mention + " now sends pickup lines on the hour!")
+        
+        
+    @command()
+    @has_permissions(manage_channels=True)
+    async def jokechannel(self, ctx: Context, channel: disnake.TextChannel = ""):
+        if not channel:
+            channel = await ctx.guild.create_text_channel(name="Joke Channel")
+        
+        await self.insert_values("joke")
+        await send_embed(channel.mention + " now sends jokes on the hour!")
+
+    @command()
+    @has_permissions(manage_channels=True)
+    async def quotechannel(self, ctx: Context, channel: disnake.TextChannel = ""):
+        if not channel:
+            channel = await ctx.guild.create_text_channel(name="Joke Channel")
+
+        await self.insert_values("quote")
+        await send_embed(channel.mention + " now sends quotes on the hour!")
+        
+    @command()
+    @has_permissions(manage_channels=True)
+    async def factchannel(self, ctx: Context, channel: disnake.TextChannel = ""):
+        if not channel:
+            channel = await ctx.guild.create_text_channel(name="Joke Channel")
+
+        await self.insert_values("fact")
+        await send_embed(channel.mention + " now sends facts on the hour!")
+
+    @command(
         aliases=["Welcomer", "welcome"],
         description="Adds a welcome feature into the current channel (everytime someone joins the server it says welcome) - `[message]` is a good welcome message",
     )
@@ -49,182 +100,7 @@ class Config(commands.Cog):
             embed = disnake.Embed(title="Added!", colour=get_colour())
             await ctx.reply(embed=embed)
 
-    @commands.command(aliases=["channelconfig"])
-    async def config(self, ctx: Context):
-        the_list1 = ""
-        with open("./dicts/ConfigChannel.json", "r+") as k:
-            data = json.load(k)
-            a = ""
-            for z in data["emojis"]:
-                a += f"\n{z} │ {data['emojis'][z]['em']}"
-            embed = disnake.Embed(
-                title="Config channels", description=a, colour=get_colour()
-            )
-            msg = await ctx.reply(embed=embed)
-
-            for e in data["emojis"]:
-
-                for k in data["emojis"][e]:
-                    await msg.add_reaction(data["emojis"][e]["em"])
-            try:
-                emoji, user = await self.bot.wait_for(
-                    "reaction_add",
-                    timeout=60.0,
-                    check=lambda e, u: u == ctx.author and e.message.id == msg.id,
-                )
-                while emoji.emoji != "fw":
-                    for e in data["emojis"]:
-
-                        if data["emojis"][e]["em"] == emoji.emoji:
-
-                            command1 = self.bot.get_command(f"{e}")
-
-                            sig = command1.signature
-                            alias = command1.aliases
-                            alx = []
-
-                            if alias:
-
-                                for al in command1.aliases:
-
-                                    alx.append(f"`{al}`")
-                            bot_av = self.bot.get_user(828363172717133874)
-                            em = disnake.Embed(
-                                description=get_help(command1.name), colour=get_colour()
-                            )
-                            name = f"{command1.name.capitalize()}"
-
-                            em.add_field(name="Name", value=f"`{name}`", inline=False)
-                            em.add_field(
-                                name="Alias",
-                                value=f"{', '.join(alx)} " if alias else f"`none`",
-                                inline=False,
-                            )
-                            em.add_field(
-                                name="Usage",
-                                value=f"`j.{command1.name} {sig}`"
-                                if sig
-                                else f"`j.{command1.name}`",
-                                inline=False,
-                            )
-
-                            em.set_author(name="Help", icon_url=bot_av.avatar.url)
-                            em.set_footer(text="<> = needed │ [] = not needed")
-
-                            await msg.remove_reaction(member=ctx.author, emoji=emoji)
-                            embed = disnake.Embed(
-                                title=f"{data['emojis'][e]} │ {emoji}",
-                                description=f"{the_list1}",
-                                colour=get_colour(),
-                            )
-
-                            await msg.edit(embed=em)
-
-                    emoji, user = await self.bot.wait_for(
-                        "reaction_add",
-                        timeout=60.0,
-                        check=lambda e, u: u == ctx.author and e.message.id == msg.id,
-                    )
-            except asyncio.TimeoutError:
-                await msg.clear_reactions()
-
-    @commands.command()
-    @has_permissions(manage_channels=True)
-    async def pickuplinechannel(self, ctx: Context, channel: disnake.TextChannel = ""):
-        if not channel:
-            channel = await ctx.guild.create_text_channel(name="Joke Channel")
-        with open("./dicts/ConfigChannel.json", "r+") as k:
-            data = json.load(k)
-            x = str(ctx.guild.id)
-            i = str(channel.id)
-            if x in data:
-
-                if "pickuplinechannel" not in data[x]:
-                    data[x]["pickuplinechannel"] = i
-                    update_json(k, data)
-                    return await send_embed(ctx, "Success")
-            else:
-                data[x] = {"pickuplinechannel": i}
-                update_json(k, data)
-                return await send_embed(ctx, "Success")
-
-            await send_embed(
-                ctx, "There is already a pickuplinechannel here or something went wrong"
-            )
-
-    @commands.command()
-    @has_permissions(manage_channels=True)
-    async def jokechannel(self, ctx: Context, channel: disnake.TextChannel = ""):
-        if not channel:
-            channel = await ctx.guild.create_text_channel(name="Joke Channel")
-        with open("./dicts/ConfigChannel.json", "r+") as k:
-            data = json.load(k)
-            x = str(ctx.guild.id)
-            i = str(channel.id)
-            if x in data:
-
-                if "jokechannel" not in data[x]:
-                    data[x]["jokechannel"] = i
-                    update_json(k, data)
-                    return await send_embed(ctx, "Success")
-            else:
-                data[x] = {"jokechannel": i}
-                update_json(k, data)
-                return await send_embed(ctx, "Success")
-
-            await send_embed(
-                ctx, "There is already a jokechannel here or something went wrong"
-            )
-
-    @commands.command()
-    @has_permissions(manage_channels=True)
-    async def quotechannel(self, ctx: Context, channel: disnake.TextChannel = ""):
-        if not channel:
-            channel = await ctx.guild.create_text_channel(name="Joke Channel")
-        with open("./dicts/ConfigChannel.json", "r+") as k:
-            data = json.load(k)
-            x = str(ctx.guild.id)
-            i = str(channel.id)
-            if x in data:
-
-                if "quotechannel" not in data[x]:
-                    data[x]["quotechannel"] = i
-                    update_json(k, data)
-                    return await send_embed(ctx, "Success")
-            else:
-                data[x] = {"quotechannel": i}
-                update_json(k, data)
-                return await send_embed(ctx, "Success")
-
-            await send_embed(
-                ctx, "There is already a quotechannel here or something went wrong"
-            )
-
-    @commands.command()
-    @has_permissions(manage_channels=True)
-    async def factchannel(self, ctx: Context, channel: disnake.TextChannel = ""):
-        if not channel:
-            channel = await ctx.guild.create_text_channel(name="Joke Channel")
-        with open("./dicts/ConfigChannel.json", "r+") as k:
-            data = json.load(k)
-            x = str(ctx.guild.id)
-            i = str(channel.id)
-            if x in data:
-
-                if "factchannel" not in data[x]:
-                    data[x]["factchannel"] = i
-                    update_json(k, data)
-                    return await send_embed(ctx, "Success")
-            else:
-                data[x] = {"factchannel": i}
-                update_json(k, data)
-                return await send_embed(ctx, "Success")
-
-            await send_embed(
-                ctx, "There is already a factchannel here or something went wrong"
-            )
-
-    @commands.command(
+    @command(
         aliases=["Unwelcome", "Stop_Welcome"],
         description="Removes the j.welcome command",
     )
@@ -238,12 +114,12 @@ class Config(commands.Cog):
                 embed = disnake.Embed(title="Re`moved!", colour=get_colour())
                 await ctx.reply(embed=embed)
 
-    @has_permissions(manage_channels=True)
-    @commands.command(
+        
+    @command(
         description="Makes the channel specified a suggestion channel - members can only type j.suggest or their message gets deleted. Nice and orderly"
     )
+    @has_permissions(manage_channels=True)
     async def suggestchannel(self, ctx: Context, channel: disnake.TextChannel):
-
         with open("./dicts/Suggest.json", "r+") as k:
             data = json.load(k)
             if str(channel.id) not in data:
@@ -280,7 +156,7 @@ class Config(commands.Cog):
                     embed = disnake.Embed(title="Already applied", colour=get_colour())
                 await ctx.reply(embed=embed)
 
-    @commands.command(
+    @command(
         aliases=["verify"],
         description="""
     Creates a channel/uses an existing channel to make the server be secure by adding the need to say `verify` to access the server...Remove with `j.removeverify` 
@@ -430,7 +306,7 @@ class Config(commands.Cog):
             await ctx.reply(embed=embed)
             await channel.purge(limit=1)
 
-    @commands.command(
+    @command(
         aliases=["remverify"], description="removes the need for a verification"
     )
     @has_permissions(administrator=True)
@@ -447,9 +323,8 @@ class Config(commands.Cog):
 
             await send_embed(ctx, "There was never a verify!")
 
-    @commands.command()
+    @command()
     async def leavechannel(self, ctx: Context, channel: disnake.TextChannel = ""):
-
         with open("./dicts/LeaveChannel.json", "r+") as k:
             data = json.load(k)
             if str(ctx.guild.id) in data:
@@ -469,7 +344,7 @@ class Config(commands.Cog):
             "This is a leaving channel, everyone who leaves will be announced here...",
         )
 
-    @commands.command()
+    @command()
     async def removeleavechannel(self, ctx: Context, channel: disnake.TextChannel):
         with open("./dicts/LeaveChannel.json", "r+") as k:
 
@@ -481,7 +356,7 @@ class Config(commands.Cog):
             del data[str(ctx.guild.id)]
             await send_embed(ctx, "Done!")
 
-    @commands.Cog.listener()
+    @Cog.listener()
     async def on_member_remove(self, memb):
         with open("./dicts/LeaveChannel.json", "r+") as k:
             data = json.load(k)

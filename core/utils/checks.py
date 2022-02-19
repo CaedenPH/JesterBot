@@ -111,36 +111,9 @@ async def run_precheck(bot: Bot, message: Message) -> None:
 
 async def run_channel_send(bot: Bot) -> None:
     await bot.wait_until_ready()
-
-    with open("./dicts/ConfigChannel.json") as k:
-        data = json.load(k)
-
-    for guild_id in data:
-        if guild_id in "emojis":
-            continue
-        for _type in data[guild_id]:
-            try:
-                channel_id = data[guild_id][_type]
-                channel = bot.get_channel(channel_id)
-                if not channel:
-                    try:
-                        channel = await bot.fetch_channel(channel_id)
-                    except disnake.HTTPException:
-                        continue
-
-                if _type == "factchannel":
-                    embed = fact()
-                elif _type == "jokechannel":
-                    embed = disnake.Embed(
-                        title="Joke", description=await joke(), colour=get_colour()
-                    )
-                elif _type == "pickuplinechannel":
-                    embed = await pickup(bot)
-                elif _type == "quotechannel":
-                    embed = await quote(bot)
-                await channel.send(embed=embed)
-            except:
-                pass
+    result = await bot.db.fetchall("SELECT channel_types FROM channel_config")
+    print(result[0])
+        
 
 
 async def run_executed(ctx: Bot) -> None:
