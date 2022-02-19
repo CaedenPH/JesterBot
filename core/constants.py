@@ -19,14 +19,14 @@ PASSWORD = environ["PASSWORD"]
 USER_AGENT = environ["USER_AGENT"]
 
 
-## reddit 
+## reddit
 
 REDDIT = Reddit(
-    client_id = CLIENT_ID,
-    client_secret = CLIENT_SECRET,
-    user_agent = USER_AGENT,
-    username = USERNAME,
-    password = PASSWORD
+    client_id=CLIENT_ID,
+    client_secret=CLIENT_SECRET,
+    user_agent=USER_AGENT,
+    username=USERNAME,
+    password=PASSWORD,
 )
 
 
@@ -54,7 +54,7 @@ NUMBERS = {
     6: "6️⃣",
     7: "7️⃣",
     8: "8️⃣",
-    9: "9️⃣"
+    9: "9️⃣",
 }
 
 ## custom emojis
@@ -204,8 +204,8 @@ HANGMAN = [
 =========""",
 ][::-1]
 MINESWEEPER_MESSAGE = """
-Default board size : {board_size}x{board_size}
-Default bomb count : {bomb_count}
+Board size : {board_size}x{board_size}
+Bomb count : {bomb_count}
 """
 
 ## utils

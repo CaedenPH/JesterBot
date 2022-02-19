@@ -19,20 +19,16 @@ class Games(Cog):
     def message_content(self, guesses_left, guesses, word):
         return f"```yaml\n{HANGMAN[guesses_left]}````{' '.join([k if k in guesses else '_' for k in word])}`\nYou have {guesses_left} guesses left"
 
-    @command(aliases=['mine'])
+    @command(aliases=["mine"])
     async def minesweeper(self, ctx: Context) -> None:
         embed = Embed(
             title="Mine Sweeper",
-            description="```yaml\n" + MINESWEEPER_MESSAGE.format(
-                board_size=10,
-                bomb_count=10
-            ) + "```",
+            description="```yaml\n"
+            + MINESWEEPER_MESSAGE.format(board_size=5, bomb_count=5)
+            + "```",
             colour=get_colour(),
-            timestamp=ctx.message.created_at
-        ).set_author(
-            name=ctx.author.name,
-            icon_url=ctx.author.display_avatar.url
-        )
+            timestamp=ctx.message.created_at,
+        ).set_author(name=ctx.author.name, icon_url=ctx.author.display_avatar.url)
 
         view = MineSweeper(ctx)
         view.bot_message = await ctx.reply(embed=embed, view=view)

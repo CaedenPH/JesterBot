@@ -5,6 +5,7 @@ from disnake.ui import View, Button, button
 from core import Context
 from core.utils.utils import get_colour
 
+
 class Meme(View):
     def __init__(self, ctx: Context):
         super().__init__(timeout=180)

@@ -18,6 +18,7 @@ encoder = translator.Encoder()
 decoder = translator.Decoder()
 glitcher = ImageGlitcher()
 
+
 async def img(ctx: Context, member: disnake.Member, name: str) -> str:
     await ctx.trigger_typing()
     if member is None:

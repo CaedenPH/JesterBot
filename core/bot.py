@@ -14,9 +14,17 @@ from disnake.ext.tasks import loop
 
 from .utils.commands.eval import run_eval
 from .utils import run_channel_send, run_check, run_executed, run_precheck
-from .constants import BOT_TOKEN, REDDIT, WEATHER_KEY, COORDS_KEY, CHATBOT_KEY, RAPID_API_KEY
+from .constants import (
+    BOT_TOKEN,
+    REDDIT,
+    WEATHER_KEY,
+    COORDS_KEY,
+    CHATBOT_KEY,
+    RAPID_API_KEY,
+)
 from .errors import error_handler
 from .context import Context
+
 
 class JesterBot(Bot):
     def __init__(self):
@@ -100,12 +108,12 @@ class JesterBot(Bot):
         print(
             f"Loaded Cogs Successfully! Total Cogs: {len(self.COGS)}\n-----------------------------------"
         )
-    
+
     @loop(seconds=3600)
     async def cache_memes(self) -> None:
         subreddit = await REDDIT.subreddit("memes")
         self.meme_list = [p async for p in subreddit.hot(limit=200)]
-        
+
     @loop(seconds=3600.0)
     async def chansend(self) -> None:
         await run_channel_send(self)

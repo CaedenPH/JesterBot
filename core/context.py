@@ -98,6 +98,7 @@ class Context(commands.Context):
         msg = await super().reply(content, **kwargs)
         self.bot.data[self.message] = {"bot": msg}
         try:
+
             async def reaction_task(msg, arg, kwargs):
                 def check(r, u):
                     return r.message == msg and u == arg.author
