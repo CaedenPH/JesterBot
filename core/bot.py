@@ -72,7 +72,7 @@ class JesterBot(Bot):
 
     async def insert_prefix(self, user_id: int, prefixes: List[str]) -> None:
         prefixes = " | ".join(prefixes)
-        
+
         result = await self.db.fetchone(
             "SELECT prefixes FROM prefix WHERE user_id = ?", (user_id,)
         )

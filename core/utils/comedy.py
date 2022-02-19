@@ -1,3 +1,4 @@
+import re
 import randfacts
 import json
 import disnake
@@ -6,26 +7,17 @@ from jokeapi import Jokes
 from .utils import get_colour
 
 
-def fact() -> disnake.Embed:
-    fact = randfacts.get_fact()
-
-    embed = disnake.Embed(colour=get_colour())
-    embed.add_field(name="Fact", value=fact)
-    return embed
+async def fact() -> str:
+    return randfacts.get_fact()
 
 
-async def quote(bot) -> disnake.Embed:
+async def quote(bot) -> str:
     async with bot.client.get(
         url="http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en"
     ) as response:
-        embed = disnake.Embed(colour=get_colour())
-        embed.add_field(
-            name="Quote",
-            value='*"{quoteText}"*\n{quoteAuthor}'.format(
-                **json.loads(await response.read())
-            ),
+        return '*"{quoteText}"*\n{quoteAuthor}'.format(
+            **json.loads(await response.read())
         )
-        return embed
 
 
 async def joke() -> str:
@@ -37,12 +29,9 @@ async def joke() -> str:
     return f"**{joke['setup']}** - {joke['delivery']}"
 
 
-async def pickup(bot) -> disnake.Embed:
+async def pickup(bot) -> str:
     async with bot.client.get(
         url="http://getpickuplines.herokuapp.com/lines/random"
     ) as response:
         json = await response.json()
-
-    embed = disnake.Embed(colour=get_colour())
-    embed.add_field(name="Pickup line", value=json["line"])
-    return embed
+    return json["line"]

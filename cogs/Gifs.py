@@ -18,22 +18,21 @@ class JesterJokes(commands.Cog):
         description="""Returns a random fact [ranfact, rf]""",
     )
     async def fact(self, ctx: Context):
-
-        embed = fact()
-        await ctx.reply(embed=embed)
+        fact_string = await fact()
+        await send_embed(ctx, "Fact", fact_string)
 
     @commands.command(description="""Returns a random quote""")
     async def quote(self, ctx: Context):
-        embed = quote()
-        await ctx.reply(embed=embed)
+        quote_string = await quote(self.bot)
+        await send_embed(ctx, "Quote", quote_string)
 
     @commands.command(
         aliases=["pl", "pickup", "pickline"],
         description="""Returns a random Pickup Line.""",
     )
     async def pickup_line(self, ctx: Context):
-        embed = await pickup()
-        await ctx.reply(embed=embed)
+        pickup_line = await pickup()
+        await send_embed(ctx, "Pickup line", pickup_line)
 
     @commands.command(
         aliases=["insultme", "Mean", "Insult_Me"],

@@ -25,7 +25,7 @@ class Levels(commands.Cog):
         )
         if result is None:
             result = (member.id, member.guild.id, 0, 0, member.display_name)
-            await self.bot.update("Insert into users values(?, ?, ?, ?, ?)", result)
+            await self.bot.db.update("Insert into users values(?, ?, ?, ?, ?)", result)
         return result
 
     async def rankup(self, level, member):
@@ -252,7 +252,9 @@ class Levels(commands.Cog):
 
     @commands.command(aliases=["conf"])
     async def levelsconfig(self, ctx: commands.Context):
-        result = await self.bot.db.fetchone("Select * from levels_config where guild_id = ?", (ctx.guild.id,))
+        result = await self.bot.db.fetchone(
+            "Select * from levels_config where guild_id = ?", (ctx.guild.id,)
+        )
 
         if result is None:
             await ctx.reply(
@@ -302,7 +304,9 @@ class Levels(commands.Cog):
                 name="\u200b", value=f"**Channel:** {chan}\n**Ping:** {ping.content}"
             )
 
-            await self.bot.db.update("Insert into levels_config values(?, ?, ?)", result)
+            await self.bot.db.update(
+                "Insert into levels_config values(?, ?, ?)", result
+            )
             return await ctx.reply(embed=embed)
 
         await ctx.reply(
@@ -313,7 +317,9 @@ class Levels(commands.Cog):
 
     @commands.command(aliases=["vconf"])
     async def viewconfig(self, ctx: commands.Context):
-        result = await self.bot.db.fetchone("Select * from levels_config where guild_id = ?", (ctx.guild.id,))
+        result = await self.bot.db.fetchone(
+            "Select * from levels_config where guild_id = ?", (ctx.guild.id,)
+        )
 
         if result is not None:
             config = f"""
@@ -325,7 +331,9 @@ class Levels(commands.Cog):
 
     @commands.command(aliases=["rconf"])
     async def removeconfig(self, ctx: commands.Context):
-        await self.bot.db.execute("Delete from levels_config where guild_id = ?", (ctx.guild.id,))
+        await self.bot.db.execute(
+            "Delete from levels_config where guild_id = ?", (ctx.guild.id,)
+        )
         await ctx.reply("Deleted all rankup config messages")
 
     @commands.command(aliases=["lb"])

@@ -12,41 +12,42 @@ class Config(Cog):
         self.bot: JesterBot = bot
 
     async def insert_values(self, channel_id: int, channel_type: str) -> None:
-        result = await self.db.fetchone(
-            "SELECT channel_types FROM channels_config WHERE channel_id = ?", (channel_id,)
+        result = await self.bot.db.fetchone(
+            "SELECT channel_types FROM channels_config WHERE channel_id = ?",
+            (channel_id,),
         )
 
         if not result:
-            return await self.db.update(
+            return await self.bot.db.update(
                 "INSERT INTO channels_config VALUES (?, ?)", (channel_id, channel_type)
-            ) 
-        
+            )
+
         channel_types = result[0].split(" | ")
         if channel_type in channel_types:
             return
 
-        await self.db.update(
-            "UPDATE channels_config SET channel_types = ? where channel_id = ?", (result[0] + " | " + channel_type, channel_id)
+        await self.bot.db.update(
+            "UPDATE channels_config SET channel_types = ? where channel_id = ?",
+            (result[0] + " | " + channel_type, channel_id),
         )
 
     @command()
     @has_permissions(manage_channels=True)
-    async def pickuplinechannel(self, ctx: Context, channel: disnake.TextChannel = ""):
+    async def pickupchannel(self, ctx: Context, channel: disnake.TextChannel = ""):
         if not channel:
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
-        await self.insert_values("pickup")
-        await send_embed(channel.mention + " now sends pickup lines on the hour!")
-        
-        
+        await self.insert_values(channel.id, "pickup")
+        await send_embed(ctx, channel.mention + " now sends pickup lines on the hour!")
+
     @command()
     @has_permissions(manage_channels=True)
     async def jokechannel(self, ctx: Context, channel: disnake.TextChannel = ""):
         if not channel:
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
-        
-        await self.insert_values("joke")
-        await send_embed(channel.mention + " now sends jokes on the hour!")
+
+        await self.insert_values(channel.id, "joke")
+        await send_embed(ctx, channel.mention + " now sends jokes on the hour!")
 
     @command()
     @has_permissions(manage_channels=True)
@@ -54,17 +55,17 @@ class Config(Cog):
         if not channel:
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
-        await self.insert_values("quote")
-        await send_embed(channel.mention + " now sends quotes on the hour!")
-        
+        await self.insert_values(channel.id, "quote")
+        await send_embed(ctx, channel.mention + " now sends quotes on the hour!")
+
     @command()
     @has_permissions(manage_channels=True)
     async def factchannel(self, ctx: Context, channel: disnake.TextChannel = ""):
         if not channel:
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
-        await self.insert_values("fact")
-        await send_embed(channel.mention + " now sends facts on the hour!")
+        await self.insert_values(channel.id, "fact")
+        await send_embed(ctx, channel.mention + " now sends facts on the hour!")
 
     @command(
         aliases=["Welcomer", "welcome"],
@@ -114,7 +115,6 @@ class Config(Cog):
                 embed = disnake.Embed(title="Re`moved!", colour=get_colour())
                 await ctx.reply(embed=embed)
 
-        
     @command(
         description="Makes the channel specified a suggestion channel - members can only type j.suggest or their message gets deleted. Nice and orderly"
     )
@@ -306,9 +306,7 @@ class Config(Cog):
             await ctx.reply(embed=embed)
             await channel.purge(limit=1)
 
-    @command(
-        aliases=["remverify"], description="removes the need for a verification"
-    )
+    @command(aliases=["remverify"], description="removes the need for a verification")
     @has_permissions(administrator=True)
     async def removeverify(self, ctx: Context):
 

@@ -2,6 +2,7 @@ from disnake import Embed, Message
 from .utils import get_colour
 from core.utils.comedy import joke
 
+
 async def create_embed(message: Message, bot) -> Embed:
     avatar = message.guild.get_member(bot.user.id).avatar.url
     prefix = await bot.get_prefix(message)

@@ -16,13 +16,16 @@ def get_colour() -> int:
 
     colour = data["colour"]
     return int(colour, 16)
-    
+
+
 async def send_embed(
     channel: disnake.abc.Messageable,
     title: str,
     description: str = disnake.Embed.Empty,
     **kwargs
 ) -> disnake.Message:
+    from core.context import Context
+
     author = kwargs.get("a")
     icon_url = kwargs.get("i_u")
     footer = kwargs.get("f")
@@ -41,5 +44,8 @@ async def send_embed(
     if image:
         embed.set_image(url=image)
 
-    msg = await channel.send(embed=embed)
+    if isinstance(channel, Context):
+        msg = await channel.reply(embed=embed)
+    else:
+        msg = await channel.send(embed=embed)
     return msg

@@ -3,6 +3,7 @@ from __future__ import annotations
 import typing as t
 import aiosqlite
 
+
 class Database:
     def __init__(self):
         self.db: aiosqlite.Connection
@@ -28,8 +29,8 @@ class Database:
 
     async def fetchone(self, query: str, *args: t.Any) -> t.Tuple:
         async with self.db.cursor() as cur:
-            return (await (await cur.execute(query, *args)).fetchone())
-           
+            return await (await cur.execute(query, *args)).fetchone()
+
     async def fetchall(self, query: str, *args: t.Any) -> t.Tuple:
         async with self.db.cursor() as cur:
-            return (await (await cur.execute(query, *args)).fetchall())
+            return await (await cur.execute(query, *args)).fetchall()

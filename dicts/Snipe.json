@@ -5352,7 +5352,8 @@
                 "@vic.",
                 "@Average Sphinx Shill :white_check_mark: Your eval job has completed with return code 0.\n\n```\nhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\n```",
                 "{'footer': {'text': 'Page 4 / 4'}, 'author': {'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/4B0_3GrJrmxsRm1rD25OvhguO9eTNVbsbWwXL4u4DfM/https/cdn.discordapp.com/emojis/512367613339369475.png', 'name': 'Command Help', 'icon_url': 'https://cdn.discordapp.com/emojis/512367613339369475.png'}, 'type': 'rich', 'description': '**TimedCommands**\\n**`-timed <command>`**\\n*Time the command execution of a command.*\\n\\n**WikipediaSearch**\\n**`-wikipedia <search>`**\\n*Sends paginated top 10 results of Wikipedia search..*\\n\\n**Wolfram**\\n**`-wolfram <query>`**\\n*Requests all answers on a single image, sends an image of all related pods.*'}",
-                "-help"
+                "-help",
+                "profile"
             ],
             "author": [
                 "[j.] JesterBot",
@@ -5397,7 +5398,8 @@
                 "Victorsitou",
                 "Monty Python",
                 "Monty Python",
-                "why?"
+                "why?",
+                "Deseptor"
             ],
             "id": [
                 828363172717133874,
@@ -5442,7 +5444,8 @@
                 184040656761651200,
                 872576125384147005,
                 872576125384147005,
-                538702509234061325
+                538702509234061325,
+                834106835760971798
             ],
             "time": [
                 "2021-12-27 15:30:38.427000+00:00",
@@ -5487,7 +5490,8 @@
                 "2021-12-28 22:40:52.711000+00:00",
                 "2021-12-28 22:41:38.535000+00:00",
                 "2021-12-29 11:49:46.384000+00:00",
-                "2021-12-29 11:49:46.239000+00:00"
+                "2021-12-29 11:49:46.239000+00:00",
+                "2022-02-19 22:43:40.438000+00:00"
             ]
         },
         "883340752191651870": {
@@ -6100,16 +6104,20 @@
         },
         "834583122590695464": {
             "list": [
-                "^ latest album of mine just came out on 2/2, ambient post-in dustrial/rhythmic noise/power electronics with lyrics about multi-layered simulation stack substrate destruction of everything inside and out of it"
+                "^ latest album of mine just came out on 2/2, ambient post-in dustrial/rhythmic noise/power electronics with lyrics about multi-layered simulation stack substrate destruction of everything inside and out of it",
+                "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@338333850616725515>** <:fedora:830478997858025513>'}"
             ],
             "author": [
-                "TheHifMan"
+                "TheHifMan",
+                "AFK Bot"
             ],
             "id": [
-                857265692298182666
+                857265692298182666,
+                755588579262201886
             ],
             "time": [
-                "2022-02-06 12:08:55.756000+00:00"
+                "2022-02-06 12:08:55.756000+00:00",
+                "2022-02-19 22:45:49.314000+00:00"
             ]
         },
         "829874873999949867": {
@@ -6543,6 +6551,24 @@
             "time": [
                 "2022-02-19 01:40:33.962000+00:00"
             ]
+        },
+        "829874874242957340": {
+            "list": [
+                "{'footer': {'text': 'Coming next : Beautiful'}, 'thumbnail': {'width': 480, 'url': 'https://img.youtube.com/vi/uGUjH8grGrs/hqdefault.jpg', 'proxy_url': 'https://images-ext-2.discordapp.net/external/E_GOQEQP19OT5vYkQDoQD8DEoJZRr5VUlXX1L5XOuYE/https/img.youtube.com/vi/uGUjH8grGrs/hqdefault.jpg', 'height': 360}, 'author': {'url': 'https://top.gg/bot/244423082045997057/vote', 'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/CTsp4y_1YBqjHm3mtl3W6X0Uxj4LRSTdDguUlOxQ_C8/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/244423082045997057/d3943383c98cfc14066aa0fe0d9564da.webp', 'name': 'Sheepbot#2537 (Autoplay)', 'icon_url': 'https://cdn.discordapp.com/avatars/244423082045997057/d3943383c98cfc14066aa0fe0d9564da.webp?size=1024'}, 'fields': [{'value': '[7/11 Drone](https://www.youtube.com/watch?v=uGUjH8grGrs)', 'name': 'Now playing :', 'inline': True}, {'value': 'Dylan Brady - Topic', 'name': 'Author :', 'inline': True}, {'value': '4m6s', 'name': 'Duration :', 'inline': True}], 'color': 442531, 'type': 'rich'}",
+                "{'footer': {'text': 'Coming next : Haunted by Laura Les but both verses are included'}, 'thumbnail': {'width': 480, 'url': 'https://img.youtube.com/vi/dHVtvnmJ_w4/hqdefault.jpg', 'proxy_url': 'https://images-ext-2.discordapp.net/external/BNj4JHNNWHJ77iO2S9yqOG1QTqM2zE3sIKTgvu1HW4E/https/img.youtube.com/vi/dHVtvnmJ_w4/hqdefault.jpg', 'height': 360}, 'author': {'url': 'https://top.gg/bot/244423082045997057/vote', 'proxy_icon_url': 'https://images-ext-1.discordapp.net/external/CTsp4y_1YBqjHm3mtl3W6X0Uxj4LRSTdDguUlOxQ_C8/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/244423082045997057/d3943383c98cfc14066aa0fe0d9564da.webp', 'name': 'Sheepbot#2537 (Autoplay)', 'icon_url': 'https://cdn.discordapp.com/avatars/244423082045997057/d3943383c98cfc14066aa0fe0d9564da.webp?size=1024'}, 'fields': [{'value': '[Beautiful](https://www.youtube.com/watch?v=dHVtvnmJ_w4)', 'name': 'Now playing :', 'inline': True}, {'value': 'A. G. Cook - Topic', 'name': 'Author :', 'inline': True}, {'value': '3m48s', 'name': 'Duration :', 'inline': True}], 'color': 6266088, 'type': 'rich'}"
+            ],
+            "author": [
+                "Sheepbot",
+                "Sheepbot"
+            ],
+            "id": [
+                244423082045997057,
+                244423082045997057
+            ],
+            "time": [
+                "2022-02-19 22:55:06.195000+00:00",
+                "2022-02-19 22:59:12.467000+00:00"
+            ]
         }
     },
     "926115595307614249": {
@@ -6946,6 +6972,20 @@
                 "2022-02-19 20:11:25.420000+00:00",
                 "2022-02-19 20:11:30.526000+00:00",
                 "2022-02-19 20:11:36.617000+00:00"
+            ]
+        },
+        "944726060652716113": {
+            "list": [
+                "{'color': 13369344, 'type': 'rich', 'description': '**How does a black woman fight crime?** - She has an abortion.', 'title': 'joke'}"
+            ],
+            "author": [
+                "[j.] JesterBot"
+            ],
+            "id": [
+                828363172717133874
+            ],
+            "time": [
+                "2022-02-19 23:06:14.362000+00:00"
             ]
         }
     },

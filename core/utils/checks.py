@@ -111,9 +111,24 @@ async def run_precheck(bot: Bot, message: Message) -> None:
 
 async def run_channel_send(bot: Bot) -> None:
     await bot.wait_until_ready()
-    result = await bot.db.fetchall("SELECT channel_types FROM channel_config")
-    print(result[0])
-        
+    result = await bot.db.fetchall(
+        "SELECT channel_id, channel_types FROM channels_config"
+    )
+
+    for channel_id, channel_types in result:
+        channel = bot.get_channel(channel_id)
+
+        types = channel_types.split(" | ")
+        for _type in types:
+            if _type == "joke":
+                response = await joke()
+            if _type == "pickup":
+                response = await pickup(bot)
+            if _type == "fact":
+                response = await fact()
+            if _type == "quote":
+                response = await quote(bot)
+            await send_embed(channel, _type, response)
 
 
 async def run_executed(ctx: Bot) -> None:
