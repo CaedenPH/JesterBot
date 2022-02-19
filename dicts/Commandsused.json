@@ -27,7 +27,7 @@
         "score": 105
     },
     "help": {
-        "score": 2237
+        "score": 2238
     },
     "jsonfile": {
         "score": 19
@@ -429,7 +429,7 @@
         "score": 12
     },
     "eval": {
-        "score": 2678
+        "score": 2683
     },
     "pager": {
         "score": 12
@@ -510,10 +510,10 @@
         "score": 6
     },
     "evalreturn": {
-        "score": 477
+        "score": 482
     },
     "evaldir": {
-        "score": 363
+        "score": 364
     },
     "quote1": {
         "score": 4
@@ -900,7 +900,7 @@
         "score": 35
     },
     "math": {
-        "score": 25
+        "score": 26
     },
     "support": {
         "score": 32
@@ -1248,7 +1248,7 @@
         "score": 3
     },
     "debug": {
-        "score": 1
+        "score": 2
     },
     "source": {
         "score": 15
@@ -1258,5 +1258,8 @@
     },
     "casino": {
         "score": 1
+    },
+    "minesweeper": {
+        "score": 87
     }
 }

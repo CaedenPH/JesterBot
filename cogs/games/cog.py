@@ -8,8 +8,8 @@ from random import randint, choice
 
 from core.utils import get_colour, send_embed
 from core import Context
-from core.constants import HANGMAN, BLACKJACK_WELCOME
-from . import BlackJack, Casino, RussianRoulette, Dice
+from core.constants import HANGMAN, BLACKJACK_WELCOME, MINESWEEPER_MESSAGE
+from . import BlackJack, Casino, RussianRoulette, Dice, MineSweeper
 
 
 class Games(Cog):
@@ -19,17 +19,35 @@ class Games(Cog):
     def message_content(self, guesses_left, guesses, word):
         return f"```yaml\n{HANGMAN[guesses_left]}````{' '.join([k if k in guesses else '_' for k in word])}`\nYou have {guesses_left} guesses left"
 
+    @command(aliases=['mine'])
+    async def minesweeper(self, ctx: Context) -> None:
+        embed = Embed(
+            title="Mine Sweeper",
+            description="```yaml\n" + MINESWEEPER_MESSAGE.format(
+                board_size=10,
+                bomb_count=10
+            ) + "```",
+            colour=get_colour(),
+            timestamp=ctx.message.created_at
+        ).set_author(
+            name=ctx.author.name,
+            icon_url=ctx.author.display_avatar.url
+        )
+
+        view = MineSweeper(ctx)
+        view.bot_message = await ctx.reply(embed=embed, view=view)
+
     @command()
     async def casino(self, ctx: Context) -> None:
         embed = Embed(
-            title="Casino Machine $", description="```000```", color=get_colour()
+            title="Casino Machine $", description="```000```", colour=get_colour()
         ).set_footer(text="Get Three numbers in a row for a PRIZE")
 
         await ctx.reply(embed=embed, view=Casino(ctx.author))
 
     @command(aliases=["rr", "gun_game", "russianroulette", "gungame"])
     async def russian_roulette(self, ctx: Context):
-        embed = Embed(title="Russian Roulette", color=get_colour()).set_footer(
+        embed = Embed(title="Russian Roulette", colour=get_colour()).set_footer(
             text="Dont die!"
         )
 
@@ -40,7 +58,7 @@ class Games(Cog):
         embed = Embed(
             title="<:dicetitle:932727881069641858> Play now <:dicetitle:932727881069641858>",
             description="Your random roll awaits",
-            color=get_colour(),
+            colour=get_colour(),
         )
 
         await ctx.reply(embed=embed, view=Dice(ctx))

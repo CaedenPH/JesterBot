@@ -38,7 +38,24 @@ CONFETTI = "🎊"
 CLOSED_LOCK = "🔐"
 BOOM = "💥"
 HANDSHAKE = "🤝"
+BOMB = "💣"
+BLUE_SQUARE = "🟦"
+GOLF = "⛳"
+RED_FLAG = "🚩"
+SPOON = "🥄"
 
+NUMBERS = {
+    0: "0️⃣",
+    1: "1️⃣",
+    2: "2️⃣",
+    3: "3️⃣",
+    4: "4️⃣",
+    5: "5️⃣",
+    6: "6️⃣",
+    7: "7️⃣",
+    8: "8️⃣",
+    9: "9️⃣"
+}
 
 ## custom emojis
 
@@ -186,7 +203,10 @@ HANGMAN = [
       |
 =========""",
 ][::-1]
-
+MINESWEEPER_MESSAGE = """
+Default board size : {board_size}x{board_size}
+Default bomb count : {bomb_count}
+"""
 
 ## utils
 

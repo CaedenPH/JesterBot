@@ -4086,7 +4086,13 @@
                 "NO THE ENDING IS SO GOOD",
                 "JUST MY STYLE",
                 "you thouhgt it was going to be good",
-                "go test falldamage irl"
+                "go test falldamage irl",
+                "Welcome back @MARZIE, I removed your AFK",
+                "",
+                "",
+                "",
+                "",
+                ""
             ],
             "author": [
                 "stealthninja",
@@ -4129,7 +4135,13 @@
                 "xRekteD",
                 "xRekteD",
                 "stealthninja",
-                "xRekteD"
+                "xRekteD",
+                "Dyno",
+                "dF_Ropra",
+                "dF_Ropra",
+                "dF_Ropra",
+                "dF_Ropra",
+                "dF_Ropra"
             ],
             "id": [
                 521226389559443461,
@@ -4172,7 +4184,13 @@
                 717423535030796299,
                 717423535030796299,
                 521226389559443461,
-                717423535030796299
+                717423535030796299,
+                155149108183695360,
+                483631842554019841,
+                483631842554019841,
+                483631842554019841,
+                483631842554019841,
+                483631842554019841
             ],
             "time": [
                 "2021-11-23 13:42:48.813000",
@@ -4215,7 +4233,13 @@
                 "2022-02-12 11:03:08.586000+00:00",
                 "2022-02-12 11:03:04.715000+00:00",
                 "2022-02-12 11:03:01.492000+00:00",
-                "2022-02-12 17:26:01.768000+00:00"
+                "2022-02-12 17:26:01.768000+00:00",
+                "2022-02-18 23:22:38.360000+00:00",
+                "2022-02-19 00:30:16.366000+00:00",
+                "2022-02-19 00:30:15.728000+00:00",
+                "2022-02-19 00:30:15.410000+00:00",
+                "2022-02-19 00:30:15.111000+00:00",
+                "2022-02-19 00:30:14.773000+00:00"
             ]
         },
         "907552229559504916": {
@@ -5462,22 +5486,30 @@
             "list": [
                 "+",
                 "\u041d\u0435 \u0441\u043e\u0432\u0441\u0435\u043c \u043f\u043e\u043d\u044f\u043b, \u043a\u0430\u043a \u0438\u043c\u0435\u043d\u043d\u043e \u0447\u0435\u0440\u0435\u0437 view?",
-                "."
+                ".",
+                "{'color': 3503528, 'type': 'rich', 'description': '```py\\n\\nre.purge()```\\nClear the regular expression cache.', 'url': 'https://docs.python.org/3/library/re.html#re.purge', 'title': 're.purge'}",
+                "{'color': 3503528, 'type': 'rich', 'url': 'https://docs.disnake.dev/en/stable/faq.html#', 'title': 'disnake.faq'}"
             ],
             "author": [
                 "EQUENOS",
                 "Bumbazzz",
-                "helish_88\ud83d\ude08"
+                "helish_88\ud83d\ude08",
+                "Monty Python",
+                "Monty Python"
             ],
             "id": [
                 301295716066787332,
                 470985309996187669,
-                177494227918389249
+                177494227918389249,
+                872576125384147005,
+                872576125384147005
             ],
             "time": [
                 "2021-12-27 16:04:03.411000+00:00",
                 "2021-12-28 14:19:52.917000+00:00",
-                "2022-02-12 17:18:20.530000+00:00"
+                "2022-02-12 17:18:20.530000+00:00",
+                "2022-02-18 23:00:24.119000+00:00",
+                "2022-02-18 23:00:00.900000+00:00"
             ]
         },
         "883342278280745030": {
@@ -6006,9 +6038,11 @@
             "list": [
                 "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@824048747456626698>** <:fedora:830478997858025513>'}",
                 "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@854817923759734805>** <:fedora:830478997858025513>'}",
-                "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@928250909320962078>** <:fedora:830478997858025513>'}"
+                "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@928250909320962078>** <:fedora:830478997858025513>'}",
+                "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@893792711595929631>** <:fedora:830478997858025513>'}"
             ],
             "author": [
+                "AFK Bot",
                 "AFK Bot",
                 "AFK Bot",
                 "AFK Bot"
@@ -6016,12 +6050,14 @@
             "id": [
                 755588579262201886,
                 755588579262201886,
+                755588579262201886,
                 755588579262201886
             ],
             "time": [
                 "2022-01-30 18:04:35.227000+00:00",
                 "2022-02-12 19:03:28.973000+00:00",
-                "2022-02-13 11:46:14.377000+00:00"
+                "2022-02-13 11:46:14.377000+00:00",
+                "2022-02-19 00:36:14.275000+00:00"
             ]
         },
         "848586716507537419": {
@@ -6126,7 +6162,16 @@
                 "{'color': 3447003, 'type': 'rich', 'description': 'This might take a while...\\n5000/5000 messages gathered', 'title': 'Fetching messages from #\ud835\udd4b\ud835\udd59\ud835\udd56-\ud835\udd38\ud835\udd66\ud835\udd65\ud835\udd60\ud83c\udd71\ud835\udd52\ud835\udd59\ud835\udd5f-\ud83c\udfc1'}",
                 "@elzzid-h has leveled up! **(48 \u279c 49)**",
                 "80 year old Jewish grandma bbw has birthday sex",
-                "@M_Schumacher has leveled up! **(8 \u279c 9)**"
+                "@M_Schumacher has leveled up! **(8 \u279c 9)**",
+                "Welcome, @Acselpro15, to \ud835\ude71\ud835\ude9b\ud835\ude98\ud835\ude8a\ud835\ude8d \ud835\ude82\ud835\ude9d\ud835\ude9b\ud835\ude8e\ud835\ude8e\ud835\ude9d!\n\n73 users joined today!",
+                "@Swedish CUCKOLD has leveled up! **(0 \u279c 1)**",
+                "Pls pp",
+                "Pls hack @sprite",
+                "@massappeal has leveled up! **(13 \u279c 14)**",
+                "@Swedish CUCKOLD has leveled up! **(1 \u279c 2)**",
+                "",
+                "@hi\ud83c\udd71\ud83c\udd71o \ud83e\udd9b himbo?",
+                ""
             ],
             "author": [
                 "Tatsu",
@@ -6157,7 +6202,16 @@
                 "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0",
                 "Tatsu",
                 "imsavingmyselfformarriage",
-                "Tatsu"
+                "Tatsu",
+                "\ud835\udd44\ud835\udd3c\u2124\u2124-\ud835\udd44\ud835\udd38\u2102\u210d\ud835\udd40\u2115\ud835\udd3c v3.0",
+                "Tatsu",
+                "JesusChristYall",
+                "brother tyler",
+                "Tatsu",
+                "Tatsu",
+                "DioWRLD",
+                "DioWRLD",
+                "DioWRLD"
             ],
             "id": [
                 172002275412279296,
@@ -6188,7 +6242,16 @@
                 925872337801322578,
                 172002275412279296,
                 936813464750522438,
-                172002275412279296
+                172002275412279296,
+                925872337801322578,
+                172002275412279296,
+                567194298844446735,
+                205107569839046658,
+                172002275412279296,
+                172002275412279296,
+                420185269837496320,
+                420185269837496320,
+                420185269837496320
             ],
             "time": [
                 "2022-02-07 16:46:29.713000+00:00",
@@ -6219,7 +6282,16 @@
                 "2022-02-12 20:52:05.775000+00:00",
                 "2022-02-12 21:01:26.276000+00:00",
                 "2022-02-13 11:56:48.014000+00:00",
-                "2022-02-13 14:19:59.283000+00:00"
+                "2022-02-13 14:19:59.283000+00:00",
+                "2022-02-18 22:46:11.115000+00:00",
+                "2022-02-18 22:51:41.796000+00:00",
+                "2022-02-18 22:56:46.177000+00:00",
+                "2022-02-18 23:16:20.371000+00:00",
+                "2022-02-18 23:19:25.418000+00:00",
+                "2022-02-19 00:35:43.863000+00:00",
+                "2022-02-19 01:26:40.036000+00:00",
+                "2022-02-19 01:29:32.225000+00:00",
+                "2022-02-19 01:31:47.757000+00:00"
             ]
         },
         "830588701264183306": {
@@ -6286,16 +6358,32 @@
         },
         "934365614603132998": {
             "list": [
-                "++suggest A \"Twacked Out\" role and a \"Zooming\" role"
+                "++suggest A \"Twacked Out\" role and a \"Zooming\" role",
+                ":e:claim items",
+                "{'author': {'proxy_icon_url': 'https://images-ext-2.discordapp.net/external/62J2SiHTggRlGa6fXltfhqS5Aa6Bpqhdn_QvvIVQsI4/%3Fv%3D1/https/cdn.discordapp.com/emojis/695631398718930997.png', 'name': 'Invalid input!', 'icon_url': 'https://cdn.discordapp.com/emojis/695631398718930997.png?v=1'}, 'color': 14437966, 'type': 'rich', 'description': \"That is an invalid response. Please try again. Type 'exit' to leave the menu.\"}",
+                "{'author': {'proxy_icon_url': 'https://images-ext-2.discordapp.net/external/62J2SiHTggRlGa6fXltfhqS5Aa6Bpqhdn_QvvIVQsI4/%3Fv%3D1/https/cdn.discordapp.com/emojis/695631398718930997.png', 'name': 'Invalid input!', 'icon_url': 'https://cdn.discordapp.com/emojis/695631398718930997.png?v=1'}, 'color': 14437966, 'type': 'rich', 'description': \"That is an invalid response. Please try again. Type 'exit' to leave the menu.\"}",
+                "!use"
             ],
             "author": [
+                "Marack",
+                "ItsSpencer",
+                "Tatsu",
+                "Tatsu",
                 "Marack"
             ],
             "id": [
+                523319660112773122,
+                900070509612515348,
+                172002275412279296,
+                172002275412279296,
                 523319660112773122
             ],
             "time": [
-                "2022-02-12 17:34:14.436000+00:00"
+                "2022-02-12 17:34:14.436000+00:00",
+                "2022-02-19 00:31:43.241000+00:00",
+                "2022-02-19 01:17:20.266000+00:00",
+                "2022-02-19 01:17:25.328000+00:00",
+                "2022-02-19 01:17:44.157000+00:00"
             ]
         },
         "831826635509989377": {
@@ -6382,6 +6470,42 @@
             "time": [
                 "2022-02-13 14:15:48.913000+00:00",
                 "2022-02-13 14:15:58.219000+00:00"
+            ]
+        },
+        "869659662713245746": {
+            "list": [
+                "Yall some beautiful people up in this bitch",
+                "{'color': 0, 'type': 'rich', 'description': 'Welcome back **<@790821869183041556>** <:fedora:830478997858025513>'}",
+                "hello guys"
+            ],
+            "author": [
+                "SkoobSnacks",
+                "AFK Bot",
+                "Swedish CUCKOLD"
+            ],
+            "id": [
+                790821869183041556,
+                755588579262201886,
+                944361330759041044
+            ],
+            "time": [
+                "2022-02-18 23:15:45.812000+00:00",
+                "2022-02-18 23:15:45.983000+00:00",
+                "2022-02-19 01:15:34.930000+00:00"
+            ]
+        },
+        "861095679518703676": {
+            "list": [
+                "**mezzothelioma**, please cool down! (**1** seconds left)"
+            ],
+            "author": [
+                "Tatsu"
+            ],
+            "id": [
+                172002275412279296
+            ],
+            "time": [
+                "2022-02-19 01:40:33.962000+00:00"
             ]
         }
     },
@@ -6480,6 +6604,24 @@
                 "2022-02-12 20:16:34.976000+00:00",
                 "2022-02-13 13:51:59.516000+00:00",
                 "2022-02-13 13:52:18.210000+00:00"
+            ]
+        },
+        "942553598166978581": {
+            "list": [
+                "Valid codeblock found!\nTo disable this type `jarvide removeconfig codeblock`",
+                "Valid codeblock found!\nTo disable this type `jarvide removeconfig codeblock`"
+            ],
+            "author": [
+                "Jarvide",
+                "Jarvide"
+            ],
+            "id": [
+                926122065973616690,
+                926122065973616690
+            ],
+            "time": [
+                "2022-02-18 23:16:13.702000+00:00",
+                "2022-02-19 01:42:39.549000+00:00"
             ]
         }
     },
