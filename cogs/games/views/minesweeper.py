@@ -54,9 +54,13 @@ class Board:
     def __init__(self, board_size: int, bomb_count: 10):
         self.board_size = board_size
         self.bomb_count = bomb_count
+        self.guesses = 0
+
         self.create_board()
 
     def create_board(self) -> None:
+        """Creates the game board"""
+
         self.board = [[Square.empty() for _ in range(self.board_size)] for _ in range(self.board_size)]
 
         """
@@ -68,6 +72,15 @@ class Board:
             [_, _, _, _, _, _]
         """
 
+        self.add_bombs()
+        for row in range(self.board_size):
+            for column in range(self.board_size):
+                if not self.board[row][column].bomb:
+                    self.board[row][column] = Square.alive(self.get_surrounding_bombs(row, column))
+
+    def add_bombs(self, ignore: t.List[int, int] = None) -> None:
+        """ Add the bombs to the board in a random fashion """
+
         bombs_added = 0
         while bombs_added != self.bomb_count:
             row = random.randint(0, self.board_size-1)
@@ -78,11 +91,6 @@ class Board:
 
             self.board[row][column] = Square.bomb()
             bombs_added += 1
-
-        for row in range(self.board_size):
-            for column in range(self.board_size):
-                if not self.board[row][column].bomb:
-                    self.board[row][column] = Square.alive(self.get_surrounding_bombs(row, column))
 
     def get_surrounding_bombs(self, row: int, column: int) -> int:
         """
@@ -106,6 +114,13 @@ class Board:
                 if self.board[_row][_column].bomb:
                     bombs_surrounding += 1
         return bombs_surrounding
+
+    def dig(self, row: int, column: int) -> bool:
+        if self.guesses == 0:
+            ...
+
+        return True
+
 
     def format(self) -> str:
         "0️⃣ | 1️⃣ | 2️⃣ | 3️⃣ | 4️⃣ | 5️⃣ | 6️⃣ | 7️⃣ | 8️⃣ | 9️⃣"
@@ -168,6 +183,7 @@ class MineSweeper(View):
         if row < 0 or row >= self.board_size or col < 0 or col >= self.board_size:
             return await message.reply("Invalid location")
         
+        self.board.dig(row, col)
         await self.edit_embed(self.board)
 
     @button(label="Flag", style=ButtonStyle.green, emoji=RED_FLAG, disabled=True)
@@ -191,8 +207,13 @@ class MineSweeper(View):
         await interaction.response.send_message("What dimension would you like to change to? | Eg `7` gives a board 7 high and 7 wide | Send integer only ")
 
         message = await self.ctx.bot.wait_for("message", check=self.wait_for_check)
-        self.board_size = int(message.content)
+        if int(message.content) > 10:
+            return await message.reply("The limit is a 10x10 grid")
+        elif int(message.content) < 2:
+            return await message.reply("The minimum is a 3x3 grid")
 
+        self.board_size = int(message.content)
+        self.bomb_count = (self.board_size ** 2) * 0.25
         await self.edit_embed(
             MINESWEEPER_MESSAGE.format(
                 board_size=self.board_size,
@@ -204,8 +225,8 @@ class MineSweeper(View):
         await interaction.response.send_message("What would you like the bomb count to be? | Send integer only")
 
         message = await self.ctx.bot.wait_for("message", check=self.wait_for_check)
-        if int(message.content) > self.board_size * self.board_size * 0.5:
-            return await message.reply("You cant have more than half of the board covered in bombs!")
+        if int(message.content) > (self.board_size ** 2) * 0.25:
+            return await message.reply("You cant have more than a quarter of the board covered in bombs!")
 
         self.bomb_count = int(message.content)
         await self.edit_embed(
