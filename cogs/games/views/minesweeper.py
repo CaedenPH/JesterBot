@@ -1,10 +1,11 @@
 from __future__ import annotations
 
+import asyncio
 import random
 import re
 import typing as t
 
-from disnake import MessageInteraction, Message, Embed, ButtonStyle
+from disnake import HTTPException, MessageInteraction, Message, Embed, ButtonStyle
 from disnake.ui import View, Button, button
 
 from core.constants import (
@@ -30,10 +31,42 @@ class Square:
     surrounding_bombs: t.Optional[int]
     emoji_surrounding_bombs: t.Optional[str]
 
+    def __str__(self) -> str:
+        """
+        represents the visual square
+
+        Returns
+        -------
+        emoji: str
+            the emoji being returned
+            whether that be flag,
+            bomb, number or empty.
+        """
+
+        if self.discovered:
+            if self.bomb:
+                return BOMB
+            return self.emoji_surrounding_bombs
+        if self.flagged:
+            return RED_FLAG
+        return BLUE_SQUARE
+
+    def flag(self) -> None:
+        """
+        flag/unflag a square
+        """
+
+        self.flagged = not self.flagged
+
     @classmethod
     def empty(cls) -> Square:
         """
         empty square.
+
+        Returns
+        -------
+        self: Square
+            empty placeholder square
         """
 
         self = cls()
@@ -49,6 +82,11 @@ class Square:
     def alive(cls, surrounding_bombs: int) -> Square:
         """
         alive and active square.
+
+        Returns
+        -------
+        self: Square
+            the alive square instance
         """
 
         self = cls.empty()
@@ -61,6 +99,11 @@ class Square:
     def bomb(cls) -> Square:
         """
         square with a bomb in it.
+
+        Returns
+        -------
+        self: Square
+            the bomb square instance
         """
 
         self = cls.empty()
@@ -68,14 +111,35 @@ class Square:
 
         return self
 
-    def __str__(self) -> str:
-        if self.flagged:
-            return RED_FLAG
-        if self.discovered:
-            if self.bomb:
-                return BOMB
-            return self.emoji_surrounding_bombs
-        return BLUE_SQUARE
+
+class DigStatus:
+    game_lost: bool
+    game_won: bool
+
+    @classmethod
+    def empty(cls) -> DigStatus:
+        self = cls()
+        self.game_lost = False
+        self.game_won = False
+
+        return self
+
+    @classmethod
+    def loss(cls) -> DigStatus:
+        self = cls.empty()
+        self.game_lost = True
+
+        return self
+
+    @classmethod
+    def win(cls) -> DigStatus:
+        self = cls().empty()
+        self.game_won = True
+
+        return self
+
+    def game_over(self) -> bool:
+        return self.game_lost or self.game_won
 
 
 class Board:
@@ -210,7 +274,22 @@ class Board:
                 if self.board[_row][_column].surrounding_bombs == 0:
                     self.board[_row][_column].discovered = True
 
-    def dig(self, row: int, column: int) -> bool:
+    def all_discovered(self) -> bool:
+        """
+        Checks to see if all non-bomb
+        squares have been discovered
+        """
+
+        for row in range(self.board_size):
+            for column in range(self.board_size):
+                if (
+                    not self.board[row][column].discovered
+                    and not self.board[row][column].bomb
+                ):
+                    return False
+        return True
+
+    def dig(self, row: int, column: int) -> DigStatus:
         """
         Reveal a square, and if its a bomb; blow up
         checks if there has only been one guess.
@@ -237,11 +316,12 @@ class Board:
                 self.create_board([row, column])
                 self.reveal_zeroes([row, column])
 
-        if self.board[row][column].bomb:
-            return False
-
         self.board[row][column].discovered = True
-        return True
+        if self.board[row][column].bomb:
+            return DigStatus.loss()
+        if self.all_discovered():
+            return DigStatus.win()
+        return DigStatus.empty()
 
     def flag(self, row: int, column: int) -> None:
         """
@@ -261,7 +341,7 @@ class Board:
         None
         """
 
-        self.board[row][column].flagged = not self.board[row][column].flagged
+        self.board[row][column].flag()
 
     def format(self) -> str:
         """
@@ -298,6 +378,7 @@ class MineSweeper(View):
         self.ctx = ctx
         self.board_size = 5
         self.bomb_count = 5
+        self.dig = DigStatus.empty()
 
     def wait_for_check(self, m) -> bool:
         return m.author == self.ctx.author and m.channel == self.ctx.channel
@@ -317,31 +398,63 @@ class MineSweeper(View):
 
     async def edit_embed(self, desc: t.Union[str, Board]) -> None:
         self.embed.description = "```yaml\n" + str(desc) + "```"
+        self.embed.set_footer(text=f"Guesses: {self.board.guesses}")
         await self.bot_message.edit(embed=self.embed, view=self)
+
+    async def delete_message(self, message: Message) -> None:
+        await asyncio.sleep(15)
+        try:
+            await message.delete()
+        except HTTPException:
+            pass
 
     @button(label="Dig", style=ButtonStyle.green, emoji=SPOON, disabled=True)
     async def dig_button(self, button: Button, interaction: MessageInteraction) -> None:
+        self.dig_clicked = True
+
         await interaction.response.send_message(
-            "Where do you want to dig? | Input as `row,column`", delete_after=15
+            "Where do you want to dig? | Input as `row,column` |", delete_after=15
         )
 
-        message = await self.ctx.bot.wait_for("message", check=self.wait_for_check)
-        user_input = re.split(",(\\s)*", message.content)
+        while True:
+            message = await self.ctx.bot.wait_for("message", check=self.wait_for_check)
+            if not self.dig_clicked:
+                return
 
-        row, column = int(user_input[0]), int(user_input[-1])
-        if row < 0 or row >= self.board_size or column < 0 or column >= self.board_size:
-            return await message.reply("Invalid location", delete_after=30)
+            user_input = re.split(",(\\s)*", message.content)
+            row, column = int(user_input[0]), int(user_input[-1])
+            if (
+                row < 0
+                or row >= self.board_size
+                or column < 0
+                or column >= self.board_size
+            ):
+                return await message.reply("Invalid location", delete_after=30)
 
-        survive = self.board.dig(row, column)
-        if not survive:
-            self.board.reveal_all()
-            await message.reply("You got blown up! Game over.")
-        await self.edit_embed(self.board)
+            self.dig = self.board.dig(row, column)
+            if self.dig.game_lost:
+                self.board.reveal_all()
+                await message.reply(
+                    "**You got blown up** | Try not to step on so many bombs!"
+                )
+            elif self.dig.game_won:
+                self.board.reveal_all()
+                await message.reply("**You dug all non-bomb squares** | You win!")
+            await self.edit_embed(self.board)
+
+            asyncio.create_task(self.delete_message(message))
+            if self.dig.game_over():
+                return
 
     @button(label="Flag", style=ButtonStyle.green, emoji=RED_FLAG, disabled=True)
     async def flag_button(
         self, button: Button, interaction: MessageInteraction
     ) -> None:
+        self.dig_clicked = False
+
+        if self.dig.game_over():
+            return
+
         await interaction.response.send_message(
             "Where do you want to flag? | Input as `row,column`", delete_after=15
         )
@@ -356,6 +469,9 @@ class MineSweeper(View):
         self.board.flag(row, column)
         await self.edit_embed(self.board)
 
+        await asyncio.sleep(15)
+        await message.delete()
+
     @button(label="Play", style=ButtonStyle.green, emoji="▶️")
     async def play_button(
         self, button: Button, interaction: MessageInteraction
@@ -364,7 +480,10 @@ class MineSweeper(View):
 
         for child in self.children:
             if isinstance(child, Button):
-                child.disabled = not child.disabled
+                if not child.disabled:
+                    self.remove_item(child)
+                else:
+                    child.disabled = False
 
         await interaction.response.defer()
         await self.edit_embed(self.board)

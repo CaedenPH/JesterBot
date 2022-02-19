@@ -17,7 +17,13 @@ from disnake.ext import commands
 from core.utils import get_colour, send_embed
 from core.utils.commands.eval import run_eval
 from core.paginator import Paginator
-from core.constants import CLOSE, MORSE_TO_TEXT, TEXT_TO_MORSE, ASCII_DESCRIPTION
+from core.constants import (
+    CLOSE,
+    MORSE_TO_TEXT,
+    TEXT_TO_MORSE,
+    ASCII_DESCRIPTION,
+    GOOGLE_KEY,
+)
 from core import Context
 from .calculator import CalculatorView
 
@@ -28,6 +34,7 @@ decoder = translator.Decoder()
 class Utils(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.google = async_cse.Search(GOOGLE_KEY)
 
     @commands.command(aliases=["calc"])
     async def calculator(self, ctx: Context):
@@ -46,8 +53,6 @@ class Utils(commands.Cog):
 
     @commands.command()
     async def google(self, ctx: Context, *, query: str):
-        """Search stuff up on google!"""
-
         try:
             results = await self.google.search(
                 query, safesearch=True, image_search=False
