@@ -28,21 +28,11 @@ class Docs(cog.Docs, RTFM):
         self.bot = bot
 
     def get_tag_embed(self, author: disnake.Member, tag: str):
-        tag = max(
-            [
-                (
-                    _tag,
-                    fuzz.ratio(tag, _tag),
-                )
-                for _tag in self.TAGS
-            ],
-            key=lambda m: m[1],
-        )[0]
+        tag = max([(_tag, fuzz.ratio(tag, _tag)) for _tag in self.TAGS], key=lambda m: m[1])[0]
 
         return (
             disnake.Embed(
-                title=tag.capitalize(),
-                description=open(f"./resources/tags/{tag}.md", encoding="utf-8").read(),
+                title=tag.capitalize(), description=open(f"./resources/tags/{tag}.md", encoding="utf-8").read()
             )
             .set_author(name=author.name, icon_url=author.avatar.url)
             .set_footer(text="Use tag_list command to see all tags")
@@ -97,10 +87,7 @@ class Docs(cog.Docs, RTFM):
 
     @commands.command()
     async def zen(self, ctx: Context, search: int = None) -> None:
-        embed = disnake.Embed(
-            title="The Zen of Python",
-            description=ZEN_OF_PYTHON,
-        )
+        embed = disnake.Embed(title="The Zen of Python", description=ZEN_OF_PYTHON)
 
         if not search:
             return await ctx.reply(embed=embed)
@@ -108,10 +95,7 @@ class Docs(cog.Docs, RTFM):
         lines = ZEN_OF_PYTHON.splitlines()
         if len(lines) > search:
             return await ctx.reply(
-                embed=disnake.Embed(
-                    title=f"The Zen of Python - Line {search}",
-                    description=lines[search],
-                )
+                embed=disnake.Embed(title=f"The Zen of Python - Line {search}", description=lines[search])
             )
 
         await ctx.reply(embed=embed.set_footer(text=f"lines {search} is not in the zen lines!"))

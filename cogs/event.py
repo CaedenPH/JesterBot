@@ -103,15 +103,9 @@ class Event(commands.Cog):
                                 )
 
                                 embed.set_image(url=f"{member.guild.icon_url}")
-                                embed.set_author(
-                                    name=f"{member.name}",
-                                    icon_url=f"{member.avatar.url}",
-                                )
+                                embed.set_author(name=f"{member.name}", icon_url=f"{member.avatar.url}")
                                 await channel.send(embed=embed)
-                                role = disnake.utils.get(
-                                    member.guild.roles,
-                                    id=loaded[str(member.guild.id)]["role"],
-                                )
+                                role = disnake.utils.get(member.guild.roles, id=loaded[str(member.guild.id)]["role"])
                                 if role:
                                     await member.add_roles(role)
                                 else:
@@ -130,10 +124,7 @@ class Event(commands.Cog):
                                 )
 
                                 embed.set_image(url=f"{member.guild.icon_url}")
-                                embed.set_author(
-                                    name=f"{member.name}",
-                                    icon_url=f"{member.avatar.url}",
-                                )
+                                embed.set_author(name=f"{member.name}", icon_url=f"{member.avatar.url}")
 
                                 await channel.send(embed=embed)
                                 # await member.add_roles(role)
@@ -171,10 +162,7 @@ class Event(commands.Cog):
                     if message.content != "verify":
                         await message.delete()
                     else:
-                        role = disnake.utils.get(
-                            message.guild.roles,
-                            id=data[str(message.channel.id)]["URole id"],
-                        )
+                        role = disnake.utils.get(message.guild.roles, id=data[str(message.channel.id)]["URole id"])
                         for roled in message.author.roles:
 
                             if roled.name in role.name:
@@ -190,14 +178,12 @@ class Event(commands.Cog):
                                     if "role" in weldata[str(message.guild.id)]:
 
                                         role = disnake.utils.get(
-                                            message.guild.roles,
-                                            id=weldata[str(message.guild.id)]["role"],
+                                            message.guild.roles, id=weldata[str(message.guild.id)]["role"]
                                         )
                                         await message.author.add_roles(role)
 
                                         role = disnake.utils.get(
-                                            message.guild.roles,
-                                            id=data[str(message.channel.id)]["URole id"],
+                                            message.guild.roles, id=data[str(message.channel.id)]["URole id"]
                                         )
 
                                         await message.author.remove_roles(role)
@@ -221,8 +207,7 @@ class Event(commands.Cog):
                                                 url="https://cdn.disnakeapp.com/attachments/847528639125258322/855559791384592404/360_F_361521131_tvclR3GrsVQBFVsUe1EPNFgH2MWIN1w7.png"
                                             )
                                             embed.set_author(
-                                                name=f"{message.author.name}",
-                                                icon_url=f"{message.author.avatar.url}",
+                                                name=f"{message.author.name}", icon_url=f"{message.author.avatar.url}"
                                             )
                                             # role = disnake.utils.get(member.guild.roles, id=loaded[str(member.guild.id)]['role'])
                                             await channel.send(embed=embed)
@@ -234,12 +219,10 @@ class Event(commands.Cog):
                                 else:
 
                                     role = disnake.utils.get(
-                                        message.guild.roles,
-                                        id=int(data[str(message.channel.id)]["MRole id"]),
+                                        message.guild.roles, id=int(data[str(message.channel.id)]["MRole id"])
                                     )
                                     role1 = disnake.utils.get(
-                                        message.guild.roles,
-                                        id=int(data[str(message.channel.id)]["URole id"]),
+                                        message.guild.roles, id=int(data[str(message.channel.id)]["URole id"])
                                     )
                                     await message.author.add_roles(role)
                                     await message.author.remove_roles(role1)
@@ -263,7 +246,7 @@ class Event(commands.Cog):
 
             try:
 
-                emoji, user = await self.bot.wait_for("reaction_add", timeout=30.0, check=check)
+                (emoji, user) = await self.bot.wait_for("reaction_add", timeout=30.0, check=check)
                 while emoji.emoji not in [THUMBS_DOWN]:
                     async with message.channel.typing():
                         embed = await create_embed(message, self.bot)
@@ -271,7 +254,7 @@ class Event(commands.Cog):
                     msg12 = await message.channel.send(embed=embed)
                     num = 2
                     await message.remove_reaction(member=message.author, emoji=THUMBS_UP)
-                    emoji, user = await self.bot.wait_for("reaction_add", timeout=30.0, check=check)
+                    (emoji, user) = await self.bot.wait_for("reaction_add", timeout=30.0, check=check)
 
                 else:
                     if num == 2:
@@ -291,11 +274,7 @@ class Event(commands.Cog):
                 except:
                     pass
 
-        if message.content in [
-            "@[j.] JesterBot#0658",
-            "<@828363172717133874>",
-            "<@!828363172717133874>",
-        ]:
+        if message.content in ["@[j.] JesterBot#0658", "<@828363172717133874>", "<@!828363172717133874>"]:
             if message.reference:
                 return
             async with message.channel.typing():

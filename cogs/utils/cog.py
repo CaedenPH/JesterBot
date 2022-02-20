@@ -17,13 +17,7 @@ from disnake.ext import commands
 from core.utils import get_colour, send_embed
 from core.utils.commands.eval import run_eval
 from core.paginator import Paginator
-from core.constants import (
-    CLOSE,
-    MORSE_TO_TEXT,
-    TEXT_TO_MORSE,
-    ASCII_DESCRIPTION,
-    GOOGLE_KEY,
-)
+from core.constants import CLOSE, MORSE_TO_TEXT, TEXT_TO_MORSE, ASCII_DESCRIPTION, GOOGLE_KEY
 from core import Context
 from .calculator import CalculatorView
 
@@ -40,10 +34,7 @@ class Utils(commands.Cog):
     async def calculator(self, ctx: Context):
         embed = (
             disnake.Embed(description="```yaml\n0```")
-            .set_author(
-                name="Calculator",
-                icon_url=ctx.author.avatar.url,
-            )
+            .set_author(name="Calculator", icon_url=ctx.author.avatar.url)
             .set_footer(text="To interact with your virtual calculator, click the shown buttons.")
         )
 
@@ -64,14 +55,8 @@ class Utils(commands.Cog):
                 description="\n".join([f"[{res.title}]({res.url})\n{res.description}\n\n" for res in results[:5]]),
                 color=0x489CC4,
             )
-            .set_footer(
-                text=f"Requested by {ctx.author}",
-                icon_url=ctx.author.display_avatar.url,
-            )
-            .set_author(
-                name=ctx.author,
-                icon_url="https://staffordonline.org/wp-content/uploads/2019/01/Google.jpg",
-            )
+            .set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.display_avatar.url)
+            .set_author(name=ctx.author, icon_url="https://staffordonline.org/wp-content/uploads/2019/01/Google.jpg")
         )
 
     @commands.command()
@@ -126,7 +111,7 @@ class Utils(commands.Cog):
         if len(characters) > 50:
             return await send_embed(ctx, "", f"Too many characters ({len(characters)}/50)")
 
-        def get_info(char: str) -> Tuple[str, str]:
+        def get_info(char: str) -> Tuple[str, str,]:
             digit = f"{ord(char):x}"
             if len(digit) <= 4:
                 u_code = f"\\u{digit:>04}"
@@ -135,9 +120,9 @@ class Utils(commands.Cog):
             url = f"https://www.compart.com/en/unicode/U+{digit:>04}"
             name = f"[{unicodedata.name(char, '')}]({url})"
             info = f"`{u_code.ljust(10)}`: {name} - {disnake.utils.escape_markdown(char)}"
-            return info, u_code
+            return (info, u_code)
 
-        char_list, raw_list = zip(*(get_info(c) for c in characters))
+        (char_list, raw_list) = zip(*(get_info(c) for c in characters))
         embed = disnake.Embed(colour=get_colour())
         embed.add_field(name="Character info", value="\n".join(char_list))
         if len(characters) > 1:
@@ -145,21 +130,18 @@ class Utils(commands.Cog):
 
         await ctx.reply(embed=embed)
 
-    @commands.command(
-        aliases=["fib"],
-        description="Sends the numbers of the fibinaci upto the number provided",
-    )
+    @commands.command(aliases=["fib"], description="Sends the numbers of the fibinaci upto the number provided")
     async def fibonacci(self, ctx: Context, sequences=10000000000000):
         x = []
 
         if sequences > 1000000000000000:
             sequences = 100000000000000
 
-        a, b = 0, 1
+        (a, b) = (0, 1)
         while a < sequences:
             x.append(str(a))
 
-            a, b = b, a + b
+            (a, b) = (b, a + b)
 
         embed = disnake.Embed(title="Fibinaci", description=f"{', '.join(x)}", colour=get_colour())
         await ctx.reply(embed=embed)
@@ -208,11 +190,7 @@ class Utils(commands.Cog):
 
             await ctx.reply(embed=embed)
         except Exception as e:
-            embed = disnake.Embed(
-                title="Error",
-                description=f"**TimeZoneError: {e}**",
-                colour=get_colour(),
-            )
+            embed = disnake.Embed(title="Error", description=f"**TimeZoneError: {e}**", colour=get_colour())
             await ctx.reply(embed=embed)
 
     @commands.command(aliases=["bin"])
@@ -334,8 +312,7 @@ class Utils(commands.Cog):
     @commands.command(aliases=["tinyurl", "shorten"])
     async def shorten_url(self, ctx: Context, *, url: str):
         tinyurl = await self.bot.loop.run_in_executor(
-            None,
-            lambda: urlopen("http://tinyurl.com/api-create.php?url=" + url).read().decode("utf-8"),
+            None, lambda: urlopen("http://tinyurl.com/api-create.php?url=" + url).read().decode("utf-8")
         )
 
         await ctx.message.delete()

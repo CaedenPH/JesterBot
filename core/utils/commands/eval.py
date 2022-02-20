@@ -70,10 +70,7 @@ async def run_eval(ctx: Context, code, **kwargs) -> None:
 
     try:
         with contextlib.redirect_stdout(stdout):
-            exec(
-                f"async def func():\n{textwrap.indent(code, '    ')}",
-                local_variables,
-            )
+            exec(f"async def func():\n{textwrap.indent(code, '    ')}", local_variables)
             obj = await local_variables["func"]()
 
             result = f"{stdout.getvalue()}{obj}\n"

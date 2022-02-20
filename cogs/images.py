@@ -52,7 +52,7 @@ async def pilimg(ctx, member, name):
         f.close()
 
     with PIL.Image.open(path) as im:
-        return im, path
+        return (im, path)
 
 
 class Images(commands.Cog):
@@ -143,16 +143,9 @@ class Images(commands.Cog):
             return await ctx.em("Your code needs to be in a codeblock!")
 
         code_edited = disnake.utils.remove_markdown(code.strip()).strip()
-        async with aiohttp.ClientSession(
-            headers={"Content-Type": "application/json"},
-        ) as ses:
+        async with aiohttp.ClientSession(headers={"Content-Type": "application/json"}) as ses:
             try:
-                request = await ses.post(
-                    f"https://carbonara-42.herokuapp.com/api/cook",
-                    json={
-                        "code": code_edited,
-                    },
-                )
+                request = await ses.post(f"https://carbonara-42.herokuapp.com/api/cook", json={"code": code_edited})
             except Exception as e:
                 print(f"Exception in code_snippet L161: {e}")
             resp = await request.read()
@@ -355,9 +348,7 @@ class Images(commands.Cog):
             animal = Animals(imag)
 
             embed = disnake.Embed(
-                title=f"Here is your {imag}",
-                description=f"**Fact:**\n{animal.fact()}",
-                colour=get_colour(),
+                title=f"Here is your {imag}", description=f"**Fact:**\n{animal.fact()}", colour=get_colour()
             )
             embed.set_image(url=animal.image())
         await ctx.reply(embed=embed)
@@ -377,7 +368,7 @@ class Images(commands.Cog):
         await img(ctx, member, "rotate")
 
         image = cv.imread("./images/rotate.png")
-        h, w = image.shape[:2]
+        (h, w) = image.shape[:2]
 
         rotation_matrix = cv.getRotationMatrix2D((w / 2, h / 2), degrees, 1)
 

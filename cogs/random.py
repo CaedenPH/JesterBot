@@ -130,7 +130,7 @@ class Random(commands.Cog):
     @commands.command(name="fool")
     async def april_fools(self, ctx: Context) -> None:
         video = random.choice(json.loads(Path("./resources/seasonal/april_fools_videos.json").read_text("utf-8")))
-        channel, url = video["channel"], video["url"]
+        (channel, url) = (video["channel"], video["url"])
 
         await ctx.reply(f"Check out this April Fools' video by {channel}.\n\n{url}")
 
@@ -147,8 +147,7 @@ class Random(commands.Cog):
 
         choice = random.choice(data["ideas"])
         embed = disnake.Embed(title=choice["name"], description=choice["description"]).set_author(
-            name=ctx.author.name + "s' date",
-            icon_url=ctx.author.avatar.url,
+            name=ctx.author.name + "s' date", icon_url=ctx.author.avatar.url
         )
         await ctx.reply(embed=embed)
 
@@ -179,10 +178,7 @@ class Random(commands.Cog):
 
         file = disnake.File("./images/color.png", filename="color.png")
         embed = (
-            disnake.Embed(
-                title="Random color",
-                description="`Color name: {0[0]} - Hex color: {0[1]}`".format(hexcolor),
-            )
+            disnake.Embed(title="Random color", description="`Color name: {0[0]} - Hex color: {0[1]}`".format(hexcolor))
             .set_footer(text=f"Out of {len(x)} colors!")
             .set_image(url="attachment://color.png")
         )

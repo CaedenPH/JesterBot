@@ -246,7 +246,7 @@ class _MenuMeta(type):
         if inherit_buttons:
             # walk MRO to get all buttons even in subclasses
             for base in reversed(new_cls.__mro__):
-                for elem, value in base.__dict__.items():
+                for (elem, value) in base.__dict__.items():
                     try:
                         value.__menu_button__
                     except AttributeError:
@@ -254,7 +254,7 @@ class _MenuMeta(type):
                     else:
                         buttons.append(value)
         else:
-            for elem, value in attrs.items():
+            for (elem, value) in attrs.items():
                 try:
                     value.__menu_button__
                 except AttributeError:
@@ -542,11 +542,7 @@ class Menu(metaclass=_MenuMeta):
         """
         if payload.message_id != self.message.id:
             return False
-        if payload.user_id not in {
-            self.bot.owner_id,
-            self._author_id,
-            *self.bot.owner_ids,
-        }:
+        if payload.user_id not in {self.bot.owner_id, self._author_id, *self.bot.owner_ids}:
             return False
 
         return payload.emoji in self.buttons
@@ -562,7 +558,7 @@ class Menu(metaclass=_MenuMeta):
                     asyncio.ensure_future(self.bot.wait_for("raw_reaction_add", check=self.reaction_check)),
                     asyncio.ensure_future(self.bot.wait_for("raw_reaction_remove", check=self.reaction_check)),
                 ]
-                done, pending = await asyncio.wait(tasks, timeout=self.timeout, return_when=asyncio.FIRST_COMPLETED)
+                (done, pending) = await asyncio.wait(tasks, timeout=self.timeout, return_when=asyncio.FIRST_COMPLETED)
                 for task in pending:
                     task.cancel()
 
@@ -1046,7 +1042,7 @@ class ListPageSource(PageSource):
         self.entries = entries
         self.per_page = per_page
 
-        pages, left_over = divmod(len(entries), per_page)
+        (pages, left_over) = divmod(len(entries), per_page)
         if left_over:
             pages += 1
 
@@ -1107,7 +1103,7 @@ class GroupByPageSource(ListPageSource):
         self.__entries = entries if not sort else sorted(entries, key=key)
         nested = []
         self.nested_per_page = per_page
-        for k, g in itertools.groupby(self.__entries, key=key):
+        for (k, g) in itertools.groupby(self.__entries, key=key):
             g = list(g)
             if not g:
                 continue

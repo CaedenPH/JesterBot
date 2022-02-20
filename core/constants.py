@@ -1,4 +1,4 @@
-## environ
+# environ
 
 from asyncpraw import Reddit
 from os import environ
@@ -20,18 +20,14 @@ PASSWORD = environ["PASSWORD"]
 USER_AGENT = environ["USER_AGENT"]
 
 
-## reddit
+# reddit
 
 REDDIT = Reddit(
-    client_id=CLIENT_ID,
-    client_secret=CLIENT_SECRET,
-    user_agent=USER_AGENT,
-    username=USERNAME,
-    password=PASSWORD,
+    client_id=CLIENT_ID, client_secret=CLIENT_SECRET, user_agent=USER_AGENT, username=USERNAME, password=PASSWORD
 )
 
 
-## emojis
+# emojis
 
 THUMBS_UP = "👍"
 THUMBS_DOWN = "👎"
@@ -43,12 +39,14 @@ BOMB = "💣"
 BLUE_SQUARE = "🟦"
 WHITE_SQUARE = "⬜"
 GREEN_SQUARE = "🟩"
+BLACK_SQUARE = "⬛"
 SWEET = "🍬"
 GOLF = "⛳"
 RED_FLAG = "🚩"
 SPOON = "🥄"
 STOP_SIGN = "🛑"
 VIDEO_GAME = "🎮"
+HEAVY_MINUS = "➖"
 
 PLAY_BUTTON = "▶️"
 UP_ARROW = "⬆️"
@@ -56,20 +54,9 @@ LEFT_ARROW = "⬅️"
 RIGHT_ARROW = "➡️"
 DOWN_ARROW = "⬇️"
 
-NUMBERS = {
-    0: "0️⃣",
-    1: "1️⃣",
-    2: "2️⃣",
-    3: "3️⃣",
-    4: "4️⃣",
-    5: "5️⃣",
-    6: "6️⃣",
-    7: "7️⃣",
-    8: "8️⃣",
-    9: "9️⃣",
-}
+NUMBERS = {0: "0️⃣", 1: "1️⃣", 2: "2️⃣", 3: "3️⃣", 4: "4️⃣", 5: "5️⃣", 6: "6️⃣", 7: "7️⃣", 8: "8️⃣", 9: "9️⃣"}
 
-## custom emojis
+# custom emojis
 
 LOCATION_EMOJIS = {
     "fastbackwards": "<:fast_forward_left:870781340692402226>",
@@ -117,15 +104,25 @@ _S = "<:S:863313855061164062>"
 _T = "<:T:863313855399329812>"
 _R = "<:R_:863313855119360022>"
 
-
-## game
-
-CARD_SUITS = {
-    "hearts": "♥️",
-    "diamonds": "♦️",
-    "clubs": "♣️",
-    "spades": "♠️",
+RED_NUMBERS = {
+    0: "<:zero0:945068271139455006>",
+    1: "<:one1:945066655531290736>",
+    2: "<:two2:945066692265005106>",
+    3: "<:three3:945066750528077874>",
+    4: "<:four4:945068271747616828>",
+    5: "<:five5:945068271672119396>",
+    6: "<:six6:945068271634366484>",
+    7: "<:seven7:945068271558881280>",
+    8: "<:eight8:945068271563063406>",
+    9: "<:nine9:945068271688908821>",
 }
+WHITE_BORDER = "<:borHorWhit:945071577907757087>"
+WHITE_HORIZONTAL = "<:borderWhit:945071240387911770>"
+BLACK_BORDER = "<:borHor:945071577609936956>"
+
+# game
+
+CARD_SUITS = {"hearts": "♥️", "diamonds": "♦️", "clubs": "♣️", "spades": "♠️"}
 BLACKJACK_WELCOME = """```yaml
 Welcome to the blackjack game. 
 ==============================
@@ -223,8 +220,18 @@ SNAKE_MESSAGE = """
 Board size : {board_size}x{board_size}
 Game mode  : {game_mode}
 """
-
-## utils
+SODUKU_MESSAGE = """
+Game difficulty : {difficulty}
+Light mode : {light_mode}
+"""
+PLACE_NUMBER = """
+**Where do you want to place your number?**
+Enter like: `1, 1, 1` - This will enter the number `1` into box `1`, square `1`.
+*First num = box number*
+*Second num = square number*
+*Third num = new value*
+"""
+# utils
 
 TEXT_TO_MORSE = {
     "A": ".-",
@@ -355,7 +362,7 @@ Source: [Website](https://en.wikipedia.org/wiki/ASCII)
     """
 
 
-## docs
+# docs
 
 ZEN_OF_PYTHON = """\
 Beautiful is better than ugly.

@@ -26,10 +26,7 @@ class Meme(View):
         embed = (
             Embed(title=post.title, color=get_colour())
             .set_image(url=post.url)
-            .set_footer(
-                text=f"Requested by {interaction.author.name}",
-                icon_url=interaction.author.display_avatar.url,
-            )
+            .set_footer(text=f"Requested by {interaction.author.name}", icon_url=interaction.author.display_avatar.url)
         )
         await interaction.response.defer()
         await interaction.edit_original_message(embed=embed, view=self)

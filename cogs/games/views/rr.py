@@ -21,10 +21,7 @@ class RussianRoulette(View):
     @button(label="Play", style=ButtonStyle.green, emoji="▶️")
     async def play(self, button: Button, interaction: MessageInteraction) -> None:
         random_choice = random.choice(["🌹 / **You lived**", "<:gun:931861130488467456> / **You died**"])
-        embed_colour = {
-            "🌹 / **You lived**": 0x32CD32,
-            "<:gun:931861130488467456> / **You died**": 0x8B0000,
-        }
+        embed_colour = {"🌹 / **You lived**": 0x32CD32, "<:gun:931861130488467456> / **You died**": 0x8B0000}
 
         footer_text = random.choice(
             [
@@ -39,8 +36,7 @@ class RussianRoulette(View):
         )
 
         embed = Embed(description=random_choice, colour=embed_colour[random_choice]).set_footer(
-            text=f"{interaction.author.name} {footer_text}",
-            icon_url=(interaction.author.display_avatar.url),
+            text=f"{interaction.author.name} {footer_text}", icon_url=(interaction.author.display_avatar.url)
         )
 
         await interaction.response.defer()

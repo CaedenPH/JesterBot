@@ -8,10 +8,7 @@ from disnake.ui import View, Button, button
 class Casino(View):
     def __init__(self, author: Member) -> None:
         self.author = author
-        self.defualtstring = [
-            "Casino Machine $",
-            "Get Three numbers in a row for a PRIZE",
-        ]
+        self.defualtstring = ["Casino Machine $", "Get Three numbers in a row for a PRIZE"]
         super().__init__(timeout=60.0)
         self.retry.disabled = True
 
@@ -25,11 +22,7 @@ class Casino(View):
             return False
         return True
 
-    @button(
-        label="Play",
-        style=ButtonStyle.green,
-        emoji="▶️",
-    )
+    @button(label="Play", style=ButtonStyle.green, emoji="▶️")
     async def play(self, button: Button, interaction: MessageInteraction) -> None:
         self.exit.disabled = True
         self.play.disabled = True
@@ -38,7 +31,7 @@ class Casino(View):
         await interaction.response.edit_message(embed=intsthink, view=self)
 
         r_ints = (random.randint(1, 9), random.randint(1, 9), random.randint(1, 9))
-        result, ints = [], None
+        (result, ints) = ([], None)
 
         for i in r_ints:
             result.append(str(i))
@@ -54,8 +47,7 @@ class Casino(View):
 
         if len(set(r_ints)) == 1:
             awinningembed = Embed(
-                title="WINNER",
-                description=f"{interaction.author.mention} has won {random.randint(1, 1000)}$",
+                title="WINNER", description=f"{interaction.author.mention} has won {random.randint(1, 1000)}$"
             )
             self.stop()
             return await interaction.send(embed=awinningembed)
@@ -68,7 +60,7 @@ class Casino(View):
 
         r_ints = (random.randint(1, 9), random.randint(1, 9), random.randint(1, 9))
 
-        result, ints = [], None
+        (result, ints) = ([], None)
         for i in r_ints:
             result.append(str(i))
             ints = Embed(title=self.defualtstring[0], description=f"```{''.join(result)}```").set_footer(
@@ -83,8 +75,7 @@ class Casino(View):
 
         if len(set(r_ints)) == 1:
             bwinningembed = Embed(
-                title="WINNER",
-                description=f"{interaction.author.mention} has won {random.randint(1, 1000)}$",
+                title="WINNER", description=f"{interaction.author.mention} has won {random.randint(1, 1000)}$"
             )
             self.stop()
             return await interaction.send(embed=bwinningembed)

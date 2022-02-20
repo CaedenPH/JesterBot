@@ -14,8 +14,7 @@ class Config(Cog):
 
     async def insert_values(self, channel_id: int, channel_type: str) -> None:
         result = await self.bot.db.fetchone(
-            "SELECT channel_types FROM channels_config WHERE channel_id = ?",
-            (channel_id,),
+            "SELECT channel_types FROM channels_config WHERE channel_id = ?", (channel_id,)
         )
 
         if not result:
@@ -98,10 +97,7 @@ class Config(Cog):
             embed = disnake.Embed(title="Added!", colour=get_colour())
             await ctx.reply(embed=embed)
 
-    @command(
-        aliases=["Unwelcome", "Stop_Welcome"],
-        description="Removes the j.welcome command",
-    )
+    @command(aliases=["Unwelcome", "Stop_Welcome"], description="Removes the j.welcome command")
     async def remove_welcome(self, ctx: Context):
         with open("./dicts/Welcome.json", "r+") as f:
             data = json.load(f)
@@ -121,9 +117,7 @@ class Config(Cog):
             data = json.load(k)
             if str(channel.id) not in data:
 
-                data[str(channel.id)] = {
-                    "Yes": True,
-                }
+                data[str(channel.id)] = {"Yes": True}
                 update_json(k, data)
                 if channel.id == ctx.channel.id:
                     pass
@@ -172,9 +166,7 @@ class Config(Cog):
         received_msg = str(
             (
                 await self.bot.wait_for(
-                    "message",
-                    timeout=60.0,
-                    check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
+                    "message", timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel
                 )
             ).content
         ).lower()
@@ -196,57 +188,31 @@ class Config(Cog):
             channel = await ctx.guild.create_text_channel(name="⚘ verify ⚘")
         with open("./dicts/VerifyChannel.json", "r+") as k:
             if role == "":
-                await ctx.guild.create_role(
-                    name="⚘ Member ⚘",
-                    permissions=disnake.Permissions(send_messages=True),
-                )
+                await ctx.guild.create_role(name="⚘ Member ⚘", permissions=disnake.Permissions(send_messages=True))
             membrole = disnake.utils.get(ctx.guild.roles, name="⚘ Member ⚘")
-            await ctx.guild.create_role(
-                name="⚘ Unverified ⚘",
-                permissions=disnake.Permissions(send_messages=False),
-            )
+            await ctx.guild.create_role(name="⚘ Unverified ⚘", permissions=disnake.Permissions(send_messages=False))
             Urole = disnake.utils.get(ctx.guild.roles, name="⚘ Unverified ⚘")
             for x in ctx.guild.channels:
                 if x.id == channel.id:
                     await x.set_permissions(
-                        membrole,
-                        send_messages=False,
-                        read_message_history=False,
-                        read_messages=False,
+                        membrole, send_messages=False, read_message_history=False, read_messages=False
                     )
                 else:
 
                     await x.set_permissions(
-                        membrole,
-                        speak=True,
-                        send_messages=True,
-                        read_message_history=True,
-                        read_messages=True,
+                        membrole, speak=True, send_messages=True, read_message_history=True, read_messages=True
                     )
                 if x.id != channel.id:
-                    await x.set_permissions(
-                        Urole,
-                        send_messages=False,
-                        read_message_history=False,
-                        read_messages=False,
-                    )
+                    await x.set_permissions(Urole, send_messages=False, read_message_history=False, read_messages=False)
                 else:
                     await x.set_permissions(
-                        Urole,
-                        speak=True,
-                        send_messages=True,
-                        read_message_history=True,
-                        read_messages=True,
+                        Urole, speak=True, send_messages=True, read_message_history=True, read_messages=True
                     )
 
             every = disnake.utils.get(ctx.guild.roles, name="@everyone")
             for y in ctx.guild.channels:
                 await y.set_permissions(
-                    every,
-                    speak=True,
-                    send_messages=True,
-                    read_message_history=True,
-                    read_messages=True,
+                    every, speak=True, send_messages=True, read_message_history=True, read_messages=True
                 )
             with open("./dicts/Welcome.json") as w:
                 weldata = json.load(w)
@@ -255,19 +221,12 @@ class Config(Cog):
                     for z in ctx.guild.channels:
                         if z.id == channel.id:
                             await z.set_permissions(
-                                g,
-                                send_messages=False,
-                                read_message_history=False,
-                                read_messages=False,
+                                g, send_messages=False, read_message_history=False, read_messages=False
                             )
                         else:
 
                             await z.set_permissions(
-                                g,
-                                speak=True,
-                                send_messages=True,
-                                read_message_history=True,
-                                read_messages=True,
+                                g, speak=True, send_messages=True, read_message_history=True, read_messages=True
                             )
 
             data = json.load(k)
@@ -326,10 +285,7 @@ class Config(Cog):
                     channel = await ctx.guild.create_text_channel(name="Leaving Channel")
                 data[str(ctx.guild.id)] = {"id": channel.id}
                 update_json(k, data)
-        await send_embed(
-            channel,
-            "This is a leaving channel, everyone who leaves will be announced here...",
-        )
+        await send_embed(channel, "This is a leaving channel, everyone who leaves will be announced here...")
 
     @command()
     async def removeleavechannel(self, ctx: Context, channel: disnake.TextChannel):

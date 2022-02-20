@@ -6,14 +6,7 @@ from disnake.ui import View, Button, button
 
 from core import Context
 from core.utils import get_colour
-from core.constants import (
-    BLACKJACK_HOW_TO,
-    CARD_SUITS,
-    CLOSED_LOCK,
-    BOOM,
-    CONFETTI,
-    HANDSHAKE,
-)
+from core.constants import BLACKJACK_HOW_TO, CARD_SUITS, CLOSED_LOCK, BOOM, CONFETTI, HANDSHAKE
 
 special_cards = {1: "Ace", 10: "Jack", 11: "Queen", 12: "King"}
 blackjack_visual = """\
@@ -43,7 +36,7 @@ class Card:
     def value(self) -> int:
         return self._value
 
-    def change_to(self, value: Union[str, int]) -> None:
+    def change_to(self, value: Union[str, int,]) -> None:
         self._value = int(value)
 
 
@@ -144,14 +137,8 @@ class BlackJack(View):
                 HANDSHAKE,
                 "https://tenor.com/view/predator-arnold-schwarzenegger-hand-shake-arms-gif-3468629",
             ],
-            "You lost!": [
-                BOOM,
-                "https://tenor.com/view/diary-of-a-wimpy-kid-loser-bleh-tongue-out-gif-8481263",
-            ],
-            "You won!": [
-                CONFETTI,
-                "https://tenor.com/view/win-confetti-celebration-gif-7374480",
-            ],
+            "You lost!": [BOOM, "https://tenor.com/view/diary-of-a-wimpy-kid-loser-bleh-tongue-out-gif-8481263"],
+            "You won!": [CONFETTI, "https://tenor.com/view/win-confetti-celebration-gif-7374480"],
         }
 
         await interaction.response.send_message(self.status + f"\n{conditions[self.status][1]}")
@@ -172,10 +159,7 @@ class BlackJack(View):
             await self.bot_message.add_reaction(BOOM)
             return await self.bot_message.edit(content="You went over 21!", embed=embed, view=self)
 
-        await self.bot_message.edit(
-            content=f"You drew `{card.name}`",
-            embed=self.display_cards_embed(),
-        )
+        await self.bot_message.edit(content=f"You drew `{card.name}`", embed=self.display_cards_embed())
 
     @button(label="Change ace value", style=ButtonStyle.green, disabled=True)
     async def change_ace_button(self, button: Button, interaction: MessageInteraction):
@@ -188,8 +172,7 @@ class BlackJack(View):
         msg: Message
         while (
             msg := await self.ctx.bot.wait_for(
-                "message",
-                check=lambda m: m.author == self.ctx.author and m.channel == self.ctx.channel,
+                "message", check=lambda m: m.author == self.ctx.author and m.channel == self.ctx.channel
             )
         ).content not in ["1", "11"]:
             if num == 3:
@@ -204,8 +187,7 @@ class BlackJack(View):
         aces[0].change_to(msg.content)
 
         await self.bot_message.edit(
-            content=f"Changed ace from `{original_value}` to `{msg.content}`",
-            embed=self.display_cards_embed(),
+            content=f"Changed ace from `{original_value}` to `{msg.content}`", embed=self.display_cards_embed()
         )
 
     @button(label="How to play", style=ButtonStyle.blurple)
@@ -213,10 +195,7 @@ class BlackJack(View):
         await interaction.response.defer()
 
         embed = Embed(
-            title="Blackjack",
-            description=BLACKJACK_HOW_TO,
-            timestamp=self.ctx.message.created_at,
-            colour=get_colour(),
+            title="Blackjack", description=BLACKJACK_HOW_TO, timestamp=self.ctx.message.created_at, colour=get_colour()
         ).set_author(name=self.ctx.author.name, icon_url=self.ctx.author.avatar.url)
 
         await self.bot_message.edit(embed=embed)

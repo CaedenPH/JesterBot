@@ -27,16 +27,9 @@ class Feedback(commands.Cog):
         await send_embed(ctx, "", "Sent!")
 
     @commands.command()
-    async def viewfeedback(
-        self,
-        ctx: Context,
-        distance: Union[int, str] = 0,
-        author_from: Union[int, str] = None,
-    ):
+    async def viewfeedback(self, ctx: Context, distance: Union[int, str,] = 0, author_from: Union[int, str,] = None):
         await send_embed(
-            ctx,
-            "",
-            "**Error: **distance must be an integer (an index placevalue) if no `author_from` is given!",
+            ctx, "", "**Error: **distance must be an integer (an index placevalue) if no `author_from` is given!"
         ) if hasattr(distance, "upper") and author_from is None else await send_embed(
             ctx,
             "",

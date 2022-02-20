@@ -16,10 +16,7 @@ class EmbedPaginator(disnake.ui.View):
         self.current_page = 0
 
     async def interaction_check(self, interaction: MessageInteraction) -> bool:
-        if interaction.user and interaction.user.id in (
-            self.ctx.bot.owner_id,
-            self.ctx.author.id,
-        ):
+        if interaction.user and interaction.user.id in (self.ctx.bot.owner_id, self.ctx.author.id):
             return True
         await interaction.response.send_message(
             "This pagination menu cannot be controlled by you, sorry!", ephemeral=True
@@ -82,12 +79,7 @@ class EmbedPaginator(disnake.ui.View):
 
 class RoboPages(disnake.ui.View):
     def __init__(
-        self,
-        source: menus.PageSource,
-        *,
-        ctx: commands.Context,
-        check_embeds: bool = True,
-        compact: bool = False,
+        self, source: menus.PageSource, *, ctx: commands.Context, check_embeds: bool = True, compact: bool = False
     ):
         super().__init__()
         self.source: menus.PageSource = source
@@ -120,7 +112,7 @@ class RoboPages(disnake.ui.View):
                 self.add_item(self.numbered_page)
             self.add_item(self.stop_pages)
 
-    async def _get_kwargs_from_page(self, page: int) -> Dict[str, Any]:
+    async def _get_kwargs_from_page(self, page: int) -> Dict[str, Any,]:
         value = await disnake.utils.maybe_coroutine(self.source.format_page, self, page)
         if isinstance(value, dict):
             return value
@@ -182,10 +174,7 @@ class RoboPages(disnake.ui.View):
             pass
 
     async def interaction_check(self, interaction: disnake.Interaction) -> bool:
-        if interaction.user and interaction.user.id in (
-            self.ctx.bot.owner_id,
-            self.ctx.author.id,
-        ):
+        if interaction.user and interaction.user.id in (self.ctx.bot.owner_id, self.ctx.author.id):
             return True
         await interaction.response.send_message(
             "This pagination menu cannot be controlled by you, sorry!", ephemeral=True
@@ -286,7 +275,7 @@ class PagMenu(menus.ListPageSource):
 
     async def format_page(self, menu, entries):
         pages = []
-        for index, entry in enumerate(entries, start=menu.current_page * self.per_page):
+        for (index, entry) in enumerate(entries, start=menu.current_page * self.per_page):
             pages.append(f"{entry}")
 
         maximum = self.get_max_pages()
@@ -300,19 +289,9 @@ class PagMenu(menus.ListPageSource):
 
 class Paginator(RoboPages):
     def __init__(
-        self,
-        ctx,
-        entries: List[str],
-        *,
-        per_page: int = 12,
-        title: str = "",
-        color=None,
-        compact: bool = True,
+        self, ctx, entries: List[str], *, per_page: int = 12, title: str = "", color=None, compact: bool = True
     ):
         super().__init__(PagMenu(entries, per_page=per_page), ctx=ctx, compact=compact)
         if color is None:
             color = disnake.Color.blurple()
-        self.embed = disnake.Embed(
-            colour=color,
-            title=title,
-        ).set_footer(text="To show a tag, type !tags <tagname>")
+        self.embed = disnake.Embed(colour=color, title=title).set_footer(text="To show a tag, type !tags <tagname>")

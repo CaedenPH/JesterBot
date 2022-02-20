@@ -41,14 +41,10 @@ class Fun(commands.Cog):
         result = await vid.next()
 
         formatted = []
-        for iteration, item in enumerate(result["result"], start=1):
+        for (iteration, item) in enumerate(result["result"], start=1):
             formatted.append(f"**{iteration}**: [{item['title']}]({item['link']})")
 
-        embed = disnake.Embed(
-            timestamp=ctx.message.created_at,
-            description="\n".join(formatted),
-            colour=get_colour(),
-        )
+        embed = disnake.Embed(timestamp=ctx.message.created_at, description="\n".join(formatted), colour=get_colour())
 
         embed.set_author(name=f"Youtube searches for {query}: ", icon_url=ctx.author.avatar.url)
         embed.set_footer(text=f"Requested by {ctx.author}")
@@ -60,10 +56,7 @@ class Fun(commands.Cog):
             title="<:reddit:933846462087987292> Memes <:reddit:933846462087987292>",
             description="Get your daily dose of reddit memes!",
             color=0x8B008B,
-        ).set_footer(
-            text=f"Requested by {ctx.author.name}",
-            icon_url=ctx.author.display_avatar.url,
-        )
+        ).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.display_avatar.url)
 
         await ctx.reply(embed=embed, view=Meme(ctx))
 
@@ -73,12 +66,7 @@ class Fun(commands.Cog):
 
         glitch_img = glitcher.glitch_image("./images/glitch.png", 2, color_offset=True, gif=True)
         glitch_img[0].save(
-            "./images/glitched.gif",
-            format="GIF",
-            append_images=glitch_img[1:],
-            save_all=True,
-            duration=200,
-            loop=0,
+            "./images/glitched.gif", format="GIF", append_images=glitch_img[1:], save_all=True, duration=200, loop=0
         )
         await ctx.reply(file=disnake.File("./images/glitched.gif"))
 
@@ -252,7 +240,7 @@ class Fun(commands.Cog):
         def check(e, u):
             return u == ctx.author and e.message.id == msg.id
 
-        emoji, user = await self.bot.wait_for("reaction_add", check=check)
+        (emoji, user) = await self.bot.wait_for("reaction_add", check=check)
         while emoji.emoji != "❌":
             if emoji.emoji == "➡":
                 slide += 1
@@ -288,7 +276,7 @@ class Fun(commands.Cog):
 
                         await ctx.reply(f"{y} has been added!")
 
-            emoji, user = await self.bot.wait_for("reaction_add", check=check)
+            (emoji, user) = await self.bot.wait_for("reaction_add", check=check)
         else:
             await msg.clear_reactions()
 
@@ -301,15 +289,13 @@ class Fun(commands.Cog):
             data = json.load(k)
             if str(ctx.author.id) in data:
                 embed = disnake.Embed(
-                    title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches",
-                    colour=get_colour(),
+                    title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches", colour=get_colour()
                 )
             else:
                 data[str(ctx.author.id)] = {"inches": f"{randomsizeint}.{randomsizef}"}
                 update_json(k, data)
                 embed = disnake.Embed(
-                    title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches",
-                    colour=get_colour(),
+                    title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches", colour=get_colour()
                 )
             await ctx.reply(embed=embed)
 
@@ -324,22 +310,17 @@ class Fun(commands.Cog):
                 data[str(ctx.author.id)] = {"inches": f"{randomsizeint}.{randomsizef}"}
                 update_json(k, data)
                 embed = disnake.Embed(
-                    title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches",
-                    colour=get_colour(),
+                    title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches", colour=get_colour()
                 )
             else:
                 data[str(ctx.author.id)] = {"inches": f"{randomsizeint}.{randomsizef}"}
                 update_json(k, data)
                 embed = disnake.Embed(
-                    title=f"Your new pp is {data[str(ctx.author.id)]['inches']} inches",
-                    colour=get_colour(),
+                    title=f"Your new pp is {data[str(ctx.author.id)]['inches']} inches", colour=get_colour()
                 )
             await ctx.reply(embed=embed)
 
-    @commands.command(
-        aliases=["echos"],
-        description="Echo's the message the user sends after sending the command",
-    )
+    @commands.command(aliases=["echos"], description="Echo's the message the user sends after sending the command")
     async def echo(self, ctx: Context):
 
         user = self.bot.get_user(ctx.author.id)
@@ -347,9 +328,7 @@ class Fun(commands.Cog):
             embed = disnake.Embed(title="What would you like to echo?", colour=get_colour())
             x = await ctx.reply(embed=embed)
             msg = await self.bot.wait_for(
-                "message",
-                timeout=60.0,
-                check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
+                "message", timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel
             )
             await msg.delete()
             await ctx.message.delete()
@@ -373,15 +352,7 @@ class Fun(commands.Cog):
         await ctx.reply(embed=embed)
 
     @commands.command(
-        aliases=[
-            "coin",
-            "ht",
-            "headsandtails",
-            "Coinflip",
-            "coin_flip",
-            "flip_coin",
-            "fc",
-        ],
+        aliases=["coin", "ht", "headsandtails", "Coinflip", "coin_flip", "flip_coin", "fc"],
         description="Sends heads or tails, 50% chance",
     )
     async def flipcoin(self, ctx: Context):
@@ -397,13 +368,7 @@ class Fun(commands.Cog):
         await ctx.reply(embed=embed)
 
     @commands.command(
-        aliases=[
-            "rev",
-            "Reversemessage",
-            "Message_Reverse",
-            "Reverse_messgae",
-            "Reverse_Message",
-        ],
+        aliases=["rev", "Reversemessage", "Message_Reverse", "Reverse_messgae", "Reverse_Message"],
         description="Reverses the `<message>` letters and words (like a mirror)",
     )
     async def reverse(self, ctx: Context, *, message):

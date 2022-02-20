@@ -10,9 +10,7 @@ class Dropdown(disnake.ui.Select):
         self.ctx = ctx
         self.utils = utils
 
-        options = [
-            disnake.SelectOption(label="Home", description="Return to the main help panel", emoji=HOME),
-        ]
+        options = [disnake.SelectOption(label="Home", description="Return to the main help panel", emoji=HOME)]
         for key in data:
             options.append(
                 disnake.SelectOption(
@@ -22,12 +20,7 @@ class Dropdown(disnake.ui.Select):
                 )
             )
 
-        super().__init__(
-            placeholder="Choose a category.",
-            min_values=1,
-            max_values=1,
-            options=options,
-        )
+        super().__init__(placeholder="Choose a category.", min_values=1, max_values=1, options=options)
 
     async def callback(self, interaction: disnake.MessageInteraction):
         label = interaction.values[0]

@@ -31,7 +31,7 @@ class Trivia(commands.Cog):
 
         random.shuffle(choices)
         choices = [f"{chr(i)}) {e}" for i, e in enumerate(choices, start=97)]
-        for i, v in enumerate(choices):
+        for (i, v) in enumerate(choices):
             if v.endswith(re.sub("&.*?;", "", output["correct_answer"])):
                 answer = v[0]
 
@@ -52,13 +52,10 @@ class Trivia(commands.Cog):
 
     @commands.command(aliases=["question"])
     async def trivia_question(self, ctx: Context) -> None:
-        content, answer = await self.get_question()
+        (content, answer) = await self.get_question()
         await ctx.em(content)
 
-        msg = await self.bot.wait_for(
-            "message",
-            check=lambda m: m.channel == ctx.channel and m.author == ctx.author,
-        )
+        msg = await self.bot.wait_for("message", check=lambda m: m.channel == ctx.channel and m.author == ctx.author)
 
         if msg.content.lower() == answer:
             return await ctx.em("Thats the correct answer!")
@@ -82,15 +79,13 @@ class Trivia(commands.Cog):
         num = 0
 
         while True:
-            content, answer = await self.get_question()
+            (content, answer) = await self.get_question()
             bot_msg = await ctx.em(content)
 
             try:
                 time = datetime.datetime.utcnow()
                 msg = await self.bot.wait_for(
-                    "message",
-                    check=lambda m: m.channel == ctx.channel and not m.author.bot,
-                    timeout=30,
+                    "message", check=lambda m: m.channel == ctx.channel and not m.author.bot, timeout=30
                 )
 
                 while True:
@@ -104,10 +99,7 @@ class Trivia(commands.Cog):
                             input_dict[msg.author.name]["answer"] = msg.content[7].lower()
 
                     else:
-                        input_dict[msg.author.name] = {
-                            "score": 0,
-                            "answer": msg.content.lower(),
-                        }
+                        input_dict[msg.author.name] = {"score": 0, "answer": msg.content.lower()}
 
                     run = True
                     msg = await self.bot.wait_for(
@@ -131,13 +123,7 @@ class Trivia(commands.Cog):
 
                 else:
                     correct = [k for k in input_dict if input_dict[k]["answer"] == answer]
-                    sorted_dict = dict(
-                        sorted(
-                            input_dict.items(),
-                            key=lambda k: k[1]["score"],
-                            reverse=True,
-                        )
-                    )
+                    sorted_dict = dict(sorted(input_dict.items(), key=lambda k: k[1]["score"], reverse=True))
                     for k in correct:
                         input_dict[k]["score"] += 1
                     leaderboard = "\n".join([f"      - {k}: {[input_dict[k]['score']]}" for k in sorted_dict])

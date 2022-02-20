@@ -17,11 +17,7 @@ class Levels(commands.Cog):
 
     async def find_or_insert_user(self, member: disnake.Member):
         result = await self.bot.db.fetchone(
-            "Select * from users where user_id = ? and guild_id = ?",
-            (
-                member.id,
-                member.guild.id,
-            ),
+            "Select * from users where user_id = ? and guild_id = ?", (member.id, member.guild.id)
         )
         if result is None:
             result = (member.id, member.guild.id, 0, 0, member.display_name)
@@ -31,14 +27,14 @@ class Levels(commands.Cog):
     async def rankup(self, level, member):
         result = await self.bot.db.fetchone("Select * from levels_config where guild_id = ?", (member.guild.id,))
 
-        chan, message = None, None
+        (chan, message) = (None, None)
         if result is not None:
-            guild, chan, ping = result
+            (guild, chan, ping) = result
             if ping == "Yes":
                 message = f"Well done {member.mention}! You ranked up to {level}"
             else:
                 message = f"Well done {member}! You ranked up to {level}"
-        return chan, message
+        return (chan, message)
 
     def calculate_xp(self, level):
         return 100 * (level ** 2)
@@ -52,7 +48,7 @@ class Levels(commands.Cog):
             return
 
         result = await self.find_or_insert_user(message.author)
-        user_id, guild_id, xp, level, name = result
+        (user_id, guild_id, xp, level, name) = result
 
         xp += random.randint(10, 40)
 
@@ -64,8 +60,7 @@ class Levels(commands.Cog):
                 await channel.send(sendmessage[1])
 
         await self.bot.db.update(
-            "Update users set xp=?, level=? where user_id=? and guild_id=?",
-            (xp, level, user_id, guild_id),
+            "Update users set xp=?, level=? where user_id=? and guild_id=?", (xp, level, user_id, guild_id)
         )
 
     async def make_rank_image(self, member: disnake.Member, rank, level, xp, final_xp):
@@ -147,12 +142,7 @@ class Levels(commands.Cog):
 
         # Right Circle
         draw.ellipse(
-            (
-                bar_offset_x_1 - circle_size // 2,
-                bar_offset_y,
-                bar_offset_x_1 + circle_size // 2,
-                bar_offset_y_1,
-            ),
+            (bar_offset_x_1 - circle_size // 2, bar_offset_y, bar_offset_x_1 + circle_size // 2, bar_offset_y_1),
             fill="#727175",
         )
 
@@ -169,10 +159,7 @@ class Levels(commands.Cog):
         pbar_offset_x_1 = bar_offset_x + progress_bar_length
 
         # Drawing Rectangle
-        draw.rectangle(
-            (bar_offset_x, bar_offset_y, pbar_offset_x_1, bar_offset_y_1),
-            fill="#11ebf2",
-        )
+        draw.rectangle((bar_offset_x, bar_offset_y, pbar_offset_x_1, bar_offset_y_1), fill="#11ebf2")
         # Left circle
         draw.ellipse(
             (
@@ -185,12 +172,7 @@ class Levels(commands.Cog):
         )
         # Right Circle
         draw.ellipse(
-            (
-                pbar_offset_x_1 - circle_size // 2,
-                bar_offset_y,
-                pbar_offset_x_1 + circle_size // 2,
-                bar_offset_y_1,
-            ),
+            (pbar_offset_x_1 - circle_size // 2, bar_offset_y, pbar_offset_x_1 + circle_size // 2, bar_offset_y_1),
             fill="#11ebf2",
         )
 
@@ -233,7 +215,7 @@ class Levels(commands.Cog):
     async def rank(self, ctx: commands.Context, member: disnake.Member = None):
         member = member or ctx.author
         user = await self.find_or_insert_user(member)
-        user_id, guild_id, xp, level, name = user
+        (user_id, guild_id, xp, level, name) = user
 
         result = await self.bot.db.fetchone("Select Count(*) from users where xp > ? and guild_id=?", (xp, guild_id))
         rank = result[0] + 1
@@ -316,12 +298,11 @@ class Levels(commands.Cog):
         embed.set_author(name="Leaderboard", icon_url=ctx.author.avatar.url)
 
         result = await self.bot.db.fetchall(
-            "SELECT user_id, xp, level, name FROM users WHERE guild_id = ? ORDER BY xp ASC",
-            (ctx.guild.id,),
+            "SELECT user_id, xp, level, name FROM users WHERE guild_id = ? ORDER BY xp ASC", (ctx.guild.id,)
         )
 
         desc = ""
-        for k, value in enumerate(result[::-1], start=1):
+        for (k, value) in enumerate(result[::-1], start=1):
             desc += f"\n**{k}.** {value[3]}: level **{value[2]}**"
             if k == 10:
                 break

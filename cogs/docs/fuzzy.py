@@ -14,13 +14,13 @@ def quick_ratio(a, b):
 
 
 def partial_ratio(a, b):
-    short, long = (a, b) if len(a) <= len(b) else (b, a)
+    (short, long) = (a, b) if len(a) <= len(b) else (b, a)
     m = SequenceMatcher(None, short, long)
 
     blocks = m.get_matching_blocks()
 
     scores = []
-    for i, j, n in blocks:
+    for (i, j, n) in blocks:
         start = max(j - i, 0)
         end = start + len(short)
         o = SequenceMatcher(None, short, long[start:end])
@@ -61,7 +61,7 @@ def partial_token_sort_ratio(a, b):
 
 def _extraction_generator(query, choices, scorer=quick_ratio, score_cutoff=0):
     try:
-        for key, value in choices.items():
+        for (key, value) in choices.items():
             score = scorer(query, key)
             if score >= score_cutoff:
                 yield (key, score, value)
@@ -74,7 +74,10 @@ def _extraction_generator(query, choices, scorer=quick_ratio, score_cutoff=0):
 
 def extract(query, choices, *, scorer=quick_ratio, score_cutoff=0, limit=10):
     it = _extraction_generator(query, choices, scorer, score_cutoff)
-    key = lambda t: t[1]  # noqa
+
+    def key(t):
+        return t[1]  # noqa
+
     if limit is not None:
         return heapq.nlargest(limit, it, key=key)
     return sorted(it, key=key, reverse=True)
@@ -82,7 +85,10 @@ def extract(query, choices, *, scorer=quick_ratio, score_cutoff=0, limit=10):
 
 def extract_one(query, choices, *, scorer=quick_ratio, score_cutoff=0):
     it = _extraction_generator(query, choices, scorer, score_cutoff)
-    key = lambda t: t[1]  # noqa
+
+    def key(t):
+        return t[1]  # noqa
+
     try:
         return max(it, key=key)
     except Exception:
@@ -144,7 +150,7 @@ def finder(text, collection, *, key=None, lazy=True):
 
     def sort_key(tup):
         if key:
-            return tup[0], tup[1], key(tup[2])
+            return (tup[0], tup[1], key(tup[2]))
         return tup
 
     if lazy:

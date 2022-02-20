@@ -72,18 +72,7 @@ async def get_video_data(url, search, bettersearch, loop):
         channel = data["uploader"]
         channel_url = data["uploader_url"]
 
-        return Song(
-            source,
-            url,
-            title,
-            description,
-            views,
-            duration,
-            thumbnail,
-            channel,
-            channel_url,
-            False,
-        )
+        return Song(source, url, title, description, views, duration, thumbnail, channel, channel_url, False)
     else:
         if bettersearch:
             url = await ytbettersearch(url)
@@ -99,18 +88,7 @@ async def get_video_data(url, search, bettersearch, loop):
             channel = data["uploader"]
             channel_url = data["uploader_url"]
 
-            return Song(
-                source,
-                url,
-                title,
-                description,
-                views,
-                duration,
-                thumbnail,
-                channel,
-                channel_url,
-                False,
-            )
+            return Song(source, url, title, description, views, duration, thumbnail, channel, channel_url, False)
         elif search:
             ytdl = youtube_dl.YoutubeDL(
                 {
@@ -143,18 +121,7 @@ async def get_video_data(url, search, bettersearch, loop):
             channel = data["uploader"]
 
             channel_url = data["uploader_url"]
-            return Song(
-                source,
-                url,
-                title,
-                description,
-                views,
-                duration,
-                thumbnail,
-                channel,
-                channel_url,
-                False,
-            )
+            return Song(source, url, title, description, views, duration, thumbnail, channel, channel_url, False)
 
 
 def check_queue(ctx, opts, music, after, on_play, loop):
@@ -172,10 +139,7 @@ def check_queue(ctx, opts, music, after, on_play, loop):
             return
         if len(music.queue[ctx.guild.id]) > 0:
             source = disnake.PCMVolumeTransformer(disnake.FFmpegPCMAudio(music.queue[ctx.guild.id][0].source, **opts))
-            ctx.voice_client.play(
-                source,
-                after=lambda error: after(ctx, opts, music, after, on_play, loop),
-            )
+            ctx.voice_client.play(source, after=lambda error: after(ctx, opts, music, after, on_play, loop))
             song = music.queue[ctx.guild.id][0]
             if on_play:
                 loop.create_task(on_play(ctx, song))
@@ -297,12 +261,7 @@ class MusicPlayer(object):
         self.voice.play(
             source,
             after=lambda error: self.after_func(
-                self.ctx,
-                self.ffmpeg_opts,
-                self.music,
-                self.after_func,
-                self.on_play_func,
-                self.loop,
+                self.ctx, self.ffmpeg_opts, self.music, self.after_func, self.on_play_func, self.loop
             ),
         )
         song = self.music.queue[self.ctx.guild.id][0]
@@ -414,19 +373,7 @@ class MusicPlayer(object):
 
 
 class Song(object):
-    def __init__(
-        self,
-        source,
-        url,
-        title,
-        description,
-        views,
-        duration,
-        thumbnail,
-        channel,
-        channel_url,
-        loop,
-    ):
+    def __init__(self, source, url, title, description, views, duration, thumbnail, channel, channel_url, loop):
         self.source = source
         self.url = url
         self.title = title

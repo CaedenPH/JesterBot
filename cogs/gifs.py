@@ -13,10 +13,7 @@ class JesterJokes(commands.Cog):
 
         self.bot = bot
 
-    @commands.command(
-        aliases=["ranfact", "rf", "randomfact"],
-        description="""Returns a random fact [ranfact, rf]""",
-    )
+    @commands.command(aliases=["ranfact", "rf", "randomfact"], description="""Returns a random fact [ranfact, rf]""")
     async def fact(self, ctx: Context):
         fact_string = await fact()
         await send_embed(ctx, "Fact", fact_string)
@@ -26,18 +23,12 @@ class JesterJokes(commands.Cog):
         quote_string = await quote(self.bot)
         await send_embed(ctx, "Quote", quote_string)
 
-    @commands.command(
-        aliases=["pl", "pickup", "pickline"],
-        description="""Returns a random Pickup Line.""",
-    )
+    @commands.command(aliases=["pl", "pickup", "pickline"], description="""Returns a random Pickup Line.""")
     async def pickup_line(self, ctx: Context):
         pickup_line = await pickup()
         await send_embed(ctx, "Pickup line", pickup_line)
 
-    @commands.command(
-        aliases=["insultme", "Mean", "Insult_Me"],
-        description="The specified member gets insulted",
-    )
+    @commands.command(aliases=["insultme", "Mean", "Insult_Me"], description="The specified member gets insulted")
     async def insult(self, ctx: Context, user: disnake.Member = ""):
 
         m = self.bot.get_user(828363172717133874)
@@ -67,10 +58,7 @@ class JesterJokes(commands.Cog):
         embed = disnake.Embed(description=f"{user.mention} {foxupdate}", colour=get_colour())
         await ctx.reply(embed=embed)
 
-    @commands.command(
-        aliases=["Chuck_norris", "Chucky", "norris"],
-        description="Sends a random chuck norris joke/fact",
-    )
+    @commands.command(aliases=["Chuck_norris", "Chucky", "norris"], description="Sends a random chuck norris joke/fact")
     async def chuck(self, ctx: Context, user: disnake.Member = ""):
         if user == "":
             user = self.bot.get_user(ctx.author.id)
@@ -82,8 +70,7 @@ class JesterJokes(commands.Cog):
         await ctx.reply(embed=embed)
 
     @commands.command(
-        aliases=["adj", "random_adj", "randadj", "Rand_Adj", "random_adjective"],
-        description="Sends a random adjective",
+        aliases=["adj", "random_adj", "randadj", "Rand_Adj", "random_adjective"], description="Sends a random adjective"
     )
     async def adjective(self, ctx: Context):
 

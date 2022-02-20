@@ -8,8 +8,8 @@ from random import randint, choice
 
 from core.utils import get_colour, send_embed
 from core import Context
-from core.constants import HANGMAN, BLACKJACK_WELCOME, MINESWEEPER_MESSAGE, SNAKE_MESSAGE
-from . import BlackJack, Casino, RussianRoulette, Dice, MineSweeper, Snake
+from core.constants import HANGMAN, BLACKJACK_WELCOME, MINESWEEPER_MESSAGE, SNAKE_MESSAGE, SODUKU_MESSAGE
+from . import BlackJack, Casino, RussianRoulette, Dice, MineSweeper, Snake, Soduku
 
 
 class Games(Cog):
@@ -18,6 +18,18 @@ class Games(Cog):
 
     def message_content(self, guesses_left, guesses, word):
         return f"```yaml\n{HANGMAN[guesses_left]}````{' '.join([k if k in guesses else '_' for k in word])}`\nYou have {guesses_left} guesses left"
+
+    @command(aliases=["so"])
+    async def soduku(self, ctx: Context) -> None:
+        embed = Embed(
+            title="Soduku",
+            description="```yaml\n" + SODUKU_MESSAGE.format(difficulty="medium", light_mode=False) + "```",
+            colour=get_colour(),
+            timestamp=ctx.message.created_at,
+        ).set_author(name=ctx.author.name, icon_url=ctx.author.display_avatar.url)
+
+        view = Soduku(ctx)
+        view.bot_message = await ctx.reply(embed=embed, view=view)
 
     @command(aliases=["snek"])
     async def snake(self, ctx: Context) -> None:
@@ -70,17 +82,11 @@ class Games(Cog):
     @command(aliases=["bj"])
     async def blackjack(self, ctx: Context):
         embed = Embed(
-            title="Blackjack",
-            description=BLACKJACK_WELCOME,
-            timestamp=ctx.message.created_at,
-            colour=get_colour(),
+            title="Blackjack", description=BLACKJACK_WELCOME, timestamp=ctx.message.created_at, colour=get_colour()
         ).set_author(name=ctx.author.name, icon_url=ctx.author.avatar.url)
 
         view = BlackJack(ctx)
-        view.bot_message = await ctx.reply(
-            embed=embed,
-            view=view,
-        )
+        view.bot_message = await ctx.reply(embed=embed, view=view)
 
     @command(
         aliases=["rock", "rockpaperscissors"],
@@ -116,7 +122,7 @@ class Games(Cog):
         def check(reaction, user):
             return user == ctx.author
 
-        reaction, user = await self.bot.wait_for("reaction_add", check=check)
+        (reaction, user) = await self.bot.wait_for("reaction_add", check=check)
 
         embed = Embed(title=f"Baited", colour=get_colour())
         await msg.edit(embed=embed)
@@ -180,8 +186,7 @@ class Games(Cog):
 
         except asyncio.TimeoutError:
             embed = Embed(
-                title=f"Anagram for {anagram}",
-                description=f"The answers were: `{', '.join(data[anagram])}`",
+                title=f"Anagram for {anagram}", description=f"The answers were: `{', '.join(data[anagram])}`"
             ).set_author(name="Nice try!", icon_url=ctx.author.avatar.url)
 
             if responses != data[anagram]:
@@ -201,9 +206,7 @@ class Games(Cog):
         msg = await ctx.reply(self.message_content(guesses_left, guesses, word))
         try:
             while m := await self.bot.wait_for(
-                "message",
-                check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
-                timeout=60,
+                "message", check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=60
             ):
                 """
                 5 Conditions in order;

@@ -118,11 +118,7 @@ async def run_executed(ctx: Bot) -> None:
     with open("./dicts/Selfscore.json", "r+") as k:
         loaded1 = json.load(k)
         if str(ctx.author.id) not in loaded1:
-            loaded1[str(ctx.author.id)] = {
-                "Name": ctx.author.name,
-                "Guild": ctx.guild.name,
-                "selfscore": 0,
-            }
+            loaded1[str(ctx.author.id)] = {"Name": ctx.author.name, "Guild": ctx.guild.name, "selfscore": 0}
             update_json(k, loaded1)
 
     with open("./dicts/Selfscore.json", "r+") as f:

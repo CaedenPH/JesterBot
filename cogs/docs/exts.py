@@ -78,8 +78,8 @@ class RTFM:
             if not match:
                 continue
 
-            name, directive, prio, location, dispname = match.groups()
-            domain, _, subdirective = directive.partition(":")
+            (name, directive, prio, location, dispname) = match.groups()
+            (domain, _, subdirective) = directive.partition(":")
             if directive == "py:module" and name in result:
                 continue
 
@@ -102,7 +102,7 @@ class RTFM:
 
     async def build_rtfm_lookup_table(self, page_types):
         cache = {}
-        for key, page in page_types.items():
+        for (key, page) in page_types.items():
             cache[key] = {}
             async with self.bot.client.get(page + "/objects.inv") as resp:
                 if resp.status != 200:
@@ -114,10 +114,7 @@ class RTFM:
         self._rtfm_cache = cache
 
     async def do_rtfm(self, ctx, key, obj):
-        page_types = {
-            "latest": "https://disnake.readthedocs.io/en/latest",
-            "python": "https://docs.python.org/3",
-        }
+        page_types = {"latest": "https://disnake.readthedocs.io/en/latest", "python": "https://docs.python.org/3"}
 
         if not hasattr(self, "_rtfm_cache"):
             await self.build_rtfm_lookup_table(page_types)

@@ -27,7 +27,7 @@
         "score": 105
     },
     "help": {
-        "score": 2244
+        "score": 2246
     },
     "jsonfile": {
         "score": 19
@@ -117,7 +117,7 @@
         "score": 15
     },
     "avatar": {
-        "score": 69
+        "score": 70
     },
     "nick": {
         "score": 23
@@ -429,7 +429,7 @@
         "score": 12
     },
     "eval": {
-        "score": 2689
+        "score": 2691
     },
     "pager": {
         "score": 12
@@ -510,7 +510,7 @@
         "score": 6
     },
     "evalreturn": {
-        "score": 486
+        "score": 488
     },
     "evaldir": {
         "score": 365
@@ -780,7 +780,7 @@
         "score": 37
     },
     "editsnipe": {
-        "score": 39
+        "score": 40
     },
     "editaim": {
         "score": 7
@@ -1197,7 +1197,7 @@
         "score": 7
     },
     "rtfm": {
-        "score": 7
+        "score": 9
     },
     "chatbot": {
         "score": 20
@@ -1233,7 +1233,7 @@
         "score": 72
     },
     "snake": {
-        "score": 44
+        "score": 47
     },
     "snake_name": {
         "score": 1
@@ -1260,9 +1260,15 @@
         "score": 1
     },
     "minesweeper": {
-        "score": 163
+        "score": 164
     },
     "google": {
+        "score": 1
+    },
+    "soduku": {
+        "score": 102
+    },
+    "fishing_together": {
         "score": 1
     }
 }

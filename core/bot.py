@@ -17,14 +17,7 @@ from .utils.comedy import fact, quote, joke, pickup
 from .errors import error_handler
 from .context import Context
 from .database import Database
-from .constants import (
-    BOT_TOKEN,
-    REDDIT,
-    WEATHER_KEY,
-    COORDS_KEY,
-    CHATBOT_KEY,
-    RAPID_API_KEY,
-)
+from .constants import BOT_TOKEN, REDDIT, WEATHER_KEY, COORDS_KEY, CHATBOT_KEY, RAPID_API_KEY
 
 
 class JesterBot(Bot):
@@ -106,7 +99,7 @@ class JesterBot(Bot):
     async def send_comedy(self) -> None:
         result = await self.db.fetchall("SELECT channel_id, channel_types FROM channels_config")
 
-        for channel_id, channel_types in result:
+        for (channel_id, channel_types) in result:
             channel = self.get_channel(channel_id)
 
             types = channel_types.split(" | ")
@@ -119,7 +112,10 @@ class JesterBot(Bot):
                     response = await fact()
                 if _type == "quote":
                     response = await quote(self)
-                await send_embed(channel, _type, response)
+                try:
+                    await send_embed(channel, _type, response)
+                except AttributeError:
+                    return
 
     @send_comedy.before_loop
     async def send_comedy_pre_loop(self) -> None:
