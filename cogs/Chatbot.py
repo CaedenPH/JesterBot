@@ -15,17 +15,13 @@ class ChatBot(commands.Cog):
         insert = kwargs.get("insert", False)
         remove = kwargs.get("remove", False)
 
-        result = await self.bot.db.fetchone(
-            "Select * from chatbot where channel_id = ?", (channel_id,)
-        )
+        result = await self.bot.db.fetchone("Select * from chatbot where channel_id = ?", (channel_id,))
         if not result:
             if not insert:
                 return False
             await self.db.execute("Insert into chatbot values (?)", (channel_id,))
         if remove:
-            await self.db.execute(
-                "Delete from chatbot where channel_id = ?", (channel_id,)
-            )
+            await self.db.execute("Delete from chatbot where channel_id = ?", (channel_id,))
         return True
 
     async def get_response(self, message: str, user_id: int) -> typing.Optional[str]:

@@ -23,9 +23,7 @@ class Games(Cog):
     async def minesweeper(self, ctx: Context) -> None:
         embed = Embed(
             title="Mine Sweeper",
-            description="```yaml\n"
-            + MINESWEEPER_MESSAGE.format(board_size=5, bomb_count=5)
-            + "```",
+            description="```yaml\n" + MINESWEEPER_MESSAGE.format(board_size=5, bomb_count=5) + "```",
             colour=get_colour(),
             timestamp=ctx.message.created_at,
         ).set_author(name=ctx.author.name, icon_url=ctx.author.display_avatar.url)
@@ -35,17 +33,15 @@ class Games(Cog):
 
     @command()
     async def casino(self, ctx: Context) -> None:
-        embed = Embed(
-            title="Casino Machine $", description="```000```", colour=get_colour()
-        ).set_footer(text="Get Three numbers in a row for a PRIZE")
+        embed = Embed(title="Casino Machine $", description="```000```", colour=get_colour()).set_footer(
+            text="Get Three numbers in a row for a PRIZE"
+        )
 
         await ctx.reply(embed=embed, view=Casino(ctx.author))
 
     @command(aliases=["rr", "gun_game", "russianroulette", "gungame"])
     async def russian_roulette(self, ctx: Context):
-        embed = Embed(title="Russian Roulette", colour=get_colour()).set_footer(
-            text="Dont die!"
-        )
+        embed = Embed(title="Russian Roulette", colour=get_colour()).set_footer(text="Dont die!")
 
         await ctx.reply(embed=embed, view=RussianRoulette(ctx))
 
@@ -86,9 +82,7 @@ class Games(Cog):
         }
 
         if roll not in moves:
-            return await send_embed(
-                ctx, "", "Choose a move out of `rock`, `paper`, `scissors`"
-            )
+            return await send_embed(ctx, "", "Choose a move out of `rock`, `paper`, `scissors`")
 
         computer_choice = choice(list(moves.keys()))
         await send_embed(
@@ -124,9 +118,7 @@ class Games(Cog):
         await send_embed(ctx, "Guess a number between 1-100")
 
         try:
-            while message := await self.bot.wait_for(
-                "message", check=lambda m: m.author == ctx.author
-            ):
+            while message := await self.bot.wait_for("message", check=lambda m: m.author == ctx.author):
                 if message.content == "q":
                     return await send_embed(ctx, "Game ended")
                 if message.content.isalpha():
@@ -228,17 +220,13 @@ class Games(Cog):
                 if guesses_left == 1:
                     return await ctx.em(f"Unlucky, you ran out of guesses! {WORD_WAS}")
                 if len(content) >= 2:
-                    await ctx.em(
-                        f"`{content}` is not the word! Try sending letters one at a time"
-                    )
+                    await ctx.em(f"`{content}` is not the word! Try sending letters one at a time")
 
                 if content not in guesses[:-1]:
                     if content not in word:
                         guesses_left -= 1
 
-                await msg.edit(
-                    content=self.message_content(guesses_left, guesses, word)
-                )
+                await msg.edit(content=self.message_content(guesses_left, guesses, word))
 
         except asyncio.TimeoutError:
             await ctx.em("You ran out of time!")

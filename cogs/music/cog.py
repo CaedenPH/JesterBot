@@ -20,9 +20,7 @@ class Music(commands.Cog):
 
     @commands.command()
     async def lyrics(self, ctx, *, song):
-        async with self.bot.client.get(
-            url=f"https://some-random-api.ml/lyrics?title={song}"
-        ) as response:
+        async with self.bot.client.get(url=f"https://some-random-api.ml/lyrics?title={song}") as response:
             fox = await response.json()
             await send_embed(ctx, f'Lyrics of {fox["title"]}', fox["lyrics"])
 
@@ -133,9 +131,7 @@ class Music(commands.Cog):
     @commands.command()
     async def volume(self, ctx, vol):
         player = self.music.get_player(guild_id=ctx.guild.id)
-        song, volume = await player.change_volume(
-            float(vol) / 100
-        )  # volume should be a float between 0 to 1
+        song, volume = await player.change_volume(float(vol) / 100)  # volume should be a float between 0 to 1
         await embed2(ctx, f"**Changed volume for:** *{song.name}* **to {volume*100}**%")
 
     @commands.command()

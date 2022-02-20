@@ -50,31 +50,21 @@ class JesterJokes(commands.Cog):
             embed = disnake.Embed(title="You shmuck...I am god")
             await ctx.reply(embed=embed)
         else:
-            async with self.bot.client.get(
-                url="https://insult.mattbas.org/api/insult.json"
-            ) as response:
+            async with self.bot.client.get(url="https://insult.mattbas.org/api/insult.json") as response:
                 fox = await response.json()
             foxupdate = fox["insult"]
-            embed = disnake.Embed(
-                description=f"{user.mention} {foxupdate}", colour=get_colour()
-            )
+            embed = disnake.Embed(description=f"{user.mention} {foxupdate}", colour=get_colour())
             await ctx.reply(embed=embed)
 
-    @commands.command(
-        aliases=["dis", "Diss"], description="The specified member gets dissed"
-    )
+    @commands.command(aliases=["dis", "Diss"], description="The specified member gets dissed")
     async def disthem(self, ctx: Context, user: disnake.Member = ""):
         if user == "":
             user = self.bot.get_user(ctx.author.id)
-        async with self.bot.client.get(
-            url="https://evilinsult.com/generate_insult.php?lang=en&type=json"
-        ) as response:
+        async with self.bot.client.get(url="https://evilinsult.com/generate_insult.php?lang=en&type=json") as response:
             fox = await response.json()
         foxupdate = fox["insult"]
 
-        embed = disnake.Embed(
-            description=f"{user.mention} {foxupdate}", colour=get_colour()
-        )
+        embed = disnake.Embed(description=f"{user.mention} {foxupdate}", colour=get_colour())
         await ctx.reply(embed=embed)
 
     @commands.command(
@@ -84,9 +74,7 @@ class JesterJokes(commands.Cog):
     async def chuck(self, ctx: Context, user: disnake.Member = ""):
         if user == "":
             user = self.bot.get_user(ctx.author.id)
-        async with self.bot.client.get(
-            url="https://api.chucknorris.io/jokes/random"
-        ) as response:
+        async with self.bot.client.get(url="https://api.chucknorris.io/jokes/random") as response:
             fox = await response.json()
         foxupdate = fox["value"]
 
@@ -105,9 +93,7 @@ class JesterJokes(commands.Cog):
             fox = await response.json()
         foxupdate = fox["adjs"]
 
-        embed = disnake.Embed(
-            title=f"{foxupdate[randint(1, 950)]}", colour=get_colour()
-        )
+        embed = disnake.Embed(title=f"{foxupdate[randint(1, 950)]}", colour=get_colour())
 
         await ctx.reply(embed=embed)
 
@@ -135,9 +121,7 @@ class JesterJokes(commands.Cog):
             "",
         ]
 
-        embed = disnake.Embed(
-            description=f"{user.mention} got smacked", colour=get_colour()
-        )
+        embed = disnake.Embed(description=f"{user.mention} got smacked", colour=get_colour())
         embed.set_image(url=choice(url))
         await ctx.reply(embed=embed)
 

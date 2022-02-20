@@ -62,20 +62,12 @@ class Snipe(commands.Cog):
 
     @commands.command()
     async def snipe(self, ctx: Context, amount: int = 0):
-        results = (
-            await self.bot.db.fetchall(
-                "SELECT * FROM snipe WHERE channel_id = ?", (ctx.channel.id,)
-            )
-        )[::-1]
+        results = (await self.bot.db.fetchall("SELECT * FROM snipe WHERE channel_id = ?", (ctx.channel.id,)))[::-1]
         if not results:
-            m = await send_embed(
-                ctx, "Snipe", f"> No deleted messages found in {ctx.channel.mention}."
-            )
+            m = await send_embed(ctx, "Snipe", f"> No deleted messages found in {ctx.channel.mention}.")
             return await m.add_reaction(CLOSE)
         if amount >= len(results):
-            m = await send_embed(
-                ctx, "Snipe", f"> I found no messages {amount} deletes ago."
-            )
+            m = await send_embed(ctx, "Snipe", f"> I found no messages {amount} deletes ago.")
             return await m.add_reaction(CLOSE)
 
         result = results[amount]
@@ -131,11 +123,7 @@ Message deleted at: {disnake.utils.format_dt(datetime.fromtimestamp(result[4]))}
 
     @commands.command(aliases=["esnipe"])
     async def editsnipe(self, ctx: Context, amount: int = 0):
-        results = (
-            await self.bot.db.fetchall(
-                "SELECT * FROM edit_snipe WHERE channel_id = ?", (ctx.channel.id,)
-            )
-        )[::-1]
+        results = (await self.bot.db.fetchall("SELECT * FROM edit_snipe WHERE channel_id = ?", (ctx.channel.id,)))[::-1]
         if not results:
             m = await send_embed(
                 ctx,
@@ -144,9 +132,7 @@ Message deleted at: {disnake.utils.format_dt(datetime.fromtimestamp(result[4]))}
             )
             return await m.add_reaction(CLOSE)
         if amount >= len(results):
-            m = await send_embed(
-                ctx, "Edit Snipe", f"> I found no messages {amount} edits ago."
-            )
+            m = await send_embed(ctx, "Edit Snipe", f"> I found no messages {amount} edits ago.")
             return await m.add_reaction(CLOSE)
 
         result = results[amount]

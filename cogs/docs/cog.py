@@ -54,9 +54,7 @@ class Docs(cog.Docs, RTFM):
 
     @commands.command()
     async def pypi(self, ctx: Context, package):
-        embed = disnake.Embed(title="", description="").set_thumbnail(
-            url=self.PYPI_ICON
-        )
+        embed = disnake.Embed(title="", description="").set_thumbnail(url=self.PYPI_ICON)
         async with self.bot.client.get(self.URL.format(package=package)) as response:
             if response.status == 404:
                 embed.description = "Package could not be found."
@@ -76,9 +74,7 @@ class Docs(cog.Docs, RTFM):
                     embed.description = "No summary provided."
 
             else:
-                embed.description = (
-                    "There was an error when fetching your PyPi package."
-                )
+                embed.description = "There was an error when fetching your PyPi package."
         await ctx.reply(embed=embed)
 
     @commands.command(name="tag", aliases=["tags"])
@@ -96,9 +92,7 @@ class Docs(cog.Docs, RTFM):
     @commands.command(aliases=["tags_list"])
     async def tag_list(self, ctx: Context) -> None:
         lines = sorted([f"» `{name}`" for name in self.TAGS])
-        paginator = Paginator(
-            ctx, lines, per_page=10, title=f"All tags (`{len(lines)}` total)"
-        )
+        paginator = Paginator(ctx, lines, per_page=10, title=f"All tags (`{len(lines)}` total)")
         await paginator.start()
 
     @commands.command()
@@ -120,9 +114,7 @@ class Docs(cog.Docs, RTFM):
                 )
             )
 
-        await ctx.reply(
-            embed=embed.set_footer(text=f"lines {search} is not in the zen lines!")
-        )
+        await ctx.reply(embed=embed.set_footer(text=f"lines {search} is not in the zen lines!"))
 
 
 def setup(bot: commands.Bot) -> None:

@@ -66,20 +66,14 @@ class HelpUtils:
                 name="\u200b\n\u200b",
                 value="\n".join([cogs[i] for i in range(1, len(cogs), 2)]),
             )
-            .add_field(
-                name=f"{LINK} **Links:**", value=f"**{self.links}**", inline=False
-            )
+            .add_field(name=f"{LINK} **Links:**", value=f"**{self.links}**", inline=False)
         )
 
     async def main_help(self, ctx: Context) -> None:
         embed = await self.main_help_embed(ctx)
-        await ctx.reply(
-            embed=embed, view=DropdownView(COG_DESCRIPTIONS, ctx, HelpUtils(self.bot))
-        )
+        await ctx.reply(embed=embed, view=DropdownView(COG_DESCRIPTIONS, ctx, HelpUtils(self.bot)))
 
-    async def specific_command(
-        self, command: commands.Command, ctx: Context
-    ) -> disnake.Embed:
+    async def specific_command(self, command: commands.Command, ctx: Context) -> disnake.Embed:
         return (
             disnake.Embed(colour=get_colour())
             .add_field(
@@ -96,16 +90,12 @@ class HelpUtils:
             )
             .add_field(
                 name=" ❯❯ Usage",
-                value=f"`j.{command.name} {command.signature}`"
-                if command.signature
-                else f"`j.{command.name}`",
+                value=f"`j.{command.name} {command.signature}`" if command.signature else f"`j.{command.name}`",
                 inline=False,
             )
             .add_field(
                 name=" ❯❯ Description",
-                value=f"{get_help(command.name)}"
-                if get_help(command.name)
-                else "Currently no help!",
+                value=f"{get_help(command.name)}" if get_help(command.name) else "Currently no help!",
                 inline=False,
             )
             .set_author(
@@ -121,9 +111,7 @@ class HelpUtils:
 
         commands = [f"- `{k.name}`" for k in cog.walk_commands() if not k.hidden]
         return (
-            disnake.Embed(
-                description=COG_DESCRIPTIONS[cog.qualified_name], colour=get_colour()
-            )
+            disnake.Embed(description=COG_DESCRIPTIONS[cog.qualified_name], colour=get_colour())
             .set_author(
                 name=f"{cog.qualified_name}",
                 icon_url=ctx.author.avatar.url,
@@ -139,13 +127,9 @@ class HelpUtils:
         )
 
     async def no_command(self, ctx: Context) -> disnake.Embed:
-        message = ctx.message.content.replace(
-            f"{ctx.prefix}{ctx.invoked_with} ", ""
-        ).strip()
+        message = ctx.message.content.replace(f"{ctx.prefix}{ctx.invoked_with} ", "").strip()
         commands = [
-            f"- `{k.name}`"
-            for k in self.bot.commands
-            if k.name.startswith(message[0].lower()) and not k.hidden
+            f"- `{k.name}`" for k in self.bot.commands if k.name.startswith(message[0].lower()) and not k.hidden
         ]
 
         return (
@@ -185,9 +169,7 @@ class Help(commands.Cog):
     async def help(self, ctx: Context, command=None) -> None:
         if not command:
             embed = await self.utils.main_help_embed(ctx)
-            return await ctx.reply(
-                embed=embed, view=DropdownView(COG_DESCRIPTIONS, ctx, self.utils)
-            )
+            return await ctx.reply(embed=embed, view=DropdownView(COG_DESCRIPTIONS, ctx, self.utils))
 
         cog = await self.utils.get_cog_from_str(command)
         if cog:

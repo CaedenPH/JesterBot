@@ -189,9 +189,7 @@ class Love(commands.Cog):
                 arr = File.data[str(ctx.author.id)]["id"]
                 del File.data[str(arr)]
                 us = self.bot.get_user(int(arr))
-                await us.send(
-                    f"You got divorced from {ctx.author.name} and they married {member.name}!"
-                )
+                await us.send(f"You got divorced from {ctx.author.name} and they married {member.name}!")
                 File.data[str(ctx.author.id)]["marriage"] = partner.name
                 File.data[str(member.id)]["id"] = str(partner.id)
                 File.data[str(ctx.author.id)]["since"] = str(ctx.message.created_at)

@@ -19,12 +19,8 @@ class Event(commands.Cog):
     async def on_guild_join(self, guild):
         chan = choice(guild.text_channels)
         invite = await chan.create_invite()
-        selected_channel1 = self.bot.get_guild(830161446523371540).get_channel(
-            865309892776951808
-        )
-        await selected_channel1.send(
-            f"I have joined {guild.name}. Here is the invite: {invite}"
-        )
+        selected_channel1 = self.bot.get_guild(830161446523371540).get_channel(865309892776951808)
+        await selected_channel1.send(f"I have joined {guild.name}. Here is the invite: {invite}")
         e = self.bot.get_emoji(863313854150606848)
         j = self.bot.get_emoji(863313855286607932)
         s = self.bot.get_emoji(863313855061164062)
@@ -41,9 +37,7 @@ class Event(commands.Cog):
             colour=get_colour(),
         )
 
-        embed.add_field(
-            name="Here is a joke for you:", value=f"│ {await joke()} │", inline=False
-        )
+        embed.add_field(name="Here is a joke for you:", value=f"│ {await joke()} │", inline=False)
         embed.set_footer(text="You can get more of these jokes with j.joke!")
         names = [
             "general",
@@ -81,9 +75,7 @@ class Event(commands.Cog):
                     if data[key]["Yes"]:
                         if data[key]["Guild"] == member.guild.id:
 
-                            role = disnake.utils.get(
-                                member.guild.roles, id=data[key]["URole id"]
-                            )
+                            role = disnake.utils.get(member.guild.roles, id=data[key]["URole id"])
 
                             await member.add_roles(role)
                             x = 1
@@ -101,9 +93,7 @@ class Event(commands.Cog):
 
                             if loaded[str(member.guild.id)]["message"] == "":
 
-                                channel = member.guild.get_channel(
-                                    loaded[str(member.guild.id)]["channel_id"]
-                                )
+                                channel = member.guild.get_channel(loaded[str(member.guild.id)]["channel_id"])
                                 msg = await channel.send(f"{member.mention}")
                                 await msg.delete()
                                 embed = disnake.Embed(
@@ -127,17 +117,11 @@ class Event(commands.Cog):
                                 else:
                                     pass
                             else:
-                                channel = member.guild.get_channel(
-                                    loaded[str(member.guild.id)]["channel_id"]
-                                )
-                                await channel.send(
-                                    f"{loaded[str(member.guild.id)]['message']}"
-                                )
+                                channel = member.guild.get_channel(loaded[str(member.guild.id)]["channel_id"])
+                                await channel.send(f"{loaded[str(member.guild.id)]['message']}")
                         else:
                             if loaded[str(member.guild.id)]["message"] == "":
-                                channel = member.guild.get_channel(
-                                    loaded[str(member.guild.id)]["channel_id"]
-                                )
+                                channel = member.guild.get_channel(loaded[str(member.guild.id)]["channel_id"])
                                 msg = await channel.send(f"{member.mention}")
                                 await msg.delete()
                                 embed = disnake.Embed(
@@ -155,12 +139,8 @@ class Event(commands.Cog):
                                 # await member.add_roles(role)
                                 # await member.add_roles(role)
                             else:
-                                channel = member.guild.get_channel(
-                                    loaded[str(member.guild.id)]["channel_id"]
-                                )
-                                await channel.send(
-                                    f"{loaded[str(member.guild.id)]['message']}"
-                                )
+                                channel = member.guild.get_channel(loaded[str(member.guild.id)]["channel_id"])
+                                await channel.send(f"{loaded[str(member.guild.id)]['message']}")
 
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
@@ -172,9 +152,7 @@ class Event(commands.Cog):
 
             if str(after) != str(before):
                 await after.channel.clone(name=f"{member}-channel")
-                channel = disnake.utils.get(
-                    self.bot.get_all_channels(), name=f"{member}-channel"
-                )
+                channel = disnake.utils.get(self.bot.get_all_channels(), name=f"{member}-channel")
                 guild = member.guild
                 await channel.set_permissions(guild.default_role, view_channel=False)
 
@@ -208,10 +186,7 @@ class Event(commands.Cog):
 
                             with open("./dicts/Welcome.json") as w:
                                 weldata = json.load(w)
-                                if (
-                                    str(message.guild.id) in weldata
-                                    and weldata[str(message.guild.id)]["Welcome"]
-                                ):
+                                if str(message.guild.id) in weldata and weldata[str(message.guild.id)]["Welcome"]:
                                     if "role" in weldata[str(message.guild.id)]:
 
                                         role = disnake.utils.get(
@@ -222,27 +197,18 @@ class Event(commands.Cog):
 
                                         role = disnake.utils.get(
                                             message.guild.roles,
-                                            id=data[str(message.channel.id)][
-                                                "URole id"
-                                            ],
+                                            id=data[str(message.channel.id)]["URole id"],
                                         )
 
                                         await message.author.remove_roles(role)
 
                                         await message.delete()
-                                        if (
-                                            weldata[str(message.guild.id)]["message"]
-                                            == ""
-                                        ):
+                                        if weldata[str(message.guild.id)]["message"] == "":
 
                                             channel = message.guild.get_channel(
-                                                weldata[str(message.guild.id)][
-                                                    "channel_id"
-                                                ]
+                                                weldata[str(message.guild.id)]["channel_id"]
                                             )
-                                            msg = await channel.send(
-                                                f"{message.author.mention}"
-                                            )
+                                            msg = await channel.send(f"{message.author.mention}")
                                             await msg.delete()
                                             embed = disnake.Embed(
                                                 title=f"Welcome!",
@@ -250,9 +216,7 @@ class Event(commands.Cog):
                                                 colour=get_colour(),
                                             )
 
-                                            embed.set_thumbnail(
-                                                url=f"{message.guild.icon_url}"
-                                            )
+                                            embed.set_thumbnail(url=f"{message.guild.icon_url}")
                                             embed.set_image(
                                                 url="https://cdn.disnakeapp.com/attachments/847528639125258322/855559791384592404/360_F_361521131_tvclR3GrsVQBFVsUe1EPNFgH2MWIN1w7.png"
                                             )
@@ -264,28 +228,18 @@ class Event(commands.Cog):
                                             await channel.send(embed=embed)
 
                                         else:
-                                            channel = self.bot.get_channel(
-                                                weldata[str(message.guild.id)][
-                                                    "channel_id"
-                                                ]
-                                            )
-                                            await channel.send(
-                                                f"{weldata[str(message.guild.id)]['message']}"
-                                            )
+                                            channel = self.bot.get_channel(weldata[str(message.guild.id)]["channel_id"])
+                                            await channel.send(f"{weldata[str(message.guild.id)]['message']}")
 
                                 else:
 
                                     role = disnake.utils.get(
                                         message.guild.roles,
-                                        id=int(
-                                            data[str(message.channel.id)]["MRole id"]
-                                        ),
+                                        id=int(data[str(message.channel.id)]["MRole id"]),
                                     )
                                     role1 = disnake.utils.get(
                                         message.guild.roles,
-                                        id=int(
-                                            data[str(message.channel.id)]["URole id"]
-                                        ),
+                                        id=int(data[str(message.channel.id)]["URole id"]),
                                     )
                                     await message.author.add_roles(role)
                                     await message.author.remove_roles(role1)
@@ -309,21 +263,15 @@ class Event(commands.Cog):
 
             try:
 
-                emoji, user = await self.bot.wait_for(
-                    "reaction_add", timeout=30.0, check=check
-                )
+                emoji, user = await self.bot.wait_for("reaction_add", timeout=30.0, check=check)
                 while emoji.emoji not in [THUMBS_DOWN]:
                     async with message.channel.typing():
                         embed = await create_embed(message, self.bot)
 
                     msg12 = await message.channel.send(embed=embed)
                     num = 2
-                    await message.remove_reaction(
-                        member=message.author, emoji=THUMBS_UP
-                    )
-                    emoji, user = await self.bot.wait_for(
-                        "reaction_add", timeout=30.0, check=check
-                    )
+                    await message.remove_reaction(member=message.author, emoji=THUMBS_UP)
+                    emoji, user = await self.bot.wait_for("reaction_add", timeout=30.0, check=check)
 
                 else:
                     if num == 2:

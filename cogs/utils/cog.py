@@ -44,9 +44,7 @@ class Utils(commands.Cog):
                 name="Calculator",
                 icon_url=ctx.author.avatar.url,
             )
-            .set_footer(
-                text="To interact with your virtual calculator, click the shown buttons."
-            )
+            .set_footer(text="To interact with your virtual calculator, click the shown buttons.")
         )
 
         await ctx.reply(embed=embed, view=CalculatorView(embed, ctx))
@@ -54,9 +52,7 @@ class Utils(commands.Cog):
     @commands.command()
     async def google(self, ctx: Context, *, query: str):
         try:
-            results = await self.google.search(
-                query, safesearch=True, image_search=False
-            )
+            results = await self.google.search(query, safesearch=True, image_search=False)
         except async_cse.NoResults:
             return await ctx.reply(f"No **Results** found for search **{query}**")
         if not results:
@@ -65,12 +61,7 @@ class Utils(commands.Cog):
         await ctx.reply(
             embed=disnake.Embed(
                 title=f"Query: {query}",
-                description="\n".join(
-                    [
-                        f"[{res.title}]({res.url})\n{res.description}\n\n"
-                        for res in results[:5]
-                    ]
-                ),
+                description="\n".join([f"[{res.title}]({res.url})\n{res.description}\n\n" for res in results[:5]]),
                 color=0x489CC4,
             )
             .set_footer(
@@ -116,12 +107,8 @@ class Utils(commands.Cog):
 
         result = simpleeval.simple_eval(math)
         embed = disnake.Embed(colour=get_colour())
-        embed.set_footer(
-            text=str(ctx.author) + " | Evaluation", icon_url=ctx.author.avatar.url
-        )
-        embed.add_field(
-            name="Your expression: ", value=f'```yaml\n"{math}"\n```', inline=False
-        )
+        embed.set_footer(text=str(ctx.author) + " | Evaluation", icon_url=ctx.author.avatar.url)
+        embed.add_field(name="Your expression: ", value=f'```yaml\n"{math}"\n```', inline=False)
         embed.add_field(name="Result: ", value=f"```\n{result}\n```")
         await ctx.reply(embed=embed)
 
@@ -137,9 +124,7 @@ class Utils(commands.Cog):
             return await send_embed(ctx, "", "Custom emojis are not allowed")
 
         if len(characters) > 50:
-            return await send_embed(
-                ctx, "", f"Too many characters ({len(characters)}/50)"
-            )
+            return await send_embed(ctx, "", f"Too many characters ({len(characters)}/50)")
 
         def get_info(char: str) -> Tuple[str, str]:
             digit = f"{ord(char):x}"
@@ -149,18 +134,14 @@ class Utils(commands.Cog):
                 u_code = f"\\U{digit:>08}"
             url = f"https://www.compart.com/en/unicode/U+{digit:>04}"
             name = f"[{unicodedata.name(char, '')}]({url})"
-            info = (
-                f"`{u_code.ljust(10)}`: {name} - {disnake.utils.escape_markdown(char)}"
-            )
+            info = f"`{u_code.ljust(10)}`: {name} - {disnake.utils.escape_markdown(char)}"
             return info, u_code
 
         char_list, raw_list = zip(*(get_info(c) for c in characters))
         embed = disnake.Embed(colour=get_colour())
         embed.add_field(name="Character info", value="\n".join(char_list))
         if len(characters) > 1:
-            embed.add_field(
-                name="Full Raw Text", value=f"`{''.join(raw_list)}`", inline=False
-            )
+            embed.add_field(name="Full Raw Text", value=f"`{''.join(raw_list)}`", inline=False)
 
         await ctx.reply(embed=embed)
 
@@ -180,9 +161,7 @@ class Utils(commands.Cog):
 
             a, b = b, a + b
 
-        embed = disnake.Embed(
-            title="Fibinaci", description=f"{', '.join(x)}", colour=get_colour()
-        )
+        embed = disnake.Embed(title="Fibinaci", description=f"{', '.join(x)}", colour=get_colour())
         await ctx.reply(embed=embed)
 
     @commands.command(
@@ -224,9 +203,7 @@ class Utils(commands.Cog):
             x = str(now)
             _date = x[:10]
             _time = x[11:19]
-            embed = disnake.Embed(
-                title=f"**Time:** {_time} │ **Date:** {_date}", colour=get_colour()
-            )
+            embed = disnake.Embed(title=f"**Time:** {_time} │ **Date:** {_date}", colour=get_colour())
             embed.set_author(name="Datetime", icon_url=ctx.author.avatar.url)
 
             await ctx.reply(embed=embed)
@@ -240,9 +217,7 @@ class Utils(commands.Cog):
 
     @commands.command(aliases=["bin"])
     async def binary(self, ctx: Context, *, text):
-        async with self.bot.client.get(
-            url=f"https://some-random-api.ml/binary?text={text}"
-        ) as response:
+        async with self.bot.client.get(url=f"https://some-random-api.ml/binary?text={text}") as response:
             fox = await response.json()
 
             embed = disnake.Embed(colour=get_colour())
@@ -251,9 +226,7 @@ class Utils(commands.Cog):
 
     @commands.command(aliases=["unbin"])
     async def unbinary(self, ctx: Context, *, nums: str):
-        async with self.bot.client.get(
-            url=f"https://some-random-api.ml/binary?decode={nums}"
-        ) as response:
+        async with self.bot.client.get(url=f"https://some-random-api.ml/binary?decode={nums}") as response:
             fox = await response.json()
 
             embed = disnake.Embed(colour=get_colour())
@@ -293,9 +266,7 @@ class Utils(commands.Cog):
 
             x.append(f"\n`{c}: {'-'.join(p)}`")
             p = []
-        embed = disnake.Embed(
-            title="Ascii:", description=", ".join(x), colour=get_colour()
-        )
+        embed = disnake.Embed(title="Ascii:", description=", ".join(x), colour=get_colour())
         embed.set_footer(
             text="Type j.help ascii to get information about what the ascii table is. | '-' signifies a new character."
         )
@@ -364,9 +335,7 @@ class Utils(commands.Cog):
     async def shorten_url(self, ctx: Context, *, url: str):
         tinyurl = await self.bot.loop.run_in_executor(
             None,
-            lambda: urlopen("http://tinyurl.com/api-create.php?url=" + url)
-            .read()
-            .decode("utf-8"),
+            lambda: urlopen("http://tinyurl.com/api-create.php?url=" + url).read().decode("utf-8"),
         )
 
         await ctx.message.delete()

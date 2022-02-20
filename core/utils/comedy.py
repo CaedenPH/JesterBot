@@ -12,12 +12,8 @@ async def fact() -> str:
 
 
 async def quote(bot) -> str:
-    async with bot.client.get(
-        url="http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en"
-    ) as response:
-        return '*"{quoteText}"*\n{quoteAuthor}'.format(
-            **json.loads(await response.read())
-        )
+    async with bot.client.get(url="http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en") as response:
+        return '*"{quoteText}"*\n{quoteAuthor}'.format(**json.loads(await response.read()))
 
 
 async def joke() -> str:
@@ -30,8 +26,6 @@ async def joke() -> str:
 
 
 async def pickup(bot) -> str:
-    async with bot.client.get(
-        url="http://getpickuplines.herokuapp.com/lines/random"
-    ) as response:
+    async with bot.client.get(url="http://getpickuplines.herokuapp.com/lines/random") as response:
         json = await response.json()
     return json["line"]

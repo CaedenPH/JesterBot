@@ -18,10 +18,7 @@ class Dice(View):
             self.stop()
 
     async def interaction_check(self, interaction: MessageInteraction) -> bool:
-        return (
-            interaction.author == self.ctx.author
-            and interaction.channel == self.ctx.channel
-        )
+        return interaction.author == self.ctx.author and interaction.channel == self.ctx.channel
 
     @button(label="Roll", style=ButtonStyle.green, emoji="▶️")
     async def roll(self, button: Button, interaction: MessageInteraction) -> None:

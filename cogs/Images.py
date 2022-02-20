@@ -102,9 +102,7 @@ class Images(commands.Cog):
 
     @commands.command()
     async def nasapic(self, ctx: Context):
-        async with self.bot.client.get(
-            url="https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=1"
-        ) as response:
+        async with self.bot.client.get(url="https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=1") as response:
             up = await response.json()
 
         embed = disnake.Embed(
@@ -132,9 +130,7 @@ class Images(commands.Cog):
     @commands.command(aliases=["rpic", "randpic"])
     async def randompicture(self, ctx: Context):
         async with ctx.typing():
-            async with self.bot.client.get(
-                url=f"https://source.unsplash.com/random"
-            ) as response:
+            async with self.bot.client.get(url=f"https://source.unsplash.com/random") as response:
                 my_file = open("./images/random.png", "wb")
                 my_file.write(await response.read())
                 my_file.close()
@@ -175,9 +171,7 @@ class Images(commands.Cog):
             avatar = member.avatar.with_format("png")
 
         async with ctx.typing():
-            async with self.bot.client.get(
-                url=f"https://some-random-api.ml/canvas/wasted?avatar={avatar}"
-            ) as response:
+            async with self.bot.client.get(url=f"https://some-random-api.ml/canvas/wasted?avatar={avatar}") as response:
 
                 file = open("./images/wasted.png", "wb")
                 file.write(await response.read())
@@ -212,9 +206,7 @@ class Images(commands.Cog):
             avatar = member.avatar.with_format("png")
 
         async with ctx.typing():
-            async with self.bot.client.get(
-                url=f"https://some-random-api.ml/canvas/gay?avatar={avatar}"
-            ) as response:
+            async with self.bot.client.get(url=f"https://some-random-api.ml/canvas/gay?avatar={avatar}") as response:
 
                 file = open("./images/gay.png", "wb")
                 file.write(await response.read())
@@ -230,9 +222,7 @@ class Images(commands.Cog):
             avatar = member.avatar.with_format("png")
 
         async with ctx.typing():
-            async with self.bot.client.get(
-                url=f"https://some-random-api.ml/canvas/glass?avatar={avatar}"
-            ) as response:
+            async with self.bot.client.get(url=f"https://some-random-api.ml/canvas/glass?avatar={avatar}") as response:
 
                 file = open("./images/glass.png", "wb")
                 file.write(await response.read())
@@ -266,9 +256,7 @@ class Images(commands.Cog):
             avatar = member.avatar.with_format("png")
 
         async with ctx.typing():
-            async with self.bot.client.get(
-                url=f"https://some-random-api.ml/canvas/red?avatar={avatar}"
-            ) as response:
+            async with self.bot.client.get(url=f"https://some-random-api.ml/canvas/red?avatar={avatar}") as response:
 
                 file = open("./images/bloody.png", "wb")
                 file.write(await response.read())
@@ -276,9 +264,7 @@ class Images(commands.Cog):
 
         await ctx.reply(file=disnake.File("./images/bloody.png"))
 
-    @commands.command(
-        description="""Sends a YouTube comment with your custom comment"""
-    )
+    @commands.command(description="""Sends a YouTube comment with your custom comment""")
     async def ytcomment(self, ctx: Context, *, comment):
         async with ctx.typing():
             async with self.bot.client.get(
@@ -317,9 +303,7 @@ class Images(commands.Cog):
             avatar = member.avatar.with_format("png")
 
         async with ctx.typing():
-            async with self.bot.client.get(
-                url=f"https://some-random-api.ml/canvas/invert?avatar={avatar}"
-            ) as response:
+            async with self.bot.client.get(url=f"https://some-random-api.ml/canvas/invert?avatar={avatar}") as response:
 
                 file = open("./images/invert.png", "wb")
                 file.write(await response.read())
@@ -343,9 +327,7 @@ class Images(commands.Cog):
     @commands.command(aliases=["pic", "imag", "images", "image"])
     async def picture(self, ctx: Context, *, pic):
         async with ctx.typing():
-            async with self.bot.client.get(
-                "https://source.unsplash.com/1600x900/?{}".format(pic)
-            ) as response:
+            async with self.bot.client.get("https://source.unsplash.com/1600x900/?{}".format(pic)) as response:
 
                 my_file = open("./images/picture.png", "wb")
                 my_file.write(await response.read())
@@ -416,9 +398,7 @@ class Images(commands.Cog):
     @commands.command()
     async def bill(self, ctx: Context):
         async with ctx.typing():
-            async with self.bot.client.get(
-                "https://belikebill.ga/billgen-API.php?default=1", verify=False
-            ) as response:
+            async with self.bot.client.get("https://belikebill.ga/billgen-API.php?default=1", verify=False) as response:
 
                 file = open("./images/bill.png", "wb")
                 file.write(await response.read())

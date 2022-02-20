@@ -11,9 +11,7 @@ class Dropdown(disnake.ui.Select):
         self.utils = utils
 
         options = [
-            disnake.SelectOption(
-                label="Home", description="Return to the main help panel", emoji=HOME
-            ),
+            disnake.SelectOption(label="Home", description="Return to the main help panel", emoji=HOME),
         ]
         for key in data:
             options.append(

@@ -15,15 +15,12 @@ async def suggest(bot: Bot, message: Message) -> None:
         disnake.Embed(colour=get_colour())
         .set_author(name=message.author.name, icon_url=message.author.avatar.url)
         .set_footer(
-            text=str(message.created_at)[11:16]
-            + " • This suggestion was created by {}".format(message.author.name)
+            text=str(message.created_at)[11:16] + " • This suggestion was created by {}".format(message.author.name)
         )
     )
 
     def check(m):
-        return m.author == message.author and isinstance(
-            m.channel, disnake.channel.DMChannel
-        )
+        return m.author == message.author and isinstance(m.channel, disnake.channel.DMChannel)
 
     for a in [
         "What would you like the title to be? Type q at any point to end",
@@ -58,16 +55,12 @@ async def run_check(bot: Bot, ctx: Context) -> bool:
         return False
 
     if not ctx.guild:
-        await ctx.em(
-            "Commands don't work in DMs! My prefix is `j.`, or you can ping me in a guild!"
-        )
+        await ctx.em("Commands don't work in DMs! My prefix is `j.`, or you can ping me in a guild!")
         return False
 
     if ctx.command.hidden:
         if not await bot.is_owner(ctx.author):
-            await ctx.em(
-                "You cannot run this command, it is a `hidden` command which only bot admins can run."
-            )
+            await ctx.em("You cannot run this command, it is a `hidden` command which only bot admins can run.")
             return False
         return True
 
@@ -76,9 +69,7 @@ async def run_check(bot: Bot, ctx: Context) -> bool:
 
         if str(ctx.author.id) in data:
             if ctx.command.name in data[str(ctx.author.id)]["commands"]:
-                await ctx.em(
-                    "you cant run this command for some reason, possibly blacklisted"
-                )
+                await ctx.em("you cant run this command for some reason, possibly blacklisted")
                 return False
 
     with open("./dicts/Suggest.json") as k:

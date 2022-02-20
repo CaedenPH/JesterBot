@@ -33,9 +33,7 @@ class Casino(View):
     async def play(self, button: Button, interaction: MessageInteraction) -> None:
         self.exit.disabled = True
         self.play.disabled = True
-        intsthink = Embed(
-            title=self.defualtstring[0], description="```...```"
-        ).set_footer(text=self.defualtstring[1])
+        intsthink = Embed(title=self.defualtstring[0], description="```...```").set_footer(text=self.defualtstring[1])
 
         await interaction.response.edit_message(embed=intsthink, view=self)
 
@@ -44,9 +42,9 @@ class Casino(View):
 
         for i in r_ints:
             result.append(str(i))
-            ints = Embed(
-                title=self.defualtstring[0], description=f"```{''.join(result)}```"
-            ).set_footer(text=self.defualtstring[1])
+            ints = Embed(title=self.defualtstring[0], description=f"```{''.join(result)}```").set_footer(
+                text=self.defualtstring[1]
+            )
             await interaction.edit_original_message(embed=ints, view=self)
             await asyncio.sleep(0.2)
 
@@ -64,9 +62,7 @@ class Casino(View):
 
     @button(label="Retry", style=ButtonStyle.green, emoji="🔄")
     async def retry(self, button: Button, interaction: MessageInteraction) -> None:
-        intsthink1 = Embed(
-            title=self.defualtstring[0], description="```...```"
-        ).set_footer(text=self.defualtstring[1])
+        intsthink1 = Embed(title=self.defualtstring[0], description="```...```").set_footer(text=self.defualtstring[1])
         self.exit.disabled = True
         await interaction.response.edit_message(embed=intsthink1, view=self)
 
@@ -75,9 +71,9 @@ class Casino(View):
         result, ints = [], None
         for i in r_ints:
             result.append(str(i))
-            ints = Embed(
-                title=self.defualtstring[0], description=f"```{''.join(result)}```"
-            ).set_footer(text=self.defualtstring[1])
+            ints = Embed(title=self.defualtstring[0], description=f"```{''.join(result)}```").set_footer(
+                text=self.defualtstring[1]
+            )
             await interaction.edit_original_message(embed=ints, view=self)
             await asyncio.sleep(0.2)
 

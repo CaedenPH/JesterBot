@@ -50,9 +50,7 @@ class Fun(commands.Cog):
             colour=get_colour(),
         )
 
-        embed.set_author(
-            name=f"Youtube searches for {query}: ", icon_url=ctx.author.avatar.url
-        )
+        embed.set_author(name=f"Youtube searches for {query}: ", icon_url=ctx.author.avatar.url)
         embed.set_footer(text=f"Requested by {ctx.author}")
         await ctx.reply(embed)
 
@@ -73,9 +71,7 @@ class Fun(commands.Cog):
     async def glitch(self, ctx, member: disnake.Member = None):
         await img(ctx, member, "glitch")
 
-        glitch_img = glitcher.glitch_image(
-            "./images/glitch.png", 2, color_offset=True, gif=True
-        )
+        glitch_img = glitcher.glitch_image("./images/glitch.png", 2, color_offset=True, gif=True)
         glitch_img[0].save(
             "./images/glitched.gif",
             format="GIF",
@@ -90,9 +86,7 @@ class Fun(commands.Cog):
     async def asciiart(self, ctx: Context, *, text: str):
 
         if len(text) > 10:
-            return await send_embed(
-                ctx, "", f"{CLOSE} Length of Text cannot be more than 10 Characters!"
-            )
+            return await send_embed(ctx, "", f"{CLOSE} Length of Text cannot be more than 10 Characters!")
 
         art = text2art(text)
 
@@ -104,11 +98,7 @@ class Fun(commands.Cog):
                 )
             )
 
-        await ctx.reply(
-            embed=disnake.Embed(
-                description=f"```yaml\n{art}```", colour=self.bot.discord_colour
-            )
-        )
+        await ctx.reply(embed=disnake.Embed(description=f"```yaml\n{art}```", colour=self.bot.discord_colour))
 
     @commands.command()
     async def sudo(self, ctx: Context, member: disnake.Member, *, text):
@@ -122,26 +112,20 @@ class Fun(commands.Cog):
             text,
             username=member.name,
             avatar_url=member.avatar.url,
-            allowed_mentions=disnake.AllowedMentions(
-                roles=False, users=False, everyone=False
-            ),
+            allowed_mentions=disnake.AllowedMentions(roles=False, users=False, everyone=False),
         )
 
     @commands.command()
     async def minecraft(self, ctx: Context, username):
         try:
             async with ctx.typing():
-                async with self.bot.client.get(
-                    url=f"https://some-random-api.ml/mc?username={username}"
-                ) as response:
+                async with self.bot.client.get(url=f"https://some-random-api.ml/mc?username={username}") as response:
                     fox = await response.json()
                 my_list = []
                 t = 0
 
                 for k in fox["name_history"]:
-                    my_list.append(
-                        f"**{fox['name_history'][t]['name']}** - {fox['name_history'][t]['changedToAt']}"
-                    )
+                    my_list.append(f"**{fox['name_history'][t]['name']}** - {fox['name_history'][t]['changedToAt']}")
                     t += 1
                 l = "\n - ".join(my_list)
             return await send_embed(
@@ -154,9 +138,7 @@ class Fun(commands.Cog):
                 """,
             )
         except:
-            await send_embed(
-                ctx, "", "They are not a minecraft player! Enter their in-game username"
-            )
+            await send_embed(ctx, "", "They are not a minecraft player! Enter their in-game username")
 
     @commands.command(aliases=["emojis", "sentance"])
     async def name(self, ctx: Context, *, name):
@@ -295,18 +277,14 @@ class Fun(commands.Cog):
 
                     with open(f"./emojis/{name}.png", "rb") as k:
 
-                        y = await ctx.guild.create_custom_emoji(
-                            name=name, image=k.read()
-                        )
+                        y = await ctx.guild.create_custom_emoji(name=name, image=k.read())
 
                         await ctx.reply(f"{y} has been added!")
                 except:
 
                     with open(f"./emojis/{name}.gif", "rb") as k:
 
-                        y = await ctx.guild.create_custom_emoji(
-                            name=name, image=k.read()
-                        )
+                        y = await ctx.guild.create_custom_emoji(name=name, image=k.read())
 
                         await ctx.reply(f"{y} has been added!")
 
@@ -366,9 +344,7 @@ class Fun(commands.Cog):
 
         user = self.bot.get_user(ctx.author.id)
         try:
-            embed = disnake.Embed(
-                title="What would you like to echo?", colour=get_colour()
-            )
+            embed = disnake.Embed(title="What would you like to echo?", colour=get_colour())
             x = await ctx.reply(embed=embed)
             msg = await self.bot.wait_for(
                 "message",
@@ -383,9 +359,7 @@ class Fun(commands.Cog):
             embed1.set_author(name=ctx.author.name, icon_url=user.avatar.url)
             await ctx.reply(embed=embed1)
         except asyncio.TimeoutError:
-            embed = disnake.Embed(
-                title="Time ran out, restart the echo", colour=get_colour()
-            )
+            embed = disnake.Embed(title="Time ran out, restart the echo", colour=get_colour())
             await ctx.reply(embed=embed)
 
     @commands.command(
@@ -443,9 +417,7 @@ class Fun(commands.Cog):
     async def l(self, ctx: Context, user: disnake.Member = ""):
         if user == "":
             user = self.bot.get_user(ctx.author.id)
-        embed = disnake.Embed(
-            description=f"{user.mention} took an L", colour=get_colour()
-        )
+        embed = disnake.Embed(description=f"{user.mention} took an L", colour=get_colour())
         msg = await ctx.reply(f"{user.mention}")
         await msg.delete()
         await ctx.reply(embed=embed)

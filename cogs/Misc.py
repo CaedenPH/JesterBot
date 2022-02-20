@@ -70,9 +70,7 @@ class Misc(commands.Cog):
                     healthiness = "VERY UNHEALTHY"
 
             embed.description += f"**# of members in guild**: `{guild.member_count}`\n"
-            embed.description += (
-                f"**# of messages per day on average in {channel}**: `{average}`\n"
-            )
+            embed.description += f"**# of messages per day on average in {channel}**: `{average}`\n"
             embed.description += f"**Channel health**: `{healthiness}`\n"
             await msg.delete()
             await ctx.reply(embed=embed)
@@ -137,9 +135,7 @@ class Misc(commands.Cog):
 
         await ctx.reply(embed=embed)
 
-    @commands.command(
-        description="Make a secure password with a length that you can choose"
-    )
+    @commands.command(description="Make a secure password with a length that you can choose")
     async def password(self, ctx: Context, lengthofpassword: int = 12):
         my_list = ["!", "?", "#"]
         for c in range(97, 123):
@@ -158,9 +154,7 @@ class Misc(commands.Cog):
     @commands.command(aliases=["stat"], description="Sends statistics about the server")
     async def stats(self, ctx: Context):
 
-        members, bots = [m for m in ctx.guild.members if not m.bot], [
-            m for m in ctx.guild.members if m.bot
-        ]
+        members, bots = [m for m in ctx.guild.members if not m.bot], [m for m in ctx.guild.members if m.bot]
         embed = disnake.Embed(title="Stats", colour=get_colour())
         embed.add_field(
             name="Server statistics",
@@ -203,11 +197,7 @@ class Misc(commands.Cog):
         async with ctx.typing():
             x = datetime.datetime.utcnow() - datetime.timedelta(days=days)
             k = await channel.history(after=x, limit=None).flatten()
-            messages = [
-                f"{e.content.replace('`', '')}"
-                for e in k
-                if e.author == member and e.channel == channel
-            ]
+            messages = [f"{e.content.replace('`', '')}" for e in k if e.author == member and e.channel == channel]
         await m.delete()
         pag = Paginator(ctx)
         await pag.paginate(
@@ -284,8 +274,7 @@ class Misc(commands.Cog):
                     await self.bot.wait_for(
                         "message",
                         timeout=60.0,
-                        check=lambda m: m.author == ctx.author
-                        and m.channel == ctx.channel,
+                        check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
                     )
                 ).content
             ).lower()
@@ -301,8 +290,7 @@ class Misc(commands.Cog):
                         await self.bot.wait_for(
                             "message",
                             timeout=90.0,
-                            check=lambda m: m.author == ctx.author
-                            and m.channel == ctx.channel,
+                            check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
                         )
                     ).content
                 ).lower()
@@ -317,8 +305,7 @@ class Misc(commands.Cog):
                     await ctx.message.delete()
                     await ctx.channel.purge(
                         limit=2,
-                        check=lambda m: m.author == ctx.author
-                        and m.channel == ctx.channel,
+                        check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
                     )
                     msg = await ctx.reply(embed=embed)
                     await msg.add_reaction(THUMBS_UP)
@@ -331,8 +318,7 @@ class Misc(commands.Cog):
                     await ctx.message.delete()
                     await ctx.channel.purge(
                         limit=2,
-                        check=lambda m: m.author == ctx.author
-                        and m.channel == ctx.channel,
+                        check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
                     )
                     msg = await ctx.reply(embed=embed3)
 
@@ -355,8 +341,7 @@ class Misc(commands.Cog):
                         await self.bot.wait_for(
                             "message",
                             timeout=90.0,
-                            check=lambda m: m.author == ctx.author
-                            and m.channel == ctx.channel,
+                            check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
                         )
                     ).content
                 ).lower()
@@ -371,16 +356,13 @@ class Misc(commands.Cog):
                     await ctx.message.delete()
                     await ctx.channel.purge(
                         limit=2,
-                        check=lambda m: m.author == ctx.author
-                        and m.channel == ctx.channel,
+                        check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
                     )
                     msg = await ctx.reply(embed=embed)
                     await msg.add_reaction(THUMBS_UP)
                     await msg.add_reaction(THUMBS_DOWN)
         except asyncio.TimeoutError:
-            embed = disnake.Embed(
-                title="Time ran out, restart the ticket", colour=get_colour()
-            )
+            embed = disnake.Embed(title="Time ran out, restart the ticket", colour=get_colour())
             await ctx.reply(embed=embed)
 
     @commands.command()
@@ -410,9 +392,7 @@ class Misc(commands.Cog):
             inline=False,
         )
 
-        embed.set_image(
-            url="https://i.pinimg.com/originals/09/9a/57/099a57d2fe430ea56cdc5ed4979ff909.gif"
-        )
+        embed.set_image(url="https://i.pinimg.com/originals/09/9a/57/099a57d2fe430ea56cdc5ed4979ff909.gif")
         await ctx.reply(embed=embed)
 
     @commands.command()
@@ -442,9 +422,7 @@ class Misc(commands.Cog):
 
         embed.add_field(name="`4` Hugs", value="You'll get free hugs <3", inline=False)
 
-        embed.set_image(
-            url="https://support.discord.com/hc/article_attachments/360029033111/nitro_tank_gif.gif"
-        )
+        embed.set_image(url="https://support.discord.com/hc/article_attachments/360029033111/nitro_tank_gif.gif")
         await ctx.reply(embed=embed)
 
     @commands.command()
@@ -484,18 +462,14 @@ class Misc(commands.Cog):
         if len(ctx.guild.emojis) == 0:
             return await ctx.em(f"Breh, Your server doesn't have any custom emojis.")
 
-        m = await ctx.em(
-            f"Alright! Zipping all emojis owned by this server for you, This can take some time"
-        )
+        m = await ctx.em(f"Alright! Zipping all emojis owned by this server for you, This can take some time")
         buf = BytesIO()
 
         async with ctx.typing():
             with zipfile.ZipFile(buf, "w") as f:
                 for emoji in ctx.guild.emojis:
                     _bytes = await emoji.url.read()
-                    f.writestr(
-                        f'{emoji.name}.{"gif" if emoji.animated else "png"}', _bytes
-                    )
+                    f.writestr(f'{emoji.name}.{"gif" if emoji.animated else "png"}', _bytes)
 
             buf.seek(0)
 

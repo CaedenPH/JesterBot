@@ -16,9 +16,7 @@ def clean_code(content: str) -> str:
     if content.startswith("```py"):
         content = content[5:-3]
     content = content.strip("`")
-    content = (
-        content.replace("‘", "'").replace("“", '"').replace("”", '"').replace("’", "'")
-    )
+    content = content.replace("‘", "'").replace("“", '"').replace("”", '"').replace("’", "'")
     return content
 
 

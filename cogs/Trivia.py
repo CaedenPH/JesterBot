@@ -14,16 +14,12 @@ class Trivia(commands.Cog):
         self.token = "..."
 
     async def replace_token(self) -> None:
-        async with self.bot.client.get(
-            url="https://opentdb.com/api_token.php?command=request"
-        ) as resp:
+        async with self.bot.client.get(url="https://opentdb.com/api_token.php?command=request") as resp:
             json = await resp.json()
             self.token = json["token"]
 
     async def get_question(self):
-        async with self.bot.client.get(
-            url=f"https://opentdb.com/api.php?amount=1&token={self.token}"
-        ) as resp:
+        async with self.bot.client.get(url=f"https://opentdb.com/api.php?amount=1&token={self.token}") as resp:
             json = await resp.json()
         if json["response_code"] == 3:
             await self.replace_token()
@@ -105,9 +101,7 @@ class Trivia(commands.Cog):
                         if not input_dict[msg.author.name]["answer"]:
                             input_dict[msg.author.name]["answer"] = msg.content.lower()
                         if msg.content.lower().startswith("change"):
-                            input_dict[msg.author.name]["answer"] = msg.content[
-                                7
-                            ].lower()
+                            input_dict[msg.author.name]["answer"] = msg.content[7].lower()
 
                     else:
                         input_dict[msg.author.name] = {
@@ -119,8 +113,7 @@ class Trivia(commands.Cog):
                     msg = await self.bot.wait_for(
                         "message",
                         check=lambda m: m.channel == ctx.channel and not m.author.bot,
-                        timeout=30
-                        + (time - datetime.datetime.utcnow()).total_seconds(),
+                        timeout=30 + (time - datetime.datetime.utcnow()).total_seconds(),
                     )
 
             except asyncio.TimeoutError:
@@ -137,9 +130,7 @@ class Trivia(commands.Cog):
                     )
 
                 else:
-                    correct = [
-                        k for k in input_dict if input_dict[k]["answer"] == answer
-                    ]
+                    correct = [k for k in input_dict if input_dict[k]["answer"] == answer]
                     sorted_dict = dict(
                         sorted(
                             input_dict.items(),
@@ -149,12 +140,7 @@ class Trivia(commands.Cog):
                     )
                     for k in correct:
                         input_dict[k]["score"] += 1
-                    leaderboard = "\n".join(
-                        [
-                            f"      - {k}: {[input_dict[k]['score']]}"
-                            for k in sorted_dict
-                        ]
-                    )
+                    leaderboard = "\n".join([f"      - {k}: {[input_dict[k]['score']]}" for k in sorted_dict])
 
                     await ctx.em(
                         f"""```yaml

@@ -42,9 +42,7 @@ class JesterInfo(commands.Cog):
             data = json.load(x)
             for m in data:
 
-                embed = disnake.Embed(
-                    title=f"{data[m]['Version']}", colour=get_colour()
-                )
+                embed = disnake.Embed(title=f"{data[m]['Version']}", colour=get_colour())
                 await ctx.reply(embed=embed)
 
     @commands.command(
@@ -100,9 +98,7 @@ class JesterInfo(commands.Cog):
                         description="*Everytime there is a new update it will be \nposted here along with a version update!*",
                         colour=get_colour(),
                     )
-                    embed.add_field(
-                        value=f"{data[m]['Version']}", name="**Version**", inline=True
-                    )
+                    embed.add_field(value=f"{data[m]['Version']}", name="**Version**", inline=True)
 
                     embed.add_field(
                         value=f"{data[str(m)]['Bug fixes']}",
@@ -114,14 +110,10 @@ class JesterInfo(commands.Cog):
                         name="**New commands**",
                         inline=True,
                     )
-                    embed.add_field(
-                        value=f"{data[str(m)]['Other']}", name="**Other**", inline=False
-                    )
+                    embed.add_field(value=f"{data[str(m)]['Other']}", name="**Other**", inline=False)
 
                     embed.set_footer(text=ctx.author.name, icon_url=username.avatar.url)
-                    embed.set_thumbnail(
-                        url="https://media.giphy.com/media/xT5LMHxhOfscxPfIfm/giphy.gif"
-                    )
+                    embed.set_thumbnail(url="https://media.giphy.com/media/xT5LMHxhOfscxPfIfm/giphy.gif")
 
                     await ctx.reply(embed=embed)
 
@@ -216,15 +208,11 @@ class JesterInfo(commands.Cog):
     )
     async def ping(self, ctx: Context):
         time1 = time.perf_counter()
-        msg = await ctx.reply(
-            embed=disnake.Embed(title=f"Pinging... {LOADING}", color=get_colour())
-        )
+        msg = await ctx.reply(embed=disnake.Embed(title=f"Pinging... {LOADING}", color=get_colour()))
         time2 = time.perf_counter()
 
         db_time1 = time.perf_counter()
-        await self.bot.db.execute(
-            "SELECT prefixes FROM prefix WHERE user_id = ?", (ctx.author.id,)
-        )
+        await self.bot.db.execute("SELECT prefixes FROM prefix WHERE user_id = ?", (ctx.author.id,))
         db_time2 = time.perf_counter()
 
         embed = (
@@ -239,9 +227,7 @@ Database : {round((db_time2-db_time1)*1000)}ms
             """,
             )
             .set_author(name=ctx.author.name, icon_url=ctx.author.display_avatar.url)
-            .set_footer(
-                text=f"Servers in: {len(self.bot.guilds)} │ Overall users: {len(self.bot.users)}"
-            )
+            .set_footer(text=f"Servers in: {len(self.bot.guilds)} │ Overall users: {len(self.bot.users)}")
         )
         await msg.edit(embed=embed)
 
@@ -287,9 +273,7 @@ Database : {round((db_time2-db_time1)*1000)}ms
         )
         await ctx.reply(embed=embed)
 
-    @commands.command(
-        aliases=["ccolour"], description="change the color of the embeds!", hidden=True
-    )
+    @commands.command(aliases=["ccolour"], description="change the color of the embeds!", hidden=True)
     async def ccolor(self, ctx: Context, *, colour: int):
         if colour.startswith("0x") and len(colour) != 8:
             embed = disnake.Embed(

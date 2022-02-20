@@ -63,9 +63,7 @@ class JesterBot(Bot):
         self.db = await Database.create()
 
     async def find_prefix(self, user_id: int) -> List[str]:
-        result = await self.db.fetchone(
-            "SELECT prefixes FROM prefix WHERE user_id = ?", (user_id,)
-        )
+        result = await self.db.fetchone("SELECT prefixes FROM prefix WHERE user_id = ?", (user_id,))
 
         if not result:
             return ["j."]
@@ -74,16 +72,10 @@ class JesterBot(Bot):
     async def insert_prefix(self, user_id: int, prefixes: List[str]) -> None:
         prefixes = " | ".join(prefixes)
 
-        result = await self.db.fetchone(
-            "SELECT prefixes FROM prefix WHERE user_id = ?", (user_id,)
-        )
+        result = await self.db.fetchone("SELECT prefixes FROM prefix WHERE user_id = ?", (user_id,))
         if not result:
-            return await self.db.update(
-                "INSERT INTO prefix VALUES (?, ?)", (user_id, prefixes)
-            )
-        await self.db.update(
-            "UPDATE prefix SET prefixes = ? where user_id = ?", (prefixes, user_id)
-        )
+            return await self.db.update("INSERT INTO prefix VALUES (?, ?)", (user_id, prefixes))
+        await self.db.update("UPDATE prefix SET prefixes = ? where user_id = ?", (prefixes, user_id))
 
     async def get_prefix(self, message: Message) -> List[str]:
         prefixes = await self.find_prefix(message.author.id)
@@ -103,9 +95,7 @@ class JesterBot(Bot):
                 self.load_extension(filename)
         self.load_extension("jishaku")
         self.load_extension("disnake-debug")
-        print(
-            f"Loaded Cogs Successfully! Total Cogs: {len(self.COGS)}\n-----------------------------------"
-        )
+        print(f"Loaded Cogs Successfully! Total Cogs: {len(self.COGS)}\n-----------------------------------")
 
     @loop(seconds=3600)
     async def cache_memes(self) -> None:
@@ -114,9 +104,7 @@ class JesterBot(Bot):
 
     @loop(seconds=3600)
     async def send_comedy(self) -> None:
-        result = await self.db.fetchall(
-            "SELECT channel_id, channel_types FROM channels_config"
-        )
+        result = await self.db.fetchall("SELECT channel_id, channel_types FROM channels_config")
 
         for channel_id, channel_types in result:
             channel = self.get_channel(channel_id)
@@ -139,11 +127,7 @@ class JesterBot(Bot):
 
     @loop(seconds=540)
     async def update_presence(self) -> None:
-        await self.change_presence(
-            activity=Activity(
-                type=ActivityType.listening, name="ping me for prefix // j.help"
-            )
-        )
+        await self.change_presence(activity=Activity(type=ActivityType.listening, name="ping me for prefix // j.help"))
         await asyncio.sleep(180)
         await self.change_presence(
             activity=Activity(
@@ -178,15 +162,13 @@ class JesterBot(Bot):
     async def on_ready(self) -> None:
         self.update_presence.start()
         print("Client Ready!")
-        self.chansend.start()
+        self.send_comedy.start()
         self.cache_memes.start()
         print("Guilds:\n-----------------------------------")
         guild_ids = [guild.id for guild in self.guilds]
         print(guild_ids)
 
-        selected_channel = self.get_guild(830161446523371540).get_channel(
-            830161446523371545
-        )
+        selected_channel = self.get_guild(830161446523371540).get_channel(830161446523371545)
         self.chan = selected_channel
         self.dev = await self.fetch_user(298043305927639041)
         guild = self.get_guild(830161446523371540)
@@ -222,9 +204,7 @@ class JesterBot(Bot):
         await error_handler(context, exception)
 
     async def on_guild_remove(self, guild) -> None:
-        selected_channel1 = self.get_guild(830161446523371540).get_channel(
-            865309892776951808
-        )
+        selected_channel1 = self.get_guild(830161446523371540).get_channel(865309892776951808)
         await selected_channel1.send(f"I have left {guild.name}.")
 
     async def bot_check(self, ctx) -> bool:

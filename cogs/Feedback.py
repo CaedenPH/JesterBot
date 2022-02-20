@@ -87,9 +87,7 @@ class Feedback(commands.Cog):
         f = open("./dicts/Dial.json", "r+")
         data = json.load(f)
         if str(ctx.channel.id) in data:
-            return await send_embed(
-                ctx, "", "This is already engaged in a support dial!"
-            )
+            return await send_embed(ctx, "", "This is already engaged in a support dial!")
         data[str(ctx.channel.id)] = True
         update_json(f, data)
         chan = self.bot.get_channel(866598271991545886)
@@ -105,9 +103,7 @@ class Feedback(commands.Cog):
         )
         await chan.send(f"<@521226389559443461> - <@298043305927639041>")
 
-    @commands.command(
-        aliases=["closedial", "endsupport", "enddial", "dialend", "hangup"]
-    )
+    @commands.command(aliases=["closedial", "endsupport", "enddial", "dialend", "hangup"])
     async def closesupport(self, ctx: Context, chan=""):
         c = self.bot.get_channel(866598271991545886)
         f = open("./dicts/Dial.json", "r+")
@@ -123,9 +119,7 @@ class Feedback(commands.Cog):
             return await send_embed(ctx, "", "You are not engaged in a support dial!")
         del data[str(ctx.channel.id)]
         update_json(f, data)
-        await send_embed(
-            ctx, "", "The ticket has been closed! We hope your problem got solved!"
-        )
+        await send_embed(ctx, "", "The ticket has been closed! We hope your problem got solved!")
         await send_embed(c, "", f"{ctx.author} ended a call at {ctx.channel.id}")
 
     @commands.Cog.listener("on_message")

@@ -44,6 +44,7 @@ BLUE_SQUARE = "🟦"
 GOLF = "⛳"
 RED_FLAG = "🚩"
 SPOON = "🥄"
+STOP_SIGN = "🛑"
 
 NUMBERS = {
     0: "0️⃣",

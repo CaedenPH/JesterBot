@@ -19,9 +19,7 @@ class Config(Cog):
         )
 
         if not result:
-            return await self.bot.db.update(
-                "INSERT INTO channels_config VALUES (?, ?)", (channel_id, channel_type)
-            )
+            return await self.bot.db.update("INSERT INTO channels_config VALUES (?, ?)", (channel_id, channel_type))
 
         channel_types = result[0].split(" | ")
         if channel_type in channel_types:
@@ -39,9 +37,7 @@ class Config(Cog):
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
         await self.insert_values(channel.id, "pickup")
-        await send_embed(
-            ctx, EmptyEmbed, channel.mention + " now sends pickup lines on the hour!"
-        )
+        await send_embed(ctx, EmptyEmbed, channel.mention + " now sends pickup lines on the hour!")
 
     @command()
     @has_permissions(manage_channels=True)
@@ -50,9 +46,7 @@ class Config(Cog):
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
         await self.insert_values(channel.id, "joke")
-        await send_embed(
-            ctx, EmptyEmbed, channel.mention + " now sends jokes on the hour!"
-        )
+        await send_embed(ctx, EmptyEmbed, channel.mention + " now sends jokes on the hour!")
 
     @command()
     @has_permissions(manage_channels=True)
@@ -61,9 +55,7 @@ class Config(Cog):
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
         await self.insert_values(channel.id, "quote")
-        await send_embed(
-            ctx, EmptyEmbed, channel.mention + " now sends quotes on the hour!"
-        )
+        await send_embed(ctx, EmptyEmbed, channel.mention + " now sends quotes on the hour!")
 
     @command()
     @has_permissions(manage_channels=True)
@@ -72,18 +64,14 @@ class Config(Cog):
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
         await self.insert_values(channel.id, "fact")
-        await send_embed(
-            ctx, EmptyEmbed, channel.mention + " now sends facts on the hour!"
-        )
+        await send_embed(ctx, EmptyEmbed, channel.mention + " now sends facts on the hour!")
 
     @command(
         aliases=["Welcomer", "welcome"],
         description="Adds a welcome feature into the current channel (everytime someone joins the server it says welcome) - `[message]` is a good welcome message",
     )
     @has_permissions(administrator=True)
-    async def welcomechannel(
-        self, ctx: Context, role: disnake.Role = "", *, message: str = ""
-    ):
+    async def welcomechannel(self, ctx: Context, role: disnake.Role = "", *, message: str = ""):
 
         with open("./dicts/Welcome.json", "r+") as f:
             data = json.load(f)
@@ -174,9 +162,7 @@ class Config(Cog):
     3. When a new member joins they will only see the channel `⚘ verify ⚘`, and if they write `verify` they can text in and see all other channels""",
     )
     @has_permissions(administrator=True)
-    async def verifychannel(
-        self, ctx: Context, channel: disnake.TextChannel = None, role: disnake.Role = ""
-    ):
+    async def verifychannel(self, ctx: Context, channel: disnake.TextChannel = None, role: disnake.Role = ""):
         embed = disnake.Embed(
             title="Warning",
             description="While this command can help your server by adding a verification, it can also add roles and channels you may not like the look of. To get more information type `j.help verifychannel`. To proceed type y",
@@ -265,9 +251,7 @@ class Config(Cog):
             with open("./dicts/Welcome.json") as w:
                 weldata = json.load(w)
                 if str(ctx.guild.id) in weldata:
-                    g = disnake.utils.get(
-                        ctx.guild.roles, id=weldata[str(ctx.guild.id)]["role"]
-                    )
+                    g = disnake.utils.get(ctx.guild.roles, id=weldata[str(ctx.guild.id)]["role"])
                     for z in ctx.guild.channels:
                         if z.id == channel.id:
                             await z.set_permissions(
@@ -335,15 +319,11 @@ class Config(Cog):
         with open("./dicts/LeaveChannel.json", "r+") as k:
             data = json.load(k)
             if str(ctx.guild.id) in data:
-                return await send_embed(
-                    ctx, "Leaving", "This server is already registered!"
-                )
+                return await send_embed(ctx, "Leaving", "This server is already registered!")
             else:
 
                 if not channel:
-                    channel = await ctx.guild.create_text_channel(
-                        name="Leaving Channel"
-                    )
+                    channel = await ctx.guild.create_text_channel(name="Leaving Channel")
                 data[str(ctx.guild.id)] = {"id": channel.id}
                 update_json(k, data)
         await send_embed(
@@ -357,9 +337,7 @@ class Config(Cog):
 
             data = json.load(k)
             if str(ctx.guild.id) not in data:
-                return await send_embed(
-                    ctx, "Leaving", "There was never a leaving channel here!"
-                )
+                return await send_embed(ctx, "Leaving", "There was never a leaving channel here!")
             del data[str(ctx.guild.id)]
             await send_embed(ctx, "Done!")
 
@@ -370,9 +348,7 @@ class Config(Cog):
 
             if str(memb.guild.id) in data:
                 channel = self.bot.get_channel(data[str(memb.guild.id)]["id"])
-                await send_embed(
-                    channel, "Goodbye", f"You wil be missed *{memb.name}*..."
-                )
+                await send_embed(channel, "Goodbye", f"You wil be missed *{memb.name}*...")
 
 
 def setup(bot):

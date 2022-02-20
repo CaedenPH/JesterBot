@@ -18,10 +18,7 @@ class Meme(View):
             self.stop()
 
     async def interaction_check(self, interaction: MessageInteraction) -> bool:
-        return (
-            interaction.author == self.ctx.author
-            and interaction.channel == self.ctx.channel
-        )
+        return interaction.author == self.ctx.author and interaction.channel == self.ctx.channel
 
     @button(label="Next", style=ButtonStyle.green, emoji="⏭️")
     async def meme(self, button: Button, interaction: MessageInteraction) -> None:
