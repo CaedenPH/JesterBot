@@ -27,22 +27,22 @@
         "score": 105
     },
     "help": {
-        "score": 2241
+        "score": 2244
     },
     "jsonfile": {
         "score": 19
     },
     "selfscore": {
-        "score": 12
+        "score": 13
     },
     "score": {
-        "score": 37
+        "score": 45
     },
     "welcome": {
         "score": 24
     },
     "ping": {
-        "score": 341
+        "score": 342
     },
     "giveaway": {
         "score": 17
@@ -165,7 +165,7 @@
         "score": 24
     },
     "update": {
-        "score": 112
+        "score": 113
     },
     "newup": {
         "score": 56
@@ -429,7 +429,7 @@
         "score": 12
     },
     "eval": {
-        "score": 2683
+        "score": 2686
     },
     "pager": {
         "score": 12
@@ -702,7 +702,7 @@
         "score": 16
     },
     "snipe": {
-        "score": 320
+        "score": 332
     },
     "aim": {
         "score": 29
@@ -780,10 +780,10 @@
         "score": 37
     },
     "editsnipe": {
-        "score": 34
+        "score": 39
     },
     "editaim": {
-        "score": 6
+        "score": 7
     },
     "viewfeedback": {
         "score": 12

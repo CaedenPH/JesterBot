@@ -52,25 +52,12 @@ class JesterInfo(commands.Cog):
         description="Sends the total number of commands used",
     )
     async def score(self, ctx: Context):
-        with open("./dicts/Scoreoverall.json", "r") as x:
-            data = json.load(x)
-            embed = disnake.Embed(
-                title=f"{data['Score']['Score1']}", colour=get_colour()
-            )
-            await ctx.reply(embed=embed)
-
-    @commands.command(aliases=["Servers", "ServerInfo", "Server_Info"])
-    async def server(self, ctx: Context):
-        channel = ctx.channel
-        serverinvite = await channel.create_invite()
-        serverid = ctx.guild.id
-        servername = ctx.guild.name
-        embed = disnake.Embed(title="Your info", colour=get_colour())
-        embed.add_field(name="Name", value=f"{servername}", inline=False)
-        embed.add_field(name="Id", value=f"{serverid}", inline=False)
-        embed.add_field(name="Invite", value=f"{serverinvite}", inline=False)
-
-        await ctx.reply(embed=embed)
+        score = await self.bot.db.fetchone("SELECT score FROM overall_score")
+        await send_embed(
+            ctx,
+            "Score",
+            f"`{score[0]}` commands have been ran through my entire lifetime!",
+        )
 
     @commands.command(
         aliases=["notes", "patchnotes", "Updates", "Patch_Notes", "PT", "up"],

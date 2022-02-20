@@ -45,6 +45,8 @@ class Snipe(commands.Cog):
     async def on_message_edit(self, before: disnake.Message, after: disnake.Message):
         if before.author.bot:
             return
+        if before.content == after.content:
+            return
 
         await self.bot.db.update(
             "INSERT INTO edit_snipe VALUES (?, ?, ?, ?, ?, ?)",
@@ -70,7 +72,7 @@ class Snipe(commands.Cog):
                 ctx, "Snipe", f"> No deleted messages found in {ctx.channel.mention}."
             )
             return await m.add_reaction(CLOSE)
-        if amount > len(results):
+        if amount >= len(results):
             m = await send_embed(
                 ctx, "Snipe", f"> I found no messages {amount} deletes ago."
             )
@@ -80,19 +82,16 @@ class Snipe(commands.Cog):
         user = await self.getch_user(result[2])
 
         embed = disnake.Embed(
-            description=
-            f"""
-            Message in: {ctx.channel.mention}
-            Message from: {user.mention}
-            ```
-            {result[3]}
-            ```
-            """,
-            timestamp=datetime.fromtimestamp(result[4]),
+            description=f"""
+Message in: {ctx.channel.mention}
+Message from: {user.mention}
+Message deleted at: {disnake.utils.format_dt(datetime.fromtimestamp(result[4]))}
+```yaml
+{result[3]}
+```
+""",
             colour=get_colour(),
-        ).set_thumbnail(
-            url=user.display_avatar.url or ctx.author.default_avatar
-        )
+        ).set_thumbnail(url=user.display_avatar.url or ctx.author.default_avatar)
         await ctx.send(embed=embed)
 
     @commands.command()
@@ -118,17 +117,16 @@ class Snipe(commands.Cog):
         user = await self.getch_user(result[2])
 
         embed = disnake.Embed(
-            description=
-            f"""
-            Message in: {ctx.channel.mention}
-            Message from: {user.mention}
-            ```
-            {result[3]}
-            ```
-            """,
-            timestamp=datetime.fromtimestamp(result[4]),
+            description=f"""
+Message in: {ctx.channel.mention}
+Message from: {user.mention}
+Message deleted at: {disnake.utils.format_dt(datetime.fromtimestamp(result[4]))}
+```yaml
+{result[3]}
+```
+""",
             colour=get_colour(),
-        )
+        ).set_thumbnail(url=user.display_avatar.url or ctx.author.default_avatar)
         await ctx.send(embed=embed)
 
     @commands.command(aliases=["esnipe"])
@@ -145,7 +143,7 @@ class Snipe(commands.Cog):
                 f"> No edited messages found in {ctx.channel.mention}.",
             )
             return await m.add_reaction(CLOSE)
-        if amount > len(results):
+        if amount >= len(results):
             m = await send_embed(
                 ctx, "Edit Snipe", f"> I found no messages {amount} edits ago."
             )
@@ -155,21 +153,20 @@ class Snipe(commands.Cog):
         user = await self.getch_user(result[2])
 
         embed = disnake.Embed(
-            description=
-            f"""
-            Message in: {ctx.channel.mention}
-            Message from: {user.mention}
-            ```
-            {result[3]}
-            ```
-            changed to:
-            ```
-            {result[4]}
-            ```
-            """,
-            timestamp=datetime.fromtimestamp(result[4]),
+            description=f"""
+Message in: {ctx.channel.mention}
+Message from: {user.mention}
+Message edited at: {disnake.utils.format_dt(datetime.fromtimestamp(result[5]))}
+```yaml
+{result[3]}
+```
+changed to:
+```yaml
+{result[4]}
+```
+""",
             colour=get_colour(),
-        )
+        ).set_thumbnail(url=user.display_avatar.url or ctx.author.default_avatar)
         await ctx.send(embed=embed)
 
     @commands.command(aliases=["eaim"])
@@ -195,21 +192,20 @@ class Snipe(commands.Cog):
         user = await self.getch_user(result[2])
 
         embed = disnake.Embed(
-            description=
-            f"""
-            Message in: {ctx.channel.mention}
-            Message from: {user.mention}
-            ```
-            {result[3]}
-            ```
-            changed to:
-            ```
-            {result[4]}
-            ```
-            """,
-            timestamp=datetime.fromtimestamp(result[4]),
+            description=f"""
+Message in: {ctx.channel.mention}
+Message from: {user.mention}
+Message edited at: {disnake.utils.format_dt(datetime.fromtimestamp(result[5]))}
+```yaml
+{result[3]}
+```
+changed to:
+```yaml
+{result[4]}
+```
+""",
             colour=get_colour(),
-        )
+        ).set_thumbnail(url=user.display_avatar.url or ctx.author.default_avatar)
         await ctx.send(embed=embed)
 
 

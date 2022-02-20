@@ -7,7 +7,6 @@ from disnake.ext.commands import Bot, Context
 from core.constants import THUMBS_DOWN, THUMBS_UP
 
 from core.utils.utils import send_embed, get_colour, update_json
-from core.utils.comedy import fact, quote, joke, pickup
 
 
 async def suggest(bot: Bot, message: Message) -> None:
@@ -109,36 +108,17 @@ async def run_precheck(bot: Bot, message: Message) -> None:
                         pass
 
 
-async def run_channel_send(bot: Bot) -> None:
-    await bot.wait_until_ready()
-    result = await bot.db.fetchall(
-        "SELECT channel_id, channel_types FROM channels_config"
-    )
-
-    for channel_id, channel_types in result:
-        channel = bot.get_channel(channel_id)
-
-        types = channel_types.split(" | ")
-        for _type in types:
-            if _type == "joke":
-                response = await joke()
-            if _type == "pickup":
-                response = await pickup(bot)
-            if _type == "fact":
-                response = await fact()
-            if _type == "quote":
-                response = await quote(bot)
-            await send_embed(channel, _type, response)
-
-
 async def run_executed(ctx: Bot) -> None:
     bot = ctx.bot
 
     if ctx.author.id != 298043305927639041:
-        user = await bot.fetch_user(298043305927639041)
+        user = bot.get_user(298043305927639041)
         await user.send(
-            f"Name:{ctx.author.name} \nGuild:{ctx.guild}  \nCommand:{ctx.command.name} \nChannel:{ctx.channel.name}"
+            f"```yaml\nName: {ctx.author.name} \nGuild: {ctx.guild}  \nCommand: {ctx.command.name} \nChannel: {ctx.channel.name}```"
         )
+
+    score = await bot.db.fetchone("SELECT score FROM overall_score")
+    await bot.db.update("UPDATE overall_score SET score = ?", (int(score[0]) + 1,))
 
     if ctx.command.name == "color":
         for cog in tuple(bot.extensions):
@@ -153,11 +133,6 @@ async def run_executed(ctx: Bot) -> None:
                 "selfscore": 0,
             }
             update_json(k, loaded1)
-
-    with open("./dicts/Scoreoverall.json", "r+") as x:
-        data = json.load(x)
-        data["Score"]["Score1"] += 1
-        update_json(x, data)
 
     with open("./dicts/Selfscore.json", "r+") as f:
         data = json.load(f)

@@ -12,7 +12,8 @@ from disnake.ext.commands import Bot, when_mentioned_or
 from disnake.ext.tasks import loop
 
 from .utils.commands.eval import run_eval
-from .utils import run_channel_send, run_check, run_executed, run_precheck
+from .utils import run_check, run_executed, run_precheck, send_embed
+from .utils.comedy import fact, quote, joke, pickup
 from .errors import error_handler
 from .context import Context
 from .database import Database
@@ -111,9 +112,30 @@ class JesterBot(Bot):
         subreddit = await REDDIT.subreddit("memes")
         self.meme_list = [p async for p in subreddit.hot(limit=200)]
 
-    @loop(seconds=3600.0)
-    async def chansend(self) -> None:
-        await run_channel_send(self)
+    @loop(seconds=3600)
+    async def send_comedy(self) -> None:
+        result = await self.db.fetchall(
+            "SELECT channel_id, channel_types FROM channels_config"
+        )
+
+        for channel_id, channel_types in result:
+            channel = self.get_channel(channel_id)
+
+            types = channel_types.split(" | ")
+            for _type in types:
+                if _type == "joke":
+                    response = await joke()
+                if _type == "pickup":
+                    response = await pickup(self)
+                if _type == "fact":
+                    response = await fact()
+                if _type == "quote":
+                    response = await quote(self)
+                await send_embed(channel, _type, response)
+
+    @send_comedy.before_loop
+    async def send_comedy_pre_loop(self) -> None:
+        await self.wait_until_ready()
 
     @loop(seconds=540)
     async def update_presence(self) -> None:

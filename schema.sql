@@ -42,3 +42,7 @@ CREATE TABLE IF NOT EXISTS edit_snipe (
     after_content TEXT,
     create_epoch DATE
 );
+
+CREATE TABLE IF NOT EXISTS overall_score (
+    score INT
+);
