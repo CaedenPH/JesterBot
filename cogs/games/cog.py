@@ -8,8 +8,8 @@ from random import randint, choice
 
 from core.utils import get_colour, send_embed
 from core import Context
-from core.constants import HANGMAN, BLACKJACK_WELCOME, MINESWEEPER_MESSAGE
-from . import BlackJack, Casino, RussianRoulette, Dice, MineSweeper
+from core.constants import HANGMAN, BLACKJACK_WELCOME, MINESWEEPER_MESSAGE, SNAKE_MESSAGE
+from . import BlackJack, Casino, RussianRoulette, Dice, MineSweeper, Snake
 
 
 class Games(Cog):
@@ -18,6 +18,18 @@ class Games(Cog):
 
     def message_content(self, guesses_left, guesses, word):
         return f"```yaml\n{HANGMAN[guesses_left]}````{' '.join([k if k in guesses else '_' for k in word])}`\nYou have {guesses_left} guesses left"
+
+    @command(aliases=["snek"])
+    async def snake(self, ctx: Context) -> None:
+        embed = Embed(
+            title="Snake",
+            description="```yaml\n" + SNAKE_MESSAGE.format(board_size=5, game_mode="normal") + "```",
+            colour=get_colour(),
+            timestamp=ctx.message.created_at,
+        ).set_author(name=ctx.author.name, icon_url=ctx.author.display_avatar.url)
+
+        view = Snake(ctx)
+        view.bot_message = await ctx.reply(embed=embed, view=view)
 
     @command(aliases=["mine"])
     async def minesweeper(self, ctx: Context) -> None:

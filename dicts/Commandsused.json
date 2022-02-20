@@ -42,7 +42,7 @@
         "score": 24
     },
     "ping": {
-        "score": 343
+        "score": 344
     },
     "giveaway": {
         "score": 17
@@ -429,7 +429,7 @@
         "score": 12
     },
     "eval": {
-        "score": 2686
+        "score": 2687
     },
     "pager": {
         "score": 12
@@ -510,7 +510,7 @@
         "score": 6
     },
     "evalreturn": {
-        "score": 485
+        "score": 486
     },
     "evaldir": {
         "score": 365
@@ -1233,7 +1233,7 @@
         "score": 72
     },
     "snake": {
-        "score": 3
+        "score": 44
     },
     "snake_name": {
         "score": 1
@@ -1260,7 +1260,7 @@
         "score": 1
     },
     "minesweeper": {
-        "score": 162
+        "score": 163
     },
     "google": {
         "score": 1

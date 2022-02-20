@@ -12,6 +12,7 @@ from core.constants import (
     BOMB,
     BLUE_SQUARE,
     CLOSE,
+    PLAY_BUTTON,
     RED_FLAG,
     MINESWEEPER_MESSAGE,
     NUMBERS,
@@ -518,7 +519,7 @@ class MineSweeper(View):
             if self.dig.game_over():
                 return
 
-    @button(label="Play", style=ButtonStyle.green, emoji="▶️", row=0)
+    @button(label="Play", style=ButtonStyle.green, emoji=PLAY_BUTTON, row=0)
     async def play_button(self, button: Button, interaction: MessageInteraction) -> None:
         """
         play the game, and removes

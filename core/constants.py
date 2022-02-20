@@ -41,10 +41,20 @@ BOOM = "💥"
 HANDSHAKE = "🤝"
 BOMB = "💣"
 BLUE_SQUARE = "🟦"
+WHITE_SQUARE = "⬜"
+GREEN_SQUARE = "🟩"
+SWEET = "🍬"
 GOLF = "⛳"
 RED_FLAG = "🚩"
 SPOON = "🥄"
 STOP_SIGN = "🛑"
+VIDEO_GAME = "🎮"
+
+PLAY_BUTTON = "▶️"
+UP_ARROW = "⬆️"
+LEFT_ARROW = "⬅️"
+RIGHT_ARROW = "➡️"
+DOWN_ARROW = "⬇️"
 
 NUMBERS = {
     0: "0️⃣",
@@ -208,6 +218,10 @@ HANGMAN = [
 MINESWEEPER_MESSAGE = """
 Board size : {board_size}x{board_size}
 Bomb count : {bomb_count}
+"""
+SNAKE_MESSAGE = """
+Board size : {board_size}x{board_size}
+Game mode  : {game_mode}
 """
 
 ## utils

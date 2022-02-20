@@ -196,7 +196,7 @@ class Random(commands.Cog):
         await ctx.em(f"Your palette is `{', '.join(json)}`")
 
     @commands.command()
-    async def snake(self, ctx: Context) -> None:
+    async def rsnake(self, ctx: Context) -> None:
         with open("./resources/snake/snake_facts.json", encoding="utf-8") as stream:
             data = json.load(stream)
 
