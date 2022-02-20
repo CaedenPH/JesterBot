@@ -39,7 +39,9 @@ class Config(Cog):
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
         await self.insert_values(channel.id, "pickup")
-        await send_embed(ctx, EmptyEmbed, channel.mention + " now sends pickup lines on the hour!")
+        await send_embed(
+            ctx, EmptyEmbed, channel.mention + " now sends pickup lines on the hour!"
+        )
 
     @command()
     @has_permissions(manage_channels=True)
@@ -48,7 +50,9 @@ class Config(Cog):
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
         await self.insert_values(channel.id, "joke")
-        await send_embed(ctx, EmptyEmbed, channel.mention + " now sends jokes on the hour!")
+        await send_embed(
+            ctx, EmptyEmbed, channel.mention + " now sends jokes on the hour!"
+        )
 
     @command()
     @has_permissions(manage_channels=True)
@@ -57,7 +61,9 @@ class Config(Cog):
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
         await self.insert_values(channel.id, "quote")
-        await send_embed(ctx, EmptyEmbed, channel.mention + " now sends quotes on the hour!")
+        await send_embed(
+            ctx, EmptyEmbed, channel.mention + " now sends quotes on the hour!"
+        )
 
     @command()
     @has_permissions(manage_channels=True)
@@ -66,7 +72,9 @@ class Config(Cog):
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
         await self.insert_values(channel.id, "fact")
-        await send_embed(ctx, EmptyEmbed, channel.mention + " now sends facts on the hour!")
+        await send_embed(
+            ctx, EmptyEmbed, channel.mention + " now sends facts on the hour!"
+        )
 
     @command(
         aliases=["Welcomer", "welcome"],

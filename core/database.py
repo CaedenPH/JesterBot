@@ -17,11 +17,11 @@ class Database:
             await self.db.executescript(file.read())
         return self
 
-    async def execute(self, query: str, *args: t.Any) -> str:
+    async def execute(self, query: str, *args: t.Any) -> aiosqlite.Cursor:
         async with self.db.cursor() as cur:
             return await cur.execute(query, *args)
 
-    async def update(self, query: str, *args: t.Any) -> str:
+    async def update(self, query: str, *args: t.Any) -> aiosqlite.Cursor:
         async with self.db.cursor() as cur:
             resp = await cur.execute(query, *args)
             await self.db.commit()

@@ -158,7 +158,7 @@ class Images(commands.Cog):
                     },
                 )
             except Exception as e:
-                print(f"Exception: {e}")
+                print(f"Exception in code_snippet L161: {e}")
             resp = await request.read()
 
         with open("images/code_snippet.png", "wb") as f:

@@ -27,7 +27,7 @@
         "score": 105
     },
     "help": {
-        "score": 2238
+        "score": 2241
     },
     "jsonfile": {
         "score": 19
@@ -510,10 +510,10 @@
         "score": 6
     },
     "evalreturn": {
-        "score": 482
+        "score": 483
     },
     "evaldir": {
-        "score": 364
+        "score": 365
     },
     "quote1": {
         "score": 4
@@ -702,10 +702,10 @@
         "score": 16
     },
     "snipe": {
-        "score": 299
+        "score": 320
     },
     "aim": {
-        "score": 27
+        "score": 29
     },
     "picture": {
         "score": 160
@@ -780,10 +780,10 @@
         "score": 37
     },
     "editsnipe": {
-        "score": 25
+        "score": 34
     },
     "editaim": {
-        "score": 2
+        "score": 6
     },
     "viewfeedback": {
         "score": 12
@@ -942,7 +942,7 @@
         "score": 4
     },
     "rank": {
-        "score": 21
+        "score": 22
     },
     "sendroleid": {
         "score": 1
@@ -999,7 +999,7 @@
         "score": 22
     },
     "viewconfig": {
-        "score": 2
+        "score": 3
     },
     "jishaku source": {
         "score": 6
@@ -1059,7 +1059,7 @@
         "score": 3
     },
     "levelsconfig": {
-        "score": 3
+        "score": 4
     },
     "removeleavechannel": {
         "score": 1

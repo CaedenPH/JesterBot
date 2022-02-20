@@ -5,6 +5,7 @@ import typing
 from disnake.ext import commands
 from core.utils import get_colour
 from core.constants import (
+    COG_DESCRIPTIONS,
     COG_EMOJIS,
     CATEGORIES,
     LINK,
@@ -33,8 +34,6 @@ class HelpUtils:
 
     def __init__(self, bot):
         self.bot = bot
-        with open("./dicts/Descriptions.json") as k:
-            self.data = json.load(k)
 
     async def get_cog_from_str(self, cog_name: str) -> typing.Optional[commands.Cog]:
         cog_name = cog_name.lower()
@@ -44,12 +43,12 @@ class HelpUtils:
                 return self.bot.get_cog(k)
         return None
 
-    async def main_help_embed(self, ctx: commands.Context) -> disnake.Embed:
+    async def main_help_embed(self, ctx: Context) -> disnake.Embed:
         description = f"\n```ml\n[] - Required Argument | <> - Optional Argument``````diff\n+ Use the dropbar to navigate through Categories``````diff\n+ Use {ctx.prefix}help prefix for info about the prefix```"
         cogs = [
             f">  {self.bot.get_emoji(COG_EMOJIS[k])} **{k}** `({len([e for e in self.bot.get_cog(k).walk_commands() if not e.hidden])})`"
             for k in self.bot.cogs
-            if k in self.data
+            if k in COG_DESCRIPTIONS
         ]
 
         return (
@@ -72,14 +71,14 @@ class HelpUtils:
             )
         )
 
-    async def main_help(self, ctx: commands.Context) -> None:
+    async def main_help(self, ctx: Context) -> None:
         embed = await self.main_help_embed(ctx)
         await ctx.reply(
-            embed=embed, view=DropdownView(self.data, ctx, HelpUtils(self.bot))
+            embed=embed, view=DropdownView(COG_DESCRIPTIONS, ctx, HelpUtils(self.bot))
         )
 
     async def specific_command(
-        self, command: commands.Command, ctx: commands.Context
+        self, command: commands.Command, ctx: Context
     ) -> disnake.Embed:
         return (
             disnake.Embed(colour=get_colour())
@@ -116,16 +115,14 @@ class HelpUtils:
             .set_footer(text="<> = needed │ [] = not needed")
         )
 
-    async def specific_cog(
-        self, cog: commands.Cog, ctx: commands.Context
-    ) -> disnake.Embed:
-        if cog.qualified_name not in self.data:
+    async def specific_cog(self, cog: commands.Cog, ctx: Context) -> disnake.Embed:
+        if cog.qualified_name not in COG_DESCRIPTIONS:
             return self.no_command(ctx)
 
         commands = [f"- `{k.name}`" for k in cog.walk_commands() if not k.hidden]
         return (
             disnake.Embed(
-                description=self.data[cog.qualified_name], colour=get_colour()
+                description=COG_DESCRIPTIONS[cog.qualified_name], colour=get_colour()
             )
             .set_author(
                 name=f"{cog.qualified_name}",
@@ -141,7 +138,7 @@ class HelpUtils:
             )
         )
 
-    async def no_command(self, ctx: commands.Context) -> disnake.Embed:
+    async def no_command(self, ctx: Context) -> disnake.Embed:
         message = ctx.message.content.replace(
             f"{ctx.prefix}{ctx.invoked_with} ", ""
         ).strip()
@@ -173,9 +170,6 @@ class Help(commands.Cog):
         self.bot = bot
         self.utils = HelpUtils(bot)
 
-        with open("./dicts/Descriptions.json") as k:
-            self.data = json.load(k)
-
     @commands.command(
         aliases=[
             "h",
@@ -192,7 +186,7 @@ class Help(commands.Cog):
         if not command:
             embed = await self.utils.main_help_embed(ctx)
             return await ctx.reply(
-                embed=embed, view=DropdownView(self.data, ctx, self.utils)
+                embed=embed, view=DropdownView(COG_DESCRIPTIONS, ctx, self.utils)
             )
 
         cog = await self.utils.get_cog_from_str(command)

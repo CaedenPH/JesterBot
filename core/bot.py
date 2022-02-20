@@ -193,7 +193,7 @@ class JesterBot(Bot):
                         bot_msg = self.data[before]["bot"]
                         return await bot_msg.edit(content=msg)
                     except Exception as e:
-                        return print(e)
+                        return
             await self.process_commands(after)
 
     async def on_command_error(self, context, exception) -> None:

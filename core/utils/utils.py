@@ -45,6 +45,7 @@ async def send_embed(
         embed.set_image(url=image)
 
     if isinstance(channel, Context):
+        embed.timestamp = channel.message.created_at
         msg = await channel.reply(embed=embed)
     else:
         msg = await channel.send(embed=embed)

@@ -25,3 +25,20 @@ CREATE TABLE IF NOT EXISTS channels_config (
     channel_id BIGINT PRIMARY KEY,
     channel_types TEXT
 );
+
+CREATE TABLE IF NOT EXISTS snipe (
+    id BIGINT PRIMARY KEY,
+    channel_id BIGINT,
+    user_id BIGINT,
+    message_content TEXT,
+    create_epoch DATE
+);
+
+CREATE TABLE IF NOT EXISTS edit_snipe (
+    id BIGINT PRIMARY KEY,
+    channel_id BIGINT,
+    user_id BIGINT,
+    before_content TEXT,
+    after_content TEXT,
+    create_epoch DATE
+);

@@ -1,245 +1,207 @@
+import time
 import disnake
-import json
+import typing as t
 
-from core.utils import get_colour, update_json, send_embed
 from disnake.ext import commands
 from datetime import datetime
 
+from core import Context, JesterBot
+from core.constants import CLOSE
+from core.utils import get_colour, send_embed
+
 
 class Snipe(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot: JesterBot):
+        self.bot = bot
+
+    async def getch_user(self, user_id: int) -> t.Optional[disnake.User]:
+        user = self.bot.get_user(user_id)
+        if user:
+            return user
+
+        try:
+            user = await self.bot.fetch_user(user_id)
+        except disnake.HTTPException:
+            pass
+        return user or None
 
     @commands.Cog.listener()
-    async def on_message_delete(self, message):
-        with open("./dicts/Snipe.json", "r+") as k:
-            amessage = message.clean_content
-            if not amessage:
-                try:
-                    amessage = str(message.embeds[0].to_dict())
-                except Exception as e:
-                    print(e)
-            data = json.load(k)
-            g = str(message.guild.id)
-            c = str(message.channel.id)
-            if g in data:
-                if c in data[g]:
+    async def on_message_delete(self, message: disnake.Message):
+        if message.author.bot:
+            return
 
-                    data[g][c]["list"].append(amessage)
-                    data[g][c]["author"].append(message.author.name)
-                    data[g][c]["id"].append(message.author.id)
-                    data[g][c]["time"].append(str(message.created_at))
-
-                else:
-                    data[g][c] = {
-                        "list": [amessage],
-                        "author": [message.author.name],
-                        "id": [message.author.id],
-                        "time": [str(message.created_at)],
-                    }
-            else:
-                data[g] = {
-                    c: {
-                        "list": [amessage],
-                        "author": [message.author.name],
-                        "id": [message.author.id],
-                        "time": [str(message.created_at)],
-                    }
-                }
-            update_json(k, data)
+        await self.bot.db.update(
+            "INSERT INTO snipe VALUES (?, ?, ?, ?, ?)",
+            (
+                message.id,
+                message.channel.id,
+                message.author.id,
+                message.content or message.attachments[0].url,
+                time.time(),
+            ),
+        )
 
     @commands.Cog.listener()
-    async def on_message_edit(self, before, after):
+    async def on_message_edit(self, before: disnake.Message, after: disnake.Message):
+        if before.author.bot:
+            return
 
-        with open("./dicts/ESnipe.json", "r+") as k:
-            bmessage = before.clean_content
-            amessage = after.clean_content
-            if not bmessage:
-                try:
-                    bmessage = bmessage.embeds[0].to_dict()
-                except Exception as e:
-                    pass
-            if not amessage:
-                try:
-                    amessage = amessage.embeds[0].to_dict()
-                except Exception as e:
-                    pass
-            data = json.load(k)
-            g = str(before.guild.id)
-            c = str(before.channel.id)
-            if g in data:
-                if c in data[g]:
+        await self.bot.db.update(
+            "INSERT INTO edit_snipe VALUES (?, ?, ?, ?, ?, ?)",
+            (
+                before.id,
+                before.channel.id,
+                before.author.id,
+                before.content or before.attachments[0].url,
+                after.content or after.attachments[0].url,
+                time.time(),
+            ),
+        )
 
-                    data[g][c]["before"].append(bmessage)
-                    data[g][c]["after"].append(amessage)
-                    data[g][c]["author"].append(before.author.name)
-                    data[g][c]["id"].append(before.author.id)
-                    data[g][c]["time"].append(str(before.created_at))
+    @commands.command()
+    async def snipe(self, ctx: Context, amount: int = 0):
+        results = (
+            await self.bot.db.fetchall(
+                "SELECT * FROM snipe WHERE channel_id = ?", (ctx.channel.id,)
+            )
+        )[::-1]
+        if not results:
+            m = await send_embed(
+                ctx, "Snipe", f"> No deleted messages found in {ctx.channel.mention}."
+            )
+            return await m.add_reaction(CLOSE)
+        if amount > len(results):
+            m = await send_embed(
+                ctx, "Snipe", f"> I found no messages {amount} deletes ago."
+            )
+            return await m.add_reaction(CLOSE)
 
-                else:
-                    data[g][c] = {
-                        "author": [before.author.name],
-                        "id": [before.author.id],
-                        "time": [str(before.created_at)],
-                        "after": [amessage],
-                        "before": [bmessage],
-                    }
+        result = results[amount]
+        user = await self.getch_user(result[2])
 
-            else:
-                data[g] = {
-                    c: {
-                        "author": [before.author.name],
-                        "id": [before.author.id],
-                        "time": [str(before.created_at)],
-                        "after": [amessage],
-                        "before": [bmessage],
-                    }
-                }
-            update_json(k, data)
+        embed = disnake.Embed(
+            title="Snipe",
+            description=result[3] + f"\nFrom: {user.mention or 'User not found'}",
+            timestamp=datetime.fromtimestamp(result[4]),
+            colour=get_colour(),
+        ).set_author(
+            name=user.name or "User not found",
+            icon_url=user.display_avatar.url or ctx.author.default_avatar,
+        )
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    async def aim(self, ctx: Context, user: disnake.Member = None):
+        if user is None:
+            user = ctx.author
+
+        results = (
+            await self.bot.db.fetchall(
+                "SELECT * FROM snipe WHERE channel_id = ? and user_id = ?",
+                (ctx.channel.id, user.id),
+            )
+        )[::-1]
+        if not results:
+            m = await send_embed(
+                ctx,
+                "Snipe",
+                f"> No deleted messages from {user.mention} found in {ctx.channel.mention}.",
+            )
+            return await m.add_reaction(CLOSE)
+
+        result = results[0]
+        user = await self.getch_user(result[2])
+
+        embed = disnake.Embed(
+            title="Snipe",
+            description="**Last deleted message: **"
+            + result[3]
+            + f"\nFrom: {user.name or 'User not found'}",
+            timestamp=datetime.fromtimestamp(result[4]),
+            colour=get_colour(),
+        ).set_author(
+            name=user.name or "User not found",
+            icon_url=user.display_avatar.url or ctx.author.default_avatar,
+        )
+        await ctx.send(embed=embed)
 
     @commands.command(aliases=["esnipe"])
-    async def editsnipe(self, ctx, ammount: int = 1):
+    async def editsnipe(self, ctx: Context, amount: int = 0):
+        results = (
+            await self.bot.db.fetchall(
+                "SELECT * FROM edit_snipe WHERE channel_id = ?", (ctx.channel.id,)
+            )
+        )[::-1]
+        if not results:
+            m = await send_embed(
+                ctx,
+                "Edit Snipe",
+                f"> No edited messages found in {ctx.channel.mention}.",
+            )
+            return await m.add_reaction(CLOSE)
+        if amount > len(results):
+            m = await send_embed(
+                ctx, "Edit Snipe", f"> I found no messages {amount} edits ago."
+            )
+            return await m.add_reaction(CLOSE)
 
-        with open("./dicts/ESnipe.json") as k:
-            data = json.load(k)
-            g = str(ctx.guild.id)
-            c = str(ctx.channel.id)
-            if g in data:
-                if c in data[g]:
-                    if len(data[g][c]["id"]) >= ammount:
-                        us = self.client.get_user(
-                            data[g][c]["id"][len(data[g][c]["id"]) - ammount]
-                        )
+        result = results[amount]
+        user = await self.getch_user(result[2])
 
-                        time = datetime.strptime(
-                            str(
-                                data[g][c]["time"][len(data[g][c]["before"]) - ammount][
-                                    :-7
-                                ]
-                            ),
-                            "%Y-%m-%d %X",
-                        )
-
-                        embed = disnake.Embed(
-                            timestamp=time,
-                            description=f"**{data[g][c]['author'][len(data[g][c]['before'])-ammount]} said:** {data[g][c]['before'][len(data[g][c]['before'])-ammount]} \n**Then edited it to:** {data[g][c]['after'][len(data[g][c]['after'])-ammount]}",
-                            colour=get_colour(),
-                        )
-                        embed.set_author(
-                            icon_url=us.avatar.url, name="Most recent message:"
-                        )
-                        return await ctx.reply(embed=embed)
-                    else:
-                        await ctx.message.add_reaction("❌")
-                        return await send_embed(
-                            ctx, "", "The sniped messages dont go back that far!"
-                        )
-
-            await send_embed(ctx, "", "No deleted messages were ever here!")
+        embed = disnake.Embed(
+            title="Edit Snipe",
+            description="Edited from: "
+            + result[3]
+            + "\nEdited to: "
+            + result[4]
+            + "\n"
+            + f"\nFrom: {user.name or 'User not found'}",
+            timestamp=datetime.fromtimestamp(result[5]),
+            colour=get_colour(),
+        ).set_author(
+            name=user.name or "User not found",
+            icon_url=user.display_avatar.url or ctx.author.default_avatar,
+        )
+        await ctx.send(embed=embed)
 
     @commands.command(aliases=["eaim"])
-    async def editaim(self, ctx, user: disnake.Member):
+    async def editaim(self, ctx: Context, user: disnake.Member = None):
+        if user is None:
+            user = ctx.author
 
-        with open("./dicts/Snipe.json") as k:
-            data = json.load(k)
-            g = str(ctx.guild.id)
-            c = str(ctx.channel.id)
+        results = (
+            await self.bot.db.fetchall(
+                "SELECT * FROM edit_snipe WHERE channel_id = ? and user_id = ?",
+                (ctx.channel.id, user.id),
+            )
+        )[::-1]
+        if not results:
+            m = await send_embed(
+                ctx,
+                "Snipe",
+                f"> No deleted messages from {user.mention} found in {ctx.channel.mention}.",
+            )
+            return await m.add_reaction(CLOSE)
 
-            if g in data:
-                if c in data[g]:
-                    t = len(data[g][c]["id"])
+        result = results[0]
+        user = await self.getch_user(result[2])
 
-                    for e in data[g][c]["id"][::-1]:
-                        if e == user.id:
-                            us = self.client.get_user(data[g][c]["id"][t - 1])
-
-                            time = datetime.strptime(
-                                str(data[g][c]["time"][t - 1][:-7]), "%Y-%m-%d %X"
-                            )
-
-                            embed = disnake.Embed(
-                                timestamp=time,
-                                description=f"**{data[g][c]['author'][t-1]} said:** {data[g][c]['before'][t-1]}\n**Then changed it to: **{data[g][c]['after'][t-1]}",
-                                colour=get_colour(),
-                            )
-                            embed.set_author(
-                                icon_url=us.avatar.url, name="Most recent message:"
-                            )
-                            return await ctx.reply(embed=embed)
-                        t -= 1
-
-            await send_embed(ctx, "", "No deleted messages were ever here!")
-
-    @commands.command()
-    async def snipe(self, ctx, ammount: int = 1):
-
-        with open("./dicts/Snipe.json") as k:
-            data = json.load(k)
-            g = str(ctx.guild.id)
-            c = str(ctx.channel.id)
-            if g in data:
-                if c in data[g]:
-                    if len(data[g][c]["id"]) >= ammount:
-
-                        time = datetime.strptime(
-                            str(
-                                data[g][c]["time"][len(data[g][c]["list"]) - ammount][
-                                    :-7
-                                ]
-                            ),
-                            "%Y-%m-%d %X",
-                        )
-
-                        us = self.client.get_user(
-                            data[g][c]["id"][len(data[g][c]["list"]) - ammount]
-                        )
-                        embed = disnake.Embed(
-                            timestamp=time,
-                            description=f"**{data[g][c]['author'][len(data[g][c]['list'])-ammount]} said:** {data[g][c]['list'][len(data[g][c]['list'])-ammount]}",
-                            colour=get_colour(),
-                        )
-                        embed.set_author(
-                            icon_url=us.avatar.url, name="Most recent message:"
-                        )
-                        return await ctx.reply(embed=embed)
-                    else:
-                        await ctx.message.add_reaction("❌")
-                        return await send_embed(
-                            ctx, "", "The sniped messages dont go back that far!"
-                        )
-
-            await send_embed(ctx, "", "No deleted messages were ever here!")
-
-    @commands.command()
-    async def aim(self, ctx, user: disnake.Member):
-        with open("./dicts/Snipe.json") as k:
-            data = json.load(k)
-            g = str(ctx.guild.id)
-            c = str(ctx.channel.id)
-
-            if g in data:
-                if c in data[g]:
-                    t = len(data[g][c]["id"])
-
-                    for e in data[g][c]["id"][::-1]:
-                        if e == user.id:
-                            us = self.client.get_user(data[g][c]["id"][t - 1])
-                            embed = disnake.Embed(
-                                description=f"**{data[g][c]['author'][t-1]} said:** {data[g][c]['list'][t-1]}",
-                                colour=get_colour(),
-                            )
-                            embed.set_footer(
-                                text="At: " + str(data[g][c]["time"][t - 1][:-7])
-                            )
-                            embed.set_author(
-                                icon_url=us.avatar.url, name="Most recent message:"
-                            )
-                            return await ctx.reply(embed=embed)
-
-                        t -= 1
-
-            await send_embed(ctx, "", "No deleted messages were ever here!")
+        embed = disnake.Embed(
+            title="Snipe",
+            description="Edited from: "
+            + result[3]
+            + "\nEdited to: "
+            + result[4]
+            + "\n"
+            + f"\nFrom: {user.name or 'User not found'}",
+            timestamp=datetime.fromtimestamp(result[5]),
+            colour=get_colour(),
+        ).set_author(
+            name=user.name or "User not found",
+            icon_url=user.display_avatar.url or ctx.author.default_avatar,
+        )
+        await ctx.send(embed=embed)
 
 
-def setup(client):
-    client.add_cog(Snipe(client))
+def setup(bot: JesterBot) -> None:
+    bot.add_cog(Snipe(bot))

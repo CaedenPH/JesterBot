@@ -22,7 +22,6 @@ class Event(commands.Cog):
         selected_channel1 = self.bot.get_guild(830161446523371540).get_channel(
             865309892776951808
         )
-        print("I have joined", guild.name + ". Here is the invite: ", invite)
         await selected_channel1.send(
             f"I have joined {guild.name}. Here is the invite: {invite}"
         )
