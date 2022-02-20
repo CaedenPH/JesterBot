@@ -145,7 +145,7 @@ class DigStatus:
 
 
 class Board:
-    def __init__(self, board_size: int, bomb_count: 10):
+    def __init__(self, board_size: int, bomb_count: int):
         self.board_size = board_size
         self.bomb_count = bomb_count
         self.guesses = 0
@@ -374,7 +374,7 @@ class MineSweeper(View):
         self.bomb_count = 5
         self.button_pressed = 0
         self.dig = DigStatus.empty()
-        self.board = Board(self.board_size, self.bomb_count)
+        self.board: Board = None
 
     def wait_for_check(self, m) -> bool:
         return m.author == self.ctx.author and m.channel == self.ctx.channel
@@ -403,7 +403,8 @@ class MineSweeper(View):
             return await self.bot_message.edit(view=self)
 
         self.embed.description = "```yaml\n" + str(desc) + "```"
-        self.embed.set_footer(text=f"Guesses: {self.board.guesses}")
+        if self.board:
+            self.embed.set_footer(text=f"Guesses: {self.board.guesses}")
         await self.bot_message.edit(embed=self.embed, view=self)
 
     async def delete_message(self, message: Message) -> None:
@@ -445,9 +446,8 @@ class MineSweeper(View):
             if self.button_pressed != 1:
                 return
 
-            user_input = re.split(",(\\s)*", message.content)
-
             try:
+                user_input = re.split(",(\\s)*", message.content)
                 row, column = int(user_input[0]), int(user_input[-1])
             except ValueError:
                 self.button_pressed = 0
@@ -501,9 +501,8 @@ class MineSweeper(View):
             if self.button_pressed != 2:
                 return
 
-            user_input = re.split(",(\\s)*", message.content)
-
             try:
+                user_input = re.split(",(\\s)*", message.content)
                 row, column = int(user_input[0]), int(user_input[-1])
             except ValueError:
                 self.button_pressed = 0
@@ -534,6 +533,7 @@ class MineSweeper(View):
                 child.row = 0
             return child
 
+        self.board = Board(self.board_size, self.bomb_count)
         self.children = [undisable(child) for child in self.children if isinstance(child, Button) and child.disabled]
 
         await interaction.response.defer()
