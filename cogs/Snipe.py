@@ -80,13 +80,18 @@ class Snipe(commands.Cog):
         user = await self.getch_user(result[2])
 
         embed = disnake.Embed(
-            title="Snipe",
-            description=result[3] + f"\nFrom: {user.mention or 'User not found'}",
+            description=
+            f"""
+            Message in: {ctx.channel.mention}
+            Message from: {user.mention}
+            ```
+            {result[3]}
+            ```
+            """,
             timestamp=datetime.fromtimestamp(result[4]),
             colour=get_colour(),
-        ).set_author(
-            name=user.name or "User not found",
-            icon_url=user.display_avatar.url or ctx.author.default_avatar,
+        ).set_thumbnail(
+            url=user.display_avatar.url or ctx.author.default_avatar
         )
         await ctx.send(embed=embed)
 
@@ -113,15 +118,16 @@ class Snipe(commands.Cog):
         user = await self.getch_user(result[2])
 
         embed = disnake.Embed(
-            title="Snipe",
-            description="**Last deleted message: **"
-            + result[3]
-            + f"\nFrom: {user.name or 'User not found'}",
+            description=
+            f"""
+            Message in: {ctx.channel.mention}
+            Message from: {user.mention}
+            ```
+            {result[3]}
+            ```
+            """,
             timestamp=datetime.fromtimestamp(result[4]),
             colour=get_colour(),
-        ).set_author(
-            name=user.name or "User not found",
-            icon_url=user.display_avatar.url or ctx.author.default_avatar,
         )
         await ctx.send(embed=embed)
 
@@ -149,18 +155,20 @@ class Snipe(commands.Cog):
         user = await self.getch_user(result[2])
 
         embed = disnake.Embed(
-            title="Edit Snipe",
-            description="Edited from: "
-            + result[3]
-            + "\nEdited to: "
-            + result[4]
-            + "\n"
-            + f"\nFrom: {user.name or 'User not found'}",
-            timestamp=datetime.fromtimestamp(result[5]),
+            description=
+            f"""
+            Message in: {ctx.channel.mention}
+            Message from: {user.mention}
+            ```
+            {result[3]}
+            ```
+            changed to:
+            ```
+            {result[4]}
+            ```
+            """,
+            timestamp=datetime.fromtimestamp(result[4]),
             colour=get_colour(),
-        ).set_author(
-            name=user.name or "User not found",
-            icon_url=user.display_avatar.url or ctx.author.default_avatar,
         )
         await ctx.send(embed=embed)
 
@@ -187,18 +195,20 @@ class Snipe(commands.Cog):
         user = await self.getch_user(result[2])
 
         embed = disnake.Embed(
-            title="Snipe",
-            description="Edited from: "
-            + result[3]
-            + "\nEdited to: "
-            + result[4]
-            + "\n"
-            + f"\nFrom: {user.name or 'User not found'}",
-            timestamp=datetime.fromtimestamp(result[5]),
+            description=
+            f"""
+            Message in: {ctx.channel.mention}
+            Message from: {user.mention}
+            ```
+            {result[3]}
+            ```
+            changed to:
+            ```
+            {result[4]}
+            ```
+            """,
+            timestamp=datetime.fromtimestamp(result[4]),
             colour=get_colour(),
-        ).set_author(
-            name=user.name or "User not found",
-            icon_url=user.display_avatar.url or ctx.author.default_avatar,
         )
         await ctx.send(embed=embed)
 
