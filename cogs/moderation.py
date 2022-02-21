@@ -480,7 +480,10 @@ class Mod(commands.Cog):
         self,
         ctx: Context,
         member: disnake.Member,
-        duration: typing.Union[float, datetime.timedelta,] = 3600,
+        duration: typing.Union[
+            float,
+            datetime.timedelta,
+        ] = 3600,
         reason: str = "No reason provided",
     ) -> None:
         embed = disnake.Embed(

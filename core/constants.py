@@ -46,7 +46,6 @@ RED_FLAG = "🚩"
 SPOON = "🥄"
 STOP_SIGN = "🛑"
 VIDEO_GAME = "🎮"
-HEAVY_MINUS = "➖"
 
 PLAY_BUTTON = "▶️"
 UP_ARROW = "⬆️"
@@ -116,9 +115,13 @@ RED_NUMBERS = {
     8: "<:eight8:945068271563063406>",
     9: "<:nine9:945068271688908821>",
 }
+
 WHITE_BORDER = "<:borHorWhit:945071577907757087>"
 WHITE_HORIZONTAL = "<:borderWhit:945071240387911770>"
+WHITE_CROSS = "<:interWhit:945378476624580668>"
 BLACK_BORDER = "<:borHor:945071577609936956>"
+BLACK_BARRIER = "➖"
+BLACK_CROSS = "➕"
 
 # game
 
@@ -220,13 +223,12 @@ SNAKE_MESSAGE = """
 Board size : {board_size}x{board_size}
 Game mode  : {game_mode}
 """
-SODUKU_MESSAGE = """
-Game difficulty : {difficulty}
+SUDOKU_MESSAGE = """
 Light mode : {light_mode}
 """
 PLACE_NUMBER = """
 **Where do you want to place your number?**
-Enter like: `1` 1` `1` - This will enter the number `1` into box `1`, square `1`.
+Enter like: `1` `1` `1` - This will enter the number `1` into box `1`, square `1`.
 *First num = box number*
 *Second num = square number*
 *Third num = new value*

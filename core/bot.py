@@ -149,12 +149,6 @@ class JesterBot(Bot):
         print("-----------------------------------")
         super().run(BOT_TOKEN, reconnect=True)
 
-    async def on_connect(self) -> None:
-        print(f"Connected to bot. Latency: {self.latency * 1000:,.0f} ms")
-
-    async def on_disconnect(self) -> None:
-        print("Client Disconnected.")
-
     async def on_ready(self) -> None:
         self.update_presence.start()
         print("Client Ready!")

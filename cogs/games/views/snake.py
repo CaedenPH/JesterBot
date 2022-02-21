@@ -67,7 +67,12 @@ class SnakeGame:
         self.board_size = board_size
         self.game_mode = game_mode
 
-        self.snake_pos: t.List[t.List[int, int,]] = [[8, 5], [8, 6], [8, 7], [8, 8], [8, 9], [8, 10]]
+        self.snake_pos: t.List[
+            t.List[
+                int,
+                int,
+            ]
+        ] = [[8, 5], [8, 6], [8, 7], [8, 8], [8, 9], [8, 10]]
         self.sweet_coords: t.List[t.List[int, int,]] = [
             [random.randint(0, self.board_size), random.randint(0, self.board_size)]
             for _ in range(self.game_mode.active_sweets)

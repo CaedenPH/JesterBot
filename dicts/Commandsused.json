@@ -27,7 +27,7 @@
         "score": 105
     },
     "help": {
-        "score": 2246
+        "score": 2247
     },
     "jsonfile": {
         "score": 19
@@ -429,7 +429,7 @@
         "score": 12
     },
     "eval": {
-        "score": 2698
+        "score": 2700
     },
     "pager": {
         "score": 12
@@ -1251,7 +1251,7 @@
         "score": 2
     },
     "source": {
-        "score": 18
+        "score": 19
     },
     "russian_roulette": {
         "score": 1
@@ -1260,13 +1260,13 @@
         "score": 1
     },
     "minesweeper": {
-        "score": 195
+        "score": 213
     },
     "google": {
         "score": 1
     },
-    "soduku": {
-        "score": 163
+    "sudoku": {
+        "score": 197
     },
     "fishing_together": {
         "score": 1

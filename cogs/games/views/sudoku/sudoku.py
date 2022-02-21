@@ -6,22 +6,26 @@ import asyncio
 from disnake import SelectOption, HTTPException, MessageInteraction, Message, Embed, ButtonStyle
 from disnake.ui import View, Button, Item, Select, select, button
 
+from .generator import SudokuGenerator
 from core import Context
 from core.constants import (
     BLACK_BORDER,
+    BLACK_CROSS,
     CLOSE,
-    HEAVY_MINUS,
+    BLACK_BARRIER,
     NUMBERS,
     PLAY_BUTTON,
     RED_NUMBERS,
-    SODUKU_MESSAGE,
+    SUDOKU_MESSAGE,
     VIDEO_GAME,
     BLACK_SQUARE,
     WHITE_BORDER,
+    WHITE_CROSS,
     WHITE_HORIZONTAL,
     WHITE_SQUARE,
     PLACE_NUMBER,
 )
+
 
 class Square:
     bot: bool
@@ -59,66 +63,37 @@ class Square:
             return RED_NUMBERS[self.user_number] if self.light_mode else NUMBERS[self.user_number]
         return WHITE_SQUARE if self.light_mode else BLACK_SQUARE
 
-class SodukuBoard:
+
+class SudokuBoard:
     """
-    represents a soduku board.
+    Represents a sudoku board.
 
     attributes
     ----------
-    `solved_board: t.List[int]`
+    `solved_board: t.List[t.List[int]]`
         the solved_board to view later.
-    `ctx: Context`
-        the context passed through
-        from soduku view.
+    `board: t.List[t.List[Square]]`
+        the unsolved board for the
+        user to view.
     """
 
-    solved_board: t.List[t.List[int]]
-
-    def __init__(self, board: t.List[t.List[int]], ctx: Context, light_mode: bool):
-        self.board = board
-        self.ctx = ctx
+    def __init__(self, board: t.List[t.List[int]], light_mode: bool):
+        self.solved_board = board[0]
+        self.board = board[1]
         self.light_mode = light_mode
 
-    @classmethod
-    async def from_board(cls, *, board: t.List[t.List[int]], ctx: Context, light_mode: bool) -> SodukuBoard:
-        """
-        get the board with solution
-        from an empty board. async for
-        the http get method to work.
-
-        returns
-        -------
-        self: SodukuBoard
-            the SodukuBoard instance with
-            the solved board attached.
-        """
-
-        self = cls(board, ctx, light_mode)
-        self.solved_board = await self.solve_board()
         self.format_board()
-
-        return self
-
-    async def solve_board(self) -> t.List[t.List[int]]:
-        """
-        use post method to solve the board
-
-        returns
-        -------
-        t.List[t.List[int]]
-            the solved board
-        """
-
-        async with self.ctx.bot.client.post(
-            url="https://sugoku.herokuapp.com/solve", 
-            data={"board": str(self.board)},
-            headers={'Content-Type': 'application/x-www-form-urlencoded'}
-        ) as response:
-            return (await response.json())["solution"]
 
     def format_board(self) -> None:
         """
-        format the board
+        insert square classes into all of
+        the squares of the soduku board in order
+        to effectively hide and unhide the
+        squares from the player.
+
+        returns
+        -------
+        None
         """
 
         for row in range(9):
@@ -130,13 +105,13 @@ class SodukuBoard:
 
     def game_won(self) -> bool:
         """
-        checks if the game is won 
+        checks if the game is won
         using recursive list checking
 
         returns
         -------
         bool
-            whether or not the game 
+            whether or not the game
             has won.
         """
 
@@ -162,7 +137,7 @@ class SodukuBoard:
         returns
         -------
         int:
-            the error code to 
+            the error code to
             return.
         """
 
@@ -170,14 +145,14 @@ class SodukuBoard:
         square -= 1
 
         if self.board[box][square].bot:
-            return 3  
+            return 3
 
         self.board[box][square].user_number = value
         if self.game_won():
             return 1
         return 2
 
-    def format(self) -> str:
+    def __str__(self) -> str:
         """
         format the board so the user
         can make use of it.
@@ -192,40 +167,44 @@ class SodukuBoard:
         visual_board = ""
         visual_mode = {
             "border": BLACK_BORDER if self.light_mode else WHITE_BORDER,
-            "barrier": HEAVY_MINUS if self.light_mode else WHITE_HORIZONTAL,
+            "barrier": BLACK_BARRIER if self.light_mode else WHITE_HORIZONTAL,
+            "cross": BLACK_CROSS if self.light_mode else WHITE_CROSS,
         }
 
-        for j in range(3): #square rows
-            for i in range(3): #square columns
-                for k in range(3): #square height
-                    for element in self.board[j*3+k][i*3:i*3+3]: #looping over the three values in a row (1,2,3) -> (4,5,6) -> (7,8,9) -> (1,2,3) -> ...
+        for j in range(3):  # square rows
+            for i in range(3):  # square columns
+                for k in range(3):  # square height
+                    for element in self.board[j * 3 + k][
+                        i * 3 : i * 3 + 3
+                    ]:  # looping over the three values in a row (1,2,3) -> (4,5,6) -> (7,8,9) -> (1,2,3) -> ...
                         visual_board += str(element)
 
                     if 2 > k:
-                        visual_board += visual_mode["border"] 
+                        visual_board += visual_mode["border"]
                 visual_board += "\n"
-
             if 2 > j:
-                visual_board += "".join([visual_mode["barrier"] for _ in range(11)]) + "\n"
+                visual_board += (
+                    "".join(
+                        [
+                            visual_mode["barrier"] + (visual_mode["cross"] if i % 3 == 0 and 8 > i else "")
+                            for i in range(1, 10)
+                        ]
+                    )
+                    + "\n"
+                )
         return visual_board
 
-    def __str__(self) -> str:
-        return self.format()
 
-
-class Soduku(View):
+class Sudoku(View):
     """
-    represents the soduku view.
+    Represents the sudoku view.
 
     attributes
     ----------
-    bot_message: Message
+    `bot_message: Message`
         the message the bot sent at
         the start.
-    difficulty: str
-        the difficulty to pass into
-        the api.
-    ctx: Context
+    `ctx: Context`
         the context passed into the view.
     """
 
@@ -236,7 +215,6 @@ class Soduku(View):
 
         self.ctx = ctx
         self.light_mode = False
-        self.difficulty = "medium"
         self.clicked = False
 
     def wait_for_check(self, m: Message) -> bool:
@@ -260,7 +238,7 @@ class Soduku(View):
         return m.author == self.ctx.author and m.channel == self.ctx.channel
 
     async def on_error(self, error: Exception, item: Item, interaction: MessageInteraction) -> None:
-        return
+        print(error)
 
     async def interaction_check(self, interaction: MessageInteraction) -> bool:
         """
@@ -317,7 +295,10 @@ class Soduku(View):
 
         if desc:
             self.embed.description = str(desc)
-        await self.bot_message.edit(embed=self.embed, view=self)
+        try:
+            await self.bot_message.edit(embed=self.embed, view=self)
+        except HTTPException:
+            return
 
     async def delete_message(self, message: Message) -> None:
         """
@@ -330,7 +311,7 @@ class Soduku(View):
             the message to delete.
         """
 
-        await asyncio.sleep(7.5)
+        await asyncio.sleep(5)
         try:
             await message.delete()
         except HTTPException:
@@ -365,7 +346,6 @@ class Soduku(View):
             if box not in range(1, 10) or square not in range(1, 10) or value not in range(1, 10):
                 return await message.add_reaction(CLOSE)
 
-            
             result = self.board.add_number(box, square, value)
             if result == 3:
                 await message.reply("You cant place a number on a bot square!", delete_after=7.5)
@@ -378,12 +358,12 @@ class Soduku(View):
     @button(label="Play", style=ButtonStyle.green, emoji=PLAY_BUTTON)
     async def play(self, button: Button, interaction: MessageInteraction) -> None:
         """
-        initiate the soduku game.
+        initiate the sudoku game.
 
         checks
         ------
         self.clicked
-            if the button has been 
+            if the button has been
             pressed already
 
         params
@@ -398,14 +378,7 @@ class Soduku(View):
 
         if self.clicked:
             return
-
         self.clicked = True
-        async with self.ctx.bot.client.get(
-            url=f"https://sugoku.herokuapp.com/board?difficulty={self.difficulty}"
-        ) as response:
-            self.board = await SodukuBoard.from_board(
-                board=(await response.json())["board"], ctx=self.ctx, light_mode=self.light_mode
-            )
 
         for child in self.children.copy():
             if child.disabled:
@@ -413,31 +386,14 @@ class Soduku(View):
             else:
                 self.remove_item(child)
 
-        await self.edit_embed(self.board)
+        self.board = SudokuBoard(board=SudokuGenerator().generate_puzzle(), light_mode=self.light_mode)
+
         await interaction.response.defer()
+        await self.edit_embed(self.board)
 
     @button(label="Light mode", style=ButtonStyle.blurple, emoji=WHITE_SQUARE)
     async def white_mode(self, button: Button, interaction: MessageInteraction) -> None:
         self.light_mode = not self.light_mode
 
         await interaction.response.defer()
-        await self.edit_embed(
-            "```yaml\n" + SODUKU_MESSAGE.format(difficulty=self.difficulty, light_mode=self.light_mode) + "```"
-        )
-
-    @select(
-        placeholder="Game difficulty " + VIDEO_GAME,
-        options=[
-            SelectOption(label="easy"),
-            SelectOption(label="medium"),
-            SelectOption(label="hard"),
-            SelectOption(label="random"),
-        ],
-    )
-    async def change_difficulty(self, _select: Select, interaction: MessageInteraction) -> None:
-        self.difficulty = _select.values[0]
-
-        await interaction.response.defer()
-        await self.edit_embed(
-            "```yaml\n" + SODUKU_MESSAGE.format(difficulty=self.difficulty, light_mode=self.light_mode) + "```"
-        )
+        await self.edit_embed("```yaml\n" + SUDOKU_MESSAGE.format(light_mode=self.light_mode) + "```")

@@ -111,7 +111,9 @@ class Utils(commands.Cog):
         if len(characters) > 50:
             return await send_embed(ctx, "", f"Too many characters ({len(characters)}/50)")
 
-        def get_info(char: str) -> Tuple[str, str,]:
+        def get_info(
+            char: str,
+        ) -> Tuple[str, str,]:
             digit = f"{ord(char):x}"
             if len(digit) <= 4:
                 u_code = f"\\u{digit:>04}"

@@ -36,7 +36,13 @@ class Card:
     def value(self) -> int:
         return self._value
 
-    def change_to(self, value: Union[str, int,]) -> None:
+    def change_to(
+        self,
+        value: Union[
+            str,
+            int,
+        ],
+    ) -> None:
         self._value = int(value)
 
 

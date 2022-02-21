@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import asyncio
 import random
-import re
 import typing as t
+import copy
 
 from disnake import HTTPException, MessageInteraction, Message, Embed, ButtonStyle
 from disnake.ui import View, Item, Button, button
@@ -14,7 +14,7 @@ from core.constants import (
     BOMB,
     BLUE_SQUARE,
     CLOSE,
-    HEAVY_MINUS,
+    BLACK_BARRIER,
     PLAY_BUTTON,
     RED_FLAG,
     MINESWEEPER_MESSAGE,
@@ -157,7 +157,13 @@ class Board:
 
         self.create_board()
 
-    def create_board(self, ignore: t.List[int, int,] = None) -> None:
+    def create_board(
+        self,
+        ignore: t.List[
+            int,
+            int,
+        ] = None,
+    ) -> None:
         """
         Creates the game board.
 
@@ -184,7 +190,13 @@ class Board:
                 if not self.board[row][column].bomb:
                     self.board[row][column] = Square.alive(self.get_surrounding_bombs(row, column))
 
-    def add_bombs(self, ignore: t.List[int, int,] = None) -> None:
+    def add_bombs(
+        self,
+        ignore: t.List[
+            int,
+            int,
+        ] = None,
+    ) -> None:
         """
         Add the bombs to the board in a random fashion.
 
@@ -252,7 +264,13 @@ class Board:
             for column in range(self.board_size):
                 self.board[row][column].discovered = True
 
-    def reveal_zeroes(self, hit: t.List[int, int,]) -> None:
+    def reveal_zeroes(
+        self,
+        hit: t.List[
+            int,
+            int,
+        ],
+    ) -> None:
         """
         Shows the zeroes around the number
         on the first players move.
@@ -353,37 +371,61 @@ class Board:
             the visually appealing board.
         """
 
-        visual_board = f"{BLACK_SQUARE} {BLACK_BORDER} {f' {BLACK_BORDER} '.join([RED_NUMBERS[n] for n in range(self.board_size)])}\n{HEAVY_MINUS * ((self.board_size * 3) - 2)}\n"
-        
+        visual_board = f"{BLACK_SQUARE} {BLACK_BORDER} {f' {BLACK_BORDER} '.join([RED_NUMBERS[n] for n in range(self.board_size)])}\n{BLACK_BARRIER * ((self.board_size * 3) - 2)}\n"
+
         for row in range(self.board_size):
             for column in range(self.board_size):
                 if column == 0:
                     visual_board += f"{RED_NUMBERS[row]} {BLACK_BORDER} {self.board[row][column]} {BLACK_BORDER}"
                 else:
                     visual_board += f"{self.board[row][column]} {BLACK_BORDER}"
-            visual_board += f"\n{HEAVY_MINUS * ((self.board_size * 3) - 2)}\n"
+            visual_board += f"\n{BLACK_BARRIER * ((self.board_size * 3) - 2)}\n"
         return visual_board
 
     def __str__(self) -> str:
         return self.format()
 
+
 class MineSweeper(View):
     bot_message: Message
 
-    def __init__(self, ctx: Context):
+    def __init__(self, ctx: Context, new: bool = False):
         super().__init__(timeout=720)
 
         self.ctx = ctx
+        self.button_pressed = 0
+
+        if new:
+            return
+
         self.board_size = 5
         self.bomb_count = 5
-        self.button_pressed = 0
         self.dig = DigStatus.empty()
         self.board: Board = None
+
+    async def new_message(self) -> MineSweeper:
+        def undisable(child: Button):
+            child.disabled = False
+            if child.label == "Exit":
+                child.row = 0
+            return child
+
+        new = MineSweeper(self.ctx, new=True)
+        new.board = self.board
+        new.dig = self.dig
+        new.board_size = self.board_size
+        new.bomb_count = self.bomb_count
+        new.children = [undisable(child) for child in new.children if isinstance(child, Button) and child.disabled]
+
+        await self.exit()
+        return new
 
     def wait_for_check(self, m) -> bool:
         return m.author == self.ctx.author and m.channel == self.ctx.channel
 
     async def exit(self) -> None:
+        self.button_pressed = 0
+
         for child in self.children:
             if not isinstance(child, Button):
                 continue
@@ -395,21 +437,28 @@ class MineSweeper(View):
         await self.exit()
 
     async def on_error(self, error: Exception, item: Item, interaction: MessageInteraction) -> None:
-       return
+        print(error)
 
     async def interaction_check(self, interaction: MessageInteraction) -> bool:
         self.embed: Embed = self.bot_message.embeds[0]
 
         return interaction.author == self.ctx.author and interaction.channel == self.ctx.channel
 
-    async def edit_embed(self, desc: t.Union[str, Board,] = None) -> None:
-        if not desc:
-            return await self.bot_message.edit(view=self)
-
-        self.embed.description = str(desc)
+    async def edit_embed(
+        self,
+        desc: t.Union[
+            str,
+            Board,
+        ] = None,
+    ) -> None:
+        if desc:
+            self.embed.description = str(desc)
         if self.board:
             self.embed.set_footer(text=f"Guesses: {self.board.guesses}")
-        await self.bot_message.edit(embed=self.embed, view=self)
+        try:
+            await self.bot_message.edit(embed=self.embed, view=self)
+        except HTTPException:
+            return
 
     async def delete_message(self, message: Message) -> None:
         await asyncio.sleep(5)
@@ -522,6 +571,13 @@ class MineSweeper(View):
             if self.dig.game_over():
                 return
 
+    @button(label="Resend", style=ButtonStyle.blurple, emoji=BLUE_SQUARE, row=0, disabled=True)
+    async def resend(self, button: Button, interaction: MessageInteraction) -> None:
+        await interaction.response.defer()
+
+        view = await self.new_message()
+        view.bot_message = await self.ctx.send(embed=self.embed, view=view)
+
     @button(label="Play", style=ButtonStyle.green, emoji=PLAY_BUTTON, row=0)
     async def play_button(self, button: Button, interaction: MessageInteraction) -> None:
         """
@@ -543,7 +599,7 @@ class MineSweeper(View):
         await interaction.response.defer()
         await self.edit_embed(self.board)
 
-    @button(label="Change board size", style=ButtonStyle.blurple, emoji=BLUE_SQUARE, row=0)
+    @button(label="Change board size", style=ButtonStyle.blurple, emoji=BLUE_SQUARE, row=1)
     async def change_board_size(self, button: Button, interaction: MessageInteraction) -> None:
         """
         resize the board.
@@ -568,7 +624,7 @@ class MineSweeper(View):
         self.bomb_count = self.board_size
         await self.edit_embed(MINESWEEPER_MESSAGE.format(board_size=self.board_size, bomb_count=self.bomb_count))
 
-    @button(label="Change bomb count", style=ButtonStyle.blurple, emoji=BOMB, row=0)
+    @button(label="Change bomb count", style=ButtonStyle.blurple, emoji=BOMB, row=1)
     async def change_bomb_count(self, button: Button, interaction: MessageInteraction) -> None:
         """
         change the bomb count.
@@ -590,6 +646,5 @@ class MineSweeper(View):
 
     @button(label="Exit", style=ButtonStyle.danger, emoji=STOP_SIGN, disabled=True, row=1)
     async def exit_button(self, button: Button, interaction: MessageInteraction) -> None:
-        self.button_pressed = 0
         await interaction.response.defer()
         await self.exit()

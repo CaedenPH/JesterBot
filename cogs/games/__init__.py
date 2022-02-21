@@ -4,5 +4,5 @@ from .views.dice import Dice
 from .views.minesweeper import MineSweeper
 from .views.rr import RussianRoulette
 from .views.snake import Snake
-from .views.soduku import Soduku
+from .views.sudoku.sudoku import Sudoku
 from .cog import setup
