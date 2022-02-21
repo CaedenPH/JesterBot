@@ -9,6 +9,7 @@ from disnake import HTTPException, MessageInteraction, Message, Embed, ButtonSty
 from disnake.ui import View, Item, Button, button
 
 from core.constants import (
+    BLACK_SQUARE,
     BOMB,
     BLUE_SQUARE,
     CLOSE,
@@ -16,6 +17,7 @@ from core.constants import (
     RED_FLAG,
     MINESWEEPER_MESSAGE,
     NUMBERS,
+    RED_NUMBERS,
     SPOON,
     STOP_SIGN,
 )
@@ -349,15 +351,15 @@ class Board:
             the visually appealing board.
         """
 
-        visual_board = f"🟦 | {' | '.join([NUMBERS[n] for n in range(self.board_size)])} |\n{'-----' * self.board_size + '------'}\n"
+        visual_board = f"{BLACK_SQUARE} | {' | '.join([NUMBERS[n] for n in range(self.board_size)])} |\n{'-----' * self.board_size + '------'}\n"
 
         for row in range(self.board_size):
             for column in range(self.board_size):
                 if column == 0:
-                    visual_board += f"{NUMBERS[row]} | {self.board[row][column]} | "
+                    visual_board += f"{RED_NUMBERS[row]} | {self.board[row][column]} | "
                 else:
                     visual_board += f"{self.board[row][column]} | "
-            visual_board += f"\n{'-----' * self.board_size + '------'}\n"
+            visual_board += f"\n{'-----' * self.board_size}\n"
         return visual_board
 
     def __str__(self) -> str:
@@ -403,7 +405,7 @@ class MineSweeper(View):
         if not desc:
             return await self.bot_message.edit(view=self)
 
-        self.embed.description = "```yaml\n" + str(desc) + "```"
+        self.embed.description = str(desc)
         if self.board:
             self.embed.set_footer(text=f"Guesses: {self.board.guesses}")
         await self.bot_message.edit(embed=self.embed, view=self)
