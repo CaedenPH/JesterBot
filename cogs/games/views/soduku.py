@@ -23,7 +23,6 @@ from core.constants import (
     PLACE_NUMBER,
 )
 
-
 class Square:
     bot: bool
     light_mode: bool
@@ -118,19 +117,34 @@ class SodukuBoard:
             return (await response.json())["solution"]
 
     def format_board(self) -> None:
+        """
+        format the board
+        """
+
+        print(self.board)
+        print(self.solved_board)
+
         for row in range(9):
             for column in range(9):
                 if self.board[row][column] == 0:
                     self.board[row][column] = Square.from_user(self.solved_board[row][column], self.light_mode)
                 else:
                     self.board[row][column] = Square.from_bot(self.board[row][column], self.light_mode)
-        self.board.insert(0, 0)
-        for row in range(1, 10):
-            self.board[row].insert(0, 0)
 
-    def game_won(self) -> None:
-        for row in range(1, 10):
-            for column in range(1, 10):
+    def game_won(self) -> bool:
+        """
+        checks if the game is won 
+        using recursive list checking
+
+        returns
+        -------
+        bool
+            whether or not the game 
+            has won.
+        """
+
+        for row in range(9):
+            for column in range(9):
                 if self.board[row][column].bot:
                     continue
                 if self.board[row][column].user_number != self.board[row][column].number:
@@ -138,6 +152,26 @@ class SodukuBoard:
         return True
 
     def add_number(self, box: int, square: int, value: int) -> int:
+        """
+        add a user inputted number
+        number to the board.
+
+        error_codes = {
+            1: game won
+            2: game continuing
+            3: invalid arg
+        }
+
+        returns
+        -------
+        int:
+            the error code to 
+            return.
+        """
+
+        box -= 1
+        square -= 1
+
         if self.board[box][square].bot:
             return 3  
 
@@ -148,7 +182,7 @@ class SodukuBoard:
 
     def format(self) -> str:
         """
-        format the board so the author
+        format the board so the user
         can make use of it.
 
         returns
@@ -160,20 +194,21 @@ class SodukuBoard:
 
         visual_board = ""
         visual_mode = {
-            "number_square": NUMBERS if self.light_mode else RED_NUMBERS,
-            "empty_square": WHITE_SQUARE if self.light_mode else BLACK_SQUARE,
             "border": BLACK_BORDER if self.light_mode else WHITE_BORDER,
             "barrier": HEAVY_MINUS if self.light_mode else WHITE_HORIZONTAL,
         }
 
-        for row in range(1, 10):
-            for column in range(1, 10):
-                visual_board += str(self.board[row][column])
-                if (column) % 3 == 0 and 7 > column:
-                    visual_board += visual_mode["border"]
+        for j in range(3): #square rows
+            for i in range(3): #square columns
+                for k in range(3): #square height
+                    for element in self.board[j*3+k][i*3:i*3+3]: #looping over the three values in a row (1,2,3) -> (4,5,6) -> (7,8,9) -> (1,2,3) -> ...
+                        visual_board += str(element)
 
-            visual_board += "\n"
-            if (row) % 3 == 0 and 7 > row:
+                    if 2 > k:
+                        visual_board += visual_mode["border"] 
+                visual_board += "\n"
+
+            if 2 > j:
                 visual_board += "".join([visual_mode["barrier"] for _ in range(11)]) + "\n"
         return visual_board
 
