@@ -9,10 +9,12 @@ from disnake import HTTPException, MessageInteraction, Message, Embed, ButtonSty
 from disnake.ui import View, Item, Button, button
 
 from core.constants import (
+    BLACK_BORDER,
     BLACK_SQUARE,
     BOMB,
     BLUE_SQUARE,
     CLOSE,
+    HEAVY_MINUS,
     PLAY_BUTTON,
     RED_FLAG,
     MINESWEEPER_MESSAGE,
@@ -351,26 +353,25 @@ class Board:
             the visually appealing board.
         """
 
-        visual_board = f"{BLACK_SQUARE} | {' | '.join([NUMBERS[n] for n in range(self.board_size)])} |\n{'-----' * self.board_size + '------'}\n"
-
+        visual_board = f"{BLACK_SQUARE} {BLACK_BORDER} {f' {BLACK_BORDER} '.join([RED_NUMBERS[n] for n in range(self.board_size)])}\n{HEAVY_MINUS * ((self.board_size * 3) - 2)}\n"
+        
         for row in range(self.board_size):
             for column in range(self.board_size):
                 if column == 0:
-                    visual_board += f"{RED_NUMBERS[row]} | {self.board[row][column]} | "
+                    visual_board += f"{RED_NUMBERS[row]} {BLACK_BORDER} {self.board[row][column]} {BLACK_BORDER}"
                 else:
-                    visual_board += f"{self.board[row][column]} | "
-            visual_board += f"\n{'-----' * self.board_size}\n"
+                    visual_board += f"{self.board[row][column]} {BLACK_BORDER}"
+            visual_board += f"\n{HEAVY_MINUS * ((self.board_size * 3) - 2)}\n"
         return visual_board
 
     def __str__(self) -> str:
         return self.format()
 
-
 class MineSweeper(View):
     bot_message: Message
 
     def __init__(self, ctx: Context):
-        super().__init__(timeout=540)
+        super().__init__(timeout=720)
 
         self.ctx = ctx
         self.board_size = 5
@@ -394,7 +395,7 @@ class MineSweeper(View):
         await self.exit()
 
     async def on_error(self, error: Exception, item: Item, interaction: MessageInteraction) -> None:
-        return
+       return
 
     async def interaction_check(self, interaction: MessageInteraction) -> bool:
         self.embed: Embed = self.bot_message.embeds[0]
@@ -411,7 +412,7 @@ class MineSweeper(View):
         await self.bot_message.edit(embed=self.embed, view=self)
 
     async def delete_message(self, message: Message) -> None:
-        await asyncio.sleep(7.5)
+        await asyncio.sleep(5)
         try:
             await message.delete()
         except HTTPException:
@@ -441,16 +442,16 @@ class MineSweeper(View):
             return
         self.button_pressed = 1
 
-        await interaction.response.send_message("Where do you want to dig? | Input as `row,column` |", delete_after=15)
+        await interaction.response.send_message("Where do you want to dig? | Input as `row` `column` |", delete_after=5)
         while True:
-            message = await self.ctx.bot.wait_for("message", timeout=540, check=self.wait_for_check)
+            message = await self.ctx.bot.wait_for("message", timeout=720, check=self.wait_for_check)
             asyncio.create_task(self.delete_message(message))
 
             if self.button_pressed != 1:
                 return
 
             try:
-                user_input = re.split(",(\\s)*", message.content)
+                user_input = message.content.split()
                 (row, column) = int(user_input[0]), int(user_input[-1])
             except ValueError:
                 self.button_pressed = 0
@@ -496,16 +497,16 @@ class MineSweeper(View):
             return
         self.button_pressed = 2
 
-        await interaction.response.send_message("Where do you want to flag? | Input as `row,column`", delete_after=15)
+        await interaction.response.send_message("Where do you want to flag? | Input as `row` `column`", delete_after=5)
         while True:
-            message = await self.ctx.bot.wait_for("message", timeout=540, check=self.wait_for_check)
+            message = await self.ctx.bot.wait_for("message", timeout=720, check=self.wait_for_check)
             asyncio.create_task(self.delete_message(message))
 
             if self.button_pressed != 2:
                 return
 
             try:
-                user_input = re.split(",(\\s)*", message.content)
+                user_input = message.content.split()
                 (row, column) = int(user_input[0]), int(user_input[-1])
             except ValueError:
                 self.button_pressed = 0
@@ -550,10 +551,10 @@ class MineSweeper(View):
 
         await interaction.response.send_message(
             "What dimension would you like to change to? | Eg `7` gives a board 7 high and 7 wide | Send integer only",
-            delete_after=15,
+            delete_after=5,
         )
 
-        message = await self.ctx.bot.wait_for("message", timeout=540, check=self.wait_for_check)
+        message = await self.ctx.bot.wait_for("message", timeout=720, check=self.wait_for_check)
         asyncio.create_task(self.delete_message(message))
 
         if int(message.content) > 10:
@@ -574,10 +575,10 @@ class MineSweeper(View):
         """
 
         await interaction.response.send_message(
-            "What would you like the bomb count to be? | Send integer only", delete_after=15
+            "What would you like the bomb count to be? | Send integer only", delete_after=5
         )
 
-        message = await self.ctx.bot.wait_for("message", timeout=540, check=self.wait_for_check)
+        message = await self.ctx.bot.wait_for("message", timeout=720, check=self.wait_for_check)
         if int(message.content) > (self.board_size ** 2) * 0.5:
             return await message.reply("You cant have more than half of the board covered in bombs!", delete_after=30)
         if message.content.isalpha():

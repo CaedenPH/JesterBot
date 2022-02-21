@@ -25,22 +25,22 @@ class Snipe(commands.Cog):
         except disnake.HTTPException:
             pass
         return user or None
-
+    
     @commands.Cog.listener()
     async def on_message_delete(self, message: disnake.Message):
         if message.author.bot:
             return
 
         await self.bot.db.update(
-            "INSERT INTO snipe VALUES (?, ?, ?, ?, ?)",
-            (
-                message.id,
-                message.channel.id,
-                message.author.id,
-                message.content or message.attachments[0].url,
-                time.time(),
-            ),
-        )
+        "INSERT INTO snipe VALUES (?, ?, ?, ?, ?)",
+        (
+            message.id,
+            message.channel.id,
+            message.author.id,
+            message.content or message.attachments[0].url,
+            time.time(),
+        ),
+    )
 
     @commands.Cog.listener()
     async def on_message_edit(self, before: disnake.Message, after: disnake.Message):

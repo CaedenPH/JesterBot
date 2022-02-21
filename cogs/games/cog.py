@@ -47,7 +47,7 @@ class Games(Cog):
     async def minesweeper(self, ctx: Context) -> None:
         embed = Embed(
             title="Mine Sweeper",
-            description="```yaml\n" + MINESWEEPER_MESSAGE.format(board_size=5, bomb_count=5) + "```",
+            description=MINESWEEPER_MESSAGE.format(board_size=5, bomb_count=5),
             colour=get_colour(),
             timestamp=ctx.message.created_at,
         ).set_author(name=ctx.author.name, icon_url=ctx.author.display_avatar.url)

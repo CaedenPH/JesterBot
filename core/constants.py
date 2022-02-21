@@ -212,9 +212,9 @@ HANGMAN = [
       |
 =========""",
 ][::-1]
-MINESWEEPER_MESSAGE = """
+MINESWEEPER_MESSAGE = """```yaml
 Board size : {board_size}x{board_size}
-Bomb count : {bomb_count}
+Bomb count : {bomb_count}```
 """
 SNAKE_MESSAGE = """
 Board size : {board_size}x{board_size}
@@ -226,7 +226,7 @@ Light mode : {light_mode}
 """
 PLACE_NUMBER = """
 **Where do you want to place your number?**
-Enter like: `1, 1, 1` - This will enter the number `1` into box `1`, square `1`.
+Enter like: `1` 1` `1` - This will enter the number `1` into box `1`, square `1`.
 *First num = box number*
 *Second num = square number*
 *Third num = new value*

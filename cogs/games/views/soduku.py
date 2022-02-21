@@ -121,9 +121,6 @@ class SodukuBoard:
         format the board
         """
 
-        print(self.board)
-        print(self.solved_board)
-
         for row in range(9):
             for column in range(9):
                 if self.board[row][column] == 0:
@@ -360,7 +357,7 @@ class Soduku(View):
             asyncio.create_task(self.delete_message(message))
 
             try:
-                user_input = message.content.split(",")
+                user_input = message.content.split()
                 box, square, value = (int(user_input[0]), int(user_input[1]), int(user_input[2]))
             except (IndexError, ValueError):
                 return await message.add_reaction(CLOSE)
