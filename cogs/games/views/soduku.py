@@ -4,7 +4,7 @@ import typing as t
 import asyncio
 
 from disnake import SelectOption, HTTPException, MessageInteraction, Message, Embed, ButtonStyle
-from disnake.ui import View, Button, Select, select, button
+from disnake.ui import View, Button, Item, Select, select, button
 
 from core import Context
 from core.constants import (
@@ -53,10 +53,10 @@ class Square:
     def __str__(self) -> str:
         if self.bot:
             return NUMBERS[self.number] if self.light_mode else RED_NUMBERS[self.number]
-        if self.user_number:
-            return RED_NUMBERS[self.user_number] if self.light_mode else NUMBERS[self.user_number]
         if self.discovered:
             return RED_NUMBERS[self.number] if self.light_mode else NUMBERS[self.number]
+        if self.user_number:
+            return RED_NUMBERS[self.user_number] if self.light_mode else NUMBERS[self.user_number]
         return WHITE_SQUARE if self.light_mode else BLACK_SQUARE
 
 class SodukuBoard:
@@ -235,7 +235,7 @@ class Soduku(View):
     bot_message: Message
 
     def __init__(self, ctx: Context):
-        super().__init__(timeout=720)
+        super().__init__(timeout=7200)
 
         self.ctx = ctx
         self.light_mode = False
@@ -261,6 +261,9 @@ class Soduku(View):
         """
 
         return m.author == self.ctx.author and m.channel == self.ctx.channel
+
+    async def on_error(self, error: Exception, item: Item, interaction: MessageInteraction) -> None:
+        return
 
     async def interaction_check(self, interaction: MessageInteraction) -> bool:
         """
@@ -353,7 +356,7 @@ class Soduku(View):
 
         await interaction.response.send_message(PLACE_NUMBER, delete_after=7.5)
         while True:
-            message = await self.ctx.bot.wait_for("message", timeout=720, check=self.wait_for_check)
+            message = await self.ctx.bot.wait_for("message", timeout=3600, check=self.wait_for_check)
             asyncio.create_task(self.delete_message(message))
 
             try:
