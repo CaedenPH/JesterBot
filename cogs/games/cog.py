@@ -8,8 +8,15 @@ from random import randint, choice
 
 from core.utils import get_colour, send_embed
 from core import Context
-from core.constants import HANGMAN, BLACKJACK_WELCOME, MINESWEEPER_MESSAGE, SNAKE_MESSAGE, SUDOKU_MESSAGE
-from . import BlackJack, Casino, RussianRoulette, Dice, MineSweeper, Snake, Sudoku
+from core.constants import (
+    HANGMAN,
+    BLACKJACK_WELCOME,
+    MINESWEEPER_MESSAGE,
+    SNAKE_MESSAGE,
+    SUDOKU_MESSAGE,
+    WORDLE_MESSAGE,
+)
+from . import BlackJack, Casino, RussianRoulette, Dice, MineSweeper, Snake, Sudoku, Wordle
 
 
 class Games(Cog):
@@ -18,6 +25,18 @@ class Games(Cog):
 
     def message_content(self, guesses_left, guesses, word):
         return f"```yaml\n{HANGMAN[guesses_left]}````{' '.join([k if k in guesses else '_' for k in word])}`\nYou have {guesses_left} guesses left"
+
+    @command()
+    async def wordle(self, ctx: Context) -> None:
+        embed = Embed(
+            title="Wordle",
+            description="```yaml\n" + WORDLE_MESSAGE.format(word_length=5, light_mode=False) + "```",
+            colour=get_colour(),
+            timestamp=ctx.message.created_at,
+        ).set_author(name=ctx.author.name, icon_url=ctx.author.display_avatar.url)
+
+        view = Wordle(ctx)
+        view.bot_message = await ctx.reply(embed=embed, view=view)
 
     @command(aliases=["so", "su"])
     async def sudoku(self, ctx: Context) -> None:

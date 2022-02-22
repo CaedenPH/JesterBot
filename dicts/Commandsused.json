@@ -24,7 +24,7 @@
         "score": 19
     },
     "invite": {
-        "score": 105
+        "score": 106
     },
     "help": {
         "score": 2247
@@ -510,7 +510,7 @@
         "score": 6
     },
     "evalreturn": {
-        "score": 488
+        "score": 489
     },
     "evaldir": {
         "score": 365
@@ -1270,5 +1270,8 @@
     },
     "fishing_together": {
         "score": 1
+    },
+    "wordle": {
+        "score": 35
     }
 }
