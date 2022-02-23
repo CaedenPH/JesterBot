@@ -281,6 +281,7 @@ Game mode  : {game_mode}
 """
 SUDOKU_MESSAGE = """
 Light mode : {light_mode}
+Difficulty : {difficulty}
 """
 WORDLE_MESSAGE = """
 Word length : {word_length}

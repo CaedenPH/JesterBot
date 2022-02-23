@@ -186,6 +186,39 @@ class SudokuGenerator(_SudokuUtils):
     def __init__(self) -> None:
         super().__init__()
 
+    def generate_puzzle(self, difficulty: str) -> t.List[t.List[int]]:
+        """
+        creates a box until the box
+        works (aka returns True)
+
+        returns
+        -------
+        `board:t.List[t.List[int]]`
+            the board instance that was
+            created. Sorted into each box
+        """
+
+        while True:
+            board = self.build_board()
+            if board:
+                board_boxes = [sum(self.get_box(i), start=[]) for i in range(9)]
+                self.remove_numbers(difficulty)
+                return (board_boxes, [sum(self.get_box(i), start=[]) for i in range(9)])
+
+    def remove_numbers(self, difficulty: str) -> None:
+        difficulty_ratio = {
+            "easy": 30,
+            "medium": 25,
+            "hard": 20,
+            "insane": 17
+        }
+        numbers = difficulty_ratio[difficulty]
+
+        for i in range(82-numbers):
+            x = r.randint(0, 8)
+            y = r.randint(0, 8)
+            self.set_xy([y, x], 0)
+
     def build_box(self, index: int) -> None:
         """
         sets the value of the 9
@@ -200,6 +233,7 @@ class SudokuGenerator(_SudokuUtils):
         """
 
         unused_numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        used_numbers = []
         box_coords = {
             0: [[0, 3], [0, 3]],
             1: [[0, 3], [3, 6]],
@@ -218,11 +252,15 @@ class SudokuGenerator(_SudokuUtils):
 
                 possible_numbers = self.get_possible_numbers(xy, unused_numbers)
                 if not possible_numbers:
-                    return
+                    return False
 
                 number = r.choice(possible_numbers)
                 unused_numbers.remove(number)
-                self.set_xy([column, row], number)
+                used_numbers.append([[column, row], number])
+
+        for index in used_numbers:
+            self.set_xy(index[0], index[1])
+        return True
 
     def subtract_list(self, _operand_one: t.List[int], _operand_two: t.List[int]) -> t.List[int]:
         """
@@ -242,20 +280,6 @@ class SudokuGenerator(_SudokuUtils):
             if index in operand_two:
                 operand_one.remove(index)
         return operand_one
-
-    def validate_board(self) -> bool:
-        """
-        validates the board by
-        going through every index
-        in the board and validating
-        it.
-
-        returns
-        -------
-        bool
-            whether or not the board
-            is validated (can run)
-        """
 
     def print_board(self, raw: bool = False) -> None:
         """
@@ -283,26 +307,25 @@ class SudokuGenerator(_SudokuUtils):
                 visual_board += "------------\n"
         print(visual_board)
 
-    def build_board(self) -> None:
-        self.build_box(0)
+    def build_board(self) -> bool:
+        """
+        build the board until
+        it works
+        """
 
+        for i in range(9):
+            built = self.build_box(i)
+            if not built:
+                rebuild = self.build_box(i)
+                if not rebuild:
+                    self.rows: t.List[t.List[int]] = [[0 for _ in range(9)] for __ in range(9)]
+                    return False
+        return True
 
 start_time = datetime.utcnow()
 
 sudoku_board = SudokuGenerator()
-# sudoku_board.set_xy([0, 0], 1)
-# sudoku_board.set_xy([1, 0], 2)
-# sudoku_board.set_xy([2, 3], 3)
-# sudoku_board.set_xy([4, 2], 4)
-# sudoku_board.set_xy([5, 6], 5)
-# sudoku_board.set_xy([6, 6], 6)
-# sudoku_board.set_xy([7, 5], 7)
-# sudoku_board.set_xy([8, 6], 8)
-# sudoku_board.set_xy([8, 8], 9)
-sudoku_board.build_board()
-
-print("\n")
+sudoku_board.generate_puzzle("medium")
 sudoku_board.print_board()
-
 
 print("Seconds taken: " + str((datetime.utcnow() - start_time).total_seconds()))

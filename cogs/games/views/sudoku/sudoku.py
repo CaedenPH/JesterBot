@@ -4,7 +4,7 @@ import typing as t
 import asyncio
 
 from disnake import SelectOption, HTTPException, MessageInteraction, Message, Embed, ButtonStyle
-from disnake.ui import View, Button, Item, Select, select, button
+from disnake.ui import View, Button, Select, Item, select, button
 
 from .generator import SudokuGenerator
 from core import Context
@@ -17,8 +17,8 @@ from core.constants import (
     PLAY_BUTTON,
     RED_NUMBERS,
     SUDOKU_MESSAGE,
-    VIDEO_GAME,
     BLACK_SQUARE,
+    VIDEO_GAME,
     WHITE_BORDER,
     WHITE_CROSS,
     WHITE_HORIZONTAL,
@@ -194,7 +194,6 @@ class SudokuBoard:
                 )
         return visual_board
 
-
 class Sudoku(View):
     """
     Represents the sudoku view.
@@ -216,6 +215,7 @@ class Sudoku(View):
         self.ctx = ctx
         self.light_mode = False
         self.clicked = False
+        self.difficulty = "medium"
 
     def wait_for_check(self, m: Message) -> bool:
         """
@@ -386,14 +386,67 @@ class Sudoku(View):
             else:
                 self.remove_item(child)
 
-        self.board = SudokuBoard(board=SudokuGenerator().generate_puzzle(), light_mode=self.light_mode)
+        self.board = SudokuBoard(board=SudokuGenerator().generate_puzzle(self.difficulty), light_mode=self.light_mode)
 
         await interaction.response.defer()
         await self.edit_embed(self.board)
 
-    @button(label="Light mode", style=ButtonStyle.blurple, emoji=WHITE_SQUARE)
-    async def white_mode(self, button: Button, interaction: MessageInteraction) -> None:
-        self.light_mode = not self.light_mode
+    @select(
+        placeholder=f"Colour settings {BLACK_SQUARE}",
+        options=[
+            SelectOption(label="Light mode"),
+            SelectOption(label="Dark mode"),
+        ],
+    )
+    async def change_colour_settings(self, select: Select, interaction: MessageInteraction) -> None:
+        """
+        user selects whether or not
+        they want dark mode or light
+        mode (aka white squares or
+        black squares.)
 
+        params
+        ------
+        select: Select
+            the select option that was
+            chosen by the user.
+        interaction: MessageInteraction
+            the interaction instance that
+            was returned by the discord api.
+        """
+
+        self.light_mode = select.values[0].startswith("Light")
         await interaction.response.defer()
-        await self.edit_embed("```yaml\n" + SUDOKU_MESSAGE.format(light_mode=self.light_mode) + "```")
+        await self.edit_embed(
+            "```yaml\n" + SUDOKU_MESSAGE.format(difficulty=self.difficulty, light_mode=self.light_mode) + "```"
+        )
+
+    @select(
+        placeholder=f"Change difficulty {VIDEO_GAME}",
+        options=[
+            SelectOption(label="easy"),
+            SelectOption(label="medium"),
+            SelectOption(label="hard"),
+            SelectOption(label="insane"),
+        ],
+    )
+    async def change_difficulty(self, select: Select, interaction: MessageInteraction) -> None:
+        """
+        user changes the word length
+        to either 4, 5, 6 or 7.
+
+        params
+        ------
+        select: Select
+            the select option that was
+            chosen by the user.
+        interaction: MessageInteraction
+            the interaction instance that
+            was returned by the discord api.
+        """
+
+        self.difficulty = select.values[0]
+        await interaction.response.defer()
+        await self.edit_embed(
+            "```yaml\n" + SUDOKU_MESSAGE.format(difficulty=self.difficulty, light_mode=self.light_mode) + "```"
+        )

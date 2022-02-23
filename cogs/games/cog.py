@@ -42,7 +42,7 @@ class Games(Cog):
     async def sudoku(self, ctx: Context) -> None:
         embed = Embed(
             title="sudoku",
-            description="```yaml\n" + SUDOKU_MESSAGE.format(light_mode=False) + "```",
+            description="```yaml\n" + SUDOKU_MESSAGE.format(light_mode=False, difficulty="medium") + "```",
             colour=get_colour(),
             timestamp=ctx.message.created_at,
         ).set_author(name=ctx.author.name, icon_url=ctx.author.display_avatar.url)
