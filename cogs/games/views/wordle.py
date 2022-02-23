@@ -150,7 +150,7 @@ class _WordleView(View):
             was returned by the discord api.
         """
 
-        self.word_length = select.values[0]
+        self.word_length = int(select.values[0])
         await interaction.response.defer()
         await self.edit_embed(
             "```yaml\n" + WORDLE_MESSAGE.format(word_length=self.word_length, light_mode=self.light_mode) + "```"
@@ -212,7 +212,7 @@ class Wordle(_WordleView):
             await self.delete_message(message)
 
             if len(message.content) != self.word_length:
-                return await message.reply(f"You must have a `{self.word_length}` letter long word", delete_after=10)
+                return await message.reply(f"You must send a `{self.word_length}` letter long word", delete_after=10)
 
             async with self.ctx.bot.client.get(
                 url=f"https://wordsapiv1.p.rapidapi.com/words/{message.content}/syllables",

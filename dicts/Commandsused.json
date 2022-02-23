@@ -27,7 +27,7 @@
         "score": 106
     },
     "help": {
-        "score": 2247
+        "score": 2248
     },
     "jsonfile": {
         "score": 19
@@ -42,7 +42,7 @@
         "score": 24
     },
     "ping": {
-        "score": 344
+        "score": 345
     },
     "giveaway": {
         "score": 17
@@ -1230,7 +1230,7 @@
         "score": 6
     },
     "hangman": {
-        "score": 72
+        "score": 73
     },
     "snake": {
         "score": 47
@@ -1260,7 +1260,7 @@
         "score": 1
     },
     "minesweeper": {
-        "score": 213
+        "score": 214
     },
     "google": {
         "score": 1
@@ -1272,6 +1272,6 @@
         "score": 1
     },
     "wordle": {
-        "score": 35
+        "score": 38
     }
 }

@@ -212,9 +212,6 @@ class SudokuGenerator(_SudokuUtils):
             8: [[6, 9], [6, 9]],
         }
 
-        possible_numbers = self.get_possible_numbers([2, 0], unused_numbers)
-        print(possible_numbers)
-
         for row in range(*box_coords[index][0]):
             for column in range(*box_coords[index][1]):
                 xy = [row, column]
@@ -225,7 +222,7 @@ class SudokuGenerator(_SudokuUtils):
 
                 number = r.choice(possible_numbers)
                 unused_numbers.remove(number)
-                self.set_xy(xy, number)
+                self.set_xy([column, row], number)
 
     def subtract_list(self, _operand_one: t.List[int], _operand_two: t.List[int]) -> t.List[int]:
         """
@@ -295,13 +292,13 @@ start_time = datetime.utcnow()
 sudoku_board = SudokuGenerator()
 # sudoku_board.set_xy([0, 0], 1)
 # sudoku_board.set_xy([1, 0], 2)
-sudoku_board.set_xy([2, 3], 3)
-sudoku_board.set_xy([4, 2], 4)
-sudoku_board.set_xy([5, 6], 5)
-sudoku_board.set_xy([6, 6], 6)
-sudoku_board.set_xy([7, 5], 7)
-sudoku_board.set_xy([8, 6], 8)
-sudoku_board.set_xy([8, 8], 9)
+# sudoku_board.set_xy([2, 3], 3)
+# sudoku_board.set_xy([4, 2], 4)
+# sudoku_board.set_xy([5, 6], 5)
+# sudoku_board.set_xy([6, 6], 6)
+# sudoku_board.set_xy([7, 5], 7)
+# sudoku_board.set_xy([8, 6], 8)
+# sudoku_board.set_xy([8, 8], 9)
 sudoku_board.build_board()
 
 print("\n")
