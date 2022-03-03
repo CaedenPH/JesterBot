@@ -43,6 +43,8 @@ async def send_embed(
 
     if isinstance(channel, Context):
         embed.timestamp = channel.message.created_at
+        if not author:
+            embed.set_author(name=channel.author.name, icon_url=channel.author.display_avatar.url)
         msg = await channel.reply(embed=embed)
     else:
         msg = await channel.send(embed=embed)

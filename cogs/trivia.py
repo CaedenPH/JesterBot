@@ -6,10 +6,11 @@ import datetime
 
 from disnake.ext import commands
 from core import Context
+from core import JesterBot
 
 
 class Trivia(commands.Cog):
-    def __init__(self, bot: commands.Bot):
+    def __init__(self, bot: JesterBot):
         self.bot = bot
         self.token = "..."
 
@@ -146,5 +147,5 @@ class Trivia(commands.Cog):
         await ctx.em("```yaml\nThanks for playing!```")
 
 
-def setup(bot: commands.Bot) -> None:
+def setup(bot: JesterBot) -> None:
     bot.add_cog(Trivia(bot))

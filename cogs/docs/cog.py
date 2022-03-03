@@ -7,6 +7,7 @@ from fuzzywuzzy import fuzz
 from docs import cog
 
 from core import Context
+from core import JesterBot
 from core.constants import ZEN_OF_PYTHON
 from . import Paginator, RTFM, Colours
 
@@ -101,5 +102,5 @@ class Docs(cog.Docs, RTFM):
         await ctx.reply(embed=embed.set_footer(text=f"lines {search} is not in the zen lines!"))
 
 
-def setup(bot: commands.Bot) -> None:
+def setup(bot: JesterBot) -> None:
     bot.add_cog(Docs(bot))

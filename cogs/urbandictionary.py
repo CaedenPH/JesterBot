@@ -1,5 +1,6 @@
 from disnake.ext import commands
 from core import Context
+from core import JesterBot
 
 
 class UrbanDictionary(commands.Cog):
@@ -44,5 +45,5 @@ Link: {dictionary['permalink']}"""
         await ctx.reply(output)
 
 
-def setup(bot: commands.Bot) -> None:
+def setup(bot: JesterBot) -> None:
     bot.add_cog(UrbanDictionary(bot))

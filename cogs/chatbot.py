@@ -8,7 +8,7 @@ from core.constants import CHATBOT_KEY, RAPID_API_KEY
 
 
 class ChatBot(commands.Cog):
-    def __init__(self, bot: commands.Bot):
+    def __init__(self, bot: JesterBot):
         self.bot: JesterBot = bot
 
     async def find_or_insert_channel(self, channel_id: int, **kwargs) -> bool:
@@ -19,9 +19,9 @@ class ChatBot(commands.Cog):
         if not result:
             if not insert:
                 return False
-            await self.db.execute("Insert into chatbot values (?)", (channel_id,))
+            await self.bot.db.execute("Insert into chatbot values (?)", (channel_id,))
         if remove:
-            await self.db.execute("Delete from chatbot where channel_id = ?", (channel_id,))
+            await self.bot.db.execute("Delete from chatbot where channel_id = ?", (channel_id,))
         return True
 
     async def get_response(self, message: str, user_id: int) -> typing.Optional[str]:
@@ -75,5 +75,5 @@ class ChatBot(commands.Cog):
         await message.channel.send(response)
 
 
-def setup(bot: commands.Bot) -> None:
+def setup(bot: JesterBot) -> None:
     bot.add_cog(ChatBot(bot))

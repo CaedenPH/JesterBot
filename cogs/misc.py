@@ -351,7 +351,7 @@ class Misc(commands.Cog):
         embed = disnake.Embed(
             title="Booster perks",
             description="Boosting this server can help give us many other perks! Although it's not required we would love for you to boost us!",
-            colour=get_colour,
+            colour=get_colour(),
         )
         embed.add_field(
             name="`1` Free role ",
@@ -377,7 +377,7 @@ class Misc(commands.Cog):
         embed = disnake.Embed(
             title="Nitro perks",
             description="Nitro can improve disnake experience and give many fun perks!",
-            colour=get_colour,
+            colour=get_colour(),
         )
         embed.add_field(
             name="`1` Live streams",
@@ -396,10 +396,10 @@ class Misc(commands.Cog):
         )
         await ctx.reply(embed=embed)
 
-    @commands.command()
+    @commands.command(aliases=["zip"])
     async def zipemojis(self, ctx):
         if len(ctx.guild.emojis) == 0:
-            return await ctx.em(f"Breh, Your server doesn't have any custom emojis.")
+            return await ctx.em(f"Your server doesn't have any custom emojis.")
 
         m = await ctx.em(f"Alright! Zipping all emojis owned by this server for you, This can take some time")
         buf = BytesIO()
@@ -407,7 +407,7 @@ class Misc(commands.Cog):
         async with ctx.typing():
             with zipfile.ZipFile(buf, "w") as f:
                 for emoji in ctx.guild.emojis:
-                    _bytes = await emoji.url.read()
+                    _bytes = await emoji.read()
                     f.writestr(f'{emoji.name}.{"gif" if emoji.animated else "png"}', _bytes)
 
             buf.seek(0)

@@ -194,6 +194,7 @@ class SudokuBoard:
                 )
         return visual_board
 
+
 class Sudoku(View):
     """
     Represents the sudoku view.

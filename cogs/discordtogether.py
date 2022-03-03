@@ -1,11 +1,12 @@
 import discord_together
 
 from disnake.ext import commands
+from core import JesterBot
 from core.constants import BOT_TOKEN
 
 
 class DiscordTogether(commands.Cog):
-    def __init__(self, bot: commands.Bot):
+    def __init__(self, bot: JesterBot):
         self.bot = bot
         self.together_control = None
 

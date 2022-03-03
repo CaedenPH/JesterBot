@@ -408,7 +408,7 @@
         "score": 12
     },
     "booster": {
-        "score": 5
+        "score": 6
     },
     "data": {
         "score": 392
@@ -513,7 +513,7 @@
         "score": 489
     },
     "evaldir": {
-        "score": 365
+        "score": 366
     },
     "quote1": {
         "score": 4
@@ -687,7 +687,7 @@
         "score": 34
     },
     "stop": {
-        "score": 11
+        "score": 12
     },
     "remove": {
         "score": 3
@@ -1273,5 +1273,8 @@
     },
     "wordle": {
         "score": 38
+    },
+    "zipemojis": {
+        "score": 3
     }
 }

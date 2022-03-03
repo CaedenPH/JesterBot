@@ -1,5 +1,4 @@
 import disnake
-import requests
 import aiohttp
 import PIL
 import vacefron
@@ -389,7 +388,7 @@ class Images(commands.Cog):
     @commands.command()
     async def bill(self, ctx: Context):
         async with ctx.typing():
-            async with self.bot.client.get("https://belikebill.ga/billgen-API.php?default=1", verify=False) as response:
+            async with self.bot.client.get("https://belikebill.ga/billgen-API.php?default=1") as response:
 
                 file = open("./images/bill.png", "wb")
                 file.write(await response.read())

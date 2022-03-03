@@ -512,7 +512,7 @@ class Economy(commands.Cog):
         with open("./dicts/Bal.json", "r+") as k:
 
             data = json.load(k)
-            if FALSCH == True:
+            if FALSCH:
                 return await send_embed(ctx, "", "You cannot work! You have got covid")
             mon = data[str(ctx.author.id)]["Bal"]
             x = randint(250, 750)

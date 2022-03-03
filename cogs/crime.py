@@ -4,11 +4,12 @@ import pprint
 
 from disnake.ext import commands
 from core import Context
+from core import JesterBot
 from core.paginator import Paginator
 
 
 class Crime(commands.Cog):
-    def __init__(self, bot: commands.Bot) -> None:
+    def __init__(self, bot: JesterBot) -> None:
         self.bot = bot
 
     @commands.command(aliases=["wanted"])
@@ -184,5 +185,5 @@ class Crime(commands.Cog):
         await pag.paginate(content="      " + content[7:-3].strip(), name=ctx.author, icon_url=ctx.author.avatar.url)
 
 
-def setup(bot: commands.Bot):
+def setup(bot: JesterBot):
     bot.add_cog(Crime(bot))

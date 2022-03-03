@@ -6578,5 +6578,26 @@
         "error": "Command raised an exception: KeyError: 'game_mode'",
         "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
         "command": "sudoku"
+    },
+    "940": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: AttributeError: 'str' object has no attribute 'read'",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "zipemojis"
+    },
+    "941": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Command raised an exception: AttributeError: 'str' object has no attribute 'read'",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'original', 'with_traceback']",
+        "command": "zipemojis"
+    },
+    "942": {
+        "author": "Caeden",
+        "id": 298043305927639041,
+        "error": "Converting to \"int\" failed for parameter \"amount\".",
+        "error_dir": "['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']",
+        "command": "snipe"
     }
 }

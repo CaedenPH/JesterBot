@@ -3,8 +3,6 @@ from __future__ import annotations
 import typing as t
 import random as r
 
-from datetime import datetime
-
 
 class _SudokuUtils:
     """
@@ -206,15 +204,10 @@ class SudokuGenerator(_SudokuUtils):
                 return (board_boxes, [sum(self.get_box(i), start=[]) for i in range(9)])
 
     def remove_numbers(self, difficulty: str) -> None:
-        difficulty_ratio = {
-            "easy": 30,
-            "medium": 25,
-            "hard": 20,
-            "insane": 17
-        }
+        difficulty_ratio = {"easy": 30, "medium": 25, "hard": 20, "insane": 17}
         numbers = difficulty_ratio[difficulty]
 
-        for i in range(82-numbers):
+        for i in range(82 - numbers):
             x = r.randint(0, 8)
             y = r.randint(0, 8)
             self.set_xy([y, x], 0)
@@ -281,32 +274,6 @@ class SudokuGenerator(_SudokuUtils):
                 operand_one.remove(index)
         return operand_one
 
-    def print_board(self, raw: bool = False) -> None:
-        """
-        visually print board
-        | debugging purposes
-
-        returns
-        -------
-        None
-        """
-
-        if raw:
-            print("\n".join([str(s) for s in self.rows]))
-            return
-
-        visual_board = ""
-        for row in range(9):
-            for column in range(9):
-                visual_board += str(self.rows[row][column])
-                if (column + 1) % 3 == 0 and 7 > column:
-                    visual_board += "|"
-
-            visual_board += "\n"
-            if (row + 1) % 3 == 0 and 7 > row:
-                visual_board += "------------\n"
-        print(visual_board)
-
     def build_board(self) -> bool:
         """
         build the board until
@@ -321,11 +288,3 @@ class SudokuGenerator(_SudokuUtils):
                     self.rows: t.List[t.List[int]] = [[0 for _ in range(9)] for __ in range(9)]
                     return False
         return True
-
-start_time = datetime.utcnow()
-
-sudoku_board = SudokuGenerator()
-sudoku_board.generate_puzzle("medium")
-sudoku_board.print_board()
-
-print("Seconds taken: " + str((datetime.utcnow() - start_time).total_seconds()))

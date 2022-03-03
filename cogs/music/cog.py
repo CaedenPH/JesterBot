@@ -7,7 +7,7 @@ from core.utils import get_colour, send_embed
 
 async def embed2(ctx, description) -> disnake.Message:
     embed = disnake.Embed(description=description, colour=get_colour())
-    embed.set_footer(text="Type j.help Music to get all the music commands!")
+    embed.set_footer(text="Type j.help Music to get all the music commands.")
     embed.set_author(name="Music", icon_url=ctx.author.avatar.url)
 
     return await ctx.reply(embed=embed)
@@ -27,14 +27,15 @@ class Music(commands.Cog):
     @commands.command()
     async def join(self, ctx):
         if not ctx.author.voice:
-            return await embed2(ctx, "You are not in a music channel!")
+            return await embed2(ctx, "You are not in a music channel.")
+
         voice_channel = ctx.author.voice.channel
-        if ctx.voice_client is None:
+        if not ctx.voice_client:
             await voice_channel.connect()
             return await embed2(ctx, "Joined")
         else:
             if ctx.voice_client.channel == voice_channel:
-                return await embed2(ctx, "Already here!")
+                return await embed2(ctx, "I am already here.")
             await ctx.voice_client.move_to(voice_channel)
 
     @commands.command()
@@ -42,14 +43,15 @@ class Music(commands.Cog):
         if ctx.voice_client:
             await ctx.voice_client.disconnect()
             return await ctx.message.add_reaction("🎵")
-        await embed2(ctx, "I am not in a music channel!")
+        await embed2(ctx, "I am not in a music channel.")
 
     @commands.command()
     async def play(self, ctx, *, url):
         if not ctx.author.voice:
-            return await embed2(ctx, "You are not in a music channel!")
+            return await embed2(ctx, "You are not in a music channel.")
+
         voice_channel = ctx.author.voice.channel
-        if ctx.voice_client is None:
+        if not ctx.voice_client:
             await voice_channel.connect()
 
         player = self.music.get_player(guild_id=ctx.guild.id)
@@ -66,6 +68,9 @@ class Music(commands.Cog):
     @commands.command()
     async def pause(self, ctx):
         player = self.music.get_player(guild_id=ctx.guild.id)
+        if not player:
+            return await embed2(ctx, "You are not playing any music.")
+
         song = await player.pause()
         await embed2(ctx, f"**Paused:** {song.name}")
 
@@ -78,12 +83,18 @@ class Music(commands.Cog):
     @commands.command()
     async def stop(self, ctx):
         player = self.music.get_player(guild_id=ctx.guild.id)
+        if not player:
+            return await embed2(ctx, "You are not playing any music.")
+
         await player.stop()
         await embed2(ctx, "Stopped")
 
     @commands.command()
     async def loop(self, ctx):
         player = self.music.get_player(guild_id=ctx.guild.id)
+        if not player:
+            return await embed2(ctx, "You are not playing any music.")
+
         song = await player.toggle_song_loop()
         if song.is_looping:
             await embed2(ctx, f"**Enabled loop for:** {song.name}")

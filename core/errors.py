@@ -11,6 +11,7 @@ from disnake.ext.commands import (
     RoleNotFound,
     MemberNotFound,
     CommandInvokeError,
+    BadArgument,
 )
 
 from core.utils import get_colour, send_embed, update_json
@@ -39,24 +40,30 @@ async def unexpected(ctx, error):
 
 
 async def error_handler(ctx, error) -> None:
-    bot = ctx.bot
+    if ctx.bot.hiber:
+        return
 
     if isinstance(error, MissingPermissions):
         embed = disnake.Embed(description="You do not have permissions to do that!", colour=get_colour())
         await ctx.reply(embed=embed)
     elif isinstance(error, CheckFailure):
         pass
+    elif isinstance(error, BadArgument):
+        args = error.args[0].strip(".").split()
+        _type, param = args[2].strip('"'), args[-1].strip('"')
+
+        await send_embed(ctx, "Error", f"```yaml\nParameter '{param}' must be type {_type}!```")
     elif isinstance(error, MissingRequiredArgument):
         com = str(ctx.command.signature)
         x = com.split(f"{error.param.name}")
         y = " "
         z = "  "
-        for k in str(ctx.command):
-            z += " "
-        for e in error.param.name:
-            y += "^"
 
-        for k in range(0, len(x[0])):
+        for _ in str(ctx.command):
+            z += " "
+        for _ in error.param.name:
+            y += "^"
+        for _ in range(0, len(x[0])):
             z += " "
 
         await send_embed(
@@ -67,18 +74,16 @@ async def error_handler(ctx, error) -> None:
         )
 
     elif isinstance(error, CommandNotFound):
-        if bot.hiber:
-            return
         with open("./dicts/Suggest.json") as l:
             data = json.load(l)
-            if str(ctx.channel.id) in data and data[str(ctx.channel.id)]["Yes"] == True:
+            if str(ctx.channel.id) in data and data[str(ctx.channel.id)]["Yes"]:
                 return
         try:
             y = []
             content = ctx.message.content
             content_replace = content.replace(ctx.prefix, "")
 
-            for cmd in bot.commands:
+            for cmd in ctx.bot.commands:
 
                 if cmd.name[:1] == content_replace[:1]:
 
@@ -91,9 +96,7 @@ async def error_handler(ctx, error) -> None:
                         else:
                             y.append(f"`{cmd.name}`")
             my_string = ""
-            n = 0
             for string in y:
-
                 my_string += f" \n - {str(string)}"
 
             num = 1
@@ -105,7 +108,6 @@ async def error_handler(ctx, error) -> None:
             embed.set_author(icon_url=ctx.author.avatar.url, name=f"{failed_cmd} is not a command!")
 
             if my_string[0] not in [""]:
-
                 embed.add_field(name="Did you mean:", value=f"{my_string[0]}")
 
             msg = await ctx.reply(embed=embed)
@@ -123,7 +125,7 @@ async def error_handler(ctx, error) -> None:
                     await msg.add_reaction(close)
                     await msg.add_reaction(right)
                     try:
-                        (emoji, user) = await bot.wait_for("reaction_add", timeout=60.0, check=check)
+                        (emoji, user) = await ctx.bot.wait_for("reaction_add", timeout=60.0, check=check)
 
                         while str(emoji.emoji) != close:
                             if str(emoji.emoji) == right and num == 1:
@@ -148,7 +150,7 @@ async def error_handler(ctx, error) -> None:
                                 await msg.remove_reaction(member=ctx.author, emoji=right)
                                 await msg.remove_reaction(member=ctx.author, emoji=left)
 
-                            (emoji, user) = await bot.wait_for(
+                            (emoji, user) = await ctx.bot.wait_for(
                                 "reaction_add", timeout=60.0, check=lambda r, u: u == ctx.author
                             )
                         else:

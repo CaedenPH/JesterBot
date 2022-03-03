@@ -157,7 +157,7 @@ class Event(commands.Cog):
             data = json.load(k)
 
             if str(message.channel.id) in data:
-                if data[str(message.channel.id)]["Yes"] == True:
+                if data[str(message.channel.id)]["Yes"]:
 
                     if message.content != "verify":
                         await message.delete()

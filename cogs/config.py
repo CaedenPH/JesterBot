@@ -138,7 +138,7 @@ class Config(Cog):
                 await x.pin()
                 await channel.purge(limit=1)
             else:
-                if data[str(channel.id)]["Yes"] == False:
+                if not data[str(channel.id)]["Yes"]:
                     data[str(channel.id)]["Yes"] = True
                     update_json(k, data)
                     embed = disnake.Embed(title="Applied", colour=get_colour())

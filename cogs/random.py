@@ -7,6 +7,7 @@ import yaml
 from disnake.ext import commands
 from pathlib import Path
 from core import Context
+from core import JesterBot
 
 
 class Random(commands.Cog):
@@ -224,5 +225,5 @@ class Random(commands.Cog):
         await ctx.em(f"Random food: `{choice}`")
 
 
-def setup(bot: commands.Bot) -> None:
+def setup(bot: JesterBot) -> None:
     bot.add_cog(Random(bot))
