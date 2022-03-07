@@ -4,6 +4,7 @@ from .views.dice import Dice
 from .views.minesweeper import MineSweeper
 from .views.rr import RussianRoulette
 from .views.snake import Snake
+from .views.speed_test import SpeedTest
 from .views.sudoku.sudoku import Sudoku
 from .views.wordle import Wordle
 from .cog import setup

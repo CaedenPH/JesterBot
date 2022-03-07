@@ -30,10 +30,7 @@ class Context(Context):
         bot: JesterBot,
         view: view.StringView,
         args: List[Any] = MISSING,
-        kwargs: Dict[
-            str,
-            Any,
-        ] = MISSING,
+        kwargs: Dict[str, Any,] = MISSING,
         prefix: Optional[str] = None,
         command: Optional[Command] = None,
         invoked_with: Optional[str] = None,
@@ -46,9 +43,7 @@ class Context(Context):
         self.message: Message = message
         self.bot: JesterBot = bot
         self.args: List[Any] = args or []
-        self.kwargs: Dict[str, Any,] = (
-            kwargs or {}
-        )
+        self.kwargs: Dict[str, Any,] = kwargs or {}
         self.prefix: Optional[str] = prefix
         self.command: Optional[Command] = command
         self.view: view.StringView = view

@@ -98,10 +98,7 @@ class _WordleView(View):
 
     @select(
         placeholder=f"Colour settings {BLACK_SQUARE}",
-        options=[
-            SelectOption(label="Light mode"),
-            SelectOption(label="Dark mode"),
-        ],
+        options=[SelectOption(label="Light mode"), SelectOption(label="Dark mode")],
     )
     async def change_colour_settings(self, select: Select, interaction: MessageInteraction) -> None:
         """
@@ -128,12 +125,7 @@ class _WordleView(View):
 
     @select(
         placeholder=f"Change word length {VIDEO_GAME}",
-        options=[
-            SelectOption(label="4"),
-            SelectOption(label="5"),
-            SelectOption(label="6"),
-            SelectOption(label="7"),
-        ],
+        options=[SelectOption(label="4"), SelectOption(label="5"), SelectOption(label="6"), SelectOption(label="7")],
     )
     async def change_word_length(self, select: Select, interaction: MessageInteraction) -> None:
         """
@@ -254,7 +246,6 @@ class Wordle(_WordleView):
 
         with open("./resources/hangman_words.txt") as f:
             self.word = random.choice([w.strip() for w in f.readlines() if len(w.strip()) == self.word_length])
-            print(self.word)
 
         def undisable(c: t.Union[Button, Select]) -> Item:
             c.disabled = False

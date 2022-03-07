@@ -109,7 +109,10 @@ async def run_executed(ctx: Bot) -> None:
         )
 
     score = await bot.db.fetchone("SELECT score FROM overall_score")
-    await bot.db.update("UPDATE overall_score SET score = ?", (int(score[0]) + 1,))
+    try:
+        await bot.db.update("UPDATE overall_score SET score = ?", (int(score[0]) + 1,))
+    except TypeError:
+        return
 
     if ctx.command.name == "color":
         for cog in tuple(bot.extensions):

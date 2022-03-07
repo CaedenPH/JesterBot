@@ -46,6 +46,8 @@ RED_FLAG = "🚩"
 SPOON = "🥄"
 STOP_SIGN = "🛑"
 VIDEO_GAME = "🎮"
+CHECKERED_FLAG = "🏁"
+STOPWATCH = "⏱️"
 
 PLAY_BUTTON = "▶️"
 UP_ARROW = "⬆️"
@@ -286,6 +288,10 @@ Difficulty : {difficulty}
 WORDLE_MESSAGE = """
 Word length : {word_length}
 Light mode  : {light_mode}
+"""
+SPEEDTEST_MESSAGE = """
+Difficulty : {difficulty}
+Test time  : {test_time}s
 """
 PLACE_NUMBER = """
 **Where do you want to place your number?**

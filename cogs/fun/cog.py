@@ -128,7 +128,7 @@ class Fun(commands.Cog):
         except:
             await send_embed(ctx, "", "They are not a minecraft player! Enter their in-game username")
 
-    @commands.command(aliases=["emojis", "sentance"])
+    @commands.command(aliases=["emojis", "sentence"])
     async def name(self, ctx: Context, *, name):
         list = []
         for k in name:

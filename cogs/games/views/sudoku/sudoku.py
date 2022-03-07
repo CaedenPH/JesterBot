@@ -394,10 +394,7 @@ class Sudoku(View):
 
     @select(
         placeholder=f"Colour settings {BLACK_SQUARE}",
-        options=[
-            SelectOption(label="Light mode"),
-            SelectOption(label="Dark mode"),
-        ],
+        options=[SelectOption(label="Light mode"), SelectOption(label="Dark mode")],
     )
     async def change_colour_settings(self, select: Select, interaction: MessageInteraction) -> None:
         """

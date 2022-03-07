@@ -3,20 +3,22 @@ import json
 import asyncio
 
 from disnake import Embed
-from disnake.ext.commands import command, Cog
+from disnake.ext.commands import Cog, command
 from random import randint, choice
 
 from core.utils import get_colour, send_embed
 from core import Context
 from core.constants import (
+    CHECKERED_FLAG,
     HANGMAN,
     BLACKJACK_WELCOME,
     MINESWEEPER_MESSAGE,
     SNAKE_MESSAGE,
     SUDOKU_MESSAGE,
     WORDLE_MESSAGE,
+    SPEEDTEST_MESSAGE,
 )
-from . import BlackJack, Casino, RussianRoulette, Dice, MineSweeper, Snake, Sudoku, Wordle
+from . import BlackJack, Casino, RussianRoulette, Dice, MineSweeper, Snake, Sudoku, Wordle, SpeedTest
 
 
 class Games(Cog):
@@ -25,6 +27,18 @@ class Games(Cog):
 
     def message_content(self, guesses_left, guesses, word):
         return f"```yaml\n{HANGMAN[guesses_left]}````{' '.join([k if k in guesses else '_' for k in word])}`\nYou have {guesses_left} guesses left"
+
+    @command(aliases=["speed", "speedtest", "sp"])
+    async def speed_test(self, ctx: Context) -> None:
+        embed = Embed(
+            title=f"{CHECKERED_FLAG} SPEED TEST {CHECKERED_FLAG}",
+            description="```yaml\n" + SPEEDTEST_MESSAGE.format(difficulty="medium", test_time=30) + "```",
+            colour=get_colour(),
+            timestamp=ctx.message.created_at,
+        ).set_author(name=ctx.author.name, icon_url=ctx.author.display_avatar.url)
+
+        view = SpeedTest(ctx)
+        view.bot_message = await ctx.reply(embed=embed, view=view)
 
     @command()
     async def wordle(self, ctx: Context) -> None:
