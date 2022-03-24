@@ -157,7 +157,13 @@ class Board:
 
         self.create_board()
 
-    def create_board(self, ignore: t.List[int, int,] = None) -> None:
+    def create_board(
+        self,
+        ignore: t.List[
+            int,
+            int,
+        ] = None,
+    ) -> None:
         """
         Creates the game board.
 
@@ -184,7 +190,13 @@ class Board:
                 if not self.board[row][column].bomb:
                     self.board[row][column] = Square.alive(self.get_surrounding_bombs(row, column))
 
-    def add_bombs(self, ignore: t.List[int, int,] = None) -> None:
+    def add_bombs(
+        self,
+        ignore: t.List[
+            int,
+            int,
+        ] = None,
+    ) -> None:
         """
         Add the bombs to the board in a random fashion.
 
@@ -252,7 +264,13 @@ class Board:
             for column in range(self.board_size):
                 self.board[row][column].discovered = True
 
-    def reveal_zeroes(self, hit: t.List[int, int,]) -> None:
+    def reveal_zeroes(
+        self,
+        hit: t.List[
+            int,
+            int,
+        ],
+    ) -> None:
         """
         Shows the zeroes around the number
         on the first players move.
@@ -426,7 +444,13 @@ class MineSweeper(View):
 
         return interaction.author == self.ctx.author and interaction.channel == self.ctx.channel
 
-    async def edit_embed(self, desc: t.Union[str, Board,] = None) -> None:
+    async def edit_embed(
+        self,
+        desc: t.Union[
+            str,
+            Board,
+        ] = None,
+    ) -> None:
         if desc:
             self.embed.description = str(desc)
         if self.board:

@@ -10,12 +10,8 @@ from core.constants import CHECKERED_FLAG, PLAY_BUTTON, SPEEDTEST_MESSAGE, STOPW
 from core.context import Context
 
 
-DIFFICULTY_CONVERTER = {
-    "easy": 30,
-    "medium": 60,
-    "hard": 120,
-    "insane": 180
-} # difficulty to sentance length
+DIFFICULTY_CONVERTER = {"easy": 30, "medium": 60, "hard": 120, "insane": 180}  # difficulty to sentance length
+
 
 class _SpeedTestView(View):
     """
@@ -24,12 +20,13 @@ class _SpeedTestView(View):
     attributes
     ----------
     bot_message: Message
-        the bot's original message that is 
-        passed in ``after`` the instance is 
+        the bot's original message that is
+        passed in ``after`` the instance is
         initiated. Added to avoid having to
         use disnake's dodgy get_original_message
         method.
     """
+
     bot_message: Message
 
     def __init__(self, ctx: Context):
@@ -51,7 +48,9 @@ class _SpeedTestView(View):
         await self.exit()
 
     async def interaction_check(self, interaction: MessageInteraction) -> bool:
-        self.embed: Embed = self.bot_message.embeds[0] # cant assign anywhere else because bot_message is passed ** after ** the instance is created.
+        self.embed: Embed = self.bot_message.embeds[
+            0
+        ]  # cant assign anywhere else because bot_message is passed ** after ** the instance is created.
 
         return interaction.author == self.ctx.author and interaction.channel == self.ctx.channel
 
@@ -93,8 +92,8 @@ class _SpeedTestView(View):
     )
     async def change_difficulty(self, select: Select, interaction: MessageInteraction) -> None:
         """
-        user changes the difficulty 
-        to either easy, hard, medium 
+        user changes the difficulty
+        to either easy, hard, medium
         or insane which is then parsed
         by the bot.
 
@@ -114,10 +113,14 @@ class _SpeedTestView(View):
             "```yaml\n" + SPEEDTEST_MESSAGE.format(difficulty=self.difficulty, test_time=self.test_time) + "```"
         )
 
-
     @select(
         placeholder=f"Change test time {STOPWATCH}",
-        options=[SelectOption(label="15"), SelectOption(label="30"), SelectOption(label="60"), SelectOption(label="120")],
+        options=[
+            SelectOption(label="15"),
+            SelectOption(label="30"),
+            SelectOption(label="60"),
+            SelectOption(label="120"),
+        ],
     )
     async def change_test_time(self, select: Select, interaction: MessageInteraction) -> None:
         """
@@ -141,7 +144,6 @@ class _SpeedTestView(View):
         )
 
 
-
 class SpeedTest(_SpeedTestView):
     """
     represents the speedtest game.
@@ -153,8 +155,8 @@ class SpeedTest(_SpeedTestView):
     async def start_game(self, players: t.List[Member]) -> None:
         """
         starts the game which entails
-        generating a sentence, showing 
-        the sentence, waiting for users 
+        generating a sentence, showing
+        the sentence, waiting for users
         to react (within the time frame)
         and then display statistics.
         """
@@ -162,7 +164,7 @@ class SpeedTest(_SpeedTestView):
         sentence = self._get_sentence()
 
         await self.edit_embed(sentence)
-        await self.bot_message.reply("") 
+        await self.bot_message.reply("")
 
     @button(label="Play", style=ButtonStyle.green, emoji=PLAY_BUTTON)
     async def play(self, button: Button, interaction: MessageInteraction) -> None:
@@ -186,13 +188,15 @@ class SpeedTest(_SpeedTestView):
             return
         self.clicked = True
 
-        def disable(c: Item) -> Item:
+        def disable(c: t.Union[Button, Select]) -> t.Union[Button, Select]:
             c.disabled = True
             return c
 
         self.children = [disable(c) for c in self.children]
 
-        _m = await self.bot_message.reply(f"{CHECKERED_FLAG} ** REACT TO PLAY ** {CHECKERED_FLAG}\nGame starting 30 seconds.")
+        _m = await self.bot_message.reply(
+            f"{CHECKERED_FLAG} ** REACT TO PLAY ** {CHECKERED_FLAG}\nGame starting 30 seconds."
+        )
         await _m.add_reaction(CHECKERED_FLAG)
 
         await interaction.response.defer()
@@ -200,8 +204,10 @@ class SpeedTest(_SpeedTestView):
         await asyncio.sleep(30)
 
         m = self.ctx.bot.get_message(_m.id)
-        players = [p for p in await [m for m in m.reactions if m.emoji == CHECKERED_FLAG][0].users().flatten() if not p.bot]
+        players = [
+            p for p in await [m for m in m.reactions if m.emoji == CHECKERED_FLAG][0].users().flatten() if not p.bot
+        ]
         if not players:
             return await self.bot_message.reply("**NO ONE REACTED**")
 
-        await self.instigate_game(players)
+        await self.start_game(players)
