@@ -5,6 +5,7 @@ asyncpraw
 async_cse
 discord-together
 disnake
+essential-generators
 fuzzywuzzy
 glitch-this
 jishaku
