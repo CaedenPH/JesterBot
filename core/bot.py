@@ -35,7 +35,7 @@ class JesterBot(Bot):
         self.launch_time = datetime.datetime.utcnow()
         self.COGS: list = list()
         self.time_limit: int = 120
-        self.disnakecolor = 0x36393F
+        self.discord_colour = 0x36393F
         self.hiber = False
         self.data = {}
 
