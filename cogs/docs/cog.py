@@ -19,14 +19,14 @@ class Docs(cog.Docs, RTFM):
     PYPI_COLOURS = itertools.cycle((Colours.yellow, Colours.blue, Colours.white))
     TAGS = [k[:-3] for k in os.listdir("./resources/tags")]
 
-    def __init__(self, bot):
+    def __init__(self, bot: JesterBot):
         super().__init__(bot)
+        self.bot = bot
         self.items = (
             ("disnake", "https://disnake.readthedocs.io/en/latest/"),
             ("python", "https://docs.python.org/3/"),
             ("aiohttp", "https://aiohttp.readthedocs.io/en/stable/"),
         )
-        self.bot = bot
 
     def get_tag_embed(self, author: disnake.Member, tag: str):
         tag = max([(_tag, fuzz.ratio(tag, _tag)) for _tag in self.TAGS], key=lambda m: m[1])[0]
@@ -49,7 +49,7 @@ class Docs(cog.Docs, RTFM):
         async with self.bot.client.get(self.URL.format(package=package)) as response:
             if response.status == 404:
                 embed.description = "Package could not be found."
-            elif response.status == 200 and response._type == "application/json":
+            elif response.status == 200 and response.content_type == "application/json":
                 response_json = await response.json()
 
                 info = response_json["info"]
@@ -68,8 +68,8 @@ class Docs(cog.Docs, RTFM):
                 embed.description = "There was an error when fetching your PyPi package."
         await ctx.reply(embed=embed)
 
-    @commands.command(name="tag", aliases=["tags"])
-    async def _tag(self, ctx: Context, tag: str = None) -> None:
+    @commands.command(aliases=["tags"])
+    async def tag(self, ctx: Context, tag: str = None) -> None:
         if not tag:
             return await self.tag_list(ctx)
 
