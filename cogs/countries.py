@@ -5,10 +5,11 @@ from disnake.ext import commands
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM
 
+from core.context import Context
 from core.utils import send_embed
 
 
-async def makeimg(ctx, url):
+async def makeimg(ctx: Context, url):
     try:
         async with ctx.typing():
             async with ctx.bot.client.get(url) as response:
@@ -29,7 +30,7 @@ class Countries(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def country(self, ctx, *, name):
+    async def country(self, ctx: Context, *, name):
         name = name.split(" ")
         name = "%20".join(name)
         async with self.bot.client.get(f"https://restcountries.com/v3.1/name/{name}") as resp:
@@ -43,7 +44,7 @@ class Countries(commands.Cog):
             await send_embed(ctx, "", result)
 
     @commands.command()
-    async def findcountry(self, ctx, *, name):
+    async def findcountry(self, ctx: Context, *, name):
         y = []
         async with self.bot.client.get(f"https://restcountries.eu/rest/v2/all") as resp:
             x = await resp.json()
@@ -53,7 +54,7 @@ class Countries(commands.Cog):
         await send_embed(ctx, "Countries relating to " + name, ", ".join(y))
 
     @commands.command()
-    async def flag(self, ctx, *, country):
+    async def flag(self, ctx: Context, *, country):
         y = True
         x = await makeimg(ctx, f"https://restcountries.eu/data/{country}.svg")
         if not x:
@@ -62,7 +63,7 @@ class Countries(commands.Cog):
                 y = await makeimg(ctx, f"{js[0]['flag']}")
 
     @commands.command(aliases=["ewh"])
-    async def endworldhunger(self, ctx):
+    async def endworldhunger(self, ctx: Context):
         embed = disnake.Embed(
             title="How to end world hunger",
             description="What are the ways to stop world hunger? Work tirelessly for an international organization? [Donate](https://borgenproject.org/donate/) old clothes and toys to our local Salvation Army? Or is it even possible? There are hundreds of theories on how we can end world hunger and activists debate many of them. Some have been effective and others not. One thing is certain, and that is that we must do something. Discussed below are 10 effective world hunger solutions.",

@@ -59,7 +59,7 @@ class Images(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def sharp(self, ctx, sharpness: float = 10, member: disnake.Member = None):
+    async def sharp(self, ctx: Context, sharpness: float = 10, member: disnake.Member = None):
         x = await pilimg(ctx, member, "sharp")
         enhancer = PIL.ImageEnhance.Sharpness(x[0])
         enhancer.enhance(sharpness)
@@ -67,7 +67,7 @@ class Images(commands.Cog):
         await ctx.reply(file=disnake.File(x[1]))
 
     @commands.command()
-    async def enhance(self, ctx, factor: float, member: disnake.Member = None):
+    async def enhance(self, ctx: Context, factor: float, member: disnake.Member = None):
         x = await pilimg(ctx, member, "contrast")
         enhancer = PIL.ImageEnhance._Enhance()
         enhancer.enhance(factor)
@@ -75,7 +75,7 @@ class Images(commands.Cog):
         await ctx.reply(file=disnake.File(x[1]))
 
     @commands.command()
-    async def contrast(self, ctx, factor: float, member: disnake.Member = None):
+    async def contrast(self, ctx: Context, factor: float, member: disnake.Member = None):
         x = await pilimg(ctx, member, "contrast")
         enhancer = PIL.ImageEnhance.Contrast(x[0])
         enhancer.enhance(factor)
@@ -83,7 +83,7 @@ class Images(commands.Cog):
         await ctx.reply(file=disnake.File(x[1]))
 
     @commands.command()
-    async def brightness(self, ctx, factor: float, member: disnake.Member = None):
+    async def brightness(self, ctx: Context, factor: float, member: disnake.Member = None):
         x = await pilimg(ctx, member, "brightness")
         enhancer = PIL.ImageEnhance.factor(x[0])
         enhancer.enhance(factor)
@@ -137,7 +137,7 @@ class Images(commands.Cog):
         await ctx.reply(file=disnake.File("./images/random.png"))
 
     @commands.command(description="Covert Code Block to Snippet")
-    async def code_snippet(self, ctx: commands.Context, *, code: str):
+    async def code_snippet(self, ctx: Context, *, code: str):
         if not code.startswith("```") and code.endswith("```"):
             return await ctx.em("Your code needs to be in a codeblock!")
 
@@ -353,7 +353,7 @@ class Images(commands.Cog):
         await ctx.reply(embed=embed)
 
     @commands.command()
-    async def flip(self, ctx, member: disnake.Member = None):
+    async def flip(self, ctx: Context, member: disnake.Member = None):
         x = await img(ctx, member, "flip")
 
         image = cv.imread(x)
@@ -363,7 +363,7 @@ class Images(commands.Cog):
         await ctx.reply(file=disnake.File(x))
 
     @commands.command()
-    async def rotate(self, ctx, degrees: float = -180, member: disnake.Member = None):
+    async def rotate(self, ctx: Context, degrees: float = -180, member: disnake.Member = None):
         await img(ctx, member, "rotate")
 
         image = cv.imread("./images/rotate.png")
@@ -376,7 +376,7 @@ class Images(commands.Cog):
         await ctx.reply(file=disnake.File("./images/rotate.png"))
 
     @commands.command(aliases=["pixel"])
-    async def pixelate(self, ctx, member: disnake.Member = None):
+    async def pixelate(self, ctx: Context, member: disnake.Member = None):
         await img(ctx, member, "pixel")
 
         image = cv.imread("./images/pixel.png")

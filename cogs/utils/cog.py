@@ -98,7 +98,7 @@ class Utils(commands.Cog):
         await ctx.reply(embed=embed)
 
     @commands.command(aliases=["wiki"])
-    async def wikipedia(self, ctx, *, query):
+    async def wikipedia(self, ctx: Context, *, query):
         await ctx.em(wikipedia.summary(query))
 
     @commands.command()

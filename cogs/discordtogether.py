@@ -1,7 +1,7 @@
 import discord_together
 
 from disnake.ext import commands
-from core import JesterBot
+from core import JesterBot, Context
 from core.constants import BOT_TOKEN
 
 
@@ -16,7 +16,7 @@ class DiscordTogether(commands.Cog):
 
     @commands.command(aliases=["yt_together"])
     @commands.cooldown(1, 60, commands.BucketType.guild)
-    async def youtube_together(self, ctx: commands.Context):
+    async def youtube_together(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
         link = await self.together_control.create_link(ctx.author.voice.channel.id, "youtube")
@@ -24,7 +24,7 @@ class DiscordTogether(commands.Cog):
 
     @commands.command()
     @commands.cooldown(1, 60, commands.BucketType.guild)
-    async def poker_together(self, ctx: commands.Context):
+    async def poker_together(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
         link = await self.together_control.create_link(ctx.author.voice.channel.id, "poker")
@@ -32,7 +32,7 @@ class DiscordTogether(commands.Cog):
 
     @commands.command()
     @commands.cooldown(1, 60, commands.BucketType.guild)
-    async def chess_together(self, ctx: commands.Context):
+    async def chess_together(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
         link = await self.together_control.create_link(ctx.author.voice.channel.id, "chess")
@@ -40,7 +40,7 @@ class DiscordTogether(commands.Cog):
 
     @commands.command()
     @commands.cooldown(1, 60, commands.BucketType.guild)
-    async def betrayal_together(self, ctx: commands.Context):
+    async def betrayal_together(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
         link = await self.together_control.create_link(ctx.author.voice.channel.id, "betrayal")
@@ -48,7 +48,7 @@ class DiscordTogether(commands.Cog):
 
     @commands.command()
     @commands.cooldown(1, 60, commands.BucketType.guild)
-    async def fishing_together(self, ctx: commands.Context):
+    async def fishing_together(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
         link = await self.together_control.create_link(ctx.author.voice.channel.id, "fishing")
@@ -56,7 +56,7 @@ class DiscordTogether(commands.Cog):
 
     @commands.command()
     @commands.cooldown(1, 60, commands.BucketType.guild)
-    async def awkword(self, ctx: commands.Context):
+    async def awkword(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
         link = await self.together_control.create_link(ctx.author.voice.channel.id, "awkword")
@@ -64,7 +64,7 @@ class DiscordTogether(commands.Cog):
 
     @commands.command()
     @commands.cooldown(1, 60, commands.BucketType.guild)
-    async def spellcast(self, ctx: commands.Context):
+    async def spellcast(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
         link = await self.together_control.create_link(ctx.author.voice.channel.id, "spellcast")
@@ -72,7 +72,7 @@ class DiscordTogether(commands.Cog):
 
     @commands.command()
     @commands.cooldown(1, 60, commands.BucketType.guild)
-    async def doodle_crew(self, ctx: commands.Context):
+    async def doodle_crew(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
         link = await self.together_control.create_link(ctx.author.voice.channel.id, "doodle-crew")
@@ -80,7 +80,7 @@ class DiscordTogether(commands.Cog):
 
     @commands.command()
     @commands.cooldown(1, 60, commands.BucketType.guild)
-    async def word_snack(self, ctx: commands.Context):
+    async def word_snack(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
         link = await self.together_control.create_link(ctx.author.voice.channel.id, "word-snack")
@@ -88,7 +88,7 @@ class DiscordTogether(commands.Cog):
 
     @commands.command()
     @commands.cooldown(1, 60, commands.BucketType.guild)
-    async def letter_tile(self, ctx: commands.Context):
+    async def letter_tile(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
         link = await self.together_control.create_link(ctx.author.voice.channel.id, "letter-tile")
@@ -96,7 +96,7 @@ class DiscordTogether(commands.Cog):
 
     @commands.command()
     @commands.cooldown(1, 60, commands.BucketType.guild)
-    async def checkers(self, ctx: commands.Context):
+    async def checkers(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
         link = await self.together_control.create_link(ctx.author.voice.channel.id, "checkers")

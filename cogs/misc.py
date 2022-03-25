@@ -21,7 +21,7 @@ class Misc(commands.Cog):
         self.bot = bot
 
     @commands.command(aliases=["channel_stats", "channel_health", "channel_info", "channel_information"])
-    async def channel_status(self, ctx, channel: disnake.TextChannel = None):
+    async def channel_status(self, ctx: Context, channel: disnake.TextChannel = None):
         if not channel:
             channel = ctx.channel
 
@@ -68,7 +68,7 @@ class Misc(commands.Cog):
             await ctx.reply(embed=embed)
 
     @commands.command(aliases=["src"])
-    async def source(self, ctx, command=None):
+    async def source(self, ctx: Context, command=None):
         if not command:
             return await ctx.reply("https://github.com/caedenph/jesterbot")
         cmd = self.bot.get_command(command)
@@ -156,7 +156,9 @@ class Misc(commands.Cog):
 
     @commands.command()
     @commands.cooldown(1, 180, commands.BucketType.user)
-    async def check(self, ctx, days: float = None, member: disnake.Member = None, channel: disnake.TextChannel = None):
+    async def check(
+        self, ctx: Context, days: float = None, member: disnake.Member = None, channel: disnake.TextChannel = None
+    ):
         if not member:
             member = ctx.author
         if not channel:
@@ -397,7 +399,7 @@ class Misc(commands.Cog):
         await ctx.reply(embed=embed)
 
     @commands.command(aliases=["zip"])
-    async def zipemojis(self, ctx):
+    async def zipemojis(self, ctx: Context):
         if len(ctx.guild.emojis) == 0:
             return await ctx.em(f"Your server doesn't have any custom emojis.")
 

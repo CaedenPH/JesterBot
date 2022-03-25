@@ -7,6 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 from disnake.ext import commands
 
 from core.bot import JesterBot
+from core.context import Context
 from core.constants import THUMBS_UP
 from core.utils.utils import get_colour
 
@@ -212,7 +213,7 @@ class Levels(commands.Cog):
         return bytes
 
     @commands.command()
-    async def rank(self, ctx: commands.Context, member: disnake.Member = None):
+    async def rank(self, ctx: Context, member: disnake.Member = None):
         member = member or ctx.author
         user = await self.find_or_insert_user(member)
         (user_id, guild_id, xp, level, name) = user
@@ -225,7 +226,7 @@ class Levels(commands.Cog):
         await ctx.reply(file=disnake.File(bytes, "rank.png"))
 
     @commands.command(aliases=["conf"])
-    async def levelsconfig(self, ctx: commands.Context):
+    async def levelsconfig(self, ctx: Context):
         result = await self.bot.db.fetchone("Select * from levels_config where guild_id = ?", (ctx.guild.id,))
 
         if result is None:
@@ -276,7 +277,7 @@ class Levels(commands.Cog):
         )
 
     @commands.command(aliases=["vconf"])
-    async def viewconfig(self, ctx: commands.Context):
+    async def viewconfig(self, ctx: Context):
         result = await self.bot.db.fetchone("Select * from levels_config where guild_id = ?", (ctx.guild.id,))
 
         if result is not None:
@@ -288,12 +289,12 @@ class Levels(commands.Cog):
         await ctx.reply(config if result is not None else "no config")
 
     @commands.command(aliases=["rconf"])
-    async def removeconfig(self, ctx: commands.Context):
+    async def removeconfig(self, ctx: Context):
         await self.bot.db.execute("Delete from levels_config where guild_id = ?", (ctx.guild.id,))
         await ctx.reply("Deleted all rankup config messages")
 
     @commands.command(aliases=["lb"])
-    async def leaderboard(self, ctx: commands.Context):
+    async def leaderboard(self, ctx: Context):
         embed = disnake.Embed(colour=get_colour())
         embed.set_author(name="Leaderboard", icon_url=ctx.author.avatar.url)
 

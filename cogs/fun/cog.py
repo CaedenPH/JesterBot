@@ -36,7 +36,7 @@ class Fun(commands.Cog):
         self.bot = bot
 
     @commands.command(aliases=["yt_search"])
-    async def ytsearch(self, ctx, *, query):
+    async def ytsearch(self, ctx: Context, *, query):
         vid = VideosSearch(query, limit=10)
         result = await vid.next()
 
@@ -61,7 +61,7 @@ class Fun(commands.Cog):
         await ctx.reply(embed=embed, view=Meme(ctx))
 
     @commands.command()
-    async def glitch(self, ctx, member: disnake.Member = None):
+    async def glitch(self, ctx: Context, member: disnake.Member = None):
         await img(ctx, member, "glitch")
 
         glitch_img = glitcher.glitch_image("./images/glitch.png", 2, color_offset=True, gif=True)

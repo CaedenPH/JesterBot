@@ -15,7 +15,7 @@ class Staff(commands.Cog):
         self.bot = bot
 
     @commands.command(hidden=True)
-    async def push(self, ctx, reason):
+    async def push(self, ctx: Context, reason):
         embed = disnake.Embed(title="Git push.", description="")
         git_commands = [["git", "add", "."], ["git", "commit", "-m", reason], ["git", "push"]]
 
@@ -34,7 +34,7 @@ class Staff(commands.Cog):
         await ctx.reply(embed=embed)
 
     @commands.command(hidden=True)
-    async def pull(self, ctx):
+    async def pull(self, ctx: Context):
         embed = disnake.Embed(title="Git pull.", description="")
         git_commands = [["git", "stash"], ["git", "pull", "--ff-only"]]
 
@@ -606,10 +606,6 @@ class Staff(commands.Cog):
         await send_embed(ctx, "", "Done")
         del data[errornum]
         update_json(k, data)
-
-    @commands.command(hidden=True)
-    async def forceError(self, ctx):
-        await ctx.ss("e")
 
 
 def setup(bot):
