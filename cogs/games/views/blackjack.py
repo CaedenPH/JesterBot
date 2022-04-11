@@ -6,7 +6,14 @@ from disnake.ui import View, Button, button
 
 from core import Context
 from core.utils import get_colour
-from core.constants import BLACKJACK_HOW_TO, CARD_SUITS, CLOSED_LOCK, BOOM, CONFETTI, HANDSHAKE
+from core.constants import (
+    BLACKJACK_HOW_TO,
+    CARD_SUITS,
+    CLOSED_LOCK,
+    BOOM,
+    CONFETTI,
+    HANDSHAKE,
+)
 
 special_cards = {1: "Ace", 10: "Jack", 11: "Queen", 12: "King"}
 blackjack_visual = """\
@@ -20,7 +27,9 @@ Hand value: {value}
 class Card:
     def __init__(self, *, suit: str, value: int):
         self._suit = suit + " " + CARD_SUITS[suit]
-        self._name = f"{special_cards[value] if value in special_cards else value} of {self._suit}"
+        self._name = (
+            f"{special_cards[value] if value in special_cards else value} of {self._suit}"
+        )
         self._value = value if value <= 10 else 10
         self._value = self._value if self._value != 1 else 1
 
@@ -54,7 +63,10 @@ class BlackJack(View):
         self.ctx = ctx
 
     async def interaction_check(self, interaction: MessageInteraction) -> bool:
-        return interaction.author == self.ctx.author and interaction.channel == self.ctx.channel
+        return (
+            interaction.author == self.ctx.author
+            and interaction.channel == self.ctx.channel
+        )
 
     def lock_embed(self) -> None:
         for child in self.children:
@@ -68,7 +80,9 @@ class BlackJack(View):
         return [card for card in cards if card.value == 1 or card.value == 11]
 
     def visual_hand(self, cards: List[Card] = None, hide_card: bool = False) -> str:
-        visual_cards = "\n".join([card.name for card in (cards if cards else self.user_cards)])
+        visual_cards = "\n".join(
+            [card.name for card in (cards if cards else self.user_cards)]
+        )
         if hide_card:
             visual_cards = cards[0].name + f"\n? of {cards[1].suit}"
 
@@ -77,7 +91,9 @@ class BlackJack(View):
             player=player,
             bar="".join(["-" for _ in range(len(player))]),
             cards=visual_cards,
-            value=self.generate_card_values(self.user_cards if not cards else self.bot_cards)
+            value=self.generate_card_values(
+                self.user_cards if not cards else self.bot_cards
+            )
             if not hide_card
             else f"{cards[0].value} + ?",
         )
@@ -86,7 +102,9 @@ class BlackJack(View):
         return sum([c.value for c in cards])
 
     def generate_card(self, bot: bool = False) -> Card:
-        card = Card(suit=random.choice(list(CARD_SUITS.keys())), value=random.randint(1, 12))
+        card = Card(
+            suit=random.choice(list(CARD_SUITS.keys())), value=random.randint(1, 12)
+        )
         if not bot:
             self.user_cards.append(card)
         elif bot:
@@ -102,7 +120,9 @@ class BlackJack(View):
 
     def display_cards_embed(self, hide_card=True) -> Embed:
         return self.create_embed(
-            description=self.visual_hand() + "\n" + self.visual_hand(self.bot_cards, hide_card=hide_card)
+            description=self.visual_hand()
+            + "\n"
+            + self.visual_hand(self.bot_cards, hide_card=hide_card)
         )
 
     def create_embed(self, description: str, cards: List[Card] = None) -> Embed:
@@ -143,11 +163,19 @@ class BlackJack(View):
                 HANDSHAKE,
                 "https://tenor.com/view/predator-arnold-schwarzenegger-hand-shake-arms-gif-3468629",
             ],
-            "You lost!": [BOOM, "https://tenor.com/view/diary-of-a-wimpy-kid-loser-bleh-tongue-out-gif-8481263"],
-            "You won!": [CONFETTI, "https://tenor.com/view/win-confetti-celebration-gif-7374480"],
+            "You lost!": [
+                BOOM,
+                "https://tenor.com/view/diary-of-a-wimpy-kid-loser-bleh-tongue-out-gif-8481263",
+            ],
+            "You won!": [
+                CONFETTI,
+                "https://tenor.com/view/win-confetti-celebration-gif-7374480",
+            ],
         }
 
-        await interaction.response.send_message(self.status + f"\n{conditions[self.status][1]}")
+        await interaction.response.send_message(
+            self.status + f"\n{conditions[self.status][1]}"
+        )
         await self.bot_message.add_reaction(conditions[self.status][0])
         await self.bot_message.edit(content=self.status, embed=embed, view=self)
 
@@ -163,22 +191,32 @@ class BlackJack(View):
             embed = self.display_cards_embed(hide_card=False)
 
             await self.bot_message.add_reaction(BOOM)
-            return await self.bot_message.edit(content="You went over 21!", embed=embed, view=self)
+            return await self.bot_message.edit(
+                content="You went over 21!", embed=embed, view=self
+            )
 
-        await self.bot_message.edit(content=f"You drew `{card.name}`", embed=self.display_cards_embed())
+        await self.bot_message.edit(
+            content=f"You drew `{card.name}`", embed=self.display_cards_embed()
+        )
 
     @button(label="Change ace value", style=ButtonStyle.green, disabled=True)
     async def change_ace_button(self, button: Button, interaction: MessageInteraction):
         aces = self.get_aces(self.user_cards)
         if not aces:
-            await interaction.response.send_message("You don't have any aces in Your hand", ephemeral=True)
-        message = await interaction.response.send_message("Would You like to change Your ace to a `1` or an `11`?")
+            await interaction.response.send_message(
+                "You don't have any aces in Your hand", ephemeral=True
+            )
+        message = await interaction.response.send_message(
+            "Would You like to change Your ace to a `1` or an `11`?"
+        )
 
         num = 0
         msg: Message
         while (
             msg := await self.ctx.bot.wait_for(
-                "message", check=lambda m: m.author == self.ctx.author and m.channel == self.ctx.channel
+                "message",
+                check=lambda m: m.author == self.ctx.author
+                and m.channel == self.ctx.channel,
             )
         ).content not in ["1", "11"]:
             if num == 3:
@@ -186,14 +224,21 @@ class BlackJack(View):
             await message.edit(content=f"Send either `1` or  `11`.")
             num += 1
 
-        if msg.content == "11" and self.generate_card_values(self.user_cards) >= 11 and aces[0].value != 11:
-            return await msg.reply("You cannot change the value of this ace to `11` because You would go over 21.")
+        if (
+            msg.content == "11"
+            and self.generate_card_values(self.user_cards) >= 11
+            and aces[0].value != 11
+        ):
+            return await msg.reply(
+                "You cannot change the value of this ace to `11` because You would go over 21."
+            )
 
         original_value = aces[0].value
         aces[0].change_to(msg.content)
 
         await self.bot_message.edit(
-            content=f"Changed ace from `{original_value}` to `{msg.content}`", embed=self.display_cards_embed()
+            content=f"Changed ace from `{original_value}` to `{msg.content}`",
+            embed=self.display_cards_embed(),
         )
 
     @button(label="How to play", style=ButtonStyle.blurple)
@@ -201,7 +246,10 @@ class BlackJack(View):
         await interaction.response.defer()
 
         embed = Embed(
-            title="Blackjack", description=BLACKJACK_HOW_TO, timestamp=self.ctx.message.created_at, colour=get_colour()
+            title="Blackjack",
+            description=BLACKJACK_HOW_TO,
+            timestamp=self.ctx.message.created_at,
+            colour=get_colour(),
         ).set_author(name=self.ctx.author.name, icon_url=self.ctx.author.avatar.url)
 
         await self.bot_message.edit(embed=embed)

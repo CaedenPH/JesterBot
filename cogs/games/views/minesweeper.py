@@ -173,7 +173,10 @@ class Board:
             coordinates to not place a bomb on
         """
 
-        self.board = [[Square.empty() for _ in range(self.board_size)] for _ in range(self.board_size)]
+        self.board = [
+            [Square.empty() for _ in range(self.board_size)]
+            for _ in range(self.board_size)
+        ]
 
         """
         board representation:
@@ -188,7 +191,9 @@ class Board:
         for row in range(self.board_size):
             for column in range(self.board_size):
                 if not self.board[row][column].bomb:
-                    self.board[row][column] = Square.alive(self.get_surrounding_bombs(row, column))
+                    self.board[row][column] = Square.alive(
+                        self.get_surrounding_bombs(row, column)
+                    )
 
     def add_bombs(
         self,
@@ -302,7 +307,10 @@ class Board:
 
         for row in range(self.board_size):
             for column in range(self.board_size):
-                if not self.board[row][column].discovered and not self.board[row][column].bomb:
+                if (
+                    not self.board[row][column].discovered
+                    and not self.board[row][column].bomb
+                ):
                     return False
         return True
 
@@ -415,7 +423,11 @@ class MineSweeper(View):
         new.dig = self.dig
         new.board_size = self.board_size
         new.bomb_count = self.bomb_count
-        new.children = [undisable(child) for child in new.children if isinstance(child, Button) and child.disabled]
+        new.children = [
+            undisable(child)
+            for child in new.children
+            if isinstance(child, Button) and child.disabled
+        ]
 
         await self.exit()
         return new
@@ -436,13 +448,18 @@ class MineSweeper(View):
     async def on_timeout(self) -> None:
         await self.exit()
 
-    async def on_error(self, error: Exception, item: Item, interaction: MessageInteraction) -> None:
+    async def on_error(
+        self, error: Exception, item: Item, interaction: MessageInteraction
+    ) -> None:
         print(error)
 
     async def interaction_check(self, interaction: MessageInteraction) -> bool:
         self.embed: Embed = self.bot_message.embeds[0]
 
-        return interaction.author == self.ctx.author and interaction.channel == self.ctx.channel
+        return (
+            interaction.author == self.ctx.author
+            and interaction.channel == self.ctx.channel
+        )
 
     async def edit_embed(
         self,
@@ -491,9 +508,13 @@ class MineSweeper(View):
             return
         self.button_pressed = 1
 
-        await interaction.response.send_message("Where do you want to dig? | Input as `row` `column` |", delete_after=5)
+        await interaction.response.send_message(
+            "Where do you want to dig? | Input as `row` `column` |", delete_after=5
+        )
         while True:
-            message = await self.ctx.bot.wait_for("message", timeout=720, check=self.wait_for_check)
+            message = await self.ctx.bot.wait_for(
+                "message", timeout=720, check=self.wait_for_check
+            )
             asyncio.create_task(self.delete_message(message))
 
             if self.button_pressed != 1:
@@ -506,14 +527,21 @@ class MineSweeper(View):
                 self.button_pressed = 0
                 return await message.add_reaction(CLOSE)
 
-            if row < 0 or row >= self.board_size or column < 0 or column >= self.board_size:
+            if (
+                row < 0
+                or row >= self.board_size
+                or column < 0
+                or column >= self.board_size
+            ):
                 self.button_pressed = 0
                 return await message.add_reaction(CLOSE)
 
             self.dig = self.board.dig(row, column)
             if self.dig.game_lost:
                 self.board.reveal_all()
-                await message.reply("**You got blown up** | Try not to step on so many bombs!")
+                await message.reply(
+                    "**You got blown up** | Try not to step on so many bombs!"
+                )
             elif self.dig.game_won:
                 self.board.reveal_all()
                 await message.reply("**You dug all non-bomb squares** | You win!")
@@ -546,9 +574,13 @@ class MineSweeper(View):
             return
         self.button_pressed = 2
 
-        await interaction.response.send_message("Where do you want to flag? | Input as `row` `column`", delete_after=5)
+        await interaction.response.send_message(
+            "Where do you want to flag? | Input as `row` `column`", delete_after=5
+        )
         while True:
-            message = await self.ctx.bot.wait_for("message", timeout=720, check=self.wait_for_check)
+            message = await self.ctx.bot.wait_for(
+                "message", timeout=720, check=self.wait_for_check
+            )
             asyncio.create_task(self.delete_message(message))
 
             if self.button_pressed != 2:
@@ -561,7 +593,12 @@ class MineSweeper(View):
                 self.button_pressed = 0
                 return await message.add_reaction(CLOSE)
 
-            if row < 0 or row >= self.board_size or column < 0 or column >= self.board_size:
+            if (
+                row < 0
+                or row >= self.board_size
+                or column < 0
+                or column >= self.board_size
+            ):
                 self.button_pressed = 0
                 return await message.add_reaction(CLOSE)
 
@@ -571,7 +608,9 @@ class MineSweeper(View):
             if self.dig.game_over():
                 return
 
-    @button(label="Resend", style=ButtonStyle.blurple, emoji=BLUE_SQUARE, row=0, disabled=True)
+    @button(
+        label="Resend", style=ButtonStyle.blurple, emoji=BLUE_SQUARE, row=0, disabled=True
+    )
     async def resend(self, button: Button, interaction: MessageInteraction) -> None:
         await interaction.response.defer()
 
@@ -594,13 +633,21 @@ class MineSweeper(View):
             return child
 
         self.board = Board(self.board_size, self.bomb_count)
-        self.children = [undisable(child) for child in self.children if isinstance(child, Button) and child.disabled]
+        self.children = [
+            undisable(child)
+            for child in self.children
+            if isinstance(child, Button) and child.disabled
+        ]
 
         await interaction.response.defer()
         await self.edit_embed(self.board)
 
-    @button(label="Change board size", style=ButtonStyle.blurple, emoji=BLUE_SQUARE, row=1)
-    async def change_board_size(self, button: Button, interaction: MessageInteraction) -> None:
+    @button(
+        label="Change board size", style=ButtonStyle.blurple, emoji=BLUE_SQUARE, row=1
+    )
+    async def change_board_size(
+        self, button: Button, interaction: MessageInteraction
+    ) -> None:
         """
         resize the board.
         """
@@ -610,7 +657,9 @@ class MineSweeper(View):
             delete_after=5,
         )
 
-        message = await self.ctx.bot.wait_for("message", timeout=720, check=self.wait_for_check)
+        message = await self.ctx.bot.wait_for(
+            "message", timeout=720, check=self.wait_for_check
+        )
         asyncio.create_task(self.delete_message(message))
 
         if int(message.content) > 10:
@@ -622,26 +671,42 @@ class MineSweeper(View):
 
         self.board_size = int(message.content)
         self.bomb_count = self.board_size
-        await self.edit_embed(MINESWEEPER_MESSAGE.format(board_size=self.board_size, bomb_count=self.bomb_count))
+        await self.edit_embed(
+            MINESWEEPER_MESSAGE.format(
+                board_size=self.board_size, bomb_count=self.bomb_count
+            )
+        )
 
     @button(label="Change bomb count", style=ButtonStyle.blurple, emoji=BOMB, row=1)
-    async def change_bomb_count(self, button: Button, interaction: MessageInteraction) -> None:
+    async def change_bomb_count(
+        self, button: Button, interaction: MessageInteraction
+    ) -> None:
         """
         change the bomb count.
         """
 
         await interaction.response.send_message(
-            "What would you like the bomb count to be? | Send integer only", delete_after=5
+            "What would you like the bomb count to be? | Send integer only",
+            delete_after=5,
         )
 
-        message = await self.ctx.bot.wait_for("message", timeout=720, check=self.wait_for_check)
+        message = await self.ctx.bot.wait_for(
+            "message", timeout=720, check=self.wait_for_check
+        )
         if int(message.content) > (self.board_size ** 2) * 0.5:
-            return await message.reply("You cant have more than half of the board covered in bombs!", delete_after=30)
+            return await message.reply(
+                "You cant have more than half of the board covered in bombs!",
+                delete_after=30,
+            )
         if message.content.isalpha():
             return await message.add_reaction(CLOSE)
 
         self.bomb_count = int(message.content)
-        await self.edit_embed(MINESWEEPER_MESSAGE.format(board_size=self.board_size, bomb_count=self.bomb_count))
+        await self.edit_embed(
+            MINESWEEPER_MESSAGE.format(
+                board_size=self.board_size, bomb_count=self.bomb_count
+            )
+        )
         asyncio.create_task(self.delete_message(message))
 
     @button(label="Exit", style=ButtonStyle.danger, emoji=STOP_SIGN, disabled=True, row=1)

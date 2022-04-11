@@ -138,7 +138,9 @@ class _SudokuUtils:
         y, _ = index
         return self.rows[y]
 
-    def get_possible_numbers(self, xy: t.List[int, int], _number_bag: t.List[int]) -> t.Optional[t.List[int]]:
+    def get_possible_numbers(
+        self, xy: t.List[int, int], _number_bag: t.List[int]
+    ) -> t.Optional[t.List[int]]:
         """
         get all the possible numbers
         around the coordinates xy
@@ -255,7 +257,9 @@ class SudokuGenerator(_SudokuUtils):
             self.set_xy(index[0], index[1])
         return True
 
-    def subtract_list(self, _operand_one: t.List[int], _operand_two: t.List[int]) -> t.List[int]:
+    def subtract_list(
+        self, _operand_one: t.List[int], _operand_two: t.List[int]
+    ) -> t.List[int]:
         """
         subtracts operand_two from operand_one
 
@@ -285,6 +289,8 @@ class SudokuGenerator(_SudokuUtils):
             if not built:
                 rebuild = self.build_box(i)
                 if not rebuild:
-                    self.rows: t.List[t.List[int]] = [[0 for _ in range(9)] for __ in range(9)]
+                    self.rows: t.List[t.List[int]] = [
+                        [0 for _ in range(9)] for __ in range(9)
+                    ]
                     return False
         return True

@@ -33,7 +33,9 @@ class Mod(commands.Cog):
         msg = str(
             (
                 await self.bot.wait_for(
-                    "message", timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel
+                    "message",
+                    timeout=60.0,
+                    check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
                 )
             ).content
         ).lower()
@@ -57,7 +59,9 @@ class Mod(commands.Cog):
     async def change_nick(self, ctx: Context, member: disnake.Member, *, nick):
 
         await member.edit(nick=nick)
-        embed = disnake.Embed(description=f"Nickname was changed for {member.mention} ", colour=get_colour())
+        embed = disnake.Embed(
+            description=f"Nickname was changed for {member.mention} ", colour=get_colour()
+        )
         await ctx.reply(embed=embed)
 
     @has_permissions(administrator=True)
@@ -88,37 +92,53 @@ class Mod(commands.Cog):
 
     @has_permissions(manage_messages=True)
     @commands.command(
-        name="purge", aliases=["Message_delete", "Msg_Del"], description="Purges the ammount of messages sent"
+        name="purge",
+        aliases=["Message_delete", "Msg_Del"],
+        description="Purges the ammount of messages sent",
     )
     async def _purge(self, ctx: Context, amount=80):
 
         await ctx.channel.purge(limit=amount)
-        embed = disnake.Embed(title="Purge Sucsessful", description=f"Purge has been sucsessful.", colour=get_colour())
+        embed = disnake.Embed(
+            title="Purge Sucsessful",
+            description=f"Purge has been sucsessful.",
+            colour=get_colour(),
+        )
         embed.add_field(name="Congrats!", value="Your purge has been sucsessful")
         await ctx.reply(embed=embed)
 
     @has_permissions(ban_members=True)
     @commands.command(
-        aliases=["b", "banhammer", "bann"], description="Bans the specified member - Reason goes in the audit log"
+        aliases=["b", "banhammer", "bann"],
+        description="Bans the specified member - Reason goes in the audit log",
     )
-    async def ban(self, ctx: Context, member: disnake.Member, *, reason="No reason provided"):
+    async def ban(
+        self, ctx: Context, member: disnake.Member, *, reason="No reason provided"
+    ):
 
         await member.send("You have been banned: " + reason)
         await member.ban(reason=reason)
-        embed = disnake.Embed(title="Banned", description=f"{member.mention}  got banned.", colour=get_colour())
+        embed = disnake.Embed(
+            title="Banned",
+            description=f"{member.mention}  got banned.",
+            colour=get_colour(),
+        )
         embed.add_field(name="Reason:", value=reason)
         user = ctx.author
         await ctx.reply(embed=embed)
 
     @has_permissions(ban_members=True)
     @commands.command(
-        aliases=["ub", "Revoke_Ban"], description="Unbans the specified member - Reason goes in the audit log"
+        aliases=["ub", "Revoke_Ban"],
+        description="Unbans the specified member - Reason goes in the audit log",
     )
     async def unban(self, ctx: Context, user_id: int, *, reason="No reason provided"):
 
         user = await ctx.bot.fetch_user(user_id)
         await ctx.guild.unban(user, reason=reason)
-        embed = disnake.Embed(title="Unbanned", description=f"{user}  got unbanned.", colour=get_colour())
+        embed = disnake.Embed(
+            title="Unbanned", description=f"{user}  got unbanned.", colour=get_colour()
+        )
         embed.add_field(name="Reason:", value=reason)
         await ctx.reply(embed=embed)
         await user.send("You have been unbanned")
@@ -128,7 +148,11 @@ class Mod(commands.Cog):
     async def addrole(self, ctx: Context, member: disnake.Member, role: disnake.Role):
 
         await member.add_roles(role)
-        embed = disnake.Embed(title="Addrole", description=f"{member.mention} got a role.", colour=get_colour())
+        embed = disnake.Embed(
+            title="Addrole",
+            description=f"{member.mention} got a role.",
+            colour=get_colour(),
+        )
         embed.add_field(name="Member:", value=member.mention, inline=False)
         embed.add_field(name="Role:", value=role.mention, inline=False)
         await ctx.reply(embed=embed)
@@ -139,9 +163,13 @@ class Mod(commands.Cog):
         description="Moves a member from their current vc to the channel specified. If no channel has been specified it will kick the member from the vc.",
     )
     async def move_to(self, ctx: Context, member: disnake.Member, channel: str):
-        await member.move_to(disnake.utils.get(self, ctx.guild.voice_channels, name=channel))
+        await member.move_to(
+            disnake.utils.get(self, ctx.guild.voice_channels, name=channel)
+        )
         embed = disnake.Embed(
-            title="Moved", description=f"{member.mention} got moved. to {channel}", colour=get_colour()
+            title="Moved",
+            description=f"{member.mention} got moved. to {channel}",
+            colour=get_colour(),
         )
         await ctx.reply(embed=embed)
 
@@ -197,18 +225,28 @@ class Mod(commands.Cog):
             embed.set_author(icon_url=ctx.author.avatar.url, name="Prefix")
             await ctx.reply(embed=embed)
 
-    @commands.command(aliases=["k"], description="Kicks the specified member - Reason goes in the audit log")
+    @commands.command(
+        aliases=["k"],
+        description="Kicks the specified member - Reason goes in the audit log",
+    )
     @has_permissions(kick_members=True)
-    async def kick(self, ctx: Context, member: disnake.Member, *, reason="No reason provided"):
+    async def kick(
+        self, ctx: Context, member: disnake.Member, *, reason="No reason provided"
+    ):
 
         await member.send("You have been kicked: " + reason)
         await member.kick(reason=reason)
-        embed = disnake.Embed(title="Kicked", description=f"{member.mention}  got kicked.", colour=get_colour())
+        embed = disnake.Embed(
+            title="Kicked",
+            description=f"{member.mention}  got kicked.",
+            colour=get_colour(),
+        )
         embed.add_field(name="Reason:", value=reason)
         await ctx.reply(embed=embed)
 
     @commands.command(
-        aliases=["permrmute"], description="Indefinitely permreactmutes the member from adding reactions to messages"
+        aliases=["permrmute"],
+        description="Indefinitely permreactmutes the member from adding reactions to messages",
     )
     @has_permissions(manage_messages=True)
     async def permreactmute(self, ctx: Context, member: disnake.Member, *, reason=None):
@@ -228,11 +266,17 @@ class Mod(commands.Cog):
                     read_messages=True,
                     add_reactions=False,
                 )
-        embed = disnake.Embed(title="Muted", description=f"{member.mention} was react muted ", colour=get_colour())
+        embed = disnake.Embed(
+            title="Muted",
+            description=f"{member.mention} was react muted ",
+            colour=get_colour(),
+        )
         embed.add_field(name="Reason:", value=reason, inline=False)
         await ctx.reply(embed=embed)
         await member.add_roles(mutedRole, reason=reason)
-        await member.send(f"You have been reaction muted from: {guild.name} Reason: {reason}")
+        await member.send(
+            f"You have been reaction muted from: {guild.name} Reason: {reason}"
+        )
 
     @commands.command(description="Indefinitely mutes the member from sending messages")
     @has_permissions(manage_messages=True)
@@ -246,15 +290,23 @@ class Mod(commands.Cog):
 
             for channel in guild.channels:
                 await channel.set_permissions(
-                    mutedRole, speak=False, send_messages=False, read_message_history=False, read_messages=True
+                    mutedRole,
+                    speak=False,
+                    send_messages=False,
+                    read_message_history=False,
+                    read_messages=True,
                 )
-        embed = disnake.Embed(title="Muted", description=f"{member.mention} was muted ", colour=get_colour())
+        embed = disnake.Embed(
+            title="Muted", description=f"{member.mention} was muted ", colour=get_colour()
+        )
         embed.add_field(name="Reason:", value=reason, inline=False)
         await ctx.reply(embed=embed)
         await member.add_roles(mutedRole, reason=reason)
         await member.send(f" you have been muted from: {guild.name} Reason: {reason}")
 
-    @commands.command(aliases=["unrmute", "runmute"], description="Unreactmutes `<member>`")
+    @commands.command(
+        aliases=["unrmute", "runmute"], description="Unreactmutes `<member>`"
+    )
     @has_permissions(manage_messages=True)
     async def unreactmute(self, ctx: Context, member: disnake.Member, *, reason=None):
 
@@ -264,17 +316,25 @@ class Mod(commands.Cog):
 
         if Reactmuted not in member.roles:
             embed = disnake.Embed(
-                title="Member is not muted", description=f"{member.mention} is not react muted", colour=get_colour()
+                title="Member is not muted",
+                description=f"{member.mention} is not react muted",
+                colour=get_colour(),
             )
             await ctx.reply(embed=embed)
 
         else:
 
-            embed = disnake.Embed(title="Unmuted", description=f"{member.mention} was unmuted", colour=get_colour())
+            embed = disnake.Embed(
+                title="Unmuted",
+                description=f"{member.mention} was unmuted",
+                colour=get_colour(),
+            )
             embed.add_field(name="Reason:", value=reason, inline=False)
             await ctx.reply(embed=embed)
             await member.remove_roles(Reactmuted, reason=reason)
-            await member.send(f"You have been reaction muted from: {guild.name} Reason: {reason}")
+            await member.send(
+                f"You have been reaction muted from: {guild.name} Reason: {reason}"
+            )
 
     @commands.command(aliases=["unmut"], description="Unmutes `<member>`")
     @has_permissions(manage_messages=True)
@@ -285,17 +345,25 @@ class Mod(commands.Cog):
 
         if Reactmuted not in member.roles:
             embed = disnake.Embed(
-                title="Member is not muted", description=f"{member.mention} is not muted", colour=get_colour()
+                title="Member is not muted",
+                description=f"{member.mention} is not muted",
+                colour=get_colour(),
             )
             await ctx.reply(embed=embed)
 
         else:
 
-            embed = disnake.Embed(title="Unmuted", description=f"{member.mention} was unmuted", colour=get_colour())
+            embed = disnake.Embed(
+                title="Unmuted",
+                description=f"{member.mention} was unmuted",
+                colour=get_colour(),
+            )
             embed.add_field(name="Reason:", value=reason, inline=False)
             await ctx.reply(embed=embed)
             await member.remove_roles(Reactmuted, reason=reason)
-            await member.send(f"You have been reaction muted from: {guild.name} Reason: {reason}")
+            await member.send(
+                f"You have been reaction muted from: {guild.name} Reason: {reason}"
+            )
 
     @commands.command(
         aliases=["tempmute"],
@@ -324,7 +392,9 @@ class Mod(commands.Cog):
                 elif duration == "d":
                     new_seconds = int(seconds) * 86400
                 else:
-                    embed = disnake.Embed(title="Invalid duration input", colour=get_colour())
+                    embed = disnake.Embed(
+                        title="Invalid duration input", colour=get_colour()
+                    )
                     await ctx.reply(embed=embed)
                     return
 
@@ -344,7 +414,11 @@ class Mod(commands.Cog):
                 Muted = await guild.create_role(name="Muted")
                 for channel in guild.channels:
                     await channel.set_permissions(
-                        Muted, speak=False, send_messages=False, read_message_history=False, read_messages=False
+                        Muted,
+                        speak=False,
+                        send_messages=False,
+                        read_message_history=False,
+                        read_messages=False,
                     )
 
             await member.add_roles(Muted, reason=reason)
@@ -371,7 +445,9 @@ class Mod(commands.Cog):
         description="Reactmutes the member from adding reactions to messages for `<time>` Format `time` like `1s` (second), `1m` (minute), `1h`(hour), 1d` (day)",
     )
     @has_permissions(manage_messages=True)
-    async def reactmute(self, ctx: Context, member: disnake.Member, time, *, reason="no reason"):
+    async def reactmute(
+        self, ctx: Context, member: disnake.Member, time, *, reason="no reason"
+    ):
 
         # Now timed mute manipulation
         try:
@@ -400,7 +476,11 @@ class Mod(commands.Cog):
             Muted = await guild.create_role(name="ReactMuted")
             for channel in guild.channels:
                 await channel.set_permissions(
-                    Muted, speak=False, send_messages=False, read_message_history=True, read_messages=False
+                    Muted,
+                    speak=False,
+                    send_messages=False,
+                    read_message_history=True,
+                    read_messages=False,
                 )
         await member.add_roles(Muted, reason=reason)
         muted_embed = disnake.Embed(
@@ -421,7 +501,8 @@ class Mod(commands.Cog):
 
     @has_permissions(administrator=True)
     @commands.command(
-        aliases=["give_role", "gv", "give_rol"], description="Gives every member in the guild the specified role"
+        aliases=["give_role", "gv", "give_rol"],
+        description="Gives every member in the guild the specified role",
     )
     async def give_roles(self, ctx: Context, role: disnake.Role):
 
@@ -433,7 +514,9 @@ class Mod(commands.Cog):
         embed = disnake.Embed(title="Done", colour=get_colour())
         await ctx.reply(embed=embed)
 
-    @commands.command(description="Sends a list of all the server roles and positions (hierachy)")
+    @commands.command(
+        description="Sends a list of all the server roles and positions (hierachy)"
+    )
     async def showroles(self, ctx: Context):
 
         x = ""
@@ -495,9 +578,13 @@ class Mod(commands.Cog):
             await member.timeout(duration=duration, reason=reason)
         except Exception as err:
             embed.add_field(name="Error", value=str(err))
-        matches = difflib.get_close_matches(member.name, [k.name for k in ctx.guild.members if k.id != member.id])
+        matches = difflib.get_close_matches(
+            member.name, [k.name for k in ctx.guild.members if k.id != member.id]
+        )
         if matches:
-            embed.add_field(name=f"Other users you might've meant", value=", ".join(matches))
+            embed.add_field(
+                name=f"Other users you might've meant", value=", ".join(matches)
+            )
 
         await ctx.reply(embed=embed)
 

@@ -17,7 +17,8 @@ class Crime(commands.Cog):
         item = random.randint(0, 20)
 
         async with self.bot.client.get(
-            url="https://api.fbi.gov/wanted/v1/list", params={"page": random.randint(0, 49)}
+            url="https://api.fbi.gov/wanted/v1/list",
+            params={"page": random.randint(0, 49)},
         ) as resp:
             json = await resp.json()
             json = json["items"][item]
@@ -85,7 +86,10 @@ class Crime(commands.Cog):
     async def police(self, ctx: Context) -> None:
         async with self.bot.client.get(
             url="https://ukpolicedata.p.rapidapi.com/forces",
-            headers={"x-rapidapi-host": "ukpolicedata.p.rapidapi.com", "x-rapidapi-key": self.bot.RAPID_API_KEY},
+            headers={
+                "x-rapidapi-host": "ukpolicedata.p.rapidapi.com",
+                "x-rapidapi-key": self.bot.RAPID_API_KEY,
+            },
         ) as resp:
             json = await resp.json()
 
@@ -130,10 +134,16 @@ class Crime(commands.Cog):
         if not json["data"][0]:
             return await ctx.em("Invalid location!")
 
-        querystring = {"lat": json["data"][0]["latitude"], "lng": json["data"][0]["longitude"]}
+        querystring = {
+            "lat": json["data"][0]["latitude"],
+            "lng": json["data"][0]["longitude"],
+        }
         async with self.bot.client.get(
             url="https://ukpolicedata.p.rapidapi.com/stops-street",
-            headers={"x-rapidapi-host": "ukpolicedata.p.rapidapi.com", "x-rapidapi-key": self.bot.RAPID_API_KEY},
+            headers={
+                "x-rapidapi-host": "ukpolicedata.p.rapidapi.com",
+                "x-rapidapi-key": self.bot.RAPID_API_KEY,
+            },
             params=querystring,
         ) as resp:
             json = await resp.json()
@@ -150,7 +160,11 @@ class Crime(commands.Cog):
             return await ctx.em(content)
 
         pag = Paginator(ctx)
-        await pag.paginate(content="      " + content[7:-3].strip(), name=ctx.author, icon_url=ctx.author.avatar.url)
+        await pag.paginate(
+            content="      " + content[7:-3].strip(),
+            name=ctx.author,
+            icon_url=ctx.author.avatar.url,
+        )
 
     @commands.command()
     async def crime(self, ctx: Context, poste_code=None) -> None:
@@ -162,10 +176,16 @@ class Crime(commands.Cog):
         if not json["data"][0]:
             return await ctx.em("Invalid location!")
 
-        querystring = {"lat": json["data"][0]["latitude"], "lng": json["data"][0]["longitude"]}
+        querystring = {
+            "lat": json["data"][0]["latitude"],
+            "lng": json["data"][0]["longitude"],
+        }
         async with self.bot.client.get(
             url="https://ukpolicedata.p.rapidapi.com/crimes-street/all-crime",
-            headers={"x-rapidapi-host": "ukpolicedata.p.rapidapi.com", "x-rapidapi-key": self.bot.RAPID_API_KEY},
+            headers={
+                "x-rapidapi-host": "ukpolicedata.p.rapidapi.com",
+                "x-rapidapi-key": self.bot.RAPID_API_KEY,
+            },
             params=querystring,
         ) as resp:
             json = await resp.json()
@@ -182,7 +202,11 @@ class Crime(commands.Cog):
             return await ctx.em(content)
 
         pag = Paginator(ctx)
-        await pag.paginate(content="      " + content[7:-3].strip(), name=ctx.author, icon_url=ctx.author.avatar.url)
+        await pag.paginate(
+            content="      " + content[7:-3].strip(),
+            name=ctx.author,
+            icon_url=ctx.author.avatar.url,
+        )
 
 
 def setup(bot: JesterBot):

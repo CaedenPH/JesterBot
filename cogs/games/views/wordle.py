@@ -64,7 +64,10 @@ class _WordleView(View):
         await self.stop()
 
     async def interaction_check(self, interaction: MessageInteraction) -> bool:
-        return interaction.author == self.ctx.author and interaction.channel == self.ctx.channel
+        return (
+            interaction.author == self.ctx.author
+            and interaction.channel == self.ctx.channel
+        )
 
     async def stop(self) -> None:
         self.children = []
@@ -100,7 +103,9 @@ class _WordleView(View):
         placeholder=f"Colour settings {BLACK_SQUARE}",
         options=[SelectOption(label="Light mode"), SelectOption(label="Dark mode")],
     )
-    async def change_colour_settings(self, select: Select, interaction: MessageInteraction) -> None:
+    async def change_colour_settings(
+        self, select: Select, interaction: MessageInteraction
+    ) -> None:
         """
         user selects whether or not
         they want dark mode or light
@@ -120,14 +125,25 @@ class _WordleView(View):
         self.light_mode = select.values[0].startswith("Light")
         await interaction.response.defer()
         await self.edit_embed(
-            "```yaml\n" + WORDLE_MESSAGE.format(word_length=self.word_length, light_mode=self.light_mode) + "```"
+            "```yaml\n"
+            + WORDLE_MESSAGE.format(
+                word_length=self.word_length, light_mode=self.light_mode
+            )
+            + "```"
         )
 
     @select(
         placeholder=f"Change word length {VIDEO_GAME}",
-        options=[SelectOption(label="4"), SelectOption(label="5"), SelectOption(label="6"), SelectOption(label="7")],
+        options=[
+            SelectOption(label="4"),
+            SelectOption(label="5"),
+            SelectOption(label="6"),
+            SelectOption(label="7"),
+        ],
     )
-    async def change_word_length(self, select: Select, interaction: MessageInteraction) -> None:
+    async def change_word_length(
+        self, select: Select, interaction: MessageInteraction
+    ) -> None:
         """
         user changes the word length
         to either 4, 5, 6 or 7.
@@ -145,7 +161,11 @@ class _WordleView(View):
         self.word_length = int(select.values[0])
         await interaction.response.defer()
         await self.edit_embed(
-            "```yaml\n" + WORDLE_MESSAGE.format(word_length=self.word_length, light_mode=self.light_mode) + "```"
+            "```yaml\n"
+            + WORDLE_MESSAGE.format(
+                word_length=self.word_length, light_mode=self.light_mode
+            )
+            + "```"
         )
 
 
@@ -197,23 +217,35 @@ class Wordle(_WordleView):
             was returned by the discord api.
         """
 
-        await interaction.response.send_message(f"Send a valid `{self.word_length}` letter long word", delete_after=10)
+        await interaction.response.send_message(
+            f"Send a valid `{self.word_length}` letter long word", delete_after=10
+        )
 
         while True:
-            message = await self.ctx.bot.wait_for("message", timeout=720, check=self.message_check)
+            message = await self.ctx.bot.wait_for(
+                "message", timeout=720, check=self.message_check
+            )
             await self.delete_message(message)
 
             if len(message.content) != self.word_length:
-                return await message.reply(f"You must send a `{self.word_length}` letter long word", delete_after=10)
+                return await message.reply(
+                    f"You must send a `{self.word_length}` letter long word",
+                    delete_after=10,
+                )
 
             async with self.ctx.bot.client.get(
                 url=f"https://wordsapiv1.p.rapidapi.com/words/{message.content}/syllables",
-                headers={"x-rapidapi-host": "wordsapiv1.p.rapidapi.com", "x-rapidapi-key": self.ctx.bot.RAPID_API_KEY},
+                headers={
+                    "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+                    "x-rapidapi-key": self.ctx.bot.RAPID_API_KEY,
+                },
             ) as response:
                 json = await response.json()
 
             if "message" in json:
-                return await message.reply("You must send a valid english word!", delete_after=10)
+                return await message.reply(
+                    "You must send a valid english word!", delete_after=10
+                )
 
             word = list(message.content)
             for i in range(self.word_length):
@@ -245,13 +277,18 @@ class Wordle(_WordleView):
         """
 
         with open("./resources/hangman_words.txt") as f:
-            self.word = random.choice([w.strip() for w in f.readlines() if len(w.strip()) == self.word_length])
+            self.word = random.choice(
+                [w.strip() for w in f.readlines() if len(w.strip()) == self.word_length]
+            )
 
         def undisable(c: t.Union[Button, Select]) -> Item:
             c.disabled = False
             return c
 
-        self.board = [[square.empty(self.light_mode, self.word) for _ in range(self.word_length)] for __ in range(6)]
+        self.board = [
+            [square.empty(self.light_mode, self.word) for _ in range(self.word_length)]
+            for __ in range(6)
+        ]
         self.children = [undisable(c) for c in self.children if c.disabled]
 
         await interaction.response.defer()

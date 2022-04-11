@@ -3,14 +3,34 @@ import typing as t
 
 from essential_generators import DocumentGenerator
 
-from disnake import Member, SelectOption, Message, MessageInteraction, HTTPException, Embed, ButtonStyle
+from disnake import (
+    Member,
+    SelectOption,
+    Message,
+    MessageInteraction,
+    HTTPException,
+    Embed,
+    ButtonStyle,
+)
 from disnake.ui import View, Button, Select, Item, select, button
 
-from core.constants import CHECKERED_FLAG, PLAY_BUTTON, SPEEDTEST_MESSAGE, STOPWATCH, THUMBS_UP, VIDEO_GAME
+from core.constants import (
+    CHECKERED_FLAG,
+    PLAY_BUTTON,
+    SPEEDTEST_MESSAGE,
+    STOPWATCH,
+    THUMBS_UP,
+    VIDEO_GAME,
+)
 from core.context import Context
 
 
-DIFFICULTY_CONVERTER = {"easy": 30, "medium": 60, "hard": 120, "insane": 180}  # difficulty to sentance length
+DIFFICULTY_CONVERTER = {
+    "easy": 30,
+    "medium": 60,
+    "hard": 120,
+    "insane": 180,
+}  # difficulty to sentance length
 
 
 class _SpeedTestView(View):
@@ -52,7 +72,10 @@ class _SpeedTestView(View):
             0
         ]  # cant assign anywhere else because bot_message is passed ** after ** the instance is created.
 
-        return interaction.author == self.ctx.author and interaction.channel == self.ctx.channel
+        return (
+            interaction.author == self.ctx.author
+            and interaction.channel == self.ctx.channel
+        )
 
     async def edit_embed(self, desc: t.Optional[str] = None) -> None:
         """
@@ -90,7 +113,9 @@ class _SpeedTestView(View):
             SelectOption(label="insane"),
         ],
     )
-    async def change_difficulty(self, select: Select, interaction: MessageInteraction) -> None:
+    async def change_difficulty(
+        self, select: Select, interaction: MessageInteraction
+    ) -> None:
         """
         user changes the difficulty
         to either easy, hard, medium
@@ -110,7 +135,11 @@ class _SpeedTestView(View):
         self.difficulty = select.values[0]
         await interaction.response.defer()
         await self.edit_embed(
-            "```yaml\n" + SPEEDTEST_MESSAGE.format(difficulty=self.difficulty, test_time=self.test_time) + "```"
+            "```yaml\n"
+            + SPEEDTEST_MESSAGE.format(
+                difficulty=self.difficulty, test_time=self.test_time
+            )
+            + "```"
         )
 
     @select(
@@ -122,7 +151,9 @@ class _SpeedTestView(View):
             SelectOption(label="120"),
         ],
     )
-    async def change_test_time(self, select: Select, interaction: MessageInteraction) -> None:
+    async def change_test_time(
+        self, select: Select, interaction: MessageInteraction
+    ) -> None:
         """
         user changes the test length
         to either 15s, 30s, 60s, or 120s.
@@ -140,7 +171,11 @@ class _SpeedTestView(View):
         self.test_time = int(select.values[0])
         await interaction.response.defer()
         await self.edit_embed(
-            "```yaml\n" + SPEEDTEST_MESSAGE.format(difficulty=self.difficulty, test_time=self.test_time) + "```"
+            "```yaml\n"
+            + SPEEDTEST_MESSAGE.format(
+                difficulty=self.difficulty, test_time=self.test_time
+            )
+            + "```"
         )
 
 
@@ -205,7 +240,11 @@ class SpeedTest(_SpeedTestView):
 
         m = self.ctx.bot.get_message(_m.id)
         players = [
-            p for p in await [m for m in m.reactions if m.emoji == CHECKERED_FLAG][0].users().flatten() if not p.bot
+            p
+            for p in await [m for m in m.reactions if m.emoji == CHECKERED_FLAG][0]
+            .users()
+            .flatten()
+            if not p.bot
         ]
         if not players:
             return await self.bot_message.reply("**NO ONE REACTED**")

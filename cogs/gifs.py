@@ -13,7 +13,10 @@ class JesterJokes(commands.Cog):
 
         self.bot = bot
 
-    @commands.command(aliases=["ranfact", "rf", "randomfact"], description="""Returns a random fact [ranfact, rf]""")
+    @commands.command(
+        aliases=["ranfact", "rf", "randomfact"],
+        description="""Returns a random fact [ranfact, rf]""",
+    )
     async def fact(self, ctx: Context):
         fact_string = await fact()
         await send_embed(ctx, "Fact", fact_string)
@@ -23,12 +26,18 @@ class JesterJokes(commands.Cog):
         quote_string = await quote(self.bot)
         await send_embed(ctx, "Quote", quote_string)
 
-    @commands.command(aliases=["pl", "pickup", "pickline"], description="""Returns a random Pickup Line.""")
+    @commands.command(
+        aliases=["pl", "pickup", "pickline"],
+        description="""Returns a random Pickup Line.""",
+    )
     async def pickup_line(self, ctx: Context):
         pickup_line = await pickup()
         await send_embed(ctx, "Pickup line", pickup_line)
 
-    @commands.command(aliases=["insultme", "Mean", "Insult_Me"], description="The specified member gets insulted")
+    @commands.command(
+        aliases=["insultme", "Mean", "Insult_Me"],
+        description="The specified member gets insulted",
+    )
     async def insult(self, ctx: Context, user: disnake.Member = ""):
 
         m = self.bot.get_user(828363172717133874)
@@ -41,28 +50,43 @@ class JesterJokes(commands.Cog):
             embed = disnake.Embed(title="You shmuck...I am god")
             await ctx.reply(embed=embed)
         else:
-            async with self.bot.client.get(url="https://insult.mattbas.org/api/insult.json") as response:
+            async with self.bot.client.get(
+                url="https://insult.mattbas.org/api/insult.json"
+            ) as response:
                 fox = await response.json()
             foxupdate = fox["insult"]
-            embed = disnake.Embed(description=f"{user.mention} {foxupdate}", colour=get_colour())
+            embed = disnake.Embed(
+                description=f"{user.mention} {foxupdate}", colour=get_colour()
+            )
             await ctx.reply(embed=embed)
 
-    @commands.command(aliases=["dis", "Diss"], description="The specified member gets dissed")
+    @commands.command(
+        aliases=["dis", "Diss"], description="The specified member gets dissed"
+    )
     async def disthem(self, ctx: Context, user: disnake.Member = ""):
         if user == "":
             user = self.bot.get_user(ctx.author.id)
-        async with self.bot.client.get(url="https://evilinsult.com/generate_insult.php?lang=en&type=json") as response:
+        async with self.bot.client.get(
+            url="https://evilinsult.com/generate_insult.php?lang=en&type=json"
+        ) as response:
             fox = await response.json()
         foxupdate = fox["insult"]
 
-        embed = disnake.Embed(description=f"{user.mention} {foxupdate}", colour=get_colour())
+        embed = disnake.Embed(
+            description=f"{user.mention} {foxupdate}", colour=get_colour()
+        )
         await ctx.reply(embed=embed)
 
-    @commands.command(aliases=["Chuck_norris", "Chucky", "norris"], description="Sends a random chuck norris joke/fact")
+    @commands.command(
+        aliases=["Chuck_norris", "Chucky", "norris"],
+        description="Sends a random chuck norris joke/fact",
+    )
     async def chuck(self, ctx: Context, user: disnake.Member = ""):
         if user == "":
             user = self.bot.get_user(ctx.author.id)
-        async with self.bot.client.get(url="https://api.chucknorris.io/jokes/random") as response:
+        async with self.bot.client.get(
+            url="https://api.chucknorris.io/jokes/random"
+        ) as response:
             fox = await response.json()
         foxupdate = fox["value"]
 
@@ -70,7 +94,8 @@ class JesterJokes(commands.Cog):
         await ctx.reply(embed=embed)
 
     @commands.command(
-        aliases=["adj", "random_adj", "randadj", "Rand_Adj", "random_adjective"], description="Sends a random adjective"
+        aliases=["adj", "random_adj", "randadj", "Rand_Adj", "random_adjective"],
+        description="Sends a random adjective",
     )
     async def adjective(self, ctx: Context):
 
@@ -108,7 +133,9 @@ class JesterJokes(commands.Cog):
             "",
         ]
 
-        embed = disnake.Embed(description=f"{user.mention} got smacked", colour=get_colour())
+        embed = disnake.Embed(
+            description=f"{user.mention} got smacked", colour=get_colour()
+        )
         embed.set_image(url=choice(url))
         await ctx.reply(embed=embed)
 

@@ -59,7 +59,9 @@ class Images(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def sharp(self, ctx: Context, sharpness: float = 10, member: disnake.Member = None):
+    async def sharp(
+        self, ctx: Context, sharpness: float = 10, member: disnake.Member = None
+    ):
         x = await pilimg(ctx, member, "sharp")
         enhancer = PIL.ImageEnhance.Sharpness(x[0])
         enhancer.enhance(sharpness)
@@ -83,7 +85,9 @@ class Images(commands.Cog):
         await ctx.reply(file=disnake.File(x[1]))
 
     @commands.command()
-    async def brightness(self, ctx: Context, factor: float, member: disnake.Member = None):
+    async def brightness(
+        self, ctx: Context, factor: float, member: disnake.Member = None
+    ):
         x = await pilimg(ctx, member, "brightness")
         enhancer = PIL.ImageEnhance.factor(x[0])
         enhancer.enhance(factor)
@@ -101,7 +105,9 @@ class Images(commands.Cog):
 
     @commands.command()
     async def nasapic(self, ctx: Context):
-        async with self.bot.client.get(url="https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=1") as response:
+        async with self.bot.client.get(
+            url="https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=1"
+        ) as response:
             up = await response.json()
 
         embed = disnake.Embed(
@@ -129,7 +135,9 @@ class Images(commands.Cog):
     @commands.command(aliases=["rpic", "randpic"])
     async def randompicture(self, ctx: Context):
         async with ctx.typing():
-            async with self.bot.client.get(url=f"https://source.unsplash.com/random") as response:
+            async with self.bot.client.get(
+                url=f"https://source.unsplash.com/random"
+            ) as response:
                 my_file = open("./images/random.png", "wb")
                 my_file.write(await response.read())
                 my_file.close()
@@ -142,9 +150,14 @@ class Images(commands.Cog):
             return await ctx.em("Your code needs to be in a codeblock!")
 
         code_edited = disnake.utils.remove_markdown(code.strip()).strip()
-        async with aiohttp.ClientSession(headers={"Content-Type": "application/json"}) as ses:
+        async with aiohttp.ClientSession(
+            headers={"Content-Type": "application/json"}
+        ) as ses:
             try:
-                request = await ses.post(f"https://carbonara-42.herokuapp.com/api/cook", json={"code": code_edited})
+                request = await ses.post(
+                    f"https://carbonara-42.herokuapp.com/api/cook",
+                    json={"code": code_edited},
+                )
             except Exception as e:
                 print(f"Exception in code_snippet L161: {e}")
             resp = await request.read()
@@ -163,7 +176,9 @@ class Images(commands.Cog):
             avatar = member.avatar.with_format("png")
 
         async with ctx.typing():
-            async with self.bot.client.get(url=f"https://some-random-api.ml/canvas/wasted?avatar={avatar}") as response:
+            async with self.bot.client.get(
+                url=f"https://some-random-api.ml/canvas/wasted?avatar={avatar}"
+            ) as response:
 
                 file = open("./images/wasted.png", "wb")
                 file.write(await response.read())
@@ -198,7 +213,9 @@ class Images(commands.Cog):
             avatar = member.avatar.with_format("png")
 
         async with ctx.typing():
-            async with self.bot.client.get(url=f"https://some-random-api.ml/canvas/gay?avatar={avatar}") as response:
+            async with self.bot.client.get(
+                url=f"https://some-random-api.ml/canvas/gay?avatar={avatar}"
+            ) as response:
 
                 file = open("./images/gay.png", "wb")
                 file.write(await response.read())
@@ -214,7 +231,9 @@ class Images(commands.Cog):
             avatar = member.avatar.with_format("png")
 
         async with ctx.typing():
-            async with self.bot.client.get(url=f"https://some-random-api.ml/canvas/glass?avatar={avatar}") as response:
+            async with self.bot.client.get(
+                url=f"https://some-random-api.ml/canvas/glass?avatar={avatar}"
+            ) as response:
 
                 file = open("./images/glass.png", "wb")
                 file.write(await response.read())
@@ -248,7 +267,9 @@ class Images(commands.Cog):
             avatar = member.avatar.with_format("png")
 
         async with ctx.typing():
-            async with self.bot.client.get(url=f"https://some-random-api.ml/canvas/red?avatar={avatar}") as response:
+            async with self.bot.client.get(
+                url=f"https://some-random-api.ml/canvas/red?avatar={avatar}"
+            ) as response:
 
                 file = open("./images/bloody.png", "wb")
                 file.write(await response.read())
@@ -295,7 +316,9 @@ class Images(commands.Cog):
             avatar = member.avatar.with_format("png")
 
         async with ctx.typing():
-            async with self.bot.client.get(url=f"https://some-random-api.ml/canvas/invert?avatar={avatar}") as response:
+            async with self.bot.client.get(
+                url=f"https://some-random-api.ml/canvas/invert?avatar={avatar}"
+            ) as response:
 
                 file = open("./images/invert.png", "wb")
                 file.write(await response.read())
@@ -319,7 +342,9 @@ class Images(commands.Cog):
     @commands.command(aliases=["pic", "imag", "images", "image"])
     async def picture(self, ctx: Context, *, pic):
         async with ctx.typing():
-            async with self.bot.client.get("https://source.unsplash.com/1600x900/?{}".format(pic)) as response:
+            async with self.bot.client.get(
+                "https://source.unsplash.com/1600x900/?{}".format(pic)
+            ) as response:
 
                 my_file = open("./images/picture.png", "wb")
                 my_file.write(await response.read())
@@ -347,7 +372,9 @@ class Images(commands.Cog):
             animal = Animals(imag)
 
             embed = disnake.Embed(
-                title=f"Here is your {imag}", description=f"**Fact:**\n{animal.fact()}", colour=get_colour()
+                title=f"Here is your {imag}",
+                description=f"**Fact:**\n{animal.fact()}",
+                colour=get_colour(),
             )
             embed.set_image(url=animal.image())
         await ctx.reply(embed=embed)
@@ -363,7 +390,9 @@ class Images(commands.Cog):
         await ctx.reply(file=disnake.File(x))
 
     @commands.command()
-    async def rotate(self, ctx: Context, degrees: float = -180, member: disnake.Member = None):
+    async def rotate(
+        self, ctx: Context, degrees: float = -180, member: disnake.Member = None
+    ):
         await img(ctx, member, "rotate")
 
         image = cv.imread("./images/rotate.png")
@@ -388,7 +417,9 @@ class Images(commands.Cog):
     @commands.command()
     async def bill(self, ctx: Context):
         async with ctx.typing():
-            async with self.bot.client.get("https://belikebill.ga/billgen-API.php?default=1") as response:
+            async with self.bot.client.get(
+                "https://belikebill.ga/billgen-API.php?default=1"
+            ) as response:
 
                 file = open("./images/bill.png", "wb")
                 file.write(await response.read())

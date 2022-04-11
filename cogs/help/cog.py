@@ -4,7 +4,17 @@ import typing
 
 from disnake.ext import commands
 from core.utils import get_colour
-from core.constants import COG_DESCRIPTIONS, COG_EMOJIS, CATEGORIES, LINK, _J, _E, _S, _T, _R
+from core.constants import (
+    COG_DESCRIPTIONS,
+    COG_EMOJIS,
+    CATEGORIES,
+    LINK,
+    _J,
+    _E,
+    _S,
+    _T,
+    _R,
+)
 from . import DropdownView
 from core import Context, JesterBot
 
@@ -52,18 +62,27 @@ class HelpUtils:
                 name=f"{CATEGORIES} **Categories:**\n\u200b",
                 value="\n".join([cogs[i] for i in range(0, len(cogs), 2)]) + "\n\u200b",
             )
-            .add_field(name="\u200b\n\u200b", value="\n".join([cogs[i] for i in range(1, len(cogs), 2)]))
+            .add_field(
+                name="\u200b\n\u200b",
+                value="\n".join([cogs[i] for i in range(1, len(cogs), 2)]),
+            )
             .add_field(name=f"{LINK} **Links:**", value=f"**{self.links}**", inline=False)
         )
 
     async def main_help(self, ctx: Context) -> None:
         embed = await self.main_help_embed(ctx)
-        await ctx.reply(embed=embed, view=DropdownView(COG_DESCRIPTIONS, ctx, HelpUtils(self.bot)))
+        await ctx.reply(
+            embed=embed, view=DropdownView(COG_DESCRIPTIONS, ctx, HelpUtils(self.bot))
+        )
 
-    async def specific_command(self, command: commands.Command, ctx: Context) -> disnake.Embed:
+    async def specific_command(
+        self, command: commands.Command, ctx: Context
+    ) -> disnake.Embed:
         return (
             disnake.Embed(colour=get_colour())
-            .add_field(name=" ❯❯ Name", value=f"`{command.name.capitalize()}`", inline=False)
+            .add_field(
+                name=" ❯❯ Name", value=f"`{command.name.capitalize()}`", inline=False
+            )
             .add_field(
                 name=" ❯❯ Alias",
                 value=f"{', '.join([f'`{k}`' for k in command.aliases if command.aliases])} "
@@ -73,12 +92,16 @@ class HelpUtils:
             )
             .add_field(
                 name=" ❯❯ Usage",
-                value=f"`j.{command.name} {command.signature}`" if command.signature else f"`j.{command.name}`",
+                value=f"`j.{command.name} {command.signature}`"
+                if command.signature
+                else f"`j.{command.name}`",
                 inline=False,
             )
             .add_field(
                 name=" ❯❯ Description",
-                value=f"{get_help(command.name)}" if get_help(command.name) else "Currently no help!",
+                value=f"{get_help(command.name)}"
+                if get_help(command.name)
+                else "Currently no help!",
                 inline=False,
             )
             .set_author(name="Help", icon_url=ctx.author.avatar.url)
@@ -91,23 +114,43 @@ class HelpUtils:
 
         commands = [f"- `{k.name}`" for k in cog.walk_commands() if not k.hidden]
         return (
-            disnake.Embed(description=COG_DESCRIPTIONS[cog.qualified_name], colour=get_colour())
+            disnake.Embed(
+                description=COG_DESCRIPTIONS[cog.qualified_name], colour=get_colour()
+            )
             .set_author(name=f"{cog.qualified_name}", icon_url=ctx.author.avatar.url)
-            .add_field(name="\u200b", value="\n".join([commands[i] for i in range(0, len(commands), 2)]))
-            .add_field(name="\u200b", value="\n".join([commands[i] for i in range(1, len(commands), 2)]))
+            .add_field(
+                name="\u200b",
+                value="\n".join([commands[i] for i in range(0, len(commands), 2)]),
+            )
+            .add_field(
+                name="\u200b",
+                value="\n".join([commands[i] for i in range(1, len(commands), 2)]),
+            )
         )
 
     async def no_command(self, ctx: Context) -> disnake.Embed:
-        message = ctx.message.content.replace(f"{ctx.prefix}{ctx.invoked_with} ", "").strip()
+        message = ctx.message.content.replace(
+            f"{ctx.prefix}{ctx.invoked_with} ", ""
+        ).strip()
         commands = [
-            f"- `{k.name}`" for k in self.bot.commands if k.name.startswith(message[0].lower()) and not k.hidden
+            f"- `{k.name}`"
+            for k in self.bot.commands
+            if k.name.startswith(message[0].lower()) and not k.hidden
         ]
 
         return (
             disnake.Embed(colour=get_colour())
-            .set_author(name=f"{message} is not a command!", icon_url=ctx.author.avatar.url)
-            .add_field(name="\u200b", value="\n".join([commands[i] for i in range(0, len(commands), 2)]))
-            .add_field(name="\u200b", value="\n".join([commands[i] for i in range(1, len(commands), 2)]))
+            .set_author(
+                name=f"{message} is not a command!", icon_url=ctx.author.avatar.url
+            )
+            .add_field(
+                name="\u200b",
+                value="\n".join([commands[i] for i in range(0, len(commands), 2)]),
+            )
+            .add_field(
+                name="\u200b",
+                value="\n".join([commands[i] for i in range(1, len(commands), 2)]),
+            )
         )
 
 
@@ -116,11 +159,15 @@ class Help(commands.Cog):
         self.bot = bot
         self.utils = HelpUtils(bot)
 
-    @commands.command(aliases=["h", "commands", "cmd", "command", "?", "helpme", "helpcommand", "cmds"])
+    @commands.command(
+        aliases=["h", "commands", "cmd", "command", "?", "helpme", "helpcommand", "cmds"]
+    )
     async def help(self, ctx: Context, command=None) -> None:
         if not command:
             embed = await self.utils.main_help_embed(ctx)
-            return await ctx.reply(embed=embed, view=DropdownView(COG_DESCRIPTIONS, ctx, self.utils))
+            return await ctx.reply(
+                embed=embed, view=DropdownView(COG_DESCRIPTIONS, ctx, self.utils)
+            )
 
         cog = await self.utils.get_cog_from_str(command)
         if cog:

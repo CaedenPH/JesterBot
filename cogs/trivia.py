@@ -15,12 +15,16 @@ class Trivia(commands.Cog):
         self.token = "..."
 
     async def replace_token(self) -> None:
-        async with self.bot.client.get(url="https://opentdb.com/api_token.php?command=request") as resp:
+        async with self.bot.client.get(
+            url="https://opentdb.com/api_token.php?command=request"
+        ) as resp:
             json = await resp.json()
             self.token = json["token"]
 
     async def get_question(self):
-        async with self.bot.client.get(url=f"https://opentdb.com/api.php?amount=1&token={self.token}") as resp:
+        async with self.bot.client.get(
+            url=f"https://opentdb.com/api.php?amount=1&token={self.token}"
+        ) as resp:
             json = await resp.json()
         if json["response_code"] == 3:
             await self.replace_token()
@@ -56,7 +60,9 @@ class Trivia(commands.Cog):
         (content, answer) = await self.get_question()
         await ctx.em(content)
 
-        msg = await self.bot.wait_for("message", check=lambda m: m.channel == ctx.channel and m.author == ctx.author)
+        msg = await self.bot.wait_for(
+            "message", check=lambda m: m.channel == ctx.channel and m.author == ctx.author
+        )
 
         if msg.content.lower() == answer:
             return await ctx.em("Thats the correct answer!")
@@ -86,7 +92,9 @@ class Trivia(commands.Cog):
             try:
                 time = datetime.datetime.utcnow()
                 msg = await self.bot.wait_for(
-                    "message", check=lambda m: m.channel == ctx.channel and not m.author.bot, timeout=30
+                    "message",
+                    check=lambda m: m.channel == ctx.channel and not m.author.bot,
+                    timeout=30,
                 )
 
                 while True:
@@ -100,7 +108,10 @@ class Trivia(commands.Cog):
                             input_dict[msg.author.name]["answer"] = msg.content[7].lower()
 
                     else:
-                        input_dict[msg.author.name] = {"score": 0, "answer": msg.content.lower()}
+                        input_dict[msg.author.name] = {
+                            "score": 0,
+                            "answer": msg.content.lower(),
+                        }
 
                     run = True
                     msg = await self.bot.wait_for(
@@ -124,10 +135,16 @@ class Trivia(commands.Cog):
 
                 else:
                     correct = [k for k in input_dict if input_dict[k]["answer"] == answer]
-                    sorted_dict = dict(sorted(input_dict.items(), key=lambda k: k[1]["score"], reverse=True))
+                    sorted_dict = dict(
+                        sorted(
+                            input_dict.items(), key=lambda k: k[1]["score"], reverse=True
+                        )
+                    )
                     for k in correct:
                         input_dict[k]["score"] += 1
-                    leaderboard = "\n".join([f"      - {k}: {[input_dict[k]['score']]}" for k in sorted_dict])
+                    leaderboard = "\n".join(
+                        [f"      - {k}: {[input_dict[k]['score']]}" for k in sorted_dict]
+                    )
 
                     await ctx.em(
                         f"""```yaml

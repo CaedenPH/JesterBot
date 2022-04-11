@@ -44,7 +44,9 @@ async def error_handler(ctx, error) -> None:
         return
 
     if isinstance(error, MissingPermissions):
-        embed = disnake.Embed(description="You do not have permissions to do that!", colour=get_colour())
+        embed = disnake.Embed(
+            description="You do not have permissions to do that!", colour=get_colour()
+        )
         await ctx.reply(embed=embed)
     elif isinstance(error, CheckFailure):
         pass
@@ -52,7 +54,9 @@ async def error_handler(ctx, error) -> None:
         args = error.args[0].strip(".").split()
         _type, param = args[2].strip('"'), args[-1].strip('"')
 
-        await send_embed(ctx, "Error", f"```yaml\nParameter '{param}' must be type {_type}!```")
+        await send_embed(
+            ctx, "Error", f"```yaml\nParameter '{param}' must be type {_type}!```"
+        )
     elif isinstance(error, MissingRequiredArgument):
         com = str(ctx.command.signature)
         x = com.split(f"{error.param.name}")
@@ -105,7 +109,9 @@ async def error_handler(ctx, error) -> None:
             failed_cmd = ctx.message.content.split(" ")
             failed_cmd = failed_cmd[0]
             embed = disnake.Embed(title="Error!", colour=get_colour())
-            embed.set_author(icon_url=ctx.author.avatar.url, name=f"{failed_cmd} is not a command!")
+            embed.set_author(
+                icon_url=ctx.author.avatar.url, name=f"{failed_cmd} is not a command!"
+            )
 
             if my_string[0] not in [""]:
                 embed.add_field(name="Did you mean:", value=f"{my_string[0]}")
@@ -125,14 +131,21 @@ async def error_handler(ctx, error) -> None:
                     await msg.add_reaction(close)
                     await msg.add_reaction(right)
                     try:
-                        (emoji, user) = await ctx.bot.wait_for("reaction_add", timeout=60.0, check=check)
+                        (emoji, user) = await ctx.bot.wait_for(
+                            "reaction_add", timeout=60.0, check=check
+                        )
 
                         while str(emoji.emoji) != close:
                             if str(emoji.emoji) == right and num == 1:
 
                                 embed = disnake.Embed(title="Error!", colour=get_colour())
-                                embed.set_author(icon_url=ctx.author.avatar.url, name=f"{failed_cmd} is not a command!")
-                                embed.add_field(name="Did you mean:", value=f"{my_string[1]}")
+                                embed.set_author(
+                                    icon_url=ctx.author.avatar.url,
+                                    name=f"{failed_cmd} is not a command!",
+                                )
+                                embed.add_field(
+                                    name="Did you mean:", value=f"{my_string[1]}"
+                                )
                                 embed.set_footer(text="Page 2")
                                 await msg.edit(embed=embed)
                                 await msg.remove_reaction(member=ctx.author, emoji=right)
@@ -140,8 +153,13 @@ async def error_handler(ctx, error) -> None:
 
                             elif str(emoji.emoji) == left and num == 2:
                                 embed = disnake.Embed(title="Error!", colour=get_colour())
-                                embed.set_author(icon_url=ctx.author.avatar.url, name=f"{failed_cmd} is not a command!")
-                                embed.add_field(name="Did you mean:", value=f"{my_string[0]}")
+                                embed.set_author(
+                                    icon_url=ctx.author.avatar.url,
+                                    name=f"{failed_cmd} is not a command!",
+                                )
+                                embed.add_field(
+                                    name="Did you mean:", value=f"{my_string[0]}"
+                                )
                                 embed.set_footer(text="Page 1")
                                 await msg.edit(embed=embed)
                                 await msg.remove_reaction(member=ctx.author, emoji=left)
@@ -151,24 +169,40 @@ async def error_handler(ctx, error) -> None:
                                 await msg.remove_reaction(member=ctx.author, emoji=left)
 
                             (emoji, user) = await ctx.bot.wait_for(
-                                "reaction_add", timeout=60.0, check=lambda r, u: u == ctx.author
+                                "reaction_add",
+                                timeout=60.0,
+                                check=lambda r, u: u == ctx.author,
                             )
                         else:
-                            embed = disnake.Embed(title="Error!", description="Goodbye", colour=get_colour())
-                            embed.set_author(icon_url=ctx.author.avatar.url, name=f"{failed_cmd} is not a command!")
+                            embed = disnake.Embed(
+                                title="Error!", description="Goodbye", colour=get_colour()
+                            )
+                            embed.set_author(
+                                icon_url=ctx.author.avatar.url,
+                                name=f"{failed_cmd} is not a command!",
+                            )
                             embed.set_footer(text="Have fun!")
                             return await msg.edit(embed=embed)
 
                     except asyncio.TimeoutError:
-                        embed = disnake.Embed(title="Error!", description="Session timed out", colour=get_colour())
-                        embed.set_author(icon_url=ctx.author.avatar.url, name=f"{failed_cmd} is not a command!")
+                        embed = disnake.Embed(
+                            title="Error!",
+                            description="Session timed out",
+                            colour=get_colour(),
+                        )
+                        embed.set_author(
+                            icon_url=ctx.author.avatar.url,
+                            name=f"{failed_cmd} is not a command!",
+                        )
                         embed.set_footer()
                         return await msg.edit(embed=embed)
 
         except:
             pass
     elif isinstance(error, MemberNotFound):
-        embed = disnake.Embed(description=f"They are not a **member!**", colour=get_colour())
+        embed = disnake.Embed(
+            description=f"They are not a **member!**", colour=get_colour()
+        )
         await ctx.reply(embed=embed)
     elif isinstance(error, RoleNotFound):
         embed = disnake.Embed(description=f"That is not a **role!**", colour=get_colour())
@@ -176,7 +210,8 @@ async def error_handler(ctx, error) -> None:
 
     elif isinstance(error, CommandOnCooldown):
         embed = disnake.Embed(
-            description=f"This command is on cooldown for **{error.retry_after:.2f}** seconds", colour=get_colour()
+            description=f"This command is on cooldown for **{error.retry_after:.2f}** seconds",
+            colour=get_colour(),
         )
         await ctx.reply(embed=embed)
 

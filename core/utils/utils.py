@@ -19,7 +19,10 @@ def get_colour() -> int:
 
 
 async def send_embed(
-    channel: disnake.abc.Messageable, title: str, description: str = disnake.Embed.Empty, **kwargs
+    channel: disnake.abc.Messageable,
+    title: str,
+    description: str = disnake.Embed.Empty,
+    **kwargs
 ) -> disnake.Message:
     from core.context import Context
 
@@ -44,7 +47,9 @@ async def send_embed(
     if isinstance(channel, Context):
         embed.timestamp = channel.message.created_at
         if not author:
-            embed.set_author(name=channel.author.name, icon_url=channel.author.display_avatar.url)
+            embed.set_author(
+                name=channel.author.name, icon_url=channel.author.display_avatar.url
+            )
         msg = await channel.reply(embed=embed)
     else:
         msg = await channel.send(embed=embed)

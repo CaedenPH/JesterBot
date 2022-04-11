@@ -40,7 +40,9 @@ class Feedback(commands.Cog):
         ] = None,
     ):
         await send_embed(
-            ctx, "", "**Error: **distance must be an integer (an index placevalue) if no `author_from` is given!"
+            ctx,
+            "",
+            "**Error: **distance must be an integer (an index placevalue) if no `author_from` is given!",
         ) if hasattr(distance, "upper") and author_from is None else await send_embed(
             ctx,
             "",
@@ -123,7 +125,9 @@ class Feedback(commands.Cog):
             return await send_embed(ctx, "", "You are not engaged in a support dial!")
         del data[str(ctx.channel.id)]
         update_json(f, data)
-        await send_embed(ctx, "", "The ticket has been closed! We hope your problem got solved!")
+        await send_embed(
+            ctx, "", "The ticket has been closed! We hope your problem got solved!"
+        )
         await send_embed(c, "", f"{ctx.author} ended a call at {ctx.channel.id}")
 
     @commands.Cog.listener("on_message")

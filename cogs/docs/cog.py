@@ -29,11 +29,14 @@ class Docs(cog.Docs, RTFM):
         )
 
     def get_tag_embed(self, author: disnake.Member, tag: str):
-        tag = max([(_tag, fuzz.ratio(tag, _tag)) for _tag in self.TAGS], key=lambda m: m[1])[0]
+        tag = max(
+            [(_tag, fuzz.ratio(tag, _tag)) for _tag in self.TAGS], key=lambda m: m[1]
+        )[0]
 
         return (
             disnake.Embed(
-                title=tag.capitalize(), description=open(f"./resources/tags/{tag}.md", encoding="utf-8").read()
+                title=tag.capitalize(),
+                description=open(f"./resources/tags/{tag}.md", encoding="utf-8").read(),
             )
             .set_author(name=author.name, icon_url=author.avatar.url)
             .set_footer(text="Use tag_list command to see all tags")
@@ -83,7 +86,9 @@ class Docs(cog.Docs, RTFM):
     @commands.command(aliases=["tags_list"])
     async def tag_list(self, ctx: Context) -> None:
         lines = sorted([f"» `{name}`" for name in self.TAGS])
-        paginator = Paginator(ctx, lines, per_page=10, title=f"All tags (`{len(lines)}` total)")
+        paginator = Paginator(
+            ctx, lines, per_page=10, title=f"All tags (`{len(lines)}` total)"
+        )
         await paginator.start()
 
     @commands.command()
@@ -96,10 +101,14 @@ class Docs(cog.Docs, RTFM):
         lines = ZEN_OF_PYTHON.splitlines()
         if len(lines) > search:
             return await ctx.reply(
-                embed=disnake.Embed(title=f"The Zen of Python - Line {search}", description=lines[search])
+                embed=disnake.Embed(
+                    title=f"The Zen of Python - Line {search}", description=lines[search]
+                )
             )
 
-        await ctx.reply(embed=embed.set_footer(text=f"lines {search} is not in the zen lines!"))
+        await ctx.reply(
+            embed=embed.set_footer(text=f"lines {search} is not in the zen lines!")
+        )
 
 
 def setup(bot: JesterBot) -> None:

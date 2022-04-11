@@ -18,7 +18,8 @@ class Levels(commands.Cog):
 
     async def find_or_insert_user(self, member: disnake.Member):
         result = await self.bot.db.fetchone(
-            "Select * from users where user_id = ? and guild_id = ?", (member.id, member.guild.id)
+            "Select * from users where user_id = ? and guild_id = ?",
+            (member.id, member.guild.id),
         )
         if result is None:
             result = (member.id, member.guild.id, 0, 0, member.display_name)
@@ -26,7 +27,9 @@ class Levels(commands.Cog):
         return result
 
     async def rankup(self, level, member):
-        result = await self.bot.db.fetchone("Select * from levels_config where guild_id = ?", (member.guild.id,))
+        result = await self.bot.db.fetchone(
+            "Select * from levels_config where guild_id = ?", (member.guild.id,)
+        )
 
         (chan, message) = (None, None)
         if result is not None:
@@ -61,7 +64,8 @@ class Levels(commands.Cog):
                 await channel.send(sendmessage[1])
 
         await self.bot.db.update(
-            "Update users set xp=?, level=? where user_id=? and guild_id=?", (xp, level, user_id, guild_id)
+            "Update users set xp=?, level=? where user_id=? and guild_id=?",
+            (xp, level, user_id, guild_id),
         )
 
     async def make_rank_image(self, member: disnake.Member, rank, level, xp, final_xp):
@@ -127,7 +131,9 @@ class Levels(commands.Cog):
         circle_size = bar_offset_y_1 - bar_offset_y
 
         # Progress bar rect greyier one
-        draw.rectangle((bar_offset_x, bar_offset_y, bar_offset_x_1, bar_offset_y_1), fill="#727175")
+        draw.rectangle(
+            (bar_offset_x, bar_offset_y, bar_offset_x_1, bar_offset_y_1), fill="#727175"
+        )
         # Placing circle in progress bar
 
         # Left circle
@@ -143,7 +149,12 @@ class Levels(commands.Cog):
 
         # Right Circle
         draw.ellipse(
-            (bar_offset_x_1 - circle_size // 2, bar_offset_y, bar_offset_x_1 + circle_size // 2, bar_offset_y_1),
+            (
+                bar_offset_x_1 - circle_size // 2,
+                bar_offset_y,
+                bar_offset_x_1 + circle_size // 2,
+                bar_offset_y_1,
+            ),
             fill="#727175",
         )
 
@@ -160,7 +171,9 @@ class Levels(commands.Cog):
         pbar_offset_x_1 = bar_offset_x + progress_bar_length
 
         # Drawing Rectangle
-        draw.rectangle((bar_offset_x, bar_offset_y, pbar_offset_x_1, bar_offset_y_1), fill="#11ebf2")
+        draw.rectangle(
+            (bar_offset_x, bar_offset_y, pbar_offset_x_1, bar_offset_y_1), fill="#11ebf2"
+        )
         # Left circle
         draw.ellipse(
             (
@@ -173,7 +186,12 @@ class Levels(commands.Cog):
         )
         # Right Circle
         draw.ellipse(
-            (pbar_offset_x_1 - circle_size // 2, bar_offset_y, pbar_offset_x_1 + circle_size // 2, bar_offset_y_1),
+            (
+                pbar_offset_x_1 - circle_size // 2,
+                bar_offset_y,
+                pbar_offset_x_1 + circle_size // 2,
+                bar_offset_y_1,
+            ),
             fill="#11ebf2",
         )
 
@@ -218,7 +236,9 @@ class Levels(commands.Cog):
         user = await self.find_or_insert_user(member)
         (user_id, guild_id, xp, level, name) = user
 
-        result = await self.bot.db.fetchone("Select Count(*) from users where xp > ? and guild_id=?", (xp, guild_id))
+        result = await self.bot.db.fetchone(
+            "Select Count(*) from users where xp > ? and guild_id=?", (xp, guild_id)
+        )
         rank = result[0] + 1
         final_xp = self.calculate_xp(level + 1)
 
@@ -227,14 +247,18 @@ class Levels(commands.Cog):
 
     @commands.command(aliases=["conf"])
     async def levelsconfig(self, ctx: Context):
-        result = await self.bot.db.fetchone("Select * from levels_config where guild_id = ?", (ctx.guild.id,))
+        result = await self.bot.db.fetchone(
+            "Select * from levels_config where guild_id = ?", (ctx.guild.id,)
+        )
 
         if result is None:
             await ctx.reply(
                 "What channel would you like the rankup messages to be in? Type No to not have a rankup message channel"
             )
 
-            channel_msg = await self.bot.wait_for("message", check=lambda m: m.author == ctx.author)
+            channel_msg = await self.bot.wait_for(
+                "message", check=lambda m: m.author == ctx.author
+            )
 
             while not channel_msg.raw_channel_mentions and channel_msg.content != "No":
 
@@ -244,19 +268,25 @@ class Levels(commands.Cog):
                     )
                 )
 
-                channel_msg = await self.bot.wait_for("message", check=lambda m: m.author == ctx.author)
+                channel_msg = await self.bot.wait_for(
+                    "message", check=lambda m: m.author == ctx.author
+                )
 
             await channel_msg.add_reaction(THUMBS_UP)
             await ctx.reply(
                 "Would you like the bot to ping after every rankup message? Type No to not ping on rankup, and Yes to ping."
             )
 
-            ping = await self.bot.wait_for("message", check=lambda m: m.author == ctx.author)
+            ping = await self.bot.wait_for(
+                "message", check=lambda m: m.author == ctx.author
+            )
 
             while ping.content not in ["No", "Yes"]:
 
                 await ctx.reply("Type No to not ping on rankup, and Yes to ping.")
-                ping = await self.bot.wait_for("message", check=lambda m: m.author == ctx.author)
+                ping = await self.bot.wait_for(
+                    "message", check=lambda m: m.author == ctx.author
+                )
 
             await ping.add_reaction(THUMBS_UP)
 
@@ -271,14 +301,16 @@ class Levels(commands.Cog):
             return await ctx.reply(embed=embed)
 
         await ctx.reply(
-            embed=disnake.Embed(description="You already have a config!", colour=get_colour()).set_author(
-                name="Config", icon_url=ctx.author.avatar.url
-            )
+            embed=disnake.Embed(
+                description="You already have a config!", colour=get_colour()
+            ).set_author(name="Config", icon_url=ctx.author.avatar.url)
         )
 
     @commands.command(aliases=["vconf"])
     async def viewconfig(self, ctx: Context):
-        result = await self.bot.db.fetchone("Select * from levels_config where guild_id = ?", (ctx.guild.id,))
+        result = await self.bot.db.fetchone(
+            "Select * from levels_config where guild_id = ?", (ctx.guild.id,)
+        )
 
         if result is not None:
             config = f"""
@@ -290,7 +322,9 @@ class Levels(commands.Cog):
 
     @commands.command(aliases=["rconf"])
     async def removeconfig(self, ctx: Context):
-        await self.bot.db.execute("Delete from levels_config where guild_id = ?", (ctx.guild.id,))
+        await self.bot.db.execute(
+            "Delete from levels_config where guild_id = ?", (ctx.guild.id,)
+        )
         await ctx.reply("Deleted all rankup config messages")
 
     @commands.command(aliases=["lb"])
@@ -299,7 +333,8 @@ class Levels(commands.Cog):
         embed.set_author(name="Leaderboard", icon_url=ctx.author.avatar.url)
 
         result = await self.bot.db.fetchall(
-            "SELECT user_id, xp, level, name FROM users WHERE guild_id = ? ORDER BY xp ASC", (ctx.guild.id,)
+            "SELECT user_id, xp, level, name FROM users WHERE guild_id = ? ORDER BY xp ASC",
+            (ctx.guild.id,),
         )
 
         desc = ""

@@ -14,11 +14,14 @@ class Config(Cog):
 
     async def insert_values(self, channel_id: int, channel_type: str) -> None:
         result = await self.bot.db.fetchone(
-            "SELECT channel_types FROM channels_config WHERE channel_id = ?", (channel_id,)
+            "SELECT channel_types FROM channels_config WHERE channel_id = ?",
+            (channel_id,),
         )
 
         if not result:
-            return await self.bot.db.update("INSERT INTO channels_config VALUES (?, ?)", (channel_id, channel_type))
+            return await self.bot.db.update(
+                "INSERT INTO channels_config VALUES (?, ?)", (channel_id, channel_type)
+            )
 
         channel_types = result[0].split(" | ")
         if channel_type in channel_types:
@@ -36,7 +39,9 @@ class Config(Cog):
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
         await self.insert_values(channel.id, "pickup")
-        await send_embed(ctx, EmptyEmbed, channel.mention + " now sends pickup lines on the hour!")
+        await send_embed(
+            ctx, EmptyEmbed, channel.mention + " now sends pickup lines on the hour!"
+        )
 
     @command()
     @has_permissions(manage_channels=True)
@@ -45,7 +50,9 @@ class Config(Cog):
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
         await self.insert_values(channel.id, "joke")
-        await send_embed(ctx, EmptyEmbed, channel.mention + " now sends jokes on the hour!")
+        await send_embed(
+            ctx, EmptyEmbed, channel.mention + " now sends jokes on the hour!"
+        )
 
     @command()
     @has_permissions(manage_channels=True)
@@ -54,7 +61,9 @@ class Config(Cog):
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
         await self.insert_values(channel.id, "quote")
-        await send_embed(ctx, EmptyEmbed, channel.mention + " now sends quotes on the hour!")
+        await send_embed(
+            ctx, EmptyEmbed, channel.mention + " now sends quotes on the hour!"
+        )
 
     @command()
     @has_permissions(manage_channels=True)
@@ -63,14 +72,18 @@ class Config(Cog):
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
         await self.insert_values(channel.id, "fact")
-        await send_embed(ctx, EmptyEmbed, channel.mention + " now sends facts on the hour!")
+        await send_embed(
+            ctx, EmptyEmbed, channel.mention + " now sends facts on the hour!"
+        )
 
     @command(
         aliases=["Welcomer", "welcome"],
         description="Adds a welcome feature into the current channel (everytime someone joins the server it says welcome) - `[message]` is a good welcome message",
     )
     @has_permissions(administrator=True)
-    async def welcomechannel(self, ctx: Context, role: disnake.Role = "", *, message: str = ""):
+    async def welcomechannel(
+        self, ctx: Context, role: disnake.Role = "", *, message: str = ""
+    ):
 
         with open("./dicts/Welcome.json", "r+") as f:
             data = json.load(f)
@@ -97,7 +110,9 @@ class Config(Cog):
             embed = disnake.Embed(title="Added!", colour=get_colour())
             await ctx.reply(embed=embed)
 
-    @command(aliases=["Unwelcome", "Stop_Welcome"], description="Removes the j.welcome command")
+    @command(
+        aliases=["Unwelcome", "Stop_Welcome"], description="Removes the j.welcome command"
+    )
     async def remove_welcome(self, ctx: Context):
         with open("./dicts/Welcome.json", "r+") as f:
             data = json.load(f)
@@ -156,7 +171,9 @@ class Config(Cog):
     3. When a new member joins they will only see the channel `⚘ verify ⚘`, and if they write `verify` they can text in and see all other channels""",
     )
     @has_permissions(administrator=True)
-    async def verifychannel(self, ctx: Context, channel: disnake.TextChannel = None, role: disnake.Role = ""):
+    async def verifychannel(
+        self, ctx: Context, channel: disnake.TextChannel = None, role: disnake.Role = ""
+    ):
         embed = disnake.Embed(
             title="Warning",
             description="While this command can help your server by adding a verification, it can also add roles and channels you may not like the look of. To get more information type `j.help verifychannel`. To proceed type y",
@@ -166,7 +183,9 @@ class Config(Cog):
         received_msg = str(
             (
                 await self.bot.wait_for(
-                    "message", timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel
+                    "message",
+                    timeout=60.0,
+                    check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
                 )
             ).content
         ).lower()
@@ -188,45 +207,79 @@ class Config(Cog):
             channel = await ctx.guild.create_text_channel(name="⚘ verify ⚘")
         with open("./dicts/VerifyChannel.json", "r+") as k:
             if role == "":
-                await ctx.guild.create_role(name="⚘ Member ⚘", permissions=disnake.Permissions(send_messages=True))
+                await ctx.guild.create_role(
+                    name="⚘ Member ⚘", permissions=disnake.Permissions(send_messages=True)
+                )
             membrole = disnake.utils.get(ctx.guild.roles, name="⚘ Member ⚘")
-            await ctx.guild.create_role(name="⚘ Unverified ⚘", permissions=disnake.Permissions(send_messages=False))
+            await ctx.guild.create_role(
+                name="⚘ Unverified ⚘",
+                permissions=disnake.Permissions(send_messages=False),
+            )
             Urole = disnake.utils.get(ctx.guild.roles, name="⚘ Unverified ⚘")
             for x in ctx.guild.channels:
                 if x.id == channel.id:
                     await x.set_permissions(
-                        membrole, send_messages=False, read_message_history=False, read_messages=False
+                        membrole,
+                        send_messages=False,
+                        read_message_history=False,
+                        read_messages=False,
                     )
                 else:
 
                     await x.set_permissions(
-                        membrole, speak=True, send_messages=True, read_message_history=True, read_messages=True
+                        membrole,
+                        speak=True,
+                        send_messages=True,
+                        read_message_history=True,
+                        read_messages=True,
                     )
                 if x.id != channel.id:
-                    await x.set_permissions(Urole, send_messages=False, read_message_history=False, read_messages=False)
+                    await x.set_permissions(
+                        Urole,
+                        send_messages=False,
+                        read_message_history=False,
+                        read_messages=False,
+                    )
                 else:
                     await x.set_permissions(
-                        Urole, speak=True, send_messages=True, read_message_history=True, read_messages=True
+                        Urole,
+                        speak=True,
+                        send_messages=True,
+                        read_message_history=True,
+                        read_messages=True,
                     )
 
             every = disnake.utils.get(ctx.guild.roles, name="@everyone")
             for y in ctx.guild.channels:
                 await y.set_permissions(
-                    every, speak=True, send_messages=True, read_message_history=True, read_messages=True
+                    every,
+                    speak=True,
+                    send_messages=True,
+                    read_message_history=True,
+                    read_messages=True,
                 )
             with open("./dicts/Welcome.json") as w:
                 weldata = json.load(w)
                 if str(ctx.guild.id) in weldata:
-                    g = disnake.utils.get(ctx.guild.roles, id=weldata[str(ctx.guild.id)]["role"])
+                    g = disnake.utils.get(
+                        ctx.guild.roles, id=weldata[str(ctx.guild.id)]["role"]
+                    )
                     for z in ctx.guild.channels:
                         if z.id == channel.id:
                             await z.set_permissions(
-                                g, send_messages=False, read_message_history=False, read_messages=False
+                                g,
+                                send_messages=False,
+                                read_message_history=False,
+                                read_messages=False,
                             )
                         else:
 
                             await z.set_permissions(
-                                g, speak=True, send_messages=True, read_message_history=True, read_messages=True
+                                g,
+                                speak=True,
+                                send_messages=True,
+                                read_message_history=True,
+                                read_messages=True,
                             )
 
             data = json.load(k)
@@ -278,14 +331,19 @@ class Config(Cog):
         with open("./dicts/LeaveChannel.json", "r+") as k:
             data = json.load(k)
             if str(ctx.guild.id) in data:
-                return await send_embed(ctx, "Leaving", "This server is already registered!")
+                return await send_embed(
+                    ctx, "Leaving", "This server is already registered!"
+                )
             else:
 
                 if not channel:
                     channel = await ctx.guild.create_text_channel(name="Leaving Channel")
                 data[str(ctx.guild.id)] = {"id": channel.id}
                 update_json(k, data)
-        await send_embed(channel, "This is a leaving channel, everyone who leaves will be announced here...")
+        await send_embed(
+            channel,
+            "This is a leaving channel, everyone who leaves will be announced here...",
+        )
 
     @command()
     async def removeleavechannel(self, ctx: Context, channel: disnake.TextChannel):
@@ -293,7 +351,9 @@ class Config(Cog):
 
             data = json.load(k)
             if str(ctx.guild.id) not in data:
-                return await send_embed(ctx, "Leaving", "There was never a leaving channel here!")
+                return await send_embed(
+                    ctx, "Leaving", "There was never a leaving channel here!"
+                )
             del data[str(ctx.guild.id)]
             await send_embed(ctx, "Done!")
 
@@ -304,7 +364,9 @@ class Config(Cog):
 
             if str(memb.guild.id) in data:
                 channel = self.bot.get_channel(data[str(memb.guild.id)]["id"])
-                await send_embed(channel, "Goodbye", f"You wil be missed *{memb.name}*...")
+                await send_embed(
+                    channel, "Goodbye", f"You wil be missed *{memb.name}*..."
+                )
 
 
 def setup(bot):

@@ -3,7 +3,14 @@ from __future__ import annotations
 import typing as t
 import asyncio
 
-from disnake import SelectOption, HTTPException, MessageInteraction, Message, Embed, ButtonStyle
+from disnake import (
+    SelectOption,
+    HTTPException,
+    MessageInteraction,
+    Message,
+    Embed,
+    ButtonStyle,
+)
 from disnake.ui import View, Button, Select, Item, select, button
 
 from .generator import SudokuGenerator
@@ -60,7 +67,11 @@ class Square:
         if self.discovered:
             return RED_NUMBERS[self.number] if self.light_mode else NUMBERS[self.number]
         if self.user_number:
-            return RED_NUMBERS[self.user_number] if self.light_mode else NUMBERS[self.user_number]
+            return (
+                RED_NUMBERS[self.user_number]
+                if self.light_mode
+                else NUMBERS[self.user_number]
+            )
         return WHITE_SQUARE if self.light_mode else BLACK_SQUARE
 
 
@@ -99,9 +110,13 @@ class SudokuBoard:
         for row in range(9):
             for column in range(9):
                 if self.board[row][column] == 0:
-                    self.board[row][column] = Square.from_user(self.solved_board[row][column], self.light_mode)
+                    self.board[row][column] = Square.from_user(
+                        self.solved_board[row][column], self.light_mode
+                    )
                 else:
-                    self.board[row][column] = Square.from_bot(self.board[row][column], self.light_mode)
+                    self.board[row][column] = Square.from_bot(
+                        self.board[row][column], self.light_mode
+                    )
 
     def game_won(self) -> bool:
         """
@@ -186,7 +201,8 @@ class SudokuBoard:
                 visual_board += (
                     "".join(
                         [
-                            visual_mode["barrier"] + (visual_mode["cross"] if i % 3 == 0 and 8 > i else "")
+                            visual_mode["barrier"]
+                            + (visual_mode["cross"] if i % 3 == 0 and 8 > i else "")
                             for i in range(1, 10)
                         ]
                     )
@@ -238,7 +254,9 @@ class Sudoku(View):
 
         return m.author == self.ctx.author and m.channel == self.ctx.channel
 
-    async def on_error(self, error: Exception, item: Item, interaction: MessageInteraction) -> None:
+    async def on_error(
+        self, error: Exception, item: Item, interaction: MessageInteraction
+    ) -> None:
         print(error)
 
     async def interaction_check(self, interaction: MessageInteraction) -> bool:
@@ -261,7 +279,10 @@ class Sudoku(View):
         """
 
         self.embed: Embed = self.bot_message.embeds[0]
-        return interaction.author == self.ctx.author and interaction.channel == self.ctx.channel
+        return (
+            interaction.author == self.ctx.author
+            and interaction.channel == self.ctx.channel
+        )
 
     async def on_timeout(self) -> None:
         """
@@ -335,21 +356,33 @@ class Sudoku(View):
 
         await interaction.response.send_message(PLACE_NUMBER, delete_after=7.5)
         while True:
-            message = await self.ctx.bot.wait_for("message", timeout=3600, check=self.wait_for_check)
+            message = await self.ctx.bot.wait_for(
+                "message", timeout=3600, check=self.wait_for_check
+            )
             asyncio.create_task(self.delete_message(message))
 
             try:
                 user_input = message.content.split()
-                box, square, value = (int(user_input[0]), int(user_input[1]), int(user_input[2]))
+                box, square, value = (
+                    int(user_input[0]),
+                    int(user_input[1]),
+                    int(user_input[2]),
+                )
             except (IndexError, ValueError):
                 return await message.add_reaction(CLOSE)
 
-            if box not in range(1, 10) or square not in range(1, 10) or value not in range(1, 10):
+            if (
+                box not in range(1, 10)
+                or square not in range(1, 10)
+                or value not in range(1, 10)
+            ):
                 return await message.add_reaction(CLOSE)
 
             result = self.board.add_number(box, square, value)
             if result == 3:
-                await message.reply("You cant place a number on a bot square!", delete_after=7.5)
+                await message.reply(
+                    "You cant place a number on a bot square!", delete_after=7.5
+                )
             if result == 2:
                 await self.edit_embed(self.board)
             if result == 1:
@@ -387,7 +420,10 @@ class Sudoku(View):
             else:
                 self.remove_item(child)
 
-        self.board = SudokuBoard(board=SudokuGenerator().generate_puzzle(self.difficulty), light_mode=self.light_mode)
+        self.board = SudokuBoard(
+            board=SudokuGenerator().generate_puzzle(self.difficulty),
+            light_mode=self.light_mode,
+        )
 
         await interaction.response.defer()
         await self.edit_embed(self.board)
@@ -396,7 +432,9 @@ class Sudoku(View):
         placeholder=f"Colour settings {BLACK_SQUARE}",
         options=[SelectOption(label="Light mode"), SelectOption(label="Dark mode")],
     )
-    async def change_colour_settings(self, select: Select, interaction: MessageInteraction) -> None:
+    async def change_colour_settings(
+        self, select: Select, interaction: MessageInteraction
+    ) -> None:
         """
         user selects whether or not
         they want dark mode or light
@@ -416,7 +454,11 @@ class Sudoku(View):
         self.light_mode = select.values[0].startswith("Light")
         await interaction.response.defer()
         await self.edit_embed(
-            "```yaml\n" + SUDOKU_MESSAGE.format(difficulty=self.difficulty, light_mode=self.light_mode) + "```"
+            "```yaml\n"
+            + SUDOKU_MESSAGE.format(
+                difficulty=self.difficulty, light_mode=self.light_mode
+            )
+            + "```"
         )
 
     @select(
@@ -428,7 +470,9 @@ class Sudoku(View):
             SelectOption(label="insane"),
         ],
     )
-    async def change_difficulty(self, select: Select, interaction: MessageInteraction) -> None:
+    async def change_difficulty(
+        self, select: Select, interaction: MessageInteraction
+    ) -> None:
         """
         user changes the word length
         to either 4, 5, 6 or 7.
@@ -446,5 +490,9 @@ class Sudoku(View):
         self.difficulty = select.values[0]
         await interaction.response.defer()
         await self.edit_embed(
-            "```yaml\n" + SUDOKU_MESSAGE.format(difficulty=self.difficulty, light_mode=self.light_mode) + "```"
+            "```yaml\n"
+            + SUDOKU_MESSAGE.format(
+                difficulty=self.difficulty, light_mode=self.light_mode
+            )
+            + "```"
         )

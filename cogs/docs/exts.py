@@ -114,7 +114,10 @@ class RTFM:
         self._rtfm_cache = cache
 
     async def do_rtfm(self, ctx, key, obj):
-        page_types = {"latest": "https://disnake.readthedocs.io/en/latest", "python": "https://docs.python.org/3"}
+        page_types = {
+            "latest": "https://disnake.readthedocs.io/en/latest",
+            "python": "https://docs.python.org/3",
+        }
 
         if not hasattr(self, "_rtfm_cache"):
             await self.build_rtfm_lookup_table(page_types)

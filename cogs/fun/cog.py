@@ -44,9 +44,15 @@ class Fun(commands.Cog):
         for (iteration, item) in enumerate(result["result"], start=1):
             formatted.append(f"**{iteration}**: [{item['title']}]({item['link']})")
 
-        embed = disnake.Embed(timestamp=ctx.message.created_at, description="\n".join(formatted), colour=get_colour())
+        embed = disnake.Embed(
+            timestamp=ctx.message.created_at,
+            description="\n".join(formatted),
+            colour=get_colour(),
+        )
 
-        embed.set_author(name=f"Youtube searches for {query}: ", icon_url=ctx.author.avatar.url)
+        embed.set_author(
+            name=f"Youtube searches for {query}: ", icon_url=ctx.author.avatar.url
+        )
         embed.set_footer(text=f"Requested by {ctx.author}")
         await ctx.reply(embed)
 
@@ -56,7 +62,9 @@ class Fun(commands.Cog):
             title="<:reddit:933846462087987292> Memes <:reddit:933846462087987292>",
             description="Get your daily dose of reddit memes!",
             color=0x8B008B,
-        ).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.display_avatar.url)
+        ).set_footer(
+            text=f"Requested by {ctx.author.name}", icon_url=ctx.author.display_avatar.url
+        )
 
         await ctx.reply(embed=embed, view=Meme(ctx))
 
@@ -64,9 +72,16 @@ class Fun(commands.Cog):
     async def glitch(self, ctx: Context, member: disnake.Member = None):
         await img(ctx, member, "glitch")
 
-        glitch_img = glitcher.glitch_image("./images/glitch.png", 2, color_offset=True, gif=True)
+        glitch_img = glitcher.glitch_image(
+            "./images/glitch.png", 2, color_offset=True, gif=True
+        )
         glitch_img[0].save(
-            "./images/glitched.gif", format="GIF", append_images=glitch_img[1:], save_all=True, duration=200, loop=0
+            "./images/glitched.gif",
+            format="GIF",
+            append_images=glitch_img[1:],
+            save_all=True,
+            duration=200,
+            loop=0,
         )
         await ctx.reply(file=disnake.File("./images/glitched.gif"))
 
@@ -74,7 +89,9 @@ class Fun(commands.Cog):
     async def asciiart(self, ctx: Context, *, text: str):
 
         if len(text) > 10:
-            return await send_embed(ctx, "", f"{CLOSE} Length of Text cannot be more than 10 Characters!")
+            return await send_embed(
+                ctx, "", f"{CLOSE} Length of Text cannot be more than 10 Characters!"
+            )
 
         art = text2art(text)
 
@@ -86,7 +103,11 @@ class Fun(commands.Cog):
                 )
             )
 
-        await ctx.reply(embed=disnake.Embed(description=f"```yaml\n{art}```", colour=self.bot.discord_colour))
+        await ctx.reply(
+            embed=disnake.Embed(
+                description=f"```yaml\n{art}```", colour=self.bot.discord_colour
+            )
+        )
 
     @commands.command()
     async def sudo(self, ctx: Context, member: disnake.Member, *, text):
@@ -100,20 +121,26 @@ class Fun(commands.Cog):
             text,
             username=member.name,
             avatar_url=member.avatar.url,
-            allowed_mentions=disnake.AllowedMentions(roles=False, users=False, everyone=False),
+            allowed_mentions=disnake.AllowedMentions(
+                roles=False, users=False, everyone=False
+            ),
         )
 
     @commands.command()
     async def minecraft(self, ctx: Context, username):
         try:
             async with ctx.typing():
-                async with self.bot.client.get(url=f"https://some-random-api.ml/mc?username={username}") as response:
+                async with self.bot.client.get(
+                    url=f"https://some-random-api.ml/mc?username={username}"
+                ) as response:
                     fox = await response.json()
                 my_list = []
                 t = 0
 
                 for k in fox["name_history"]:
-                    my_list.append(f"**{fox['name_history'][t]['name']}** - {fox['name_history'][t]['changedToAt']}")
+                    my_list.append(
+                        f"**{fox['name_history'][t]['name']}** - {fox['name_history'][t]['changedToAt']}"
+                    )
                     t += 1
                 l = "\n - ".join(my_list)
             return await send_embed(
@@ -126,7 +153,9 @@ class Fun(commands.Cog):
                 """,
             )
         except:
-            await send_embed(ctx, "", "They are not a minecraft player! Enter their in-game username")
+            await send_embed(
+                ctx, "", "They are not a minecraft player! Enter their in-game username"
+            )
 
     @commands.command(aliases=["emojis", "sentence"])
     async def name(self, ctx: Context, *, name):
@@ -289,13 +318,15 @@ class Fun(commands.Cog):
             data = json.load(k)
             if str(ctx.author.id) in data:
                 embed = disnake.Embed(
-                    title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches", colour=get_colour()
+                    title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches",
+                    colour=get_colour(),
                 )
             else:
                 data[str(ctx.author.id)] = {"inches": f"{randomsizeint}.{randomsizef}"}
                 update_json(k, data)
                 embed = disnake.Embed(
-                    title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches", colour=get_colour()
+                    title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches",
+                    colour=get_colour(),
                 )
             await ctx.reply(embed=embed)
 
@@ -310,25 +341,34 @@ class Fun(commands.Cog):
                 data[str(ctx.author.id)] = {"inches": f"{randomsizeint}.{randomsizef}"}
                 update_json(k, data)
                 embed = disnake.Embed(
-                    title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches", colour=get_colour()
+                    title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches",
+                    colour=get_colour(),
                 )
             else:
                 data[str(ctx.author.id)] = {"inches": f"{randomsizeint}.{randomsizef}"}
                 update_json(k, data)
                 embed = disnake.Embed(
-                    title=f"Your new pp is {data[str(ctx.author.id)]['inches']} inches", colour=get_colour()
+                    title=f"Your new pp is {data[str(ctx.author.id)]['inches']} inches",
+                    colour=get_colour(),
                 )
             await ctx.reply(embed=embed)
 
-    @commands.command(aliases=["echos"], description="Echo's the message the user sends after sending the command")
+    @commands.command(
+        aliases=["echos"],
+        description="Echo's the message the user sends after sending the command",
+    )
     async def echo(self, ctx: Context):
 
         user = self.bot.get_user(ctx.author.id)
         try:
-            embed = disnake.Embed(title="What would you like to echo?", colour=get_colour())
+            embed = disnake.Embed(
+                title="What would you like to echo?", colour=get_colour()
+            )
             x = await ctx.reply(embed=embed)
             msg = await self.bot.wait_for(
-                "message", timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel
+                "message",
+                timeout=60.0,
+                check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
             )
             await msg.delete()
             await ctx.message.delete()
@@ -338,7 +378,9 @@ class Fun(commands.Cog):
             embed1.set_author(name=ctx.author.name, icon_url=user.avatar.url)
             await ctx.reply(embed=embed1)
         except asyncio.TimeoutError:
-            embed = disnake.Embed(title="Time ran out, restart the echo", colour=get_colour())
+            embed = disnake.Embed(
+                title="Time ran out, restart the echo", colour=get_colour()
+            )
             await ctx.reply(embed=embed)
 
     @commands.command(
@@ -352,7 +394,15 @@ class Fun(commands.Cog):
         await ctx.reply(embed=embed)
 
     @commands.command(
-        aliases=["coin", "ht", "headsandtails", "Coinflip", "coin_flip", "flip_coin", "fc"],
+        aliases=[
+            "coin",
+            "ht",
+            "headsandtails",
+            "Coinflip",
+            "coin_flip",
+            "flip_coin",
+            "fc",
+        ],
         description="Sends heads or tails, 50% chance",
     )
     async def flipcoin(self, ctx: Context):
@@ -368,7 +418,13 @@ class Fun(commands.Cog):
         await ctx.reply(embed=embed)
 
     @commands.command(
-        aliases=["rev", "Reversemessage", "Message_Reverse", "Reverse_messgae", "Reverse_Message"],
+        aliases=[
+            "rev",
+            "Reversemessage",
+            "Message_Reverse",
+            "Reverse_messgae",
+            "Reverse_Message",
+        ],
         description="Reverses the `<message>` letters and words (like a mirror)",
     )
     async def reverse(self, ctx: Context, *, message):
@@ -382,7 +438,9 @@ class Fun(commands.Cog):
     async def l(self, ctx: Context, user: disnake.Member = ""):
         if user == "":
             user = self.bot.get_user(ctx.author.id)
-        embed = disnake.Embed(description=f"{user.mention} took an L", colour=get_colour())
+        embed = disnake.Embed(
+            description=f"{user.mention} took an L", colour=get_colour()
+        )
         msg = await ctx.reply(f"{user.mention}")
         await msg.delete()
         await ctx.reply(embed=embed)

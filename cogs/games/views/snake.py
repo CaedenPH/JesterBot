@@ -105,7 +105,10 @@ class SnakeGame:
         self.snake_pos.append(new_coords)
 
     def format(self) -> str:
-        board = [[WHITE_SQUARE for _ in range(self.board_size)] for __ in range(self.board_size)]
+        board = [
+            [WHITE_SQUARE for _ in range(self.board_size)]
+            for __ in range(self.board_size)
+        ]
         visual_board = ""
 
         for row in range(self.board_size):
@@ -139,7 +142,10 @@ class Snake(View):
 
     async def interaction_check(self, interaction: MessageInteraction) -> bool:
         self.embed = self.bot_message.embeds[0]
-        return interaction.author == self.ctx.author and interaction.channel == self.ctx.channel
+        return (
+            interaction.author == self.ctx.author
+            and interaction.channel == self.ctx.channel
+        )
 
     async def edit_embed(self, desc: t.Optional[str] = None) -> None:
         if desc:
@@ -292,17 +298,28 @@ class Snake(View):
         await self.edit_embed(self.board)
         self.move_snake.start()
 
-    @button(label="Game mode", style=ButtonStyle.blurple, emoji=BLUE_SQUARE, disabled=True, row=4)
-    async def change_game_mode(self, button: Button, interaction: MessageInteraction) -> None:
+    @button(
+        label="Game mode",
+        style=ButtonStyle.blurple,
+        emoji=BLUE_SQUARE,
+        disabled=True,
+        row=4,
+    )
+    async def change_game_mode(
+        self, button: Button, interaction: MessageInteraction
+    ) -> None:
         """
         change game mode
         """
 
         await interaction.response.send_message(
-            "What game mode would you like to change to? | Send an option out of easy, normal, hard", delete_after=15
+            "What game mode would you like to change to? | Send an option out of easy, normal, hard",
+            delete_after=15,
         )
 
-        message = (await self.ctx.bot.wait_for("message", timeout=540, check=self.wait_for_check)).lower()
+        message = (
+            await self.ctx.bot.wait_for("message", timeout=540, check=self.wait_for_check)
+        ).lower()
         asyncio.create_task(self.delete_message(message))
 
         if message.content not in ["easy", "normal", "hard"]:
@@ -315,10 +332,22 @@ class Snake(View):
         elif message.content == "hard":
             self.game_mode = GameMode.hard()
 
-        await self.edit_embed(SNAKE_MESSAGE.format(board_size=self.board_size, game_mode=str(self.game_mode)))
+        await self.edit_embed(
+            SNAKE_MESSAGE.format(
+                board_size=self.board_size, game_mode=str(self.game_mode)
+            )
+        )
 
-    @button(label="Board size", style=ButtonStyle.blurple, emoji=VIDEO_GAME, disabled=True, row=4)
-    async def change_board_size(self, button: Button, interaction: MessageInteraction) -> None:
+    @button(
+        label="Board size",
+        style=ButtonStyle.blurple,
+        emoji=VIDEO_GAME,
+        disabled=True,
+        row=4,
+    )
+    async def change_board_size(
+        self, button: Button, interaction: MessageInteraction
+    ) -> None:
         """
         change board size
         """
@@ -328,7 +357,9 @@ class Snake(View):
             delete_after=15,
         )
 
-        message = await self.ctx.bot.wait_for("message", timeout=540, check=self.wait_for_check)
+        message = await self.ctx.bot.wait_for(
+            "message", timeout=540, check=self.wait_for_check
+        )
         asyncio.create_task(self.delete_message(message))
 
         if int(message.content) > 10:
@@ -339,4 +370,8 @@ class Snake(View):
             return await message.add_reaction(CLOSE)
 
         self.board_size = int(message.content)
-        await self.edit_embed(SNAKE_MESSAGE.format(board_size=self.board_size, game_mode=str(self.game_mode)))
+        await self.edit_embed(
+            SNAKE_MESSAGE.format(
+                board_size=self.board_size, game_mode=str(self.game_mode)
+            )
+        )

@@ -45,7 +45,9 @@ class Love(commands.Cog):
     async def poke(self, ctx: Context, member: disnake.Member = ""):
 
         if member == "":
-            embed = disnake.Embed(description=f"**{ctx.author.name}** has poked you 😗", colour=get_colour())
+            embed = disnake.Embed(
+                description=f"**{ctx.author.name}** has poked you 😗", colour=get_colour()
+            )
             await ctx.author.send(embed=embed)
             embed = disnake.Embed(
                 description=f"The **poke** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}**ms",
@@ -53,7 +55,9 @@ class Love(commands.Cog):
             )
             await ctx.reply(embed=embed)
         else:
-            embed = disnake.Embed(description=f"**{ctx.author.name}** has poked you 😗", colour=get_colour())
+            embed = disnake.Embed(
+                description=f"**{ctx.author.name}** has poked you 😗", colour=get_colour()
+            )
             await member.send(embed=embed)
             embed = disnake.Embed(
                 description=f"The **poke** will be sent to the specified member in aprox **{round(self.bot.latency * 1000)}** ms",
@@ -66,7 +70,8 @@ class Love(commands.Cog):
         if member == "":
 
             embed = disnake.Embed(
-                description=f"**{ctx.author.name}** has given you the gift of a hug 🌷", colour=get_colour()
+                description=f"**{ctx.author.name}** has given you the gift of a hug 🌷",
+                colour=get_colour(),
             )
             await ctx.author.send(embed=embed)
             embed = disnake.Embed(
@@ -77,7 +82,8 @@ class Love(commands.Cog):
         else:
 
             embed = disnake.Embed(
-                description=f"**{ctx.author.name}** has given you the gift of a hug 🌷", colour=get_colour()
+                description=f"**{ctx.author.name}** has given you the gift of a hug 🌷",
+                colour=get_colour(),
             )
             await member.send(embed=embed)
             embed = disnake.Embed(
@@ -92,7 +98,9 @@ class Love(commands.Cog):
         received_msg = str(
             (
                 await self.bot.wait_for(
-                    "message", timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel
+                    "message",
+                    timeout=60.0,
+                    check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
                 )
             ).content
         ).lower()
@@ -100,7 +108,9 @@ class Love(commands.Cog):
         received_msg1 = str(
             (
                 await self.bot.wait_for(
-                    "message", timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel
+                    "message",
+                    timeout=60.0,
+                    check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
                 )
             ).content
         ).lower()
@@ -133,7 +143,9 @@ class Love(commands.Cog):
                 over2 -= 71
 
             await send_embed(
-                ctx, f"Compatabiliy between {received_msg} and {received_msg1}", f"**Percentage:** {over2}%"
+                ctx,
+                f"Compatabiliy between {received_msg} and {received_msg1}",
+                f"**Percentage:** {over2}%",
             )
 
     @commands.command(aliases=["marrage"])
@@ -165,7 +177,9 @@ class Love(commands.Cog):
         partner = member
         try:
             (emoji, user) = await self.bot.wait_for(
-                "reaction_add", timeout=300.0, check=lambda e, u: u == member and e.message.id == msg.id
+                "reaction_add",
+                timeout=300.0,
+                check=lambda e, u: u == member and e.message.id == msg.id,
             )
             File = GetUser("Love.json")
 
@@ -173,7 +187,9 @@ class Love(commands.Cog):
                 arr = File.data[str(ctx.author.id)]["id"]
                 del File.data[str(arr)]
                 us = self.bot.get_user(int(arr))
-                await us.send(f"You got divorced from {ctx.author.name} and they married {member.name}!")
+                await us.send(
+                    f"You got divorced from {ctx.author.name} and they married {member.name}!"
+                )
                 File.data[str(ctx.author.id)]["marriage"] = partner.name
                 File.data[str(member.id)]["id"] = str(partner.id)
                 File.data[str(ctx.author.id)]["since"] = str(ctx.message.created_at)

@@ -19,7 +19,9 @@ class DiscordTogether(commands.Cog):
     async def youtube_together(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
-        link = await self.together_control.create_link(ctx.author.voice.channel.id, "youtube")
+        link = await self.together_control.create_link(
+            ctx.author.voice.channel.id, "youtube"
+        )
         await ctx.reply(f"Click the blue link\n{link}", delete_after=60)
 
     @commands.command()
@@ -27,7 +29,9 @@ class DiscordTogether(commands.Cog):
     async def poker_together(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
-        link = await self.together_control.create_link(ctx.author.voice.channel.id, "poker")
+        link = await self.together_control.create_link(
+            ctx.author.voice.channel.id, "poker"
+        )
         await ctx.reply(f"Click the blue link\n{link}", delete_after=60)
 
     @commands.command()
@@ -35,7 +39,9 @@ class DiscordTogether(commands.Cog):
     async def chess_together(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
-        link = await self.together_control.create_link(ctx.author.voice.channel.id, "chess")
+        link = await self.together_control.create_link(
+            ctx.author.voice.channel.id, "chess"
+        )
         await ctx.reply(f"Click the blue link\n{link}", delete_after=60)
 
     @commands.command()
@@ -43,7 +49,9 @@ class DiscordTogether(commands.Cog):
     async def betrayal_together(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
-        link = await self.together_control.create_link(ctx.author.voice.channel.id, "betrayal")
+        link = await self.together_control.create_link(
+            ctx.author.voice.channel.id, "betrayal"
+        )
         await ctx.reply(f"Click the blue link\n{link}", delete_after=60)
 
     @commands.command()
@@ -51,7 +59,9 @@ class DiscordTogether(commands.Cog):
     async def fishing_together(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
-        link = await self.together_control.create_link(ctx.author.voice.channel.id, "fishing")
+        link = await self.together_control.create_link(
+            ctx.author.voice.channel.id, "fishing"
+        )
         await ctx.reply(f"Click the blue link\n{link}", delete_after=60)
 
     @commands.command()
@@ -59,7 +69,9 @@ class DiscordTogether(commands.Cog):
     async def awkword(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
-        link = await self.together_control.create_link(ctx.author.voice.channel.id, "awkword")
+        link = await self.together_control.create_link(
+            ctx.author.voice.channel.id, "awkword"
+        )
         await ctx.reply(f"Click the blue link\n{link}", delete_after=60)
 
     @commands.command()
@@ -67,7 +79,9 @@ class DiscordTogether(commands.Cog):
     async def spellcast(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
-        link = await self.together_control.create_link(ctx.author.voice.channel.id, "spellcast")
+        link = await self.together_control.create_link(
+            ctx.author.voice.channel.id, "spellcast"
+        )
         await ctx.reply(f"Click the blue link\n{link}", delete_after=60)
 
     @commands.command()
@@ -75,7 +89,9 @@ class DiscordTogether(commands.Cog):
     async def doodle_crew(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
-        link = await self.together_control.create_link(ctx.author.voice.channel.id, "doodle-crew")
+        link = await self.together_control.create_link(
+            ctx.author.voice.channel.id, "doodle-crew"
+        )
         await ctx.reply(f"Click the blue link\n{link}", delete_after=60)
 
     @commands.command()
@@ -83,7 +99,9 @@ class DiscordTogether(commands.Cog):
     async def word_snack(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
-        link = await self.together_control.create_link(ctx.author.voice.channel.id, "word-snack")
+        link = await self.together_control.create_link(
+            ctx.author.voice.channel.id, "word-snack"
+        )
         await ctx.reply(f"Click the blue link\n{link}", delete_after=60)
 
     @commands.command()
@@ -91,7 +109,9 @@ class DiscordTogether(commands.Cog):
     async def letter_tile(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
-        link = await self.together_control.create_link(ctx.author.voice.channel.id, "letter-tile")
+        link = await self.together_control.create_link(
+            ctx.author.voice.channel.id, "letter-tile"
+        )
         await ctx.reply(f"Click the blue link\n{link}", delete_after=60)
 
     @commands.command()
@@ -99,7 +119,9 @@ class DiscordTogether(commands.Cog):
     async def checkers(self, ctx: Context):
         if ctx.author.voice is None:
             return await ctx.em("You need to be in a voice channel!")
-        link = await self.together_control.create_link(ctx.author.voice.channel.id, "checkers")
+        link = await self.together_control.create_link(
+            ctx.author.voice.channel.id, "checkers"
+        )
         await ctx.reply(f"Click the blue link\n{link}", delete_after=60)
 
 

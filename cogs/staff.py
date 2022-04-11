@@ -17,11 +17,18 @@ class Staff(commands.Cog):
     @commands.command(hidden=True)
     async def push(self, ctx: Context, reason):
         embed = disnake.Embed(title="Git push.", description="")
-        git_commands = [["git", "add", "."], ["git", "commit", "-m", reason], ["git", "push"]]
+        git_commands = [
+            ["git", "add", "."],
+            ["git", "commit", "-m", reason],
+            ["git", "push"],
+        ]
 
         for git_command in git_commands:
             process = await asyncio.create_subprocess_exec(
-                git_command[0], *git_command[1:], stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+                git_command[0],
+                *git_command[1:],
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
             )
 
             (output, error) = await process.communicate()
@@ -40,7 +47,10 @@ class Staff(commands.Cog):
 
         for git_command in git_commands:
             process = await asyncio.create_subprocess_exec(
-                git_command[0], *git_command[1:], stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+                git_command[0],
+                *git_command[1:],
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
             )
 
             (output, error) = await process.communicate()
@@ -56,7 +66,9 @@ class Staff(commands.Cog):
     async def load(self, ctx: Context, extension):
         embed = disnake.Embed(colour=get_colour())
         self.bot.load_extension(f"cogs.{extension}")
-        embed.add_field(name="Load Extension", value=f"Loaded cog: ``{extension}`` successfully")
+        embed.add_field(
+            name="Load Extension", value=f"Loaded cog: ``{extension}`` successfully"
+        )
         await ctx.reply(embed=embed)
 
     @commands.command(hidden=True)
@@ -68,7 +80,9 @@ class Staff(commands.Cog):
     async def unload(self, ctx: Context, extension):
         self.bot.unload_extension(f"cogs.{extension}")
         embed = disnake.Embed(colour=get_colour())
-        embed.add_field(name="Unload Extension", value=f"Unloaded cog: ``{extension}`` successfully")
+        embed.add_field(
+            name="Unload Extension", value=f"Unloaded cog: ``{extension}`` successfully"
+        )
         await ctx.reply(embed=embed)
 
     @commands.command(aliases=["r"], hidden=True)
@@ -86,7 +100,10 @@ class Staff(commands.Cog):
 
             self.bot.reload_extension(f"cogs.{extension}")
             embed = disnake.Embed(colour=get_colour())
-            embed.add_field(name="Reload Extension", value=f"Reloaded cog: ``{extension}`` successfully")
+            embed.add_field(
+                name="Reload Extension",
+                value=f"Reloaded cog: ``{extension}`` successfully",
+            )
             await ctx.reply(embed=embed)
 
     @commands.command(hidden=True)
@@ -122,7 +139,8 @@ class Staff(commands.Cog):
                                     await self.bot.wait_for(
                                         "message",
                                         timeout=900.0,
-                                        check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
+                                        check=lambda m: m.author == ctx.author
+                                        and m.channel == ctx.channel,
                                     )
                                 ).content
                             ).lower()
@@ -181,7 +199,9 @@ class Staff(commands.Cog):
             embed = disnake.Embed(title="Version?")
             await ctx.reply(embed=embed)
             ver = await self.bot.wait_for(
-                "message", timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel
+                "message",
+                timeout=60.0,
+                check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
             )
             with open("./dicts/Updates.json", "r+") as k:
                 loaded1 = json.load(k)
@@ -199,7 +219,10 @@ class Staff(commands.Cog):
             y = str(
                 (
                     await self.bot.wait_for(
-                        "message", check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30
+                        "message",
+                        check=lambda m: m.author == ctx.author
+                        and m.channel == ctx.channel,
+                        timeout=30,
                     )
                 ).content
             ).lower()
@@ -221,7 +244,10 @@ class Staff(commands.Cog):
                 y = str(
                     (
                         await self.bot.wait_for(
-                            "message", check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30
+                            "message",
+                            check=lambda m: m.author == ctx.author
+                            and m.channel == ctx.channel,
+                            timeout=30,
                         )
                     ).content
                 ).lower()
@@ -231,7 +257,10 @@ class Staff(commands.Cog):
                 z = str(
                     (
                         await self.bot.wait_for(
-                            "message", check=lambda m: m.author == ctx.author and m.channel == ctx.channel, timeout=30
+                            "message",
+                            check=lambda m: m.author == ctx.author
+                            and m.channel == ctx.channel,
+                            timeout=30,
                         )
                     ).content
                 ).lower()
@@ -255,7 +284,8 @@ class Staff(commands.Cog):
                         (
                             await self.bot.wait_for(
                                 "message",
-                                check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
+                                check=lambda m: m.author == ctx.author
+                                and m.channel == ctx.channel,
                                 timeout=30,
                             )
                         ).content
@@ -267,7 +297,8 @@ class Staff(commands.Cog):
                         (
                             await self.bot.wait_for(
                                 "message",
-                                check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
+                                check=lambda m: m.author == ctx.author
+                                and m.channel == ctx.channel,
                                 timeout=30,
                             )
                         ).content
@@ -286,12 +317,15 @@ class Staff(commands.Cog):
 
                                     k.seek(0)
                                     k.truncate(0)  # clear previous content
-                                    k.write(json.dumps(loaded1, indent=4))  # write to file
+                                    k.write(
+                                        json.dumps(loaded1, indent=4)
+                                    )  # write to file
                         a = str(
                             (
                                 await self.bot.wait_for(
                                     "message",
-                                    check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
+                                    check=lambda m: m.author == ctx.author
+                                    and m.channel == ctx.channel,
                                     timeout=30,
                                 )
                             ).content
@@ -301,7 +335,9 @@ class Staff(commands.Cog):
                         await ctx.reply(embed=embed4)
 
         except asyncio.TimeoutError:
-            embed = disnake.Embed(title="Time ran out, restart the ticket", colour=get_colour())
+            embed = disnake.Embed(
+                title="Time ran out, restart the ticket", colour=get_colour()
+            )
             await ctx.reply(embed=embed)
 
     @commands.command(hidden=True)
@@ -314,7 +350,12 @@ class Staff(commands.Cog):
                     if str(m) not in loaded1:
                         pass
                     else:
-                        loaded1[m] = {"Version": "", "Bug fixes": "", "New commands": "", "Other": ""}
+                        loaded1[m] = {
+                            "Version": "",
+                            "Bug fixes": "",
+                            "New commands": "",
+                            "Other": "",
+                        }
 
                         k.seek(0)
                         k.truncate(0)  # clear previous content
@@ -400,7 +441,9 @@ class Staff(commands.Cog):
                     update_json(k, data)
 
     @commands.command(hidden=True)
-    async def data(self, ctx: Context, file1="", data1="", data2="", int1="False", *, add=""):
+    async def data(
+        self, ctx: Context, file1="", data1="", data2="", int1="False", *, add=""
+    ):
         if int1 == "True":
             add = int(add)
 
@@ -415,7 +458,9 @@ class Staff(commands.Cog):
                 if file1.endswith(".json"):
 
                     x.append(f"`{file1[:-5]}`")
-            embed = disnake.Embed(title="Files", description=", ".join(x), colour=get_colour())
+            embed = disnake.Embed(
+                title="Files", description=", ".join(x), colour=get_colour()
+            )
             await ctx.reply(embed=embed)
 
         else:
@@ -486,7 +531,9 @@ class Staff(commands.Cog):
         for t in os.listdir("./cogs/"):
             if t != "__pycache__":
                 shutil.copy(f"./cogs/{t}", dirname)
-        await send_embed(ctx, "success", f"you have made a new backup folder called *{dirname}*")
+        await send_embed(
+            ctx, "success", f"you have made a new backup folder called *{dirname}*"
+        )
 
     @commands.command(hidden=True)
     async def file(self, ctx: Context, file):
@@ -536,7 +583,10 @@ class Staff(commands.Cog):
             data = json.load(k)
             if name in data:
                 return await send_embed(ctx, "Already there mate")
-            data[name] = {"code": cmd, "makecmd": f"@bot.command()\nasync def {name}(ctx):"}
+            data[name] = {
+                "code": cmd,
+                "makecmd": f"@bot.command()\nasync def {name}(ctx):",
+            }
             update_json(k, data)
             thecmd = f"{data[name]['makecmd']}\n    {data[name]['code']}"
             await send_embed(ctx, thecmd)
@@ -602,7 +652,9 @@ class Staff(commands.Cog):
             )
         )
         await m.add_reaction(THUMBS_UP)
-        (reaction, user) = await self.bot.wait_for("reaction_add", check=lambda r, u: u == ctx.author)
+        (reaction, user) = await self.bot.wait_for(
+            "reaction_add", check=lambda r, u: u == ctx.author
+        )
         await send_embed(ctx, "", "Done")
         del data[errornum]
         update_json(k, data)

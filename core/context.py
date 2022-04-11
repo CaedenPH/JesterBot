@@ -61,7 +61,9 @@ class Context(Context):
         self._state: ConnectionState = self.message._state
 
     async def em(self, message, **kwargs):
-        return await super().send(embed=disnake.Embed(description=message, colour=get_colour()), **kwargs)
+        return await super().send(
+            embed=disnake.Embed(description=message, colour=get_colour()), **kwargs
+        )
 
     async def send(self, content: any = None, **kwargs):
         perms = self.channel.permissions_for(self.me)
@@ -104,7 +106,9 @@ class Context(Context):
                     return
 
                 try:
-                    (r, u) = await arg.bot.wait_for("reaction_add", check=check, timeout=250)
+                    (r, u) = await arg.bot.wait_for(
+                        "reaction_add", check=check, timeout=250
+                    )
                     if str(r.emoji.id) == TRASHCAN[11:-1]:
                         await msg.delete()
                 except Exception as b:
@@ -159,7 +163,9 @@ class Context(Context):
                     return
 
                 try:
-                    (r, u) = await arg.bot.wait_for("reaction_add", check=check, timeout=250)
+                    (r, u) = await arg.bot.wait_for(
+                        "reaction_add", check=check, timeout=250
+                    )
                     if str(r.emoji.id) == TRASHCAN[11:-1]:
                         await msg.delete()
                 except Exception as b:

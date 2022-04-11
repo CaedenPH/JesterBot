@@ -33,7 +33,9 @@ class Countries(commands.Cog):
     async def country(self, ctx: Context, *, name):
         name = name.split(" ")
         name = "%20".join(name)
-        async with self.bot.client.get(f"https://restcountries.com/v3.1/name/{name}") as resp:
+        async with self.bot.client.get(
+            f"https://restcountries.com/v3.1/name/{name}"
+        ) as resp:
             response = await resp.json()
             if "status" in response:
                 return await ctx.expected_error(
@@ -58,7 +60,9 @@ class Countries(commands.Cog):
         y = True
         x = await makeimg(ctx, f"https://restcountries.eu/data/{country}.svg")
         if not x:
-            async with self.bot.client.get(f"https://restcountries.eu/rest/v2/name/{country}") as resp:
+            async with self.bot.client.get(
+                f"https://restcountries.eu/rest/v2/name/{country}"
+            ) as resp:
                 js = await resp.json()
                 y = await makeimg(ctx, f"{js[0]['flag']}")
 
@@ -123,7 +127,9 @@ class Countries(commands.Cog):
             name="Sources",
             value=":= |[WTP](http://www.wfp.org/stories/10-ways-feed-world) |[Millions of mouths](http://millionsofmouths.com/blog/2006/08/23/the-method-to-end-hunger/) |[huffington post](http://www.huffingtonpost.com/2011/06/15/seven-ways-to-solver-hung_n_872894.html)| =:",
         )
-        embed.set_image(url="https://food.tomra.com/hubfs/Food%20for%20thought/2018/Q3/WFD18/EN_WebBanner.jpg")
+        embed.set_image(
+            url="https://food.tomra.com/hubfs/Food%20for%20thought/2018/Q3/WFD18/EN_WebBanner.jpg"
+        )
 
         embed.set_author(
             name="Hunger is not an issue of charity. It is an issue of justice. -Jacques Diouf",

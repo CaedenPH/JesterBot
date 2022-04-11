@@ -20,7 +20,9 @@ class Misc(commands.Cog):
     def __init__(self, bot: JesterBot):
         self.bot = bot
 
-    @commands.command(aliases=["channel_stats", "channel_health", "channel_info", "channel_information"])
+    @commands.command(
+        aliases=["channel_stats", "channel_health", "channel_info", "channel_information"]
+    )
     async def channel_status(self, ctx: Context, channel: disnake.TextChannel = None):
         if not channel:
             channel = ctx.channel
@@ -34,7 +36,8 @@ class Misc(commands.Cog):
         async with ctx.channel.typing():
             count = 0
             async for message in channel.history(
-                limit=500000, after=datetime.datetime.today() - datetime.timedelta(days=100)
+                limit=500000,
+                after=datetime.datetime.today() - datetime.timedelta(days=100),
             ):
                 count += 1
 
@@ -62,7 +65,9 @@ class Misc(commands.Cog):
                     healthiness = "VERY UNHEALTHY"
 
             embed.description += f"**# of members in guild**: `{guild.member_count}`\n"
-            embed.description += f"**# of messages per day on average in {channel}**: `{average}`\n"
+            embed.description += (
+                f"**# of messages per day on average in {channel}**: `{average}`\n"
+            )
             embed.description += f"**Channel health**: `{healthiness}`\n"
             await msg.delete()
             await ctx.reply(embed=embed)
@@ -99,7 +104,9 @@ class Misc(commands.Cog):
             member = ctx.author
 
         embed = (
-            disnake.Embed(title="Information", timestamp=ctx.message.created_at, colour=get_colour())
+            disnake.Embed(
+                title="Information", timestamp=ctx.message.created_at, colour=get_colour()
+            )
             .set_thumbnail(url=member.avatar.url)
             .add_field(name="Name", value=f"{member.name}")
             .add_field(name="Id", value=f"{member.id}")
@@ -107,7 +114,10 @@ class Misc(commands.Cog):
             .add_field(name="Joined disnake at", value=f"{member.created_at}")
             .add_field(name="Nitro", value=f"{member.premium_since}")
             .add_field(name="Mobile", value=f"{member.is_on_mobile()}")
-            .add_field(name="Flags", value=f"{', '.join(f'`{k.name}`' for k in member.public_flags.all())}")
+            .add_field(
+                name="Flags",
+                value=f"{', '.join(f'`{k.name}`' for k in member.public_flags.all())}",
+            )
         )
 
         await ctx.reply(embed=embed)
@@ -120,7 +130,9 @@ class Misc(commands.Cog):
 
         await ctx.reply(embed=embed)
 
-    @commands.command(description="Make a secure password with a length that you can choose")
+    @commands.command(
+        description="Make a secure password with a length that you can choose"
+    )
     async def password(self, ctx: Context, lengthofpassword: int = 12):
         my_list = ["!", "?", "#"]
         for c in range(97, 123):
@@ -139,7 +151,9 @@ class Misc(commands.Cog):
     @commands.command(aliases=["stat"], description="Sends statistics about the server")
     async def stats(self, ctx: Context):
 
-        (members, bots) = [m for m in ctx.guild.members if not m.bot], [m for m in ctx.guild.members if m.bot]
+        (members, bots) = [m for m in ctx.guild.members if not m.bot], [
+            m for m in ctx.guild.members if m.bot
+        ]
         embed = disnake.Embed(title="Stats", colour=get_colour())
         embed.add_field(
             name="Server statistics",
@@ -157,7 +171,11 @@ class Misc(commands.Cog):
     @commands.command()
     @commands.cooldown(1, 180, commands.BucketType.user)
     async def check(
-        self, ctx: Context, days: float = None, member: disnake.Member = None, channel: disnake.TextChannel = None
+        self,
+        ctx: Context,
+        days: float = None,
+        member: disnake.Member = None,
+        channel: disnake.TextChannel = None,
     ):
         if not member:
             member = ctx.author
@@ -178,15 +196,28 @@ class Misc(commands.Cog):
         async with ctx.typing():
             x = datetime.datetime.utcnow() - datetime.timedelta(days=days)
             k = await channel.history(after=x, limit=None).flatten()
-            messages = [f"{e.content.replace('`', '')}" for e in k if e.author == member and e.channel == channel]
+            messages = [
+                f"{e.content.replace('`', '')}"
+                for e in k
+                if e.author == member and e.channel == channel
+            ]
         await m.delete()
         pag = Paginator(ctx)
         await pag.paginate(
-            content=", ".join(messages), name=f"{member} has said {len(messages)} messages in the past {days} days"
+            content=", ".join(messages),
+            name=f"{member} has said {len(messages)} messages in the past {days} days",
         )
 
     @commands.command(
-        aliases=["Server_icon", "Icon_server", "Guild_icon", "Server_Avatar", "avg", "guildav", "gc"],
+        aliases=[
+            "Server_icon",
+            "Icon_server",
+            "Guild_icon",
+            "Server_Avatar",
+            "avg",
+            "guildav",
+            "gc",
+        ],
         description="Sends the avatar of the server (profile pic)",
     )
     async def avatarguild(self, ctx: Context):
@@ -195,7 +226,10 @@ class Misc(commands.Cog):
 
         await ctx.reply(embed=embed)
 
-    @commands.command(aliases=["messages"], description="Says how many messages have been sent since the bot joined")
+    @commands.command(
+        aliases=["messages"],
+        description="Says how many messages have been sent since the bot joined",
+    )
     async def servermessages(self, ctx: Context, server=""):
         join = ctx.guild.get_member(828363172717133874)
         when = "24th of June 2021"
@@ -211,16 +245,19 @@ class Misc(commands.Cog):
 
             if not server:
                 embed = disnake.Embed(
-                    description=f"**{data[str(ctx.guild.id)]['Score']}** messages since the {when}", colour=get_colour()
+                    description=f"**{data[str(ctx.guild.id)]['Score']}** messages since the {when}",
+                    colour=get_colour(),
                 )
             else:
                 embed = disnake.Embed(
-                    description=f"**{data[server]['Score']}** messages since {when}", colour=get_colour()
+                    description=f"**{data[server]['Score']}** messages since {when}",
+                    colour=get_colour(),
                 )
             await ctx.reply(embed=embed)
 
     @commands.command(
-        aliases=["s", "Sugg", "Sug", "Suggester"], description="Follow the instructions and a suggestion will appear"
+        aliases=["s", "Sugg", "Sug", "Suggester"],
+        description="Follow the instructions and a suggestion will appear",
     )
     async def suggest(self, ctx: Context):
 
@@ -238,7 +275,10 @@ class Misc(commands.Cog):
             received_msg = str(
                 (
                     await self.bot.wait_for(
-                        "message", timeout=60.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel
+                        "message",
+                        timeout=60.0,
+                        check=lambda m: m.author == ctx.author
+                        and m.channel == ctx.channel,
                     )
                 ).content
             ).lower()
@@ -252,7 +292,10 @@ class Misc(commands.Cog):
                 received_msg1 = str(
                     (
                         await self.bot.wait_for(
-                            "message", timeout=90.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel
+                            "message",
+                            timeout=90.0,
+                            check=lambda m: m.author == ctx.author
+                            and m.channel == ctx.channel,
                         )
                     ).content
                 ).lower()
@@ -266,7 +309,9 @@ class Misc(commands.Cog):
                     await y.delete()
                     await ctx.message.delete()
                     await ctx.channel.purge(
-                        limit=2, check=lambda m: m.author == ctx.author and m.channel == ctx.channel
+                        limit=2,
+                        check=lambda m: m.author == ctx.author
+                        and m.channel == ctx.channel,
                     )
                     msg = await ctx.reply(embed=embed)
                     await msg.add_reaction(THUMBS_UP)
@@ -278,24 +323,33 @@ class Misc(commands.Cog):
                     await y.delete()
                     await ctx.message.delete()
                     await ctx.channel.purge(
-                        limit=2, check=lambda m: m.author == ctx.author and m.channel == ctx.channel
+                        limit=2,
+                        check=lambda m: m.author == ctx.author
+                        and m.channel == ctx.channel,
                     )
                     msg = await ctx.reply(embed=embed3)
 
             elif received_msg == "end":
                 await x.delete()
-                await ctx.channel.purge(limit=2, check=lambda m: m.author == ctx.author and m.channel == ctx.channel)
+                await ctx.channel.purge(
+                    limit=2,
+                    check=lambda m: m.author == ctx.author and m.channel == ctx.channel,
+                )
                 embed3 = disnake.Embed(title="Goodbye", colour=get_colour())
                 await ctx.reply(embed=embed3)
             else:
                 embed2 = disnake.Embed(
-                    title=f"What is the Title of your suggestion? Type end at any point to stop", colour=get_colour()
+                    title=f"What is the Title of your suggestion? Type end at any point to stop",
+                    colour=get_colour(),
                 )
                 y = await ctx.reply(embed=embed2)
                 received_msg1 = str(
                     (
                         await self.bot.wait_for(
-                            "message", timeout=90.0, check=lambda m: m.author == ctx.author and m.channel == ctx.channel
+                            "message",
+                            timeout=90.0,
+                            check=lambda m: m.author == ctx.author
+                            and m.channel == ctx.channel,
                         )
                     ).content
                 ).lower()
@@ -309,13 +363,17 @@ class Misc(commands.Cog):
                     await y.delete()
                     await ctx.message.delete()
                     await ctx.channel.purge(
-                        limit=2, check=lambda m: m.author == ctx.author and m.channel == ctx.channel
+                        limit=2,
+                        check=lambda m: m.author == ctx.author
+                        and m.channel == ctx.channel,
                     )
                     msg = await ctx.reply(embed=embed)
                     await msg.add_reaction(THUMBS_UP)
                     await msg.add_reaction(THUMBS_DOWN)
         except asyncio.TimeoutError:
-            embed = disnake.Embed(title="Time ran out, restart the ticket", colour=get_colour())
+            embed = disnake.Embed(
+                title="Time ran out, restart the ticket", colour=get_colour()
+            )
             await ctx.reply(embed=embed)
 
     @commands.command()
@@ -345,7 +403,9 @@ class Misc(commands.Cog):
             inline=False,
         )
 
-        embed.set_image(url="https://i.pinimg.com/originals/09/9a/57/099a57d2fe430ea56cdc5ed4979ff909.gif")
+        embed.set_image(
+            url="https://i.pinimg.com/originals/09/9a/57/099a57d2fe430ea56cdc5ed4979ff909.gif"
+        )
         await ctx.reply(embed=embed)
 
     @commands.command()
@@ -367,11 +427,17 @@ class Misc(commands.Cog):
             inline=False,
         )
 
-        embed.add_field(name="`3` Role ", value="Custom booster role that is above members!", inline=False)
+        embed.add_field(
+            name="`3` Role ",
+            value="Custom booster role that is above members!",
+            inline=False,
+        )
 
         embed.add_field(name="`4` Hugs", value="You'll get free hugs <3", inline=False)
 
-        embed.set_image(url="https://support.discord.com/hc/article_attachments/360029033111/nitro_tank_gif.gif")
+        embed.set_image(
+            url="https://support.discord.com/hc/article_attachments/360029033111/nitro_tank_gif.gif"
+        )
         await ctx.reply(embed=embed)
 
     @commands.command()
@@ -386,8 +452,16 @@ class Misc(commands.Cog):
             value="Screen share on PC in `720p 60fps` or `1080p 30fps` - Stream at source",
             inline=False,
         )
-        embed.add_field(name="`2` Gif", value="Upload and use animated avatars and emojis", inline=False)
-        embed.add_field(name="`3` Custom emojis", value="Share custom emojis across all servers", inline=False)
+        embed.add_field(
+            name="`2` Gif",
+            value="Upload and use animated avatars and emojis",
+            inline=False,
+        )
+        embed.add_field(
+            name="`3` Custom emojis",
+            value="Share custom emojis across all servers",
+            inline=False,
+        )
         embed.add_field(
             name="`4` Large file uploads",
             value="Larger file upload size from 8mb to 100mb with nitro or 50mb with nitro classic",
@@ -403,14 +477,18 @@ class Misc(commands.Cog):
         if len(ctx.guild.emojis) == 0:
             return await ctx.em(f"Your server doesn't have any custom emojis.")
 
-        m = await ctx.em(f"Alright! Zipping all emojis owned by this server for you, This can take some time")
+        m = await ctx.em(
+            f"Alright! Zipping all emojis owned by this server for you, This can take some time"
+        )
         buf = BytesIO()
 
         async with ctx.typing():
             with zipfile.ZipFile(buf, "w") as f:
                 for emoji in ctx.guild.emojis:
                     _bytes = await emoji.read()
-                    f.writestr(f'{emoji.name}.{"gif" if emoji.animated else "png"}', _bytes)
+                    f.writestr(
+                        f'{emoji.name}.{"gif" if emoji.animated else "png"}', _bytes
+                    )
 
             buf.seek(0)
 

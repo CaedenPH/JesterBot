@@ -60,7 +60,9 @@ async def get_video_data(url, search, bettersearch, loop):
         raise RuntimeError("DiscordUtils[voice] install needed in order to use voice")
 
     if not search and not bettersearch:
-        data = await loop.run_in_executor(None, lambda: ydl.extract_info(url, download=False))
+        data = await loop.run_in_executor(
+            None, lambda: ydl.extract_info(url, download=False)
+        )
         source = data["url"]
         url = "https://www.youtube.com/watch?v=" + data["id"]
         title = data["title"]
@@ -72,11 +74,24 @@ async def get_video_data(url, search, bettersearch, loop):
         channel = data["uploader"]
         channel_url = data["uploader_url"]
 
-        return Song(source, url, title, description, views, duration, thumbnail, channel, channel_url, False)
+        return Song(
+            source,
+            url,
+            title,
+            description,
+            views,
+            duration,
+            thumbnail,
+            channel,
+            channel_url,
+            False,
+        )
     else:
         if bettersearch:
             url = await ytbettersearch(url)
-            data = await loop.run_in_executor(None, lambda: ydl.extract_info(url, download=False))
+            data = await loop.run_in_executor(
+                None, lambda: ydl.extract_info(url, download=False)
+            )
             source = data["url"]
             url = "https://www.youtube.com/watch?v=" + data["id"]
             title = data["title"]
@@ -88,7 +103,18 @@ async def get_video_data(url, search, bettersearch, loop):
             channel = data["uploader"]
             channel_url = data["uploader_url"]
 
-            return Song(source, url, title, description, views, duration, thumbnail, channel, channel_url, False)
+            return Song(
+                source,
+                url,
+                title,
+                description,
+                views,
+                duration,
+                thumbnail,
+                channel,
+                channel_url,
+                False,
+            )
         elif search:
             ytdl = youtube_dl.YoutubeDL(
                 {
@@ -104,7 +130,9 @@ async def get_video_data(url, search, bettersearch, loop):
                     "source_address": "0.0.0.0",
                 }
             )
-            data = await loop.run_in_executor(None, lambda: ytdl.extract_info(url, download=False))
+            data = await loop.run_in_executor(
+                None, lambda: ytdl.extract_info(url, download=False)
+            )
             try:
                 data = data["entries"][0]
             except KeyError or TypeError:
@@ -121,7 +149,18 @@ async def get_video_data(url, search, bettersearch, loop):
             channel = data["uploader"]
 
             channel_url = data["uploader_url"]
-            return Song(source, url, title, description, views, duration, thumbnail, channel, channel_url, False)
+            return Song(
+                source,
+                url,
+                title,
+                description,
+                views,
+                duration,
+                thumbnail,
+                channel,
+                channel_url,
+                False,
+            )
 
 
 def check_queue(ctx, opts, music, after, on_play, loop):
@@ -138,14 +177,22 @@ def check_queue(ctx, opts, music, after, on_play, loop):
         except IndexError:
             return
         if len(music.queue[ctx.guild.id]) > 0:
-            source = disnake.PCMVolumeTransformer(disnake.FFmpegPCMAudio(music.queue[ctx.guild.id][0].source, **opts))
-            ctx.voice_client.play(source, after=lambda error: after(ctx, opts, music, after, on_play, loop))
+            source = disnake.PCMVolumeTransformer(
+                disnake.FFmpegPCMAudio(music.queue[ctx.guild.id][0].source, **opts)
+            )
+            ctx.voice_client.play(
+                source, after=lambda error: after(ctx, opts, music, after, on_play, loop)
+            )
             song = music.queue[ctx.guild.id][0]
             if on_play:
                 loop.create_task(on_play(ctx, song))
     else:
-        source = disnake.PCMVolumeTransformer(disnake.FFmpegPCMAudio(music.queue[ctx.guild.id][0].source, **opts))
-        ctx.voice_client.play(source, after=lambda error: after(ctx, opts, music, after, on_play, loop))
+        source = disnake.PCMVolumeTransformer(
+            disnake.FFmpegPCMAudio(music.queue[ctx.guild.id][0].source, **opts)
+        )
+        ctx.voice_client.play(
+            source, after=lambda error: after(ctx, opts, music, after, on_play, loop)
+        )
         song = music.queue[ctx.guild.id][0]
         if on_play:
             loop.create_task(on_play(ctx, song))
@@ -161,7 +208,9 @@ class Music(object):
 
     def create_player(self, ctx, **kwargs):
         if not ctx.voice_client:
-            raise NotConnectedToVoice("Cannot create the player because bot is not connected to voice")
+            raise NotConnectedToVoice(
+                "Cannot create the player because bot is not connected to voice"
+            )
         player = MusicPlayer(ctx, self, **kwargs)
         self.players.append(player)
         return player
@@ -170,7 +219,12 @@ class Music(object):
         guild = kwargs.get("guild_id")
         channel = kwargs.get("channel_id")
         for player in self.players:
-            if guild and channel and player.ctx.guild.id == guild and player.voice.channel.id == channel:
+            if (
+                guild
+                and channel
+                and player.ctx.guild.id == guild
+                and player.voice.channel.id == channel
+            ):
                 return player
             elif not guild and channel and player.voice.channel.id == channel:
                 return player
@@ -202,8 +256,12 @@ class MusicPlayer(object):
             self.on_pause_func
         ) = (
             self.on_resume_func
-        ) = self.on_loop_toggle_func = self.on_volume_change_func = self.on_remove_from_queue_func = None
-        ffmpeg_error = kwargs.get("ffmpeg_error_betterfix", kwargs.get("ffmpeg_error_fix"))
+        ) = (
+            self.on_loop_toggle_func
+        ) = self.on_volume_change_func = self.on_remove_from_queue_func = None
+        ffmpeg_error = kwargs.get(
+            "ffmpeg_error_betterfix", kwargs.get("ffmpeg_error_fix")
+        )
         if ffmpeg_error and "ffmpeg_error_betterfix" in kwargs.keys():
             self.ffmpeg_opts = {
                 "options": "-vn -loglevel quiet -hide_banner -nostats",
@@ -256,12 +314,19 @@ class MusicPlayer(object):
 
     async def play(self):
         source = disnake.PCMVolumeTransformer(
-            disnake.FFmpegPCMAudio(self.music.queue[self.ctx.guild.id][0].source, **self.ffmpeg_opts)
+            disnake.FFmpegPCMAudio(
+                self.music.queue[self.ctx.guild.id][0].source, **self.ffmpeg_opts
+            )
         )
         self.voice.play(
             source,
             after=lambda error: self.after_func(
-                self.ctx, self.ffmpeg_opts, self.music, self.after_func, self.on_play_func, self.loop
+                self.ctx,
+                self.ffmpeg_opts,
+                self.music,
+                self.after_func,
+                self.on_play_func,
+                self.loop,
             ),
         )
         song = self.music.queue[self.ctx.guild.id][0]
@@ -373,7 +438,19 @@ class MusicPlayer(object):
 
 
 class Song(object):
-    def __init__(self, source, url, title, description, views, duration, thumbnail, channel, channel_url, loop):
+    def __init__(
+        self,
+        source,
+        url,
+        title,
+        description,
+        views,
+        duration,
+        thumbnail,
+        channel,
+        channel_url,
+        loop,
+    ):
         self.source = source
         self.url = url
         self.title = title

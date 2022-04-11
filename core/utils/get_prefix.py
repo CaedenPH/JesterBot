@@ -17,6 +17,8 @@ async def create_embed(message: Message, bot) -> Embed:
         colour=get_colour(),
     )
     embed.set_author(name="JesterBot", icon_url=avatar)
-    embed.add_field(name="Also here is a joke for you:", value=f"│ {await joke()} │", inline=False)
+    embed.add_field(
+        name="Also here is a joke for you:", value=f"│ {await joke()} │", inline=False
+    )
     embed.set_footer(text="You can get more of these jokes with j.joke!")
     return embed

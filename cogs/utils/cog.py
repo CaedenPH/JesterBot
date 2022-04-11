@@ -17,7 +17,13 @@ from disnake.ext import commands
 from core.utils import get_colour, send_embed
 from core.utils.commands.eval import run_eval
 from core.paginator import Paginator
-from core.constants import CLOSE, MORSE_TO_TEXT, TEXT_TO_MORSE, ASCII_DESCRIPTION, GOOGLE_KEY
+from core.constants import (
+    CLOSE,
+    MORSE_TO_TEXT,
+    TEXT_TO_MORSE,
+    ASCII_DESCRIPTION,
+    GOOGLE_KEY,
+)
 from core import Context
 from .calculator import CalculatorView
 
@@ -35,7 +41,9 @@ class Utils(commands.Cog):
         embed = (
             disnake.Embed(description="```yaml\n0```")
             .set_author(name="Calculator", icon_url=ctx.author.avatar.url)
-            .set_footer(text="To interact with your virtual calculator, click the shown buttons.")
+            .set_footer(
+                text="To interact with your virtual calculator, click the shown buttons."
+            )
         )
 
         await ctx.reply(embed=embed, view=CalculatorView(embed, ctx))
@@ -52,11 +60,21 @@ class Utils(commands.Cog):
         await ctx.reply(
             embed=disnake.Embed(
                 title=f"Query: {query}",
-                description="\n".join([f"[{res.title}]({res.url})\n{res.description}\n\n" for res in results[:5]]),
+                description="\n".join(
+                    [
+                        f"[{res.title}]({res.url})\n{res.description}\n\n"
+                        for res in results[:5]
+                    ]
+                ),
                 color=0x489CC4,
             )
-            .set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.display_avatar.url)
-            .set_author(name=ctx.author, icon_url="https://staffordonline.org/wp-content/uploads/2019/01/Google.jpg")
+            .set_footer(
+                text=f"Requested by {ctx.author}", icon_url=ctx.author.display_avatar.url
+            )
+            .set_author(
+                name=ctx.author,
+                icon_url="https://staffordonline.org/wp-content/uploads/2019/01/Google.jpg",
+            )
         )
 
     @commands.command()
@@ -92,8 +110,12 @@ class Utils(commands.Cog):
 
         result = simpleeval.simple_eval(math)
         embed = disnake.Embed(colour=get_colour())
-        embed.set_footer(text=str(ctx.author) + " | Evaluation", icon_url=ctx.author.avatar.url)
-        embed.add_field(name="Your expression: ", value=f'```yaml\n"{math}"\n```', inline=False)
+        embed.set_footer(
+            text=str(ctx.author) + " | Evaluation", icon_url=ctx.author.avatar.url
+        )
+        embed.add_field(
+            name="Your expression: ", value=f'```yaml\n"{math}"\n```', inline=False
+        )
         embed.add_field(name="Result: ", value=f"```\n{result}\n```")
         await ctx.reply(embed=embed)
 
@@ -109,7 +131,9 @@ class Utils(commands.Cog):
             return await send_embed(ctx, "", "Custom emojis are not allowed")
 
         if len(characters) > 50:
-            return await send_embed(ctx, "", f"Too many characters ({len(characters)}/50)")
+            return await send_embed(
+                ctx, "", f"Too many characters ({len(characters)}/50)"
+            )
 
         def get_info(
             char: str,
@@ -128,11 +152,16 @@ class Utils(commands.Cog):
         embed = disnake.Embed(colour=get_colour())
         embed.add_field(name="Character info", value="\n".join(char_list))
         if len(characters) > 1:
-            embed.add_field(name="Full Raw Text", value=f"`{''.join(raw_list)}`", inline=False)
+            embed.add_field(
+                name="Full Raw Text", value=f"`{''.join(raw_list)}`", inline=False
+            )
 
         await ctx.reply(embed=embed)
 
-    @commands.command(aliases=["fib"], description="Sends the numbers of the fibinaci upto the number provided")
+    @commands.command(
+        aliases=["fib"],
+        description="Sends the numbers of the fibinaci upto the number provided",
+    )
     async def fibonacci(self, ctx: Context, sequences=10000000000000):
         x = []
 
@@ -145,7 +174,9 @@ class Utils(commands.Cog):
 
             (a, b) = (b, a + b)
 
-        embed = disnake.Embed(title="Fibinaci", description=f"{', '.join(x)}", colour=get_colour())
+        embed = disnake.Embed(
+            title="Fibinaci", description=f"{', '.join(x)}", colour=get_colour()
+        )
         await ctx.reply(embed=embed)
 
     @commands.command(
@@ -187,17 +218,23 @@ class Utils(commands.Cog):
             x = str(now)
             _date = x[:10]
             _time = x[11:19]
-            embed = disnake.Embed(title=f"**Time:** {_time} │ **Date:** {_date}", colour=get_colour())
+            embed = disnake.Embed(
+                title=f"**Time:** {_time} │ **Date:** {_date}", colour=get_colour()
+            )
             embed.set_author(name="Datetime", icon_url=ctx.author.avatar.url)
 
             await ctx.reply(embed=embed)
         except Exception as e:
-            embed = disnake.Embed(title="Error", description=f"**TimeZoneError: {e}**", colour=get_colour())
+            embed = disnake.Embed(
+                title="Error", description=f"**TimeZoneError: {e}**", colour=get_colour()
+            )
             await ctx.reply(embed=embed)
 
     @commands.command(aliases=["bin"])
     async def binary(self, ctx: Context, *, text):
-        async with self.bot.client.get(url=f"https://some-random-api.ml/binary?text={text}") as response:
+        async with self.bot.client.get(
+            url=f"https://some-random-api.ml/binary?text={text}"
+        ) as response:
             fox = await response.json()
 
             embed = disnake.Embed(colour=get_colour())
@@ -206,7 +243,9 @@ class Utils(commands.Cog):
 
     @commands.command(aliases=["unbin"])
     async def unbinary(self, ctx: Context, *, nums: str):
-        async with self.bot.client.get(url=f"https://some-random-api.ml/binary?decode={nums}") as response:
+        async with self.bot.client.get(
+            url=f"https://some-random-api.ml/binary?decode={nums}"
+        ) as response:
             fox = await response.json()
 
             embed = disnake.Embed(colour=get_colour())
@@ -246,7 +285,9 @@ class Utils(commands.Cog):
 
             x.append(f"\n`{c}: {'-'.join(p)}`")
             p = []
-        embed = disnake.Embed(title="Ascii:", description=", ".join(x), colour=get_colour())
+        embed = disnake.Embed(
+            title="Ascii:", description=", ".join(x), colour=get_colour()
+        )
         embed.set_footer(
             text="Type j.help ascii to get information about what the ascii table is. | '-' signifies a new character."
         )
@@ -314,7 +355,10 @@ class Utils(commands.Cog):
     @commands.command(aliases=["tinyurl", "shorten"])
     async def shorten_url(self, ctx: Context, *, url: str):
         tinyurl = await self.bot.loop.run_in_executor(
-            None, lambda: urlopen("http://tinyurl.com/api-create.php?url=" + url).read().decode("utf-8")
+            None,
+            lambda: urlopen("http://tinyurl.com/api-create.php?url=" + url)
+            .read()
+            .decode("utf-8"),
         )
 
         await ctx.message.delete()
