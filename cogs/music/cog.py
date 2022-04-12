@@ -9,7 +9,7 @@ from core.utils import get_colour, send_embed
 async def embed2(ctx, description) -> disnake.Message:
     embed = disnake.Embed(description=description, colour=get_colour())
     embed.set_footer(text="Type j.help Music to get all the music commands.")
-    embed.set_author(name="Music", icon_url=ctx.author.avatar.url)
+    embed.set_author(name="Music", icon_url=ctx.author.display_avatar.url)
 
     return await ctx.reply(embed=embed)
 
@@ -133,7 +133,6 @@ class Music(commands.Cog):
         z = 0
 
         player = self.music.get_player(guild_id=ctx.guild.id)
-        data = await player.skip(force=True)
         for song in player.current_queue():
             if z == 0:
                 song1 = song.name

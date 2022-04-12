@@ -343,7 +343,7 @@ class Staff(commands.Cog):
     @commands.command(hidden=True)
     async def newver(self, ctx: Context, *, Destroy=""):
 
-        if Destroy == "":
+        if Destroy is None:
             with open("./dicts/Updates.json", "r+") as k:
                 loaded1 = json.load(k)
                 for m in loaded1:
@@ -538,14 +538,6 @@ class Staff(commands.Cog):
     @commands.command(hidden=True)
     async def file(self, ctx: Context, file):
         await ctx.reply(file=disnake.File(f"./dicts/{file}"))
-
-    @commands.command(hidden=True)
-    async def thecog(self, ctx: Context):
-        for thecog in self.bot.cogs:
-
-            cog = self.bot.get_cog(thecog)
-
-            await ctx.reply(thecog)
 
     @commands.command(hidden=True)
     async def formathelp(self, ctx: Context):

@@ -35,9 +35,9 @@ class Economy(commands.Cog):
     async def shop(self, ctx: Context, purchase=""):
         with open("./dicts/Bal.json", "r+") as k:
             data = json.load(k)
-            if purchase == "":
+            if purchase is None:
                 embed = disnake.Embed(colour=get_colour())
-                embed.set_author(icon_url=ctx.author.avatar.url, name="Shop")
+                embed.set_author(icon_url=ctx.author.display_avatar.url, name="Shop")
                 embed.add_field(
                     name="\u200b",
                     value=f"""
@@ -72,7 +72,7 @@ class Economy(commands.Cog):
                         colour=get_colour(),
                     )
                     embed1.set_author(
-                        name=ctx.author.name, icon_url=ctx.author.avatar.url
+                        name=ctx.author.name, icon_url=ctx.author.display_avatar.url
                     )
                     await ctx.reply(embed=embed1)
                     msg = str(
@@ -90,7 +90,7 @@ class Economy(commands.Cog):
                         colour=get_colour(),
                     )
                     embed1.set_author(
-                        name=ctx.author.name, icon_url=ctx.author.avatar.url
+                        name=ctx.author.name, icon_url=ctx.author.display_avatar.url
                     )
                     await ctx.reply(embed=embed1)
                     msg1 = str(
@@ -110,7 +110,7 @@ class Economy(commands.Cog):
 
                     embed1 = disnake.Embed(title=f"Created!", colour=get_colour())
                     embed1.set_author(
-                        name=ctx.author.name, icon_url=ctx.author.avatar.url
+                        name=ctx.author.name, icon_url=ctx.author.display_avatar.url
                     )
                     await ctx.reply(embed=embed1)
                     data[str(ctx.author.id)]["Bal"] -= 1000
@@ -225,11 +225,11 @@ class Economy(commands.Cog):
         aliases=["bal", "money"],
         description="Sends the JesterCoins `[user] has, if no user specified it sends authors bal",
     )
-    async def balance(self, ctx: Context, user: disnake.Member = ""):
+    async def balance(self, ctx: Context, user: disnake.Member = None):
         with open("./dicts/Bal.json") as k:
             data = json.load(k)
 
-            if user == "":
+            if user is None:
                 if str(ctx.author.id) in data:
                     embed = disnake.Embed(
                         description=f"**{data[str(ctx.author.id)]['Bal']}** JesterCoins",
@@ -238,10 +238,14 @@ class Economy(commands.Cog):
                     embed.set_footer(
                         text="Every time you run an economy command you get money!"
                     )
-                    embed.set_author(icon_url=ctx.author.avatar.url, name="Balance")
+                    embed.set_author(
+                        icon_url=ctx.author.display_avatar.url, name="Balance"
+                    )
                 else:
                     embed = disnake.Embed(description=f"You have 0$", colour=get_colour())
-                    embed.set_author(icon_url=ctx.author.avatar.url, name="Balance")
+                    embed.set_author(
+                        icon_url=ctx.author.display_avatar.url, name="Balance"
+                    )
 
             else:
                 if str(user.id) in data:
@@ -274,7 +278,9 @@ class Economy(commands.Cog):
                             description=f"you gambled **{money}$** and got **{money * 2}$**",
                             colour=get_colour(),
                         )
-                        embed.set_author(icon_url=ctx.author.avatar.url, name="You won!")
+                        embed.set_author(
+                            icon_url=ctx.author.display_avatar.url, name="You won!"
+                        )
                         data[str(ctx.author.id)]["Bal"] += money * 2
                         update_json(k, data)
                     else:
@@ -282,7 +288,9 @@ class Economy(commands.Cog):
                             description=f"you gambled **{money}$** and lost **{money}$**",
                             colour=get_colour(),
                         )
-                        embed.set_author(icon_url=ctx.author.avatar.url, name="You lost!")
+                        embed.set_author(
+                            icon_url=ctx.author.display_avatar.url, name="You lost!"
+                        )
                         data[str(ctx.author.id)]["Bal"] -= money
                         update_json(k, data)
                 else:
@@ -316,14 +324,12 @@ class Economy(commands.Cog):
 
     @commands.command(aliases=["balancetop"], description="Sends the richest members")
     async def baltop(self, ctx: Context):
-        score_list = []
-        sorted_score_dict = {}
         x1 = 0
         x = []
         y = "\n"
         with open("./dicts/Bal.json") as k:
             embed = disnake.Embed(colour=get_colour())
-            embed.set_author(name="Baltop", icon_url=ctx.author.avatar.url)
+            embed.set_author(name="Baltop", icon_url=ctx.author.display_avatar.url)
             data = json.load(k)
 
             def get_key(item):
@@ -478,7 +484,7 @@ class Economy(commands.Cog):
     #             embed = disnake.Embed(title="You dont have a porta-covid! Type `j.shop covid` to buy one!", colour=get_colour())
     #             await ctx.reply(embed=embed)
     @unlock.group()
-    async def bag(self, ctx: Context, user: disnake.Member = ""):
+    async def bag(self, ctx: Context, user: disnake.Member = None):
         if not user and user != ctx.author:
             return await send_embed(ctx, "You need to mention someone to rob!")
         with open("./dicts/Bal.json", "r+") as k:
@@ -486,7 +492,6 @@ class Economy(commands.Cog):
             if str(ctx.author.id) in data:
                 if "Bag" in data[str(ctx.author.id)]:
                     if data[str(ctx.author.id)]["Bag"] >= 1:
-                        rand_prize = randint(200, 300)
                         data[str(ctx.author.id)]["Bag"] -= 1
                         if str(user.id) in data and data[str(user.id)]["Bal"] >= 100:
                             ran = randint(100, data[str(user.id)]["Bal"])
@@ -523,14 +528,13 @@ class Economy(commands.Cog):
                 await ctx.reply(embed=embed)
 
     @unlock.group()
-    async def gun(self, ctx: Context, user: disnake.Member = ""):
+    async def gun(self, ctx: Context, user: disnake.Member = None):
         if not user and user != ctx.author:
             await send_embed(ctx, "You need to mention someone to rob!")
         with open("./dicts/Bal.json", "r+") as k:
             data = json.load(k)
             if str(ctx.author.id) in data:
                 if data[str(ctx.author.id)]["gun"] >= 1:
-                    rand_prize = randint(200, 300)
                     data[str(ctx.author.id)]["gun"] -= 1
                     if str(user.id) in data and data[str(user.id)]["Bal"] >= 300:
                         ran = randint(300, data[str(user.id)]["Bal"])

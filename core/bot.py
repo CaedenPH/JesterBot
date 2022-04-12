@@ -211,7 +211,7 @@ class JesterBot(Bot):
                     try:
                         bot_msg = self.data[before]["bot"]
                         return await bot_msg.edit(content=msg)
-                    except Exception as e:
+                    except Exception:
                         return
             await self.process_commands(after)
 

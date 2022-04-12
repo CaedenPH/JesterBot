@@ -38,7 +38,8 @@ class Paginator:
         embed = (
             disnake.Embed(colour=get_colour())
             .set_author(
-                name=name, icon_url=icon_url if icon_url else self.ctx.author.avatar.url
+                name=name,
+                icon_url=icon_url if icon_url else self.ctx.author.display_avatar.url,
             )
             .set_footer(
                 text=f"{str(self.ctx.message.created_at)[11:16]} • Page: {self._current} / {self._top}"

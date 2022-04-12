@@ -30,7 +30,7 @@ class JesterInfo(commands.Cog):
         return await send_embed(
             ctx,
             "",
-            f"I've been Up since **{days}** Days, **{hours}** Hours, **{minutes}** Minutes, and **{seconds}** Seconds!",
+            f"I've been up for **{days}** Days, **{hours}** Hours, **{minutes}** Minutes, and **{seconds}** Seconds!",
         )
 
     @commands.command(
@@ -67,25 +67,25 @@ class JesterInfo(commands.Cog):
 
             for m in data:
 
-                if data[m]["Version"] == "":
+                if data[m]["Version"] is None:
                     embed = disnake.Embed(
                         description="Updates is currently being updated, no data to send",
                         colour=get_colour(),
                     )
                     return await ctx.reply(embed=embed)
-                if data[m]["Bug fixes"] == "":
+                if data[m]["Bug fixes"] is None:
                     embed = disnake.Embed(
                         description="Updates is currently being updated, no data to send",
                         colour=get_colour(),
                     )
                     await ctx.reply(embed=embed)
-                if data[m]["New commands"] == "":
+                if data[m]["New commands"] is None:
                     embed = disnake.Embed(
                         description="Updates is currently being updated, no data to send",
                         colour=get_colour(),
                     )
                     await ctx.reply(embed=embed)
-                if data[m]["Other"] == "":
+                if data[m]["Other"] is None:
                     embed = disnake.Embed(
                         description="Updates is currently being updated, no data to send",
                         colour=get_colour(),
@@ -116,7 +116,9 @@ class JesterInfo(commands.Cog):
                         value=f"{data[str(m)]['Other']}", name="**Other**", inline=False
                     )
 
-                    embed.set_footer(text=ctx.author.name, icon_url=username.avatar.url)
+                    embed.set_footer(
+                        text=ctx.author.name, icon_url=username.display_avatar.url
+                    )
                     embed.set_thumbnail(
                         url="https://media.giphy.com/media/xT5LMHxhOfscxPfIfm/giphy.gif"
                     )
@@ -144,20 +146,17 @@ class JesterInfo(commands.Cog):
             description="[Official server](https://discord.gg/2654CuU3ZU) │ [Invite me!](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591)",
             colour=get_colour(),
         )
-        embed.set_author(icon_url=ctx.author.avatar.url, name="Invite")
+        embed.set_author(icon_url=ctx.author.display_avatar.url, name="Invite")
 
         await ctx.reply(embed=embed)
 
     @commands.command(aliases=["commandtop", "cmdtop", "topcmd"])
     async def topcommands(self, ctx: Context):
-        score_list = []
-        sorted_score_dict = {}
-
         x = []
         y = "\n"
         with open("./dicts/Commandsused.json") as k:
             embed = disnake.Embed(colour=get_colour())
-            embed.set_author(name="Top commands", icon_url=ctx.author.avatar.url)
+            embed.set_author(name="Top commands", icon_url=ctx.author.display_avatar.url)
 
             data = json.load(k)
 
@@ -183,7 +182,7 @@ class JesterInfo(commands.Cog):
         y = "\n"
         with open("./dicts/Selfscore.json") as k:
             embed = disnake.Embed(colour=get_colour())
-            embed.set_author(name="Top members", icon_url=ctx.author.avatar.url)
+            embed.set_author(name="Top members", icon_url=ctx.author.display_avatar.url)
             data = json.load(k)
 
             def get_key(item):
@@ -259,7 +258,7 @@ Database : {round((db_time2-db_time1)*1000)}ms
             description=f"New prefixes are: {', '.join([f'`{prefix}`' for prefix in prefixes])}\nPing me for my prefixes if you forget!",
             colour=get_colour(),
         )
-        embed.set_author(icon_url=ctx.author.avatar.url, name="Prefix")
+        embed.set_author(icon_url=ctx.author.display_avatar.url, name="Prefix")
         await ctx.reply(embed=embed)
 
     @commands.command(aliases=["devs", "helpers", "coder", "coders"])

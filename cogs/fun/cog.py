@@ -24,7 +24,7 @@ async def img(ctx: Context, member: disnake.Member, name: str) -> str:
     if member is None:
         member = ctx.author
 
-    async with ctx.bot.client.get(str(member.avatar.url)) as r:
+    async with ctx.bot.client.get(str(member.display_avatar.url)) as r:
         f = open(f"./images/{name}.png", "wb")
         f.write(await r.read())
         f.close()
@@ -51,7 +51,7 @@ class Fun(commands.Cog):
         )
 
         embed.set_author(
-            name=f"Youtube searches for {query}: ", icon_url=ctx.author.avatar.url
+            name=f"Youtube searches for {query}: ", icon_url=ctx.author.display_avatar.url
         )
         embed.set_footer(text=f"Requested by {ctx.author}")
         await ctx.reply(embed)
@@ -98,7 +98,7 @@ class Fun(commands.Cog):
         if len(art) > 1990:
             return await ctx.reply(
                 embed=disnake.Embed(
-                    description=f"Oops! ASCII Art crossed more than 2000 Words. Please try a smaller Text.",
+                    description="Oops! ASCII Art crossed more than 2000 Words. Please try a smaller Text.",
                     colour=get_colour(),
                 )
             )
@@ -120,7 +120,7 @@ class Fun(commands.Cog):
         await webhook.send(
             text,
             username=member.name,
-            avatar_url=member.avatar.url,
+            avatar_url=member.display_avatar.url,
             allowed_mentions=disnake.AllowedMentions(
                 roles=False, users=False, everyone=False
             ),
@@ -170,7 +170,7 @@ class Fun(commands.Cog):
         await send_embed(ctx, "Name in emojis...", "".join(list))
 
     @commands.command(description="Fake hacks the specified member")
-    async def hack(self, ctx: Context, member: disnake.Member = ""):
+    async def hack(self, ctx: Context, member: disnake.Member = None):
 
         x = False
         key = ""
@@ -206,8 +206,8 @@ class Fun(commands.Cog):
             f"\npass credentials through mainstream..." f"\nname: '{member}'",
             f"\nping : {self.bot.latency * 1000}",
             f"\nraise bot account: {member.bot}",
-            f"\nawait object(): '{member.avatar}'",
-            f"\nstatus: ",
+            f"\nawait object(): '{member.display_avatar}'",
+            "\nstatus: ",
             f"{member.status}",
             "\nclass User: True",
             f"\ngetattr of class User" f"\nactivity: '{key}'",
@@ -216,7 +216,7 @@ class Fun(commands.Cog):
             f"\njoined at: {member.joined_at}",
             "\nhelp: disabled",
             f"\nname in morse: {encoder.encode(member.name).morse}",
-            f"\nimport os: Failed",
+            "\nimport os: Failed",
             f"\nlocalTime: {msg.created_at}",
             "\nbreaching len: sorted(ctx)",
             "\ndef __init__(self):",
@@ -225,8 +225,8 @@ class Fun(commands.Cog):
             "\n    pinging public ip...",
             " hash ip...",
             " injecting malware...",
-            f"\n    ip: ",
-            f"{str(ip)}",
+            "\n    ip: ",
+            f"{ip}",
             "\n    break" f"\n{member.name} has been succesfully hacked.",
         ]
         for k in msg_loop:
@@ -375,7 +375,7 @@ class Fun(commands.Cog):
             await x.delete()
 
             embed1 = disnake.Embed(title=f"{msg.content}", colour=get_colour())
-            embed1.set_author(name=ctx.author.name, icon_url=user.avatar.url)
+            embed1.set_author(name=ctx.author.name, icon_url=user.display_avatar.url)
             await ctx.reply(embed=embed1)
         except asyncio.TimeoutError:
             embed = disnake.Embed(
@@ -435,8 +435,8 @@ class Fun(commands.Cog):
         await ctx.reply(embed=embed)
 
     @commands.command(description="The specified member takes an L")
-    async def l(self, ctx: Context, user: disnake.Member = ""):
-        if user == "":
+    async def l(self, ctx: Context, user: disnake.Member = None):
+        if user is None:
             user = self.bot.get_user(ctx.author.id)
         embed = disnake.Embed(
             description=f"{user.mention} took an L", colour=get_colour()

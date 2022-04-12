@@ -30,10 +30,7 @@ class Context(Context):
         bot: JesterBot,
         view: view.StringView,
         args: List[Any] = MISSING,
-        kwargs: Dict[
-            str,
-            Any,
-        ] = MISSING,
+        kwargs: Dict[str, Any,] = MISSING,
         prefix: Optional[str] = None,
         command: Optional[Command] = None,
         invoked_with: Optional[str] = None,
@@ -46,9 +43,7 @@ class Context(Context):
         self.message: Message = message
         self.bot: JesterBot = bot
         self.args: List[Any] = args or []
-        self.kwargs: Dict[str, Any,] = (
-            kwargs or {}
-        )
+        self.kwargs: Dict[str, Any,] = kwargs or {}
         self.prefix: Optional[str] = prefix
         self.command: Optional[Command] = command
         self.view: view.StringView = view
@@ -102,7 +97,7 @@ class Context(Context):
                 try:
 
                     await msg.add_reaction(TRASHCAN)
-                except Exception as a:
+                except Exception:
                     return
 
                 try:
@@ -111,10 +106,10 @@ class Context(Context):
                     )
                     if str(r.emoji.id) == TRASHCAN[11:-1]:
                         await msg.delete()
-                except Exception as b:
+                except Exception:
                     try:
                         await msg.clear_reactions()
-                    except Exception as c:
+                    except Exception:
                         pass
 
             loop = asyncio.get_running_loop()
@@ -159,7 +154,7 @@ class Context(Context):
                 await asyncio.sleep(3)
                 try:
                     await msg.add_reaction(TRASHCAN)
-                except Exception as a:
+                except Exception:
                     return
 
                 try:
@@ -168,10 +163,10 @@ class Context(Context):
                     )
                     if str(r.emoji.id) == TRASHCAN[11:-1]:
                         await msg.delete()
-                except Exception as b:
+                except Exception:
                     try:
                         await msg.clear_reactions()
-                    except Exception as c:
+                    except Exception:
                         pass
 
             loop = asyncio.get_running_loop()

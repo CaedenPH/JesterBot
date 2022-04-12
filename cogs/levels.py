@@ -69,7 +69,7 @@ class Levels(commands.Cog):
         )
 
     async def make_rank_image(self, member: disnake.Member, rank, level, xp, final_xp):
-        user_avatar_image = str(member.avatar.with_format("png").with_size(512))
+        user_avatar_image = str(member.display_avatar.with_format("png").with_size(512))
         async with self.bot.client.get(user_avatar_image) as resp:
             avatar_bytes = io.BytesIO(await resp.read())
 
@@ -303,7 +303,7 @@ class Levels(commands.Cog):
         await ctx.reply(
             embed=disnake.Embed(
                 description="You already have a config!", colour=get_colour()
-            ).set_author(name="Config", icon_url=ctx.author.avatar.url)
+            ).set_author(name="Config", icon_url=ctx.author.display_avatar.url)
         )
 
     @commands.command(aliases=["vconf"])
@@ -330,7 +330,7 @@ class Levels(commands.Cog):
     @commands.command(aliases=["lb"])
     async def leaderboard(self, ctx: Context):
         embed = disnake.Embed(colour=get_colour())
-        embed.set_author(name="Leaderboard", icon_url=ctx.author.avatar.url)
+        embed.set_author(name="Leaderboard", icon_url=ctx.author.display_avatar.url)
 
         result = await self.bot.db.fetchall(
             "SELECT user_id, xp, level, name FROM users WHERE guild_id = ? ORDER BY xp ASC",

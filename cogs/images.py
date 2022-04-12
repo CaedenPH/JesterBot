@@ -20,10 +20,10 @@ async def img(ctx, member, name):
     if member is None:
         member = ctx.author
 
-    url = member.avatar.url
+    url = member.display_avatar.url
 
-    if member.avatar.is_animated():
-        url = member.avatar.url.replace(".gif", ".png")
+    if member.display_avatar.is_animated():
+        url = member.display_avatar.url.replace(".gif", ".png")
 
     async with ctx.bot.client.get(str(url)) as r:
         f = open(f"./images/{name}.png", "wb")
@@ -39,10 +39,10 @@ async def pilimg(ctx, member, name):
     if member is None:
         member = ctx.author
 
-    url: str = member.avatar.url
+    url: str = member.display_avatar.url
 
-    if member.avatar.is_animated():
-        url: str = str(member.avatar.url).replace(".gif", ".webp")
+    if member.display_avatar.is_animated():
+        url: str = str(member.display_avatar.url).replace(".gif", ".webp")
 
     path = f"./images/{name}.png"
     async with ctx.bot.client.get(url) as r:
@@ -171,9 +171,9 @@ class Images(commands.Cog):
     async def wasted(self, ctx: Context, member: disnake.Member = None):
 
         if member is None:
-            avatar = ctx.author.avatar.with_format("png")
+            avatar = ctx.author.display_avatar.with_format("png")
         else:
-            avatar = member.avatar.with_format("png")
+            avatar = member.display_avatar.with_format("png")
 
         async with ctx.typing():
             async with self.bot.client.get(
@@ -190,9 +190,9 @@ class Images(commands.Cog):
     async def threshold(self, ctx: Context, member: disnake.Member = None):
 
         if member is None:
-            avatar = ctx.author.avatar.with_format("png")
+            avatar = ctx.author.display_avatar.with_format("png")
         else:
-            avatar = member.avatar.with_format("png")
+            avatar = member.display_avatar.with_format("png")
 
         async with ctx.typing():
             async with self.bot.client.get(
@@ -208,9 +208,9 @@ class Images(commands.Cog):
     @commands.command(description="""Sends a fay filtered avatar""")
     async def gay(self, ctx: Context, member: disnake.Member = None):
         if member is None:
-            avatar = ctx.author.avatar.with_format("png")
+            avatar = ctx.author.display_avatar.with_format("png")
         else:
-            avatar = member.avatar.with_format("png")
+            avatar = member.display_avatar.with_format("png")
 
         async with ctx.typing():
             async with self.bot.client.get(
@@ -226,9 +226,9 @@ class Images(commands.Cog):
     @commands.command(description="""Sends a glass filtered avatar""")
     async def glass(self, ctx: Context, member: disnake.Member = None):
         if member is None:
-            avatar = ctx.author.avatar.with_format("png")
+            avatar = ctx.author.display_avatar.with_format("png")
         else:
-            avatar = member.avatar.with_format("png")
+            avatar = member.display_avatar.with_format("png")
 
         async with ctx.typing():
             async with self.bot.client.get(
@@ -244,9 +244,9 @@ class Images(commands.Cog):
     @commands.command(description="""Sends a triggered filtered avatar""")
     async def triggered(self, ctx: Context, member: disnake.Member = None):
         if member is None:
-            avatar = ctx.author.avatar.with_format("png")
+            avatar = ctx.author.display_avatar.with_format("png")
         else:
-            avatar = member.avatar.with_format("png")
+            avatar = member.display_avatar.with_format("png")
 
         async with ctx.typing():
             async with self.bot.client.get(
@@ -262,9 +262,9 @@ class Images(commands.Cog):
     @commands.command(description="""Sends a bloody filtered avatar""")
     async def bloody(self, ctx: Context, member: disnake.Member = None):
         if member is None:
-            avatar = ctx.author.avatar.with_format("png")
+            avatar = ctx.author.display_avatar.with_format("png")
         else:
-            avatar = member.avatar.with_format("png")
+            avatar = member.display_avatar.with_format("png")
 
         async with ctx.typing():
             async with self.bot.client.get(
@@ -281,7 +281,7 @@ class Images(commands.Cog):
     async def ytcomment(self, ctx: Context, *, comment):
         async with ctx.typing():
             async with self.bot.client.get(
-                url=f"https://some-random-api.ml/canvas/youtube-comment?avatar={ctx.author.avatar.with_format('png')}&comment={comment}&username={ctx.author.display_name}"
+                url=f"https://some-random-api.ml/canvas/youtube-comment?avatar={ctx.author.display_avatar.with_format('png')}&comment={comment}&username={ctx.author.display_name}"
             ) as response:
 
                 file = open("./images/yt-comment.png", "wb")
@@ -293,9 +293,9 @@ class Images(commands.Cog):
     @commands.command(description="""Makes a bright filtered avatar""")
     async def bright(self, ctx: Context, member: disnake.Member = None):
         if member is None:
-            avatar = ctx.author.avatar.with_format("png")
+            avatar = ctx.author.display_avatar.with_format("png")
         else:
-            avatar = member.avatar.with_format("png")
+            avatar = member.display_avatar.with_format("png")
 
         async with ctx.typing():
             async with self.bot.client.get(
@@ -311,9 +311,9 @@ class Images(commands.Cog):
     @commands.command(description="""Makes a bright filtered avatar""")
     async def invert(self, ctx: Context, member: disnake.Member = None):
         if member is None:
-            avatar = ctx.author.avatar.with_format("png")
+            avatar = ctx.author.display_avatar.with_format("png")
         else:
-            avatar = member.avatar.with_format("png")
+            avatar = member.display_avatar.with_format("png")
 
         async with ctx.typing():
             async with self.bot.client.get(

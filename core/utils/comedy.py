@@ -1,10 +1,7 @@
-import re
 import randfacts
 import json
-import disnake
 
 from jokeapi import Jokes
-from .utils import get_colour
 
 
 async def fact() -> str:

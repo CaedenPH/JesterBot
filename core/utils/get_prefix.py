@@ -4,7 +4,7 @@ from core.utils.comedy import joke
 
 
 async def create_embed(message: Message, bot) -> Embed:
-    avatar = message.guild.get_member(bot.user.id).avatar.url
+    avatar = message.guild.get_member(bot.user.id).display_avatar.url
     prefix = await bot.get_prefix(message)
 
     embed = Embed(

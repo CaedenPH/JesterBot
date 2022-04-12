@@ -30,14 +30,8 @@ class Feedback(commands.Cog):
     async def viewfeedback(
         self,
         ctx: Context,
-        distance: Union[
-            int,
-            str,
-        ] = 0,
-        author_from: Union[
-            int,
-            str,
-        ] = None,
+        distance: Union[int, str,] = 0,
+        author_from: Union[int, str,] = None,
     ):
         await send_embed(
             ctx,
@@ -57,11 +51,11 @@ class Feedback(commands.Cog):
                 ]
             ),
             a="Feedback",
-            i_u=ctx.author.avatar.url,
+            i_u=ctx.author.display_avatar.url,
         ) if author_from is None else await send_embed(
             ctx,
             "",
-            f"\n".join(
+            "\n".join(
                 [
                     f"`{num}`: {data['feedback']['message'][num]}"
                     for num, k in enumerate(data["feedback"]["author"])
@@ -69,7 +63,7 @@ class Feedback(commands.Cog):
                 ]
             ),
             a=f"Feedback from {author_from}",
-            i_u=ctx.author.avatar.url,
+            i_u=ctx.author.display_avatar.url,
             f=f"All these messges are from {author_from}",
         ) if hasattr(
             author_from, "upper"
@@ -84,7 +78,7 @@ class Feedback(commands.Cog):
                 ]
             ),
             a=f"Feedback from {await self.bot.fetch_user(author_from)}",
-            i_u=ctx.author.avatar.url,
+            i_u=ctx.author.display_avatar.url,
             f=f"All these messages are from {await self.bot.fetch_user(author_from)}",
         )
 

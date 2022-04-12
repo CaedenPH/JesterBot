@@ -110,7 +110,8 @@ async def error_handler(ctx, error) -> None:
             failed_cmd = failed_cmd[0]
             embed = disnake.Embed(title="Error!", colour=get_colour())
             embed.set_author(
-                icon_url=ctx.author.avatar.url, name=f"{failed_cmd} is not a command!"
+                icon_url=ctx.author.display_avatar.url,
+                name=f"{failed_cmd} is not a command!",
             )
 
             if my_string[0] not in [""]:
@@ -140,7 +141,7 @@ async def error_handler(ctx, error) -> None:
 
                                 embed = disnake.Embed(title="Error!", colour=get_colour())
                                 embed.set_author(
-                                    icon_url=ctx.author.avatar.url,
+                                    icon_url=ctx.author.display_avatar.url,
                                     name=f"{failed_cmd} is not a command!",
                                 )
                                 embed.add_field(
@@ -154,7 +155,7 @@ async def error_handler(ctx, error) -> None:
                             elif str(emoji.emoji) == left and num == 2:
                                 embed = disnake.Embed(title="Error!", colour=get_colour())
                                 embed.set_author(
-                                    icon_url=ctx.author.avatar.url,
+                                    icon_url=ctx.author.display_avatar.url,
                                     name=f"{failed_cmd} is not a command!",
                                 )
                                 embed.add_field(
@@ -178,7 +179,7 @@ async def error_handler(ctx, error) -> None:
                                 title="Error!", description="Goodbye", colour=get_colour()
                             )
                             embed.set_author(
-                                icon_url=ctx.author.avatar.url,
+                                icon_url=ctx.author.display_avatar.url,
                                 name=f"{failed_cmd} is not a command!",
                             )
                             embed.set_footer(text="Have fun!")
@@ -191,7 +192,7 @@ async def error_handler(ctx, error) -> None:
                             colour=get_colour(),
                         )
                         embed.set_author(
-                            icon_url=ctx.author.avatar.url,
+                            icon_url=ctx.author.display_avatar.url,
                             name=f"{failed_cmd} is not a command!",
                         )
                         embed.set_footer()

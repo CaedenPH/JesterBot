@@ -52,7 +52,9 @@ class Crime(commands.Cog):
         )
 
     @commands.command(aliases=["jail"])
-    async def jailbase(self, ctx: Context, last_name: str, first_name: str = "") -> None:
+    async def jailbase(
+        self, ctx: Context, last_name: str, first_name: str = None
+    ) -> None:
         async with self.bot.client.get(
             url=f"https://www.jailbase.com/api/1/search/?source_id=az-mcso&last_name={last_name}&first_name={first_name}"
         ) as resp:
@@ -163,7 +165,7 @@ class Crime(commands.Cog):
         await pag.paginate(
             content="      " + content[7:-3].strip(),
             name=ctx.author,
-            icon_url=ctx.author.avatar.url,
+            icon_url=ctx.author.display_avatar.url,
         )
 
     @commands.command()
@@ -205,7 +207,7 @@ class Crime(commands.Cog):
         await pag.paginate(
             content="      " + content[7:-3].strip(),
             name=ctx.author,
-            icon_url=ctx.author.avatar.url,
+            icon_url=ctx.author.display_avatar.url,
         )
 
 

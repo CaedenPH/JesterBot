@@ -45,13 +45,7 @@ class Card:
     def value(self) -> int:
         return self._value
 
-    def change_to(
-        self,
-        value: Union[
-            str,
-            int,
-        ],
-    ) -> None:
+    def change_to(self, value: Union[str, int,]) -> None:
         self._value = int(value)
 
 
@@ -250,7 +244,9 @@ class BlackJack(View):
             description=BLACKJACK_HOW_TO,
             timestamp=self.ctx.message.created_at,
             colour=get_colour(),
-        ).set_author(name=self.ctx.author.name, icon_url=self.ctx.author.avatar.url)
+        ).set_author(
+            name=self.ctx.author.name, icon_url=self.ctx.author.display_avatar.url
+        )
 
         await self.bot_message.edit(embed=embed)
 

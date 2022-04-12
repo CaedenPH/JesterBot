@@ -99,7 +99,7 @@ class Event(commands.Cog):
                     if str(member.guild.id) in loaded:
                         if "role" in loaded[str(member.guild.id)]:
 
-                            if loaded[str(member.guild.id)]["message"] == "":
+                            if loaded[str(member.guild.id)]["message"] is None:
 
                                 channel = member.guild.get_channel(
                                     loaded[str(member.guild.id)]["channel_id"]
@@ -114,7 +114,8 @@ class Event(commands.Cog):
 
                                 embed.set_image(url=f"{member.guild.icon_url}")
                                 embed.set_author(
-                                    name=f"{member.name}", icon_url=f"{member.avatar.url}"
+                                    name=f"{member.name}",
+                                    icon_url=f"{member.display_avatar.url}",
                                 )
                                 await channel.send(embed=embed)
                                 role = disnake.utils.get(
@@ -133,7 +134,7 @@ class Event(commands.Cog):
                                     f"{loaded[str(member.guild.id)]['message']}"
                                 )
                         else:
-                            if loaded[str(member.guild.id)]["message"] == "":
+                            if loaded[str(member.guild.id)]["message"] is None:
                                 channel = member.guild.get_channel(
                                     loaded[str(member.guild.id)]["channel_id"]
                                 )
@@ -146,7 +147,8 @@ class Event(commands.Cog):
 
                                 embed.set_image(url=f"{member.guild.icon_url}")
                                 embed.set_author(
-                                    name=f"{member.name}", icon_url=f"{member.avatar.url}"
+                                    name=f"{member.name}",
+                                    icon_url=f"{member.display_avatar.url}",
                                 )
 
                                 await channel.send(embed=embed)
@@ -228,7 +230,7 @@ class Event(commands.Cog):
                                         await message.delete()
                                         if (
                                             weldata[str(message.guild.id)]["message"]
-                                            == ""
+                                            is None
                                         ):
 
                                             channel = message.guild.get_channel(
@@ -254,7 +256,7 @@ class Event(commands.Cog):
                                             )
                                             embed.set_author(
                                                 name=f"{message.author.name}",
-                                                icon_url=f"{message.author.avatar.url}",
+                                                icon_url=f"{message.author.display_avatar.url}",
                                             )
                                             # role = disnake.utils.get(member.guild.roles, id=loaded[str(member.guild.id)]['role'])
                                             await channel.send(embed=embed)
@@ -285,7 +287,6 @@ class Event(commands.Cog):
                         else:
                             await message.delete()
 
-        us = self.bot.user
         if message.author == self.bot.user:
             return
 

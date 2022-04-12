@@ -32,7 +32,7 @@ def get_help(command: str) -> str:
 class HelpUtils:
     links = "> [Official server](https://discord.gg/2654CuU3ZU) │ [Bot invite](https://discord.com/oauth2/authorize?client_id=828363172717133874&scope=bot&permissions=8589934591) │ [Website](https://sites.google.com/view/jesterbot) │ [Vote for me!](https://top.gg/bot/828363172717133874/vote)"
 
-    def __init__(self, bot):
+    def __init__(self, bot: JesterBot):
         self.bot = bot
 
     async def get_cog_from_str(self, cog_name: str) -> typing.Optional[commands.Cog]:
@@ -104,7 +104,7 @@ class HelpUtils:
                 else "Currently no help!",
                 inline=False,
             )
-            .set_author(name="Help", icon_url=ctx.author.avatar.url)
+            .set_author(name="Help", icon_url=ctx.author.display_avatar.url)
             .set_footer(text="<> = needed │ [] = not needed")
         )
 
@@ -117,7 +117,9 @@ class HelpUtils:
             disnake.Embed(
                 description=COG_DESCRIPTIONS[cog.qualified_name], colour=get_colour()
             )
-            .set_author(name=f"{cog.qualified_name}", icon_url=ctx.author.avatar.url)
+            .set_author(
+                name=f"{cog.qualified_name}", icon_url=ctx.author.display_avatar.url
+            )
             .add_field(
                 name="\u200b",
                 value="\n".join([commands[i] for i in range(0, len(commands), 2)]),
@@ -141,7 +143,8 @@ class HelpUtils:
         return (
             disnake.Embed(colour=get_colour())
             .set_author(
-                name=f"{message} is not a command!", icon_url=ctx.author.avatar.url
+                name=f"{message} is not a command!",
+                icon_url=ctx.author.display_avatar.url,
             )
             .add_field(
                 name="\u200b",

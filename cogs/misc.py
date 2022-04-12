@@ -30,7 +30,7 @@ class Misc(commands.Cog):
         guild = ctx.guild
 
         embed = disnake.Embed(description="")
-        embed.set_author(name="Channel Health:", icon_url=ctx.author.avatar.url)
+        embed.set_author(name="Channel Health:", icon_url=ctx.author.display_avatar.url)
 
         msg = await ctx.em("Processing... this may take a while.")
         async with ctx.channel.typing():
@@ -107,7 +107,7 @@ class Misc(commands.Cog):
             disnake.Embed(
                 title="Information", timestamp=ctx.message.created_at, colour=get_colour()
             )
-            .set_thumbnail(url=member.avatar.url)
+            .set_thumbnail(url=member.display_avatar.url)
             .add_field(name="Name", value=f"{member.name}")
             .add_field(name="Id", value=f"{member.id}")
             .add_field(name="Joined server at", value=f"{member.joined_at}")
@@ -303,7 +303,9 @@ class Misc(commands.Cog):
                     msg2 = received_msg1
                     embed.add_field(name="Title", value=msg1, inline=False)
                     embed.add_field(name="Description", value=msg2, inline=False)
-                    embed.set_footer(text=ctx.author.name, icon_url=username.avatar.url)
+                    embed.set_footer(
+                        text=ctx.author.name, icon_url=username.display_avatar.url
+                    )
 
                     await x.delete()
                     await y.delete()
@@ -357,7 +359,9 @@ class Misc(commands.Cog):
 
                     embed.add_field(name="Title", value=received_msg1, inline=False)
 
-                    embed.set_footer(text=ctx.author.name, icon_url=username.avatar.url)
+                    embed.set_footer(
+                        text=ctx.author.name, icon_url=username.display_avatar.url
+                    )
 
                     await x.delete()
                     await y.delete()

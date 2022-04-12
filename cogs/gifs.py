@@ -38,10 +38,10 @@ class JesterJokes(commands.Cog):
         aliases=["insultme", "Mean", "Insult_Me"],
         description="The specified member gets insulted",
     )
-    async def insult(self, ctx: Context, user: disnake.Member = ""):
+    async def insult(self, ctx: Context, user: disnake.Member = None):
 
         m = self.bot.get_user(828363172717133874)
-        if user == "":
+        if user is None:
             user = self.bot.get_user(ctx.author.id)
 
         if user == m:
@@ -63,8 +63,8 @@ class JesterJokes(commands.Cog):
     @commands.command(
         aliases=["dis", "Diss"], description="The specified member gets dissed"
     )
-    async def disthem(self, ctx: Context, user: disnake.Member = ""):
-        if user == "":
+    async def disthem(self, ctx: Context, user: disnake.Member = None):
+        if user is None:
             user = self.bot.get_user(ctx.author.id)
         async with self.bot.client.get(
             url="https://evilinsult.com/generate_insult.php?lang=en&type=json"
@@ -81,8 +81,8 @@ class JesterJokes(commands.Cog):
         aliases=["Chuck_norris", "Chucky", "norris"],
         description="Sends a random chuck norris joke/fact",
     )
-    async def chuck(self, ctx: Context, user: disnake.Member = ""):
-        if user == "":
+    async def chuck(self, ctx: Context, user: disnake.Member = None):
+        if user is None:
             user = self.bot.get_user(ctx.author.id)
         async with self.bot.client.get(
             url="https://api.chucknorris.io/jokes/random"
@@ -113,8 +113,8 @@ class JesterJokes(commands.Cog):
         aliases=["smck", "slap", "BitchSlap", "Hit", "Spank"],
         description="The specified member gets slapped - Sends a random giffy",
     )
-    async def smack(self, ctx: Context, user: disnake.Member = ""):
-        if user == "":
+    async def smack(self, ctx: Context, user: disnake.Member = None):
+        if user is None:
             user = self.bot.get_user(ctx.author.id)
 
         url = [

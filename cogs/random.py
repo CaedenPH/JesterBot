@@ -165,7 +165,9 @@ class Random(commands.Cog):
         choice = random.choice(data["ideas"])
         embed = disnake.Embed(
             title=choice["name"], description=choice["description"]
-        ).set_author(name=ctx.author.name + "s' date", icon_url=ctx.author.avatar.url)
+        ).set_author(
+            name=ctx.author.name + "s' date", icon_url=ctx.author.display_avatar.url
+        )
         await ctx.reply(embed=embed)
 
     @commands.command()

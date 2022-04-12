@@ -188,7 +188,7 @@ class CalculatorView(View):
 
         try:
             result = simpleeval.simple_eval(equation)
-        except Exception as e:
+        except Exception:
             result = "Error! Something went wrong"
 
         self.embed.description = f"```yaml\nIn ❯❯ {display} \nOut ❯❯ {result}```"

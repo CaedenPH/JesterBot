@@ -1,4 +1,3 @@
-from time import time
 import disnake
 import json
 
@@ -13,7 +12,7 @@ async def suggest(bot: Bot, message: Message) -> None:
     data = {}
     embed = (
         disnake.Embed(colour=get_colour())
-        .set_author(name=message.author.name, icon_url=message.author.avatar.url)
+        .set_author(name=message.author.name, icon_url=message.author.display_avatar.url)
         .set_footer(
             text=str(message.created_at)[11:16]
             + " • This suggestion was created by {}".format(message.author.name)

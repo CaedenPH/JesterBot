@@ -24,7 +24,7 @@ class Mod(commands.Cog):
         aliases=["del", "deletes"],
         description="Deletes the specified channel, if no channel is specified - the current channel. Sends a warning.",
     )
-    async def delete(self, ctx: Context, channel_id: int = ""):
+    async def delete(self, ctx: Context, channel_id: int = None):
         embed = disnake.Embed(
             title=f"This will delete the current channel, are you sure you want to procede? Type y if you do",
             colour=get_colour(),
@@ -41,7 +41,7 @@ class Mod(commands.Cog):
         ).lower()
         if msg == "y":
 
-            if channel_id == "":
+            if channel_id is None:
 
                 await self.bot.get_channel(self, ctx.channel.id).delete()
 
@@ -124,7 +124,6 @@ class Mod(commands.Cog):
             colour=get_colour(),
         )
         embed.add_field(name="Reason:", value=reason)
-        user = ctx.author
         await ctx.reply(embed=embed)
 
     @has_permissions(ban_members=True)
@@ -190,7 +189,7 @@ class Mod(commands.Cog):
         await x.edit(embed=embed)
 
     @commands.command(name="purgewithoutmessage", aliases=["purge1"], hidden=True)
-    async def _purge1(self, ctx: Context, amount=80, member: disnake.Member = ""):
+    async def _purge1(self, ctx: Context, amount=80, member: disnake.Member = None):
         await ctx.channel.purge(limit=amount)
 
     @has_permissions(administrator=True)
@@ -222,7 +221,7 @@ class Mod(commands.Cog):
                 description=f"New prefix for this server is {', '.join(prefix1) if prefix else f'{prefix1}'}!, ping me for my prefixes if you forget!",
                 colour=get_colour(),
             )
-            embed.set_author(icon_url=ctx.author.avatar.url, name="Prefix")
+            embed.set_author(icon_url=ctx.author.display_avatar.url, name="Prefix")
             await ctx.reply(embed=embed)
 
     @commands.command(
@@ -398,13 +397,11 @@ class Mod(commands.Cog):
                     await ctx.reply(embed=embed)
                     return
 
-            except Exception as e:
+            except Exception:
+                return await ctx.reply("Invalid time input")
 
-                await ctx.reply("Invalid time input")
-                return
             guild = ctx.guild
             Muted = disnake.utils.get(guild.roles, name="Muted")
-            lis = 1
             role_list = []
             for role in member.roles:
                 if role.name != "@everyone":
@@ -466,10 +463,9 @@ class Mod(commands.Cog):
                 embed = disnake.Embed(title="Invalid duration input", colour=get_colour())
                 await ctx.reply(embed=embed)
                 return
-        except Exception as e:
+        except Exception:
+            return await ctx.reply("Invalid time input")
 
-            await ctx.reply("Invalid time input")
-            return
         guild = ctx.guild
         Muted = disnake.utils.get(guild.roles, name="ReactMuted")
         if not Muted:
@@ -563,16 +559,13 @@ class Mod(commands.Cog):
         self,
         ctx: Context,
         member: disnake.Member,
-        duration: typing.Union[
-            float,
-            datetime.timedelta,
-        ] = 3600,
+        duration: typing.Union[float, datetime.timedelta,] = 3600,
         reason: str = "No reason provided",
     ) -> None:
         embed = disnake.Embed(
             timestamp=ctx.message.created_at,
             description=f"You timed out {member} for {duration} seconds! Thats {duration / 3600} hours.",
-        ).set_author(name=f"timeout for {member}", icon_url=ctx.author.avatar.url)
+        ).set_author(name=f"timeout for {member}", icon_url=ctx.author.display_avatar.url)
 
         try:
             await member.timeout(duration=duration, reason=reason)

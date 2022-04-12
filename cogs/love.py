@@ -42,9 +42,9 @@ class Love(commands.Cog):
         self.bot = bot
 
     @commands.command(help="Pokes the `<member>` specified")
-    async def poke(self, ctx: Context, member: disnake.Member = ""):
+    async def poke(self, ctx: Context, member: disnake.Member = None):
 
-        if member == "":
+        if member is None:
             embed = disnake.Embed(
                 description=f"**{ctx.author.name}** has poked you 😗", colour=get_colour()
             )
@@ -66,8 +66,8 @@ class Love(commands.Cog):
             await ctx.reply(embed=embed)
 
     @commands.command(help="Sends a hug to the `<member>` specified")
-    async def hug(self, ctx: Context, member: disnake.Member = ""):
-        if member == "":
+    async def hug(self, ctx: Context, member: disnake.Member = None):
+        if member is None:
 
             embed = disnake.Embed(
                 description=f"**{ctx.author.name}** has given you the gift of a hug 🌷",
@@ -115,8 +115,6 @@ class Love(commands.Cog):
             ).content
         ).lower()
         try:
-            x = int(received_msg)
-            z = int(received_msg1)
             await send_embed(ctx, "That isnt a name...")
         except:
             first_letter1 = received_msg[:1]

@@ -34,7 +34,7 @@ class Config(Cog):
 
     @command()
     @has_permissions(manage_channels=True)
-    async def pickupchannel(self, ctx: Context, channel: disnake.TextChannel = ""):
+    async def pickupchannel(self, ctx: Context, channel: disnake.TextChannel = None):
         if not channel:
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
@@ -45,7 +45,7 @@ class Config(Cog):
 
     @command()
     @has_permissions(manage_channels=True)
-    async def jokechannel(self, ctx: Context, channel: disnake.TextChannel = ""):
+    async def jokechannel(self, ctx: Context, channel: disnake.TextChannel = None):
         if not channel:
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
@@ -56,7 +56,7 @@ class Config(Cog):
 
     @command()
     @has_permissions(manage_channels=True)
-    async def quotechannel(self, ctx: Context, channel: disnake.TextChannel = ""):
+    async def quotechannel(self, ctx: Context, channel: disnake.TextChannel = None):
         if not channel:
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
@@ -67,7 +67,7 @@ class Config(Cog):
 
     @command()
     @has_permissions(manage_channels=True)
-    async def factchannel(self, ctx: Context, channel: disnake.TextChannel = ""):
+    async def factchannel(self, ctx: Context, channel: disnake.TextChannel = None):
         if not channel:
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
@@ -206,7 +206,7 @@ class Config(Cog):
         if not channel:
             channel = await ctx.guild.create_text_channel(name="⚘ verify ⚘")
         with open("./dicts/VerifyChannel.json", "r+") as k:
-            if role == "":
+            if role is None:
                 await ctx.guild.create_role(
                     name="⚘ Member ⚘", permissions=disnake.Permissions(send_messages=True)
                 )
@@ -327,7 +327,7 @@ class Config(Cog):
             await send_embed(ctx, "There was never a verify!")
 
     @command()
-    async def leavechannel(self, ctx: Context, channel: disnake.TextChannel = ""):
+    async def leavechannel(self, ctx: Context, channel: disnake.TextChannel = None):
         with open("./dicts/LeaveChannel.json", "r+") as k:
             data = json.load(k)
             if str(ctx.guild.id) in data:

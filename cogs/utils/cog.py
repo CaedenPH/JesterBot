@@ -40,7 +40,7 @@ class Utils(commands.Cog):
     async def calculator(self, ctx: Context):
         embed = (
             disnake.Embed(description="```yaml\n0```")
-            .set_author(name="Calculator", icon_url=ctx.author.avatar.url)
+            .set_author(name="Calculator", icon_url=ctx.author.display_avatar.url)
             .set_footer(
                 text="To interact with your virtual calculator, click the shown buttons."
             )
@@ -111,7 +111,7 @@ class Utils(commands.Cog):
         result = simpleeval.simple_eval(math)
         embed = disnake.Embed(colour=get_colour())
         embed.set_footer(
-            text=str(ctx.author) + " | Evaluation", icon_url=ctx.author.avatar.url
+            text=str(ctx.author) + " | Evaluation", icon_url=ctx.author.display_avatar.url
         )
         embed.add_field(
             name="Your expression: ", value=f'```yaml\n"{math}"\n```', inline=False
@@ -135,9 +135,7 @@ class Utils(commands.Cog):
                 ctx, "", f"Too many characters ({len(characters)}/50)"
             )
 
-        def get_info(
-            char: str,
-        ) -> Tuple[str, str,]:
+        def get_info(char: str) -> Tuple[str, str,]:
             digit = f"{ord(char):x}"
             if len(digit) <= 4:
                 u_code = f"\\u{digit:>04}"
@@ -183,21 +181,21 @@ class Utils(commands.Cog):
         aliases=["av", "avatars"],
         description="Sends the mentioned users avatar or if none is specified, the usrs avatar",
     )
-    async def avatar(self, ctx: Context, user: disnake.Member = ""):
-        if user == "":
+    async def avatar(self, ctx: Context, user: disnake.Member = None):
+        if user is None:
             user = ctx.author.id
             username = self.bot.get_user(user)
-            embed = disnake.Embed(title=f"Avatar", colour=get_colour())
-            embed.set_author(name=username.name, icon_url=username.avatar.url)
-            embed.set_image(url=username.avatar.url)
+            embed = disnake.Embed(title="Avatar", colour=get_colour())
+            embed.set_author(name=username.name, icon_url=username.display_avatar.url)
+            embed.set_image(url=username.display_avatar.url)
             await ctx.reply(embed=embed)
 
         else:
 
             username = self.bot.get_user(user.id)
             embed = disnake.Embed(title=f"Avatar", colour=get_colour())
-            embed.set_author(name=username.name, icon_url=username.avatar.url)
-            embed.set_image(url=username.avatar.url)
+            embed.set_author(name=username.name, icon_url=username.display_avatar.url)
+            embed.set_image(url=username.display_avatar.url)
             await ctx.reply(embed=embed)
 
     @commands.command(
@@ -207,8 +205,6 @@ class Utils(commands.Cog):
     async def timezone(self, ctx: Context, origin=None):
         try:
             if not origin:
-                var = ""
-                num = 0
                 result = pytz.all_timezones
                 y = Paginator(ctx)
                 return await y.paginate(content=", ".join(result), name="Timezones")
@@ -221,7 +217,7 @@ class Utils(commands.Cog):
             embed = disnake.Embed(
                 title=f"**Time:** {_time} │ **Date:** {_date}", colour=get_colour()
             )
-            embed.set_author(name="Datetime", icon_url=ctx.author.avatar.url)
+            embed.set_author(name="Datetime", icon_url=ctx.author.display_avatar.url)
 
             await ctx.reply(embed=embed)
         except Exception as e:
@@ -321,7 +317,7 @@ class Utils(commands.Cog):
 
                     y = await Paginator(ctx)
                     await y.paginate(content=converted, name="Morse/Text")
-            except KeyError as e:
+            except KeyError:
                 return await ctx.reply(
                     f"{CLOSE} The String contains some characters which cannot be converted into Morse!\n> If you think that's a Mistake, please report it to my Developers, they'll Review and fix it :)"
                 )

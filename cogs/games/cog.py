@@ -139,7 +139,7 @@ class Games(Cog):
             description=BLACKJACK_WELCOME,
             timestamp=ctx.message.created_at,
             colour=get_colour(),
-        ).set_author(name=ctx.author.name, icon_url=ctx.author.avatar.url)
+        ).set_author(name=ctx.author.name, icon_url=ctx.author.display_avatar.url)
 
         view = BlackJack(ctx)
         view.bot_message = await ctx.reply(embed=embed, view=view)
@@ -224,7 +224,7 @@ class Games(Cog):
                 title=f"Your anagram is {anagram}",
                 description=f"There are {len(data[anagram])} answers. You have 60 seconds to respond with your answers. The answers are all the same length as the word",
             )
-            .set_author(name=ctx.author.name, icon_url=ctx.author.avatar.url)
+            .set_author(name=ctx.author.name, icon_url=ctx.author.display_avatar.url)
             .set_footer(
                 text=f"Out of {len(list(data.keys()))} options! ps these are all completely real words that are allowed on scrabble"
             )
@@ -248,7 +248,7 @@ class Games(Cog):
             embed = Embed(
                 title=f"Anagram for {anagram}",
                 description=f"The answers were: `{', '.join(data[anagram])}`",
-            ).set_author(name="Nice try!", icon_url=ctx.author.avatar.url)
+            ).set_author(name="Nice try!", icon_url=ctx.author.display_avatar.url)
 
             if responses != data[anagram]:
                 return await ctx.reply(embed=embed)

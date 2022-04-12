@@ -38,7 +38,7 @@ class Docs(cog.Docs, RTFM):
                 title=tag.capitalize(),
                 description=open(f"./resources/tags/{tag}.md", encoding="utf-8").read(),
             )
-            .set_author(name=author.name, icon_url=author.avatar.url)
+            .set_author(name=author.name, icon_url=author.display_avatar.url)
             .set_footer(text="Use tag_list command to see all tags")
         )
 

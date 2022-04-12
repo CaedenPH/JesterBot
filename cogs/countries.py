@@ -21,7 +21,7 @@ async def makeimg(ctx: Context, url):
         await ctx.reply(file=disnake.File("./images/country.png"))
 
         return True
-    except Exception as e:
+    except Exception:
         return False
 
 
@@ -57,14 +57,12 @@ class Countries(commands.Cog):
 
     @commands.command()
     async def flag(self, ctx: Context, *, country):
-        y = True
         x = await makeimg(ctx, f"https://restcountries.eu/data/{country}.svg")
         if not x:
             async with self.bot.client.get(
                 f"https://restcountries.eu/rest/v2/name/{country}"
-            ) as resp:
-                js = await resp.json()
-                y = await makeimg(ctx, f"{js[0]['flag']}")
+            ):
+                ...
 
     @commands.command(aliases=["ewh"])
     async def endworldhunger(self, ctx: Context):
