@@ -83,7 +83,6 @@ class RTFM:
             if directive == "py:module" and name in result:
                 continue
 
-            # Most documentation pages have a label
             if directive == "std:doc":
                 subdirective = "label"
 

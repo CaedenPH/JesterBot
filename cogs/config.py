@@ -134,9 +134,7 @@ class Config(Cog):
 
                 data[str(channel.id)] = {"Yes": True}
                 update_json(k, data)
-                if channel.id == ctx.channel.id:
-                    pass
-                else:
+                if channel.id != ctx.channel.id:
                     embed = disnake.Embed(title="Applied", colour=get_colour())
                     await ctx.reply(embed=embed)
                 await channel.purge(limit=10000)
@@ -151,15 +149,15 @@ class Config(Cog):
                 )
                 x = await channel.send(embed=embed1)
                 await x.pin()
-                await channel.purge(limit=1)
+                return await channel.purge(limit=1)
+
+            if not data[str(channel.id)]["Yes"]:
+                data[str(channel.id)]["Yes"] = True
+                update_json(k, data)
+                embed = disnake.Embed(title="Applied", colour=get_colour())
+                await ctx.reply(embed=embed)
             else:
-                if not data[str(channel.id)]["Yes"]:
-                    data[str(channel.id)]["Yes"] = True
-                    update_json(k, data)
-                    embed = disnake.Embed(title="Applied", colour=get_colour())
-                    await ctx.reply(embed=embed)
-                else:
-                    embed = disnake.Embed(title="Already applied", colour=get_colour())
+                embed = disnake.Embed(title="Already applied", colour=get_colour())
                 await ctx.reply(embed=embed)
 
     @command(

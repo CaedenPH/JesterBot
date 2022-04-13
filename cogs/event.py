@@ -152,8 +152,6 @@ class Event(commands.Cog):
                                 )
 
                                 await channel.send(embed=embed)
-                                # await member.add_roles(role)
-                                # await member.add_roles(role)
                             else:
                                 channel = member.guild.get_channel(
                                     loaded[str(member.guild.id)]["channel_id"]
@@ -258,7 +256,6 @@ class Event(commands.Cog):
                                                 name=f"{message.author.name}",
                                                 icon_url=f"{message.author.display_avatar.url}",
                                             )
-                                            # role = disnake.utils.get(member.guild.roles, id=loaded[str(member.guild.id)]['role'])
                                             await channel.send(embed=embed)
 
                                         else:

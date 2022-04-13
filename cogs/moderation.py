@@ -377,9 +377,8 @@ class Mod(commands.Cog):
                 reason = "No reason given"
 
             try:
-                # Gets the numbers from the time argument, start to -1
                 seconds = time[:-1]
-                duration = time[-1]  # Gets the timed maniulation, s, m, h, d
+                duration = time[-1]
 
                 if duration == "s":
                     new_seconds = int(seconds) * 1
@@ -446,11 +445,9 @@ class Mod(commands.Cog):
         self, ctx: Context, member: disnake.Member, time, *, reason="no reason"
     ):
 
-        # Now timed mute manipulation
         try:
-            # Gets the numbers from the time argument, start to -1
             seconds = time[:-1]
-            duration = time[-1]  # Gets the timed maniulation, s, m, h, d
+            duration = time[-1]
             if duration == "s":
                 seconds = seconds * 1
             elif duration == "m":

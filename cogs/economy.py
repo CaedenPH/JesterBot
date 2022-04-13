@@ -186,7 +186,6 @@ class Economy(commands.Cog):
             if i in data and data[i]["Bal"] >= 500:
                 data[i]["Bal"] -= 500
                 if "Bag" in data[i]:
-
                     data[i]["Bag"] += 1
                 else:
                     data[i]["Bag"] = 1
@@ -345,7 +344,6 @@ class Economy(commands.Cog):
                         name = data[datas]["Name"]
                 x.append(f"**__{x1}. {name}__:**\n JesterCoins: {item[1]['Bal']}$")
 
-                # embed.add_field(name=f"\u200b", value=f"**{item[0]}**: {item[1]['score']}", inline=False)
             embed.add_field(name=f"\u200b", value=f"{y.join(x)}", inline=False)
 
             await ctx.reply(embed=embed)
@@ -460,29 +458,6 @@ class Economy(commands.Cog):
                 )
                 await ctx.reply(embed=embed)
 
-    # @unlock.group(aliases=['cov', 'corona'])
-    # async def covid(self, ctx: Context, user:disnake.Member=""):
-    #     if not user and user != ctx.author:
-    #         return await send_embed(ctx, 'You need to mention someone to rob!')
-    #     with open('./dicts/Bal.json', 'r+') as k:
-    #         data = json.load(k)
-    #         if str(ctx.author.id) in data:
-    #             if 'covid' in data[str(ctx.author.id)]:
-
-    #                 data[str(ctx.author.id)]['covid'] -= 1
-    #                 update_json(k, data)
-    #                 embed = disnake.Embed(description=f"Success!", colour=get_colour())
-    #                 await ctx.reply(embed = embed)
-    #                 await asyncio.sleep(3600)
-
-    #                 update_json(k, data)
-
-    #             else:
-    #                 embed = disnake.Embed(title="You dont have a porta-covid! Type `j.shop covid` to buy one!", colour=get_colour())
-    #                 await ctx.reply(embed=embed)
-    #         else:s
-    #             embed = disnake.Embed(title="You dont have a porta-covid! Type `j.shop covid` to buy one!", colour=get_colour())
-    #             await ctx.reply(embed=embed)
     @unlock.group()
     async def bag(self, ctx: Context, user: disnake.Member = None):
         if not user and user != ctx.author:

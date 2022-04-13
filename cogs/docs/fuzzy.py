@@ -92,7 +92,6 @@ def extract_one(query, choices, *, scorer=quick_ratio, score_cutoff=0):
     try:
         return max(it, key=key)
     except Exception:
-        # iterator could return nothing
         return None
 
 
@@ -109,7 +108,6 @@ def extract_or_exact(query, choices, *, limit=None, scorer=quick_ratio, score_cu
     top = matches[0][1]
     second = matches[1][1]
 
-    # check if the top one is exact or more than 30% more correct than the top
     if top == 100 or top > (second + 30):
         return [matches[0]]
 

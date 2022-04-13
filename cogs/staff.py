@@ -212,8 +212,8 @@ class Staff(commands.Cog):
                         loaded1[m]["Version"] = ver.content
 
                         k.seek(0)
-                        k.truncate(0)  # clear previous content
-                        k.write(json.dumps(loaded1, indent=4))  # write to file
+                        k.truncate(0)
+                        k.write(json.dumps(loaded1, indent=4))
             embed = disnake.Embed(title="Bug fixes")
             await ctx.reply(embed=embed)
             y = str(
@@ -239,8 +239,8 @@ class Staff(commands.Cog):
                             loaded1[m]["Bug fixes"] += f"\n- {y}"
 
                             k.seek(0)
-                            k.truncate(0)  # clear previous content
-                            k.write(json.dumps(loaded1, indent=4))  # write to file
+                            k.truncate(0)
+                            k.write(json.dumps(loaded1, indent=4))
                 y = str(
                     (
                         await self.bot.wait_for(
@@ -277,8 +277,8 @@ class Staff(commands.Cog):
                                 loaded1[m]["New commands"] += f"\n- {z}"
 
                                 k.seek(0)
-                                k.truncate(0)  # clear previous content
-                                k.write(json.dumps(loaded1, indent=4))  # write to file
+                                k.truncate(0)
+                                k.write(json.dumps(loaded1, indent=4))
 
                     z = str(
                         (
@@ -316,10 +316,8 @@ class Staff(commands.Cog):
                                     loaded1[m]["Other"] += f"\n- {a}"
 
                                     k.seek(0)
-                                    k.truncate(0)  # clear previous content
-                                    k.write(
-                                        json.dumps(loaded1, indent=4)
-                                    )  # write to file
+                                    k.truncate(0)
+                                    k.write(json.dumps(loaded1, indent=4))
                         a = str(
                             (
                                 await self.bot.wait_for(
@@ -358,8 +356,8 @@ class Staff(commands.Cog):
                         }
 
                         k.seek(0)
-                        k.truncate(0)  # clear previous content
-                        k.write(json.dumps(loaded1, indent=4))  # write to file
+                        k.truncate(0)
+                        k.write(json.dumps(loaded1, indent=4))
                         embed4 = disnake.Embed(title="Applied")
                         await ctx.reply(embed=embed4)
         else:
@@ -372,8 +370,8 @@ class Staff(commands.Cog):
                         loaded1[m][f"{Destroy}"] = ""
 
                         k.seek(0)
-                        k.truncate(0)  # clear previous content
-                        k.write(json.dumps(loaded1, indent=4))  # write to file
+                        k.truncate(0)
+                        k.write(json.dumps(loaded1, indent=4))
                         embed3 = disnake.Embed(title="Applied")
                         await ctx.reply(embed=embed3)
 
