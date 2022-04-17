@@ -143,14 +143,14 @@ async def run_executed(ctx: Bot) -> None:
             data[str(ctx.author.id)]["score"] += 1
             update_json(f, data)
 
-    with open("./dicts/Commandsused.json") as y:
+    with open("./dicts/commands_used.json") as y:
         data = json.load(y)
         if str(ctx.command) not in data:
             data[str(ctx.command)] = {"score": 1}
-            with open("./dicts/Commandsused.json", "r+") as y:
+            with open("./dicts/commands_used.json", "r+") as y:
                 update_json(y, data)
         else:
 
-            with open("./dicts/Commandsused.json", "r+") as y:
+            with open("./dicts/commands_used.json", "r+") as y:
                 data[str(ctx.command)]["score"] += 1
                 update_json(y, data)

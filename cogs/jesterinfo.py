@@ -126,7 +126,7 @@ class JesterInfo(commands.Cog):
                     await ctx.reply(embed=embed)
 
     @commands.command(
-        aliases=["selfruns", "commandsused", "Selfrun", "Self_Score"],
+        aliases=["selfruns", "commands_used", "Selfrun", "Self_Score"],
         description="Sends the ammount of commands that you personally have ran",
     )
     async def selfscore(self, ctx: Context):
@@ -154,7 +154,7 @@ class JesterInfo(commands.Cog):
     async def topcommands(self, ctx: Context):
         x = []
         y = "\n"
-        with open("./dicts/Commandsused.json") as k:
+        with open("./dicts/commands_used.json") as k:
             embed = disnake.Embed(colour=get_colour())
             embed.set_author(name="Top commands", icon_url=ctx.author.display_avatar.url)
 
