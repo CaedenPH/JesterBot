@@ -106,6 +106,21 @@ class JesterBot(Bot):
         print(
             f"Loaded Cogs Successfully! Total Cogs: {len(self.COGS)}\n-----------------------------------"
         )
+    
+    @loop(seconds=60)
+    async def log_data(self) -> None:
+        await self.db.update("INSERT INTO general_data VALUES (?, ?, ?, ?, ?, ?)", (
+            datetime.datetime.utcnow().isoformat(),
+            self.latency * 1000,
+            len(self.users),
+            len(self.guilds),
+            len([c for c in self.get_all_channels()]),
+            disnake.__version__
+        ))
+
+    @log_data.before_loop
+    async def log_data_pre(self) -> None:
+        await self.wait_until_ready()
 
     @loop(seconds=3600)
     async def cache_memes(self) -> None:
@@ -177,6 +192,7 @@ class JesterBot(Bot):
         print("Client Ready!")
         self.send_comedy.start()
         self.cache_memes.start()
+        self.log_data.start()
         print("Guilds:\n-----------------------------------")
         guild_ids = [guild.id for guild in self.guilds]
         print(guild_ids)
