@@ -5,6 +5,10 @@ asyncpraw
 async_cse
 discord-together
 disnake
+disnake_paginator
+disnake-docs
+disnake-debug
+disnake-jishaku
 essential-generators
 fuzzywuzzy
 glitch-this
@@ -14,8 +18,12 @@ opencv-python
 pyMorseTranslator
 python-dotenv
 python-Levenshtein
+pytz
+pyyaml
+randfacts
 simpleeval
 svglib
+vacefron.py
 wikipedia
 youtube-dl
 youtube-search-python
