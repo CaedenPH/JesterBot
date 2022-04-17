@@ -126,21 +126,21 @@ async def run_executed(ctx: Bot) -> None:
         for cog in tuple(bot.extensions):
             bot.reload_extension(cog)
 
-    with open("./dicts/Selfscore.json", "r+") as k:
+    with open("./dicts/score.json", "r+") as k:
         loaded1 = json.load(k)
         if str(ctx.author.id) not in loaded1:
             loaded1[str(ctx.author.id)] = {
                 "Name": ctx.author.name,
                 "Guild": ctx.guild.name,
-                "selfscore": 0,
+                "score": 0,
             }
             update_json(k, loaded1)
 
-    with open("./dicts/Selfscore.json", "r+") as f:
+    with open("./dicts/score.json", "r+") as f:
         data = json.load(f)
 
         if str(ctx.author.id) in data:
-            data[str(ctx.author.id)]["selfscore"] += 1
+            data[str(ctx.author.id)]["score"] += 1
             update_json(f, data)
 
     with open("./dicts/Commandsused.json") as y:

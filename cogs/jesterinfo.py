@@ -130,11 +130,11 @@ class JesterInfo(commands.Cog):
         description="Sends the ammount of commands that you personally have ran",
     )
     async def selfscore(self, ctx: Context):
-        with open("./dicts/Selfscore.json") as f:
+        with open("./dicts/score.json") as f:
             data = json.load(f)
             if str(ctx.author.id) in data:
                 embed = disnake.Embed(
-                    title=f"The ammount of commands you have ran are {data[str(ctx.author.id)]['selfscore']}",
+                    title=f"The ammount of commands you have ran are {data[str(ctx.author.id)]['score']}",
                     colour=get_colour(),
                 )
                 await ctx.reply(embed=embed)
@@ -180,13 +180,13 @@ class JesterInfo(commands.Cog):
     async def topmembers(self, ctx: Context):
         x = []
         y = "\n"
-        with open("./dicts/Selfscore.json") as k:
+        with open("./dicts/score.json") as k:
             embed = disnake.Embed(colour=get_colour())
             embed.set_author(name="Top members", icon_url=ctx.author.display_avatar.url)
             data = json.load(k)
 
             def get_key(item):
-                return item[1]["selfscore"]
+                return item[1]["score"]
 
             sorted_scores = sorted(data.items(), key=get_key, reverse=True)[:11]
 
@@ -195,7 +195,7 @@ class JesterInfo(commands.Cog):
                     if item[0] in datas:
 
                         name = data[datas]["Name"]
-                x.append(f"{name}: {item[1]['selfscore']}")
+                x.append(f"{name}: {item[1]['score']}")
 
             embed.add_field(name=f"\u200b", value=f"**{y.join(x)}**", inline=False)
 
