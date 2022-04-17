@@ -130,8 +130,8 @@ async def run_executed(ctx: Bot) -> None:
         loaded1 = json.load(k)
         if str(ctx.author.id) not in loaded1:
             loaded1[str(ctx.author.id)] = {
-                "Name": ctx.author.name,
-                "Guild": ctx.guild.name,
+                "name": ctx.author.name,
+                "guild": ctx.guild.name,
                 "score": 0,
             }
             update_json(k, loaded1)

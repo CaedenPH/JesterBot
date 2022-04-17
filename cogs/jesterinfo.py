@@ -194,7 +194,7 @@ class JesterInfo(commands.Cog):
                 for datas in data:
                     if item[0] in datas:
 
-                        name = data[datas]["Name"]
+                        name = data[datas]["name"]
                 x.append(f"{name}: {item[1]['score']}")
 
             embed.add_field(name=f"\u200b", value=f"**{y.join(x)}**", inline=False)
