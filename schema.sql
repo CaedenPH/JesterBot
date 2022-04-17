@@ -46,3 +46,12 @@ CREATE TABLE IF NOT EXISTS edit_snipe (
 CREATE TABLE IF NOT EXISTS overall_score (
     score INT
 );
+
+CREATE TABLE IF NOT EXISTS general_data ( 
+    create_epoch DATE,
+    ping INT,
+    users INT,
+    guilds INT,
+    channels INT,
+    disnake_version INT
+);
