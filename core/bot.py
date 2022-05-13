@@ -208,7 +208,7 @@ class JesterBot(Bot):
         for k in role.members:
             print(k)
             self.owner_ids.append(k.id)
-        self.client: aiohttp.ClientSession = aiohttp.ClientSession()
+        self.client = aiohttp.ClientSession()
 
     async def on_message_edit(self, before: Message, after: Message) -> None:
         if before.author.bot:
