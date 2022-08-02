@@ -1,22 +1,26 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.0.1
+    rev: v2.5.0
     hooks:
-      - id: check-merge-conflict
+      - id: check-toml
+      - id: check-yaml
+      - id: end-of-file-fixer
       - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
 
-  - repo: https://github.com/psf/black
-    rev: 21.8b0
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.5.1
     hooks:
-      - id: black
-        args: [--line-length=120]
+      - id: python-check-blanket-noqa
 
-  - repo: https://github.com/kumaraditya303/mirrors-pyright
-    rev: v1.1.210
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.10.1
     hooks:
-      - id: pyright
+      - id: isort
 
   - repo: https://github.com/pycqa/flake8
     rev: 4.0.1
     hooks:
-    -   id: flake8
+      - id: flake8
+        additional_dependencies:
+          - flake8-docstrings~=1.6.0
