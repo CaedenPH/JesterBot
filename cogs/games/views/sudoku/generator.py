@@ -1,56 +1,68 @@
 from __future__ import annotations
 
-import typing as t
-import random as r
+from datetime import datetime
+from random import choice, randint
+import time
+from typing import List, Optional, Union
 
 
-class _SudokuUtils:
+class SudokuUtils:
     """
-    represents the soduku
+    Represents the soduku
     utils that will be required
     when doing the brute force
     aspect of the algorithm
     """
 
     def __init__(self) -> None:
-        self.rows: t.List[t.List[int]] = [[0 for _ in range(9)] for __ in range(9)]
+        self.rows: List[List[int]] = [[0 for _ in range(9)] for __ in range(9)]
 
-    def set_xy(self, xy: t.List[int, int], value: int) -> None:
+    def set_xy(self, xy: List[int, int], value: int) -> None:
         """
-        sets the x and y
+        Sets the x and y
         value to value.
 
-        returns
-        -------
-        None
+        Parameters
+        ----------
+        xy: :class:`List[int, int]`
+            The xy coordinates to set 
+            the value to.
+        value: :class:`int`
+            The value to set.
         """
 
         y, x = xy
         self.rows[x][y] = value
 
-    def get_xy(self, xy: t.List[int, int]) -> t.List[int]:
+    def get_xy(self, xy: List[int, int]) -> List[int]:
         """
-        gets the value from
+        Gets the value from
         the square in x and y
 
-        returns
+        Parameters
+        ----------
+        xy: :class:`List[int, int]`
+            The xy coordinates to get 
+            the value from.
+
+        Returns
         -------
-        t.List[int]
-            the value in square
+        :class:`List[int]`
+            The value in the square.
         """
 
         y, x = xy
         return self.rows[x][y]
 
-    def get_box(self, index: t.Union[int, t.List[t.List[int]]]) -> t.List[int]:
+    def get_box(self, index: Union[int, List[List[int]]]) -> List[int]:
         """
-        gets the box with index `index`
-        or from coordinates
+        Gets the box with index `index`
+        or from coordinates.
 
-        returns
+        Returns
         -------
-        t.List[int]
-            the box squares in
+        :class:`List[int]`
+            The box squares in
             list form.
         """
 
@@ -95,14 +107,14 @@ class _SudokuUtils:
         elif x in [6, 7, 8] and y in [6, 7, 8]:
             return boxes[8]
 
-    def get_column(self, index: t.Union[int, t.List[t.List[int]]]) -> t.List[int]:
+    def get_column(self, index: Union[int, List[List[int]]]) -> List[int]:
         """
         gets the column with index `index`
         or from coordinates
 
-        returns
+        Returns
         -------
-        t.List[int]
+        List[int]
             the columns squares in
             list form.
         """
@@ -118,14 +130,14 @@ class _SudokuUtils:
         _, x = index
         return columns[x]
 
-    def get_row(self, index: t.Union[int, t.List[t.List[int]]]) -> t.List[int]:
+    def get_row(self, index: Union[int, List[List[int]]]) -> List[int]:
         """
         gets the row with index `index`
         or from coordinates
 
-        returns
+        Returns
         -------
-        t.List[int]
+        List[int]
             the rows squares in
             list form.
         """
@@ -139,14 +151,14 @@ class _SudokuUtils:
         return self.rows[y]
 
     def get_possible_numbers(
-        self, xy: t.List[int, int], _number_bag: t.List[int]
-    ) -> t.Optional[t.List[int]]:
+        self, xy: List[int, int], _number_bag: List[int]
+    ) -> Optional[List[int]]:
         """
         get all the possible numbers
         around the coordinates xy
         as to not create conflicts
 
-        returns
+        Returns
         -------
         `typing.Optional[typing.List]`
             the possible number
@@ -161,14 +173,14 @@ class _SudokuUtils:
         number_bag = self.subtract_list(number_bag, row)
         return number_bag
 
-    def validate_square(self, xy: t.List[int]) -> bool:
+    def validate_square(self, xy: List[int]) -> bool:
         """
         validate that a square is not
         conflicting with any squares
         in surrounding columns, rows,
         or in the same box.
 
-        returns
+        Returns
         -------
         bool
             whether or not the square
@@ -176,7 +188,7 @@ class _SudokuUtils:
         """
 
 
-class SudokuGenerator(_SudokuUtils):
+class SudokuGenerator(SudokuUtils):
     """
     represents the sodukugenerator
     class to create, solve and generate
@@ -186,14 +198,14 @@ class SudokuGenerator(_SudokuUtils):
     def __init__(self) -> None:
         super().__init__()
 
-    def generate_puzzle(self, difficulty: str) -> t.List[t.List[int]]:
+    def generate_puzzle(self, difficulty: str) -> List[List[int]]:
         """
         creates a box until the box
-        works (aka returns True)
+        works (aka Returns True)
 
-        returns
+        Returns
         -------
-        `board:t.List[t.List[int]]`
+        `board:List[List[int]]`
             the board instance that was
             created. Sorted into each box
         """
@@ -209,14 +221,14 @@ class SudokuGenerator(_SudokuUtils):
         difficulty_ratio = {"easy": 30, "medium": 25, "hard": 20, "insane": 17}
         numbers = difficulty_ratio[difficulty]
 
-        for i in range(82 - numbers):
-            x = r.randint(0, 8)
-            y = r.randint(0, 8)
+        for _ in range(82 - numbers):
+            x = randint(0, 8)
+            y = randint(0, 8)
             self.set_xy([y, x], 0)
 
     def build_box(self, index: int) -> None:
         """
-        sets the value of the 9
+        Sets the value of the 9
         squares in a box while
         making sure there are no
         conflicts.
@@ -249,7 +261,7 @@ class SudokuGenerator(_SudokuUtils):
                 if not possible_numbers:
                     return False
 
-                number = r.choice(possible_numbers)
+                number = choice(possible_numbers)
                 unused_numbers.remove(number)
                 used_numbers.append([[column, row], number])
 
@@ -258,20 +270,20 @@ class SudokuGenerator(_SudokuUtils):
         return True
 
     def subtract_list(
-        self, _operand_one: t.List[int], _operand_two: t.List[int]
-    ) -> t.List[int]:
+        self, operand_one: List[int], operand_two: List[int]
+    ) -> List[int]:
         """
-        subtracts operand_two from operand_one
+        Subtracts :param:operand_two from operand_one
 
-        returns
+        Parameters
+        ----------
+        
+
+        Returns
         -------
-        t.List[int]
-            the list of the differences
-            from two to one
+        :class:`List[int]`
+            The 
         """
-
-        operand_one = _operand_one.copy()
-        operand_two = _operand_two.copy()
 
         for index in operand_one.copy():
             if index in operand_two:
@@ -280,17 +292,62 @@ class SudokuGenerator(_SudokuUtils):
 
     def build_board(self) -> bool:
         """
-        build the board until
-        it works
+        Attempts to build a board.
+
+        Returns
+        -------
+        :class:`bool`
+            `True` indiciating the build was successful.
+            `False` indicating the build was unsuccessful.
         """
 
         for i in range(9):
-            built = self.build_box(i)
+            for _ in range(9):
+                built = self.build_box(i)
+                if built:
+                    break
+                            
             if not built:
-                rebuild = self.build_box(i)
-                if not rebuild:
-                    self.rows: t.List[t.List[int]] = [
-                        [0 for _ in range(9)] for __ in range(9)
-                    ]
-                    return False
+                self.rows: List[List[int]] = [
+                    [0 for _ in range(9)] for __ in range(9)
+                ]
+                return False
         return True
+
+    def print_board(self, raw: bool = False) -> None:
+        """
+        visually print board
+        | debugging purposes
+        
+        """
+
+        if raw:
+            print("\n".join([str(s) for s in self.rows]))
+            return
+
+        visual_board = ""
+        for row in range(9):
+            for column in range(9):
+                visual_board += str(self.rows[row][column])
+                if (column + 1) % 3 == 0 and 7 > column:
+                    visual_board += "|"
+
+            visual_board += "\n"
+            if (row + 1) % 3 == 0 and 7 > row:
+                visual_board += "-----------\n"
+        print(visual_board)
+
+all_times = []
+for i in range(10000):
+    perf_time = time.perf_counter()
+
+    _sudoku_board = SudokuGenerator().generate_puzzle("medium")
+
+    # print(i)
+    all_times.append(time.perf_counter() - perf_time)
+
+print(f"Minimum time : {min(all_times)}")
+print(f"Maximum time : {max(all_times)}")
+print(f"Average time : {sum(all_times)/len(all_times)}")
+
+

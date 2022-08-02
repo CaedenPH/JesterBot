@@ -97,14 +97,10 @@ class SudokuBoard:
 
     def format_board(self) -> None:
         """
-        insert square classes into all of
+        Insert square classes into all of
         the squares of the soduku board in order
         to effectively hide and unhide the
         squares from the player.
-
-        returns
-        -------
-        None
         """
 
         for row in range(9):
