@@ -1,6 +1,6 @@
 ## Contributing
 
-to contribute to this repository you need to first join the [discord](https://discord.gg/vuEWcyTZAG)
+to contribute to this repository you need to first join the [discord](https://discord.gg/6CAw2xzGK8)
 
 #### thanks for contributing
  
