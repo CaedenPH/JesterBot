@@ -309,50 +309,6 @@ class Fun(commands.Cog):
         else:
             await msg.clear_reactions()
 
-    @commands.command(description="Sends the users pp size")
-    async def pp(self, ctx: Context):
-
-        with open("./dicts/pp.json", "r+") as k:
-            randomsizeint = randint(1, 12)
-            randomsizef = randint(1, 9)
-            data = json.load(k)
-            if str(ctx.author.id) in data:
-                embed = disnake.Embed(
-                    title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches",
-                    colour=get_colour(),
-                )
-            else:
-                data[str(ctx.author.id)] = {"inches": f"{randomsizeint}.{randomsizef}"}
-                update_json(k, data)
-                embed = disnake.Embed(
-                    title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches",
-                    colour=get_colour(),
-                )
-            await ctx.reply(embed=embed)
-
-    @commands.command(description="Sends the users new pp size")
-    async def newpp(self, ctx: Context):
-
-        with open("./dicts/pp.json", "r+") as k:
-            randomsizeint = randint(1, 12)
-            randomsizef = randint(1, 9)
-            data = json.load(k)
-            if str(ctx.author.id) not in data:
-                data[str(ctx.author.id)] = {"inches": f"{randomsizeint}.{randomsizef}"}
-                update_json(k, data)
-                embed = disnake.Embed(
-                    title=f"Your pp is {data[str(ctx.author.id)]['inches']} inches",
-                    colour=get_colour(),
-                )
-            else:
-                data[str(ctx.author.id)] = {"inches": f"{randomsizeint}.{randomsizef}"}
-                update_json(k, data)
-                embed = disnake.Embed(
-                    title=f"Your new pp is {data[str(ctx.author.id)]['inches']} inches",
-                    colour=get_colour(),
-                )
-            await ctx.reply(embed=embed)
-
     @commands.command(
         aliases=["echos"],
         description="Echo's the message the user sends after sending the command",
