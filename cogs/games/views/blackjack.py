@@ -1,19 +1,14 @@
 import random
-
 from typing import List, Union
-from disnake import MessageInteraction, Message, Embed, ButtonStyle
-from disnake.ui import View, Button, button
+
+from disnake import ButtonStyle, Embed, Message, MessageInteraction
+from disnake.ui import Button, View, button
 
 from core import Context
-from core.utils import get_colour
 from core.constants import (
-    BLACKJACK_HOW_TO,
-    CARD_SUITS,
-    CLOSED_LOCK,
-    BOOM,
-    CONFETTI,
-    HANDSHAKE,
+    BLACKJACK_HOW_TO, BOOM, CARD_SUITS, CLOSED_LOCK, CONFETTI, HANDSHAKE
 )
+from core.utils import get_colour
 
 special_cards = {1: "Ace", 10: "Jack", 11: "Queen", 12: "King"}
 blackjack_visual = """\

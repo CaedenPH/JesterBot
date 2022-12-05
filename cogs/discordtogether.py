@@ -1,7 +1,7 @@
 import discord_together
-
 from disnake.ext import commands
-from core import JesterBot, Context
+
+from core import Context, JesterBot
 from core.constants import BOT_TOKEN
 
 

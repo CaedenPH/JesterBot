@@ -1,11 +1,11 @@
-import disnake
-from disnake.ext import commands
 from random import choice, randint
 
-from core.utils import get_colour, send_embed
-from core.utils.comedy import fact, quote, joke, pickup
+import disnake
+from disnake.ext import commands
+
 from core import Context
-from core.utils.comedy import joke
+from core.utils import get_colour, send_embed
+from core.utils.comedy import fact, joke, pickup, quote
 
 
 class JesterJokes(commands.Cog):

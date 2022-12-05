@@ -1,8 +1,9 @@
-import disnake
-import re
-import os
 import io
+import os
+import re
 import zlib
+
+import disnake
 
 from . import fuzzy
 

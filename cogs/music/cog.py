@@ -1,9 +1,10 @@
 import disnake
 from disnake.ext import commands
 
-from . import dcutils
 from core.context import Context
 from core.utils import get_colour, send_embed
+
+from . import dcutils
 
 
 async def embed2(ctx, description) -> disnake.Message:

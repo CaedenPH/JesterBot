@@ -1,27 +1,19 @@
 from __future__ import annotations
 
 import asyncio
+import copy
 import random
 import typing as t
-import copy
 
-from disnake import HTTPException, MessageInteraction, Message, Embed, ButtonStyle
-from disnake.ui import View, Item, Button, button
+from disnake import (
+    ButtonStyle, Embed, HTTPException, Message, MessageInteraction
+)
+from disnake.ui import Button, Item, View, button
 
 from core.constants import (
-    BLACK_BORDER,
-    BLACK_SQUARE,
-    BOMB,
-    BLUE_SQUARE,
-    CLOSE,
-    BLACK_BARRIER,
-    PLAY_BUTTON,
-    RED_FLAG,
-    MINESWEEPER_MESSAGE,
-    NUMBERS,
-    RED_NUMBERS,
-    SPOON,
-    STOP_SIGN,
+    BLACK_BARRIER, BLACK_BORDER, BLACK_SQUARE, BLUE_SQUARE, BOMB, CLOSE,
+    MINESWEEPER_MESSAGE, NUMBERS, PLAY_BUTTON, RED_FLAG, RED_NUMBERS, SPOON,
+    STOP_SIGN
 )
 from core.context import Context
 

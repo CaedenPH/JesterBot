@@ -1,30 +1,25 @@
 from __future__ import annotations
 
-import aiohttp
-import os
 import asyncio
 import datetime
-import disnake
-
+import os
 from typing import List
+
+import aiohttp
+import disnake
 from disnake import Activity, ActivityType, Intents, Message
 from disnake.ext.commands import Bot, when_mentioned_or
 from disnake.ext.tasks import loop
 
-from .utils.commands.eval import run_eval
-from .utils import run_check, run_executed, run_precheck, send_embed
-from .utils.comedy import fact, quote, joke, pickup
-from .errors import error_handler
+from .constants import (
+    BOT_TOKEN, CHATBOT_KEY, COORDS_KEY, RAPID_API_KEY, REDDIT, WEATHER_KEY
+)
 from .context import Context
 from .database import Database
-from .constants import (
-    BOT_TOKEN,
-    REDDIT,
-    WEATHER_KEY,
-    COORDS_KEY,
-    CHATBOT_KEY,
-    RAPID_API_KEY,
-)
+from .errors import error_handler
+from .utils import run_check, run_executed, run_precheck, send_embed
+from .utils.comedy import fact, joke, pickup, quote
+from .utils.commands.eval import run_eval
 
 
 class JesterBot(Bot):
@@ -106,7 +101,7 @@ class JesterBot(Bot):
         print(
             f"Loaded Cogs Successfully! Total Cogs: {len(self.COGS)}\n-----------------------------------"
         )
-    
+
     @loop(seconds=60)
     async def log_data(self) -> None:
         await self.db.update("INSERT INTO general_data VALUES (?, ?, ?, ?, ?, ?)", (

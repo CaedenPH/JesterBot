@@ -1,13 +1,14 @@
-import disnake
-import os
-import json
 import asyncio
+import json
+import os
 import shutil
 
+import disnake
 from disnake.ext import commands
-from core.constants import THUMBS_UP
-from core.utils import get_colour, update_json, send_embed
+
 from core import Context
+from core.constants import THUMBS_UP
+from core.utils import get_colour, send_embed, update_json
 
 
 class Staff(commands.Cog):
@@ -605,9 +606,9 @@ class Staff(commands.Cog):
         **error** : `{data[errornum]["error"]}`
         **cmd** : `{data[errornum]["command"]}`
 
-        
-        
-        
+
+
+
         """,
         )
 

@@ -1,6 +1,6 @@
-import randfacts
 import json
 
+import randfacts
 from jokeapi import Jokes
 
 

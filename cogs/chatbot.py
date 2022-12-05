@@ -1,9 +1,9 @@
 import typing
-import disnake
 
+import disnake
 from disnake.ext import commands
-from core import Context
-from core import JesterBot
+
+from core import Context, JesterBot
 from core.constants import CHATBOT_KEY, RAPID_API_KEY
 
 

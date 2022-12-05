@@ -1,6 +1,6 @@
 from disnake.ext import commands
-from core import Context
-from core import JesterBot
+
+from core import Context, JesterBot
 
 
 class UrbanDictionary(commands.Cog):

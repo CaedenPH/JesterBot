@@ -1,14 +1,13 @@
-import disnake
-import json
 import asyncio
-
-from disnake.ext import commands
+import json
 from random import choice
-from core.constants import THUMBS_DOWN, THUMBS_UP
 
-from core.utils import get_colour
+import disnake
+from disnake.ext import commands
+
+from core.constants import THUMBS_DOWN, THUMBS_UP
+from core.utils import create_embed, get_colour
 from core.utils.comedy import joke
-from core.utils import create_embed
 
 
 class Event(commands.Cog):
@@ -34,9 +33,9 @@ class Event(commands.Cog):
             title=f"{j}{e}{s}{t}{e}{r}",
             description=f"""
         │ **My prefix is:** `j.` │
-        │ Type `j.server_prefix <prefix>, [prefix], etc` 
+        │ Type `j.server_prefix <prefix>, [prefix], etc`
         to change the prefix for the server │
-        
+
         """,
             colour=get_colour(),
         )

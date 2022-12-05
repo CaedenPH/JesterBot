@@ -1,7 +1,7 @@
 import random
 
-from disnake import MessageInteraction, Embed, ButtonStyle
-from disnake.ui import View, Button, button
+from disnake import ButtonStyle, Embed, MessageInteraction
+from disnake.ui import Button, View, button
 
 
 class RussianRoulette(View):

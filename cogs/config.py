@@ -1,11 +1,11 @@
-import disnake
 import json
 
-from disnake.ext.commands import Cog, has_permissions, command
+import disnake
 from disnake.embeds import EmptyEmbed
+from disnake.ext.commands import Cog, command, has_permissions
 
-from core.utils import get_colour, update_json, send_embed
 from core import Context, JesterBot
+from core.utils import get_colour, send_embed, update_json
 
 
 class Config(Cog):
@@ -141,7 +141,7 @@ class Config(Cog):
                 embed1 = disnake.Embed(
                     title="Suggest",
                     description="""
-                This channel is now a suggestion only channel. 
+                This channel is now a suggestion only channel.
                 This means that you can only type `suggest`, which will formally create a ticket that only you can reply to. After giving a title and a description, your suggestion will be sent.
                 Any messages that aren't `suggest` are automatically deleted
                 """,
@@ -163,7 +163,7 @@ class Config(Cog):
     @command(
         aliases=["verify"],
         description="""
-    Creates a channel/uses an existing channel to make the server be secure by adding the need to say `verify` to access the server...Remove with `j.removeverify` 
+    Creates a channel/uses an existing channel to make the server be secure by adding the need to say `verify` to access the server...Remove with `j.removeverify`
     1. If channel is not given, this command will create a role called `⚘ Member ⚘` and a role called `⚘ Unverified ⚘`
     2. It will create a channel called `⚘ verify ⚘`
     3. When a new member joins they will only see the channel `⚘ verify ⚘`, and if they write `verify` they can text in and see all other channels""",
@@ -297,7 +297,7 @@ class Config(Cog):
             embed1 = disnake.Embed(
                 title="Verify",
                 description="""
-            This channel is a verify channel. 
+            This channel is a verify channel.
             Type `verify` to get acess to the server!
             Have fun and make sure to follow the rules.
             """,

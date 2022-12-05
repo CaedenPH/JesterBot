@@ -1,14 +1,14 @@
-import disnake
+import io
 import math
 import random
-import io
 
-from PIL import Image, ImageDraw, ImageFont
+import disnake
 from disnake.ext import commands
+from PIL import Image, ImageDraw, ImageFont
 
 from core.bot import JesterBot
-from core.context import Context
 from core.constants import THUMBS_UP
+from core.context import Context
 from core.utils.utils import get_colour
 
 

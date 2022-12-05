@@ -43,4 +43,3 @@ Coded in discord.py, JesterBot has easy to use commands and an always active dev
 
 ### Credits
 Make sure to type `j.credits` to get the devs of JesterBot!
-

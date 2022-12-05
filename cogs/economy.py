@@ -1,13 +1,12 @@
-import disnake
-import json
 import asyncio
-
-from disnake.ext import commands
+import json
 from random import choice, randint
 
-from core.utils import get_colour, update_json, send_embed
-from core import Context
+import disnake
+from disnake.ext import commands
 
+from core import Context
+from core.utils import get_colour, send_embed, update_json
 
 FALSCH = False
 
@@ -41,9 +40,9 @@ class Economy(commands.Cog):
                 embed.add_field(
                     name="\u200b",
                     value=f"""
-                **What you can purchase...** 
+                **What you can purchase...**
 
-                - Custom role (`j.buy role`), you choose the name and color! - `3000$.` 
+                - Custom role (`j.buy role`), you choose the name and color! - `3000$.`
                 - Lucky box! (`j.buy box`), you can buy and open a lucky box that can contain up to 300$! - `200$`
                 - A gun (`j.buy gun`), you can use a gun to steal a huge chunk of someones money! - `2000$`
                 - A bag (`j.buy bag`), the ability to rob someone for a small/medium ammount of money - `500$`
@@ -55,7 +54,7 @@ class Economy(commands.Cog):
                     : `beg`
                     : `work`
                     : every time you run an economy command you also get from `1-10`$
-                
+
                 Your balance is: **{data[str(ctx.author.id)]['Bal']}$**""",
                 )
                 await ctx.reply(embed=embed)
@@ -638,10 +637,10 @@ class Economy(commands.Cog):
                 ctx,
                 "Work",
                 f"""
-            
-            
+
+
             You just made `{x}` JesterCoins from working as {v}
-            
+
             """,
             )
 

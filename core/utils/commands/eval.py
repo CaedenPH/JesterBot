@@ -1,15 +1,15 @@
+import contextlib
+import io
+import json
+import textwrap
+from traceback import format_exception
+
 import disnake
 from disnake.ext import commands
 
-import json
-import io
-import textwrap
-import contextlib
-
-from traceback import format_exception
 from core.context import Context
-from core.utils import update_json
 from core.paginator import Paginator
+from core.utils import update_json
 
 
 def clean_code(content: str) -> str:

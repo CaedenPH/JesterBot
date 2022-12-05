@@ -1,2 +1,2 @@
-from .view import DropdownView
 from .cog import setup
+from .view import DropdownView

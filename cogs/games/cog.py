@@ -1,33 +1,21 @@
+import asyncio
 import datetime
 import json
-import asyncio
+from random import choice, randint
 
 from disnake import Embed
 from disnake.ext.commands import Cog, command
-from random import randint, choice
 
-from core.utils import get_colour, send_embed
 from core import Context
 from core.constants import (
-    CHECKERED_FLAG,
-    HANGMAN,
-    BLACKJACK_WELCOME,
-    MINESWEEPER_MESSAGE,
-    SNAKE_MESSAGE,
-    SUDOKU_MESSAGE,
-    WORDLE_MESSAGE,
-    SPEEDTEST_MESSAGE,
+    BLACKJACK_WELCOME, CHECKERED_FLAG, HANGMAN, MINESWEEPER_MESSAGE,
+    SNAKE_MESSAGE, SPEEDTEST_MESSAGE, SUDOKU_MESSAGE, WORDLE_MESSAGE
 )
+from core.utils import get_colour, send_embed
+
 from . import (
-    BlackJack,
-    Casino,
-    RussianRoulette,
-    Dice,
-    MineSweeper,
-    Snake,
-    Sudoku,
-    Wordle,
-    SpeedTest,
+    BlackJack, Casino, Dice, MineSweeper, RussianRoulette, Snake, SpeedTest,
+    Sudoku, Wordle
 )
 
 

@@ -1,17 +1,18 @@
-import disnake
-import json
 import asyncio
-
+import json
 from random import randint
-from pyMorseTranslator import translator
+
+import disnake
 from art import text2art
-from glitch_this import ImageGlitcher
 from disnake.ext import commands
+from glitch_this import ImageGlitcher
+from pyMorseTranslator import translator
 from youtubesearchpython.__future__ import VideosSearch
 
-from core.utils import get_colour, update_json, send_embed
 from core import Context
 from core.constants import CLOSE
+from core.utils import get_colour, send_embed, update_json
+
 from . import Meme
 
 encoder = translator.Encoder()
@@ -147,9 +148,9 @@ class Fun(commands.Cog):
                 ctx,
                 f"{username}",
                 f"""
-                **All names:** 
+                **All names:**
                 - {l}
-                
+
                 """,
             )
         except:

@@ -1,8 +1,9 @@
 import random
 
+from disnake import ButtonStyle, Embed, MessageInteraction
+from disnake.ui import Button, View, button
+
 from core.utils import get_colour
-from disnake import MessageInteraction, Embed, ButtonStyle
-from disnake.ui import View, Button, button
 
 
 class Dice(View):

@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS prefix (
 CREATE TABLE IF NOT EXISTS users (
     user_id BIGINT PRIMARY KEY,
     guild_id BIGINT,
-    xp INT, 
+    xp INT,
     level INT,
     name TEXT
 );
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS overall_score (
     score INT
 );
 
-CREATE TABLE IF NOT EXISTS general_data ( 
+CREATE TABLE IF NOT EXISTS general_data (
     create_epoch DATE,
     ping INT,
     users INT,

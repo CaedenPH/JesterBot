@@ -1,10 +1,10 @@
-import re
-import random
 import pprint
+import random
+import re
 
 from disnake.ext import commands
-from core import Context
-from core import JesterBot
+
+from core import Context, JesterBot
 from core.paginator import Paginator
 
 
@@ -24,7 +24,7 @@ class Crime(commands.Cog):
             json = json["items"][item]
 
         data = f"""
-{"[reward_text:] " + json['reward_text'] if json['reward_text'] else ''} 
+{"[reward_text:] " + json['reward_text'] if json['reward_text'] else ''}
 {"[eye_color:] " +  json['eyes'] if json['eyes'] else ''}
 {"[nationality:] " + json['nationality'] if json['nationality'] else ''}
 {"[age_range:] " + json['age_range'] if json['age_range'] else ''}
@@ -68,18 +68,18 @@ class Crime(commands.Cog):
                 "\n",
                 f"""```yaml
     ++ -- Record for {info['name']} -- ++
-    
+
 {"[county_state:] " + info['county_state'] if info['county_state'] else ''}
 {"[charges:] " + ', '.join(info['charges']) if info['charges'] else ''}
 {"[eyes:] " + info['details'][4][1] if info['details'][4][1] else ''}
 {"[hair:] " + info['details'][5][1] if info['details'][5][1] else ''}
 {"[gender:] " + info['details'][0][1] if info['details'][0][1] else ''}
 {"[age at arrest:] " + str(info['details'][1][1]) if info['details'][1][1] else ''}
-{"[weight:] " + info['details'][3][1] if info['details'][3][1] else ''} 
-{"[height:] " + info['details'][2][1] if info['details'][2][1] else ''}  
-{"[ref:] " + info['details'][6][1] if info['details'][6][1] else ''}          
+{"[weight:] " + info['details'][3][1] if info['details'][3][1] else ''}
+{"[height:] " + info['details'][2][1] if info['details'][2][1] else ''}
+{"[ref:] " + info['details'][6][1] if info['details'][6][1] else ''}
 {"[mugshot:] " + info['mugshot'] if info['mugshot'] else ''}
-{"[source_id:] " + info['source_id'] if info['source_id'] else ''}         
+{"[source_id:] " + info['source_id'] if info['source_id'] else ''}
 {"[more_info_url:] " + info['more_info_url'] if info['more_info_url'] else ''}```""",
             )
         )
@@ -100,7 +100,7 @@ class Crime(commands.Cog):
             f"""```yaml
         ++ -- All police forces in england -- ++
 
-{police}    
+{police}
 
   [Factual information curated from official police data]```"""
         )

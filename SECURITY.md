@@ -15,4 +15,3 @@ currently being supported with security updates.
 id you find a vulnerability please do share with us as we will try out hardest to fix it!
 
 you can file a bug report we will try to answer as soon as possible
-

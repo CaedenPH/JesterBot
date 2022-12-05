@@ -1,15 +1,15 @@
-import disnake
 import itertools
 import os
 
+import disnake
 from disnake.ext import commands
-from fuzzywuzzy import fuzz
 from docs import cog
+from fuzzywuzzy import fuzz
 
-from core import Context
-from core import JesterBot
+from core import Context, JesterBot
 from core.constants import ZEN_OF_PYTHON
-from . import Paginator, RTFM, Colours
+
+from . import RTFM, Colours, Paginator
 
 
 class Docs(cog.Docs, RTFM):

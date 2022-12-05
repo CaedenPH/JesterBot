@@ -1,7 +1,8 @@
 # environ
 
-from asyncpraw import Reddit
 from os import environ
+
+from asyncpraw import Reddit
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -200,7 +201,7 @@ BLACK_CROSS = "➕"
 
 CARD_SUITS = {"hearts": "♥️", "diamonds": "♦️", "clubs": "♣️", "spades": "♠️"}
 BLACKJACK_WELCOME = """```yaml
-Welcome to the blackjack game. 
+Welcome to the blackjack game.
 ==============================
 
 It is recommended that you research the rules to familiarize yourself how the game is played.```
@@ -212,7 +213,7 @@ How to play blackjack
 Start
 -----
 • When you play you will get a hand with 2 cards.
-• If you get an ace you can choose it's value to be 1 or 11. 
+• If you get an ace you can choose it's value to be 1 or 11.
 • All face cards are equal to 10 this includes; King, Queen and Jack.
 
 Game over
@@ -437,7 +438,7 @@ ASCII_DESCRIPTION = """ASCII was developed from telegraph code. Work on the ASCI
 
 The use of ASCII format for Network Interchange was described in 1969. That document was formally elevated to an Internet Standard in 2015.
 
-Originally based on the English alphabet, ASCII encodes 128 specified characters into seven-bit integers as shown by the ASCII chart above. Ninety-five of the encoded characters are printable: these include the digits 0 to 9, lowercase letters a to z, uppercase letters A to Z, and punctuation symbols. 
+Originally based on the English alphabet, ASCII encodes 128 specified characters into seven-bit integers as shown by the ASCII chart above. Ninety-five of the encoded characters are printable: these include the digits 0 to 9, lowercase letters a to z, uppercase letters A to Z, and punctuation symbols.
 
 For example, lowercase i would be represented in the ASCII encoding by binary 1101001 = hexadecimal 69 (i is the ninth letter) = decimal 105.
 To get the ascii table type j.ascii

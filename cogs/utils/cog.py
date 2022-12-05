@@ -1,30 +1,25 @@
-import simpleeval
 import re
-import disnake
-import async_cse
-
-import pytz
 import unicodedata
-import wikipedia
-
-from urllib.request import urlopen
-from typing import Tuple
-from pyMorseTranslator import translator
 from datetime import datetime
+from typing import Tuple
+from urllib.request import urlopen
 
+import async_cse
+import disnake
+import pytz
+import simpleeval
+import wikipedia
 from disnake.ext import commands
+from pyMorseTranslator import translator
 
+from core import Context
+from core.constants import (
+    ASCII_DESCRIPTION, CLOSE, GOOGLE_KEY, MORSE_TO_TEXT, TEXT_TO_MORSE
+)
+from core.paginator import Paginator
 from core.utils import get_colour, send_embed
 from core.utils.commands.eval import run_eval
-from core.paginator import Paginator
-from core.constants import (
-    CLOSE,
-    MORSE_TO_TEXT,
-    TEXT_TO_MORSE,
-    ASCII_DESCRIPTION,
-    GOOGLE_KEY,
-)
-from core import Context
+
 from .calculator import CalculatorView
 
 encoder = translator.Encoder()

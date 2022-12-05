@@ -1,29 +1,18 @@
 import asyncio
 import typing as t
 
+from disnake import (
+    ButtonStyle, Embed, HTTPException, Member, Message, MessageInteraction,
+    SelectOption
+)
+from disnake.ui import Button, Item, Select, View, button, select
 from essential_generators import DocumentGenerator
 
-from disnake import (
-    Member,
-    SelectOption,
-    Message,
-    MessageInteraction,
-    HTTPException,
-    Embed,
-    ButtonStyle,
-)
-from disnake.ui import View, Button, Select, Item, select, button
-
 from core.constants import (
-    CHECKERED_FLAG,
-    PLAY_BUTTON,
-    SPEEDTEST_MESSAGE,
-    STOPWATCH,
-    THUMBS_UP,
-    VIDEO_GAME,
+    CHECKERED_FLAG, PLAY_BUTTON, SPEEDTEST_MESSAGE, STOPWATCH, THUMBS_UP,
+    VIDEO_GAME
 )
 from core.context import Context
-
 
 DIFFICULTY_CONVERTER = {
     "easy": 30,

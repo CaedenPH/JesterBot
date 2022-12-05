@@ -1,22 +1,16 @@
-import disnake
 import json
 import typing
 
+import disnake
 from disnake.ext import commands
-from core.utils import get_colour
-from core.constants import (
-    COG_DESCRIPTIONS,
-    COG_EMOJIS,
-    CATEGORIES,
-    LINK,
-    _J,
-    _E,
-    _S,
-    _T,
-    _R,
-)
-from . import DropdownView
+
 from core import Context, JesterBot
+from core.constants import (
+    _E, _J, _R, _S, _T, CATEGORIES, COG_DESCRIPTIONS, COG_EMOJIS, LINK
+)
+from core.utils import get_colour
+
+from . import DropdownView
 
 
 def get_help(command: str) -> str:

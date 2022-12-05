@@ -1,23 +1,22 @@
 from __future__ import annotations
 
-import disnake
-import inspect
 import asyncio
+import inspect
+from typing import TYPE_CHECKING, Any, Dict, List, Optional
 
+import disnake
 import disnake.abc
 import disnake.utils
-
-from typing import Any, Dict, List, Optional, TYPE_CHECKING
+from disnake.ext.commands import Command, Context, view
+from disnake.message import Message
 
 from core.constants import TRASHCAN
 from core.utils import get_colour
 
-from disnake.message import Message
-from disnake.ext.commands import Command, Context, view
-
 if TYPE_CHECKING:
-    from core.bot import JesterBot
     from disnake.state import ConnectionState
+
+    from core.bot import JesterBot
 
 MISSING: Any = disnake.utils.MISSING
 

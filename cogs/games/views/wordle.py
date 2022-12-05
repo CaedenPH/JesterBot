@@ -4,19 +4,15 @@ import asyncio
 import random
 import typing as t
 
-from disnake import HTTPException, MessageInteraction, Message, ButtonStyle, SelectOption
-from disnake.ui import View, Button, Select, Item, select, button
+from disnake import (
+    ButtonStyle, HTTPException, Message, MessageInteraction, SelectOption
+)
+from disnake.ui import Button, Item, Select, View, button, select
 
 from core import Context
 from core.constants import (
-    BLACK_SQUARE,
-    RED_LETTERS,
-    GREEN_LETTERS,
-    PLAY_BUTTON,
-    STOP_SIGN,
-    VIDEO_GAME,
-    WHITE_SQUARE,
-    WORDLE_MESSAGE,
+    BLACK_SQUARE, GREEN_LETTERS, PLAY_BUTTON, RED_LETTERS, STOP_SIGN,
+    VIDEO_GAME, WHITE_SQUARE, WORDLE_MESSAGE
 )
 
 

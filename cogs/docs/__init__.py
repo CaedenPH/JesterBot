@@ -1,4 +1,4 @@
-from .pagination import Paginator
+from .cog import setup
 from .exts import *
 from .fuzzy import *
-from .cog import setup
+from .pagination import Paginator

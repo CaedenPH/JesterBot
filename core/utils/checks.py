@@ -1,11 +1,11 @@
-import disnake
 import json
 
+import disnake
 from disnake import Message
 from disnake.ext.commands import Bot, Context
-from core.constants import THUMBS_DOWN, THUMBS_UP
 
-from core.utils.utils import send_embed, get_colour, update_json
+from core.constants import THUMBS_DOWN, THUMBS_UP
+from core.utils.utils import get_colour, send_embed, update_json
 
 
 async def suggest(bot: Bot, message: Message) -> None:

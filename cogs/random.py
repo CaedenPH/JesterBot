@@ -1,13 +1,13 @@
+import json
 import pprint
 import random
-import json
+from pathlib import Path
+
 import disnake
 import yaml
-
 from disnake.ext import commands
-from pathlib import Path
-from core import Context
-from core import JesterBot
+
+from core import Context, JesterBot
 
 
 class Random(commands.Cog):
@@ -56,14 +56,14 @@ class Random(commands.Cog):
         await ctx.em(
             f"""```yaml
     ++ -- Weather info for {city} -- ++
-[Temperature:] 
+[Temperature:]
     - temp : {json['main']['temp']}
     - temp_min : {json['main']['temp_min']}
     - temp_max : {json['main']['temp_max']}
 [Wind:]
     - speed : {json['wind']['speed']}
     - deg : {json['wind']['deg']}
-[Dest Coords:] 
+[Dest Coords:]
     - longitude : {json['coord']['lon']}
     - latitude : {json['coord']['lat']}
 

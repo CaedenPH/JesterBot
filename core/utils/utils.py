@@ -1,5 +1,6 @@
-import disnake
 import json
+
+import disnake
 
 
 def update_json(_file, _data: str) -> None:

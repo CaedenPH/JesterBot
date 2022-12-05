@@ -1,12 +1,12 @@
-import disnake
-import random
-import re
 import asyncio
 import datetime
+import random
+import re
 
+import disnake
 from disnake.ext import commands
-from core import Context
-from core import JesterBot
+
+from core import Context, JesterBot
 
 
 class Trivia(commands.Cog):
@@ -72,12 +72,12 @@ class Trivia(commands.Cog):
     async def trivia_play(self, ctx: Context) -> None:
         await ctx.em(
             """```yaml
-    ++ -- Starting the trivia game! -- ++ 
+    ++ -- Starting the trivia game! -- ++
 
-[Stop the game:] Type 'end' to end the game. 
+[Stop the game:] Type 'end' to end the game.
 [How to play:] The bot sends the question, waits 30 seconds for responses. When the bot sends the message you respond with the letter corresponding with the answer.
-[Change your answer:] 
-    - If you want to change your answer you have to type; 'change <letter>' and replace <letter> with the new letter you want. 
+[Change your answer:]
+    - If you want to change your answer you have to type; 'change <letter>' and replace <letter> with the new letter you want.
     - Eg you send 'a' as the answer, but you want to change it to be 'b' so you send 'change b'```  """
         )
 
@@ -148,10 +148,10 @@ class Trivia(commands.Cog):
 
                     await ctx.em(
                         f"""```yaml
-    ++ -- The answer was {answer.upper()} -- ++ 
+    ++ -- The answer was {answer.upper()} -- ++
 
 {"[Correct:] " + ', '.join(correct) if correct else "No one got it right!"}
-[Leaderboard:] 
+[Leaderboard:]
 {leaderboard if leaderboard else "No one answered"}```""",
                         delete_after=30,
                     )

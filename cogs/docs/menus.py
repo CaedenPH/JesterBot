@@ -1,10 +1,10 @@
 import asyncio
-import disnake
-
-import itertools
 import inspect
+import itertools
 import re
 from collections import OrderedDict, namedtuple
+
+import disnake
 
 
 class MenuError(Exception):

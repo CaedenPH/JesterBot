@@ -1,8 +1,8 @@
 import aiohttp
 
 try:
-    import youtube_dl
     import disnake
+    import youtube_dl
 
     has_voice = True
 except ImportError:

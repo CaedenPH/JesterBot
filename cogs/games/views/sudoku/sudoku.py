@@ -1,37 +1,22 @@
 from __future__ import annotations
 
-import typing as t
 import asyncio
+import typing as t
 
 from disnake import (
-    SelectOption,
-    HTTPException,
-    MessageInteraction,
-    Message,
-    Embed,
-    ButtonStyle,
+    ButtonStyle, Embed, HTTPException, Message, MessageInteraction,
+    SelectOption
 )
-from disnake.ui import View, Button, Select, Item, select, button
+from disnake.ui import Button, Item, Select, View, button, select
 
-from .generator import SudokuGenerator
 from core import Context
 from core.constants import (
-    BLACK_BORDER,
-    BLACK_CROSS,
-    CLOSE,
-    BLACK_BARRIER,
-    NUMBERS,
-    PLAY_BUTTON,
-    RED_NUMBERS,
-    SUDOKU_MESSAGE,
-    BLACK_SQUARE,
-    VIDEO_GAME,
-    WHITE_BORDER,
-    WHITE_CROSS,
-    WHITE_HORIZONTAL,
-    WHITE_SQUARE,
-    PLACE_NUMBER,
+    BLACK_BARRIER, BLACK_BORDER, BLACK_CROSS, BLACK_SQUARE, CLOSE, NUMBERS,
+    PLACE_NUMBER, PLAY_BUTTON, RED_NUMBERS, SUDOKU_MESSAGE, VIDEO_GAME,
+    WHITE_BORDER, WHITE_CROSS, WHITE_HORIZONTAL, WHITE_SQUARE
 )
+
+from .generator import SudokuGenerator
 
 
 class Square:

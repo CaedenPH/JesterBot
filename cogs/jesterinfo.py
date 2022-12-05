@@ -1,15 +1,14 @@
-from webbrowser import get
-import disnake
 import json
 import time
-
-from disnake.ext import commands
 from datetime import datetime
+from webbrowser import get
 
-from core.utils import create_embed
-from core.utils import get_colour, update_json, send_embed
-from core.constants import LOADING
+import disnake
+from disnake.ext import commands
+
 from core import Context, JesterBot
+from core.constants import LOADING
+from core.utils import create_embed, get_colour, send_embed, update_json
 
 
 class JesterInfo(commands.Cog):
@@ -277,7 +276,7 @@ Database : {round((db_time2-db_time1)*1000)}ms
         **Helpers:** *{helper.name}*, *{helper2.name}*
         **Sales/Promoter:** *{sales.name}*
         **Ideas/layout designer:** *{ideas_designer.name}*
-        
+
         """,
             colour=get_colour(),
         )

@@ -1,6 +1,8 @@
 from disnake import Embed, Message
-from .utils import get_colour
+
 from core.utils.comedy import joke
+
+from .utils import get_colour
 
 
 async def create_embed(message: Message, bot) -> Embed:
@@ -11,7 +13,7 @@ async def create_embed(message: Message, bot) -> Embed:
         title=f"Hello {message.author.name}",
         description=f"""
     │ My default prefix is: `j.` │
-    │ My prefix for you is: {', '.join([f"`{k}`" for k in prefix if not k.startswith('<@')])} │ 
+    │ My prefix for you is: {', '.join([f"`{k}`" for k in prefix if not k.startswith('<@')])} │
     │ Type `j.prefix <prefix> [prefix], [prefix], etc` to change the prefix for you! │
     """,
         colour=get_colour(),

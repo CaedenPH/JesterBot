@@ -1,9 +1,9 @@
-import disnake
 import pprint
 
+import disnake
 from disnake.ext import commands
-from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM
+from svglib.svglib import svg2rlg
 
 from core.context import Context
 from core.utils import send_embed

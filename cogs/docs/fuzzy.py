@@ -1,5 +1,5 @@
-import re
 import heapq
+import re
 from difflib import SequenceMatcher
 
 

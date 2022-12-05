@@ -1,8 +1,8 @@
 from __future__ import annotations
 
+import time
 from datetime import datetime
 from random import choice, randint
-import time
 from typing import List, Optional, Union
 
 
@@ -25,7 +25,7 @@ class SudokuUtils:
         Parameters
         ----------
         xy: :class:`List[int, int]`
-            The xy coordinates to set 
+            The xy coordinates to set
             the value to.
         value: :class:`int`
             The value to set.
@@ -42,7 +42,7 @@ class SudokuUtils:
         Parameters
         ----------
         xy: :class:`List[int, int]`
-            The xy coordinates to get 
+            The xy coordinates to get
             the value from.
 
         Returns
@@ -277,12 +277,12 @@ class SudokuGenerator(SudokuUtils):
 
         Parameters
         ----------
-        
+
 
         Returns
         -------
         :class:`List[int]`
-            The 
+            The
         """
 
         for index in operand_one.copy():
@@ -306,7 +306,7 @@ class SudokuGenerator(SudokuUtils):
                 built = self.build_box(i)
                 if built:
                     break
-                            
+
             if not built:
                 self.rows: List[List[int]] = [
                     [0 for _ in range(9)] for __ in range(9)
@@ -318,7 +318,7 @@ class SudokuGenerator(SudokuUtils):
         """
         visually print board
         | debugging purposes
-        
+
         """
 
         if raw:
@@ -349,5 +349,3 @@ for i in range(10000):
 print(f"Minimum time : {min(all_times)}")
 print(f"Maximum time : {max(all_times)}")
 print(f"Average time : {sum(all_times)/len(all_times)}")
-
-

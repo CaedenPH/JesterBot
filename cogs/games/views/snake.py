@@ -1,27 +1,19 @@
 from __future__ import annotations
 
+import asyncio
 import random
 import typing as t
-import asyncio
 
-from disnake import MessageInteraction, Message, HTTPException, Embed, ButtonStyle
-from disnake.ui import View, Button, button
+from disnake import (
+    ButtonStyle, Embed, HTTPException, Message, MessageInteraction
+)
 from disnake.ext.tasks import loop
+from disnake.ui import Button, View, button
 
 from core.constants import (
-    BLUE_SQUARE,
-    CLOSE,
-    GREEN_SQUARE,
-    PLAY_BUTTON,
-    SNAKE_MESSAGE,
-    STOP_SIGN,
-    SWEET,
-    UP_ARROW,
-    DOWN_ARROW,
-    LEFT_ARROW,
-    RIGHT_ARROW,
-    VIDEO_GAME,
-    WHITE_SQUARE,
+    BLUE_SQUARE, CLOSE, DOWN_ARROW, GREEN_SQUARE, LEFT_ARROW, PLAY_BUTTON,
+    RIGHT_ARROW, SNAKE_MESSAGE, STOP_SIGN, SWEET, UP_ARROW, VIDEO_GAME,
+    WHITE_SQUARE
 )
 
 _p1 = button(style=ButtonStyle.grey, emoji=BLUE_SQUARE, disabled=True, row=0)
