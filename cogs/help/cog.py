@@ -104,7 +104,7 @@ class HelpUtils:
 
     async def specific_cog(self, cog: commands.Cog, ctx: Context) -> disnake.Embed:
         if cog.qualified_name not in COG_DESCRIPTIONS:
-            return self.no_command(ctx)
+            return await self.no_command(ctx)
 
         commands = [f"- `{k.name}`" for k in cog.walk_commands() if not k.hidden]
         return (

@@ -6,8 +6,7 @@ import os
 from typing import List
 
 import aiohttp
-import disnake
-from disnake import Activity, ActivityType, Intents, Message
+from disnake import Activity, ActivityType, Intents, Message, AllowedMentions, __version__
 from disnake.ext.commands import Bot, when_mentioned_or
 from disnake.ext.tasks import loop
 
@@ -30,7 +29,7 @@ class JesterBot(Bot):
             case_insensitive=True,
             strip_after_prefix=True,
             owner_ids=[298043305927639041],
-            allowed_mentions=disnake.AllowedMentions.none(),
+            allowed_mentions=AllowedMentions.none(),
             help_command=None,
         )
 
@@ -110,7 +109,7 @@ class JesterBot(Bot):
             len(self.users),
             len(self.guilds),
             len([c for c in self.get_all_channels()]),
-            disnake.__version__
+            __version__
         ))
 
     @log_data.before_loop
