@@ -1,2 +1,2 @@
-from .cog import setup
 from .meme import Meme
+from .cog import setup

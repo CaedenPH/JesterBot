@@ -1,7 +1,6 @@
 import json
 
 import disnake
-from disnake.embeds import EmptyEmbed
 from disnake.ext.commands import Cog, command, has_permissions
 
 from core import Context, JesterBot
@@ -40,7 +39,7 @@ class Config(Cog):
 
         await self.insert_values(channel.id, "pickup")
         await send_embed(
-            ctx, EmptyEmbed, channel.mention + " now sends pickup lines on the hour!"
+            ctx, None, channel.mention + " now sends pickup lines on the hour!"
         )
 
     @command()
@@ -51,7 +50,7 @@ class Config(Cog):
 
         await self.insert_values(channel.id, "joke")
         await send_embed(
-            ctx, EmptyEmbed, channel.mention + " now sends jokes on the hour!"
+            ctx, None, channel.mention + " now sends jokes on the hour!"
         )
 
     @command()
@@ -62,7 +61,7 @@ class Config(Cog):
 
         await self.insert_values(channel.id, "quote")
         await send_embed(
-            ctx, EmptyEmbed, channel.mention + " now sends quotes on the hour!"
+            ctx, None, channel.mention + " now sends quotes on the hour!"
         )
 
     @command()
@@ -73,7 +72,7 @@ class Config(Cog):
 
         await self.insert_values(channel.id, "fact")
         await send_embed(
-            ctx, EmptyEmbed, channel.mention + " now sends facts on the hour!"
+            ctx, None, channel.mention + " now sends facts on the hour!"
         )
 
     @command(

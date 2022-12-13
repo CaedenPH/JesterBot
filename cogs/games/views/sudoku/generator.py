@@ -337,15 +337,17 @@ class SudokuGenerator(SudokuUtils):
                 visual_board += "-----------\n"
         print(visual_board)
 
-all_times = []
-for i in range(10000):
-    perf_time = time.perf_counter()
 
-    _sudoku_board = SudokuGenerator().generate_puzzle("medium")
+if __name__ == "__main__":
+    all_times = []
+    for i in range(10000):
+        perf_time = time.perf_counter()
 
-    # print(i)
-    all_times.append(time.perf_counter() - perf_time)
+        _sudoku_board = SudokuGenerator().generate_puzzle("medium")
 
-print(f"Minimum time : {min(all_times)}")
-print(f"Maximum time : {max(all_times)}")
-print(f"Average time : {sum(all_times)/len(all_times)}")
+        # print(i)
+        all_times.append(time.perf_counter() - perf_time)
+
+    print(f"Minimum time : {min(all_times)}")
+    print(f"Maximum time : {max(all_times)}")
+    print(f"Average time : {sum(all_times)/len(all_times)}")
