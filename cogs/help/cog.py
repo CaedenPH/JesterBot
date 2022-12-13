@@ -142,11 +142,11 @@ class HelpUtils:
             )
             .add_field(
                 name="\u200b",
-                value="\n".join([commands[i] for i in range(0, len(commands), 2)]),
+                value="\n".join([commands[i] for i in range(0, len(commands), 2)]) if commands else "-"
             )
             .add_field(
                 name="\u200b",
-                value="\n".join([commands[i] for i in range(1, len(commands), 2)]),
+                value="\n".join([commands[i] for i in range(1, len(commands), 2)]) if commands else "-",
             )
         )
 
