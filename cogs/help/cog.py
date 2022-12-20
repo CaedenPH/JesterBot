@@ -6,7 +6,7 @@ from disnake.ext import commands
 
 from core import Context, JesterBot
 from core.constants import (
-    _E, _J, _R, _S, _T, CATEGORIES, COG_DESCRIPTIONS, COG_EMOJIS, LINK
+    E_, J_, R_, S_, T_, CATEGORIES, COG_DESCRIPTIONS, COG_EMOJIS, LINK
 )
 from core.utils import get_colour
 
@@ -47,7 +47,7 @@ class HelpUtils:
 
         return (
             disnake.Embed(
-                title=f"{_J}{_E}{_S}{_T}{_E}{_R}",
+                title=f"{J_}{E_}{S_}{T_}{E_}{R_}",
                 description=description,
                 timestamp=ctx.message.created_at,
                 colour=get_colour(),
