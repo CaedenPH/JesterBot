@@ -24,7 +24,7 @@ class Games(Cog):
         self.bot = bot
 
     def message_content(self, guesses_left, guesses, word):
-        return f"```yaml\n{HANGMAN[guesses_left]}````{' '.join([k if k in guesses else '_' for k in word])}`\nYou have {guesses_left} guesses left"
+        return f"```yaml\n{HANGMAN[guesses_left]}````{' '.join(k if k in guesses else '_' for k in word)}`\nYou have {guesses_left} guesses left"
 
     @command(aliases=["speed", "speedtest", "sp"])
     async def speed_test(self, ctx: Context) -> None:

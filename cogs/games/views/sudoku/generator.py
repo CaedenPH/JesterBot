@@ -322,7 +322,7 @@ class SudokuGenerator(SudokuUtils):
         """
 
         if raw:
-            print("\n".join([str(s) for s in self.rows]))
+            print("\n".join(str(s) for s in self.rows))
             return
 
         visual_board = ""

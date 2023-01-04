@@ -254,7 +254,7 @@ Database : {round((db_time2-db_time1)*1000)}ms
         await self.bot.insert_prefix(ctx.author.id, prefixes)
 
         embed = disnake.Embed(
-            description=f"New prefixes are: {', '.join([f'`{prefix}`' for prefix in prefixes])}\nPing me for my prefixes if you forget!",
+            description=f"New prefixes are: {', '.join(f'`{prefix}`' for prefix in prefixes)}\nPing me for my prefixes if you forget!",
             colour=get_colour(),
         )
         embed.set_author(icon_url=ctx.author.display_avatar.url, name="Prefix")

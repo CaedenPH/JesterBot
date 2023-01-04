@@ -40,7 +40,7 @@ class Trivia(commands.Cog):
             if v.endswith(re.sub("&.*?;", "", output["correct_answer"])):
                 answer = v[0]
 
-        spaces = "".join([" " for i in range(0, 36 - len(", ".join(choices)))])
+        spaces = "".join(" " for i in range(0, 36 - len(", ".join(choices))))
         return (
             f"""```yaml
     ++ -- {re.sub('&.*?;', '', output['question'])} -- ++

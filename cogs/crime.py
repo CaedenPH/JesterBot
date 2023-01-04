@@ -95,7 +95,7 @@ class Crime(commands.Cog):
         ) as resp:
             json = await resp.json()
 
-        police = ", ".join([json[k]["name"] for k in range(0, len(json))])
+        police = ", ".join(json[k]["name"] for k in range(0, len(json)))
         await ctx.em(
             f"""```yaml
         ++ -- All police forces in england -- ++

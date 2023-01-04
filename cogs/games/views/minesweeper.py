@@ -353,7 +353,7 @@ class Board:
             the visually appealing board.
         """
 
-        visual_board = f"{BLACK_SQUARE} {BLACK_BORDER} {f' {BLACK_BORDER} '.join([RED_NUMBERS[n] for n in range(self.board_size)])}\n{BLACK_BARRIER * ((self.board_size * 3) - 2)}\n"
+        visual_board = f"{BLACK_SQUARE} {BLACK_BORDER} {f' {BLACK_BORDER} '.join(RED_NUMBERS[n] for n in range(self.board_size))}\n{BLACK_BARRIER * ((self.board_size * 3) - 2)}\n"
 
         for row in range(self.board_size):
             for column in range(self.board_size):

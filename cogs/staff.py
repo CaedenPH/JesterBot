@@ -590,7 +590,7 @@ class Staff(commands.Cog):
         if not errornum:
             try:
 
-                return await send_embed(ctx, "", ", ".join([e for e in data]))
+                return await send_embed(ctx, "", ", ".join(e for e in data))
             except:
                 return await send_embed(ctx, "", "All clear!")
         try:
@@ -619,7 +619,7 @@ class Staff(commands.Cog):
         if not errornum:
             try:
 
-                return await send_embed(ctx, "", ", ".join([e for e in data]))
+                return await send_embed(ctx, "", ", ".join(e for e in data))
             except:
                 return await send_embed(ctx, "", "All clear!")
         if errornum == "all":

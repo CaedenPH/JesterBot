@@ -54,11 +54,11 @@ class HelpUtils:
             )
             .add_field(
                 name=f"{CATEGORIES} **Categories:**\n\u200b",
-                value="\n".join([cogs[i] for i in range(0, len(cogs), 2)]) + "\n\u200b",
+                value="\n".join(cogs[i] for i in range(0, len(cogs), 2)) + "\n\u200b",
             )
             .add_field(
                 name="\u200b\n\u200b",
-                value="\n".join([cogs[i] for i in range(1, len(cogs), 2)]),
+                value="\n".join(cogs[i] for i in range(1, len(cogs), 2)),
             )
             .add_field(name=f"{LINK} **Links:**", value=f"**{self.links}**", inline=False)
         )
@@ -79,7 +79,7 @@ class HelpUtils:
             )
             .add_field(
                 name=" ❯❯ Alias",
-                value=f"{', '.join([f'`{k}`' for k in command.aliases if command.aliases])} "
+                value=f"{', '.join(f'`{k}`' for k in command.aliases if command.aliases)} "
                 if command.aliases
                 else f"`none`",
                 inline=False,
@@ -116,11 +116,11 @@ class HelpUtils:
             )
             .add_field(
                 name="\u200b",
-                value="\n".join([commands[i] for i in range(0, len(commands), 2)]),
+                value="\n".join(commands[i] for i in range(0, len(commands), 2)),
             )
             .add_field(
                 name="\u200b",
-                value="\n".join([commands[i] for i in range(1, len(commands), 2)]),
+                value="\n".join(commands[i] for i in range(1, len(commands), 2)),
             )
         )
 
@@ -142,11 +142,11 @@ class HelpUtils:
             )
             .add_field(
                 name="\u200b",
-                value="\n".join([commands[i] for i in range(0, len(commands), 2)]) if commands else "-"
+                value="\n".join(commands[i] for i in range(0, len(commands), 2)) if commands else "-"
             )
             .add_field(
                 name="\u200b",
-                value="\n".join([commands[i] for i in range(1, len(commands), 2)]) if commands else "-",
+                value="\n".join(commands[i] for i in range(1, len(commands), 2)) if commands else "-",
             )
         )
 

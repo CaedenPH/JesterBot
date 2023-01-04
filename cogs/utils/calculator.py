@@ -183,7 +183,7 @@ class CalculatorView(View):
         self, button: Button, interaction: MessageInteraction
     ):
         display = self.get_description()
-        equation = "".join([k if k not in norm else f"**{norm[k]}" for k in display])
+        equation = "".join(k if k not in norm else f"**{norm[k]}" for k in display)
         pattern = re.compile("^√(\d+)")
         equation = pattern.sub("\\1 ** 0.5 ", equation)
 

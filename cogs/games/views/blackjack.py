@@ -78,7 +78,7 @@ class BlackJack(View):
         player = "Bots" if cards else "Your"
         return blackjack_visual.format(
             player=player,
-            bar="".join(["-" for _ in range(len(player))]),
+            bar="".join("-" for _ in range(len(player))),
             cards=visual_cards,
             value=self.generate_card_values(
                 self.user_cards if not cards else self.bot_cards
@@ -118,7 +118,7 @@ class BlackJack(View):
         return (
             Embed(
                 title="Blackjack",
-                description=f"```yaml\n{self.ctx.author.name}'s Blackjack Game\n================={''.join(['=' for _ in range(len(self.ctx.author.name))])}\ngame status: {self.status}\n\n{description}```",
+                description=f"```yaml\n{self.ctx.author.name}'s Blackjack Game\n================={''.join('=' for _ in range(len(self.ctx.author.name)))}\ngame status: {self.status}\n\n{description}```",
                 timestamp=self.ctx.message.created_at,
                 colour=get_colour(),
             )
