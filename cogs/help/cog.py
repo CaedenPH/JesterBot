@@ -6,7 +6,7 @@ from disnake.ext import commands
 
 from core import Context, JesterBot
 from core.constants import (
-    E_, J_, R_, S_, T_, CATEGORIES, COG_DESCRIPTIONS, COG_EMOJIS, LINK
+    CATEGORIES, COG_DESCRIPTIONS, COG_EMOJIS, E_, J_, LINK, R_, S_, T_
 )
 from core.utils import get_colour
 

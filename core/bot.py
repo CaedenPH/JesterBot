@@ -6,7 +6,9 @@ import os
 from typing import List
 
 import aiohttp
-from disnake import Activity, ActivityType, Intents, Message, AllowedMentions, __version__
+from disnake import (
+    Activity, ActivityType, AllowedMentions, Intents, Message, __version__
+)
 from disnake.ext.commands import Bot, when_mentioned_or
 from disnake.ext.tasks import loop
 
