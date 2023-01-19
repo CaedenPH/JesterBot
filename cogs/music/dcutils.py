@@ -356,7 +356,7 @@ class MusicPlayer(object):
             self.music.queue[self.ctx.guild.id] = []
             self.voice.stop()
             self.music.players.remove(self)
-        except:
+        except Exception:
             raise NotPlaying("Cannot loop because nothing is being played")
         if self.on_stop_func:
             await self.on_stop_func(self.ctx)
@@ -365,7 +365,7 @@ class MusicPlayer(object):
         try:
             self.voice.pause()
             song = self.music.queue[self.ctx.guild.id][0]
-        except:
+        except Exception:
             raise NotPlaying("Cannot pause because nothing is being played")
         if self.on_pause_func:
             await self.on_pause_func(self.ctx, song)
@@ -375,7 +375,7 @@ class MusicPlayer(object):
         try:
             self.voice.resume()
             song = self.music.queue[self.ctx.guild.id][0]
-        except:
+        except Exception:
             raise NotPlaying("Cannot resume because nothing is being played")
         if self.on_resume_func:
             await self.on_resume_func(self.ctx, song)
@@ -390,13 +390,13 @@ class MusicPlayer(object):
     def now_playing(self):
         try:
             return self.music.queue[self.ctx.guild.id][0]
-        except:
+        except Exception:
             return None
 
     async def toggle_song_loop(self):
         try:
             song = self.music.queue[self.ctx.guild.id][0]
-        except:
+        except Exception:
             raise NotPlaying("Cannot loop because nothing is being played")
         if not song.is_looping:
             song.is_looping = True
@@ -410,7 +410,7 @@ class MusicPlayer(object):
         self.voice.source.volume = vol
         try:
             song = self.music.queue[self.ctx.guild.id][0]
-        except:
+        except Exception:
             raise NotPlaying("Cannot loop because nothing is being played")
         if self.on_volume_change_func:
             await self.on_volume_change_func(self.ctx, song, vol)
@@ -420,7 +420,7 @@ class MusicPlayer(object):
         if index == 0:
             try:
                 song = self.music.queue[self.ctx.guild.id][0]
-            except:
+            except Exception:
                 raise NotPlaying("Cannot loop because nothing is being played")
             await self.skip(force=True)
             return song

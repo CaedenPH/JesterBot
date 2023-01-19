@@ -11,7 +11,7 @@ You should always specify the exception type if it is possible to do so, and you
 try:
     number = int(user_input)
     item = some_list[number]
-except:
+except Exception:
     print("An exception was raised, but we have no idea if it was a ValueError or an IndexError.")
 ```
 For more information about exception handling, see [the official Python docs](https://docs.python.org/3/tutorial/errors.html), or watch [Corey Schafer's video on exception handling](https://www.youtube.com/watch?v=NIWwJbo-9_8).

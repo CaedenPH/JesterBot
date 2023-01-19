@@ -474,7 +474,7 @@ class Staff(commands.Cog):
                             try:
 
                                 the_num = self.bot.get_user(int(key))
-                            except:
+                            except Exception:
 
                                 if not the_num:
 
@@ -591,11 +591,11 @@ class Staff(commands.Cog):
             try:
 
                 return await send_embed(ctx, "", ", ".join(e for e in data))
-            except:
+            except Exception:
                 return await send_embed(ctx, "", "All clear!")
         try:
             data[errornum]
-        except:
+        except Exception:
             return await send_embed(ctx, "", "Out of range")
         await send_embed(
             ctx,
@@ -620,7 +620,7 @@ class Staff(commands.Cog):
             try:
 
                 return await send_embed(ctx, "", ", ".join(e for e in data))
-            except:
+            except Exception:
                 return await send_embed(ctx, "", "All clear!")
         if errornum == "all":
             with open("./dicts/Errors.json", "w") as e:
@@ -628,7 +628,7 @@ class Staff(commands.Cog):
                 return await send_embed(ctx, "", "Done")
         try:
             data[errornum]
-        except:
+        except Exception:
             return await send_embed(ctx, "", "Out of range")
         m = await ctx.reply(
             embed=disnake.Embed(

@@ -153,7 +153,7 @@ class Fun(commands.Cog):
 
                 """,
             )
-        except:
+        except Exception:
             await send_embed(
                 ctx, "", "They are not a minecraft player! Enter their in-game username"
             )
@@ -191,7 +191,7 @@ class Fun(commands.Cog):
                     key += k
                 else:
                     x = False
-        except:
+        except Exception:
             key = "None"
 
         starting_msg = f"hacking member: {member}"
@@ -298,7 +298,7 @@ class Fun(commands.Cog):
                         y = await ctx.guild.create_custom_emoji(name=name, image=k.read())
 
                         await ctx.reply(f"{y} has been added!")
-                except:
+                except Exception:
 
                     with open(f"./emojis/{name}.gif", "rb") as k:
 

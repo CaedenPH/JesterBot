@@ -317,17 +317,17 @@ class Event(commands.Cog):
                         await msg12.delete()
                         try:
                             await message.clear_reactions()
-                        except:
+                        except Exception:
                             pass
                     else:
                         try:
                             await message.clear_reactions()
-                        except:
+                        except Exception:
                             pass
             except asyncio.TimeoutError:
                 try:
                     await message.clear_reactions()
-                except:
+                except Exception:
                     pass
 
         if message.content in [

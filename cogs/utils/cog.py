@@ -323,7 +323,7 @@ class Utils(commands.Cog):
 
         try:
             await ctx.reply(x)
-        except:
+        except Exception:
             pass
 
     @commands.command(aliases=["eval1", "e1"], description="run code", hidden=True)
@@ -332,7 +332,7 @@ class Utils(commands.Cog):
 
         try:
             await ctx.reply(x)
-        except:
+        except Exception:
             pass
 
     @commands.command(description="run code", hidden=True, aliases=["e"])
@@ -340,7 +340,7 @@ class Utils(commands.Cog):
         x = await run_eval(ctx, code)
         try:
             await ctx.reply(x)
-        except:
+        except Exception:
             pass
 
     @commands.command(aliases=["tinyurl", "shorten"])

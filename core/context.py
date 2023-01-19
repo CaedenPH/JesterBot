@@ -113,7 +113,7 @@ class Context(Context):
 
             loop = asyncio.get_running_loop()
             loop.create_task(reaction_task(msg, self, kwargs))
-        except:
+        except Exception:
             pass
         return msg
 
@@ -170,6 +170,6 @@ class Context(Context):
 
             loop = asyncio.get_running_loop()
             loop.create_task(reaction_task(msg, self, kwargs))
-        except:
+        except Exception:
             pass
         return msg

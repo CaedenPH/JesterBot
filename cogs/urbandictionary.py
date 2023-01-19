@@ -31,7 +31,7 @@ Link: {dictionary['permalink']}"""
             json = await resp.json()
             try:
                 output = self.parse_dict(json["list"][0])
-            except:
+            except Exception:
                 output = "That doesnt exist in the urban dictionary"
 
         await ctx.reply(output)

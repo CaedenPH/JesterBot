@@ -498,7 +498,7 @@ class Misc(commands.Cog):
 
         try:
             await m.delete()
-        except:
+        except Exception:
             pass
         finally:
             await ctx.reply(

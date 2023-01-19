@@ -103,7 +103,7 @@ async def run_precheck(bot: Bot, message: Message) -> None:
                 if message.author.id != 828363172717133874:
                     try:
                         await message.delete()
-                    except:
+                    except Exception:
                         pass
 
 

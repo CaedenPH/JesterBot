@@ -193,7 +193,7 @@ async def error_handler(ctx, error) -> None:
                         embed.set_footer()
                         return await msg.edit(embed=embed)
 
-        except:
+        except Exception:
             pass
     elif isinstance(error, MemberNotFound):
         embed = disnake.Embed(

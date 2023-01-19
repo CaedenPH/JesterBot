@@ -117,7 +117,7 @@ class Love(commands.Cog):
         ).lower()
         try:
             await send_embed(ctx, "That isnt a name...")
-        except:
+        except Exception:
             first_letter1 = received_msg[:1]
             last_letter1 = received_msg[-1:]
             first_letter2 = received_msg1[:1]
