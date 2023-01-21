@@ -81,7 +81,7 @@ class HelpUtils:
                 name=" ❯❯ Alias",
                 value=f"{', '.join(f'`{k}`' for k in command.aliases if command.aliases)} "
                 if command.aliases
-                else f"`none`",
+                else "`none`",
                 inline=False,
             )
             .add_field(

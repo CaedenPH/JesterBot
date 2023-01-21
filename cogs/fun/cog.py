@@ -147,7 +147,7 @@ class Fun(commands.Cog):
             return await send_embed(
                 ctx,
                 f"{username}",
-                f"""
+                """
                 **All names:**
                 - {l}
 
@@ -204,14 +204,14 @@ class Fun(commands.Cog):
         msg_loop = [
             "\nexec hack.",
             "..",
-            f"\npass credentials through mainstream..." f"\nname: '{member}'",
+            "\npass credentials through mainstream..." f"\nname: '{member}'",
             f"\nping : {self.bot.latency * 1000}",
             f"\nraise bot account: {member.bot}",
             f"\nawait object(): '{member.display_avatar}'",
             "\nstatus: ",
             f"{member.status}",
             "\nclass User: True",
-            f"\ngetattr of class User" f"\nactivity: '{key}'",
+            "\ngetattr of class User" f"\nactivity: '{key}'",
             f"\naccount created at: {member.created_at}",
             f"\neval discriminator: {member.discriminator} {member.id}",
             f"\njoined at: {member.joined_at}",
@@ -300,7 +300,7 @@ class Fun(commands.Cog):
                         await ctx.reply(f"{y} has been added!")
                 except Exception:
 
-                    with open(f"./emojis/{name}.gif", "rb") as k:
+                    with open(f"./emojis/{name}.gi", "rb") as k:
 
                         y = await ctx.guild.create_custom_emoji(name=name, image=k.read())
 

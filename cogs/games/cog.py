@@ -170,7 +170,7 @@ class Games(Cog):
 
         (reaction, user) = await self.bot.wait_for("reaction_add", check=check)
 
-        embed = Embed(title=f"Baited", colour=get_colour())
+        embed = Embed(title="Baited", colour=get_colour())
         await msg.edit(embed=embed)
 
     @command(

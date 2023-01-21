@@ -157,7 +157,7 @@ class Misc(commands.Cog):
         embed = disnake.Embed(title="Stats", colour=get_colour())
         embed.add_field(
             name="Server statistics",
-            value=f"""
+            value="""
     Text Channels: {len(ctx.guild.text_channels)}
     Voice Channels: {len(ctx.guild.voice_channels)}
     Total Channels: {len(ctx.guild.text_channels) + len(ctx.guild.voice_channels)}
@@ -268,7 +268,7 @@ class Misc(commands.Cog):
 
             embed = disnake.Embed(title="Suggestion", colour=get_colour())
             embed1 = disnake.Embed(
-                title=f"What is the title of your suggestion? Type end at any point to stop and type title to remove the description",
+                title="What is the title of your suggestion? Type end at any point to stop and type title to remove the description",
                 colour=get_colour(),
             )
             x = await ctx.reply(embed=embed1)
@@ -285,7 +285,7 @@ class Misc(commands.Cog):
             if received_msg not in ["end", "title"]:
                 msg1 = received_msg
                 embed2 = disnake.Embed(
-                    title=f"What is the description of your suggestion? Type end at any point to stop",
+                    title="What is the description of your suggestion? Type end at any point to stop",
                     colour=get_colour(),
                 )
                 y = await ctx.reply(embed=embed2)
@@ -341,7 +341,7 @@ class Misc(commands.Cog):
                 await ctx.reply(embed=embed3)
             else:
                 embed2 = disnake.Embed(
-                    title=f"What is the Title of your suggestion? Type end at any point to stop",
+                    title="What is the Title of your suggestion? Type end at any point to stop",
                     colour=get_colour(),
                 )
                 y = await ctx.reply(embed=embed2)
@@ -479,10 +479,10 @@ class Misc(commands.Cog):
     @commands.command(aliases=["zip"])
     async def zipemojis(self, ctx: Context):
         if len(ctx.guild.emojis) == 0:
-            return await ctx.em(f"Your server doesn't have any custom emojis.")
+            return await ctx.em("Your server doesn't have any custom emojis.")
 
         m = await ctx.em(
-            f"Alright! Zipping all emojis owned by this server for you, This can take some time"
+            "Alright! Zipping all emojis owned by this server for you, This can take some time"
         )
         buf = BytesIO()
 
@@ -491,7 +491,7 @@ class Misc(commands.Cog):
                 for emoji in ctx.guild.emojis:
                     _bytes = await emoji.read()
                     f.writestr(
-                        f'{emoji.name}.{"gif" if emoji.animated else "png"}', _bytes
+                        f'{emoji.name}.{"gi" if emoji.animated else "png"}', _bytes
                     )
 
             buf.seek(0)

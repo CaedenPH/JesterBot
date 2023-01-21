@@ -70,7 +70,7 @@ class Feedback(commands.Cog):
         ) else await send_embed(
             ctx,
             "",
-            f"\n".join(
+            "\n".join(
                 [
                     f"`{num}`: {data['feedback']['message'][num]}"
                     for num, k in enumerate(data["feedback"]["id"])
@@ -101,7 +101,7 @@ class Feedback(commands.Cog):
             "",
             f"You are now connected to **{ctx.author}** in **{ctx.guild}** with channel id of **{ctx.channel.id}**",
         )
-        await chan.send(f"<@521226389559443461> - <@298043305927639041>")
+        await chan.send("<@521226389559443461> - <@298043305927639041>")
 
     @commands.command(aliases=["closedial", "endsupport", "enddial", "dialend", "hangup"])
     async def closesupport(self, ctx: Context, chan=""):

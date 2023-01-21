@@ -31,7 +31,7 @@ class Event(commands.Cog):
         t = self.bot.get_emoji(863313855399329812)
         embed = disnake.Embed(
             title=f"{j}{e}{s}{t}{e}{r}",
-            description=f"""
+            description="""
         │ **My prefix is:** `j.` │
         │ Type `j.server_prefix <prefix>, [prefix], etc`
         to change the prefix for the server │
@@ -106,7 +106,7 @@ class Event(commands.Cog):
                                 msg = await channel.send(f"{member.mention}")
                                 await msg.delete()
                                 embed = disnake.Embed(
-                                    title=f"Welcome!",
+                                    title="Welcome!",
                                     description=f"{member.mention} don't forget to type `j.rules` to see the rules for the server, but most of all dont forget to have fun at {member.guild}!",
                                     colour=get_colour(),
                                 )
@@ -240,7 +240,7 @@ class Event(commands.Cog):
                                             )
                                             await msg.delete()
                                             embed = disnake.Embed(
-                                                title=f"Welcome!",
+                                                title="Welcome!",
                                                 description=f"{message.author.mention} don't forget to type `j.rules` to see the rules for the server, but most of all dont forget to have fun at {message.guild}!",
                                                 colour=get_colour(),
                                             )

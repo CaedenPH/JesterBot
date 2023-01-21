@@ -137,7 +137,7 @@ class Button:
         until this button is done. Defaults to ``True``.
     """
 
-    __slots__ = ("emoji", "_action", "_skip_if", "position", "lock")
+    __slots__ = ("emoji", "_action", "_skip_i", "position", "lock")
 
     def __init__(self, emoji, action, *, skip_if=None, position=None, lock=True):
         self.emoji = _cast_emoji(emoji)

@@ -289,7 +289,7 @@ class Levels(commands.Cog):
         )
 
         if result is not None:
-            config = f"""
+            config = """
 **Server id:** `{result[0]}`,
 **RankupChannel id:** `{result[1]}`,
 **Ping:**`{result[2]}`

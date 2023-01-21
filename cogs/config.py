@@ -281,7 +281,7 @@ class Config(Cog):
 
             data = json.load(k)
             if str(channel.id) in data:
-                embed = disnake.Embed(title=f"Already applied!")
+                embed = disnake.Embed(title="Already applied!")
             else:
                 data[str(channel.id)] = {
                     "Yes": True,
@@ -304,7 +304,7 @@ class Config(Cog):
             )
             x = await channel.send(embed=embed1)
             await x.pin()
-            embed = disnake.Embed(title=f"Applied!")
+            embed = disnake.Embed(title="Applied!")
             await ctx.reply(embed=embed)
             await channel.purge(limit=1)
 
@@ -318,7 +318,7 @@ class Config(Cog):
                 if data[key]["Guild"] == ctx.guild.id:
                     del data[key]
                     update_json(k, data)
-                    embed = disnake.Embed(title=f"Removed!", colour=get_colour())
+                    embed = disnake.Embed(title="Removed!", colour=get_colour())
                     return await ctx.reply(embed=embed)
 
             await send_embed(ctx, "There was never a verify!")

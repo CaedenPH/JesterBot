@@ -14,7 +14,7 @@ class JesterJokes(commands.Cog):
         self.bot = bot
 
     @commands.command(
-        aliases=["ranfact", "rf", "randomfact"],
+        aliases=["ranfact", "r", "randomfact"],
         description="""Returns a random fact [ranfact, rf]""",
     )
     async def fact(self, ctx: Context):

@@ -30,7 +30,7 @@ class ChatBot(commands.Cog):
 
     async def get_response(self, message: str, user_id: int) -> typing.Optional[str]:
         async with self.bot.client.get(
-            url=f"https://random-stuff-api.p.rapidapi.com/ai",
+            url="https://random-stuff-api.p.rapidapi.com/ai",
             headers={
                 "authorization": CHATBOT_KEY,
                 "x-rapidapi-key": RAPID_API_KEY,

@@ -210,7 +210,7 @@ class BlackJack(View):
         ).content not in ["1", "11"]:
             if num == 3:
                 return
-            await message.edit(content=f"Send either `1` or  `11`.")
+            await message.edit(content="Send either `1` or  `11`.")
             num += 1
 
         if (

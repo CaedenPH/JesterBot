@@ -29,7 +29,7 @@ class Random(commands.Cog):
             json = await resp.json()
 
         await ctx.em(
-            f"""```yaml
+            """```yaml
     ++  --  Are you bored? -- ++
 [Activity:] {json['activity']}
 [Type:] {json['type']}
@@ -54,7 +54,7 @@ class Random(commands.Cog):
             json = await resp.json()
 
         await ctx.em(
-            f"""```yaml
+            """```yaml
     ++ -- Weather info for {city} -- ++
 [Temperature:]
     - temp : {json['main']['temp']}
@@ -81,7 +81,7 @@ class Random(commands.Cog):
             json = await resp.json()
 
         await ctx.em(
-            f"""```yaml
+            """```yaml
           ++ --  Spacex latest info -- ++
 {pprint.pformat(json)}```"""
         )
@@ -107,7 +107,7 @@ class Random(commands.Cog):
             json = await resp.json()
 
         await ctx.em(
-            f"""```yaml
+            """```yaml
 {json}```"""
         )
 
@@ -135,7 +135,7 @@ class Random(commands.Cog):
             json = await resp.json()
 
         await ctx.em(
-            f"""```yaml
+            """```yaml
 [Trump quote:] {random.choice(json['messages']['personalized'])}```
         """
         )

@@ -94,7 +94,7 @@ class Staff(commands.Cog):
                 if cog[5:] not in ["Misc", "Economy", "Mod"]:
                     self.bot.reload_extension(cog)
             embed = disnake.Embed(colour=get_colour())
-            embed.add_field(name="Reload Extension", value=f"Reloaded cogs successfully")
+            embed.add_field(name="Reload Extension", value="Reloaded cogs successfully")
             print("\n\n\n\nReloaded\n--------------------------------")
             await ctx.reply(embed=embed)
         else:
@@ -157,7 +157,7 @@ class Staff(commands.Cog):
     @commands.command(hidden=True)
     async def close(self, ctx: Context):
 
-        embed = disnake.Embed(title=f"Goodbye", colour=get_colour())
+        embed = disnake.Embed(title="Goodbye", colour=get_colour())
         await ctx.reply(embed=embed)
 
         await self.bot.close()
@@ -600,7 +600,7 @@ class Staff(commands.Cog):
         await send_embed(
             ctx,
             "Error",
-            f"""
+            """
        **error code** : `{errornum}`
         **author** : `{data[errornum]["author"]}`
         **error** : `{data[errornum]["error"]}`
@@ -633,7 +633,7 @@ class Staff(commands.Cog):
         m = await ctx.reply(
             embed=disnake.Embed(
                 title="Error",
-                description=f"""
+                description="""
     **error code** : `{errornum}`
     **author** : `{data[errornum]["author"]}`
     **error** : `{data[errornum]["error"]}`

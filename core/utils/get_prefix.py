@@ -11,7 +11,7 @@ async def create_embed(message: Message, bot) -> Embed:
 
     embed = Embed(
         title=f"Hello {message.author.name}",
-        description=f"""
+        description="""
     │ My default prefix is: `j.` │
     │ My prefix for you is: {', '.join(f"`{k}`" for k in prefix if not k.startswith('<@'))} │
     │ Type `j.prefix <prefix> [prefix], [prefix], etc` to change the prefix for you! │

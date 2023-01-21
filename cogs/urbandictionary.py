@@ -11,7 +11,7 @@ class UrbanDictionary(commands.Cog):
         self.bot = bot
 
     def parse_dict(self, dictionary: dict) -> str:
-        content = f"""
+        content = """
         ++ -- urban search for word {dictionary['word']} -- ++
 
 Definition(s): {dictionary['definition']}
@@ -23,7 +23,7 @@ Downvotes: {dictionary['thumbs_down']}
 
 Link: {dictionary['permalink']}"""
 
-        return f"""```yaml\n{content}```"""
+        return """```yaml\n{content}```"""
 
     @commands.command(aliases=["search", "usearch"])
     async def urban_search(self, ctx: Context, *, query: str) -> None:

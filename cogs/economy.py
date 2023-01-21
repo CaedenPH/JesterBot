@@ -39,7 +39,7 @@ class Economy(commands.Cog):
                 embed.set_author(icon_url=ctx.author.display_avatar.url, name="Shop")
                 embed.add_field(
                     name="\u200b",
-                    value=f"""
+                    value="""
                 **What you can purchase...**
 
                 - Custom role (`j.buy role`), you choose the name and color! - `3000$.`
@@ -67,7 +67,7 @@ class Economy(commands.Cog):
                 try:
 
                     embed1 = disnake.Embed(
-                        description=f"What would you like the name of your role to be",
+                        description="What would you like the name of your role to be",
                         colour=get_colour(),
                     )
                     embed1.set_author(
@@ -85,7 +85,7 @@ class Economy(commands.Cog):
                         ).content
                     ).lower()
                     embed1 = disnake.Embed(
-                        description=f"What would you like the colour of your role to be? [Refer to this](https://www.color-hex.com/) \nAdd 0x infront of the color, e.g 0x4b46cd",
+                        description="What would you like the colour of your role to be? [Refer to this](https://www.color-hex.com/) \nAdd 0x infront of the color, e.g 0x4b46cd",
                         colour=get_colour(),
                     )
                     embed1.set_author(
@@ -107,7 +107,7 @@ class Economy(commands.Cog):
 
                     await ctx.author.add_roles(role)
 
-                    embed1 = disnake.Embed(title=f"Created!", colour=get_colour())
+                    embed1 = disnake.Embed(title="Created!", colour=get_colour())
                     embed1.set_author(
                         name=ctx.author.name, icon_url=ctx.author.display_avatar.url
                     )
@@ -140,7 +140,7 @@ class Economy(commands.Cog):
 
                     update_json(k, data)
                     embed = disnake.Embed(
-                        description=f"You bought a **lucky box**, to use it write `j.open box`",
+                        description="You bought a **lucky box**, to use it write `j.open box`",
                         colour=get_colour(),
                     )
                     await ctx.reply(embed=embed)
@@ -240,7 +240,7 @@ class Economy(commands.Cog):
                         icon_url=ctx.author.display_avatar.url, name="Balance"
                     )
                 else:
-                    embed = disnake.Embed(description=f"You have 0$", colour=get_colour())
+                    embed = disnake.Embed(description="You have 0$", colour=get_colour())
                     embed.set_author(
                         icon_url=ctx.author.display_avatar.url, name="Balance"
                     )
@@ -252,7 +252,7 @@ class Economy(commands.Cog):
                     )
                 else:
                     embed = disnake.Embed(
-                        description=f"They have 0$", colour=get_colour()
+                        description="They have 0$", colour=get_colour()
                     )
 
         await ctx.reply(embed=embed)
@@ -343,7 +343,7 @@ class Economy(commands.Cog):
                         name = data[datas]["Name"]
                 x.append(f"**__{x1}. {name}__:**\n JesterCoins: {item[1]['Bal']}$")
 
-            embed.add_field(name=f"\u200b", value=f"{y.join(x)}", inline=False)
+            embed.add_field(name="\u200b", value=f"{y.join(x)}", inline=False)
 
             await ctx.reply(embed=embed)
 
@@ -636,7 +636,7 @@ class Economy(commands.Cog):
             await send_embed(
                 ctx,
                 "Work",
-                f"""
+                """
 
 
             You just made `{x}` JesterCoins from working as {v}

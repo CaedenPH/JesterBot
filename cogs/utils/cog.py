@@ -188,7 +188,7 @@ class Utils(commands.Cog):
         else:
 
             username = self.bot.get_user(user.id)
-            embed = disnake.Embed(title=f"Avatar", colour=get_colour())
+            embed = disnake.Embed(title="Avatar", colour=get_colour())
             embed.set_author(name=username.name, icon_url=username.display_avatar.url)
             embed.set_image(url=username.display_avatar.url)
             await ctx.reply(embed=embed)

@@ -42,7 +42,7 @@ class Trivia(commands.Cog):
 
         spaces = "".join(" " for i in range(0, 36 - len(", ".join(choices))))
         return (
-            f"""```yaml
+            """```yaml
     ++ -- {re.sub('&.*?;', '', output['question'])} -- ++
 
                 Your choices are:
@@ -147,7 +147,7 @@ class Trivia(commands.Cog):
                     )
 
                     await ctx.em(
-                        f"""```yaml
+                        """```yaml
     ++ -- The answer was {answer.upper()} -- ++
 
 {"[Correct:] " + ', '.join(correct) if correct else "No one got it right!"}

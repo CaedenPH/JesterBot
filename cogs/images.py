@@ -21,7 +21,7 @@ async def img(ctx, member, name):
     url = member.display_avatar.url
 
     if member.display_avatar.is_animated():
-        url = member.display_avatar.url.replace(".gif", ".png")
+        url = member.display_avatar.url.replace(".gi", ".png")
 
     async with ctx.bot.client.get(str(url)) as r:
         f = open(f"./images/{name}.png", "wb")
@@ -40,7 +40,7 @@ async def pilimg(ctx, member, name):
     url: str = member.display_avatar.url
 
     if member.display_avatar.is_animated():
-        url: str = str(member.display_avatar.url).replace(".gif", ".webp")
+        url: str = str(member.display_avatar.url).replace(".gi", ".webp")
 
     path = f"./images/{name}.png"
     async with ctx.bot.client.get(url) as r:
@@ -110,7 +110,7 @@ class Images(commands.Cog):
 
         embed = disnake.Embed(
             title="Nasapic",
-            description=f"""
+            description="""
         **date:** {up[0]['date']} │
         **explanation:** {up[0]['explanation']}
         """,
@@ -134,7 +134,7 @@ class Images(commands.Cog):
     async def randompicture(self, ctx: Context):
         async with ctx.typing():
             async with self.bot.client.get(
-                url=f"https://source.unsplash.com/random"
+                url="https://source.unsplash.com/random"
             ) as response:
                 my_file = open("./images/random.png", "wb")
                 my_file.write(await response.read())
@@ -153,7 +153,7 @@ class Images(commands.Cog):
         ) as ses:
             try:
                 request = await ses.post(
-                    f"https://carbonara-42.herokuapp.com/api/cook",
+                    "https://carbonara-42.herokuapp.com/api/cook",
                     json={"code": code_edited},
                 )
             except Exception as e:

@@ -23,7 +23,7 @@ class Crime(commands.Cog):
             json = await resp.json()
             json = json["items"][item]
 
-        data = f"""
+        data = """
 {"[reward_text:] " + json['reward_text'] if json['reward_text'] else ''}
 {"[eye_color:] " +  json['eyes'] if json['eyes'] else ''}
 {"[nationality:] " + json['nationality'] if json['nationality'] else ''}
@@ -43,7 +43,7 @@ class Crime(commands.Cog):
 """
         data = re.sub("\n{2,}", "\n", data).strip()
         await ctx.em(
-            f"""```yaml
+            """```yaml
     ++ -- wanted criminal {json['title']} -- ++
 
 {data}
@@ -66,7 +66,7 @@ class Crime(commands.Cog):
             re.sub(
                 "\n{2,}",
                 "\n",
-                f"""```yaml
+                """```yaml
     ++ -- Record for {info['name']} -- ++
 
 {"[county_state:] " + info['county_state'] if info['county_state'] else ''}
@@ -97,7 +97,7 @@ class Crime(commands.Cog):
 
         police = ", ".join(json[k]["name"] for k in range(0, len(json)))
         await ctx.em(
-            f"""```yaml
+            """```yaml
         ++ -- All police forces in england -- ++
 
 {police}
@@ -116,7 +116,7 @@ class Crime(commands.Cog):
             return await ctx.em("Invalid location!")
 
         await ctx.em(
-            f"""```yaml
+            """```yaml
     ++ -- coordinates for {poste_code} -- ++
 
 [Longitude:] {json['data'][0]['longitude']}
@@ -153,7 +153,7 @@ class Crime(commands.Cog):
         if not json:
             return await ctx.em("No crime data for that location!")
 
-        content = f"""```yaml
+        content = """```yaml
       ++ -- Stop and search data for {poste_code} -- ++
 
 {pprint.pformat(json)}```"""
@@ -195,7 +195,7 @@ class Crime(commands.Cog):
         if not json:
             return await ctx.em("No crime data for that location!")
 
-        content = f"""```yaml
+        content = """```yaml
       ++ -- Stop and search data for {poste_code} -- ++
 
 {pprint.pformat(json)}```"""

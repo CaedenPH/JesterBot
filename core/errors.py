@@ -197,11 +197,11 @@ async def error_handler(ctx, error) -> None:
             pass
     elif isinstance(error, MemberNotFound):
         embed = disnake.Embed(
-            description=f"They are not a **member!**", colour=get_colour()
+            description="They are not a **member!**", colour=get_colour()
         )
         await ctx.reply(embed=embed)
     elif isinstance(error, RoleNotFound):
-        embed = disnake.Embed(description=f"That is not a **role!**", colour=get_colour())
+        embed = disnake.Embed(description="That is not a **role!**", colour=get_colour())
         await ctx.reply(embed=embed)
 
     elif isinstance(error, CommandOnCooldown):

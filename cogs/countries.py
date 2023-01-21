@@ -48,7 +48,7 @@ class Countries(commands.Cog):
     @commands.command()
     async def findcountry(self, ctx: Context, *, name):
         y = []
-        async with self.bot.client.get(f"https://restcountries.eu/rest/v2/all") as resp:
+        async with self.bot.client.get("https://restcountries.eu/rest/v2/all") as resp:
             x = await resp.json()
             for (num, k) in enumerate(x):
                 if x[num]["name"].lower().startswith(name[:1]):

@@ -93,7 +93,7 @@ class JesterInfo(commands.Cog):
                 else:
                     username = self.bot.get_user(828363172717133874)
                     embed = disnake.Embed(
-                        title=f"**Updates**  \u200b <:Jesterinfo:863075610048987166>",
+                        title="**Updates**  \u200b <:Jesterinfo:863075610048987166>",
                         description="*Everytime there is a new update it will be \nposted here along with a version update!*",
                         colour=get_colour(),
                     )
@@ -168,7 +168,7 @@ class JesterInfo(commands.Cog):
 
                 x.append(f"{item[0]}: {item[1]['score']}")
 
-            embed.add_field(name=f"\u200b", value=f"**{y.join(x)}**", inline=False)
+            embed.add_field(name="\u200b", value=f"**{y.join(x)}**", inline=False)
 
             await ctx.reply(embed=embed)
 
@@ -196,7 +196,7 @@ class JesterInfo(commands.Cog):
                         name = data[datas]["name"]
                 x.append(f"{name}: {item[1]['score']}")
 
-            embed.add_field(name=f"\u200b", value=f"**{y.join(x)}**", inline=False)
+            embed.add_field(name="\u200b", value=f"**{y.join(x)}**", inline=False)
 
             await ctx.reply(embed=embed)
 
@@ -225,7 +225,7 @@ class JesterInfo(commands.Cog):
         embed = (
             disnake.Embed(
                 title="🏓  Pong!",
-                description=f"""\
+                description="""\
 ```yaml
 API      : {round(self.bot.latency*1000)}ms
 Bot      : {round((time2-time1)*1000)}ms
@@ -241,7 +241,7 @@ Database : {round((db_time2-db_time1)*1000)}ms
         await msg.edit(embed=embed)
 
     @commands.command(
-        aliases=["pref", "prefixs", "pre", "prefixes"],
+        aliases=["pre", "prefixs", "pre", "prefixes"],
         description="Change the prefix of the bot for you personally",
     )
     async def prefix(self, ctx: Context, *, prefix=None):
@@ -270,7 +270,7 @@ Database : {round((db_time2-db_time1)*1000)}ms
         designer = self.bot.get_user(427120167361708032)
         embed = disnake.Embed(
             title="Credits",
-            description=f"""
+            description="""
         **Coder:** *{coder.name}*
         **Designer:** *{designer.name}*
         **Helpers:** *{helper.name}*, *{helper2.name}*

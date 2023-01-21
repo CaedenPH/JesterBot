@@ -25,7 +25,7 @@ class Mod(commands.Cog):
     )
     async def delete(self, ctx: Context, channel_id: int = None):
         embed = disnake.Embed(
-            title=f"This will delete the current channel, are you sure you want to procede? Type y if you do",
+            title="This will delete the current channel, are you sure you want to procede? Type y if you do",
             colour=get_colour(),
         )
         await ctx.reply(embed=embed)
@@ -50,7 +50,7 @@ class Mod(commands.Cog):
                 embed = disnake.Embed(title=f"{x} got deleted", colour=get_colour())
                 await ctx.reply(embed=embed)
         else:
-            embed = disnake.Embed(title=f"Goodbye", colour=get_colour())
+            embed = disnake.Embed(title="Goodbye", colour=get_colour())
             await ctx.reply(embed=embed)
 
     @has_permissions(administrator=True)
@@ -85,7 +85,7 @@ class Mod(commands.Cog):
     )
     async def delete_invite(self, ctx: Context, invite: str):
 
-        embed = disnake.Embed(title=f"Deleted invite", colour=get_colour())
+        embed = disnake.Embed(title="Deleted invite", colour=get_colour())
         await ctx.reply(embed=embed)
         await self.bot.delete_invite(invite)
 
@@ -100,7 +100,7 @@ class Mod(commands.Cog):
         await ctx.channel.purge(limit=amount)
         embed = disnake.Embed(
             title="Purge Sucsessful",
-            description=f"Purge has been sucsessful.",
+            description="Purge has been sucsessful.",
             colour=get_colour(),
         )
         embed.add_field(name="Congrats!", value="Your purge has been sucsessful")
@@ -572,7 +572,7 @@ class Mod(commands.Cog):
         )
         if matches:
             embed.add_field(
-                name=f"Other users you might've meant", value=", ".join(matches)
+                name="Other users you might've meant", value=", ".join(matches)
             )
 
         await ctx.reply(embed=embed)
