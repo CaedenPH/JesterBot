@@ -1,4 +1,3 @@
-from .cog import setup
 from .views.blackjack import BlackJack
 from .views.casino import Casino
 from .views.dice import Dice
@@ -8,3 +7,4 @@ from .views.snake import Snake
 from .views.speed_test import SpeedTest
 from .views.sudoku.sudoku import Sudoku
 from .views.wordle import Wordle
+from .cog import setup
