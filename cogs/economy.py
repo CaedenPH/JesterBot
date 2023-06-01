@@ -42,7 +42,7 @@ class Economy(commands.Cog):
                     value="""
                 **What you can purchase...**
 
-                - Custom role (`j.buy role`), you choose the name and color! - `3000$.`
+                - Custom role (`j.buy role`), you choose the name and colour! - `3000$.`
                 - Lucky box! (`j.buy box`), you can buy and open a lucky box that can contain up to 300$! - `200$`
                 - A gun (`j.buy gun`), you can use a gun to steal a huge chunk of someones money! - `2000$`
                 - A bag (`j.buy bag`), the ability to rob someone for a small/medium ammount of money - `500$`
@@ -85,7 +85,7 @@ class Economy(commands.Cog):
                         ).content
                     ).lower()
                     embed1 = disnake.Embed(
-                        description="What would you like the colour of your role to be? [Refer to this](https://www.color-hex.com/) \nAdd 0x infront of the color, e.g 0x4b46cd",
+                        description="What would you like the colour of your role to be? [Refer to this](https://www.colour-hex.com/) \nAdd 0x infront of the colour, e.g 0x4b46cd",
                         colour=get_colour(),
                     )
                     embed1.set_author(

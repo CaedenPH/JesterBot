@@ -12,7 +12,7 @@ def update_json(_file, _data: str) -> None:
 
 
 def get_colour() -> int:
-    with open("./dicts/Color.json") as fp:
+    with open("./dicts/Colour.json") as fp:
         data = json.load(fp)
 
     colour = data["colour"]

@@ -25,7 +25,7 @@ class Crime(commands.Cog):
 
         data = """
 {"[reward_text:] " + json['reward_text'] if json['reward_text'] else ''}
-{"[eye_color:] " +  json['eyes'] if json['eyes'] else ''}
+{"[eye_colour:] " +  json['eyes'] if json['eyes'] else ''}
 {"[nationality:] " + json['nationality'] if json['nationality'] else ''}
 {"[age_range:] " + json['age_range'] if json['age_range'] else ''}
 {"[caution:] " + json['caution'] if json['caution'] else ''}

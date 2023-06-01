@@ -212,7 +212,7 @@ class JesterInfo(commands.Cog):
     async def ping(self, ctx: Context):
         time1 = time.perf_counter()
         msg = await ctx.reply(
-            embed=disnake.Embed(title=f"Pinging... {LOADING}", color=get_colour())
+            embed=disnake.Embed(title=f"Pinging... {LOADING}", colour=get_colour())
         )
         time2 = time.perf_counter()
 
@@ -225,7 +225,7 @@ class JesterInfo(commands.Cog):
         embed = (
             disnake.Embed(
                 title="🏓  Pong!",
-                description="""\
+                description=f"""\
 ```yaml
 API      : {round(self.bot.latency*1000)}ms
 Bot      : {round((time2-time1)*1000)}ms
@@ -241,7 +241,7 @@ Database : {round((db_time2-db_time1)*1000)}ms
         await msg.edit(embed=embed)
 
     @commands.command(
-        aliases=["pre", "prefixs", "pre", "prefixes"],
+        aliases=["prefixs", "pre", "prefixes"],
         description="Change the prefix of the bot for you personally",
     )
     async def prefix(self, ctx: Context, *, prefix=None):
@@ -283,18 +283,18 @@ Database : {round((db_time2-db_time1)*1000)}ms
         await ctx.reply(embed=embed)
 
     @commands.command(
-        aliases=["ccolour"], description="change the color of the embeds!", hidden=True
+        aliases=["color"], description="change the colour of the embeds!", hidden=True
     )
-    async def ccolor(self, ctx: Context, *, colour: int):
+    async def colour(self, ctx: Context, *, colour: int):
         if colour.startswith("0x") and len(colour) != 8:
             embed = disnake.Embed(
                 title="Colour",
-                description="Put `0x` infront of the six letter/number [color](https://www.color-hex.com/)",
+                description="Put `0x` infront of the six letter/number [colour](https://www.colour-hex.com/)",
                 colour=get_colour(),
             )
             return await ctx.reply(embed=embed)
 
-        with open("./dicts/Color.json", "r+") as k:
+        with open("./dicts/Colour.json", "r+") as k:
             data = json.load(k)
             data["colour"] = colour
             update_json(k, data)

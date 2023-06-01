@@ -122,7 +122,7 @@ async def run_executed(ctx: Bot) -> None:
     except TypeError:
         return
 
-    if ctx.command.name == "color":
+    if ctx.command.name == "Colour":
         for cog in tuple(bot.extensions):
             bot.reload_extension(cog)
 

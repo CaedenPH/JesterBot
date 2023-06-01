@@ -137,7 +137,7 @@ coach
 cold
 collection
 college
-color
+Colour
 come
 commercial
 common

@@ -180,29 +180,29 @@ class Random(commands.Cog):
 
         await ctx.reply(embed=embed)
 
-    @commands.command(aliases=["colour"])
-    async def color(self, ctx: Context) -> None:
-        with open("./resources/colors.json") as stream:
+    @commands.command(aliases=["random_color"])
+    async def random_colour(self, ctx: Context) -> None:
+        with open("./resources/Colours.json") as stream:
             data = json.load(stream)
         x = list(data.items())
-        hexcolor = random.choice(x)
+        hex_colour = random.choice(x)
 
         async with ctx.typing():
             async with self.bot.client.get(
-                url=f"https://some-random-api.ml/canvas/colorviewer?hex={hexcolor[1]}"
+                url=f"https://some-random-api.ml/canvas/colourviewer?hex={hex_colour[1]}"
             ) as response:
-                file = open("./images/color.png", "wb")
+                file = open("./images/Colour.png", "wb")
                 file.write(await response.read())
                 file.close()
 
-        file = disnake.File("./images/color.png", filename="color.png")
+        file = disnake.File("./images/Colour.png", filename="Colour.png")
         embed = (
             disnake.Embed(
-                title="Random color",
-                description="`Color name: {0[0]} - Hex color: {0[1]}`".format(hexcolor),
+                title="Random Colour",
+                description="`Colour name: {0[0]} - Hex Colour: {0[1]}`".format(hex_colour),
             )
-            .set_footer(text=f"Out of {len(x)} colors!")
-            .set_image(url="attachment://color.png")
+            .set_footer(text=f"Out of {len(x)} Colours!")
+            .set_image(url="attachment://Colour.png")
         )
         await ctx.reply(embed=embed, file=file)
 

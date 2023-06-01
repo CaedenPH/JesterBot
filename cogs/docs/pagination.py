@@ -355,12 +355,12 @@ class Paginator(RoboPages):
         *,
         per_page: int = 12,
         title: str = "",
-        color=None,
+        Colour=None,
         compact: bool = True,
     ):
         super().__init__(PagMenu(entries, per_page=per_page), ctx=ctx, compact=compact)
-        if color is None:
-            color = disnake.Color.blurple()
-        self.embed = disnake.Embed(colour=color, title=title).set_footer(
+        if Colour is None:
+            Colour = disnake.Colour.blurple()
+        self.embed = disnake.Embed(colour=Colour, title=title).set_footer(
             text="To show a tag, type !tags <tagname>"
         )

@@ -86,7 +86,7 @@ class Staff(commands.Cog):
         )
         await ctx.reply(embed=embed)
 
-    @commands.command(aliases=["r"], hidden=True)
+    @commands.command(hidden=True)
     async def reload(self, ctx: Context, extension=""):
         if not extension:
 

@@ -61,7 +61,7 @@ class Utils(commands.Cog):
                         for res in results[:5]
                     ]
                 ),
-                color=0x489CC4,
+                Colour=0x489CC4,
             )
             .set_footer(
                 text=f"Requested by {ctx.author}", icon_url=ctx.author.display_avatar.url

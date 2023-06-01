@@ -28,7 +28,7 @@ class Meme(View):
     async def meme(self, button: Button, interaction: MessageInteraction) -> None:
         post = random.choice(self.ctx.bot.meme_list)
         embed = (
-            Embed(title=post.title, color=get_colour())
+            Embed(title=post.title, Colour=get_colour())
             .set_image(url=post.url)
             .set_footer(
                 text=f"Requested by {interaction.author.name}",

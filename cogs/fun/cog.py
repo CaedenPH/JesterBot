@@ -62,7 +62,7 @@ class Fun(commands.Cog):
         embed = disnake.Embed(
             title="<:reddit:933846462087987292> Memes <:reddit:933846462087987292>",
             description="Get your daily dose of reddit memes!",
-            color=0x8B008B,
+            Colour=0x8B008B,
         ).set_footer(
             text=f"Requested by {ctx.author.name}", icon_url=ctx.author.display_avatar.url
         )
@@ -74,7 +74,7 @@ class Fun(commands.Cog):
         await img(ctx, member, "glitch")
 
         glitch_img = glitcher.glitch_image(
-            "./images/glitch.png", 2, color_offset=True, gif=True
+            "./images/glitch.png", 2, Colour_offset=True, gif=True
         )
         glitch_img[0].save(
             "./images/glitched.gif",

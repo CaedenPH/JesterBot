@@ -325,17 +325,17 @@ class Images(commands.Cog):
         await ctx.reply(file=disnake.File("./images/invert.png"))
 
     @commands.command(description="""Makes a bright filtered avatar""")
-    async def viewcolor(self, ctx: Context, hexcolor):
+    async def view_colour(self, ctx: Context, hex_colour):
         async with ctx.typing():
             async with self.bot.client.get(
-                url=f"https://some-random-api.ml/canvas/colorviewer?hex={hexcolor}"
+                url=f"https://some-random-api.ml/canvas/colourviewer?hex={hex_colour}"
             ) as response:
 
-                file = open("./images/color.png", "wb")
+                file = open("./images/Colour.png", "wb")
                 file.write(await response.read())
                 file.close()
 
-        await ctx.reply(file=disnake.File("./images/color.png"))
+        await ctx.reply(file=disnake.File("./images/Colour.png"))
 
     @commands.command(aliases=["pic", "imag", "images", "image"])
     async def picture(self, ctx: Context, *, pic):

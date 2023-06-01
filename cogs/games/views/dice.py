@@ -39,7 +39,7 @@ class Dice(View):
         embed = Embed(
             title="<:dicetitle:932727881069641858> Dice <:dicetitle:932727881069641858>",
             description=f"You rolled a: {emoji[random_number]} `{random_number}` {emoji[random_number]}",
-            color=get_colour(),
+            Colour=get_colour(),
         ).set_footer(
             text=f"{interaction.author.name} is playing with some dice | Role count: {self.role_count}",
             icon_url=(interaction.author.display_avatar.url),
