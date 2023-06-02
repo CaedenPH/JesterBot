@@ -52,7 +52,7 @@ class Paginator:
         if len(result) == 1:
             return
 
-        for (pagenum, page) in enumerate(result[1:], start=1):
+        for pagenum, page in enumerate(result[1:], start=1):
             self._pages[str(pagenum)] = {"content": page}
 
         for k in l:

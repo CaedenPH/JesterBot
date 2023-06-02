@@ -4,8 +4,6 @@ from pathlib import Path
 from typing import IO, Any, Iterable
 
 
-
-
 def get_files() -> Iterable[str]:
     """"""
     for root, _, files in os.walk("./"):
@@ -32,11 +30,6 @@ def main():
                     else:
                         json_file.write_text("{}")
                     print(f"Created {json_file}")
-    
-                
-
-
-
 
 
 if __name__ == "__main__":

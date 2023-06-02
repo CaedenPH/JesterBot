@@ -26,7 +26,7 @@ class Random(commands.Cog):
         async with self.bot.client.get(
             url="https://www.boredapi.com/api/activity"
         ) as resp:
-            json = await resp.json()
+            await resp.json()
 
         await ctx.em(
             """```yaml
@@ -41,7 +41,9 @@ class Random(commands.Cog):
 
     @commands.command()
     async def age(self, ctx: Context, name: str) -> None:
-        async with self.bot.client.get(url=f"https://api.agify.io/?name={name}") as resp:
+        async with self.bot.client.get(
+            url=f"https://api.agify.io/?name={name}"
+        ) as resp:
             json = await resp.json()
 
         await ctx.em(f"The bot thinks you are {json['age']} years old!")
@@ -51,7 +53,7 @@ class Random(commands.Cog):
         async with self.bot.client.get(
             url=f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={self.bot.WEATHER_KEY}"
         ) as resp:
-            json = await resp.json()
+            await resp.json()
 
         await ctx.em(
             """```yaml
@@ -78,7 +80,7 @@ class Random(commands.Cog):
         async with self.bot.client.get(
             url="https://api.spacexdata.com/v4/launches/latest"
         ) as resp:
-            json = await resp.json()
+            await resp.json()
 
         await ctx.em(
             """```yaml
@@ -104,7 +106,7 @@ class Random(commands.Cog):
         async with self.bot.client.get(
             url="https://geek-jokes.sameerkumar.website/api"
         ) as resp:
-            json = await resp.json()
+            await resp.json()
 
         await ctx.em(
             """```yaml
@@ -132,7 +134,7 @@ class Random(commands.Cog):
         async with self.bot.client.get(
             url="https://api.whatdoestrumpthink.com/api/v1/quotes"
         ) as resp:
-            json = await resp.json()
+            await resp.json()
 
         await ctx.em(
             """```yaml
@@ -199,7 +201,9 @@ class Random(commands.Cog):
         embed = (
             disnake.Embed(
                 title="Random Colour",
-                description="`Colour name: {0[0]} - Hex Colour: {0[1]}`".format(hex_colour),
+                description="`Colour name: {0[0]} - Hex Colour: {0[1]}`".format(
+                    hex_colour
+                ),
             )
             .set_footer(text=f"Out of {len(x)} Colours!")
             .set_image(url="attachment://Colour.png")

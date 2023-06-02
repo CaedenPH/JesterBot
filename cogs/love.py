@@ -10,7 +10,6 @@ from core.utils import get_colour, send_embed, update_json
 
 class GetUser:
     def __init__(self, file, user="", family=""):
-
         thefile = open(f"./dicts/{file}", "r+")
         thedata = json.load(thefile)
         if user in thedata:
@@ -27,7 +26,6 @@ class GetUser:
         self.append = update_json(thefile, thedata)
 
     def user(self, user=""):
-
         if user in self.data:
             theuser = self.data[str(user)]
 
@@ -39,15 +37,14 @@ class GetUser:
 
 class Love(commands.Cog):
     def __init__(self, bot):
-
         self.bot = bot
 
     @commands.command(help="Pokes the `<member>` specified")
     async def poke(self, ctx: Context, member: disnake.Member = None):
-
         if member is None:
             embed = disnake.Embed(
-                description=f"**{ctx.author.name}** has poked you 😗", colour=get_colour()
+                description=f"**{ctx.author.name}** has poked you 😗",
+                colour=get_colour(),
             )
             await ctx.author.send(embed=embed)
             embed = disnake.Embed(
@@ -57,7 +54,8 @@ class Love(commands.Cog):
             await ctx.reply(embed=embed)
         else:
             embed = disnake.Embed(
-                description=f"**{ctx.author.name}** has poked you 😗", colour=get_colour()
+                description=f"**{ctx.author.name}** has poked you 😗",
+                colour=get_colour(),
             )
             await member.send(embed=embed)
             embed = disnake.Embed(
@@ -69,7 +67,6 @@ class Love(commands.Cog):
     @commands.command(help="Sends a hug to the `<member>` specified")
     async def hug(self, ctx: Context, member: disnake.Member = None):
         if member is None:
-
             embed = disnake.Embed(
                 description=f"**{ctx.author.name}** has given you the gift of a hug 🌷",
                 colour=get_colour(),
@@ -81,7 +78,6 @@ class Love(commands.Cog):
             )
             await ctx.reply(embed=embed)
         else:
-
             embed = disnake.Embed(
                 description=f"**{ctx.author.name}** has given you the gift of a hug 🌷",
                 colour=get_colour(),
@@ -151,7 +147,6 @@ class Love(commands.Cog):
     async def family(self, ctx: Context):
         File = GetUser("Love.json", f"{str(ctx.author.id)}", "marriage")
         if File.family:
-
             embed = disnake.Embed(
                 title="👨 Family 👩",
                 description=f"**{ctx.author.name}** x **{File.family}** \n They have been married since {File.data[str(ctx.author.id)]['since']}",
@@ -206,7 +201,6 @@ class Love(commands.Cog):
                 File.data[str(member.id)]["since"] = str(ctx.message.created_at)
 
             else:
-
                 File.data[str(member.id)] = {
                     "marriage": ctx.author.name,
                     "since": str(ctx.message.created_at),

@@ -41,7 +41,7 @@ class Levels(commands.Cog):
         return (chan, message)
 
     def calculate_xp(self, level):
-        return 100 * (level ** 2)
+        return 100 * (level**2)
 
     def calculate_level(self, xp):
         return round(0.1 * math.sqrt(xp))
@@ -90,7 +90,9 @@ class Levels(commands.Cog):
         draw.ellipse((155, 155, 205, 205), fill="#43B581")
 
         big_font = ImageFont.FreeTypeFont("./core/utils/font/ABeeZee-Regular.otf", 60)
-        medium_font = ImageFont.FreeTypeFont("./core/utils/font/ABeeZee-Regular.otf", 40)
+        medium_font = ImageFont.FreeTypeFont(
+            "./core/utils/font/ABeeZee-Regular.otf", 40
+        )
         small_font = ImageFont.FreeTypeFont("./core/utils/font/ABeeZee-Regular.otf", 30)
 
         text_size = draw.textsize(f"{level}", font=big_font)
@@ -150,7 +152,8 @@ class Levels(commands.Cog):
         pbar_offset_x_1 = bar_offset_x + progress_bar_length
 
         draw.rectangle(
-            (bar_offset_x, bar_offset_y, pbar_offset_x_1, bar_offset_y_1), fill="#11ebf2"
+            (bar_offset_x, bar_offset_y, pbar_offset_x_1, bar_offset_y_1),
+            fill="#11ebf2",
         )
         draw.ellipse(
             (
@@ -237,7 +240,6 @@ class Levels(commands.Cog):
             )
 
             while not channel_msg.raw_channel_mentions and channel_msg.content != "No":
-
                 await ctx.reply(
                     "Please ping the channel you would like to send the message in. An example is <#{}>".format(
                         ctx.channel.id
@@ -258,7 +260,6 @@ class Levels(commands.Cog):
             )
 
             while ping.content not in ["No", "Yes"]:
-
                 await ctx.reply("Type No to not ping on rankup, and Yes to ping.")
                 ping = await self.bot.wait_for(
                     "message", check=lambda m: m.author == ctx.author
@@ -269,11 +270,15 @@ class Levels(commands.Cog):
             result = (ctx.guild.id, channel_msg.raw_channel_mentions[0], ping.content)
             chan = self.bot.get_channel(channel_msg.raw_channel_mentions[0])
 
-            embed = disnake.Embed(title=f"Config channel for {ctx.guild.name}").add_field(
+            embed = disnake.Embed(
+                title=f"Config channel for {ctx.guild.name}"
+            ).add_field(
                 name="\u200b", value=f"**Channel:** {chan}\n**Ping:** {ping.content}"
             )
 
-            await self.bot.db.update("Insert into levels_config values(?, ?, ?)", result)
+            await self.bot.db.update(
+                "Insert into levels_config values(?, ?, ?)", result
+            )
             return await ctx.reply(embed=embed)
 
         await ctx.reply(
@@ -314,7 +319,7 @@ class Levels(commands.Cog):
         )
 
         desc = ""
-        for (k, value) in enumerate(result[::-1], start=1):
+        for k, value in enumerate(result[::-1], start=1):
             desc += f"\n**{k}.** {value[3]}: level **{value[2]}**"
             if k == 10:
                 break

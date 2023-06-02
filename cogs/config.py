@@ -49,9 +49,7 @@ class Config(Cog):
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
         await self.insert_values(channel.id, "joke")
-        await send_embed(
-            ctx, None, channel.mention + " now sends jokes on the hour!"
-        )
+        await send_embed(ctx, None, channel.mention + " now sends jokes on the hour!")
 
     @command()
     @has_permissions(manage_channels=True)
@@ -60,9 +58,7 @@ class Config(Cog):
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
         await self.insert_values(channel.id, "quote")
-        await send_embed(
-            ctx, None, channel.mention + " now sends quotes on the hour!"
-        )
+        await send_embed(ctx, None, channel.mention + " now sends quotes on the hour!")
 
     @command()
     @has_permissions(manage_channels=True)
@@ -71,9 +67,7 @@ class Config(Cog):
             channel = await ctx.guild.create_text_channel(name="Joke Channel")
 
         await self.insert_values(channel.id, "fact")
-        await send_embed(
-            ctx, None, channel.mention + " now sends facts on the hour!"
-        )
+        await send_embed(ctx, None, channel.mention + " now sends facts on the hour!")
 
     @command(
         aliases=["Welcomer", "welcome"],
@@ -83,7 +77,6 @@ class Config(Cog):
     async def welcomechannel(
         self, ctx: Context, role: disnake.Role = "", *, message: str = ""
     ):
-
         with open("./dicts/Welcome.json", "r+") as f:
             data = json.load(f)
             if not role:
@@ -110,7 +103,8 @@ class Config(Cog):
             await ctx.reply(embed=embed)
 
     @command(
-        aliases=["Unwelcome", "Stop_Welcome"], description="Removes the j.welcome command"
+        aliases=["Unwelcome", "Stop_Welcome"],
+        description="Removes the j.welcome command",
     )
     async def remove_welcome(self, ctx: Context):
         with open("./dicts/Welcome.json", "r+") as f:
@@ -130,7 +124,6 @@ class Config(Cog):
         with open("./dicts/Suggest.json", "r+") as k:
             data = json.load(k)
             if str(channel.id) not in data:
-
                 data[str(channel.id)] = {"Yes": True}
                 update_json(k, data)
                 if channel.id != ctx.channel.id:
@@ -187,7 +180,6 @@ class Config(Cog):
             ).content
         ).lower()
         if received_msg != "y":
-
             embed = disnake.Embed(title="Goodbye!", colour=get_colour())
             return await ctx.reply(embed=embed)
 
@@ -198,14 +190,14 @@ class Config(Cog):
                 if "Yes" in data[key]:
                     if data[key]["Yes"]:
                         if data[key]["Guild"] == ctx.guild.id:
-
                             return await ctx.reply("There is already a verify here!")
         if not channel:
             channel = await ctx.guild.create_text_channel(name="⚘ verify ⚘")
         with open("./dicts/VerifyChannel.json", "r+") as k:
             if role is None:
                 await ctx.guild.create_role(
-                    name="⚘ Member ⚘", permissions=disnake.Permissions(send_messages=True)
+                    name="⚘ Member ⚘",
+                    permissions=disnake.Permissions(send_messages=True),
                 )
             membrole = disnake.utils.get(ctx.guild.roles, name="⚘ Member ⚘")
             await ctx.guild.create_role(
@@ -222,7 +214,6 @@ class Config(Cog):
                         read_messages=False,
                     )
                 else:
-
                     await x.set_permissions(
                         membrole,
                         speak=True,
@@ -270,7 +261,6 @@ class Config(Cog):
                                 read_messages=False,
                             )
                         else:
-
                             await z.set_permissions(
                                 g,
                                 speak=True,
@@ -311,7 +301,6 @@ class Config(Cog):
     @command(aliases=["remverify"], description="removes the need for a verification")
     @has_permissions(administrator=True)
     async def removeverify(self, ctx: Context):
-
         with open("./dicts/VerifyChannel.json", "r+") as k:
             data = json.load(k)
             for key in data:
@@ -332,9 +321,10 @@ class Config(Cog):
                     ctx, "Leaving", "This server is already registered!"
                 )
             else:
-
                 if not channel:
-                    channel = await ctx.guild.create_text_channel(name="Leaving Channel")
+                    channel = await ctx.guild.create_text_channel(
+                        name="Leaving Channel"
+                    )
                 data[str(ctx.guild.id)] = {"id": channel.id}
                 update_json(k, data)
         await send_embed(
@@ -345,7 +335,6 @@ class Config(Cog):
     @command()
     async def removeleavechannel(self, ctx: Context, channel: disnake.TextChannel):
         with open("./dicts/LeaveChannel.json", "r+") as k:
-
             data = json.load(k)
             if str(ctx.guild.id) not in data:
                 return await send_embed(

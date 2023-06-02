@@ -4,16 +4,24 @@ import asyncio
 import random
 import typing as t
 
-from disnake import (
-    ButtonStyle, Embed, HTTPException, Message, MessageInteraction
-)
+from disnake import ButtonStyle, Embed, HTTPException, Message, MessageInteraction
 from disnake.ext.tasks import loop
 from disnake.ui import Button, View, button
 
 from core.constants import (
-    BLUE_SQUARE, CLOSE, DOWN_ARROW, GREEN_SQUARE, LEFT_ARROW, PLAY_BUTTON,
-    RIGHT_ARROW, SNAKE_MESSAGE, STOP_SIGN, SWEET, UP_ARROW, VIDEO_GAME,
-    WHITE_SQUARE
+    BLUE_SQUARE,
+    CLOSE,
+    DOWN_ARROW,
+    GREEN_SQUARE,
+    LEFT_ARROW,
+    PLAY_BUTTON,
+    RIGHT_ARROW,
+    SNAKE_MESSAGE,
+    STOP_SIGN,
+    SWEET,
+    UP_ARROW,
+    VIDEO_GAME,
+    WHITE_SQUARE,
 )
 
 _p1 = button(style=ButtonStyle.grey, emoji=BLUE_SQUARE, disabled=True, row=0)
@@ -59,7 +67,12 @@ class SnakeGame:
         self.board_size = board_size
         self.game_mode = game_mode
 
-        self.snake_pos: t.List[t.List[int, int,]] = [
+        self.snake_pos: t.List[
+            t.List[
+                int,
+                int,
+            ]
+        ] = [
             [8, 5],
             [8, 6],
             [8, 7],
@@ -67,7 +80,12 @@ class SnakeGame:
             [8, 9],
             [8, 10],
         ]
-        self.sweet_coords: t.List[t.List[int, int,]] = [
+        self.sweet_coords: t.List[
+            t.List[
+                int,
+                int,
+            ]
+        ] = [
             [random.randint(0, self.board_size), random.randint(0, self.board_size)]
             for _ in range(self.game_mode.active_sweets)
         ]
@@ -312,7 +330,9 @@ class Snake(View):
         )
 
         message = (
-            await self.ctx.bot.wait_for("message", timeout=540, check=self.wait_for_check)
+            await self.ctx.bot.wait_for(
+                "message", timeout=540, check=self.wait_for_check
+            )
         ).lower()
         asyncio.create_task(self.delete_message(message))
 

@@ -21,7 +21,12 @@ class Misc(commands.Cog):
         self.bot = bot
 
     @commands.command(
-        aliases=["channel_stats", "channel_health", "channel_info", "channel_information"]
+        aliases=[
+            "channel_stats",
+            "channel_health",
+            "channel_info",
+            "channel_information",
+        ]
     )
     async def channel_status(self, ctx: Context, channel: disnake.TextChannel = None):
         if not channel:
@@ -105,7 +110,9 @@ class Misc(commands.Cog):
 
         embed = (
             disnake.Embed(
-                title="Information", timestamp=ctx.message.created_at, colour=get_colour()
+                title="Information",
+                timestamp=ctx.message.created_at,
+                colour=get_colour(),
             )
             .set_thumbnail(url=member.display_avatar.url)
             .add_field(name="Name", value=f"{member.name}")
@@ -150,7 +157,6 @@ class Misc(commands.Cog):
 
     @commands.command(aliases=["stat"], description="Sends statistics about the server")
     async def stats(self, ctx: Context):
-
         (members, bots) = [m for m in ctx.guild.members if not m.bot], [
             m for m in ctx.guild.members if m.bot
         ]
@@ -184,7 +190,6 @@ class Misc(commands.Cog):
         if not days:
             days = 1
         if days >= 8:
-
             days = 7
         embed = disnake.Embed(
             description=f"**Thinking**... **processing...**\n**Calculated time it wil take:** {days * 14.6}\n**From:** {member.name}\n**In channel:** {channel}\nIt roughly takes 12 seconds per extra day, hence why you can only loop through 7 days",
@@ -260,12 +265,10 @@ class Misc(commands.Cog):
         description="Follow the instructions and a suggestion will appear",
     )
     async def suggest(self, ctx: Context):
-
         user = ctx.author.id
         username = self.bot.get_user(user)
 
         try:
-
             embed = disnake.Embed(title="Suggestion", colour=get_colour())
             embed1 = disnake.Embed(
                 title="What is the title of your suggestion? Type end at any point to stop and type title to remove the description",
@@ -356,7 +359,6 @@ class Misc(commands.Cog):
                     ).content
                 ).lower()
                 if received_msg1 != "end":
-
                     embed.add_field(name="Title", value=received_msg1, inline=False)
 
                     embed.set_footer(

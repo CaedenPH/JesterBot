@@ -4,7 +4,7 @@ For example, you may be writing a class that takes some magic token (like an API
 ```py
 class Bot:
     def __init__(self, token: str):
-        self._token = token  
+        self._token = token
 
     @classmethod
     def from_config(cls, config: dict) -> Bot:

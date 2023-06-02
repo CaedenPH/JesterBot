@@ -75,7 +75,9 @@ class Images(commands.Cog):
         await ctx.reply(file=disnake.File(x[1]))
 
     @commands.command()
-    async def contrast(self, ctx: Context, factor: float, member: disnake.Member = None):
+    async def contrast(
+        self, ctx: Context, factor: float, member: disnake.Member = None
+    ):
         x = await pilimg(ctx, member, "contrast")
         enhancer = PIL.ImageEnhance.Contrast(x[0])
         enhancer.enhance(factor)
@@ -167,7 +169,6 @@ class Images(commands.Cog):
 
     @commands.command(description="""Sends a wasted filtered avatar""")
     async def wasted(self, ctx: Context, member: disnake.Member = None):
-
         if member is None:
             avatar = ctx.author.display_avatar.with_format("png")
         else:
@@ -177,7 +178,6 @@ class Images(commands.Cog):
             async with self.bot.client.get(
                 url=f"https://some-random-api.ml/canvas/wasted?avatar={avatar}"
             ) as response:
-
                 file = open("./images/wasted.png", "wb")
                 file.write(await response.read())
                 file.close()
@@ -186,7 +186,6 @@ class Images(commands.Cog):
 
     @commands.command(description="""Sends a wasted filtered avatar""")
     async def threshold(self, ctx: Context, member: disnake.Member = None):
-
         if member is None:
             avatar = ctx.author.display_avatar.with_format("png")
         else:
@@ -196,7 +195,6 @@ class Images(commands.Cog):
             async with self.bot.client.get(
                 url=f"https://some-random-api.ml/canvas/threshold/?avatar={avatar}"
             ) as response:
-
                 file = open("./images/threshold.png", "wb")
                 file.write(await response.read())
                 file.close()
@@ -214,7 +212,6 @@ class Images(commands.Cog):
             async with self.bot.client.get(
                 url=f"https://some-random-api.ml/canvas/gay?avatar={avatar}"
             ) as response:
-
                 file = open("./images/gay.png", "wb")
                 file.write(await response.read())
                 file.close()
@@ -232,7 +229,6 @@ class Images(commands.Cog):
             async with self.bot.client.get(
                 url=f"https://some-random-api.ml/canvas/glass?avatar={avatar}"
             ) as response:
-
                 file = open("./images/glass.png", "wb")
                 file.write(await response.read())
                 file.close()
@@ -250,7 +246,6 @@ class Images(commands.Cog):
             async with self.bot.client.get(
                 url=f"https://some-random-api.ml/canvas/triggered?avatar={avatar}"
             ) as response:
-
                 file = open("./images/triggered.png", "wb")
                 file.write(await response.read())
                 file.close()
@@ -268,20 +263,20 @@ class Images(commands.Cog):
             async with self.bot.client.get(
                 url=f"https://some-random-api.ml/canvas/red?avatar={avatar}"
             ) as response:
-
                 file = open("./images/bloody.png", "wb")
                 file.write(await response.read())
                 file.close()
 
         await ctx.reply(file=disnake.File("./images/bloody.png"))
 
-    @commands.command(description="""Sends a YouTube comment with your custom comment""")
+    @commands.command(
+        description="""Sends a YouTube comment with your custom comment"""
+    )
     async def ytcomment(self, ctx: Context, *, comment):
         async with ctx.typing():
             async with self.bot.client.get(
                 url=f"https://some-random-api.ml/canvas/youtube-comment?avatar={ctx.author.display_avatar.with_format('png')}&comment={comment}&username={ctx.author.display_name}"
             ) as response:
-
                 file = open("./images/yt-comment.png", "wb")
                 file.write(await response.read())
                 file.close()
@@ -299,7 +294,6 @@ class Images(commands.Cog):
             async with self.bot.client.get(
                 url=f"https://some-random-api.ml/canvas/brightness?avatar={avatar}"
             ) as response:
-
                 file = open("./images/brightness.png", "wb")
                 file.write(await response.read())
                 file.close()
@@ -317,7 +311,6 @@ class Images(commands.Cog):
             async with self.bot.client.get(
                 url=f"https://some-random-api.ml/canvas/invert?avatar={avatar}"
             ) as response:
-
                 file = open("./images/invert.png", "wb")
                 file.write(await response.read())
                 file.close()
@@ -330,7 +323,6 @@ class Images(commands.Cog):
             async with self.bot.client.get(
                 url=f"https://some-random-api.ml/canvas/colourviewer?hex={hex_colour}"
             ) as response:
-
                 file = open("./images/Colour.png", "wb")
                 file.write(await response.read())
                 file.close()
@@ -343,7 +335,6 @@ class Images(commands.Cog):
             async with self.bot.client.get(
                 "https://source.unsplash.com/1600x900/?{}".format(pic)
             ) as response:
-
                 my_file = open("./images/picture.png", "wb")
                 my_file.write(await response.read())
                 my_file.close()
@@ -356,7 +347,6 @@ class Images(commands.Cog):
         aliases=["animalpic", "animage"],
     )
     async def animalimage(self, ctx: Context, imag=""):
-
         if imag not in ["cat", "dog", "panda", "koala", "fox", "racoon", "kangaroo"]:
             embed = disnake.Embed(
                 title=f"{imag} is not a valid option" if imag else "Options",
@@ -366,7 +356,6 @@ class Images(commands.Cog):
             return await ctx.reply(embed=embed)
 
         async with ctx.typing():
-
             animal = Animals(imag)
 
             embed = disnake.Embed(
@@ -418,7 +407,6 @@ class Images(commands.Cog):
             async with self.bot.client.get(
                 "https://belikebill.ga/billgen-API.php?default=1"
             ) as response:
-
                 file = open("./images/bill.png", "wb")
                 file.write(await response.read())
                 file.close()

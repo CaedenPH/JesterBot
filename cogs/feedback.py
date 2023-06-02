@@ -12,7 +12,6 @@ with open("./dicts/Feedback.json", "r") as k:
 
 class Feedback(commands.Cog):
     def __init__(self, bot):
-
         self.bot = bot
 
     @commands.command()
@@ -30,8 +29,14 @@ class Feedback(commands.Cog):
     async def viewfeedback(
         self,
         ctx: Context,
-        distance: Union[int, str,] = 0,
-        author_from: Union[int, str,] = None,
+        distance: Union[
+            int,
+            str,
+        ] = 0,
+        author_from: Union[
+            int,
+            str,
+        ] = None,
     ):
         await send_embed(
             ctx,
@@ -87,7 +92,9 @@ class Feedback(commands.Cog):
         f = open("./dicts/Dial.json", "r+")
         data = json.load(f)
         if str(ctx.channel.id) in data:
-            return await send_embed(ctx, "", "This is already engaged in a support dial!")
+            return await send_embed(
+                ctx, "", "This is already engaged in a support dial!"
+            )
         data[str(ctx.channel.id)] = True
         update_json(f, data)
         chan = self.bot.get_channel(866598271991545886)
@@ -103,14 +110,15 @@ class Feedback(commands.Cog):
         )
         await chan.send("<@521226389559443461> - <@298043305927639041>")
 
-    @commands.command(aliases=["closedial", "endsupport", "enddial", "dialend", "hangup"])
+    @commands.command(
+        aliases=["closedial", "endsupport", "enddial", "dialend", "hangup"]
+    )
     async def closesupport(self, ctx: Context, chan=""):
         c = self.bot.get_channel(866598271991545886)
         f = open("./dicts/Dial.json", "r+")
         data = json.load(f)
         if chan:
             if ctx.author.id in [521226389559443461, 298043305927639041]:
-
                 if chan in data:
                     del data[chan]
                     update_json(f, data)

@@ -10,7 +10,6 @@ from core.utils.comedy import fact, joke, pickup, quote
 
 class JesterJokes(commands.Cog):
     def __init__(self, bot):
-
         self.bot = bot
 
     @commands.command(
@@ -39,7 +38,6 @@ class JesterJokes(commands.Cog):
         description="The specified member gets insulted",
     )
     async def insult(self, ctx: Context, user: disnake.Member = None):
-
         m = self.bot.get_user(828363172717133874)
         if user is None:
             user = self.bot.get_user(ctx.author.id)
@@ -98,14 +96,15 @@ class JesterJokes(commands.Cog):
         description="Sends a random adjective",
     )
     async def adjective(self, ctx: Context):
-
         async with self.bot.client.get(
             url="https://raw.githubusercontent.com/dariusk/corpora/master/data/words/adjs.json"
         ) as response:
             fox = await response.json()
         foxupdate = fox["adjs"]
 
-        embed = disnake.Embed(title=f"{foxupdate[randint(1, 950)]}", colour=get_colour())
+        embed = disnake.Embed(
+            title=f"{foxupdate[randint(1, 950)]}", colour=get_colour()
+        )
 
         await ctx.reply(embed=embed)
 

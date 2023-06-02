@@ -36,11 +36,11 @@ class Trivia(commands.Cog):
 
         random.shuffle(choices)
         choices = [f"{chr(i)}) {e}" for i, e in enumerate(choices, start=97)]
-        for (i, v) in enumerate(choices):
+        for i, v in enumerate(choices):
             if v.endswith(re.sub("&.*?;", "", output["correct_answer"])):
                 answer = v[0]
 
-        spaces = "".join(" " for i in range(0, 36 - len(", ".join(choices))))
+        "".join(" " for i in range(0, 36 - len(", ".join(choices))))
         return (
             """```yaml
     ++ -- {re.sub('&.*?;', '', output['question'])} -- ++
@@ -61,7 +61,8 @@ class Trivia(commands.Cog):
         await ctx.em(content)
 
         msg = await self.bot.wait_for(
-            "message", check=lambda m: m.channel == ctx.channel and m.author == ctx.author
+            "message",
+            check=lambda m: m.channel == ctx.channel and m.author == ctx.author,
         )
 
         if msg.content.lower() == answer:
@@ -105,7 +106,9 @@ class Trivia(commands.Cog):
                         if not input_dict[msg.author.name]["answer"]:
                             input_dict[msg.author.name]["answer"] = msg.content.lower()
                         if msg.content.lower().startswith("change"):
-                            input_dict[msg.author.name]["answer"] = msg.content[7].lower()
+                            input_dict[msg.author.name]["answer"] = msg.content[
+                                7
+                            ].lower()
 
                     else:
                         input_dict[msg.author.name] = {
@@ -117,7 +120,8 @@ class Trivia(commands.Cog):
                     msg = await self.bot.wait_for(
                         "message",
                         check=lambda m: m.channel == ctx.channel and not m.author.bot,
-                        timeout=30 + (time - datetime.datetime.utcnow()).total_seconds(),
+                        timeout=30
+                        + (time - datetime.datetime.utcnow()).total_seconds(),
                     )
 
             except asyncio.TimeoutError:
@@ -134,16 +138,23 @@ class Trivia(commands.Cog):
                     )
 
                 else:
-                    correct = [k for k in input_dict if input_dict[k]["answer"] == answer]
+                    correct = [
+                        k for k in input_dict if input_dict[k]["answer"] == answer
+                    ]
                     sorted_dict = dict(
                         sorted(
-                            input_dict.items(), key=lambda k: k[1]["score"], reverse=True
+                            input_dict.items(),
+                            key=lambda k: k[1]["score"],
+                            reverse=True,
                         )
                     )
                     for k in correct:
                         input_dict[k]["score"] += 1
-                    leaderboard = "\n".join(
-                        [f"      - {k}: {[input_dict[k]['score']]}" for k in sorted_dict]
+                    "\n".join(
+                        [
+                            f"      - {k}: {[input_dict[k]['score']]}"
+                            for k in sorted_dict
+                        ]
                     )
 
                     await ctx.em(

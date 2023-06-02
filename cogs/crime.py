@@ -61,7 +61,7 @@ class Crime(commands.Cog):
             json = await resp.json()
 
         choice = random.randint(0, len(json["records"]))
-        info = json["records"][choice]
+        json["records"][choice]
         await ctx.em(
             re.sub(
                 "\n{2,}",
@@ -95,7 +95,7 @@ class Crime(commands.Cog):
         ) as resp:
             json = await resp.json()
 
-        police = ", ".join(json[k]["name"] for k in range(0, len(json)))
+        ", ".join(json[k]["name"] for k in range(0, len(json)))
         await ctx.em(
             """```yaml
         ++ -- All police forces in england -- ++

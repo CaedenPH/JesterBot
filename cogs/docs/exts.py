@@ -102,11 +102,13 @@ class RTFM:
 
     async def build_rtfm_lookup_table(self, page_types):
         cache = {}
-        for (key, page) in page_types.items():
+        for key, page in page_types.items():
             cache[key] = {}
             async with self.bot.client.get(page + "/objects.inv") as resp:
                 if resp.status != 200:
-                    raise RuntimeError("Cannot build rtfm lookup table, try again later.")
+                    raise RuntimeError(
+                        "Cannot build rtfm lookup table, try again later."
+                    )
 
                 stream = SphinxObjectFileReader(await resp.read())
                 cache[key] = self.parse_object_inv(stream, page)

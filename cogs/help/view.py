@@ -25,7 +25,10 @@ class Dropdown(disnake.ui.Select):
             )
 
         super().__init__(
-            placeholder="Choose a category.", min_values=1, max_values=1, options=options
+            placeholder="Choose a category.",
+            min_values=1,
+            max_values=1,
+            options=options,
         )
 
     async def callback(self, interaction: disnake.MessageInteraction):

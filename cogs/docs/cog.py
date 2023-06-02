@@ -48,7 +48,9 @@ class Docs(cog.Docs, RTFM):
 
     @commands.command()
     async def pypi(self, ctx: Context, package):
-        embed = disnake.Embed(title="", description="").set_thumbnail(url=self.PYPI_ICON)
+        embed = disnake.Embed(title="", description="").set_thumbnail(
+            url=self.PYPI_ICON
+        )
         async with self.bot.client.get(self.URL.format(package=package)) as response:
             if response.status == 404:
                 embed.description = "Package could not be found."
@@ -68,7 +70,9 @@ class Docs(cog.Docs, RTFM):
                     embed.description = "No summary provided."
 
             else:
-                embed.description = "There was an error when fetching your PyPi package."
+                embed.description = (
+                    "There was an error when fetching your PyPi package."
+                )
         await ctx.reply(embed=embed)
 
     @commands.command(aliases=["tags"])
@@ -102,7 +106,8 @@ class Docs(cog.Docs, RTFM):
         if len(lines) > search:
             return await ctx.reply(
                 embed=disnake.Embed(
-                    title=f"The Zen of Python - Line {search}", description=lines[search]
+                    title=f"The Zen of Python - Line {search}",
+                    description=lines[search],
                 )
             )
 

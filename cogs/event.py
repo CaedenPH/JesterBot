@@ -79,7 +79,6 @@ class Event(commands.Cog):
                 if "Yes" in data[key]:
                     if data[key]["Yes"]:
                         if data[key]["Guild"] == member.guild.id:
-
                             role = disnake.utils.get(
                                 member.guild.roles, id=data[key]["URole id"]
                             )
@@ -91,15 +90,12 @@ class Event(commands.Cog):
             if x == 1:
                 pass
             else:
-
                 with open("./dicts/Welcome.json") as f:
                     loaded = json.load(f)
 
                     if str(member.guild.id) in loaded:
                         if "role" in loaded[str(member.guild.id)]:
-
                             if loaded[str(member.guild.id)]["message"] is None:
-
                                 channel = member.guild.get_channel(
                                     loaded[str(member.guild.id)]["channel_id"]
                                 )
@@ -161,12 +157,10 @@ class Event(commands.Cog):
 
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
-
         if str(before.channel) == f"{member}-channel":
             if not after.channel:
                 return await before.channel.delete()
         if str(after.channel) == "Join to create channel:":
-
             if str(after) != str(before):
                 await after.channel.clone(name=f"{member}-channel")
                 channel = disnake.utils.get(
@@ -186,7 +180,6 @@ class Event(commands.Cog):
 
             if str(message.channel.id) in data:
                 if data[str(message.channel.id)]["Yes"]:
-
                     if message.content != "verify":
                         await message.delete()
                     else:
@@ -195,14 +188,12 @@ class Event(commands.Cog):
                             id=data[str(message.channel.id)]["URole id"],
                         )
                         for roled in message.author.roles:
-
                             if roled.name in role.name:
                                 zx = True
 
                             else:
                                 pass
                         if zx:
-
                             with open("./dicts/Welcome.json") as w:
                                 weldata = json.load(w)
                                 if (
@@ -210,7 +201,6 @@ class Event(commands.Cog):
                                     and weldata[str(message.guild.id)]["Welcome"]
                                 ):
                                     if "role" in weldata[str(message.guild.id)]:
-
                                         role = disnake.utils.get(
                                             message.guild.roles,
                                             id=weldata[str(message.guild.id)]["role"],
@@ -219,7 +209,9 @@ class Event(commands.Cog):
 
                                         role = disnake.utils.get(
                                             message.guild.roles,
-                                            id=data[str(message.channel.id)]["URole id"],
+                                            id=data[str(message.channel.id)][
+                                                "URole id"
+                                            ],
                                         )
 
                                         await message.author.remove_roles(role)
@@ -229,7 +221,6 @@ class Event(commands.Cog):
                                             weldata[str(message.guild.id)]["message"]
                                             is None
                                         ):
-
                                             channel = message.guild.get_channel(
                                                 weldata[str(message.guild.id)][
                                                     "channel_id"
@@ -268,14 +259,17 @@ class Event(commands.Cog):
                                             )
 
                                 else:
-
                                     role = disnake.utils.get(
                                         message.guild.roles,
-                                        id=int(data[str(message.channel.id)]["MRole id"]),
+                                        id=int(
+                                            data[str(message.channel.id)]["MRole id"]
+                                        ),
                                     )
                                     role1 = disnake.utils.get(
                                         message.guild.roles,
-                                        id=int(data[str(message.channel.id)]["URole id"]),
+                                        id=int(
+                                            data[str(message.channel.id)]["URole id"]
+                                        ),
                                     )
                                     await message.author.add_roles(role)
                                     await message.author.remove_roles(role1)
@@ -297,7 +291,6 @@ class Event(commands.Cog):
                 return u == message.author and e.message.id == message.id
 
             try:
-
                 (emoji, user) = await self.bot.wait_for(
                     "reaction_add", timeout=30.0, check=check
                 )
@@ -307,7 +300,9 @@ class Event(commands.Cog):
 
                     msg12 = await message.channel.send(embed=embed)
                     num = 2
-                    await message.remove_reaction(member=message.author, emoji=THUMBS_UP)
+                    await message.remove_reaction(
+                        member=message.author, emoji=THUMBS_UP
+                    )
                     (emoji, user) = await self.bot.wait_for(
                         "reaction_add", timeout=30.0, check=check
                     )

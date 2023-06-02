@@ -6,7 +6,15 @@ from disnake.ext import commands
 
 from core import Context, JesterBot
 from core.constants import (
-    CATEGORIES, COG_DESCRIPTIONS, COG_EMOJIS, E_, J_, LINK, R_, S_, T_
+    CATEGORIES,
+    COG_DESCRIPTIONS,
+    COG_EMOJIS,
+    E_,
+    J_,
+    LINK,
+    R_,
+    S_,
+    T_,
 )
 from core.utils import get_colour
 
@@ -60,7 +68,9 @@ class HelpUtils:
                 name="\u200b\n\u200b",
                 value="\n".join(cogs[i] for i in range(1, len(cogs), 2)),
             )
-            .add_field(name=f"{LINK} **Links:**", value=f"**{self.links}**", inline=False)
+            .add_field(
+                name=f"{LINK} **Links:**", value=f"**{self.links}**", inline=False
+            )
         )
 
     async def main_help(self, ctx: Context) -> None:
@@ -142,11 +152,15 @@ class HelpUtils:
             )
             .add_field(
                 name="\u200b",
-                value="\n".join(commands[i] for i in range(0, len(commands), 2)) if commands else "-"
+                value="\n".join(commands[i] for i in range(0, len(commands), 2))
+                if commands
+                else "-",
             )
             .add_field(
                 name="\u200b",
-                value="\n".join(commands[i] for i in range(1, len(commands), 2)) if commands else "-",
+                value="\n".join(commands[i] for i in range(1, len(commands), 2))
+                if commands
+                else "-",
             )
         )
 
@@ -157,7 +171,16 @@ class Help(commands.Cog):
         self.utils = HelpUtils(bot)
 
     @commands.command(
-        aliases=["h", "commands", "cmd", "command", "?", "helpme", "helpcommand", "cmds"]
+        aliases=[
+            "h",
+            "commands",
+            "cmd",
+            "command",
+            "?",
+            "helpme",
+            "helpcommand",
+            "cmds",
+        ]
     )
     async def help(self, ctx: Context, command=None) -> None:
         if not command:

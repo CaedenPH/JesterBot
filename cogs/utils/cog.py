@@ -14,7 +14,11 @@ from pyMorseTranslator import translator
 
 from core import Context
 from core.constants import (
-    ASCII_DESCRIPTION, CLOSE, GOOGLE_KEY, MORSE_TO_TEXT, TEXT_TO_MORSE
+    ASCII_DESCRIPTION,
+    CLOSE,
+    GOOGLE_KEY,
+    MORSE_TO_TEXT,
+    TEXT_TO_MORSE,
 )
 from core.paginator import Paginator
 from core.utils import get_colour, send_embed
@@ -46,7 +50,9 @@ class Utils(commands.Cog):
     @commands.command()
     async def google(self, ctx: Context, *, query: str):
         try:
-            results = await self.google.search(query, safesearch=True, image_search=False)
+            results = await self.google.search(
+                query, safesearch=True, image_search=False
+            )
         except async_cse.NoResults:
             return await ctx.reply(f"No **Results** found for search **{query}**")
         if not results:
@@ -64,7 +70,8 @@ class Utils(commands.Cog):
                 Colour=0x489CC4,
             )
             .set_footer(
-                text=f"Requested by {ctx.author}", icon_url=ctx.author.display_avatar.url
+                text=f"Requested by {ctx.author}",
+                icon_url=ctx.author.display_avatar.url,
             )
             .set_author(
                 name=ctx.author,
@@ -79,7 +86,6 @@ class Utils(commands.Cog):
             async with self.bot.client.get(
                 f"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={text}"
             ) as response:
-
                 await send_embed(ctx, f"Qr code for {text}", i=response.url)
                 await m.delete()
 
@@ -106,7 +112,8 @@ class Utils(commands.Cog):
         result = simpleeval.simple_eval(math)
         embed = disnake.Embed(colour=get_colour())
         embed.set_footer(
-            text=str(ctx.author) + " | Evaluation", icon_url=ctx.author.display_avatar.url
+            text=str(ctx.author) + " | Evaluation",
+            icon_url=ctx.author.display_avatar.url,
         )
         embed.add_field(
             name="Your expression: ", value=f'```yaml\n"{math}"\n```', inline=False
@@ -130,7 +137,9 @@ class Utils(commands.Cog):
                 ctx, "", f"Too many characters ({len(characters)}/50)"
             )
 
-        def get_info(char: str) -> Tuple[str, str,]:
+        def get_info(
+            char: str,
+        ) -> Tuple[str, str,]:
             digit = f"{ord(char):x}"
             if len(digit) <= 4:
                 u_code = f"\\u{digit:>04}"
@@ -138,7 +147,9 @@ class Utils(commands.Cog):
                 u_code = f"\\U{digit:>08}"
             url = f"https://www.compart.com/en/unicode/U+{digit:>04}"
             name = f"[{unicodedata.name(char, '')}]({url})"
-            info = f"`{u_code.ljust(10)}`: {name} - {disnake.utils.escape_markdown(char)}"
+            info = (
+                f"`{u_code.ljust(10)}`: {name} - {disnake.utils.escape_markdown(char)}"
+            )
             return (info, u_code)
 
         (char_list, raw_list) = zip(*(get_info(c) for c in characters))
@@ -186,7 +197,6 @@ class Utils(commands.Cog):
             await ctx.reply(embed=embed)
 
         else:
-
             username = self.bot.get_user(user.id)
             embed = disnake.Embed(title="Avatar", colour=get_colour())
             embed.set_author(name=username.name, icon_url=username.display_avatar.url)
@@ -217,7 +227,9 @@ class Utils(commands.Cog):
             await ctx.reply(embed=embed)
         except Exception as e:
             embed = disnake.Embed(
-                title="Error", description=f"**TimeZoneError: {e}**", colour=get_colour()
+                title="Error",
+                description=f"**TimeZoneError: {e}**",
+                colour=get_colour(),
             )
             await ctx.reply(embed=embed)
 
@@ -249,13 +261,11 @@ class Utils(commands.Cog):
         p = []
         num = 0
         if not text:
-
             for i in range(1, 256):
                 num += 1
                 if num <= 32:
                     pass
                 else:
-
                     x.append(f"{chr(i)}")
             embed = disnake.Embed(
                 title="Ascii:",
@@ -270,7 +280,6 @@ class Utils(commands.Cog):
 
         z = text.split(" ")
         for c in z:
-
             for t in c:
                 p.append(str(ord(t)))
 
@@ -309,7 +318,6 @@ class Utils(commands.Cog):
                 if len(converted) <= 1998:
                     await send_embed(ctx, "Text ---> Morse", f"```yaml\n{converted}```")
                 else:
-
                     y = await Paginator(ctx)
                     await y.paginate(content=converted, name="Morse/Text")
             except KeyError:

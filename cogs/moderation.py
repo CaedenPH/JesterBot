@@ -15,7 +15,6 @@ from core.utils import create_embed, get_colour, update_json
 
 class Mod(commands.Cog):
     def __init__(self, bot):
-
         self.bot = bot
 
     @has_permissions(administrator=True)
@@ -39,13 +38,10 @@ class Mod(commands.Cog):
             ).content
         ).lower()
         if msg == "y":
-
             if channel_id is None:
-
                 await self.bot.get_channel(self, ctx.channel.id).delete()
 
             else:
-
                 x = await self.bot.get_channel(channel_id).delete()
                 embed = disnake.Embed(title=f"{x} got deleted", colour=get_colour())
                 await ctx.reply(embed=embed)
@@ -56,10 +52,10 @@ class Mod(commands.Cog):
     @has_permissions(administrator=True)
     @commands.command(aliases=["change_nickname"])
     async def change_nick(self, ctx: Context, member: disnake.Member, *, nick):
-
         await member.edit(nick=nick)
         embed = disnake.Embed(
-            description=f"Nickname was changed for {member.mention} ", colour=get_colour()
+            description=f"Nickname was changed for {member.mention} ",
+            colour=get_colour(),
         )
         await ctx.reply(embed=embed)
 
@@ -84,7 +80,6 @@ class Mod(commands.Cog):
         ],
     )
     async def delete_invite(self, ctx: Context, invite: str):
-
         embed = disnake.Embed(title="Deleted invite", colour=get_colour())
         await ctx.reply(embed=embed)
         await self.bot.delete_invite(invite)
@@ -96,7 +91,6 @@ class Mod(commands.Cog):
         description="Purges the ammount of messages sent",
     )
     async def _purge(self, ctx: Context, amount=80):
-
         await ctx.channel.purge(limit=amount)
         embed = disnake.Embed(
             title="Purge Sucsessful",
@@ -114,7 +108,6 @@ class Mod(commands.Cog):
     async def ban(
         self, ctx: Context, member: disnake.Member, *, reason="No reason provided"
     ):
-
         await member.send("You have been banned: " + reason)
         await member.ban(reason=reason)
         embed = disnake.Embed(
@@ -131,7 +124,6 @@ class Mod(commands.Cog):
         description="Unbans the specified member - Reason goes in the audit log",
     )
     async def unban(self, ctx: Context, user_id: int, *, reason="No reason provided"):
-
         user = await ctx.bot.fetch_user(user_id)
         await ctx.guild.unban(user, reason=reason)
         embed = disnake.Embed(
@@ -144,7 +136,6 @@ class Mod(commands.Cog):
     @has_permissions(manage_roles=True)
     @commands.command(aliases=["add", "+role", "add_role"])
     async def addrole(self, ctx: Context, member: disnake.Member, role: disnake.Role):
-
         await member.add_roles(role)
         embed = disnake.Embed(
             title="Addrole",
@@ -176,7 +167,6 @@ class Mod(commands.Cog):
         embed = disnake.Embed(title="Working....", colour=get_colour())
         x = await ctx.reply(embed=embed)
         for channel in ctx.guild.text_channels:
-
             async for c in channel.history(limit=limit):
                 if c.author == user:
                     await c.delete()
@@ -204,7 +194,6 @@ class Mod(commands.Cog):
         prefix = prefix.split(" ")
 
         if prefix:
-
             with open("./dicts/prefixes.json", "r+") as e:
                 data = json.load(e)
                 if str(ctx.guild.id) in data:
@@ -231,7 +220,6 @@ class Mod(commands.Cog):
     async def kick(
         self, ctx: Context, member: disnake.Member, *, reason="No reason provided"
     ):
-
         await member.send("You have been kicked: " + reason)
         await member.kick(reason=reason)
         embed = disnake.Embed(
@@ -248,7 +236,6 @@ class Mod(commands.Cog):
     )
     @has_permissions(manage_messages=True)
     async def permreactmute(self, ctx: Context, member: disnake.Member, *, reason=None):
-
         guild = ctx.guild
         mutedRole = disnake.utils.get(guild.roles, name="ReactMuted")
 
@@ -279,7 +266,6 @@ class Mod(commands.Cog):
     @commands.command(description="Indefinitely mutes the member from sending messages")
     @has_permissions(manage_messages=True)
     async def permmute(self, ctx: Context, member: disnake.Member, *, reason=None):
-
         guild = ctx.guild
         mutedRole = disnake.utils.get(guild.roles, name="Muted")
 
@@ -295,7 +281,9 @@ class Mod(commands.Cog):
                     read_messages=True,
                 )
         embed = disnake.Embed(
-            title="Muted", description=f"{member.mention} was muted ", colour=get_colour()
+            title="Muted",
+            description=f"{member.mention} was muted ",
+            colour=get_colour(),
         )
         embed.add_field(name="Reason:", value=reason, inline=False)
         await ctx.reply(embed=embed)
@@ -307,7 +295,6 @@ class Mod(commands.Cog):
     )
     @has_permissions(manage_messages=True)
     async def unreactmute(self, ctx: Context, member: disnake.Member, *, reason=None):
-
         guild = ctx.guild
 
         Reactmuted = disnake.utils.get(guild.roles, name="ReactMuted")
@@ -321,7 +308,6 @@ class Mod(commands.Cog):
             await ctx.reply(embed=embed)
 
         else:
-
             embed = disnake.Embed(
                 title="Unmuted",
                 description=f"{member.mention} was unmuted",
@@ -337,7 +323,6 @@ class Mod(commands.Cog):
     @commands.command(aliases=["unmut"], description="Unmutes `<member>`")
     @has_permissions(manage_messages=True)
     async def unmute(self, ctx: Context, member: disnake.Member, *, reason=None):
-
         guild = ctx.guild
         Reactmuted = disnake.utils.get(guild.roles, name="Muted")
 
@@ -350,7 +335,6 @@ class Mod(commands.Cog):
             await ctx.reply(embed=embed)
 
         else:
-
             embed = disnake.Embed(
                 title="Unmuted",
                 description=f"{member.mention} was unmuted",
@@ -369,9 +353,7 @@ class Mod(commands.Cog):
     )
     @has_permissions(manage_messages=True)
     async def mute(self, ctx: Context, member: disnake.Member, time, *, reason=None):
-
         async with ctx.typing():
-
             if not reason:
                 reason = "No reason given"
 
@@ -443,7 +425,6 @@ class Mod(commands.Cog):
     async def reactmute(
         self, ctx: Context, member: disnake.Member, time, *, reason="no reason"
     ):
-
         try:
             seconds = time[:-1]
             duration = time[-1]
@@ -456,7 +437,9 @@ class Mod(commands.Cog):
             elif duration == "d":
                 seconds = seconds * 86400
             else:
-                embed = disnake.Embed(title="Invalid duration input", colour=get_colour())
+                embed = disnake.Embed(
+                    title="Invalid duration input", colour=get_colour()
+                )
                 await ctx.reply(embed=embed)
                 return
         except Exception:
@@ -497,7 +480,6 @@ class Mod(commands.Cog):
         description="Gives every member in the guild the specified role",
     )
     async def give_roles(self, ctx: Context, role: disnake.Role):
-
         embed = disnake.Embed(title="Working...", colour=get_colour())
         await ctx.reply(embed=embed)
         role = disnake.utils.get(ctx.guild.roles, id=role.id)
@@ -510,10 +492,8 @@ class Mod(commands.Cog):
         description="Sends a list of all the server roles and positions (hierachy)"
     )
     async def showroles(self, ctx: Context):
-
         x = ""
         for role in ctx.guild.roles:
-
             if role.name != "@everyone":
                 x += f"`{role.name} - {role.position}` \n"
 
@@ -541,7 +521,6 @@ class Mod(commands.Cog):
 
     @commands.command()
     async def position(self, ctx: Context, member: disnake.Member):
-
         x = []
         for role in member.roles:
             if role.position != 0:
@@ -555,13 +534,18 @@ class Mod(commands.Cog):
         self,
         ctx: Context,
         member: disnake.Member,
-        duration: typing.Union[float, datetime.timedelta,] = 3600,
+        duration: typing.Union[
+            float,
+            datetime.timedelta,
+        ] = 3600,
         reason: str = "No reason provided",
     ) -> None:
         embed = disnake.Embed(
             timestamp=ctx.message.created_at,
             description=f"You timed out {member} for {duration} seconds! Thats {duration / 3600} hours.",
-        ).set_author(name=f"timeout for {member}", icon_url=ctx.author.display_avatar.url)
+        ).set_author(
+            name=f"timeout for {member}", icon_url=ctx.author.display_avatar.url
+        )
 
         try:
             await member.timeout(duration=duration, reason=reason)

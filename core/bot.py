@@ -7,13 +7,23 @@ from typing import List
 
 import aiohttp
 from disnake import (
-    Activity, ActivityType, AllowedMentions, Intents, Message, __version__
+    Activity,
+    ActivityType,
+    AllowedMentions,
+    Intents,
+    Message,
+    __version__,
 )
 from disnake.ext.commands import Bot, when_mentioned_or
 from disnake.ext.tasks import loop
 
 from .constants import (
-    BOT_TOKEN, CHATBOT_KEY, COORDS_KEY, RAPID_API_KEY, REDDIT, WEATHER_KEY
+    BOT_TOKEN,
+    CHATBOT_KEY,
+    COORDS_KEY,
+    RAPID_API_KEY,
+    REDDIT,
+    WEATHER_KEY,
 )
 from .context import Context
 from .database import Database
@@ -105,14 +115,17 @@ class JesterBot(Bot):
 
     @loop(seconds=60)
     async def log_data(self) -> None:
-        await self.db.update("INSERT INTO general_data VALUES (?, ?, ?, ?, ?, ?)", (
-            datetime.datetime.utcnow().isoformat(),
-            self.latency * 1000,
-            len(self.users),
-            len(self.guilds),
-            len([c for c in self.get_all_channels()]),
-            __version__
-        ))
+        await self.db.update(
+            "INSERT INTO general_data VALUES (?, ?, ?, ?, ?, ?)",
+            (
+                datetime.datetime.utcnow().isoformat(),
+                self.latency * 1000,
+                len(self.users),
+                len(self.guilds),
+                len([c for c in self.get_all_channels()]),
+                __version__,
+            ),
+        )
 
     @log_data.before_loop
     async def log_data_pre(self) -> None:
@@ -129,7 +142,7 @@ class JesterBot(Bot):
             "SELECT channel_id, channel_types FROM channels_config"
         )
 
-        for (channel_id, channel_types) in result:
+        for channel_id, channel_types in result:
             channel = self.get_channel(channel_id)
 
             types = channel_types.split(" | ")

@@ -42,7 +42,7 @@ class Fun(commands.Cog):
         result = await vid.next()
 
         formatted = []
-        for (iteration, item) in enumerate(result["result"], start=1):
+        for iteration, item in enumerate(result["result"], start=1):
             formatted.append(f"**{iteration}**: [{item['title']}]({item['link']})")
 
         embed = disnake.Embed(
@@ -52,7 +52,8 @@ class Fun(commands.Cog):
         )
 
         embed.set_author(
-            name=f"Youtube searches for {query}: ", icon_url=ctx.author.display_avatar.url
+            name=f"Youtube searches for {query}: ",
+            icon_url=ctx.author.display_avatar.url,
         )
         embed.set_footer(text=f"Requested by {ctx.author}")
         await ctx.reply(embed)
@@ -64,7 +65,8 @@ class Fun(commands.Cog):
             description="Get your daily dose of reddit memes!",
             Colour=0x8B008B,
         ).set_footer(
-            text=f"Requested by {ctx.author.name}", icon_url=ctx.author.display_avatar.url
+            text=f"Requested by {ctx.author.name}",
+            icon_url=ctx.author.display_avatar.url,
         )
 
         await ctx.reply(embed=embed, view=Meme(ctx))
@@ -88,7 +90,6 @@ class Fun(commands.Cog):
 
     @commands.command(aliases=["art"])
     async def asciiart(self, ctx: Context, *, text: str):
-
         if len(text) > 10:
             return await send_embed(
                 ctx, "", f"{CLOSE} Length of Text cannot be more than 10 Characters!"
@@ -143,7 +144,7 @@ class Fun(commands.Cog):
                         f"**{fox['name_history'][t]['name']}** - {fox['name_history'][t]['changedToAt']}"
                     )
                     t += 1
-                l = "\n - ".join(my_list)
+                "\n - ".join(my_list)
             return await send_embed(
                 ctx,
                 f"{username}",
@@ -165,14 +166,12 @@ class Fun(commands.Cog):
             if k == " ":
                 list.append(" ")
             else:
-
                 list.append(f":regional_indicator_{k}:")
 
         await send_embed(ctx, "Name in emojis...", "".join(list))
 
     @commands.command(description="Fake hacks the specified member")
     async def hack(self, ctx: Context, member: disnake.Member = None):
-
         x = False
         key = ""
 
@@ -183,11 +182,9 @@ class Fun(commands.Cog):
             for k in str(act):
                 for l in ("'", "`"):
                     if k == l:
-
                         x = True
                         break
                 if not x:
-
                     key += k
                 else:
                     x = False
@@ -231,14 +228,11 @@ class Fun(commands.Cog):
             "\n    break" f"\n{member.name} has been succesfully hacked.",
         ]
         for k in msg_loop:
-
             for end in (".", "-", ":"):
-
                 if k.endswith(end):
                     new_msg_list += f"{k}"
                     break
                 else:
-
                     new_msg_list += k
                     break
 
@@ -292,17 +286,17 @@ class Fun(commands.Cog):
                 name = n[slide].strip(":")
                 await msg.remove_reaction("✅", member=ctx.author)
                 try:
-
                     with open(f"./emojis/{name}.png", "rb") as k:
-
-                        y = await ctx.guild.create_custom_emoji(name=name, image=k.read())
+                        y = await ctx.guild.create_custom_emoji(
+                            name=name, image=k.read()
+                        )
 
                         await ctx.reply(f"{y} has been added!")
                 except Exception:
-
                     with open(f"./emojis/{name}.gi", "rb") as k:
-
-                        y = await ctx.guild.create_custom_emoji(name=name, image=k.read())
+                        y = await ctx.guild.create_custom_emoji(
+                            name=name, image=k.read()
+                        )
 
                         await ctx.reply(f"{y} has been added!")
 
@@ -315,7 +309,6 @@ class Fun(commands.Cog):
         description="Echo's the message the user sends after sending the command",
     )
     async def echo(self, ctx: Context):
-
         user = self.bot.get_user(ctx.author.id)
         try:
             embed = disnake.Embed(
@@ -346,7 +339,6 @@ class Fun(commands.Cog):
         description="Sends a random number between `<first_number>` and `<second_number>`",
     )
     async def random_num(self, ctx: Context, num1: int, num2: int):
-
         embed = disnake.Embed(title="randomnum", description=randint(num1, num2))
         await ctx.reply(embed=embed)
 
@@ -363,7 +355,6 @@ class Fun(commands.Cog):
         description="Sends heads or tails, 50% chance",
     )
     async def flipcoin(self, ctx: Context):
-
         rand = randint(1, 2)
         if rand == 1:
             coin = "Heads"

@@ -8,14 +8,27 @@ from disnake.ext.commands import Cog, command
 
 from core import Context
 from core.constants import (
-    BLACKJACK_WELCOME, CHECKERED_FLAG, HANGMAN, MINESWEEPER_MESSAGE,
-    SNAKE_MESSAGE, SPEEDTEST_MESSAGE, SUDOKU_MESSAGE, WORDLE_MESSAGE
+    BLACKJACK_WELCOME,
+    CHECKERED_FLAG,
+    HANGMAN,
+    MINESWEEPER_MESSAGE,
+    SNAKE_MESSAGE,
+    SPEEDTEST_MESSAGE,
+    SUDOKU_MESSAGE,
+    WORDLE_MESSAGE,
 )
 from core.utils import get_colour, send_embed
 
 from . import (
-    BlackJack, Casino, Dice, MineSweeper, RussianRoulette, Snake, SpeedTest,
-    Sudoku, Wordle
+    BlackJack,
+    Casino,
+    Dice,
+    MineSweeper,
+    RussianRoulette,
+    Snake,
+    SpeedTest,
+    Sudoku,
+    Wordle,
 )
 
 
@@ -294,7 +307,9 @@ class Games(Cog):
                     if content not in word:
                         guesses_left -= 1
 
-                await msg.edit(content=self.message_content(guesses_left, guesses, word))
+                await msg.edit(
+                    content=self.message_content(guesses_left, guesses, word)
+                )
 
         except asyncio.TimeoutError:
             await ctx.em("You ran out of time!")

@@ -89,7 +89,6 @@ class Staff(commands.Cog):
     @commands.command(hidden=True)
     async def reload(self, ctx: Context, extension=""):
         if not extension:
-
             for cog in tuple(self.bot.extensions):
                 if cog[5:] not in ["Misc", "Economy", "Mod"]:
                     self.bot.reload_extension(cog)
@@ -98,7 +97,6 @@ class Staff(commands.Cog):
             print("\n\n\n\nReloaded\n--------------------------------")
             await ctx.reply(embed=embed)
         else:
-
             self.bot.reload_extension(f"cogs.{extension}")
             embed = disnake.Embed(colour=get_colour())
             embed.add_field(
@@ -109,7 +107,6 @@ class Staff(commands.Cog):
 
     @commands.command(hidden=True)
     async def abort(self, ctx: Context):
-
         await send_embed(ctx, "", "Aborting")
 
         await self.bot.close()
@@ -122,12 +119,10 @@ class Staff(commands.Cog):
             data = json.load(e)
             for k in self.bot.commands:
                 if not k.hidden:
-
                     j += 1
             for k in self.bot.walk_commands():
                 if not k.hidden:
                     if k.name not in data:
-
                         await send_embed(
                             ctx,
                             f"{k}",
@@ -156,7 +151,6 @@ class Staff(commands.Cog):
 
     @commands.command(hidden=True)
     async def close(self, ctx: Context):
-
         embed = disnake.Embed(title="Goodbye", colour=get_colour())
         await ctx.reply(embed=embed)
 
@@ -164,14 +158,12 @@ class Staff(commands.Cog):
 
     @commands.command(hidden=True)
     async def blacklist(self, ctx: Context, user1: int, cmd):
-
         user = self.bot.get_user(user1)
         command = self.bot.get_command(cmd)
         with open("./dicts/Check.json", "r+") as k:
             data = json.load(k)
             if str(user.id) in data:
                 if cmd not in data[str(user.id)]["commands"]:
-
                     data[str(user.id)]["commands"].append(command.name)
             else:
                 data[str(user.id)] = {"commands": [command.name]}
@@ -181,7 +173,6 @@ class Staff(commands.Cog):
 
     @commands.command(hidden=True)
     async def rblacklist(self, ctx: Context, user1: int, cmd):
-
         user = self.bot.get_user(user1)
         command = self.bot.get_command(cmd)
         with open("./dicts/Check.json", "r+") as k:
@@ -195,7 +186,6 @@ class Staff(commands.Cog):
 
     @commands.command(hidden=True)
     async def newup(self, ctx: Context):
-
         try:
             embed = disnake.Embed(title="Version?")
             await ctx.reply(embed=embed)
@@ -341,7 +331,6 @@ class Staff(commands.Cog):
 
     @commands.command(hidden=True)
     async def newver(self, ctx: Context, *, Destroy=""):
-
         if Destroy is None:
             with open("./dicts/Updates.json", "r+") as k:
                 loaded1 = json.load(k)
@@ -378,12 +367,10 @@ class Staff(commands.Cog):
 
     @commands.command(hidden=True)
     async def balded(self, ctx: Context):
-
         with open("./dicts/Bal.json", "r+") as k:
             data = json.load(k)
             await ctx.reply(data)
             for key in data:
-
                 if "Bal" in data[key]:
                     await ctx.reply(key)
 
@@ -391,7 +378,6 @@ class Staff(commands.Cog):
                     if not x:
                         pass
                     else:
-
                         data[key]["Name"] = x.name
 
                         update_json(k, data)
@@ -401,12 +387,10 @@ class Staff(commands.Cog):
 
     @commands.command(hidden=True)
     async def baladd(self, ctx: Context, bal: int):
-
         with open("./dicts/Bal.json", "r+") as k:
             data = json.load(k)
             await ctx.reply(data)
             for key in data:
-
                 if "Bal" in data[key]:
                     await ctx.reply(key)
 
@@ -414,7 +398,6 @@ class Staff(commands.Cog):
                     if not x:
                         pass
                     else:
-
                         data[key]["Bal"] += bal
 
                         update_json(k, data)
@@ -424,9 +407,7 @@ class Staff(commands.Cog):
 
     @commands.command(hidden=True)
     async def removefile(self, ctx: Context, filed, dicte: str):
-
         with open(f"./dicts/{filed}", "r+") as k:
-
             data = json.load(k)
 
             await ctx.reply(data)
@@ -455,7 +436,6 @@ class Staff(commands.Cog):
         if not file1:
             for file1 in os.listdir("./dicts/"):
                 if file1.endswith(".json"):
-
                     x.append(f"`{file1[:-5]}`")
             embed = disnake.Embed(
                 title="Files", description=", ".join(x), colour=get_colour()
@@ -464,20 +444,15 @@ class Staff(commands.Cog):
 
         else:
             if not data1:
-
                 with open(f"./dicts/{file1}.json", "r+") as k:
                     data = json.load(k)
                     the_num = ""
                     for key in data:
-
                         if len(key) == len("483631842554019841"):
                             try:
-
                                 the_num = self.bot.get_user(int(key))
                             except Exception:
-
                                 if not the_num:
-
                                     y.append(f"`{key}` │")
                             else:
                                 y.append(f"`{key}: {the_num}` │")
@@ -500,7 +475,6 @@ class Staff(commands.Cog):
                             update_json(k, data)
 
                     else:
-
                         for key in data:
                             y.append(f"`{key}`")
                         embed = disnake.Embed(description=", ".join(y))
@@ -540,7 +514,6 @@ class Staff(commands.Cog):
 
     @commands.command(hidden=True)
     async def formathelp(self, ctx: Context):
-
         x = 0
         xy = []
         with open("./dicts/Help.json", "r+") as K:
@@ -589,7 +562,6 @@ class Staff(commands.Cog):
         data = json.load(k)
         if not errornum:
             try:
-
                 return await send_embed(ctx, "", ", ".join(e for e in data))
             except Exception:
                 return await send_embed(ctx, "", "All clear!")
@@ -618,7 +590,6 @@ class Staff(commands.Cog):
         data = json.load(k)
         if not errornum:
             try:
-
                 return await send_embed(ctx, "", ", ".join(e for e in data))
             except Exception:
                 return await send_embed(ctx, "", "All clear!")

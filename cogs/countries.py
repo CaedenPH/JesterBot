@@ -50,7 +50,7 @@ class Countries(commands.Cog):
         y = []
         async with self.bot.client.get("https://restcountries.eu/rest/v2/all") as resp:
             x = await resp.json()
-            for (num, k) in enumerate(x):
+            for num, k in enumerate(x):
                 if x[num]["name"].lower().startswith(name[:1]):
                     y.append(x[num]["name"])
         await send_embed(ctx, "Countries relating to " + name, ", ".join(y))

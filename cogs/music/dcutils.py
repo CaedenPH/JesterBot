@@ -178,7 +178,8 @@ def check_queue(ctx, opts, music, after, on_play, loop):
                 disnake.FFmpegPCMAudio(music.queue[ctx.guild.id][0].source, **opts)
             )
             ctx.voice_client.play(
-                source, after=lambda error: after(ctx, opts, music, after, on_play, loop)
+                source,
+                after=lambda error: after(ctx, opts, music, after, on_play, loop),
             )
             song = music.queue[ctx.guild.id][0]
             if on_play:
@@ -198,7 +199,9 @@ def check_queue(ctx, opts, music, after, on_play, loop):
 class Music(object):
     def __init__(self):
         if not has_voice:
-            raise RuntimeError("DiscordUtils[voice] install needed in order to use voice")
+            raise RuntimeError(
+                "DiscordUtils[voice] install needed in order to use voice"
+            )
 
         self.queue = {}
         self.players = []
@@ -234,7 +237,9 @@ class Music(object):
 class MusicPlayer(object):
     def __init__(self, ctx, music, **kwargs):
         if not has_voice:
-            raise RuntimeError("DiscordUtils[voice] install needed in order to use voice")
+            raise RuntimeError(
+                "DiscordUtils[voice] install needed in order to use voice"
+            )
 
         self.ctx = ctx
         self.voice = ctx.voice_client
@@ -332,7 +337,6 @@ class MusicPlayer(object):
         return song
 
     async def skip(self, force=False):
-
         if len(self.music.queue[self.ctx.guild.id]) == 0:
             raise NotPlaying("Cannot loop because nothing is being played")
         elif not len(self.music.queue[self.ctx.guild.id]) > 1 and not force:

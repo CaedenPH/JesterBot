@@ -6,7 +6,12 @@ from disnake.ui import Button, View, button
 
 from core import Context
 from core.constants import (
-    BLACKJACK_HOW_TO, BOOM, CARD_SUITS, CLOSED_LOCK, CONFETTI, HANDSHAKE
+    BLACKJACK_HOW_TO,
+    BOOM,
+    CARD_SUITS,
+    CLOSED_LOCK,
+    CONFETTI,
+    HANDSHAKE,
 )
 from core.utils import get_colour
 
@@ -22,9 +27,7 @@ Hand value: {value}
 class Card:
     def __init__(self, *, suit: str, value: int):
         self._suit = suit + " " + CARD_SUITS[suit]
-        self._name = (
-            f"{special_cards[value] if value in special_cards else value} of {self._suit}"
-        )
+        self._name = f"{special_cards[value] if value in special_cards else value} of {self._suit}"
         self._value = value if value <= 10 else 10
         self._value = self._value if self._value != 1 else 1
 
@@ -40,7 +43,13 @@ class Card:
     def value(self) -> int:
         return self._value
 
-    def change_to(self, value: Union[str, int,]) -> None:
+    def change_to(
+        self,
+        value: Union[
+            str,
+            int,
+        ],
+    ) -> None:
         self._value = int(value)
 
 

@@ -96,8 +96,7 @@ def _cast_emoji(obj, *, _custom_emoji=_custom_emoji):
         return obj
 
     obj = str(obj)
-    match = _custom_emoji.match(obj)
-    if match is not None:
+    if (match := _custom_emoji.match(obj)) is not None:
         groups = match.groupdict()
         animated = bool(groups["animated"])
         emoji_id = int(groups["id"])
@@ -258,7 +257,7 @@ class _MenuMeta(type):
         if inherit_buttons:
             # walk MRO to get all buttons even in subclasses
             for base in reversed(new_cls.__mro__):
-                for (elem, value) in base.__dict__.items():
+                for elem, value in base.__dict__.items():
                     try:
                         value.__menu_button__
                     except AttributeError:
@@ -266,7 +265,7 @@ class _MenuMeta(type):
                     else:
                         buttons.append(value)
         else:
-            for (elem, value) in attrs.items():
+            for elem, value in attrs.items():
                 try:
                     value.__menu_button__
                 except AttributeError:
@@ -325,9 +324,8 @@ class Menu(metaclass=_MenuMeta):
         delete_message_after=False,
         clear_reactions_after=False,
         check_embeds=False,
-        message=None
+        message=None,
     ):
-
         self.timeout = timeout
         self.delete_message_after = delete_message_after
         self.clear_reactions_after = clear_reactions_after
@@ -963,7 +961,9 @@ class MenuPages(Menu):
         return self._source.is_paginating()
 
     async def _get_kwargs_from_page(self, page):
-        value = await disnake.utils.maybe_coroutine(self._source.format_page, self, page)
+        value = await disnake.utils.maybe_coroutine(
+            self._source.format_page, self, page
+        )
         if isinstance(value, dict):
             return value
         elif isinstance(value, str):
@@ -1129,7 +1129,7 @@ class GroupByPageSource(ListPageSource):
         self.__entries = entries if not sort else sorted(entries, key=key)
         nested = []
         self.nested_per_page = per_page
-        for (k, g) in itertools.groupby(self.__entries, key=key):
+        for k, g in itertools.groupby(self.__entries, key=key):
             g = list(g)
             if not g:
                 continue

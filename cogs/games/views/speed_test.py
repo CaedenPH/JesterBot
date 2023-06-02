@@ -2,15 +2,24 @@ import asyncio
 import typing as t
 
 from disnake import (
-    ButtonStyle, Embed, HTTPException, Member, Message, MessageInteraction,
-    SelectOption
+    ButtonStyle,
+    Embed,
+    HTTPException,
+    Member,
+    Message,
+    MessageInteraction,
+    SelectOption,
 )
 from disnake.ui import Button, Item, Select, View, button, select
 from essential_generators import DocumentGenerator
 
 from core.constants import (
-    CHECKERED_FLAG, PLAY_BUTTON, SPEEDTEST_MESSAGE, STOPWATCH, THUMBS_UP,
-    VIDEO_GAME
+    CHECKERED_FLAG,
+    PLAY_BUTTON,
+    SPEEDTEST_MESSAGE,
+    STOPWATCH,
+    THUMBS_UP,
+    VIDEO_GAME,
 )
 from core.context import Context
 

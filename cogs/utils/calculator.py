@@ -85,7 +85,6 @@ class CalculatorView(View):
 
     @button(label="*", style=ButtonStyle.green, row=0)
     async def fourth_button(self, button: Button, interaction: MessageInteraction):
-
         self.embed.description = self.edit_embed(" * ")
         await interaction.response.edit_message(embed=self.embed)
 
@@ -95,7 +94,9 @@ class CalculatorView(View):
         await interaction.response.edit_message(embed=self.embed)
 
     @button(label="4", style=ButtonStyle.grey, row=1)
-    async def row_two_first_button(self, button: Button, interaction: MessageInteraction):
+    async def row_two_first_button(
+        self, button: Button, interaction: MessageInteraction
+    ):
         self.embed.description = self.edit_embed(button.label)
         await interaction.response.edit_message(embed=self.embed)
 
@@ -107,7 +108,9 @@ class CalculatorView(View):
         await interaction.response.edit_message(embed=self.embed)
 
     @button(label="6", style=ButtonStyle.grey, row=1)
-    async def row_two_third_button(self, button: Button, interaction: MessageInteraction):
+    async def row_two_third_button(
+        self, button: Button, interaction: MessageInteraction
+    ):
         self.embed.description = self.edit_embed(button.label)
         await interaction.response.edit_message(embed=self.embed)
 
@@ -119,7 +122,9 @@ class CalculatorView(View):
         await interaction.response.edit_message(embed=self.embed)
 
     @button(label="ˣ", style=ButtonStyle.green, row=1)
-    async def row_two_fifth_button(self, button: Button, interaction: MessageInteraction):
+    async def row_two_fifth_button(
+        self, button: Button, interaction: MessageInteraction
+    ):
         self.embed.description = self.edit_embed(button.label)
         await interaction.response.edit_message(embed=self.embed)
 

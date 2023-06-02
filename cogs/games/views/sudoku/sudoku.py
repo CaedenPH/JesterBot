@@ -4,16 +4,32 @@ import asyncio
 import typing as t
 
 from disnake import (
-    ButtonStyle, Embed, HTTPException, Message, MessageInteraction,
-    SelectOption
+    ButtonStyle,
+    Embed,
+    HTTPException,
+    Message,
+    MessageInteraction,
+    SelectOption,
 )
 from disnake.ui import Button, Item, Select, View, button, select
 
 from core import Context
 from core.constants import (
-    BLACK_BARRIER, BLACK_BORDER, BLACK_CROSS, BLACK_SQUARE, CLOSE, NUMBERS,
-    PLACE_NUMBER, PLAY_BUTTON, RED_NUMBERS, SUDOKU_MESSAGE, VIDEO_GAME,
-    WHITE_BORDER, WHITE_CROSS, WHITE_HORIZONTAL, WHITE_SQUARE
+    BLACK_BARRIER,
+    BLACK_BORDER,
+    BLACK_CROSS,
+    BLACK_SQUARE,
+    CLOSE,
+    NUMBERS,
+    PLACE_NUMBER,
+    PLAY_BUTTON,
+    RED_NUMBERS,
+    SUDOKU_MESSAGE,
+    VIDEO_GAME,
+    WHITE_BORDER,
+    WHITE_CROSS,
+    WHITE_HORIZONTAL,
+    WHITE_SQUARE,
 )
 
 from .generator import SudokuGenerator
@@ -115,7 +131,10 @@ class SudokuBoard:
             for column in range(9):
                 if self.board[row][column].bot:
                     continue
-                if self.board[row][column].user_number != self.board[row][column].number:
+                if (
+                    self.board[row][column].user_number
+                    != self.board[row][column].number
+                ):
                     return False
         return True
 

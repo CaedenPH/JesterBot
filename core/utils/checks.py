@@ -12,7 +12,9 @@ async def suggest(bot: Bot, message: Message) -> None:
     data = {}
     embed = (
         disnake.Embed(colour=get_colour())
-        .set_author(name=message.author.name, icon_url=message.author.display_avatar.url)
+        .set_author(
+            name=message.author.name, icon_url=message.author.display_avatar.url
+        )
         .set_footer(
             text=str(message.created_at)[11:16]
             + " • This suggestion was created by {}".format(message.author.name)
@@ -150,7 +152,6 @@ async def run_executed(ctx: Bot) -> None:
             with open("./dicts/commands_used.json", "r+") as y:
                 update_json(y, data)
         else:
-
             with open("./dicts/commands_used.json", "r+") as y:
                 data[str(ctx.command)]["score"] += 1
                 update_json(y, data)

@@ -1,14 +1,14 @@
 aiosqlite
 animals.py
 art
-asyncpraw
 async_cse
+asyncpraw
 discord-together
 disnake
-disnake_paginator
-disnake-docs
 disnake-debug
+disnake-docs
 disnake-jishaku
+disnake_paginator
 essential-generators
 fuzzywuzzy
 glitch-this

@@ -308,9 +308,7 @@ class SudokuGenerator(SudokuUtils):
                     break
 
             if not built:
-                self.rows: List[List[int]] = [
-                    [0 for _ in range(9)] for __ in range(9)
-                ]
+                self.rows: List[List[int]] = [[0 for _ in range(9)] for __ in range(9)]
                 return False
         return True
 

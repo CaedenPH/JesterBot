@@ -20,7 +20,7 @@ def partial_ratio(a, b):
     blocks = m.get_matching_blocks()
 
     scores = []
-    for (i, j, n) in blocks:
+    for i, j, n in blocks:
         start = max(j - i, 0)
         end = start + len(short)
         o = SequenceMatcher(None, short, long[start:end])
@@ -61,7 +61,7 @@ def partial_token_sort_ratio(a, b):
 
 def _extraction_generator(query, choices, scorer=quick_ratio, score_cutoff=0):
     try:
-        for (key, value) in choices.items():
+        for key, value in choices.items():
             score = scorer(query, key)
             if score >= score_cutoff:
                 yield (key, score, value)

@@ -40,8 +40,9 @@ class JesterInfo(commands.Cog):
         with open("./dicts/Updates.json", "r") as x:
             data = json.load(x)
             for m in data:
-
-                embed = disnake.Embed(title=f"{data[m]['Version']}", colour=get_colour())
+                embed = disnake.Embed(
+                    title=f"{data[m]['Version']}", colour=get_colour()
+                )
                 await ctx.reply(embed=embed)
 
     @commands.command(
@@ -65,7 +66,6 @@ class JesterInfo(commands.Cog):
             data = json.load(x)
 
             for m in data:
-
                 if data[m]["Version"] is None:
                     embed = disnake.Embed(
                         description="Updates is currently being updated, no data to send",
@@ -155,7 +155,9 @@ class JesterInfo(commands.Cog):
         y = "\n"
         with open("./dicts/commands_used.json") as k:
             embed = disnake.Embed(colour=get_colour())
-            embed.set_author(name="Top commands", icon_url=ctx.author.display_avatar.url)
+            embed.set_author(
+                name="Top commands", icon_url=ctx.author.display_avatar.url
+            )
 
             data = json.load(k)
 
@@ -165,7 +167,6 @@ class JesterInfo(commands.Cog):
             sorted_scores = sorted(data.items(), key=get_key, reverse=True)[:11]
 
             for item in sorted_scores:
-
                 x.append(f"{item[0]}: {item[1]['score']}")
 
             embed.add_field(name="\u200b", value=f"**{y.join(x)}**", inline=False)
@@ -192,7 +193,6 @@ class JesterInfo(commands.Cog):
             for item in sorted_scores:
                 for datas in data:
                     if item[0] in datas:
-
                         name = data[datas]["name"]
                 x.append(f"{name}: {item[1]['score']}")
 
@@ -207,7 +207,8 @@ class JesterInfo(commands.Cog):
         )
 
     @commands.command(
-        aliases=["pin", "pingy", "ms", "Latency"], description="Sends the ping of the bot"
+        aliases=["pin", "pingy", "ms", "Latency"],
+        description="Sends the ping of the bot",
     )
     async def ping(self, ctx: Context):
         time1 = time.perf_counter()
@@ -262,12 +263,12 @@ Database : {round((db_time2-db_time1)*1000)}ms
 
     @commands.command(aliases=["devs", "helpers", "coder", "coders"])
     async def credits(self, ctx: Context):
-        coder = self.bot.get_user(298043305927639041)
-        ideas_designer = self.bot.get_user(780555299106586634)
-        helper = self.bot.get_user(483631842554019841)
-        helper2 = self.bot.get_user(652407551849267200)
-        sales = self.bot.get_user(521226389559443461)
-        designer = self.bot.get_user(427120167361708032)
+        self.bot.get_user(298043305927639041)
+        self.bot.get_user(780555299106586634)
+        self.bot.get_user(483631842554019841)
+        self.bot.get_user(652407551849267200)
+        self.bot.get_user(521226389559443461)
+        self.bot.get_user(427120167361708032)
         embed = disnake.Embed(
             title="Credits",
             description="""
@@ -307,7 +308,6 @@ Database : {round((db_time2-db_time1)*1000)}ms
         x = []
         embed = disnake.Embed(colour=get_colour())
         for command in self.bot.commands:
-
             x.append(f"`{command.name}`")
         xnum = 0
         for i in range(0, len(x)):
@@ -316,7 +316,6 @@ Database : {round((db_time2-db_time1)*1000)}ms
                 if i <= 25:
                     embed.add_field(name=i, value=", ".join(x[0:i]), inline=False)
                 else:
-
                     r = i - 25
                     embed.add_field(name=i, value=", ".join(x[r:i]), inline=False)
 
@@ -326,7 +325,6 @@ Database : {round((db_time2-db_time1)*1000)}ms
 
     @commands.command()
     async def serversin(self, ctx: Context):
-
         x = []
         num = 0
         for g in self.bot.guilds:

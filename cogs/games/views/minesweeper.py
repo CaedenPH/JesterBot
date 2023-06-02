@@ -5,15 +5,23 @@ import copy
 import random
 import typing as t
 
-from disnake import (
-    ButtonStyle, Embed, HTTPException, Message, MessageInteraction
-)
+from disnake import ButtonStyle, Embed, HTTPException, Message, MessageInteraction
 from disnake.ui import Button, Item, View, button
 
 from core.constants import (
-    BLACK_BARRIER, BLACK_BORDER, BLACK_SQUARE, BLUE_SQUARE, BOMB, CLOSE,
-    MINESWEEPER_MESSAGE, NUMBERS, PLAY_BUTTON, RED_FLAG, RED_NUMBERS, SPOON,
-    STOP_SIGN
+    BLACK_BARRIER,
+    BLACK_BORDER,
+    BLACK_SQUARE,
+    BLUE_SQUARE,
+    BOMB,
+    CLOSE,
+    MINESWEEPER_MESSAGE,
+    NUMBERS,
+    PLAY_BUTTON,
+    RED_FLAG,
+    RED_NUMBERS,
+    SPOON,
+    STOP_SIGN,
 )
 from core.context import Context
 
@@ -149,7 +157,13 @@ class Board:
 
         self.create_board()
 
-    def create_board(self, ignore: t.List[int, int,] = None) -> None:
+    def create_board(
+        self,
+        ignore: t.List[
+            int,
+            int,
+        ] = None,
+    ) -> None:
         """
         Creates the game board.
 
@@ -181,7 +195,13 @@ class Board:
                         self.get_surrounding_bombs(row, column)
                     )
 
-    def add_bombs(self, ignore: t.List[int, int,] = None) -> None:
+    def add_bombs(
+        self,
+        ignore: t.List[
+            int,
+            int,
+        ] = None,
+    ) -> None:
         """
         Add the bombs to the board in a random fashion.
 
@@ -249,7 +269,13 @@ class Board:
             for column in range(self.board_size):
                 self.board[row][column].discovered = True
 
-    def reveal_zeroes(self, hit: t.List[int, int,]) -> None:
+    def reveal_zeroes(
+        self,
+        hit: t.List[
+            int,
+            int,
+        ],
+    ) -> None:
         """
         Shows the zeroes around the number
         on the first players move.
@@ -435,7 +461,13 @@ class MineSweeper(View):
             and interaction.channel == self.ctx.channel
         )
 
-    async def edit_embed(self, desc: t.Union[str, Board,] = None) -> None:
+    async def edit_embed(
+        self,
+        desc: t.Union[
+            str,
+            Board,
+        ] = None,
+    ) -> None:
         if desc:
             self.embed.description = str(desc)
         if self.board:
@@ -519,7 +551,9 @@ class MineSweeper(View):
                 return
 
     @button(label="Flag", style=ButtonStyle.green, emoji=RED_FLAG, disabled=True, row=0)
-    async def flag_button(self, button: Button, interaction: MessageInteraction) -> None:
+    async def flag_button(
+        self, button: Button, interaction: MessageInteraction
+    ) -> None:
         """
         flag button [2]
 
@@ -577,7 +611,11 @@ class MineSweeper(View):
                 return
 
     @button(
-        label="Resend", style=ButtonStyle.blurple, emoji=BLUE_SQUARE, row=0, disabled=True
+        label="Resend",
+        style=ButtonStyle.blurple,
+        emoji=BLUE_SQUARE,
+        row=0,
+        disabled=True,
     )
     async def resend(self, button: Button, interaction: MessageInteraction) -> None:
         await interaction.response.defer()
@@ -586,7 +624,9 @@ class MineSweeper(View):
         view.bot_message = await self.ctx.send(embed=self.embed, view=view)
 
     @button(label="Play", style=ButtonStyle.green, emoji=PLAY_BUTTON, row=0)
-    async def play_button(self, button: Button, interaction: MessageInteraction) -> None:
+    async def play_button(
+        self, button: Button, interaction: MessageInteraction
+    ) -> None:
         """
         play the game, and removes
         all buttons that cannot be used
@@ -661,7 +701,7 @@ class MineSweeper(View):
         message = await self.ctx.bot.wait_for(
             "message", timeout=720, check=self.wait_for_check
         )
-        if int(message.content) > (self.board_size ** 2) * 0.5:
+        if int(message.content) > (self.board_size**2) * 0.5:
             return await message.reply(
                 "You cant have more than half of the board covered in bombs!",
                 delete_after=30,
@@ -677,7 +717,11 @@ class MineSweeper(View):
         )
         asyncio.create_task(self.delete_message(message))
 
-    @button(label="Exit", style=ButtonStyle.danger, emoji=STOP_SIGN, disabled=True, row=1)
-    async def exit_button(self, button: Button, interaction: MessageInteraction) -> None:
+    @button(
+        label="Exit", style=ButtonStyle.danger, emoji=STOP_SIGN, disabled=True, row=1
+    )
+    async def exit_button(
+        self, button: Button, interaction: MessageInteraction
+    ) -> None:
         await interaction.response.defer()
         await self.exit()

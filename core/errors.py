@@ -4,9 +4,15 @@ import traceback
 
 import disnake
 from disnake.ext.commands import (
-    BadArgument, CheckFailure, CommandInvokeError, CommandNotFound,
-    CommandOnCooldown, MemberNotFound, MissingPermissions,
-    MissingRequiredArgument, RoleNotFound
+    BadArgument,
+    CheckFailure,
+    CommandInvokeError,
+    CommandNotFound,
+    CommandOnCooldown,
+    MemberNotFound,
+    MissingPermissions,
+    MissingRequiredArgument,
+    RoleNotFound,
 )
 
 from core.constants import LOCATION_EMOJIS
@@ -83,13 +89,10 @@ async def error_handler(ctx, error) -> None:
             content_replace = content.replace(ctx.prefix, "")
 
             for cmd in ctx.bot.commands:
-
                 if cmd.name[:1] == content_replace[:1]:
-
                     if cmd.hidden:
                         pass
                     else:
-
                         if len(y) == 5:
                             y.append(f"`{cmd.name}`---")
                         else:
@@ -122,7 +125,6 @@ async def error_handler(ctx, error) -> None:
             close = LOCATION_EMOJIS["close"]
             if len(my_string) >= 2:
                 if my_string[1] != "":
-
                     await msg.add_reaction(left)
                     await msg.add_reaction(close)
                     await msg.add_reaction(right)
@@ -133,8 +135,9 @@ async def error_handler(ctx, error) -> None:
 
                         while str(emoji.emoji) != close:
                             if str(emoji.emoji) == right and num == 1:
-
-                                embed = disnake.Embed(title="Error!", colour=get_colour())
+                                embed = disnake.Embed(
+                                    title="Error!", colour=get_colour()
+                                )
                                 embed.set_author(
                                     icon_url=ctx.author.display_avatar.url,
                                     name=f"{failed_cmd} is not a command!",
@@ -144,11 +147,15 @@ async def error_handler(ctx, error) -> None:
                                 )
                                 embed.set_footer(text="Page 2")
                                 await msg.edit(embed=embed)
-                                await msg.remove_reaction(member=ctx.author, emoji=right)
+                                await msg.remove_reaction(
+                                    member=ctx.author, emoji=right
+                                )
                                 num = 2
 
                             elif str(emoji.emoji) == left and num == 2:
-                                embed = disnake.Embed(title="Error!", colour=get_colour())
+                                embed = disnake.Embed(
+                                    title="Error!", colour=get_colour()
+                                )
                                 embed.set_author(
                                     icon_url=ctx.author.display_avatar.url,
                                     name=f"{failed_cmd} is not a command!",
@@ -161,7 +168,9 @@ async def error_handler(ctx, error) -> None:
                                 await msg.remove_reaction(member=ctx.author, emoji=left)
                                 num = 1
                             else:
-                                await msg.remove_reaction(member=ctx.author, emoji=right)
+                                await msg.remove_reaction(
+                                    member=ctx.author, emoji=right
+                                )
                                 await msg.remove_reaction(member=ctx.author, emoji=left)
 
                             (emoji, user) = await ctx.bot.wait_for(
@@ -171,7 +180,9 @@ async def error_handler(ctx, error) -> None:
                             )
                         else:
                             embed = disnake.Embed(
-                                title="Error!", description="Goodbye", colour=get_colour()
+                                title="Error!",
+                                description="Goodbye",
+                                colour=get_colour(),
                             )
                             embed.set_author(
                                 icon_url=ctx.author.display_avatar.url,
@@ -201,7 +212,9 @@ async def error_handler(ctx, error) -> None:
         )
         await ctx.reply(embed=embed)
     elif isinstance(error, RoleNotFound):
-        embed = disnake.Embed(description="That is not a **role!**", colour=get_colour())
+        embed = disnake.Embed(
+            description="That is not a **role!**", colour=get_colour()
+        )
         await ctx.reply(embed=embed)
 
     elif isinstance(error, CommandOnCooldown):

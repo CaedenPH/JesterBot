@@ -7,7 +7,7 @@ from .utils import get_colour
 
 async def create_embed(message: Message, bot) -> Embed:
     avatar = message.guild.get_member(bot.user.id).display_avatar.url
-    prefix = await bot.get_prefix(message)
+    await bot.get_prefix(message)
 
     embed = Embed(
         title=f"Hello {message.author.name}",

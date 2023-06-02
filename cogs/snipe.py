@@ -139,7 +139,9 @@ Message deleted at: {disnake.utils.format_dt(datetime.fromtimestamp(result[4]))}
         )[::-1]
         if not results:
             m = await send_embed(
-                ctx, "Edit Snipe", f"> No edited messages found in {ctx.channel.mention}."
+                ctx,
+                "Edit Snipe",
+                f"> No edited messages found in {ctx.channel.mention}.",
             )
             return await m.add_reaction(CLOSE)
         if amount >= len(results):

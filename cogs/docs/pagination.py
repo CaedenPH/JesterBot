@@ -130,7 +130,9 @@ class RoboPages(disnake.ui.View):
                 self.add_item(self.numbered_page)
             self.add_item(self.stop_pages)
 
-    async def _get_kwargs_from_page(self, page: int) -> Dict[str, Any,]:
+    async def _get_kwargs_from_page(
+        self, page: int
+    ) -> Dict[str, Any,]:
         value = await disnake.utils.maybe_coroutine(self.source.format_page, self, page)
         if isinstance(value, dict):
             return value
@@ -141,7 +143,9 @@ class RoboPages(disnake.ui.View):
         else:
             return {}
 
-    async def show_page(self, interaction: disnake.Interaction, page_number: int) -> None:
+    async def show_page(
+        self, interaction: disnake.Interaction, page_number: int
+    ) -> None:
         page = await self.source.get_page(page_number)
         self.current_page = page_number
         kwargs = await self._get_kwargs_from_page(page)
@@ -335,7 +339,7 @@ class PagMenu(menus.ListPageSource):
 
     async def format_page(self, menu, entries):
         pages = []
-        for (index, entry) in enumerate(entries, start=menu.current_page * self.per_page):
+        for index, entry in enumerate(entries, start=menu.current_page * self.per_page):
             pages.append(f"{entry}")
 
         maximum = self.get_max_pages()
