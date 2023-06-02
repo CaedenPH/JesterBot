@@ -19,5 +19,5 @@ jobs:
       - name: Run main file
         run: python main.py
       - name: Run tests
-        run: pytest .
+        run: pytest tests/
       

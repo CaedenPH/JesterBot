@@ -5,8 +5,6 @@ async_cse
 asyncpraw
 discord-together
 disnake
-disnake-debug
-disnake-docs
 disnake-jishaku
 disnake_paginator
 essential-generators
