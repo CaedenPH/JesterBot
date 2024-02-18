@@ -110,7 +110,7 @@ class Mod(commands.Cog):
     ):
         try:
             await member.send("You have been banned: " + reason)
-        except:
+        except HTTPException:
             await ctx.send("Could message user") 
         await member.ban(reason=reason)
         embed = disnake.Embed(
@@ -134,7 +134,10 @@ class Mod(commands.Cog):
         )
         embed.add_field(name="Reason:", value=reason)
         await ctx.reply(embed=embed)
-        await user.send("You have been unbanned")
+        try:
+            await user.send(f"You have been unbanned from {ctx.guild.name}")
+        except HTTPException:
+            await ctx.send("Could message user")   
 
     @has_permissions(manage_roles=True)
     @commands.command(aliases=["add", "+role", "add_role"])
@@ -223,7 +226,10 @@ class Mod(commands.Cog):
     async def kick(
         self, ctx: Context, member: disnake.Member, *, reason="No reason provided"
     ):
-        await member.send("You have been kicked: " + reason)
+        try:
+            await member.send("You have been kicked: " + reason)
+        except HTTPException:
+            await ctx.send("Could message user")
         await member.kick(reason=reason)
         embed = disnake.Embed(
             title="Kicked",
@@ -262,9 +268,12 @@ class Mod(commands.Cog):
         embed.add_field(name="Reason:", value=reason, inline=False)
         await ctx.reply(embed=embed)
         await member.add_roles(mutedRole, reason=reason)
-        await member.send(
-            f"You have been reaction muted from: {guild.name} Reason: {reason}"
-        )
+        try:
+            await member.send(
+                f"You have been reaction muted from: {guild.name} Reason: {reason}"
+            )
+        except HTTPException:
+            await ctx.send("Could message user")
 
     @commands.command(description="Indefinitely mutes the member from sending messages")
     @has_permissions(manage_messages=True)
@@ -291,7 +300,10 @@ class Mod(commands.Cog):
         embed.add_field(name="Reason:", value=reason, inline=False)
         await ctx.reply(embed=embed)
         await member.add_roles(mutedRole, reason=reason)
-        await member.send(f" you have been muted from: {guild.name} Reason: {reason}")
+        try:
+            await member.send(f" you have been muted from: {guild.name} Reason: {reason}")
+        except HTTPException:
+            await ctx.send("Could message user") 
 
     @commands.command(
         aliases=["unrmute", "runmute"], description="Unreactmutes `<member>`"
@@ -319,9 +331,12 @@ class Mod(commands.Cog):
             embed.add_field(name="Reason:", value=reason, inline=False)
             await ctx.reply(embed=embed)
             await member.remove_roles(Reactmuted, reason=reason)
-            await member.send(
-                f"You have been reaction muted from: {guild.name} Reason: {reason}"
-            )
+            try:
+                await member.send(
+                    f"You have been reaction muted from: {guild.name} Reason: {reason}"
+                )
+            except HTTPException:
+                await ctx.send("Could message user") 
 
     @commands.command(aliases=["unmut"], description="Unmutes `<member>`")
     @has_permissions(manage_messages=True)
@@ -346,9 +361,12 @@ class Mod(commands.Cog):
             embed.add_field(name="Reason:", value=reason, inline=False)
             await ctx.reply(embed=embed)
             await member.remove_roles(Reactmuted, reason=reason)
-            await member.send(
-                f"You have been reaction muted from: {guild.name} Reason: {reason}"
-            )
+            try:
+                await member.send(
+                    f"You have been reaction muted from: {guild.name} Reason: {reason}"
+                )
+            except HTTPException:
+                await ctx.send("Could message user") 
 
     @commands.command(
         aliases=["tempmute"],
