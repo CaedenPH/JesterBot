@@ -83,7 +83,7 @@ class Snipe(commands.Cog):
         user = await self.getch_user(result[2])
 
         embed = disnake.Embed(
-            description="""
+            description=f"""
 Message in: {ctx.channel.mention}
 Message from: {user.mention}
 Message deleted at: {disnake.utils.format_dt(datetime.fromtimestamp(result[4]))}
@@ -118,7 +118,7 @@ Message deleted at: {disnake.utils.format_dt(datetime.fromtimestamp(result[4]))}
         user = await self.getch_user(result[2])
 
         embed = disnake.Embed(
-            description="""
+            description=f"""
 Message in: {ctx.channel.mention}
 Message from: {user.mention}
 Message deleted at: {disnake.utils.format_dt(datetime.fromtimestamp(result[4]))}
@@ -154,7 +154,7 @@ Message deleted at: {disnake.utils.format_dt(datetime.fromtimestamp(result[4]))}
         user = await self.getch_user(result[2])
 
         embed = disnake.Embed(
-            description="""
+            description=f"""
 Message in: {ctx.channel.mention}
 Message from: {user.mention}
 Message edited at: {disnake.utils.format_dt(datetime.fromtimestamp(result[5]))}
@@ -193,7 +193,7 @@ changed to:
         user = await self.getch_user(result[2])
 
         embed = disnake.Embed(
-            description="""
+            description=f"""
 Message in: {ctx.channel.mention}
 Message from: {user.mention}
 Message edited at: {disnake.utils.format_dt(datetime.fromtimestamp(result[5]))}
