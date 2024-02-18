@@ -108,7 +108,10 @@ class Mod(commands.Cog):
     async def ban(
         self, ctx: Context, member: disnake.Member, *, reason="No reason provided"
     ):
-        await member.send("You have been banned: " + reason)
+        try:
+            await member.send("You have been banned: " + reason)
+        except:
+            await ctx.send("Could message user") 
         await member.ban(reason=reason)
         embed = disnake.Embed(
             title="Banned",
