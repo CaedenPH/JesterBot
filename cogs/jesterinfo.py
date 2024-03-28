@@ -263,21 +263,21 @@ Database : {round((db_time2-db_time1)*1000)}ms
 
     @commands.command(aliases=["devs", "helpers", "coder", "coders"])
     async def credits(self, ctx: Context):
-        self.bot.get_user(298043305927639041)
-        self.bot.get_user(780555299106586634)
-        self.bot.get_user(483631842554019841)
-        self.bot.get_user(652407551849267200)
-        self.bot.get_user(521226389559443461)
-        self.bot.get_user(427120167361708032)
+        coder = self.bot.get_user(298043305927639041)
+        designer = self.bot.get_user(780555299106586634)
+        helper = self.bot.get_user(483631842554019841)
+        helper2 = self.bot.get_user(652407551849267200)
+        helper3 = self.bot.get_user(521226389559443461)
+        sales = self.bot.get_user(521226389559443461)
+        ideas_designer = self.bot.get_user(427120167361708032)
         embed = disnake.Embed(
             title="Credits",
-            description="""
+            description=f"""
         **Coder:** *{coder.name}*
         **Designer:** *{designer.name}*
-        **Helpers:** *{helper.name}*, *{helper2.name}*
+        **Helpers:** *{helper.name}*, *{helper2.name}, {helper3.name}*
         **Sales/Promoter:** *{sales.name}*
         **Ideas/layout designer:** *{ideas_designer.name}*
-
         """,
             colour=get_colour(),
         )
