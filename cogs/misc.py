@@ -163,7 +163,7 @@ class Misc(commands.Cog):
         embed = disnake.Embed(title="Stats", colour=get_colour())
         embed.add_field(
             name="Server statistics",
-            value="""
+            value=f"""
     Text Channels: {len(ctx.guild.text_channels)}
     Voice Channels: {len(ctx.guild.voice_channels)}
     Total Channels: {len(ctx.guild.text_channels) + len(ctx.guild.voice_channels)}
