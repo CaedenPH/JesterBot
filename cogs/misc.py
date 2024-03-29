@@ -69,9 +69,9 @@ class Misc(commands.Cog):
                     average = 0
                     healthiness = "VERY UNHEALTHY"
 
-            embed.description += f"**# of members in guild**: `{guild.member_count}`\n"
+            embed.description += f"** > of members in guild**: `{guild.member_count}`**\n"
             embed.description += (
-                f"**# of messages per day on average in {channel}**: `{average}`\n"
+                f"** > of messages per day on average in {channel}**: `{average}`\n"
             )
             embed.description += f"**Channel health**: `{healthiness}`\n"
             await msg.delete()
