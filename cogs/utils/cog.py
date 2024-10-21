@@ -139,7 +139,10 @@ class Utils(commands.Cog):
 
         def get_info(
             char: str,
-        ) -> Tuple[str, str,]:
+        ) -> Tuple[
+            str,
+            str,
+        ]:
             digit = f"{ord(char):x}"
             if len(digit) <= 4:
                 u_code = f"\\u{digit:>04}"
