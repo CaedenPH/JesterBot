@@ -107,7 +107,7 @@ class Context(Context):
                     return
 
                 try:
-                    (r, u) = await arg.bot.wait_for(
+                    r, u = await arg.bot.wait_for(
                         "reaction_add", check=check, timeout=250
                     )
                     if str(r.emoji.id) == TRASHCAN[11:-1]:
@@ -164,7 +164,7 @@ class Context(Context):
                     return
 
                 try:
-                    (r, u) = await arg.bot.wait_for(
+                    r, u = await arg.bot.wait_for(
                         "reaction_add", check=check, timeout=250
                     )
                     if str(r.emoji.id) == TRASHCAN[11:-1]:
