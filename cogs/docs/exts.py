@@ -79,8 +79,8 @@ class RTFM:
             if not match:
                 continue
 
-            (name, directive, prio, location, dispname) = match.groups()
-            (domain, _, subdirective) = directive.partition(":")
+            name, directive, prio, location, dispname = match.groups()
+            domain, _, subdirective = directive.partition(":")
             if directive == "py:module" and name in result:
                 continue
 

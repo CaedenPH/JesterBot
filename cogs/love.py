@@ -170,7 +170,7 @@ class Love(commands.Cog):
         await msg.add_reaction("💖")
         partner = member
         try:
-            (emoji, user) = await self.bot.wait_for(
+            emoji, user = await self.bot.wait_for(
                 "reaction_add",
                 timeout=300.0,
                 check=lambda e, u: u == member and e.message.id == msg.id,

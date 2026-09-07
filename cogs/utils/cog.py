@@ -139,7 +139,10 @@ class Utils(commands.Cog):
 
         def get_info(
             char: str,
-        ) -> Tuple[str, str,]:
+        ) -> Tuple[
+            str,
+            str,
+        ]:
             digit = f"{ord(char):x}"
             if len(digit) <= 4:
                 u_code = f"\\u{digit:>04}"
@@ -152,7 +155,7 @@ class Utils(commands.Cog):
             )
             return (info, u_code)
 
-        (char_list, raw_list) = zip(*(get_info(c) for c in characters))
+        char_list, raw_list = zip(*(get_info(c) for c in characters))
         embed = disnake.Embed(colour=get_colour())
         embed.add_field(name="Character info", value="\n".join(char_list))
         if len(characters) > 1:
@@ -172,11 +175,11 @@ class Utils(commands.Cog):
         if sequences > 1000000000000000:
             sequences = 100000000000000
 
-        (a, b) = (0, 1)
+        a, b = (0, 1)
         while a < sequences:
             x.append(str(a))
 
-            (a, b) = (b, a + b)
+            a, b = (b, a + b)
 
         embed = disnake.Embed(
             title="Fibinaci", description=f"{', '.join(x)}", colour=get_colour()

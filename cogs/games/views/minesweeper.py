@@ -522,7 +522,7 @@ class MineSweeper(View):
 
             try:
                 user_input = message.content.split()
-                (row, column) = int(user_input[0]), int(user_input[-1])
+                row, column = int(user_input[0]), int(user_input[-1])
             except ValueError:
                 self.button_pressed = 0
                 return await message.add_reaction(CLOSE)
@@ -590,7 +590,7 @@ class MineSweeper(View):
 
             try:
                 user_input = message.content.split()
-                (row, column) = int(user_input[0]), int(user_input[-1])
+                row, column = int(user_input[0]), int(user_input[-1])
             except ValueError:
                 self.button_pressed = 0
                 return await message.add_reaction(CLOSE)
