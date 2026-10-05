@@ -111,7 +111,7 @@ class Mod(commands.Cog):
         try:
             await member.send("You have been banned: " + reason)
         except HTTPException:
-            await ctx.send("Could message user") 
+            await ctx.send("Could message user")
         await member.ban(reason=reason)
         embed = disnake.Embed(
             title="Banned",
@@ -137,7 +137,7 @@ class Mod(commands.Cog):
         try:
             await user.send(f"You have been unbanned from {ctx.guild.name}")
         except HTTPException:
-            await ctx.send("Could message user")   
+            await ctx.send("Could message user")
 
     @has_permissions(manage_roles=True)
     @commands.command(aliases=["add", "+role", "add_role"])
@@ -301,9 +301,11 @@ class Mod(commands.Cog):
         await ctx.reply(embed=embed)
         await member.add_roles(mutedRole, reason=reason)
         try:
-            await member.send(f" you have been muted from: {guild.name} Reason: {reason}")
+            await member.send(
+                f" you have been muted from: {guild.name} Reason: {reason}"
+            )
         except HTTPException:
-            await ctx.send("Could message user") 
+            await ctx.send("Could message user")
 
     @commands.command(
         aliases=["unrmute", "runmute"], description="Unreactmutes `<member>`"
@@ -336,7 +338,7 @@ class Mod(commands.Cog):
                     f"You have been reaction muted from: {guild.name} Reason: {reason}"
                 )
             except HTTPException:
-                await ctx.send("Could message user") 
+                await ctx.send("Could message user")
 
     @commands.command(aliases=["unmut"], description="Unmutes `<member>`")
     @has_permissions(manage_messages=True)
@@ -366,7 +368,7 @@ class Mod(commands.Cog):
                     f"You have been reaction muted from: {guild.name} Reason: {reason}"
                 )
             except HTTPException:
-                await ctx.send("Could message user") 
+                await ctx.send("Could message user")
 
     @commands.command(
         aliases=["tempmute"],

@@ -157,7 +157,7 @@ class Misc(commands.Cog):
 
     @commands.command(aliases=["stat"], description="Sends statistics about the server")
     async def stats(self, ctx: Context):
-        (members, bots) = [m for m in ctx.guild.members if not m.bot], [
+        members, bots = [m for m in ctx.guild.members if not m.bot], [
             m for m in ctx.guild.members if m.bot
         ]
         embed = disnake.Embed(title="Stats", colour=get_colour())
