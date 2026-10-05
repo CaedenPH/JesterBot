@@ -28,16 +28,14 @@ class Random(commands.Cog):
         ) as resp:
             await resp.json()
 
-        await ctx.em(
-            """```yaml
+        await ctx.em("""```yaml
     ++  --  Are you bored? -- ++
 [Activity:] {json['activity']}
 [Type:] {json['type']}
 [Participants required:] {json['participants']}
 [Price:] {json['price']}
 {'[Link:]' + json['link'] if json['link'] else ''}```
-            """
-        )
+            """)
 
     @commands.command()
     async def age(self, ctx: Context, name: str) -> None:
@@ -55,8 +53,7 @@ class Random(commands.Cog):
         ) as resp:
             await resp.json()
 
-        await ctx.em(
-            """```yaml
+        await ctx.em("""```yaml
     ++ -- Weather info for {city} -- ++
 [Temperature:]
     - temp : {json['main']['temp']}
@@ -72,8 +69,7 @@ class Random(commands.Cog):
 [Pressure:] {json['main']['pressure']}
 [Humidity:] {json['main']['humidity']}
 [Visibility:] {json['visibility']}```
-            """
-        )
+            """)
 
     @commands.command()
     async def spacex(self, ctx: Context) -> None:
@@ -82,11 +78,9 @@ class Random(commands.Cog):
         ) as resp:
             await resp.json()
 
-        await ctx.em(
-            """```yaml
+        await ctx.em("""```yaml
           ++ --  Spacex latest info -- ++
-{pprint.pformat(json)}```"""
-        )
+{pprint.pformat(json)}```""")
 
     @commands.command()
     async def screenshot(self, ctx: Context, *, url):
@@ -108,10 +102,8 @@ class Random(commands.Cog):
         ) as resp:
             await resp.json()
 
-        await ctx.em(
-            """```yaml
-{json}```"""
-        )
+        await ctx.em("""```yaml
+{json}```""")
 
     @commands.command()
     async def blank(self, ctx: Context) -> None:
@@ -136,11 +128,9 @@ class Random(commands.Cog):
         ) as resp:
             await resp.json()
 
-        await ctx.em(
-            """```yaml
+        await ctx.em("""```yaml
 [Trump quote:] {random.choice(json['messages']['personalized'])}```
-        """
-        )
+        """)
 
     @commands.command(name="fool")
     async def april_fools(self, ctx: Context) -> None:
@@ -149,7 +139,7 @@ class Random(commands.Cog):
                 Path("./resources/seasonal/april_fools_videos.json").read_text("utf-8")
             )
         )
-        (channel, url) = (video["channel"], video["url"])
+        channel, url = (video["channel"], video["url"])
 
         await ctx.reply(f"Check out this April Fools' video by {channel}.\n\n{url}")
 

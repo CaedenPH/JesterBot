@@ -36,7 +36,7 @@ class Casino(View):
         await interaction.response.edit_message(embed=intsthink, view=self)
 
         r_ints = (random.randint(1, 9), random.randint(1, 9), random.randint(1, 9))
-        (result, ints) = ([], None)
+        result, ints = ([], None)
 
         for i in r_ints:
             result.append(str(i))
@@ -68,7 +68,7 @@ class Casino(View):
 
         r_ints = (random.randint(1, 9), random.randint(1, 9), random.randint(1, 9))
 
-        (result, ints) = ([], None)
+        result, ints = ([], None)
         for i in r_ints:
             result.append(str(i))
             ints = Embed(
