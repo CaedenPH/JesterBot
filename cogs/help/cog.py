@@ -89,23 +89,29 @@ class HelpUtils:
             )
             .add_field(
                 name=" ❯❯ Alias",
-                value=f"{', '.join(f'`{k}`' for k in command.aliases if command.aliases)} "
-                if command.aliases
-                else "`none`",
+                value=(
+                    f"{', '.join(f'`{k}`' for k in command.aliases if command.aliases)} "
+                    if command.aliases
+                    else "`none`"
+                ),
                 inline=False,
             )
             .add_field(
                 name=" ❯❯ Usage",
-                value=f"`j.{command.name} {command.signature}`"
-                if command.signature
-                else f"`j.{command.name}`",
+                value=(
+                    f"`j.{command.name} {command.signature}`"
+                    if command.signature
+                    else f"`j.{command.name}`"
+                ),
                 inline=False,
             )
             .add_field(
                 name=" ❯❯ Description",
-                value=f"{get_help(command.name)}"
-                if get_help(command.name)
-                else "Currently no help!",
+                value=(
+                    f"{get_help(command.name)}"
+                    if get_help(command.name)
+                    else "Currently no help!"
+                ),
                 inline=False,
             )
             .set_author(name="Help", icon_url=ctx.author.display_avatar.url)
@@ -152,15 +158,19 @@ class HelpUtils:
             )
             .add_field(
                 name="\u200b",
-                value="\n".join(commands[i] for i in range(0, len(commands), 2))
-                if commands
-                else "-",
+                value=(
+                    "\n".join(commands[i] for i in range(0, len(commands), 2))
+                    if commands
+                    else "-"
+                ),
             )
             .add_field(
                 name="\u200b",
-                value="\n".join(commands[i] for i in range(1, len(commands), 2))
-                if commands
-                else "-",
+                value=(
+                    "\n".join(commands[i] for i in range(1, len(commands), 2))
+                    if commands
+                    else "-"
+                ),
             )
         )
 

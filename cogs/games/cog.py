@@ -181,7 +181,7 @@ class Games(Cog):
         def check(reaction, user):
             return user == ctx.author
 
-        (reaction, user) = await self.bot.wait_for("reaction_add", check=check)
+        reaction, user = await self.bot.wait_for("reaction_add", check=check)
 
         embed = Embed(title="Baited", colour=get_colour())
         await msg.edit(embed=embed)
