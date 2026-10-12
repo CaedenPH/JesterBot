@@ -20,10 +20,7 @@ def get_colour() -> int:
 
 
 async def send_embed(
-    channel: disnake.abc.Messageable,
-    title: str,
-    description: str = None,
-    **kwargs
+    channel: disnake.abc.Messageable, title: str, description: str = None, **kwargs
 ) -> disnake.Message:
     from core.context import Context
 
