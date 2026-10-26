@@ -248,19 +248,11 @@ class MusicPlayer(object):
         if self.ctx.guild.id not in self.music.queue.keys():
             self.music.queue[self.ctx.guild.id] = []
         self.after_func = check_queue
-        self.on_play_func = (
-            self.on_queue_func
-        ) = (
-            self.on_skip_func
-        ) = (
+        self.on_play_func = self.on_queue_func = self.on_skip_func = (
             self.on_stop_func
-        ) = (
-            self.on_pause_func
-        ) = (
-            self.on_resume_func
-        ) = (
-            self.on_loop_toggle_func
-        ) = self.on_volume_change_func = self.on_remove_from_queue_func = None
+        ) = self.on_pause_func = self.on_resume_func = self.on_loop_toggle_func = (
+            self.on_volume_change_func
+        ) = self.on_remove_from_queue_func = None
         ffmpeg_error = kwargs.get(
             "ffmpeg_error_betterfix", kwargs.get("ffmpeg_error_fix")
         )
