@@ -14,7 +14,7 @@ def quick_ratio(a, b):
 
 
 def partial_ratio(a, b):
-    (short, long) = (a, b) if len(a) <= len(b) else (b, a)
+    short, long = (a, b) if len(a) <= len(b) else (b, a)
     m = SequenceMatcher(None, short, long)
 
     blocks = m.get_matching_blocks()

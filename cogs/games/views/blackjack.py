@@ -89,11 +89,13 @@ class BlackJack(View):
             player=player,
             bar="".join("-" for _ in range(len(player))),
             cards=visual_cards,
-            value=self.generate_card_values(
-                self.user_cards if not cards else self.bot_cards
-            )
-            if not hide_card
-            else f"{cards[0].value} + ?",
+            value=(
+                self.generate_card_values(
+                    self.user_cards if not cards else self.bot_cards
+                )
+                if not hide_card
+                else f"{cards[0].value} + ?"
+            ),
         )
 
     def generate_card_values(self, cards: List[Card]) -> int:

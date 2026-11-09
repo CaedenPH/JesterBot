@@ -42,14 +42,12 @@ class Crime(commands.Cog):
 {"[hair_colow:] " + json['hair'] if json['hair'] else ''}
 """
         data = re.sub("\n{2,}", "\n", data).strip()
-        await ctx.em(
-            """```yaml
+        await ctx.em("""```yaml
     ++ -- wanted criminal {json['title']} -- ++
 
 {data}
 
-      [real data curated from official FBI sources]```"""
-        )
+      [real data curated from official FBI sources]```""")
 
     @commands.command(aliases=["jail"])
     async def jailbase(
@@ -96,14 +94,12 @@ class Crime(commands.Cog):
             json = await resp.json()
 
         ", ".join(json[k]["name"] for k in range(0, len(json)))
-        await ctx.em(
-            """```yaml
+        await ctx.em("""```yaml
         ++ -- All police forces in england -- ++
 
 {police}
 
-  [Factual information curated from official police data]```"""
-        )
+  [Factual information curated from official police data]```""")
 
     @commands.command()
     async def coordinates(self, ctx: Context, *, poste_code=None) -> None:
@@ -115,16 +111,14 @@ class Crime(commands.Cog):
         if not json["data"][0]:
             return await ctx.em("Invalid location!")
 
-        await ctx.em(
-            """```yaml
+        await ctx.em("""```yaml
     ++ -- coordinates for {poste_code} -- ++
 
 [Longitude:] {json['data'][0]['longitude']}
 [Latitude:] {json['data'][0]['latitude']}
 [Region:] {json['data'][0]['region']}
 [Country:] {json['data'][0]['country']}```
-            """
-        )
+            """)
 
     @commands.command(aliases=["searches"])
     async def stop_and_searches(self, ctx: Context, poste_code=None) -> None:
