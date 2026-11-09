@@ -264,7 +264,7 @@ class Fun(commands.Cog):
         def check(e, u):
             return u == ctx.author and e.message.id == msg.id
 
-        (emoji, user) = await self.bot.wait_for("reaction_add", check=check)
+        emoji, user = await self.bot.wait_for("reaction_add", check=check)
         while emoji.emoji != "❌":
             if emoji.emoji == "➡":
                 slide += 1
@@ -300,7 +300,7 @@ class Fun(commands.Cog):
 
                         await ctx.reply(f"{y} has been added!")
 
-            (emoji, user) = await self.bot.wait_for("reaction_add", check=check)
+            emoji, user = await self.bot.wait_for("reaction_add", check=check)
         else:
             await msg.clear_reactions()
 

@@ -20,4 +20,3 @@ jobs:
         run: python main.py
       - name: Run tests
         run: pytest tests/
-      

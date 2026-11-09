@@ -291,7 +291,7 @@ class Event(commands.Cog):
                 return u == message.author and e.message.id == message.id
 
             try:
-                (emoji, user) = await self.bot.wait_for(
+                emoji, user = await self.bot.wait_for(
                     "reaction_add", timeout=30.0, check=check
                 )
                 while emoji.emoji not in [THUMBS_DOWN]:
@@ -303,7 +303,7 @@ class Event(commands.Cog):
                     await message.remove_reaction(
                         member=message.author, emoji=THUMBS_UP
                     )
-                    (emoji, user) = await self.bot.wait_for(
+                    emoji, user = await self.bot.wait_for(
                         "reaction_add", timeout=30.0, check=check
                     )
 

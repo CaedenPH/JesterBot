@@ -57,7 +57,7 @@ class Trivia(commands.Cog):
 
     @commands.command(aliases=["question"])
     async def trivia_question(self, ctx: Context) -> None:
-        (content, answer) = await self.get_question()
+        content, answer = await self.get_question()
         await ctx.em(content)
 
         msg = await self.bot.wait_for(
@@ -87,7 +87,7 @@ class Trivia(commands.Cog):
         num = 0
 
         while True:
-            (content, answer) = await self.get_question()
+            content, answer = await self.get_question()
             bot_msg = await ctx.em(content)
 
             try:

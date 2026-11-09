@@ -129,7 +129,7 @@ async def error_handler(ctx, error) -> None:
                     await msg.add_reaction(close)
                     await msg.add_reaction(right)
                     try:
-                        (emoji, user) = await ctx.bot.wait_for(
+                        emoji, user = await ctx.bot.wait_for(
                             "reaction_add", timeout=60.0, check=check
                         )
 
@@ -173,7 +173,7 @@ async def error_handler(ctx, error) -> None:
                                 )
                                 await msg.remove_reaction(member=ctx.author, emoji=left)
 
-                            (emoji, user) = await ctx.bot.wait_for(
+                            emoji, user = await ctx.bot.wait_for(
                                 "reaction_add",
                                 timeout=60.0,
                                 check=lambda r, u: u == ctx.author,

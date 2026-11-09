@@ -32,7 +32,7 @@ class Staff(commands.Cog):
                 stderr=asyncio.subprocess.PIPE,
             )
 
-            (output, error) = await process.communicate()
+            output, error = await process.communicate()
             embed.description += f'[{" ".join(git_command)!r} exited with return code {process.returncode}\n'
 
             if output:
@@ -54,7 +54,7 @@ class Staff(commands.Cog):
                 stderr=asyncio.subprocess.PIPE,
             )
 
-            (output, error) = await process.communicate()
+            output, error = await process.communicate()
             embed.description += f'[{" ".join(git_command)!r} exited with return code {process.returncode}\n'
 
             if output:
@@ -614,7 +614,7 @@ class Staff(commands.Cog):
             )
         )
         await m.add_reaction(THUMBS_UP)
-        (reaction, user) = await self.bot.wait_for(
+        reaction, user = await self.bot.wait_for(
             "reaction_add", check=lambda r, u: u == ctx.author
         )
         await send_embed(ctx, "", "Done")
