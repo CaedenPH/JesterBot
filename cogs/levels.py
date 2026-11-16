@@ -31,9 +31,9 @@ class Levels(commands.Cog):
             "Select * from levels_config where guild_id = ?", (member.guild.id,)
         )
 
-        (chan, message) = (None, None)
+        chan, message = (None, None)
         if result is not None:
-            (guild, chan, ping) = result
+            guild, chan, ping = result
             if ping == "Yes":
                 message = f"Well done {member.mention}! You ranked up to {level}"
             else:
@@ -52,7 +52,7 @@ class Levels(commands.Cog):
             return
 
         result = await self.find_or_insert_user(message.author)
-        (user_id, guild_id, xp, level, name) = result
+        user_id, guild_id, xp, level, name = result
 
         xp += random.randint(10, 40)
 
@@ -213,7 +213,7 @@ class Levels(commands.Cog):
     async def rank(self, ctx: Context, member: disnake.Member = None):
         member = member or ctx.author
         user = await self.find_or_insert_user(member)
-        (user_id, guild_id, xp, level, name) = user
+        user_id, guild_id, xp, level, name = user
 
         result = await self.bot.db.fetchone(
             "Select Count(*) from users where xp > ? and guild_id=?", (xp, guild_id)
