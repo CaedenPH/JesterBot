@@ -383,7 +383,7 @@ class Images(commands.Cog):
         await img(ctx, member, "rotate")
 
         image = cv.imread("./images/rotate.png")
-        (h, w) = image.shape[:2]
+        h, w = image.shape[:2]
 
         rotation_matrix = cv.getRotationMatrix2D((w / 2, h / 2), degrees, 1)
 
