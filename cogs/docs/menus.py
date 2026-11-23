@@ -578,7 +578,7 @@ class Menu(metaclass=_MenuMeta):
                         )
                     ),
                 ]
-                (done, pending) = await asyncio.wait(
+                done, pending = await asyncio.wait(
                     tasks, timeout=self.timeout, return_when=asyncio.FIRST_COMPLETED
                 )
                 for task in pending:
@@ -1068,7 +1068,7 @@ class ListPageSource(PageSource):
         self.entries = entries
         self.per_page = per_page
 
-        (pages, left_over) = divmod(len(entries), per_page)
+        pages, left_over = divmod(len(entries), per_page)
         if left_over:
             pages += 1
 

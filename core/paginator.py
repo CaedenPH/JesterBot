@@ -61,7 +61,7 @@ class Paginator:
         def check(e, u):
             return u == self.ctx.author and e.message == msg
 
-        (e, u) = await self.ctx.bot.wait_for("reaction_add", check=check)
+        e, u = await self.ctx.bot.wait_for("reaction_add", check=check)
 
         while str(e.emoji) != l["close"]:
             name = str(e.emoji)
@@ -88,7 +88,7 @@ class Paginator:
                 top=self._top,
             )
 
-            (e, u) = await self.ctx.bot.wait_for("reaction_add", check=check)
+            e, u = await self.ctx.bot.wait_for("reaction_add", check=check)
 
         else:
             return await msg.clear_reactions()

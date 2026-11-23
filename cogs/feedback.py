@@ -38,53 +38,67 @@ class Feedback(commands.Cog):
             str,
         ] = None,
     ):
-        await send_embed(
-            ctx,
-            "",
-            "**Error: **distance must be an integer (an index placevalue) if no `author_from` is given!",
-        ) if hasattr(distance, "upper") and author_from is None else await send_embed(
-            ctx,
-            "",
-            f'*`{distance}`*: "{data["feedback"]["message"][distance]}", submitted by **{data["feedback"]["author"][distance]}**'
-            if distance != 0
-            else f"**You can index off of the index on the left side. Type `{ctx.prefix}viewfeedback <index>`\n**\n"
-            + "\n".join(
-                [
-                    f"`{num}:` {data['feedback']['message'][k]}**, said by {data['feedback']['author'][k]}**"
-                    for num, k in enumerate(range(len(data["feedback"]["message"])))
-                    if num <= 9
-                ]
-            ),
-            a="Feedback",
-            i_u=ctx.author.display_avatar.url,
-        ) if author_from is None else await send_embed(
-            ctx,
-            "",
-            "\n".join(
-                [
-                    f"`{num}`: {data['feedback']['message'][num]}"
-                    for num, k in enumerate(data["feedback"]["author"])
-                    if k == author_from
-                ]
-            ),
-            a=f"Feedback from {author_from}",
-            i_u=ctx.author.display_avatar.url,
-            f=f"All these messges are from {author_from}",
-        ) if hasattr(
-            author_from, "upper"
-        ) else await send_embed(
-            ctx,
-            "",
-            "\n".join(
-                [
-                    f"`{num}`: {data['feedback']['message'][num]}"
-                    for num, k in enumerate(data["feedback"]["id"])
-                    if k == author_from
-                ]
-            ),
-            a=f"Feedback from {await self.bot.fetch_user(author_from)}",
-            i_u=ctx.author.display_avatar.url,
-            f=f"All these messages are from {await self.bot.fetch_user(author_from)}",
+        (
+            await send_embed(
+                ctx,
+                "",
+                "**Error: **distance must be an integer (an index placevalue) if no `author_from` is given!",
+            )
+            if hasattr(distance, "upper") and author_from is None
+            else (
+                await send_embed(
+                    ctx,
+                    "",
+                    (
+                        f'*`{distance}`*: "{data["feedback"]["message"][distance]}", submitted by **{data["feedback"]["author"][distance]}**'
+                        if distance != 0
+                        else f"**You can index off of the index on the left side. Type `{ctx.prefix}viewfeedback <index>`\n**\n"
+                        + "\n".join(
+                            [
+                                f"`{num}:` {data['feedback']['message'][k]}**, said by {data['feedback']['author'][k]}**"
+                                for num, k in enumerate(
+                                    range(len(data["feedback"]["message"]))
+                                )
+                                if num <= 9
+                            ]
+                        )
+                    ),
+                    a="Feedback",
+                    i_u=ctx.author.display_avatar.url,
+                )
+                if author_from is None
+                else (
+                    await send_embed(
+                        ctx,
+                        "",
+                        "\n".join(
+                            [
+                                f"`{num}`: {data['feedback']['message'][num]}"
+                                for num, k in enumerate(data["feedback"]["author"])
+                                if k == author_from
+                            ]
+                        ),
+                        a=f"Feedback from {author_from}",
+                        i_u=ctx.author.display_avatar.url,
+                        f=f"All these messges are from {author_from}",
+                    )
+                    if hasattr(author_from, "upper")
+                    else await send_embed(
+                        ctx,
+                        "",
+                        "\n".join(
+                            [
+                                f"`{num}`: {data['feedback']['message'][num]}"
+                                for num, k in enumerate(data["feedback"]["id"])
+                                if k == author_from
+                            ]
+                        ),
+                        a=f"Feedback from {await self.bot.fetch_user(author_from)}",
+                        i_u=ctx.author.display_avatar.url,
+                        f=f"All these messages are from {await self.bot.fetch_user(author_from)}",
+                    )
+                )
+            )
         )
 
     @commands.command(aliases=["dial", "call", "assistance"])
